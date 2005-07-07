@@ -1,0 +1,29 @@
+transcend-usbflash.con
+gcoronel@ws-gcoronel:~/proyectos/gx2005/hardware/hermes/doc/datos_hardware/pendrive $ dbus-monitor --system
+signal sender=org.freedesktop.DBus -> dest=:1.46 interface=org.freedesktop.DBus; member=NameAcquired
+ string ":1.46"
+signal sender=:1.0 -> dest=(null destination) interface=org.freedesktop.Hal.Manager; member=DeviceAdded
+ string "/org/freedesktop/Hal/devices/usb_device_ea0_2168_BA03043C4A2530AB"
+signal sender=:1.0 -> dest=(null destination) interface=org.freedesktop.Hal.Manager; member=DeviceAdded
+ string "/org/freedesktop/Hal/devices/usb_device_ea0_2168_BA03043C4A2530AB_if0"
+signal sender=:1.0 -> dest=(null destination) interface=org.freedesktop.Hal.Manager; member=DeviceAdded
+ string "/org/freedesktop/Hal/devices/usb_device_ea0_2168_BA03043C4A2530AB_if0_scsi_host"
+signal sender=:1.0 -> dest=(null destination) interface=org.freedesktop.Hal.Manager; member=DeviceAdded
+ string "/org/freedesktop/Hal/devices/usb_device_ea0_2168_BA03043C4A2530AB_if0_scsi_host_scsi_device_lun0"
+signal sender=:1.0 -> dest=(null destination) interface=org.freedesktop.Hal.Manager; member=DeviceAdded
+ string "/org/freedesktop/Hal/devices/storage_model_TS64MJF2B"
+signal sender=:1.0 -> dest=(null destination) interface=org.freedesktop.Hal.Manager; member=DeviceAdded
+ string "/org/freedesktop/Hal/devices/volume_uuid_1BDF_1919"
+signal sender=org.freedesktop.DBus -> dest=(null destination) interface=org.freedesktop.DBus; member=NameOwnerChanged
+ string ":1.47"
+string ""
+string ":1.47"
+signal sender=org.freedesktop.DBus -> dest=(null destination) interface=org.freedesktop.DBus; member=NameOwnerChanged
+ string ":1.47"
+string ":1.47"
+string ""
+signal sender=:1.0 -> dest=(null destination) interface=org.freedesktop.Hal.Device; member=PropertyModified
+ int32 2
+[ (dbus-monitor too dumb to decipher arg type 'r')
+ (dbus-monitor too dumb to decipher arg type 'r')
+
