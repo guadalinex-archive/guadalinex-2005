@@ -24,11 +24,11 @@ class VolumeListener:
                                  dbus_interface = 'org.freedesktop.Hal.Manager',
                                  signal_name = 'DeviceRemoved')
 
-        self.udi_list = []
+        self.udi_dict = {}
 
 
     def on_device_added(self,  udi):
-        self.bus.add_signal_receiver(lambda *args: self.property_modified(udi, *args),
+        self.bus.add_signal_receiver(lambda *args: self.on_property_modified(udi, *args),
                 dbus_interface = 'org.freedesktop.Hal.Device',
                 signal_name = "PropertyModified",
                 path = udi)
@@ -49,6 +49,29 @@ class VolumeListener:
                         (product,))
             except:
                 self.message_render.show_warning("Dispositivo detectado, pero no identificado") 
+
+
+    def on_device_removed(self,  udi): 
+        if udi in  self.udi_dict.keys():
+            disp = self.udi_dict[udi]
+            disp.on_removed()
+            print
+            print
+            print "#############################################"
+            print "DESCONEXIÓN  ################################"
+            print "#############################################"
+            self.__print_properties(disp.properties)
+        else:
+            self.message_render.show_warning("Dispositivo desconectado")
+
+
+    def on_property_modified(self, udi, num, values):
+        for ele in values:
+            key = ele[0]
+
+            print "Modificado: ", key
+            if udi in self.udi_dict.keys():
+                self.udi_dict[udi].on_modified(key)
 
 
     def __print_properties(self, properties):
@@ -77,7 +100,7 @@ class VolumeListener:
             klass = BUSSES[bus]
             actor = klass(self.message_render, prop)
             actor.on_added()
-            self.udi_list.append((prop['info.udi'], actor))
+            self.udi_dict[prop['info.udi']] = actor
             return True
         except KeyError:
             pass
@@ -96,52 +119,15 @@ class VolumeListener:
             klass = CATEGORIES[category]
             actor = klass(self.message_render, prop)
             actor.on_added()
-            self.udi_list.append((prop['info.udi'], actor))
+            self.udi_dict[prop['info.udi']] = actor
             return True
         except KeyError:
             pass
         
     
-    def on_device_removed(self,  udi):
-        self.message_render.abort()
-        if udi in  [ele[0] for ele in self.udi_list]:
-            ele[1].on_removed()
-            print
-            print
-            print "#############################################"
-            print "DESCONEXIÓN  ################################"
-            print "#############################################"
-            self.__print_properties(ele[1].properties)
-        else:
-            self.message_render.show_warning("Dispositivo desconectado")
-
-
     def device_condition(self, condition_name, condition_details):
         if condition_name == 'VolumeMount':
             self.message_render.show_info("Dispositivo montado en ...")
-
-
-    def property_modified(self, udi, num, values):
-        for ele in values:
-            key = ele[0]
-            if key == 'volume.is_mounted':
-                obj = self.bus.get_object('org.freedesktop.Hal', udi)
-                obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
-                properties = obj.GetAllProperties()
-
-                try:
-                    if properties['volume.is_mounted']:
-                        self.message_render.show_info("Dispositivo montado en %s" %
-                             (properties['volume.mount_point'],))
-                    else:
-                        self.message_render.show_info("Dispositivo desmontado") 
-
-                except:
-                    pass
-
-            
-
-
 
 
 class DefaultMessageRender:

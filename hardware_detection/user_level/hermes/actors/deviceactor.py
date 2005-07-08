@@ -68,9 +68,12 @@ class DeviceActor(object):
         self.msg_no = None
 
     def on_added(self):
-        raise NotImplementedError
+        pass
 
     def on_removed(self):
-        raise NotImplementedError
+        pass
+    
+    def on_modified(self, prop_name):
+        pass
 
 
