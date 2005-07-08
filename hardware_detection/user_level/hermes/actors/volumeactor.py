@@ -27,12 +27,13 @@ class Actor (DeviceActor):
         print "Propiedad de volumeactor modificada: ", key
         if key == 'volume.is_mounted':
             try:
-                if properties['volume.is_mounted']:
+                if self.properties['volume.is_mounted']:
                     self.message_render.show_info("Dispositivo montado en %s" %
-                         (properties['volume.mount_point'],))
+                         (self.properties['volume.mount_point'],))
                 else:
                     self.message_render.show_info("Dispositivo desmontado") 
 
-            except:
+            except Exception, e:
+                print "Error: ", e
                 pass
 

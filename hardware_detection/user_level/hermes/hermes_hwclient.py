@@ -72,7 +72,13 @@ class VolumeListener:
             key = ele[0]
 
             if udi in self.udi_dict.keys():
-                self.udi_dict[udi].on_modified(key)
+                #Actualizamos las propiedades del objeto actor
+                actor = self.udi_dict[udi]
+                obj = self.bus.get_object('org.freedesktop.Hal', udi)
+                obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
+
+                actor.properties = obj.GetAllProperties()
+                actor.on_modified(key)
 
 
     def __print_properties(self, properties):
