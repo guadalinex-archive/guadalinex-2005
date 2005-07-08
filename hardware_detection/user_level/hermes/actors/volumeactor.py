@@ -19,12 +19,10 @@ class Actor (DeviceActor):
 
 
     def on_removed(self):
-        self.msg_render.show_info("Dispositivo %s de volumen desconectado" %
-                (self.properties['volume.label']))
+        self.msg_render.show_info("Dispositivo de volumen desconectado") 
 
 
     def on_modified(self, key):
-        print "Propiedad de volumeactor modificada: ", key
         if key == 'volume.is_mounted':
             try:
                 if self.properties['volume.is_mounted']:
