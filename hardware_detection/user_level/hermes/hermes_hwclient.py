@@ -102,6 +102,12 @@ class VolumeListener:
         self.message_render.abort()
         if udi in  [ele[0] for ele in self.udi_list]:
             ele[1].on_removed()
+            print
+            print
+            print "#############################################"
+            print "DESCONEXIÓN  ################################"
+            print "#############################################"
+            self.__print_properties(ele[1].properties)
         else:
             self.message_render.show_warning("Dispositivo desconectado")
 
