@@ -6,13 +6,16 @@ class Actor (DeviceActor):
     category = "volume"
 
     def on_added(self):
-        if self.properties['info.bus'] == 'usb':
-            self.msg_render.show_info("Pendrive %s listo"
-                 %(self.properties['volume.label']))
+        try:
+            if self.properties['info.bus'] == 'usb':
+                self.msg_render.show_info("Pendrive %s listo"
+                     %(self.properties['volume.label']))
 
-        else:
-            self.msg_render.show_info("Dispositivo %s de volumen listo"
-                %(self.properties['volume.label']))
+            else:
+                self.msg_render.show_info("Dispositivo %s de volumen listo"
+                    %(self.properties['volume.label']))
+        except:
+            pass
 
 
     def on_removed(self):
@@ -21,7 +24,7 @@ class Actor (DeviceActor):
 
 
     def on_modified(self, key):
-        print "Propiedad de volumeactor modificada"
+        print "Propiedad de volumeactor modificada: ", key
         if key == 'volume.is_mounted':
             try:
                 if properties['volume.is_mounted']:

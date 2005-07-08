@@ -42,6 +42,7 @@ class VolumeListener:
         res1 = self.__process_bus(properties)
         res2 = self.__process_category(properties)
 
+
         if not (res1 or res2):
             try:
                 product = properties['info.product']
@@ -61,6 +62,7 @@ class VolumeListener:
             print "DESCONEXIÓN  ################################"
             print "#############################################"
             self.__print_properties(disp.properties)
+            del self.udi_dict[udi]
         else:
             self.message_render.show_warning("Dispositivo desconectado")
 
@@ -69,13 +71,11 @@ class VolumeListener:
         for ele in values:
             key = ele[0]
 
-            print "Modificado: ", key
             if udi in self.udi_dict.keys():
                 self.udi_dict[udi].on_modified(key)
 
 
     def __print_properties(self, properties):
-
         print 
         print 
         print '-----------------------------------------------'
@@ -108,7 +108,7 @@ class VolumeListener:
 
     def __process_category(self, prop):
         """
-        Return True if a category devide is detected.Otherwise return False
+        Return True if a category devide is detected. Otherwise return False
         """
         try:
             category = prop['info.category']
@@ -118,11 +118,16 @@ class VolumeListener:
         try:
             klass = CATEGORIES[category]
             actor = klass(self.message_render, prop)
-            actor.on_added()
+
+            try:
+                actor.on_added()
+            except:
+                pass
+
             self.udi_dict[prop['info.udi']] = actor
             return True
-        except KeyError:
-            pass
+        except KeyError, e:
+            return False
         
     
     def device_condition(self, condition_name, condition_details):
