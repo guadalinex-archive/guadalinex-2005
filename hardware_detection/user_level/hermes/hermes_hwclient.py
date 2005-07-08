@@ -43,8 +43,7 @@ class VolumeListener:
         res2 = self.__process_category(properties)
 
         if not (res1 or res2):
-            self.message_render.show_info("Detectado el dispositivo %s" %
-                    (properties['info.product'],))
+            self.message_render.show_warning("Dispositivo detectado, pero no identificado") 
 
 
     def __print_properties(self, properties):
