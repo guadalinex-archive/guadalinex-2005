@@ -1,5 +1,3 @@
-transcend-usbflash.con
-gcoronel@ws-gcoronel:~/proyectos/gx2005/hardware/hermes/doc/datos_hardware/pendrive $ dbus-monitor --system
 signal sender=org.freedesktop.DBus -> dest=:1.46 interface=org.freedesktop.DBus; member=NameAcquired
  string ":1.46"
 signal sender=:1.0 -> dest=(null destination) interface=org.freedesktop.Hal.Manager; member=DeviceAdded

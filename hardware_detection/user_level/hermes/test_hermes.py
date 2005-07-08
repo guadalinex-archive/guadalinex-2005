@@ -16,13 +16,10 @@ class TrayInterfaceTest(unittest.TestCase):
 
     def test_show_message(self):
         self.iface.show_info("test_show_message")
-        self.iface.abort()
 
         self.iface.show_warning("test_show_message")
-        self.iface.abort()
 
         self.iface.show_error("test_show_message")
-        self.iface.abort()
 
 
     def test_show_question(self):

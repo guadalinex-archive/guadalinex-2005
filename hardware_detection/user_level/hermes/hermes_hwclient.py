@@ -24,17 +24,6 @@ class VolumeListener:
                                  dbus_interface = 'org.freedesktop.Hal.Manager',
                                  signal_name = 'DeviceRemoved')
 
-        #self.bus.add_signal_receiver(lambda *args: self.property_modified(udi, *args),
-        #        dbus_interface = 'org.freedesktop.Hal.Device',
-        #        signal_name = "PropertyModified")
-
-        #self.bus.add_signal_receiver(self.on_device_removed,
-        #                                "DeviceRemoved",       # member
-        #                     'org.freedesktop.Hal.Manager',  # interface
-        #                     'org.freedesktop.Hal',          # service
-        #                     '/org/freedesktop/Hal/Manager') # path
-
-        #self.udi_list contendrá una lista de los udi conectados en el sistema
         self.udi_list = []
 
 
@@ -48,6 +37,7 @@ class VolumeListener:
         obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
 
         properties = obj.GetAllProperties()
+        self.__print_properties(properties)
 
         res1 = self.__process_bus(properties)
         res2 = self.__process_category(properties)
@@ -57,14 +47,25 @@ class VolumeListener:
                     (properties['info.product'],))
 
 
+    def __print_properties(self, properties):
+
+        print 
+        print 
+        print '-----------------------------------------------'
+        print "Dispositivo: ", properties['info.udi']
+        print 
+        keys = properties.keys()
+        keys.sort()
+
+        for key in keys:
+            print key + ':' + str(properties[key])
+
     def __process_bus(self, prop):
         """
         return True if a bus device is detected. Otherwise return False 
         """
-        print "Processing bus..."
         try: 
             bus = prop['info.bus']
-            print "bus: ", bus
         except Exception:
             return False
 
@@ -82,10 +83,8 @@ class VolumeListener:
         """
         Return True if a category devide is detected.Otherwise return False
         """
-        print "Processing category..."
         try:
             category = prop['info.category']
-            print "category: ", category
         except:
             return False
 
@@ -108,14 +107,11 @@ class VolumeListener:
 
 
     def device_condition(self, condition_name, condition_details):
-        print "condition_name: ", condition_name
-        print "condition_details: ", condition_details
         if condition_name == 'VolumeMount':
             self.message_render.show_info("Dispositivo montado en ...")
 
 
     def property_modified(self, udi, num, values):
-        print "Values: ", values
         for ele in values:
             key = ele[0]
             if key == 'volume.is_mounted':
