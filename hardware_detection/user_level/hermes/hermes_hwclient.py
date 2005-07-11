@@ -45,7 +45,7 @@ class VolumeListener:
 
         if not (res1 or res2):
             try:
-                product = properties['info.product']
+                product = properties['info.vendor']
                 self.message_render.show_info("Dispositivo detectado: %s" %
                         (product,))
             except:
