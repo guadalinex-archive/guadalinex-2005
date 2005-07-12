@@ -46,7 +46,7 @@ class DeviceList:
     
     """
 
-    DEFAULT_FILE = '/home/gcoronel/.devicelist_file'
+    DEFAULT_FILE = '/var/tmp/devicelist_file'
 
     def __init__(self):
         self.__udi_set = Set()

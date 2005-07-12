@@ -15,7 +15,7 @@ class Actor (DeviceActor):
                 self.msg_render.show_info("Dispositivo %s de volumen listo"
                     %(self.properties['volume.label']))
         except:
-            pass
+            self.msg_render.show_info("Dispositivo de volumen conectado")
 
 
     def on_removed(self):

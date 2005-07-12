@@ -33,6 +33,7 @@ class DeviceListener:
         coldplug.start()
 
         self.devicelist = DeviceList()
+        print "DeviceListener iniciado"
 
 
     def on_device_added(self,  udi):

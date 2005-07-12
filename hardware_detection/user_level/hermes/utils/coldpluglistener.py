@@ -13,14 +13,12 @@ class ColdPlugListener:
         self.thread = None
 
     def start(self):
-        print "Iniciando thread"
         lock = thread.allocate_lock()
         self.thread = thread.start_new_thread(self.__run, (lock, ))
-        print "Thread iniciado"
 
     def __run(self, lock):
         lock.acquire()
-        print "ColdPlug inicializado"
+        print "ColdPlugListener iniciado"
         dl = DeviceList()
 
         for ele in dl.get_added():
