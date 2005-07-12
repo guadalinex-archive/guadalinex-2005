@@ -12,6 +12,7 @@ class DeviceListener:
     
     def __init__(self, message_render):
         self.message_render = message_render
+        self.devicelist = DeviceList()
 
         self.bus = dbus.Bus(dbus.Bus.TYPE_SYSTEM)
         obj = self.bus.get_object('org.freedesktop.Hal',
@@ -32,7 +33,6 @@ class DeviceListener:
         coldplug = ColdPlugListener(self)
         coldplug.start()
 
-        self.devicelist = DeviceList()
         print "DeviceListener iniciado"
 
 
@@ -50,11 +50,13 @@ class DeviceListener:
         properties = obj.GetAllProperties()
         self.__print_properties(properties)
 
-        res1 = self.__process_bus(properties)
-        res2 = self.__process_category(properties)
+        actor1 = self.__process_bus(properties)
+        actor2 = self.__process_category(properties)
 
+        if actor1: actor1.on_added()
+        if actor2: actor2.on_added()
 
-        if not (res1 or res2):
+        if not (actor1 or actor2):
             try:
                 product = properties['info.vendor']
                 self.message_render.show_info("Dispositivo detectado: %s" %
@@ -63,10 +65,23 @@ class DeviceListener:
                 self.message_render.show_warning("Dispositivo detectado, pero no identificado") 
 
 
+    def add_actor_from_properties(self, properties):
+        """
+        This method is useful for add device information on removed
+        """
+        actor1 = self.__process_bus(properties)
+        actor2 = self.__process_category(properties)
+
+        if not (actor1 or actor2):
+            return False
+        else:
+            return True
+
+
     def on_device_removed(self,  udi): 
         self.devicelist.save()
 
-        if udi in  self.udi_dict.keys():
+        if self.udi_dict.has_key(udi):
             disp = self.udi_dict[udi]
             disp.on_removed()
             print
@@ -118,9 +133,9 @@ class DeviceListener:
         try:
             klass = BUSSES[bus]
             actor = klass(self.message_render, prop)
-            actor.on_added()
+            #actor.on_added()
             self.udi_dict[prop['info.udi']] = actor
-            return True
+            return actor
         except KeyError:
             pass
 
@@ -138,13 +153,13 @@ class DeviceListener:
             klass = CATEGORIES[category]
             actor = klass(self.message_render, prop)
 
-            try:
-                actor.on_added()
-            except:
-                pass
+            #try:
+            #    actor.on_added()
+            #except:
+            #    pass
 
             self.udi_dict[prop['info.udi']] = actor
-            return True
+            return actor
         except KeyError, e:
             return False
         

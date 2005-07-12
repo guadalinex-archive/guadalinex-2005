@@ -29,5 +29,15 @@ class ColdPlugListener:
             except Exception, e:
                 print e
 
+        for ele in dl.get_removed():
+            try:
+                udi = ele[0]
+                properties = ele[1]
+                print "Procesando el eliminado: ", udi
+                self.devicelistener.add_actor_from_properties(properties)
+                self.devicelistener.on_device_removed(udi)
+            except Exception, e:
+                print e
+
         dl.save()
         lock.release()
