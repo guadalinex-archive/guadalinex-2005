@@ -29,8 +29,24 @@ class DeviceList:
     #formato de esta lista se encuentra en la documentación del método
 
     dl.get_removed() #Obtenemos una lista con los dispositivos quitados.
+
+    Nota: Para agilizar esta lógica, se utiliza por defecto el fichero cuyo
+    nombre está en DeviceList.DEFAULT_FILE para todas las operaciones con
+    ficheros, cargándose, si existe previamente, la lista de dispositivos nada
+    más inicializar el objeto DeviceList:
+
+    El ejemplo anterior:
+
+    dl = DeviceList()
+    dl.save()
+
+    dl = DeviceList()
+    dl.get_added()
+    dl.get_removed()
     
     """
+
+    DEFAULT_FILE = '/home/gcoronel/.devicelist_file'
 
     def __init__(self):
         self.__udi_set = Set()
@@ -39,18 +55,25 @@ class DeviceList:
         self.__data_to_compare = None
 
         self.__setup()
+        self.set_file_to_compare()
 
 
-    def save(self, filename):
+    def save(self, filename = DEFAULT_FILE):
         file = open(filename, 'w')
         pickle.dump(self.__data, file)
         file.close()
 
 
-    def set_file_to_compare(self, filename):
-        file = open(filename, 'r')
+    def set_file_to_compare(self, filename = DEFAULT_FILE):
+        try:
+            file = open(filename, 'r')
+        except IOError:
+            self.save(filename)
+            file = open(filename, 'r')
+
         self.__data_to_compare = pickle.load(file)
         file.close()
+
 
 
     def get_added(self):

@@ -3,9 +3,12 @@
 
 import dbus
 import gtk
-from actors import CATEGORIES, BUSSES
 
-class VolumeListener:
+from actors import CATEGORIES, BUSSES
+from utils import DeviceList, ColdPlugListener
+
+
+class DeviceListener:
     
     def __init__(self, message_render):
         self.message_render = message_render
@@ -26,8 +29,15 @@ class VolumeListener:
 
         self.udi_dict = {}
 
+        coldplug = ColdPlugListener(self)
+        coldplug.start()
+
+        self.devicelist = DeviceList()
+
 
     def on_device_added(self,  udi):
+        self.devicelist.save()
+
         self.bus.add_signal_receiver(lambda *args: self.on_property_modified(udi, *args),
                 dbus_interface = 'org.freedesktop.Hal.Device',
                 signal_name = "PropertyModified",
@@ -53,6 +63,8 @@ class VolumeListener:
 
 
     def on_device_removed(self,  udi): 
+        self.devicelist.save()
+
         if udi in  self.udi_dict.keys():
             disp = self.udi_dict[udi]
             disp.on_removed()
@@ -155,7 +167,8 @@ if __name__ == "__main__":
     object = bus.get_object("org.guadalinex.TrayService", "/org/guadalinex/TrayObject")
     iface = dbus.Interface(object, "org.guadalinex.TrayInterface")
 
-    VolumeListener(iface)
+    gtk.gdk.threads_init()
+    DeviceListener(iface)
     gtk.main()
 
 
