@@ -12,7 +12,6 @@ class DeviceListener:
     
     def __init__(self, message_render):
         self.message_render = message_render
-        self.devicelist = DeviceList()
 
         self.bus = dbus.Bus(dbus.Bus.TYPE_SYSTEM)
         obj = self.bus.get_object('org.freedesktop.Hal',
@@ -30,6 +29,7 @@ class DeviceListener:
 
         self.udi_dict = {}
 
+        self.devicelist = DeviceList()
         coldplug = ColdPlugListener(self)
         coldplug.start()
 
@@ -65,19 +65,6 @@ class DeviceListener:
                 self.message_render.show_warning("Dispositivo detectado, pero no identificado") 
 
 
-    def add_actor_from_properties(self, properties):
-        """
-        This method is useful for add device information on removed
-        """
-        actor1 = self.__process_bus(properties)
-        actor2 = self.__process_category(properties)
-
-        if not (actor1 or actor2):
-            return False
-        else:
-            return True
-
-
     def on_device_removed(self,  udi): 
         self.devicelist.save()
 
@@ -93,6 +80,19 @@ class DeviceListener:
             del self.udi_dict[udi]
         else:
             self.message_render.show_warning("Dispositivo desconectado")
+
+
+    def add_actor_from_properties(self, prop):
+        """
+        This method is useful for add device information on removed
+        """
+        actor1 = self.__process_bus(prop)
+        actor2 = self.__process_category(prop)
+
+        if not (actor1 or actor2):
+            return False
+        else:
+            return True
 
 
     def on_property_modified(self, udi, num, values):
@@ -128,7 +128,7 @@ class DeviceListener:
         try: 
             bus = prop['info.bus']
         except Exception:
-            return False
+            return None
 
         try:
             klass = BUSSES[bus]
@@ -137,7 +137,7 @@ class DeviceListener:
             self.udi_dict[prop['info.udi']] = actor
             return actor
         except KeyError:
-            pass
+            return None
 
 
     def __process_category(self, prop):
@@ -147,7 +147,7 @@ class DeviceListener:
         try:
             category = prop['info.category']
         except:
-            return False
+            return None
 
         try:
             klass = CATEGORIES[category]
@@ -161,7 +161,7 @@ class DeviceListener:
             self.udi_dict[prop['info.udi']] = actor
             return actor
         except KeyError, e:
-            return False
+            return None
         
     
     def device_condition(self, condition_name, condition_details):
