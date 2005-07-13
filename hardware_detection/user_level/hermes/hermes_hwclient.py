@@ -82,19 +82,6 @@ class DeviceListener:
             self.message_render.show_warning("Dispositivo desconectado")
 
 
-    def add_actor_from_properties(self, prop):
-        """
-        This method is useful for add device information on removed
-        """
-        actor1 = self.__process_bus(prop)
-        actor2 = self.__process_category(prop)
-
-        if not (actor1 or actor2):
-            return False
-        else:
-            return True
-
-
     def on_property_modified(self, udi, num, values):
         for ele in values:
             key = ele[0]
@@ -107,6 +94,19 @@ class DeviceListener:
 
                 actor.properties = obj.GetAllProperties()
                 actor.on_modified(key)
+
+
+    def add_actor_from_properties(self, prop):
+        """
+        This method is useful for add device information on removed
+        """
+        actor1 = self.__process_bus(prop)
+        actor2 = self.__process_category(prop)
+
+        if not (actor1 or actor2):
+            return False
+        else:
+            return True
 
 
     def __print_properties(self, properties):
