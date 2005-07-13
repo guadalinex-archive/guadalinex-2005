@@ -1,0 +1,12 @@
+#! /bin/sh
+set -e
+
+export CDIMAGE_ROOT=/home/carlospc/cdimage
+. "$CDIMAGE_ROOT/etc/config"
+
+SCRATCH="$CDIMAGE_ROOT/scratch/$PROJECT/tasks"
+TASKS="$CDIMAGE_ROOT/debian-cd/tasks/$PROJECT"
+
+for seed in $(list-seeds all); do
+	diff -u "$TASKS/$DIST/$seed" "$SCRATCH/$DIST/$seed" || true
+done

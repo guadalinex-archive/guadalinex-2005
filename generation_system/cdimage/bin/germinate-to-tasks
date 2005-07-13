@@ -1,0 +1,60 @@
+#! /bin/sh
+
+# Outputs debian-cd task lists to $CDIMAGE_ROOT/scratch/$PROJECT/tasks/.
+
+export CDIMAGE_ROOT=/home/carlospc/cdimage
+. "$CDIMAGE_ROOT/etc/config"
+. "$CDIMAGE_ROOT/bin/functions.sh"
+
+GERMINATE_OUT="$CDIMAGE_ROOT/scratch/$PROJECT/germinate"
+TASKS_OUT="$CDIMAGE_ROOT/scratch/$PROJECT/tasks"
+
+mkemptydir "$TASKS_OUT/$DIST"
+
+for seed in $(list-seeds all); do
+	exec >"$TASKS_OUT/$DIST/$seed"
+	if [ "$seed" = supported ]; then
+		seedsource="$seed+build-depends"
+	else
+		seedsource="$seed"
+	fi
+	for arch in $ARCHES; do
+		echo "#ifdef ARCH_$arch"
+		< "$GERMINATE_OUT/$DIST-$arch/$seedsource" \
+			tail -n +3 | head -n -2 | cut -d' ' -f1
+		echo "#endif /* ARCH_$arch */"
+	done
+done
+
+# Hackily exclude kernel-image-* from the installer and casper tasks. Those
+# udebs only exist to satisfy dependencies when building the
+# debian-installer package.
+for seed in $(list-seeds installer); do
+	grep -v ^kernel-image- "$TASKS_OUT/$DIST/$seed" \
+		> "$TASKS_OUT/$DIST/$seed.new"
+	mv "$TASKS_OUT/$DIST/$seed.new" "$TASKS_OUT/$DIST/$seed"
+done
+
+# Help debian-cd to regenerate Task headers, to make sure that we don't
+# accidentally end up out of sync with the archive and break the
+# second-stage install.
+for arch in $ARCHES; do
+	exec >"$TASKS_OUT/$DIST/override.$arch"
+	for seed in $(list-seeds tasks); do
+		< "$GERMINATE_OUT/$DIST-$arch/$seed" \
+			tail -n +3 | head -n -2 | cut -d' ' -f1 | \
+			sed "s/\$/  Task  $PROJECT-$seed/"
+	done
+done
+
+# Help debian-cd to get priorities in sync with the current base system,
+# so that debootstrap >= 0.3.1 can work out the correct set of packages
+# to install.
+for arch in $ARCHES; do
+	exec >"$TASKS_OUT/$DIST/important.$arch"
+	for seed in $(list-seeds debootstrap); do
+		< "$GERMINATE_OUT/$DIST-$arch/$seed" \
+			tail -n +3 | head -n -2 | cut -d' ' -f1 | \
+			egrep -v '^(linux-(image|restricted|amd64|386|686|k7|power|itanium|mckinley|sparc|hppa).*|nvidia-kernel-common|grub|yaboot|efibootmgr|elilo|silo|palo)$' || true
+	done
+done

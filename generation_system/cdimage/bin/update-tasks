@@ -1,0 +1,26 @@
+#! /bin/sh
+set -e
+
+export CDIMAGE_ROOT=/home/carlospc/cdimage
+. "$CDIMAGE_ROOT/etc/config"
+
+SCRATCH="$CDIMAGE_ROOT/scratch/$PROJECT/tasks"
+TASKS="$CDIMAGE_ROOT/debian-cd/tasks/$PROJECT"
+
+if [ -z "$1" ]; then
+	echo 'Usage: update-tasks DATE' >&2
+	exit 1
+fi
+
+DATE="$1"
+
+TASK_MAIL="$(cat "$CDIMAGE_ROOT/etc/task-mail" 2>/dev/null || true)"
+if [ "$TASK_MAIL" ]; then
+	diff-tasks | mail -e -s "Task changes for $CAPPROJECT $DIST on $DATE" \
+		$TASK_MAIL
+fi
+
+diff-tasks
+
+mkdir -p "$TASKS/$DIST"
+cp "$SCRATCH/$DIST"/* "$TASKS/$DIST/"

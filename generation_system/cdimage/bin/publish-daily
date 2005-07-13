@@ -1,0 +1,124 @@
+#! /bin/sh
+set -e
+
+export CDIMAGE_ROOT=/srv/cdimage.no-name-yet.com
+. "$CDIMAGE_ROOT/etc/config"
+. "$CDIMAGE_ROOT/bin/functions.sh"
+
+CDOUT="$CDIMAGE_ROOT/scratch/$PROJECT/debian-cd"
+BRITNEY_REPORT="$CDIMAGE_ROOT/britney/report/$PROJECT"
+
+if [ -z "$1" ]; then
+	echo 'Usage: publish-daily DATE [IMAGE_TYPE]' >&2
+	exit 1
+fi
+
+DATE="$1"
+IMAGE_TYPE="${2:-daily}"
+IMAGE_TYPE_DIR="$(echo "$IMAGE_TYPE" | sed 's,_,/,g')"
+
+case $PROJECT in
+	ubuntu)
+		FULL_TREE=full
+		TORRENT_TREE=torrent
+		;;
+	*)
+		FULL_TREE="full/$PROJECT"
+		TORRENT_TREE="torrent/$PROJECT"
+		;;
+esac
+
+PUBLISH="$CDIMAGE_ROOT/www/$FULL_TREE/$IMAGE_TYPE_DIR/$DATE"
+
+case $IMAGE_TYPE in
+	*-live)
+		TYPE=live
+		;;
+	*_dvd|dvd)
+		TYPE=dvd
+		;;
+	*)
+		TYPE=install
+		;;
+esac
+
+for arch in $ARCHES; do
+	if [ -e "$CDOUT/$arch/$DIST-$TYPE-$arch.raw" ]; then
+		echo "Publishing $arch ..."
+		mkdir -p "$PUBLISH"
+		mv "$CDOUT/$arch/$DIST-$TYPE-$arch.raw" \
+		   "$PUBLISH/$DIST-$TYPE-$arch.iso"
+		mv "$CDOUT/$arch/$DIST-$TYPE-$arch.list" \
+		   "$PUBLISH/$DIST-$TYPE-$arch.list"
+
+		# Jigdo integration
+		if [ -e "$CDOUT/$arch/$DIST-$TYPE-$arch.jigdo" ]; then
+			echo "Publishing $arch jigdo ..."
+			mv "$CDOUT/$arch/$DIST-$TYPE-$arch.jigdo" \
+			   "$PUBLISH/$DIST-$TYPE-$arch.jigdo"
+			mv "$CDOUT/$arch/$DIST-$TYPE-$arch.template" \
+			   "$PUBLISH/$DIST-$TYPE-$arch.template"
+		fi
+
+		# Live filesystem manifests
+		if [ -e "$CDOUT/$arch/$DIST-$TYPE-$arch.manifest" ]; then
+			echo "Publishing $arch live manifest ..."
+			mv "$CDOUT/$arch/$DIST-$TYPE-$arch.manifest" \
+			   "$PUBLISH/$DIST-$TYPE-$arch.manifest"
+		fi
+	else
+		echo "No CD for $arch!" >&2
+	fi
+done
+
+i=1
+while [ -e "$CDOUT/src/$DIST-src-$i.raw" ]; do
+	echo "Publishing source $i ..."
+	mkdir -p "$PUBLISH/source"
+	mv "$CDOUT/src/$DIST-src-$i.raw" "$PUBLISH/source/$DIST-src-$i.iso"
+	mv "$CDOUT/src/$DIST-src-$i.list" "$PUBLISH/source/$DIST-src-$i.list"
+
+	# Jigdo integration
+	if [ -e "$CDOUT/src/$DIST-src-$i.jigdo" ]; then
+		echo "Publishing source $i jigdo ..."
+		mv "$CDOUT/src/$DIST-src-$i.jigdo" \
+		   "$PUBLISH/source/$DIST-src-$i.jigdo"
+		mv "$CDOUT/src/$DIST-src-$i.template" \
+		   "$PUBLISH/source/$DIST-src-$i.template"
+	else
+		echo "No jigdo for source $i!" >&2
+	fi
+
+	i="$(($i + 1))"
+done
+
+if [ -d "$PUBLISH" ]; then
+	# Create and publish torrents.
+	mkemptydir "$CDIMAGE_ROOT/www/$TORRENT_TREE/$IMAGE_TYPE_DIR"
+	TORRENTS="$CDIMAGE_ROOT/www/$TORRENT_TREE/$IMAGE_TYPE_DIR/$DATE"
+	mkemptydir "$TORRENTS"
+	make-torrents "$PUBLISH" "$DIST-$TYPE" cdimage.ubuntu.com
+	make-torrents "$PUBLISH" "$DIST-src" cdimage.ubuntu.com
+	for arch in $ARCHES; do
+		if [ -e "$PUBLISH/$DIST-$TYPE-$arch.iso" ]; then
+			ln -f "$PUBLISH/$DIST-$TYPE-$arch.iso" \
+				"$TORRENTS/$DIST-$TYPE-$arch.iso"
+			ln -f "$PUBLISH/$DIST-$TYPE-$arch.iso.torrent" \
+				"$TORRENTS/$DIST-$TYPE-$arch.iso.torrent"
+		fi
+	done
+
+	if [ -e "$BRITNEY_REPORT/${DIST}_probs.html" ]; then
+		cp -a "$BRITNEY_REPORT/${DIST}_probs.html" "$PUBLISH/report.html"
+	fi
+	(cd "$PUBLISH" && md5sum "$DIST"-*.iso > MD5SUMS)
+	sign-cdimage "$PUBLISH/MD5SUMS"
+	if [ -d "$PUBLISH/source" ]; then
+		(cd "$PUBLISH/source" && md5sum "$DIST"-*.iso > MD5SUMS)
+		sign-cdimage "$PUBLISH/source/MD5SUMS"
+	fi
+	make-web-indices "$PUBLISH" "$DIST"
+	ln -nsf "$DATE" "$CDIMAGE_ROOT/www/$FULL_TREE/$IMAGE_TYPE_DIR/current"
+else
+	echo "No CDs produced!" >&2
+fi
