@@ -229,7 +229,7 @@ class HermesTray2:
 
         self.trayicon.add(img)
         
-        self.main_window = gtk.Dialog(parent = self.trayicon)
+        self.main_window = gtk.Dialog(parent = self.trayicon, flags = gtk.DIALOG_MODAL)
         self.__setup_dialog(self.main_window)
 
         #Delete all children
@@ -282,6 +282,8 @@ class HermesTray2:
         gobject.timeout_add(5000, timeout_2)
 
         self.trayicon.show_all()
+
+        self.__setup_dialog(self.main_window)
         self.main_window.show_all()
 
         gtk.gdk.threads_leave()
@@ -403,15 +405,15 @@ class HermesTray2:
 
 
     def __setup_dialog(self, dialog):
-        dialog.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-        dialog.set_decorated(False) #Sin borde
-        dialog.stick() #The message dialog shows in all workspaces
-        dialog.set_keep_above(True) #Se mantiene en primer plano
-        dialog.set_focus_on_map(False)
-        dialog.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(65500, 65535, 48573))
+        dialog.set_gravity(gtk.gdk.GRAVITY_SOUTH_EAST) 
         dialog.set_resizable(False)
 
-        dialog.set_gravity(gtk.gdk.GRAVITY_SOUTH_EAST)
+        dialog.set_focus_on_map(False)
+        dialog.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+        dialog.set_decorated(False) #Sin borde
+        dialog.stick() #Message dialog shows in all workspaces
+        dialog.set_keep_above(True) #Se mantiene en primer plano
+        dialog.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(65500, 65535, 48573))
 
         self.dlg = dialog
 
