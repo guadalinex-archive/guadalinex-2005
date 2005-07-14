@@ -33,5 +33,13 @@ bus = dbus.SessionBus()
 object = bus.get_object("org.guadalinex.TrayService", "/org/guadalinex/TrayObject")
 iface = dbus.Interface(object, "org.guadalinex.TrayInterface")
 
+
+def show_messages():
+    iface.show_info("Mensaje de prueba")
+    time.sleep(1)
+    iface.show_warning("Mensaje de prueba")
+    time.sleep(1)
+    iface.show_error("Mensaje de prueba")
+
 if __name__ == "__main__":
     unittest.main()

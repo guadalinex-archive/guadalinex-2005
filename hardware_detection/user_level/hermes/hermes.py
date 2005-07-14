@@ -48,6 +48,8 @@ class HermesTray (egg.trayicon.TrayIcon):
 
         self.add(img)
 
+        self.dlg = None
+
 
     def show_message(self, message, msg_type):
         thread.start_new_thread(self.__show_message, (message, msg_type))
@@ -294,9 +296,9 @@ class HermesTray2:
     def show_question(self, question, default = 1):
         #Mostramos el trayicon
         gtk.gdk.threads_enter()
-        self.show_all()
+        self.trayicon.show_all()
 
-        dlg = gtk.MessageDialog(parent = self,
+        dlg = gtk.MessageDialog(parent = self.trayicon,
                                 type = gtk.MESSAGE_QUESTION,
                                 flags = gtk.DIALOG_MODAL,
                                 message_format = question,
@@ -318,7 +320,7 @@ class HermesTray2:
             """
             Timeout handler that hide trayicon
             """
-            self.hide_all()
+            self.trayicon.hide_all()
             return False
         
         gobject.timeout_add(7000, timeout)
@@ -330,7 +332,6 @@ class HermesTray2:
             res = 0
         
         dlg.destroy()
-        self.hide_all()
 
         while gtk.events_pending():
             gtk.main_iteration()
