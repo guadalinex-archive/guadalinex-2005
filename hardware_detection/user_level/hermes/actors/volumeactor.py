@@ -3,7 +3,8 @@
 from deviceactor import DeviceActor
 
 class Actor (DeviceActor):
-    category = "volume"
+
+    __required__ = {'info.category': 'volume'}
 
     def on_added(self):
         try:

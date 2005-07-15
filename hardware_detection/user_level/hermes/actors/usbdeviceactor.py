@@ -3,8 +3,8 @@
 from deviceactor import DeviceActor
 
 class Actor(DeviceActor):
-    bus = 'usb_device'
 
+    __required__ = {'info.bus' : 'usb_device'}
 
     def on_added(self):
         try:

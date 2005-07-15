@@ -2,7 +2,8 @@
 from deviceactor import DeviceActor
 
 class Actor(DeviceActor):
-    bus = 'scsi'
+
+    __required__ = {'info.bus': 'scsi'}
 
     def on_added(self):
         self.msg_render.show_info("Dispositivo SCSI conectado")

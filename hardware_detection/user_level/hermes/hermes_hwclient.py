@@ -4,7 +4,7 @@
 import dbus
 import gtk
 
-from actors import CATEGORIES, BUSSES
+from actors import ACTORSLIST
 from utils import DeviceList, ColdPlugListener
 
 
@@ -50,13 +50,11 @@ class DeviceListener:
         properties = obj.GetAllProperties()
         self.__print_properties(properties)
 
-        actor1 = self.__process_bus(properties)
-        actor2 = self.__process_category(properties)
+        actor = self.add_actor_from_properties(properties)
 
-        if actor1: actor1.on_added()
-        if actor2: actor2.on_added()
-
-        if not (actor1 or actor2):
+        if actor: 
+            actor.on_added()
+        else: 
             try:
                 product = properties['info.vendor']
                 self.message_render.show_info("Dispositivo detectado: %s" %
@@ -98,15 +96,27 @@ class DeviceListener:
 
     def add_actor_from_properties(self, prop):
         """
-        This method is useful for add device information on removed
+        Devuelve un actor que pueda actuar para dispositivos con las propiedades
+        espeficicadas en prop
         """
-        actor1 = self.__process_bus(prop)
-        actor2 = self.__process_category(prop)
+        max = 0
+        actor = None
 
-        if not (actor1 or actor2):
-            return False
-        else:
-            return True
+        for klass in ACTORSLIST:
+            count = self.__count_equals(prop, klass.__required__)
+            if count > max:
+                actor = klass(self.message_render, prop)
+                max = count
+        
+        if actor:
+            self.udi_dict[prop['info.udi']] = actor
+
+        return actor
+
+
+    def device_condition(self, condition_name, condition_details):
+        if condition_name == 'VolumeMount':
+            self.message_render.show_info("Dispositivo montado en ...")
 
 
     def __print_properties(self, properties):
@@ -121,52 +131,24 @@ class DeviceListener:
         for key in keys:
             print key + ':' + str(properties[key])
 
-    def __process_bus(self, prop):
+    def __count_equals(self, prop, required):
         """
-        return True if a bus device is detected. Otherwise return False 
+        Devuelve el número de coincidencias entre el diccionario prop y
+        required, siempre y cuando TODOS los elementos de required estén en
+        prop.
+        En caso contrario devuelve 0.
         """
-        try: 
-            bus = prop['info.bus']
-        except Exception:
-            return None
+        count = 0
+        for key in required.keys():
+            if not prop.has_key(key): 
+                return 0
 
-        try:
-            klass = BUSSES[bus]
-            actor = klass(self.message_render, prop)
-            #actor.on_added()
-            self.udi_dict[prop['info.udi']] = actor
-            return actor
-        except KeyError:
-            return None
+            if prop[key] != required[key]:
+                return 0
+            count += 1
 
+        return  count
 
-    def __process_category(self, prop):
-        """
-        Return True if a category devide is detected. Otherwise return False
-        """
-        try:
-            category = prop['info.category']
-        except:
-            return None
-
-        try:
-            klass = CATEGORIES[category]
-            actor = klass(self.message_render, prop)
-
-            #try:
-            #    actor.on_added()
-            #except:
-            #    pass
-
-            self.udi_dict[prop['info.udi']] = actor
-            return actor
-        except KeyError, e:
-            return None
-        
-    
-    def device_condition(self, condition_name, condition_details):
-        if condition_name == 'VolumeMount':
-            self.message_render.show_info("Dispositivo montado en ...")
 
 
 class DefaultMessageRender:

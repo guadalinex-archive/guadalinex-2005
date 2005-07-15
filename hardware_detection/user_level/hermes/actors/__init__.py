@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 
+ACTORSLIST = []
 CATEGORIES = {}
 BUSSES = {}
 
@@ -20,6 +21,9 @@ for filename in file_list:
     module_name = filename.split('.')[0]
     try:
         actor_module = __import__(module_name, globals(), locals(),['*']) 
+
+        ACTORSLIST.append(actor_module.Actor)
+
         if actor_module.Actor.bus:
             BUSSES[actor_module.Actor.bus] = actor_module.Actor
         if actor_module.Actor.category:

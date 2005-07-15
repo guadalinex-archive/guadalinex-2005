@@ -15,14 +15,15 @@ DeviceActor dentro del módulo deviceactors:
 
     class Actor (DeviceActor):
 
-4) Indicamos, a través de los atributos de clase "category" y "bus", el nombre
-de la categoría o bus sobre el cual se actuará, en el ejemplo:
+4) Indicamos, a través del atributo de clase __required__ (de tipo dict), el nombre
+y el valor de las propiedades requeridas para que el actor se active:
 
-    category = 'tv'
+    __require__ = {'info.category' : 'tv'}
 
-5) Redefinimos los métodos "on_added" y "on_removed", con las acciones que se
-deben realiza cuando se añada y se retire un dispositivo para el cual estamos
-actuando, respectivamente
+
+5) Redefinimos los métodos "on_added", "on_removed" y on_modified, con las acciones que se
+deben realiza cuando se añada un dispositivo, se retire o se modifique una
+propiedad del dispositivo para el que estamos actuando, respectivamente
 
 Dentro de cualquier clase Actor disponemos de dos atributos sumamente útiles:
 
@@ -41,7 +42,7 @@ El ejemplo completo:
 from deviceactor import DeviceActor
 
 class Actor(DeviceActor):
-    category = 'tv'
+    __required__ ={'info.category': 'tv'}
 
     def on_added(self):
         self.msg_render.show_info("Dispositivo de tv detectado")
@@ -61,6 +62,7 @@ class DeviceActor(object):
     """
     bus = None
     category = None
+    __required__ = {} 
 
     def __init__(self, message_render, device_properties):
         self.message_render = self.msg_render = message_render
