@@ -1,0 +1,30 @@
+#! /bin/sh
+set -e
+
+echo $CDIMAGE_ROOT
+[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=/home/carlospc/developing/cdimage
+. "$CDIMAGE_ROOT/etc/config"
+
+IMAGE_TYPE="${1:-daily}"
+DATE="$(next-build-date "$IMAGE_TYPE")"
+CDIMAGE_INSTALL=1
+
+export PROJECT CAPPROJECT DIST ARCHES CDIMAGE_INSTALL
+
+echo "run-germinate"
+echo "============="
+run-germinate
+[ "$?" == "0" ] && echo "OK"
+
+echo "germinate-to-tasks"
+echo "=================="
+germinate-to-tasks
+[ "$?" == "0" ] && echo "OK"
+
+echo "update-tasks"
+echo "============"
+update-tasks "$DATE"
+[ "$?" == "0" ] && echo "OK"
+
+cd "$CDIMAGE_ROOT/debian-cd"
+./build_all.sh

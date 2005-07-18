@@ -1,0 +1,4 @@
+
+Para el correcto funcionamiento de los scripts contenidos en la
+carpeta bin/ es necesario que la variable CDIMAGE_ROOT contenga
+la ruta al directorio cdimage/

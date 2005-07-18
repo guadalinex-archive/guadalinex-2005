@@ -1,7 +1,7 @@
 #! /bin/sh
 set -e
 
-export CDIMAGE_ROOT=/home/carlospc/cdimage
+[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=/home/carlospc/cdimage
 . "$CDIMAGE_ROOT/etc/config"
 . "$CDIMAGE_ROOT/bin/functions.sh"
 
@@ -62,5 +62,6 @@ for arch in $ARCHES; do
 	if [ "$GERMINATE_HINTS" ] && [ -f "$GERMINATE_HINTS" ]; then
 		cp -a "$GERMINATE_HINTS" hints
 	fi
+	echo "****************************"
 	"$CDIMAGE_ROOT/germinate/germinate.py" ${LOCAL_SEEDS:+--seed-source "$LOCAL_SEEDS"} --mirror "file://$GERMINATE_OUT/" --seed-dist "$GERMINATE_SEED_DIST" --dist "$GERMINATE_DISTS" --arch "$arch" --no-rdepends
 done

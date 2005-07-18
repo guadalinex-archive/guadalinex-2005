@@ -49,10 +49,9 @@ unset DI_CODENAME       || true
 unset MAXCDS            || true
 unset OMIT_MANUAL	|| true
 
-CDIMAGE_ROOT=/home/carlospc/cdimage
 
 if [ -z "$PROJECT" ]; then
-  PROJECT=ubuntu
+  PROJECT=guadalinex
 fi
 if [ -z "$CAPPROJECT" ]; then
   CAPPROJECT="$(echo "$PROJECT" | perl -ne 'print ucfirst')"

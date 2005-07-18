@@ -3,6 +3,7 @@
 PROJECT="${PROJECT:-guadalinex}"
 CAPPROJECT="${CAPPROJECT:-Guadalinex}"
 DIST="${DIST:-breezy}"
+
 case $DIST in
 	warty|hoary|breezy)
 #		ARCHES="${ARCHES:-amd64 i386 powerpc}"
