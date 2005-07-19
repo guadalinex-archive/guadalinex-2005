@@ -3,15 +3,18 @@
 
 import dbus
 import gtk
+import logging
 
 from actors import ACTORSLIST
 from utils import DeviceList, ColdPlugListener
+from optparse import OptionParser
 
 
 class DeviceListener:
     
     def __init__(self, message_render):
         self.message_render = message_render
+        self.logger = logging.getLogger()
 
         #Inicialize
         self.bus = dbus.Bus(dbus.Bus.TYPE_SYSTEM)
@@ -32,13 +35,16 @@ class DeviceListener:
         self.modify_handler_dict = {}
         self.devicelist = DeviceList()
 
+        self.__init_actors()
+
         coldplug = ColdPlugListener(self)
         coldplug.start()
 
-        print "DeviceListener iniciado"
+        self.logger.info("DeviceListener iniciado")
 
 
     def on_device_added(self,  udi):
+        self.logger.debug("DeviceAdded: " + str(udi))
         self.devicelist.save()
 
         obj = self.bus.get_object('org.freedesktop.Hal', udi)
@@ -51,12 +57,6 @@ class DeviceListener:
 
         if actor: 
             actor.on_added()
-            if not self.modify_handler_dict.has_key(udi):
-                self.modify_handler_dict[udi] = lambda *args: self.on_property_modified(udi, *args) 
-                self.bus.add_signal_receiver(self.modify_handler_dict[udi],
-                    dbus_interface = 'org.freedesktop.Hal.Device',
-                    signal_name = "PropertyModified",
-                    path = udi)
         else: 
             if properties.has_key('info.vendor') and \
                     properties['info.vendor'] != '':
@@ -71,16 +71,6 @@ class DeviceListener:
         self.devicelist.save()
 
         if self.udi_dict.has_key(udi):
-            #Remove the signal
-            #if self.modify_handler_dict.has_key(udi):
-            #    print "Borrando la señal"
-            #    self.bus.remove_signal_receiver(self.modify_handler_dict[udi],
-            #        dbus_interface = 'org.freedesktop.Hal.Device',
-            #        signal_name = "PropertyModified",
-            #        path = udi)
-            #    del modify_handler_dict
-            #    print "Señal borrada"
-
             disp = self.udi_dict[udi]
             disp.on_removed()
             print
@@ -115,6 +105,7 @@ class DeviceListener:
         """
         max = 0
         klass = None
+        actor_klass = None
 
         for klass in ACTORSLIST:
             count = self.__count_equals(prop, klass.__required__)
@@ -124,15 +115,17 @@ class DeviceListener:
 
         actor = None 
         if actor_klass:
+            udi = prop['info.udi']
             actor = actor_klass(self.message_render, prop)
-            self.udi_dict[prop['info.udi']] = actor
+            self.udi_dict[udi] = actor
+            if not self.modify_handler_dict.has_key(udi):
+                self.modify_handler_dict[udi] = lambda *args: self.on_property_modified(udi, *args) 
+                self.bus.add_signal_receiver(self.modify_handler_dict[udi],
+                    dbus_interface = 'org.freedesktop.Hal.Device',
+                    signal_name = "PropertyModified",
+                    path = udi)
 
         return actor
-
-
-    def device_condition(self, condition_name, condition_details):
-        if condition_name == 'VolumeMount':
-            self.message_render.show_info("Dispositivo montado en ...")
 
 
     def __print_properties(self, properties):
@@ -166,17 +159,42 @@ class DeviceListener:
         return  count
 
 
+    def __init_actors(self):
+        obj = self.bus.get_object('org.freedesktop.Hal', '/org/freedesktop/Hal/Manager')
+        manager = dbus.Interface(obj, 'org.freedesktop.Hal.Manager')
 
-class DefaultMessageRender:
+        for udi in manager.GetAllDevices():
+            obj = self.bus.get_object('org.freedesktop.Hal', udi)
+            obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
 
-    def show_info (self, message):
-        print "Default: ", message
-
-    def abort(self):
-        print "Mensaje abortado"
+            properties = obj.GetAllProperties()
+            self.add_actor_from_properties(properties)
 
 
-if __name__ == "__main__":
+
+def main():
+    #Configure options
+    parser = OptionParser(usage = 'usage: %prog [options]')
+    parser.set_defaults(debug = False)
+
+    parser.add_option('-d', '--debug', 
+            action = 'store_true',
+            dest = 'debug',
+            help = 'start in debug mode')
+
+    (options, args) = parser.parse_args()
+    
+    if options.debug:
+        level = logging.DEBUG
+    else:
+        level = logging.INFO
+
+    logging.basicConfig(level = level,
+            format='%(asctime)s %(levelname)s %(message)s',
+                    filename='/var/tmp/hermes_hwclient.log',
+                    filemode='a')
+
+    #Connect to dbus
     bus = dbus.SessionBus()
     object = bus.get_object("org.guadalinex.TrayService", "/org/guadalinex/TrayObject")
     iface = dbus.Interface(object, "org.guadalinex.TrayInterface")
@@ -184,5 +202,9 @@ if __name__ == "__main__":
     gtk.gdk.threads_init()
     DeviceListener(iface)
     gtk.main()
+
+
+if __name__ == "__main__":
+    main()
 
 

@@ -59,15 +59,19 @@ class DeviceList:
 
 
     def save(self, filename = DEFAULT_FILE):
-        file = open(filename, 'w')
-        pickle.dump(self.__data, file)
-        file.close()
+        try:
+            file = open(filename, 'w')
+            pickle.dump(self.__data, file)
+            file.close()
+        except Exception, e:
+            self.logger.error(str(e))
 
 
     def set_file_to_compare(self, filename = DEFAULT_FILE):
         try:
             file = open(filename, 'r')
         except IOError:
+            self.logger.warning("Creando el fichero " + filename)
             self.save(filename)
             file = open(filename, 'r')
 

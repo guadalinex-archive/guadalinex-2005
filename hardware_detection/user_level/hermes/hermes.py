@@ -7,6 +7,9 @@ import egg.trayicon
 import thread
 import gobject
 import os
+import logging
+
+from optparse import OptionParser
 
 class DefaultMessageRender:
 
@@ -240,7 +243,6 @@ class HermesTray2:
 
 
         self.box.set_resize_mode(gtk.RESIZE_IMMEDIATE)
-        print "Inicio de Hermes2"
 
 
     def show_message(self, message, msg_type):
@@ -422,6 +424,8 @@ class TrayObject(dbus.Object):
     def __init__(self, service, message_render = DefaultMessageRender()):
         dbus.Object.__init__(self, "/org/guadalinex/TrayObject", service)
         self.message_render = message_render
+        self.logger = logging.getLogger()
+        self.logger.debug("TrayObject iniciado")
 
 
     @dbus.method("org.guadalinex.TrayInterface")
@@ -429,6 +433,7 @@ class TrayObject(dbus.Object):
         """
         This method shows a info message
         """
+        self.logger.info("show_info: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_INFO)
 
 
@@ -437,6 +442,7 @@ class TrayObject(dbus.Object):
         """
         This method shows a info message
         """
+        self.logger.info("show_warning: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_WARNING)
 
 
@@ -445,6 +451,7 @@ class TrayObject(dbus.Object):
         """
         This method shows a info message
         """
+        self.logger.info("show_error: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_ERROR)
 
 
@@ -454,6 +461,7 @@ class TrayObject(dbus.Object):
         This method show a yes/no question. If default == 1, the default 
         answer is Yes and if default == 0 the default answer is No
         """
+        self.logger.info("show_question: " + message)
         return self.message_render.show_question(question, default)
 
 
@@ -471,13 +479,36 @@ class TrayObject(dbus.Object):
 
 
 def main():
+    #Configure options
+    parser = OptionParser(usage = 'usage: %prog [options]')
+    parser.set_defaults(debug = False)
+
+    parser.add_option('-d', '--debug', 
+            action = 'store_true',
+            dest = 'debug',
+            help = 'start in debug mode')
+
+    (options, args) = parser.parse_args()
+    
+    if options.debug:
+        level = logging.DEBUG
+    else:
+        level = logging.INFO
+
+    logging.basicConfig(level = level,
+            format='%(asctime)s %(levelname)s %(message)s',
+                    filename='/var/tmp/hermes-notifier.log',
+                    filemode='a')
+
+    logger = logging.getLogger()
+
     tray = HermesTray2()
     session_bus = dbus.SessionBus()
     service = dbus.Service("org.guadalinex.TrayService", bus = session_bus)
     TrayObject(service, tray)
 
     gtk.gdk.threads_init()
-    print "Running"
+    logger.info("Started")
     gtk.main()
 
 
