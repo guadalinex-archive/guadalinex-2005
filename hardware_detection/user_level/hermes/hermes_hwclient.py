@@ -13,6 +13,7 @@ class DeviceListener:
     def __init__(self, message_render):
         self.message_render = message_render
 
+        #Inicialize
         self.bus = dbus.Bus(dbus.Bus.TYPE_SYSTEM)
         obj = self.bus.get_object('org.freedesktop.Hal',
                                   '/org/freedesktop/Hal/Manager')
@@ -28,8 +29,9 @@ class DeviceListener:
                                  signal_name = 'DeviceRemoved')
 
         self.udi_dict = {}
-
+        self.modify_handler_dict = {}
         self.devicelist = DeviceList()
+
         coldplug = ColdPlugListener(self)
         coldplug.start()
 
@@ -38,11 +40,6 @@ class DeviceListener:
 
     def on_device_added(self,  udi):
         self.devicelist.save()
-
-        self.bus.add_signal_receiver(lambda *args: self.on_property_modified(udi, *args),
-                dbus_interface = 'org.freedesktop.Hal.Device',
-                signal_name = "PropertyModified",
-                path = udi)
 
         obj = self.bus.get_object('org.freedesktop.Hal', udi)
         obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
@@ -54,12 +51,19 @@ class DeviceListener:
 
         if actor: 
             actor.on_added()
+            if not self.modify_handler_dict.has_key(udi):
+                self.modify_handler_dict[udi] = lambda *args: self.on_property_modified(udi, *args) 
+                self.bus.add_signal_receiver(self.modify_handler_dict[udi],
+                    dbus_interface = 'org.freedesktop.Hal.Device',
+                    signal_name = "PropertyModified",
+                    path = udi)
         else: 
-            try:
+            if properties.has_key('info.vendor') and \
+                    properties['info.vendor'] != '':
                 product = properties['info.vendor']
                 self.message_render.show_info("Dispositivo detectado: %s" %
                         (product,))
-            except:
+            else:
                 self.message_render.show_warning("Dispositivo detectado, pero no identificado") 
 
 
@@ -67,6 +71,16 @@ class DeviceListener:
         self.devicelist.save()
 
         if self.udi_dict.has_key(udi):
+            #Remove the signal
+            #if self.modify_handler_dict.has_key(udi):
+            #    print "Borrando la señal"
+            #    self.bus.remove_signal_receiver(self.modify_handler_dict[udi],
+            #        dbus_interface = 'org.freedesktop.Hal.Device',
+            #        signal_name = "PropertyModified",
+            #        path = udi)
+            #    del modify_handler_dict
+            #    print "Señal borrada"
+
             disp = self.udi_dict[udi]
             disp.on_removed()
             print
@@ -100,15 +114,17 @@ class DeviceListener:
         espeficicadas en prop
         """
         max = 0
-        actor = None
+        klass = None
 
         for klass in ACTORSLIST:
             count = self.__count_equals(prop, klass.__required__)
             if count > max:
-                actor = klass(self.message_render, prop)
+                actor_klass = klass
                 max = count
-        
-        if actor:
+
+        actor = None 
+        if actor_klass:
+            actor = actor_klass(self.message_render, prop)
             self.udi_dict[prop['info.udi']] = actor
 
         return actor

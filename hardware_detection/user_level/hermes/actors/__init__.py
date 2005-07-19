@@ -24,10 +24,10 @@ for filename in file_list:
 
         ACTORSLIST.append(actor_module.Actor)
 
-        if actor_module.Actor.bus:
-            BUSSES[actor_module.Actor.bus] = actor_module.Actor
-        if actor_module.Actor.category:
-            CATEGORIES[actor_module.Actor.category] = actor_module.Actor
+        #if actor_module.Actor.bus:
+        #    BUSSES[actor_module.Actor.bus] = actor_module.Actor
+        #if actor_module.Actor.category:
+        #    CATEGORIES[actor_module.Actor.category] = actor_module.Actor
     except Exception, e:
         print "Error: ", e
 

@@ -7,21 +7,7 @@ class Actor (DeviceActor):
     __required__ = {'info.category': 'volume'}
 
     def on_added(self):
-        try:
-            if self.properties['info.bus'] == 'usb':
-                self.msg_render.show_info("Pendrive %s listo"
-                     %(self.properties['volume.label']))
-
-            else:
-                self.msg_render.show_info("Dispositivo %s de volumen listo"
-                    %(self.properties['volume.label']))
-        except:
-            self.msg_render.show_info("Dispositivo de volumen conectado")
-
-
-    def on_removed(self):
-        self.msg_render.show_info("Dispositivo de volumen desconectado") 
-
+        self.msg_render.show_info("Dispositivo de volumen conectado")
 
     def on_modified(self, key):
         if key == 'volume.is_mounted':
@@ -34,5 +20,4 @@ class Actor (DeviceActor):
 
             except Exception, e:
                 print "Error: ", e
-                pass
 

@@ -53,6 +53,9 @@ class Actor(DeviceActor):
     
 
 """
+
+import dbus
+
 class DeviceActor(object):
     """
     Esta clase encapsula la lógica de actuación ante eventos en un dispositivo,
@@ -60,14 +63,35 @@ class DeviceActor(object):
     Es una clase abstracta que sirve para crear "actores de dispositivos",
     que sirven para mostrar mensajes al insertar/quitar dispositivos
     """
-    bus = None
-    category = None
     __required__ = {} 
 
     def __init__(self, message_render, device_properties):
         self.message_render = self.msg_render = message_render
         self.properties = device_properties
         self.msg_no = None
+        self.udi = device_properties['info.udi']
+
+        #Create the dbus comunication
+        #udi = self.udi
+        #self.bus = dbus.Bus(dbus.Bus.TYPE_SYSTEM)
+        #self.bus.add_signal_receiver(lambda *args: self.__on_property_modified(udi, *args),
+        #    dbus_interface = 'org.freedesktop.Hal.Device',
+        #    signal_name = "PropertyModified",
+        #    path = udi)
+
+
+    def __on_property_modified(self, udi, num, values):
+        for ele in values:
+            key = ele[0]
+
+            #Update properties
+            obj = self.bus.get_object('org.freedesktop.Hal', self.udi)
+            obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
+            self.properties = obj.GetAllProperties()
+
+            self.on_modified(key)
+
+
 
     def on_added(self):
         pass
