@@ -10,7 +10,9 @@ class Actor(DeviceActor):
         try:
             product = self.properties['usb_device.product']
             vendor = self.properties['info.vendor']
-            self.msg_render.show_info("Dispositivo detectado: " + vendor + product)
+            vendor = vendor and vendor + ', ' or ''
+            self.msg_render.show_info("Dispositivo usb detectado: " + vendor +\
+                    product)
         except:
             self.msg_render.show_info("Dispositivo usb detectado")
 

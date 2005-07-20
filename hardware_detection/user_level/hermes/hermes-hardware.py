@@ -68,6 +68,7 @@ class DeviceListener:
 
 
     def on_device_removed(self,  udi): 
+        self.logger.debug("DeviceRemoved: " + str(udi))
         self.devicelist.save()
 
         if self.udi_dict.has_key(udi):

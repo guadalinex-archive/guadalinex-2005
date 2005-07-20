@@ -6,8 +6,8 @@ class Actor (DeviceActor):
 
     __required__ = {'info.category': 'volume'}
 
-    def on_added(self):
-        self.msg_render.show_info("Dispositivo de volumen conectado")
+    #def on_added(self):
+    #    self.msg_render.show_info("Dispositivo de volumen conectado")
 
     def on_modified(self, key):
         if key == 'volume.is_mounted':

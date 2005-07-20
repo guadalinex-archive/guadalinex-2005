@@ -10,6 +10,8 @@ import os
 import logging
 
 from optparse import OptionParser
+from Queue import Queue
+
 
 class DefaultMessageRender:
 
@@ -224,6 +226,7 @@ class HermesTray (egg.trayicon.TrayIcon):
 
 
 class HermesTray2:
+    BACKGROUND_COLOR = gtk.gdk.Color(65500, 65535, 48573)
 
     def __init__(self):
         self.trayicon = egg.trayicon.TrayIcon("VT")
@@ -249,7 +252,11 @@ class HermesTray2:
         thread.start_new_thread(self.__show_message, (message, msg_type))
 
 
-    def __show_message (self, message, msg_type):
+    def ask_message(self, message, msg_type):
+        return self.__show_message(message, msg_type, True)
+
+
+    def __show_message (self, message, msg_type, ask = False):
         gtk.threads_enter()
         dlg = gtk.MessageDialog(parent = self.main_window,
                                 type = msg_type,
@@ -258,30 +265,68 @@ class HermesTray2:
                                 buttons = gtk.BUTTONS_NONE)
 
         self.__setup_dialog(dlg)
+        
         vbox = dlg.vbox
         dlg.remove(vbox)
+
+        #Prepare Close/Execute button
+        hbox = gtk.HBox()
+        if not ask:
+            close_button = gtk.Button(stock = gtk.STOCK_CLOSE)
+            close_button.connect("clicked", lambda *args: self.__remove_message(vbox))
+        else:
+            queue = Queue()
+
+            def execute(*args):
+                queue.put(1)
+                self.__remove_message(vbox)
+
+            close_button = gtk.Button(stock = gtk.STOCK_EXECUTE)
+            close_button.connect("clicked", execute)
+
+           
+        close_button.modify_bg(gtk.STATE_NORMAL, HermesTray2.BACKGROUND_COLOR)
+        if not ask:
+            button_vbox = close_button.child.child
+            button_label = button_vbox.get_children()[-1]
+            button_label.set_text("")
+
+        hbox.pack_end(close_button, False, False)
+        hbox.show_all()
+        vbox.pack_start(hbox)
+
         self.box.pack_end(vbox)
         vbox.show_all()
         gtk.threads_leave()
 
         def timeout():
             """
-            Timeout handler than hide messagedialog
+            Hide messagedialog
             """
+            if ask:
+                queue.put(0)
+
             self.__remove_message(vbox)
             return False #Para que sólo se ejecute una vez
 
 
         def timeout_2():
             """
-            Timeout handler than hide trayicon
+            Hide trayicon
             """
             self.trayicon.hide_all()
             return False
         
         gtk.gdk.threads_enter()
-        gobject.timeout_add(3000, timeout)
-        gobject.timeout_add(5000, timeout_2)
+        if ask:
+            interval = 4000
+            interval_2 = 6000
+        else:
+            interval = 3000
+            interval_2 = 5000
+
+        gobject.timeout_add(interval, timeout)
+        gobject.timeout_add(interval_2, timeout_2)
 
         self.trayicon.show_all()
 
@@ -290,12 +335,21 @@ class HermesTray2:
 
         gtk.gdk.threads_leave()
 
+        if ask:
+            while queue.empty():
+                gtk.gdk.threads_enter()
+                gtk.main_iteration()
+                gtk.gdk.threads_leave()
+            return queue.get()
+        
+
 
     def __remove_message(self, vbox):
-        self.box.remove(vbox)
-        vbox.destroy()
-        if len(self.box.get_children()) == 0:
-            self.main_window.hide_all()
+        if vbox in self.box.get_children():
+            self.box.remove(vbox)
+            vbox.destroy()
+            if len(self.box.get_children()) == 0:
+                self.main_window.hide_all()
 
     def show_question(self, question, default = 1):
         #Mostramos el trayicon
@@ -415,7 +469,7 @@ class HermesTray2:
         dialog.set_decorated(False) #Sin borde
         dialog.stick() #Message dialog shows in all workspaces
         dialog.set_keep_above(True) #Se mantiene en primer plano
-        dialog.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(65500, 65535, 48573))
+        dialog.modify_bg(gtk.STATE_NORMAL, HermesTray2.BACKGROUND_COLOR)
 
         self.dlg = dialog
 
@@ -436,6 +490,11 @@ class TrayObject(dbus.Object):
         self.logger.info("show_info: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_INFO)
 
+    @dbus.method("org.guadalinex.TrayInterface")
+    def ask_info(self, message):
+        self.logger.info("ask_info: " + message)
+        return self.message_render.ask_message(message, gtk.MESSAGE_INFO)
+
 
     @dbus.method("org.guadalinex.TrayInterface")
     def show_warning(self, message):
@@ -447,6 +506,12 @@ class TrayObject(dbus.Object):
 
 
     @dbus.method("org.guadalinex.TrayInterface")
+    def ask_warning(self, message):
+        self.logger.info("ask_warning: " + message)
+        return self.message_render.ask_message(message, gtk.MESSAGE_WARNING)
+
+
+    @dbus.method("org.guadalinex.TrayInterface")
     def show_error(self, message):
         """
         This method shows a info message
@@ -454,28 +519,11 @@ class TrayObject(dbus.Object):
         self.logger.info("show_error: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_ERROR)
 
-
     @dbus.method("org.guadalinex.TrayInterface")
-    def show_question(self, question, default = 1):
-        """
-        This method show a yes/no question. If default == 1, the default 
-        answer is Yes and if default == 0 the default answer is No
-        """
-        self.logger.info("show_question: " + message)
-        return self.message_render.show_question(question, default)
+    def ask_error(self, message):
+        self.logger.info("ask_error: " + message)
+        return self.message_render.ask_message(message, gtk.MESSAGE_ERROR)
 
-
-    @dbus.method("org.guadalinex.TrayInterface")
-    def show_entry(self, message):
-        return self.message_render.show_entry(message)
-
-
-    @dbus.method("org.guadalinex.TrayInterface")
-    def abort(self):
-        """
-        This method hide the message window.
-        """
-        return self.message_render.abort()
 
 
 def main():
