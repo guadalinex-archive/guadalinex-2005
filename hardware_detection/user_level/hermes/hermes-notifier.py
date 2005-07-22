@@ -19,26 +19,28 @@ class DefaultMessageRender:
         pass
 
 
-    def show_info(self, message):
-        print "Info: ", message
+    def show_message(self, message, type):
+        pstring = ''
+        if type == gtk.MESSAGE_INFO:
+            pstring = "Info: "
+        elif type == gtk.MESSAGE_WARNING:
+            pstring = "Warning: "
+        elif type == gtk.MESSAGE_ERROR:
+            pstring = "Error: "
+
+        print pstring + str(message)
 
         
-    def show_warning(self, message):
-        print "Warning: ", message
+    def ask_message(self, message, type):
+        pstring = ''
+        if type == gtk.MESSAGE_INFO:
+            pstring = "Ask Info: "
+        elif type == gtk.MESSAGE_WARNING:
+            pstring = "Ask Warning: "
+        elif type == gtk.MESSAGE_ERROR:
+            pstring = "Ask Error: "
 
-
-    def show_error(self, message):
-        print "Error: ", message
-
-
-    def show_question(self, message, default = 1):
-        print "Question: ", message
-        return default
-
-
-    def show_entry(self, message):
-        print "Entry: ", message
-        return "Texto de la entrada"
+        print pstring + str(message)
 
 
 
@@ -74,7 +76,6 @@ class HermesTray (egg.trayicon.TrayIcon):
                                 message_format = message,
                                 buttons = gtk.BUTTONS_NONE)
 
-        self.__setup_dialog(dlg)
         gtk.gdk.threads_leave()
 
 
@@ -264,16 +265,19 @@ class HermesTray2:
                                 message_format = message,
                                 buttons = gtk.BUTTONS_NONE)
 
-        self.__setup_dialog(dlg)
+        #self.__setup_dialog(dlg)
         
         vbox = dlg.vbox
         dlg.remove(vbox)
 
         #Prepare Close/Execute button
         hbox = gtk.HBox()
+        tooltips = gtk.Tooltips()
+        tooltips.enable()
         if not ask:
             close_button = gtk.Button(stock = gtk.STOCK_CLOSE)
             close_button.connect("clicked", lambda *args: self.__remove_message(vbox))
+            tooltips.set_tip(close_button, "Cerrar el mensaje")
         else:
             queue = Queue()
 
@@ -283,13 +287,13 @@ class HermesTray2:
 
             close_button = gtk.Button(stock = gtk.STOCK_EXECUTE)
             close_button.connect("clicked", execute)
+            tooltips.set_tip(close_button, "Ejecutar la acción del mesaje")
 
            
         close_button.modify_bg(gtk.STATE_NORMAL, HermesTray2.BACKGROUND_COLOR)
-        if not ask:
-            button_vbox = close_button.child.child
-            button_label = button_vbox.get_children()[-1]
-            button_label.set_text("")
+        button_vbox = close_button.child.child
+        button_label = button_vbox.get_children()[-1]
+        button_label.set_text("")
 
         hbox.pack_end(close_button, False, False)
         hbox.show_all()
@@ -341,7 +345,6 @@ class HermesTray2:
                 gtk.main_iteration()
                 gtk.gdk.threads_leave()
             return queue.get()
-        
 
 
     def __remove_message(self, vbox):
@@ -350,114 +353,6 @@ class HermesTray2:
             vbox.destroy()
             if len(self.box.get_children()) == 0:
                 self.main_window.hide_all()
-
-    def show_question(self, question, default = 1):
-        #Mostramos el trayicon
-        gtk.gdk.threads_enter()
-        self.trayicon.show_all()
-
-        dlg = gtk.MessageDialog(parent = self.trayicon,
-                                type = gtk.MESSAGE_QUESTION,
-                                flags = gtk.DIALOG_MODAL,
-                                message_format = question,
-                                buttons = gtk.BUTTONS_YES_NO)
-
-        self.__setup_dialog(dlg)
-
-        def timeout():
-            """
-            Timeout handler than hide messagedialog
-            """
-            if default == 0:
-                dlg.response(gtk.RESPONSE_NO)
-            else:
-                dlg.response(gtk.RESPONSE_YES)
-            return False #Para que sólo se ejecute una vez
-
-        def timeout_2():
-            """
-            Timeout handler that hide trayicon
-            """
-            self.trayicon.hide_all()
-            return False
-        
-        gobject.timeout_add(7000, timeout)
-        gobject.timeout_add(9000, timeout_2)
-
-        if dlg.run() == gtk.RESPONSE_YES:
-            res = 1 
-        else:
-            res = 0
-        
-        dlg.destroy()
-
-        while gtk.events_pending():
-            gtk.main_iteration()
-
-        gtk.gdk.threads_leave()
-        return res
-
-
-    def show_entry(self, message):
-        """
-        Muestra un diálogo con una entrada de texto para que el usuario
-        introduzca algún dato
-
-        Devuelve el texto introducido por el usuario
-        """
-        gtk.gdk.threads_enter()
-        self.show_all()
-
-        dlg = gtk.Dialog( "Entrada",
-                parent = self,
-                flags = gtk.DIALOG_MODAL,
-                buttons = (gtk.STOCK_APPLY, gtk.RESPONSE_OK))
-
-        entry = gtk.Entry()
-
-        dlg.vbox.pack_start(gtk.Label(message))
-        dlg.vbox.pack_start(entry)
-        dlg.vbox.show_all()
-
-        self.__setup_dialog(dlg)
-
-        def timeout():
-            """
-            Timeout handler than hide messagedialog
-            """
-            dlg.response(gtk.RESPONSE_CANCEL)
-            return False #Para que sólo se ejecute una vez
-
-        def timeout_2():
-            """
-            Timeout handler than hide trayicon
-            """
-            self.hide_all()
-            return False
-        
-        gobject.timeout_add(10000, timeout)
-        gobject.timeout_add(11000, timeout_2)
-
-        dlg.run() 
-        res =  entry.get_text()
-        
-        dlg.destroy()
-        self.hide_all()
-
-        while gtk.events_pending():
-            gtk.main_iteration()
-
-        gtk.gdk.threads_leave()
-        return res
-
-
-    def abort(self):
-        gtk.gdk.threads_enter()
-        try:
-            self.dlg.destroy()
-        except Exception:
-            pass
-        gtk.gdk.threads_leave()
 
 
     def __setup_dialog(self, dialog):
@@ -476,13 +371,13 @@ class HermesTray2:
 class TrayObject(dbus.Object):
 
     def __init__(self, service, message_render = DefaultMessageRender()):
-        dbus.Object.__init__(self, "/org/guadalinex/TrayObject", service)
+        dbus.Object.__init__(self, "/org/guadalinex/HermesObject", service)
         self.message_render = message_render
         self.logger = logging.getLogger()
-        self.logger.debug("TrayObject iniciado")
+        self.logger.debug("HermesObject iniciado")
 
 
-    @dbus.method("org.guadalinex.TrayInterface")
+    @dbus.method("org.guadalinex.IHermesNotifier")
     def show_info(self, message):
         """
         This method shows a info message
@@ -490,13 +385,13 @@ class TrayObject(dbus.Object):
         self.logger.info("show_info: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_INFO)
 
-    @dbus.method("org.guadalinex.TrayInterface")
+    @dbus.method("org.guadalinex.IHermesNotifier")
     def ask_info(self, message):
         self.logger.info("ask_info: " + message)
         return self.message_render.ask_message(message, gtk.MESSAGE_INFO)
 
 
-    @dbus.method("org.guadalinex.TrayInterface")
+    @dbus.method("org.guadalinex.IHermesNotifier")
     def show_warning(self, message):
         """
         This method shows a info message
@@ -505,13 +400,13 @@ class TrayObject(dbus.Object):
         return self.message_render.show_message(message, gtk.MESSAGE_WARNING)
 
 
-    @dbus.method("org.guadalinex.TrayInterface")
+    @dbus.method("org.guadalinex.IHermesNotifier")
     def ask_warning(self, message):
         self.logger.info("ask_warning: " + message)
         return self.message_render.ask_message(message, gtk.MESSAGE_WARNING)
 
 
-    @dbus.method("org.guadalinex.TrayInterface")
+    @dbus.method("org.guadalinex.IHermesNotifier")
     def show_error(self, message):
         """
         This method shows a info message
@@ -519,7 +414,7 @@ class TrayObject(dbus.Object):
         self.logger.info("show_error: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_ERROR)
 
-    @dbus.method("org.guadalinex.TrayInterface")
+    @dbus.method("org.guadalinex.IHermesNotifier")
     def ask_error(self, message):
         self.logger.info("ask_error: " + message)
         return self.message_render.ask_message(message, gtk.MESSAGE_ERROR)
@@ -552,7 +447,7 @@ def main():
 
     tray = HermesTray2()
     session_bus = dbus.SessionBus()
-    service = dbus.Service("org.guadalinex.TrayService", bus = session_bus)
+    service = dbus.Service("org.guadalinex.Hermes", bus = session_bus)
     TrayObject(service, tray)
 
     gtk.gdk.threads_init()

@@ -2,8 +2,9 @@
 # -*- coding: utf8 -*- 
 
 import dbus
-import gtk
+import time
 import logging
+import gtk
 
 from actors import ACTORSLIST
 from utils import DeviceList, ColdPlugListener
@@ -192,15 +193,14 @@ def main():
 
     logging.basicConfig(level = level,
             format='%(asctime)s %(levelname)s %(message)s',
-                    filename='/var/tmp/hermes_hwclient.log',
+                    filename='/var/tmp/hermes-hardware.log',
                     filemode='a')
 
     #Connect to dbus
     bus = dbus.SessionBus()
-    object = bus.get_object("org.guadalinex.TrayService", "/org/guadalinex/TrayObject")
-    iface = dbus.Interface(object, "org.guadalinex.TrayInterface")
+    object = bus.get_object("org.guadalinex.Hermes", "/org/guadalinex/HermesObject")
+    iface = dbus.Interface(object, "org.guadalinex.IHermesNotifier")
 
-    gtk.gdk.threads_init()
     DeviceListener(iface)
     gtk.main()
 
