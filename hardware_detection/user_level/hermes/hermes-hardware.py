@@ -172,7 +172,50 @@ class DeviceListener:
             properties = obj.GetAllProperties()
             self.add_actor_from_properties(properties)
 
+class NotificationDaemon(object):
+    """
+    This class is a wrapper for notification-daemon program.
+    """
+    def __init__(self):
+        bus = dbus.SessionBus()
+        obj = bus.get_object('org.freedesktop.Notifications',
+                '/org/freedesktop/Notifications')
+        self.iface = dbus.Interface(obj, 'org.freedesktop.Notifications')
 
+
+    def show_info(self, message):
+        self.iface.Notify("Sumary", "Content", dbus.UInt32(0), 
+                'EO', 16, "Info", str(message), 
+                '', list((1,2)), list((0,0)), 
+                dbus.UInt32(10))
+
+    
+    def show_warning(self, message):
+        self.iface.Notify("Sumary", "Content", dbus.UInt32(0), 
+                'EO', 16, "Warning", str(message), 
+                '', list((1,2)), list((0,0)), 
+                dbus.UInt32(10))
+
+
+    def show_error(self, message):
+        self.iface.Notify("Sumary", "Content", dbus.UInt32(0), 
+                'EO', 16, "Error",str(message), 
+                '', list((1,2)), list((0,0)), 
+                dbus.UInt32(10))
+
+
+    def ask_info(self):
+        return 0
+
+
+    def ask_warning(self):
+        return 0
+
+
+    def ask_error(self):
+        return 0
+
+        
 
 def main():
     #Configure options
@@ -183,6 +226,11 @@ def main():
             action = 'store_true',
             dest = 'debug',
             help = 'start in debug mode')
+
+    parser.add_option('-n', '--notification-daemon',
+            action = 'store_true',
+            dest = 'notification_daemon',
+            help = 'Use notification-daemon as notification tool')
 
     (options, args) = parser.parse_args()
     
@@ -196,10 +244,14 @@ def main():
                     filename='/var/tmp/hermes-hardware.log',
                     filemode='a')
 
-    #Connect to dbus
-    bus = dbus.SessionBus()
-    object = bus.get_object("org.guadalinex.Hermes", "/org/guadalinex/HermesObject")
-    iface = dbus.Interface(object, "org.guadalinex.IHermesNotifier")
+    if options.notification_daemon:
+        iface = NotificationDaemon()
+
+    else:
+        #Connect to dbus
+        bus = dbus.SessionBus()
+        object = bus.get_object("org.guadalinex.Hermes", "/org/guadalinex/HermesObject")
+        iface = dbus.Interface(object, "org.guadalinex.IHermesNotifier")
 
     DeviceListener(iface)
     gtk.main()
