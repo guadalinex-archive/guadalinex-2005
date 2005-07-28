@@ -1,618 +1,617 @@
-abiword						install
-abiword-common					install
-acpi						install
-acpid						install
-adduser						install
-alsa-base					install
-alsa-oss					install
-alsa-utils					install
-apmd						install
-apt						install
-apt-utils					install
-aptitude					install
-aspell-en					install
-at						install
-aumix-gtk					install
-base-config					install
-base-files					install
-base-passwd					install
-bash						install
-bc						install
-bind9-host					install
-binutils					install
-bsdmainutils					install
-bsdutils					install
-bzip2						install
-cdda2wav					install
-cdrecord					install
-console-common					install
-console-data					install
-console-tools					install
-coreutils					install
-cpio						install
-cpp						install
-cpp-3.3						install
-cpp-4.0						install
-cramfsprogs					install
-cron						install
-cupsys						install
-dash						install
-debconf						install
-debconf-i18n					install
-debianutils					install
-defoma						install
-dhcp-client					install
-dhcp3-client					deinstall
-dhcp3-common					install
-dictionaries-common				install
-diff						install
-dillo						install
-discover1					install
-discover1-data					install
-dmidecode					install
-dmsetup						install
-dnsutils					install
-docbook-xml					install
-dosfstools					install
-dpkg						install
-dpsyco-lib					install
-dpsyco-skel					install
-dselect						install
-e2fslibs					install
-e2fsprogs					install
-ed						install
-eject						install
-elvis						install
-elvis-common					install
-emelfm						install
-esound-common					install
-ethtool						install
-euro-support					install
-evms						install
-evms-ncurses					install
-exim4						install
-exim4-base					install
-exim4-config					install
-exim4-daemon-light				install
-fdutils						install
-file						install
-fileutils					install
-findutils					install
-fontconfig					install
-foomatic-filters				install
-ftp						install
-gaim						install
-gaim-data					install
-gamin						install
-gcc-3.3-base					install
-gcc-4.0-base					install
-gconf2						install
-gdk-imlib1					install
-gettext						install
-gettext-base					install
-gksu						install
-gnome-keyring					install
-gnome-mime-data					install
-gnupg						install
-gqview						install
-grep						install
-grepmap						install
-groff-base					install
-grub						install
-gs-common					install
-gs-esp						install
-gsfonts						install
-gtkglarea5					install
-gxedit						install
-gzip						install
-hdparm						install
-hicolor-icon-theme				install
-hostname					install
-hotplug						install
-hwdata						install
-iceme						install
-icepref						install
-icewm						install
-icewm-common					install
-ifrename					install
-ifupdown					install
-imlib-base					install
-imlib1						install
-info						install
-initrd-tools					install
-initscripts					install
-installation-report				install
-ipchains					install
-iproute						install
-iptables					install
-iputils-arping					install
-iputils-ping					install
-iputils-tracepath				install
-iso-codes					install
-jfbterm						install
-jfsutils					install
-joe						install
-klogd						install
-language-pack-en				install
-language-pack-en-base				install
-language-pack-es				install
-language-pack-es-base				install
-less						install
-lesstif2					install
-liba52-0.7.4					install
-libacl1						install
-libao2						install
-libapm1						install
-libapt-pkg-perl					install
-libart-2.0-2					install
-libasound2					install
-libaspell15c2					install
-libatk1.0-0					install
-libatm1						install
-libattr1					install
-libaudiofile0					install
-libbind9-0					install
-libblkid1					install
-libbonobo2-0					install
-libbonobo2-common				install
-libbonoboui2-0					install
-libbonoboui2-common				install
-libbz2-1.0					install
-libc6						install
-libc6-i686					install
-libcairo1					install
-libcap1						install
-libcomerr2					install
-libcompfaceg1					install
-libconfig-inifiles-perl				install
-libconsole					install
-libcupsimage2					install
-libcupsys2-gnutls10				install
-libcurl2					install
-libcurl3					install
-libdb1-compat					install
-libdb2						install
-libdb3						install
-libdb3-util					install
-libdb4.2					install
-libdb4.3					install
-libdbus-1-1					install
-libdbus-glib-1-1				install
-libdevmapper1.01				install
-libdirectfb-0.9-22				install
-libdiscover1					install
-libdns20					install
-libdps1						install
-libedit2					install
-libelfg0					install
-libenchant1c2					install
-libesd0						install
-libevent1					install
-libevms-2.5					install
-libexif10					install
-libexpat1					install
-libfltk1.1					install
-libfontconfig1					install
-libfreetype6					install
-libfribidi0					install
-libgamin0					install
-libgc1c2					install
-libgcc1						install
-libgcj-common					install
-libgcj6						install
-libgconf2-4					install
-libgcrypt1					install
-libgcrypt11					install
-libgcrypt7					install
-libgdbm3					install
-libgdbmg1					install
-libgdk-pixbuf2					install
-libgimp2.0					install
-libgimpprint1					install
-libgksu1.2-0					install
-libgksuui1.0-0					install
-libglade2-0					install
-libglib1.2					install
-libglib2.0-0					install
-libglide2					install
-libglu1-xorg					install
-libgnome-keyring0				install
-libgnome2-0					install
-libgnome2-common				install
-libgnomecanvas2-0				install
-libgnomecanvas2-common				install
-libgnomeui-0					install
-libgnomeui-common				install
-libgnomevfs2-0					install
-libgnomevfs2-common				install
-libgnutls10					install
-libgnutls11					install
-libgnutls7					install
-libgpg-error0					install
-libgpgme6					install
-libgphoto2-2					install
-libgphoto2-port0				install
-libgpmg1					install
-libgtk1.2					install
-libgtk1.2-common				install
-libgtk2.0-0					install
-libgtk2.0-bin					install
-libgtk2.0-common				install
-libgtkspell0					install
-libgucharmap4					install
-libhal-storage1					install
-libhal1						install
-libice6						install
-libid3tag0					install
-libident					install
-libidl0						install
-libidn11					install
-libieee1284-3					install
-libisc9						install
-libisccc0					install
-libisccfg1					install
-libiw28						install
-libjpeg62					install
-libkrb53					install
-liblaunchpad-integration0			install
-libldap2					install
-liblocale-gettext-perl				install
-liblockfile1					install
-liblwres1					install
-liblzo1						install
-libmad0						install
-libmagic1					install
-libmodplug0c2					install
-libmyspell3c2					install
-libmysqlclient10				install
-libncurses5					install
-libncursesw5					install
-libnetpbm10					install
-libnewt0.51					install
-libnfsidmap1					install
-libogg0						install
-libopencdk8					install
-liborbit2					install
-libpam-modules					install
-libpam-runtime					install
-libpam0g					install
-libpango1.0-0					install
-libpango1.0-common				install
-libpaper1					install
-libparted1.6-12					install
-libpcap0.7					install
-libpcap0.8					install
-libpcap0.9					install
-libpcre3					install
-libperl5.8					install
-libpisock8					install
-libpixman1					install
-libpng10-0					install
-libpng12-0					install
-libpoppler0c2					install
-libpopt0					install
-libpq3						install
-libreadline4					install
-libreadline5					install
-libreiserfs0.3-0				install
-libsane						install
-libsasl2					install
-libsasl2-modules				install
-libscrollkeeper0				install
-libselinux1					install
-libsigc++-1.2-5					install
-libslang2					install
-libslp1						install
-libsm6						install
-libsmbclient					install
-libspeex1					install
-libss2						install
-libssl0.9.7					install
-libstartup-notification0			install
-libstdc++2.10-glibc2.2				install
-libstdc++5					install
-libstdc++6					install
-libsvga1					install
-libsysfs1					install
-libt1-5						install
-libtasn1-0					install
-libtasn1-2					install
-libtext-charwidth-perl				install
-libtext-iconv-perl				install
-libtext-wrapi18n-perl				install
-libtextwrap1					install
-libtheora0					install
-libtiff4					install
-libungif4g					install
-libusb-0.1-4					install
-libuuid1					install
-libvorbis0a					install
-libvorbisenc2					install
-libvte-common					install
-libvte4						install
-libwrap0					install
-libwww-ssl0					install
-libx11-6					install
-libxau6						install
-libxaw6						install
-libxaw7						install
-libxcursor1					install
-libxdmcp6					install
-libxext6					install
-libxfce4util-1					install
-libxfcegui4-3					install
-libxfixes3					install
-libxft1						install
-libxft2						install
-libxi6						install
-libxine1c2					install
-libxinerama1					install
-libxml2						install
-libxmlrpc-c3					install
-libxmu6						install
-libxmuu1					install
-libxp6						install
-libxpm4						install
-libxrandr2					install
-libxrender1					install
-libxslt1.1					install
-libxss1						install
-libxt6						install
-libxtrap6					install
-libxtst6					install
-libxv1						install
-libxxf86dga1					install
-libxxf86vm1					install
-lilo						install
-links2						install
-linux-386					install
-linux-image-2.6.12-3-386			install
-linux-image-386					install
-linux-sound-base				install
-localepurge					install
-locales						install
-localization-config				install
-login						install
-logrotate					install
-lsb-base					install
-lsb-release					install
-lshw						install
-lshw-common					install
-lsof						install
-ltrace						install
-lvm-common					install
-lvm2						install
-mailx						install
-make						install
-makedev						install
-man-db						install
-manpages					install
-mawk						install
-mbr						install
-mc						install
-mdadm						install
-mdetect						install
-memtest86+					install
-menu						install
-metamail					install
-mii-diag					install
-mime-support					install
-mkisofs						install
-module-init-tools				install
-modutils					install
-motion						install
-mount						install
-mousepad					install
-mozilla-firefox					install
-mozilla-firefox-locale-es-es			install
-mpg321						install
-mtr-tiny					install
-mysql-common					install
-nano						install
-ncurses-base					install
-ncurses-bin					install
-nedit						install
-net-tools					install
-netbase						install
-netcat						install
-netkit-inetd					install
-netpbm						install
-nfs-common					install
-ntpdate						install
-nvi						install
-openssh-client					install
-openssh-server					install
-parted						install
-passwd						install
-patch						install
-pciutils					install
-pcmcia-cs					install
-perl						install
-perl-base					install
-perl-modules					install
-popularity-contest				install
-portmap						install
-powermgmt-base					install
-ppp						install
-pppconfig					install
-pppoe						install
-pppoeconf					install
-procps						install
-psmisc						install
-python						install
-python-gtk-1.2					install
-python-gtk2					install
-python-minimal					install
-python2.3					install
-python2.3-numeric				install
-python2.4					install
-python2.4-gtk2					install
-python2.4-minimal				install
-python2.4-numeric				install
-rdesktop					install
-read-edid					install
-reiser4progs					install
-reiserfsprogs					install
-reportbug					install
-rox-filer					install
-rsync						install
-samba						install
-samba-common					install
-sane-utils					install
-scrollkeeper					install
-sed						install
-setserial					install
-sgml-base					install
-sgml-data					install
-shared-mime-info				install
-shellutils					install
-slang1						install
-slang1a-utf8					install
-smbclient					install
-ssh						install
-strace						install
-sudo						install
-sylpheed-claws					install
-sylpheed-claws-dillo-viewer			install
-sylpheed-claws-i18n				install
-sylpheed-claws-image-viewer			install
-symlinks					install
-synaptic					install
-sysklogd					install
-syslinux					install
-sysv-rc						install
-sysvinit					install
-tar						install
-tasksel						install
-tcl8.4						install
-tcpd						install
-tcpdump						install
-telnet						install
-textutils					install
-time						install
-tinyirc						install
-ttf-bitstream-vera				install
-ubuntu-keyring					install
-ubuntu-standard					install
-ucf						install
-udev						install
-unifont						install
-usbutils					install
-user-euro-es					install
-util-linux					install
-util-linux-locales				install
-vim						install
-vim-common					install
-vim-gtk						install
-vnc-common					install
-w3m						install
-wget						install
-whiptail					install
-wireless-tools					install
-x-common					install
-x-window-system-core				install
-xbase-clients					install
-xcdroast					install
-xchat						install
-xchat-common					install
-xcursorgen					install
-xdialog						install
-xdm						install
-xdpyinfo					install
-xfce4-icon-theme				install
-xfonts-100dpi					install
-xfonts-75dpi					install
-xfonts-base					install
-xfonts-base-transcoded				install
-xfonts-scalable					install
-xfonts-utils					install
-xfreecd						install
-xfsprogs					install
-xgalaga						install
-xhost						install
-xine-ui						install
-xkeyboard-config				install
-xlibmesa-dri					install
-xlibmesa-gl					install
-xlibs						install
-xlibs-data					install
-xloadimage					install
-xlockmore					install
-xml-core					install
-xmms						install
-xorg-common					install
-xpdf						install
-xpdf-common					install
-xpdf-reader					install
-xpdf-utils					install
-xpp						install
-xrandr						install
-xsane						install
-xsane-common					install
-xserver-common					install
-xserver-xorg					install
-xserver-xorg-core				install
-xserver-xorg-driver-apm				install
-xserver-xorg-driver-ark				install
-xserver-xorg-driver-ati				install
-xserver-xorg-driver-chips			install
-xserver-xorg-driver-cirrus			install
-xserver-xorg-driver-cyrix			install
-xserver-xorg-driver-dummy			install
-xserver-xorg-driver-fbdev			install
-xserver-xorg-driver-glide			install
-xserver-xorg-driver-glint			install
-xserver-xorg-driver-i128			install
-xserver-xorg-driver-i740			install
-xserver-xorg-driver-i810			install
-xserver-xorg-driver-imstt			install
-xserver-xorg-driver-mga				install
-xserver-xorg-driver-neomagic			install
-xserver-xorg-driver-newport			install
-xserver-xorg-driver-nsc				install
-xserver-xorg-driver-nv				install
-xserver-xorg-driver-rendition			install
-xserver-xorg-driver-s3				install
-xserver-xorg-driver-s3virge			install
-xserver-xorg-driver-savage			install
-xserver-xorg-driver-siliconmotion		install
-xserver-xorg-driver-sis				install
-xserver-xorg-driver-tdfx			install
-xserver-xorg-driver-tga				install
-xserver-xorg-driver-trident			install
-xserver-xorg-driver-tseng			install
-xserver-xorg-driver-vesa			install
-xserver-xorg-driver-vga				install
-xserver-xorg-driver-via				install
-xserver-xorg-driver-vmware			install
-xserver-xorg-input-acecad			install
-xserver-xorg-input-aiptek			install
-xserver-xorg-input-calcomp			install
-xserver-xorg-input-citron			install
-xserver-xorg-input-digitaledge			install
-xserver-xorg-input-dmc				install
-xserver-xorg-input-dynapro			install
-xserver-xorg-input-elographics			install
-xserver-xorg-input-fpit				install
-xserver-xorg-input-hyperpen			install
-xserver-xorg-input-kbd				install
-xserver-xorg-input-magellan			install
-xserver-xorg-input-microtouch			install
-xserver-xorg-input-mouse			install
-xserver-xorg-input-mutouch			install
-xserver-xorg-input-palmax			install
-xserver-xorg-input-penmount			install
-xserver-xorg-input-spaceorb			install
-xserver-xorg-input-summa			install
-xserver-xorg-input-tek4957			install
-xserver-xorg-input-void				install
-xserver-xorg-input-wacom			install
-xsetmode					install
-xsetpointer					install
-xterm						install
-xtris						install
-xutils						install
-xvinfo						install
-xvncviewer					install
-xzgv						install
-zlib1g						install
+abiword
+abiword-common
+acpi
+acpid
+adduser
+alsa-base
+alsa-oss
+alsa-utils
+apmd
+apt
+apt-utils
+aptitude
+aspell-en
+at
+aumix-gtk
+base-config
+base-files
+base-passwd
+bash
+bc
+bind9-host
+binutils
+bsdmainutils
+bsdutils
+bzip2
+cdda2wav
+cdrecord
+console-common
+console-data
+console-tools
+coreutils
+cpio
+cpp
+cpp-3.3
+cpp-4.0
+cramfsprogs
+cron
+cupsys
+dash
+debconf
+debconf-i18n
+debianutils
+defoma
+dhcp-client
+dhcp3-common
+dictionaries-common
+diff
+dillo
+discover1
+discover1-data
+dmidecode
+dmsetup
+dnsutils
+docbook-xml
+dosfstools
+dpkg
+dpsyco-lib
+dpsyco-skel
+dselect
+e2fslibs
+e2fsprogs
+ed
+eject
+elvis
+elvis-common
+emelfm
+esound-common
+ethtool
+euro-support
+evms
+evms-ncurses
+exim4
+exim4-base
+exim4-config
+exim4-daemon-light
+fdutils
+file
+fileutils
+findutils
+fontconfig
+foomatic-filters
+ftp
+gaim
+gaim-data
+gamin
+gcc-3.3-base
+gcc-4.0-base
+gconf2
+gdk-imlib1
+gettext
+gettext-base
+gksu
+gnome-keyring
+gnome-mime-data
+gnupg
+gqview
+grep
+grepmap
+groff-base
+grub
+gs-common
+gs-esp
+gsfonts
+gtkglarea5
+gxedit
+gzip
+hdparm
+hicolor-icon-theme
+hostname
+hotplug
+hwdata
+iceme
+icepref
+icewm
+icewm-common
+ifrename
+ifupdown
+imlib-base
+imlib1
+info
+initrd-tools
+initscripts
+installation-report
+ipchains
+iproute
+iptables
+iputils-arping
+iputils-ping
+iputils-tracepath
+iso-codes
+jfbterm
+jfsutils
+joe
+klogd
+language-pack-en
+language-pack-en-base
+language-pack-es
+language-pack-es-base
+less
+lesstif2
+liba52-0.7.4
+libacl1
+libao2
+libapm1
+libapt-pkg-perl
+libart-2.0-2
+libasound2
+libaspell15c2
+libatk1.0-0
+libatm1
+libattr1
+libaudiofile0
+libbind9-0
+libblkid1
+libbonobo2-0
+libbonobo2-common
+libbonoboui2-0
+libbonoboui2-common
+libbz2-1.0
+libc6
+libc6-i686
+libcairo1
+libcap1
+libcomerr2
+libcompfaceg1
+libconfig-inifiles-perl
+libconsole
+libcupsimage2
+libcupsys2-gnutls10
+libcurl2
+libcurl3
+libdb1-compat
+libdb2
+libdb3
+libdb3-util
+libdb4.2
+libdb4.3
+libdbus-1-1
+libdbus-glib-1-1
+libdevmapper1.01
+libdirectfb-0.9-22
+libdiscover1
+libdns20
+libdps1
+libedit2
+libelfg0
+libenchant1c2
+libesd0
+libevent1
+libevms-2.5
+libexif10
+libexpat1
+libfltk1.1
+libfontconfig1
+libfreetype6
+libfribidi0
+libgamin0
+libgc1c2
+libgcc1
+libgcj-common
+libgcj6
+libgconf2-4
+libgcrypt1
+libgcrypt11
+libgcrypt7
+libgdbm3
+libgdbmg1
+libgdk-pixbuf2
+libgimp2.0
+libgimpprint1
+libgksu1.2-0
+libgksuui1.0-0
+libglade2-0
+libglib1.2
+libglib2.0-0
+libglide2
+libglu1-xorg
+libgnome-keyring0
+libgnome2-0
+libgnome2-common
+libgnomecanvas2-0
+libgnomecanvas2-common
+libgnomeui-0
+libgnomeui-common
+libgnomevfs2-0
+libgnomevfs2-common
+libgnutls10
+libgnutls11
+libgnutls7
+libgpg-error0
+libgpgme6
+libgphoto2-2
+libgphoto2-port0
+libgpmg1
+libgtk1.2
+libgtk1.2-common
+libgtk2.0-0
+libgtk2.0-bin
+libgtk2.0-common
+libgtkspell0
+libgucharmap4
+libhal-storage1
+libhal1
+libice6
+libid3tag0
+libident
+libidl0
+libidn11
+libieee1284-3
+libisc9
+libisccc0
+libisccfg1
+libiw28
+libjpeg62
+libkrb53
+liblaunchpad-integration0
+libldap2
+liblocale-gettext-perl
+liblockfile1
+liblwres1
+liblzo1
+libmad0
+libmagic1
+libmodplug0c2
+libmyspell3c2
+libmysqlclient10
+libncurses5
+libncursesw5
+libnetpbm10
+libnewt0.51
+libnfsidmap1
+libogg0
+libopencdk8
+liborbit2
+libpam-modules
+libpam-runtime
+libpam0g
+libpango1.0-0
+libpango1.0-common
+libpaper1
+libparted1.6-12
+libpcap0.7
+libpcap0.8
+libpcap0.9
+libpcre3
+libperl5.8
+libpisock8
+libpixman1
+libpng10-0
+libpng12-0
+libpoppler0c2
+libpopt0
+libpq3
+libreadline4
+libreadline5
+libreiserfs0.3-0
+libsane
+libsasl2
+libsasl2-modules
+libscrollkeeper0
+libselinux1
+libsigc++-1.2-5
+libslang2
+libslp1
+libsm6
+libsmbclient
+libspeex1
+libss2
+libssl0.9.7
+libstartup-notification0
+libstdc++2.10-glibc2.2
+libstdc++5
+libstdc++6
+libsvga1
+libsysfs1
+libt1-5
+libtasn1-0
+libtasn1-2
+libtext-charwidth-perl
+libtext-iconv-perl
+libtext-wrapi18n-perl
+libtextwrap1
+libtheora0
+libtiff4
+libungif4g
+libusb-0.1-4
+libuuid1
+libvorbis0a
+libvorbisenc2
+libvte-common
+libvte4
+libwrap0
+libwww-ssl0
+libx11-6
+libxau6
+libxaw6
+libxaw7
+libxcursor1
+libxdmcp6
+libxext6
+libxfce4util-1
+libxfcegui4-3
+libxfixes3
+libxft1
+libxft2
+libxi6
+libxine1c2
+libxinerama1
+libxml2
+libxmlrpc-c3
+libxmu6
+libxmuu1
+libxp6
+libxpm4
+libxrandr2
+libxrender1
+libxslt1.1
+libxss1
+libxt6
+libxtrap6
+libxtst6
+libxv1
+libxxf86dga1
+libxxf86vm1
+lilo
+links2
+linux-386
+linux-image-2.6.12-3-386
+linux-image-386
+linux-sound-base
+localepurge
+locales
+localization-config
+login
+logrotate
+lsb-base
+lsb-release
+lshw
+lshw-common
+lsof
+ltrace
+lvm-common
+lvm2
+mailx
+make
+makedev
+man-db
+manpages
+mawk
+mbr
+mc
+mdadm
+mdetect
+memtest86+
+menu
+metamail
+mii-diag
+mime-support
+mkisofs
+module-init-tools
+modutils
+motion
+mount
+mousepad
+mozilla-firefox
+mozilla-firefox-locale-es-es
+mpg321
+mtr-tiny
+mysql-common
+nano
+ncurses-base
+ncurses-bin
+nedit
+net-tools
+netbase
+netcat
+netkit-inetd
+netpbm
+nfs-common
+ntpdate
+nvi
+openssh-client
+openssh-server
+parted
+passwd
+patch
+pciutils
+pcmcia-cs
+perl
+perl-base
+perl-modules
+popularity-contest
+portmap
+powermgmt-base
+ppp
+pppconfig
+pppoe
+pppoeconf
+procps
+psmisc
+python
+python-gtk-1.2
+python-gtk2
+python-minimal
+python2.3
+python2.3-numeric
+python2.4
+python2.4-gtk2
+python2.4-minimal
+python2.4-numeric
+rdesktop
+read-edid
+reiser4progs
+reiserfsprogs
+reportbug
+rox-filer
+rsync
+samba
+samba-common
+sane-utils
+scrollkeeper
+sed
+setserial
+sgml-base
+sgml-data
+shared-mime-info
+shellutils
+slang1
+slang1a-utf8
+smbclient
+ssh
+strace
+sudo
+sylpheed-claws
+sylpheed-claws-dillo-viewer
+sylpheed-claws-i18n
+sylpheed-claws-image-viewer
+symlinks
+synaptic
+sysklogd
+syslinux
+sysv-rc
+sysvinit
+tar
+tasksel
+tcl8.4
+tcpd
+tcpdump
+telnet
+textutils
+time
+tinyirc
+ttf-bitstream-vera
+ubuntu-keyring
+ubuntu-standard
+ucf
+udev
+unifont
+usbutils
+user-euro-es
+util-linux
+util-linux-locales
+vim
+vim-common
+vim-gtk
+vnc-common
+w3m
+wget
+whiptail
+wireless-tools
+x-common
+x-window-system-core
+xbase-clients
+xcdroast
+xchat
+xchat-common
+xcursorgen
+xdialog
+xdm
+xdpyinfo
+xfce4-icon-theme
+xfonts-100dpi
+xfonts-75dpi
+xfonts-base
+xfonts-base-transcoded
+xfonts-scalable
+xfonts-utils
+xfreecd
+xfsprogs
+xgalaga
+xhost
+xine-ui
+xkeyboard-config
+xlibmesa-dri
+xlibmesa-gl
+xlibs
+xlibs-data
+xloadimage
+xlockmore
+xml-core
+xmms
+xorg-common
+xpdf
+xpdf-common
+xpdf-reader
+xpdf-utils
+xpp
+xrandr
+xsane
+xsane-common
+xserver-common
+xserver-xorg
+xserver-xorg-core
+xserver-xorg-driver-apm
+xserver-xorg-driver-ark
+xserver-xorg-driver-ati
+xserver-xorg-driver-chips
+xserver-xorg-driver-cirrus
+xserver-xorg-driver-cyrix
+xserver-xorg-driver-dummy
+xserver-xorg-driver-fbdev
+xserver-xorg-driver-glide
+xserver-xorg-driver-glint
+xserver-xorg-driver-i128
+xserver-xorg-driver-i740
+xserver-xorg-driver-i810
+xserver-xorg-driver-imstt
+xserver-xorg-driver-mga
+xserver-xorg-driver-neomagic
+xserver-xorg-driver-newport
+xserver-xorg-driver-nsc
+xserver-xorg-driver-nv
+xserver-xorg-driver-rendition
+xserver-xorg-driver-s3
+xserver-xorg-driver-s3virge
+xserver-xorg-driver-savage
+xserver-xorg-driver-siliconmotion
+xserver-xorg-driver-sis
+xserver-xorg-driver-tdfx
+xserver-xorg-driver-tga
+xserver-xorg-driver-trident
+xserver-xorg-driver-tseng
+xserver-xorg-driver-vesa
+xserver-xorg-driver-vga
+xserver-xorg-driver-via
+xserver-xorg-driver-vmware
+xserver-xorg-input-acecad
+xserver-xorg-input-aiptek
+xserver-xorg-input-calcomp
+xserver-xorg-input-citron
+xserver-xorg-input-digitaledge
+xserver-xorg-input-dmc
+xserver-xorg-input-dynapro
+xserver-xorg-input-elographics
+xserver-xorg-input-fpit
+xserver-xorg-input-hyperpen
+xserver-xorg-input-kbd
+xserver-xorg-input-magellan
+xserver-xorg-input-microtouch
+xserver-xorg-input-mouse
+xserver-xorg-input-mutouch
+xserver-xorg-input-palmax
+xserver-xorg-input-penmount
+xserver-xorg-input-spaceorb
+xserver-xorg-input-summa
+xserver-xorg-input-tek4957
+xserver-xorg-input-void
+xserver-xorg-input-wacom
+xsetmode
+xsetpointer
+xterm
+xtris
+xutils
+xvinfo
+xvncviewer
+xzgv
+zlib1g
