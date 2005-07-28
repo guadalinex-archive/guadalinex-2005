@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+  <wallpaper>
+    <name>Fondo de escritorio Guadalinex</name>
+    <filename>/usr/share/backgrounds/guadalinex-background.png</filename>
+    <options>stretched</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#344d4b</pcolor>
+    <scolor>#344d4b</scolor>
+  </wallpaper>
+</wallpapers>
