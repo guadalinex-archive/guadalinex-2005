@@ -6,13 +6,14 @@
 packlist=`cat`
 
 #Get list of dependencies of the packages in $packlist
-deplist=`apt-cache depends $packlist | grep "^  Depende"| awk '{ print $2 }'|sort|uniq|sed -e 's/^<\(.*\)>$/\1/'`
+#deplist=`apt-rdepends $packlist |grep '^[^ ]'|sed -e 's/^<\(.*\)>$/\1/'`
+deplist=`apt-cache depends --recurse --no-all-versions $packlist | grep "^  Depende"| awk '{ print $2 }'|sort|uniq|sed -e 's/^<\(.*\)>$/\1/'`
 
 #Merge both lists
 mergedlist=`echo $packlist $deplist | sort | uniq`
 
 #Get list of the sizes of every package, in bytes
-sizes=`apt-cache show $mergedlist | grep "^Size" | awk '{ print $2 }'`
+sizes=`apt-cache show --no-all-versions $mergedlist | grep "^Size" | awk '{ print $2 }'`
 
 #Sum all the sizes
 sum=0
