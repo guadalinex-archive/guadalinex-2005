@@ -1,6 +1,8 @@
 
-# "live_installer/README.txt"
-# created by Antonio Olmo <aolmo@emergya.info> on 28 july 2005.
+# File "live_installer/README.txt".
+# Brief description of this branch and tasks involved.
+# Created by Antonio Olmo <aolmo@emergya.info> on 28 july 2005.
+# Last modified on 29 july 2005.
 
 live_installer/ - Work branch for the installer of the "live" version.
 |
@@ -27,6 +29,10 @@ live_installer/ - Work branch for the installer of the "live" version.
 |  |- lib                        Miscellaneous modules.
 |  |
 |  `- part                       Partitioning.
+|     |
+|     `- peez2                   Partition assistant.
 |
 `- network_clon                  Network clon.
+
+# End of file.
 
