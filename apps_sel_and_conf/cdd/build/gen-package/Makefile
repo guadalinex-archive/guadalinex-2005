@@ -4,4 +4,4 @@
 mini: packages-mini
 	./build ../../conf/mini
 
-all: 2005, mini
+all: 2005 mini
