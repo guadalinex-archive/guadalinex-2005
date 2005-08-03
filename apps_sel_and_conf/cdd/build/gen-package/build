@@ -52,7 +52,7 @@ skel_setup () {
 			return 1
 		fi
 	fi	
-	echo "cdd:Depends=$flavourservname" >> $TMPDIR/debian/substvars
+	#echo "cdd:Depends=$flavourservname" >> $TMPDIR/debian/substvars
 	echo "cdd:Conflicts=$debconflicts" >> $TMPDIR/debian/substvars
 	echo "cdd:Maintainer=$debmaintainer" >> $TMPDIR/debian/substvars
 }
@@ -132,7 +132,7 @@ gen_package () {
 	cd $TMPDIR
 	dpkg-buildpackage -rfakeroot -D -us -uc -b
 	cd ..
-	rm gen-package_*_*.changes
+	rm gen-package_*_i386.changes
 	mv *.deb $CDDPACKAGESDIR/$section
 }
 
@@ -153,7 +153,7 @@ do
 	pkgname=$(echo $pkg | sed  -e 's/^[0-9]*_//')
 	gen_package skel_setup
 	gen_package meta_setup
-	big_meta_deps="$big_meta_deps, $pkgname-conf"
+	big_meta_deps="$big_meta_deps, $pkgname-conf, $pkgname"
 done
 gen_package "big_meta_setup $big_meta_deps"
 
