@@ -1,4 +1,2 @@
 
-Para el correcto funcionamiento de los scripts contenidos en la
-carpeta bin/ es necesario que la variable CDIMAGE_ROOT contenga
-la ruta al directorio cdimage/
+To the correct work of the scripts in bin/ is needed that the variable CDIMAGE_ROOT contains the path of cdimage/
