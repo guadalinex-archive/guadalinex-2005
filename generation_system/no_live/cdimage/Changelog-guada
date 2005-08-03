@@ -1,7 +1,5 @@
 Changelog (Versión Guadalinex)
 
-- Cambiado script debian-cd/build_all.sh -> No consideramos las fuentes de los
-paquetes para incluirlos en el cd.
 - Cambiado nombre de proyecto ubuntu ---> guadalinex
 - Cambios en los scripts para considerar unicamente la arquitectura i386
 - debian-cd intenta generar las sumas de los ficheros con

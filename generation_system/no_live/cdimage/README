@@ -1,32 +1,32 @@
 README
 ======
 
-*** IMPORTANTE, para la generación es necesario:
+*** IMPORTANT, to generate the image you will need:
 
-  - "Llenar" la carpeta ftp/ Por motivos de espacio y agilidad, dichos directorios no se incluyen en este conjunto de scripts.
-    Los directorios fundamentales a "llenar" son:
+  - Fill the ftp/ dir, this is too much space to upload to the svn.
+    You musf fill the next directories:
       pool/
       dist/
+      indices/
 
-    Dichos directorios se pueden copiar (cp -r), por ejemplo, de la última Colony CD.
+      You can find all this stuff at http://mirror.isp.net.au/#ubuntu
 
-  - Añadir al path el directorio cdimage/bin
+  - Add to PATH the cdimage/bin dir
     PATH=$PATH:/home/pepito/cdimage/bin
 
-  - Especificar la variable CDIMAGE_ROOT puede hacerse de dos formas:
-   1. declarandola de forma externa y exportandola
+  - Specify the CDIMAGE_ROOT var could be done in one of the next two ways:
+   1. exporting it in the shell you will use
        $ export CDIMAGE_ROOT=/home/pepito/cdimage
-   2. Cambiando en todos los ficheros (en cdimage/bin/) el valor de la variable
+   2. Changing in all files (under cdimage/bin/) the value of the variable.
    
-  - Conexión a internet, en un punto de la generación se conecta a un servidor de ubuntu para obtener unas listas de paquetes.
+  - Connection to internet, in one step of the process it will get various list of packages from internet.
 
 
-Generación
-==========
+The generation process
+======================
 
-  Para generar una imagen ha de ejecutarse el script denominado 'hazmeunaguadalinex'. Dicho script llama a su vez, en un orden lógico, a todos los script localizados en cdimage/bin/ por lo cual deben de tener la variable CDIMAGE_ROOT asignada (Los scripts contenidos en cdimage/bin/no-usados no serán utilizados).
+  The script that do all the work is generate_no-live.sh'. This script call all the scripts under cdimage/bin/ in a logic order.
+  So, execute:
+  	$ generate_no-live.sh
 
-  Es decir, ejecutamos:
-  	$ hazmeunaguadalinex
-
-  En el directorio cdimage/scratch/guadalinex/debian-cd/i386 se generará un archivo .raw, el cual es equivalente a un archivo .iso.
+  At cdimage/scratch/guadalinex/debian-cd/i386 it will be generated a .raw file, this is equivalent a .iso file.

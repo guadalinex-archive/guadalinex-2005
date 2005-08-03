@@ -29,3 +29,5 @@ update-dist > $CDIMAGE_ROOT/log/update-dist.log
 echo "Running debian-cd/build_all.sh..."
 cd "$CDIMAGE_ROOT/debian-cd"
 ./build.sh
+
+mv ../scratch/guadalinex/debian-cd/i386/breezy-install-i386.raw ../scratch/guadalinex/debian-cd/i386/breezy-install-i386.iso

@@ -1,7 +1,1 @@
-- integrar upgrader, sistema de actualización de udebs
-  upgrader se encarga de:
-    - mantener actualizado el pool/
-    - generar los pool iniciales
-    - mezclar los paquetes de breezy y mini correctamente
-    - generar los Packages.gz
-- considerar firmas GPG
+- consider GPG signs
