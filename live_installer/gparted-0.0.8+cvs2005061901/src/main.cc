@@ -24,7 +24,11 @@ int main( int argc, char *argv[ ] )
 	Glib::thread_init( );
 	
 	Gtk::Main kit( argc, argv );
-	 
+	
+	guint Wid = atoi(argv[1]);
+
+	printf("%s , %d", argv[1], Wid);
+	
 	//i18n
 	bindtextdomain( GETTEXT_PACKAGE, GNOMELOCALEDIR );
 	bind_textdomain_codeset( GETTEXT_PACKAGE, "UTF-8" );
@@ -38,7 +42,7 @@ int main( int argc, char *argv[ ] )
 		exit( 0 );
 	}
 	
-	GParted::Win_GParted win_gparted; 
+	GParted::Win_GParted win_gparted (Wid);
 	Gtk::Main::run( win_gparted );
 
 	return 0;

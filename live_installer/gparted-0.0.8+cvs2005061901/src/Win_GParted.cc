@@ -21,7 +21,7 @@
 namespace GParted
 {
 	
-Win_GParted::Win_GParted( )
+Win_GParted::Win_GParted( guint Wid )
 {
 	copied_partition .Reset( ) ;
 	selected_partition .Reset( ) ;
@@ -30,15 +30,14 @@ Win_GParted::Win_GParted( )
 	vbox_visual_disk = NULL;
 	pulse = false ;
 	
-	// Plug hacks for embedding gparted into ubuntu-express
-	guint Wid = 52428913;
+	// // Plug hacks for embedding gparted into ubuntu-express
 	GtkWidget * plug;
 	plug = gtk_plug_new(Wid);
 	gtk_container_add(GTK_CONTAINER(plug), GTK_WIDGET(vbox_main.gobj()));
 	gtk_widget_show(GTK_WIDGET(vbox_main.gobj()));
 	gtk_widget_show(plug);
 	
-	// All commented for this hack works
+	// Commented all for this hack works
 	//==== GUI =========================
 	//this ->set_title( _("GParted") );
 	//this ->set_default_size( 775, 500 );
@@ -48,7 +47,8 @@ Win_GParted::Win_GParted( )
 	
 	//menubar....
 	init_menubar( ) ;
-	vbox_main .pack_start( menubar_main, Gtk::PACK_SHRINK );
+	//hacked to hide menubar
+	//vbox_main .pack_start( menubar_main, Gtk::PACK_SHRINK );
 
 	//toolbar....
 	init_toolbar( ) ;
@@ -77,7 +77,7 @@ Win_GParted::Win_GParted( )
 	statusbar .add( *pulsebar );
 	vbox_main .pack_start( statusbar, Gtk::PACK_SHRINK );
 	
-	//Hacked line
+	//Hacked below two lines
 	//this ->show_all_children( );
 	vbox_main .show_all_children( );
 	
@@ -146,20 +146,22 @@ void Win_GParted::init_toolbar( )
 	toolbutton ->set_tooltip(tooltips, _("Resize/Move the selected partition") );		
 	toolbar_main.append( *(Gtk::manage(new Gtk::SeparatorToolItem)) );
 	
+	// Hacked to hide Copy&Paste icons from menu
 	//COPY and PASTE
-	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::COPY));
-	toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_copy) );	toolbar_main.append(*toolbutton);
-	toolbutton ->set_tooltip(tooltips, _("Copy the selected partition to the clipboard") );		
-	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::PASTE));
-	toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_paste) );	toolbar_main.append(*toolbutton);
-	toolbutton ->set_tooltip(tooltips, _("Paste the partition from the clipboard") );		
-	toolbar_main.append( *(Gtk::manage(new Gtk::SeparatorToolItem)) );
+	//toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::COPY));
+	//toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_copy) );	toolbar_main.append(*toolbutton);
+	//toolbutton ->set_tooltip(tooltips, _("Copy the selected partition to the clipboard") );		
+	//toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::PASTE));
+	//toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_paste) );	toolbar_main.append(*toolbutton);
+	//toolbutton ->set_tooltip(tooltips, _("Paste the partition from the clipboard") );		
+	//toolbar_main.append( *(Gtk::manage(new Gtk::SeparatorToolItem)) );
 	
-	//UNDO and APPLY
+	// Hacked to change Apply to Save icon
+	//UNDO and SAVE
 	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::UNDO));
 	toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_undo) );	toolbar_main.append(*toolbutton); toolbutton ->set_sensitive( false );
 	toolbutton ->set_tooltip(tooltips, _("Undo last operation") );		
-	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::SAVE));
 	toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_apply) );	toolbar_main.append(*toolbutton); toolbutton ->set_sensitive( false );
 	toolbutton ->set_tooltip(tooltips, _("Apply all operations") );		
 	
@@ -567,8 +569,9 @@ bool Win_GParted::Quit_Check_Operations( )
 
 void Win_GParted::Set_Valid_Operations( )
 {
-	allow_new( false ); allow_delete( false ); allow_resize( false ); allow_copy( false );
-	allow_paste( false ); allow_convert( false ); allow_unmount( false ) ; allow_info( false ) ;
+    	// Hacked to hide Copy&Paste icons from menu
+	allow_new( false ); allow_delete( false ); allow_resize( false ); /*allow_copy( false );*/
+	/*allow_paste( false );*/ allow_convert( false ); allow_unmount( false ) ; allow_info( false ) ;
 	
 	//no partition selected...	
 	if ( selected_partition .partition .empty( ) )
@@ -591,14 +594,15 @@ void Win_GParted::Set_Valid_Operations( )
 	{
 		allow_new( true );
 		
+		// Hacked to hide Copy&Paste icons from menu
 		//find out if there is a copied partition and if it fits inside this unallocated space
-		if ( ! copied_partition .partition .empty( ) && ! devices[ current_device ] .readonly )
+		/*if ( ! copied_partition .partition .empty( ) && ! devices[ current_device ] .readonly )
 		{
 			if (	(copied_partition .Get_Length_MB( ) + devices[ current_device ] .cylsize) < selected_partition .Get_Length_MB( ) ||
 				(copied_partition .filesystem == "xfs" && (copied_partition .Get_Used_MB( ) + devices[ current_device ] .cylsize) < selected_partition .Get_Length_MB( ) )
 			)
 				allow_paste( true ) ;
-		}			
+		}*/
 		
 		return ;
 	}
@@ -627,9 +631,10 @@ void Win_GParted::Set_Valid_Operations( )
 		if ( (fs .grow || fs .shrink) && ! devices[ current_device ] .readonly ) 
 			allow_resize( true ) ;
 			
+		// Hacked to hide Copy&Paste icons from menu
 		//only allow copying of real partitions
-		if ( selected_partition .status == GParted::STAT_REAL && fs .copy )
-			allow_copy( true ) ;	
+		/*if ( selected_partition .status == GParted::STAT_REAL && fs .copy )
+			allow_copy( true ) ;*/
 						
 		return ;
 	}
@@ -963,6 +968,7 @@ void Win_GParted::activate_resize( )
 	}
 }
 
+
 void Win_GParted::activate_copy( )
 {
 	copied_partition = selected_partition ;
@@ -984,6 +990,7 @@ void Win_GParted::activate_paste( )
 		}
 	}
 }
+
 
 void Win_GParted::activate_new( )
 {
@@ -1222,7 +1229,7 @@ void Win_GParted::activate_apply( )
 	dialog .set_title( _( "Apply operations to harddisk" ) );
 	
 	dialog .add_button( Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL );
-	dialog .add_button( Gtk::Stock::APPLY, Gtk::RESPONSE_OK );
+	dialog .add_button( Gtk::Stock::SAVE, Gtk::RESPONSE_OK );
 	
 	dialog .show_all_children( ) ;
 	if ( dialog.run( ) == Gtk::RESPONSE_OK )

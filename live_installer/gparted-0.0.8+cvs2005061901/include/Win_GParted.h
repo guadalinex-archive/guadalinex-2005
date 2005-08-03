@@ -51,7 +51,7 @@ namespace GParted
 class Win_GParted : public Gtk::Window
 {
 public:
-	Win_GParted( );
+	Win_GParted( guint );
 
 private:
 	void init_menubar( ) ;
@@ -81,13 +81,14 @@ private:
 	void allow_new( bool b )	{ menu_partition .items( )[ 0 ] .set_sensitive( b ); toolbar_main .get_nth_item( 0 ) ->set_sensitive( b ); }
 	void allow_delete( bool b )	{ menu_partition .items( )[ 1 ] .set_sensitive( b ); toolbar_main .get_nth_item( 1 ) ->set_sensitive( b ); }
 	void allow_resize( bool b ) 	{ menu_partition .items( )[ 3 ] .set_sensitive( b ); toolbar_main .get_nth_item( 3 ) ->set_sensitive( b ); }
-	void allow_copy( bool b )	{ menu_partition .items( )[ 5 ] .set_sensitive( b ); toolbar_main .get_nth_item( 5 ) ->set_sensitive( b ); }
-	void allow_paste( bool b )	{ menu_partition .items( )[ 6 ] .set_sensitive( b ); toolbar_main .get_nth_item( 6 ) ->set_sensitive( b ); }
-	void allow_convert( bool b )	{ menu_partition .items( )[ 8 ] .set_sensitive( b ); }
-	void allow_unmount( bool b )	{ menu_partition .items( )[ 10 ] .set_sensitive( b ); }
-	void allow_info( bool b )	{ menu_partition .items( )[ 12 ] .set_sensitive( b ); }
-	void allow_undo( bool b )	{ toolbar_main .get_nth_item( 8 ) ->set_sensitive( b ); }
-	void allow_apply( bool b )	{ toolbar_main .get_nth_item( 9 ) ->set_sensitive( b ); }
+// Hacked to hide Copy&Paste icons from menu
+//	void allow_copy( bool b )	{ menu_partition .items( )[ 5 ] .set_sensitive( b ); toolbar_main .get_nth_item( 5 ) ->set_sensitive( b ); }
+//	void allow_paste( bool b )	{ menu_partition .items( )[ 6 ] .set_sensitive( b ); toolbar_main .get_nth_item( 6 ) ->set_sensitive( b ); }
+	void allow_convert( bool b )	{ menu_partition .items( )[ 5 ] .set_sensitive( b ); }
+	void allow_unmount( bool b )	{ menu_partition .items( )[ 7 ] .set_sensitive( b ); }
+	void allow_info( bool b )	{ menu_partition .items( )[ 9 ] .set_sensitive( b ); }
+	void allow_undo( bool b )	{ toolbar_main .get_nth_item( 5 ) ->set_sensitive( b ); }
+	void allow_apply( bool b )	{ toolbar_main .get_nth_item( 6 ) ->set_sensitive( b ); }
 		
 	void find_devices_thread( )	{ gparted_core .get_devices( devices ) ; pulse = false ; }
 	
