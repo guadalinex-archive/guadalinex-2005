@@ -1,0 +1,18 @@
+Source: gparted
+Section: gnome
+Priority: optional
+Maintainer: Javier Carranza <javier.carranza@interactors.coop>
+Build-Depends: debhelper (>= 4.2.28), uuid-dev, libgtkmm-2.4-dev (>= 2.4.0), libxml-parser-perl, libglibmm-2.4-dev (>= 2.4.0), libparted1.6-dev (>= 1.6.13), cdbs, parted (>= 1.6.13), sharutils, lsb-release, docbook-to-man
+Standards-Version: 3.6.1.1
+
+Package: gparted
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, gksu
+Recommends: jfsutils, xfsprogs, ntfsprogs, dosfstools, hfsutils, reiserfsprogs
+Description: partition editor for GNOME
+ It is a graphical editor which uses libparted to detect and manipulate
+ devices and partition tables while several (optional) filesystem tools
+ provide support for filesystems not included in libparted. These optional
+ packages will be detected at runtime.
+ It currently supports ext2, ext3, Reiser3, FAT, NTFS, XFS, JFS, HFS and
+ Linux swap.     
