@@ -1,11 +1,11 @@
 #! /bin/sh
 set -e
 
-[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=/home/carlospc/cdimage
+[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=~/cdimage
 . "$CDIMAGE_ROOT/etc/config"
 
 echo "Creando repositorios... "
-cd /home/carlospc/cdimage/ftp
+cd $CDIMAGE_ROOT/ftp
 apt-ftparchive -c $CDIMAGE_ROOT/etc/apt_flamenco.conf generate $CDIMAGE_ROOT/etc/flamenco.conf
 apt-ftparchive -c $CDIMAGE_ROOT/etc/apt_flamenco.conf generate $CDIMAGE_ROOT/etc/d-i_flamenco.conf
 

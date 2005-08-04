@@ -1,6 +1,6 @@
 #! /bin/sh
 
-[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=/home/carlospc/cdimage
+[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=~/cdimage
 . "$CDIMAGE_ROOT/etc/config"
 
 cd "$CDIMAGE_ROOT/local/packages"

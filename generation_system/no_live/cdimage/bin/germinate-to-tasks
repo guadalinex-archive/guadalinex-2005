@@ -2,7 +2,7 @@
 
 # Outputs debian-cd task lists to $CDIMAGE_ROOT/scratch/$PROJECT/tasks/.
 
-[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=/home/carlospc/cdimage
+[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=~/cdimage
 . "$CDIMAGE_ROOT/etc/config"
 . "$CDIMAGE_ROOT/bin/functions.sh"
 

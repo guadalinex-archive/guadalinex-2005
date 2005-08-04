@@ -1,7 +1,7 @@
 #! /bin/sh
 set -e
 
-[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=/home/carlospc/developing/cdimage
+[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=~/cdimage
 . "$CDIMAGE_ROOT/etc/config"
 
 IMAGE_TYPE="${1:-daily}"
