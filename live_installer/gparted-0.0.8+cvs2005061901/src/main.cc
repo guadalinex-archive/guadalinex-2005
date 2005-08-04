@@ -27,8 +27,6 @@ int main( int argc, char *argv[ ] )
 	
 	guint Wid = atoi(argv[1]);
 
-	printf("%s , %d", argv[1], Wid);
-	
 	//i18n
 	bindtextdomain( GETTEXT_PACKAGE, GNOMELOCALEDIR );
 	bind_textdomain_codeset( GETTEXT_PACKAGE, "UTF-8" );

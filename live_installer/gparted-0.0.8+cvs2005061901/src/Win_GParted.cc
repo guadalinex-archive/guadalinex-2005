@@ -30,12 +30,13 @@ Win_GParted::Win_GParted( guint Wid )
 	vbox_visual_disk = NULL;
 	pulse = false ;
 	
-	// // Plug hacks for embedding gparted into ubuntu-express
+	// Plug hacks for embedding gparted into ubuntu-express
 	GtkWidget * plug;
 	plug = gtk_plug_new(Wid);
 	gtk_container_add(GTK_CONTAINER(plug), GTK_WIDGET(vbox_main.gobj()));
 	gtk_widget_show(GTK_WIDGET(vbox_main.gobj()));
 	gtk_widget_show(plug);
+	this ->iconify();
 	
 	// Commented all for this hack works
 	//==== GUI =========================
