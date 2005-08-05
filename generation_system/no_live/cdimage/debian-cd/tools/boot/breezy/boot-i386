@@ -231,4 +231,7 @@ else
     fi
 fi
 
+# UDA stuff
+cp $CDIMAGE_ROOT/uda/isolinux/* $CDIMAGE_ROOT/scratch/guadalinex/tmp/breezy-i386/boot1/isolinux/
+
 # th,th, thats all

@@ -1,0 +1,4 @@
+#ifdef ARCH_i386
+ceemedia
+tea
+#endif /* ARCH_i386 */

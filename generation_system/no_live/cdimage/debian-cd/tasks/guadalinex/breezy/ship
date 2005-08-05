@@ -10,7 +10,6 @@ bpalogin
 build-essential
 capiutils
 console-terminus
-cvs
 debconf-utils
 debhelper
 debian-installer-manual
@@ -280,6 +279,7 @@ openoffice.org-l10n-en
 openoffice.org-thesaurus-en-us
 openssh-server
 openssl
+patch
 pax
 pcmcia-cs
 po-debconf

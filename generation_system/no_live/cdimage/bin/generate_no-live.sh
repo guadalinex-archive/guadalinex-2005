@@ -1,7 +1,7 @@
 #! /bin/sh
 set -e
 
-[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=~/cdimage
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
 . "$CDIMAGE_ROOT/etc/config"
 
 IMAGE_TYPE="${1:-daily}"
@@ -22,11 +22,15 @@ echo -n "Running update-tasks... "
 update-tasks "$DATE" > $CDIMAGE_ROOT/log/update-tasks.log
 [ "$?" == "0" ] && echo "OK"
 
+echo -n "Running upgrader... "
+upgrader $CDIMAGE_ROOT > $CDIMAGE_ROOT/log/upgrader.log
+[ "$?" == "0" ] && echo "OK"
+
 echo -n "Running update-dist... "
 update-dist > $CDIMAGE_ROOT/log/update-dist.log
 [ "$?" == "0" ] && echo "OK"
 
-echo "Running debian-cd/build_all.sh..."
+echo "Running debian-cd/build.sh..."
 cd "$CDIMAGE_ROOT/debian-cd"
 ./build.sh
 

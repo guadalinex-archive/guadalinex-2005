@@ -1,7 +1,7 @@
 #! /bin/sh
 set -e
 
-[ -z "$CDIMAGE_ROOT" ] && export CDIMAGE_ROOT=~/cdimage
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
 . "$CDIMAGE_ROOT/etc/config"
 
 SCRATCH="$CDIMAGE_ROOT/scratch/$PROJECT/tasks"

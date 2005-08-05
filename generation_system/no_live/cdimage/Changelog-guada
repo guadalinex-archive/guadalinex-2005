@@ -1,5 +1,6 @@
 Changelog (Versión Guadalinex)
-
+- Añadida carpeta uda/ en esta carpeta se mantendrán (en la medida de lo
+posible) todo los archivos externos del sistema de generación original.
 - Cambiado nombre de proyecto ubuntu ---> guadalinex
 - Cambios en los scripts para considerar unicamente la arquitectura i386
 - debian-cd intenta generar las sumas de los ficheros con

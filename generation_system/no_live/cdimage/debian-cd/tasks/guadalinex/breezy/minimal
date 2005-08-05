@@ -11,12 +11,6 @@ base-passwd
 bash
 bsdutils
 bzip2
-console-common
-console-data
-console-tools
-coreutils
-cpio
-cramfsprogs
 dash
 debconf
 debconf-i18n
@@ -49,17 +43,14 @@ iputils-ping
 jfsutils
 klogd
 less
-libacl1
 libasound2
 libatm1
-libattr1
 libblkid1
 libbz2-1.0
 libc6
 libc6-i686
 libcap1
 libcomerr2
-libconsole
 libdb1-compat
 libdb3
 libdb4.2
@@ -84,8 +75,6 @@ libpam0g
 libpopt0
 libreadline5
 libreiserfs0.3-0
-libsasl2
-libsasl2-modules
 libsigc++-1.2-5
 libss2
 libssl0.9.7
@@ -96,7 +85,6 @@ libtext-iconv-perl
 libtext-wrapi18n-perl
 libusb-0.1-4
 libuuid1
-libwrap0
 linux-386
 linux-image-2.6.12-3-386
 linux-image-386
@@ -135,8 +123,6 @@ sudo
 sysklogd
 sysv-rc
 sysvinit
-tar
-tcpd
 ubuntu-keyring
 ubuntu-minimal
 udev
