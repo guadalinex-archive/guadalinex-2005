@@ -15,3 +15,10 @@ Download the udebs sources
    udebs_sources -> you can find this file at svn in no_live_installer/default/lists
 
    This will download all the sources of the udebs under a directory called src/, except the kernel because we aren't going to modify the kernel.
+
+Replace Ubuntu for $PROJECT
+---------------------------
+   Firstly, download all the udebs as is explained. Then execute:
+     ./change_Ubuntu_name_in_po.sh path-to-src-dir. 
+
+   The script is in default/scripts directory.
