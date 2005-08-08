@@ -21,6 +21,8 @@ README
    
   - Conexión a internet, en un punto de la generación se conecta a un servidor de ubuntu para obtener unas listas de paquetes.
 
+  - Cambiar "ArchiveDir" en los ficheros flamenco.conf y d-i_flamenco.conf (cdimage/uda/conf/). "ArchiveDir" debe apuntar al directorio del repositorio (cdimage/ftp).
+
 
 Generación
 ==========
@@ -31,3 +33,9 @@ Generación
   	$ generate_no-live.sh
 
   En el directorio cdimage/scratch/guadalinex/debian-cd/i386 se generará un archivo .raw, el cual es equivalente a un archivo .iso.
+
+Incluir paquetes
+================
+
+  Para incluir un paquete, coloca el .deb o .udeb en cdimage/uda/pkgs, ¡eso es todo!
+  El paquete será incluido en el pool si el paquete no existe en pool/ o si la versión es mayor.
