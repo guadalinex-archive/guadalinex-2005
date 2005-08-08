@@ -5,7 +5,7 @@ set -e
 . "$CDIMAGE_ROOT/etc/config"
 
 echo "Creando repositorios... "
-cd /home/carlospc/cdimage/ftp
+cd $CDIMAGE_ROOT/ftp
 apt-ftparchive -c $CDIMAGE_ROOT/uda/conf/apt_flamenco.conf generate $CDIMAGE_ROOT/uda/conf/flamenco.conf
 apt-ftparchive -c $CDIMAGE_ROOT/uda/conf/apt_flamenco.conf generate $CDIMAGE_ROOT/uda/conf/d-i_flamenco.conf
 echo "Repositorios creados... "
@@ -14,4 +14,3 @@ echo -n "Creando Release File... "
 apt-ftparchive -c ../uda/conf/apt_flamenco.conf release dists/breezy/ > dists/breezy/Release
 echo "OK"
 cd -
-

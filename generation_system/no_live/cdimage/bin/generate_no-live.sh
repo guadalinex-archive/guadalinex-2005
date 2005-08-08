@@ -26,7 +26,7 @@ echo -n "Running upgrader... "
 upgrader $CDIMAGE_ROOT > $CDIMAGE_ROOT/log/upgrader.log
 [ "$?" == "0" ] && echo "OK"
 
-echo -n "Running update-dist... "
+echo "Running update-dist... "
 update-dist > $CDIMAGE_ROOT/log/update-dist.log
 [ "$?" == "0" ] && echo "OK"
 
