@@ -5,16 +5,16 @@ ARCH=$(shell dpkg-architecture -qDEB_HOST_ARCH)
 # Add ntfstools-udeb for arches that have recent versions of windows.
 FS_DEPENDS=
 ifeq ($(ARCH), i386)
-FS_DEPENDS=ntfstools-udeb
+FS_DEPENDS=ntfstools
 endif
 ifeq ($(ARCH), amd64)
-FS_DEPENDS=ntfstools-udeb
+FS_DEPENDS=ntfstools
 endif
 ifeq ($(ARCH), ia64)
-FS_DEPENDS=ntfstools-udeb
+FS_DEPENDS=ntfstools
 endif
 ifeq ($(ARCH), alpha)
-FS_DEPENDS=ntfstools-udeb
+FS_DEPENDS=ntfstools
 endif
 
 PACKAGE = partman-partitioning
