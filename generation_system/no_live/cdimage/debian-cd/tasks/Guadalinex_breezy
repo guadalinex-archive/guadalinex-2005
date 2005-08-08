@@ -15,7 +15,7 @@
 #include <guadalinex/breezy/standard>
 #include <guadalinex/breezy/desktop>
 #include <guadalinex/breezy/ship>
-#include <guadalinex/breezy/guada>
+#include <guadalinex/breezy/uda>
 #if (CDIMAGE_DVD == 1)
 #include <guadalinex/breezy/supported>
 #endif
