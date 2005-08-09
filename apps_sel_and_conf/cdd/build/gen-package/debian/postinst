@@ -32,6 +32,7 @@ case "$1" in
         do
             cp --parents $FILEPATH $DPSYCOSKEL
         done
+        rm $TMPMODIFIEDS
         #Hack gx2005 end
 
         /usr/sbin/update-dpsyco-skel
