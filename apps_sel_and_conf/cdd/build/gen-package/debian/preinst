@@ -21,6 +21,20 @@ case "$1" in
 #                --pidfile /var/run/03_apt_proxy.pid  \
 #                --exec /usr/sbin/03_apt_proxy 2>/dev/null || true
 #        fi
+
+	# make a list of files modified by the user, in order to
+	# make them remain at the postinst
+	SKELDIR="/usr/share/dpsyco/skel"
+	TEMPLIST="/tmp/modified_files"
+	list=`cd $SKELDIR;find -type f|sed -e 's/^\.\///'`
+	for file in $list; do
+		skelfile="$SKELDIR/$file"
+		realfile="/$file"
+		diff $skelfile $realfile > /dev/null
+		if [ $? -ne 0 ];then
+			echo $realfile >> $TEMPLIST
+		fi
+	done
     ;;
 
     abort-upgrade)
