@@ -1,0 +1,32 @@
+Source: hw-detect
+Section: admin
+Priority: standard
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Uploaders: Petter Reinholdtsen <pere@debian.org>, Joey Hess <joeyh@debian.org>, Joshua Kwan <joshk@triplehelix.org>, Matt Kraai <kraai@debian.org>, Christian Perrier <bubulle@debian.org>, Colin Watson <cjwatson@debian.org>, Bdale Garbee <bdale@gag.com>
+Build-Depends: debhelper (>= 4.2), dpkg-dev (>= 1.9.0), po-debconf (>= 0.5.0), libdebian-installer4-dev (>= 0.31)
+Standards-Version: 3.6.1.0
+
+Package: hw-detect
+Architecture: any
+Depends: discover | hotplug, archdetect, debconf (>= 0.75), pciutils
+Description: Detect hardware and load kernel drivers for it
+
+Package: ethdetect
+Architecture: all
+Priority: optional
+Depends: debconf (>= 0.38), hw-detect, pciutils
+Provides: ethernet-card-detection
+Description: Detect network hardware and load kernel drivers for it
+
+Package: disk-detect
+Architecture: all
+Depends: debconf (>= 0.38), hw-detect, pciutils
+Priority: optional
+Provides: harddrive-detection
+Enhances: hw-detect
+Description: Detect disk drives
+
+Package: archdetect
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Hardware architecture detector
