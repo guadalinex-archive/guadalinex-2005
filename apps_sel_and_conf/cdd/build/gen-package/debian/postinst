@@ -32,7 +32,6 @@ case "$1" in
         then
             for FILEPATH in $(cat $TMPMODIFIEDS 2>/dev/null)
             do
-                echo "Copiando $FILEPATH"
                 cp --parents $FILEPATH $DPSYCOSKEL
             done
             rm $TMPMODIFIEDS
