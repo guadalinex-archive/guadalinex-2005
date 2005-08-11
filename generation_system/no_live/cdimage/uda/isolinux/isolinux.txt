@@ -1,7 +1,7 @@
 splash.rle
 
-The default installation is suitable for most desktop or laptop systems.
-Press F1control and F then 1 for help and advanced installation options.
+
+
 
 Para instalar unicamente el sistema base, escriba 'server' y pulse INTRO.
 Para la instalación por defecto, pulse INTRO.
