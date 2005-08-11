@@ -9,19 +9,18 @@ paquetes a los cuales configuran los CONFIGS.
 La idea detrás del funcionamiento de los paquetes de
 configuración se puede sintetizar con lo siguiente:
 
-- Los ficheros de configuración contenidos en los CONFIGS se instalarán en el
+1) Los ficheros de configuración contenidos en los CONFIGS se instalarán en el
   sistema siempre que se instale su paquete, independientemente de las
   modificaciones realizadas por el usuario, no sin antes guardar una copia de
   seguridad de dichos ficheros e indicárselo al usuario (mediante una receta
   estaría bien)
 
-- Una vez instalado un paquete CONFIG, el usuario puede modificar cualquier
+2) Una vez instalado un paquete CONFIG, el usuario puede modificar cualquier
   fichero de configuración. Estas modificaciones no se verán afectadas por la
   instalación de otro CONFIG, siempre y cuando éste no incluya ningún fichero
   que coincida con alguno de los modificados por el usuario.
 
-
-- Si el usuario decide desinstalar un CONFIG, se restaurarán los ficheros de
+3) Si el usuario decide desinstalar un CONFIG, se restaurarán los ficheros de
   configuración sobreescritos durante la instalación de dicho CONFIG.
 
 
@@ -70,6 +69,8 @@ Recuperación de las copias de seguridad:
 ========================================
 
 El usuario, no se sabe por qué extraño motivo, desinstala los paquetes
-guadalinex-net y guadalinex-net-conf. En el sistema, se restauran los ficheros
+guadalinex-net y guadalinex-net-conf. 
+
+En el sistema, se restauran los ficheros
 de configuración de meganavegador y gaimtux que el usuario tenía antes de
 instalar los paquetes guadalinex-net-conf y guadalinex-net (si existe alguno).
