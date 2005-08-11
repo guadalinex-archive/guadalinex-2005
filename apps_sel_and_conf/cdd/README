@@ -30,6 +30,9 @@ cuales depende el paquete "base", separados por comas.
 Generación de los paquetes
 ==========================
 
+Antes que nada, es  *MUY IMPORTANTE*  tener en cuenta en todo momento que antes de
+generar algún paquete es necesario que TODOS los ficheros estén subidos en el svn.
+
 Veámos paso a paso cómo construir un paquete desde cero. Sirva de ejemplo la
 construcción del metapaquete mini (para guadalinex 2005 Mini). Este meta paquete
 depende de dos paquetes, una al que llamaremos base y otro al que lo bautizamos
@@ -88,3 +91,12 @@ necesario para crear el nuevo paquete:
 
 6) En el directorio build/packages/binary-i386/ se encuentran los paquetes ya
 creados.
+
+
+=====
+NOTAS
+=====
+
+En el directorio doc se encuentra documentación de desarrollo (doc/spec contiene
+la especificación, es decir, la descripción del correcto funcionamiento del cdd), 
+haciendo hincapié en las modificaciones realizadas al cdd original (doc/mods.
