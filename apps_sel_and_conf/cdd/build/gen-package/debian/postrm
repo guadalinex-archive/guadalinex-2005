@@ -19,20 +19,19 @@ set -e
 case "$1" in
        purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
 
-       #Hack gx2005
-       TMPMODIFIEDS=/tmp/modified_files
-       DPSYCOSKEL=/usr/share/dpsyco/skel/
+        #Hack gx2005
+        TMPMODIFIEDS=/tmp/modified_files
+        DPSYCOSKEL=/usr/share/dpsyco/skel/
 
-       if [ -f $TMPMODIFIEDS ]
-       then
-           for FILEPATH in $(cat $TMPMODIFIEDS 2>/dev/null)
-           do
-               cp --parents $FILEPATH $DPSYCOSKEL
-           done
-           rm $TMPMODIFIEDS
-       fi
-       #Hack gx2005 end
-
+        if [ -f $TMPMODIFIEDS ]
+        then
+            for FILEPATH in $(cat $TMPMODIFIEDS 2>/dev/null)
+            do
+                cp --parents $FILEPATH $DPSYCOSKEL
+            done
+            rm $TMPMODIFIEDS
+        fi
+        #Hack gx2005 end
        /usr/sbin/update-dpsyco-skel
 
 
