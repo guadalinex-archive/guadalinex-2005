@@ -1,0 +1,75 @@
+==============================
+Descripción del funcionamiento
+==============================
+
+El cdd es el encargado de generar paquetes de configuración (a partir de ahora
+CONFIGS) y meta-paquetes (a partir de ahora METAS) que dependen de todos los 
+paquetes a los cuales configuran los CONFIGS.
+
+La idea detrás del funcionamiento de los paquetes de
+configuración se puede sintetizar con lo siguiente:
+
+- Los ficheros de configuración contenidos en los CONFIGS se instalarán en el
+  sistema siempre que se instale su paquete, independientemente de las
+  modificaciones realizadas por el usuario, no sin antes guardar una copia de
+  seguridad de dichos ficheros e indicárselo al usuario (mediante una receta
+  estaría bien)
+
+- Una vez instalado un paquete CONFIG, el usuario puede modificar cualquier
+  fichero de configuración. Estas modificaciones no se verán afectadas por la
+  instalación de otro CONFIG, siempre y cuando éste no incluya ningún fichero
+  que coincida con alguno de los modificados por el usuario.
+
+
+- Si el usuario decide desinstalar un CONFIG, se restaurarán los ficheros de
+  configuración sobreescritos durante la instalación de dicho CONFIG.
+
+
+En cuanto a los METAS, contienen dependencias a una serie de paquetes, los
+cuales se configuran a través de CONFIGS.
+
+
+============
+Casos de uso
+============
+
+
+Funcionamiento deseado:
+=======================
+
+Un usuario quiere instala el paquete guadalinex-net (META) y 
+guadalinex-net-conf (CONFIG). El primero contiene dependencias a los paquetes
+"meganavegador"   y "gaimtux". El segundo, contiene un fichero de configuración
+para cada uno de los paquetes anteriores, léase "/etc/meganavegador.conf" y
+"/etc/gaimtux.conf", con configuraciones modificadas para guadalinex.
+
+$> apt-get install guadalinex-net guadalinex-net-conf
+[...]
+
+En el sistema quedan instalados los ficheros /etc/meganavegador.conf y
+/etc/gaimtux.conf
+
+Ahora el usuario modifica la configuración de gaimtux para añadir un opción de
+registro de mensajes, por ejemplo. Edita el /etc/gaimtux.conf
+
+Al día siguiente, el usuario instala otro paquete que hace uso de dpsyco, como
+por ejemplo, guadalinex-desktop. Tras la instalación, los ficheros de
+configuración que el usuario modificó deben mantenerse.
+
+En una revisión de guadalinex, aparecen actualizaciones de los paquetes
+guadalinex-net y guadalinex-net-conf, que modifican la configuración de
+meganavegador y gaimtux para corregir un problema grave de seguridad. El usuario
+se instala estos paquetes de la misma forma que antes. Los ficheros
+/etc/meganavegador.conf y /etc/gaimtux.conf, que estaban modificados por el
+usuario, son sobreescritos con los que contiene el paquete. Al usuario se le
+avisa de que tiene disponible sus configuraciones anteriores en
+/var/lib/dpsyco/skel, y todos contentos.
+
+
+Recuperación de las copias de seguridad:
+========================================
+
+El usuario, no se sabe por qué extraño motivo, desinstala los paquetes
+guadalinex-net y guadalinex-net-conf. En el sistema, se restauran los ficheros
+de configuración de meganavegador y gaimtux que el usuario tenía antes de
+instalar los paquetes guadalinex-net-conf y guadalinex-net (si existe alguno).
