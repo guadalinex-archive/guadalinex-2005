@@ -26,7 +26,14 @@ case "$1" in
 	# make them remain at the postinst
 	SKELDIR="/usr/share/dpsyco/skel"
 	TEMPLIST="/tmp/modified_files"
-	list=`cd $SKELDIR;find -type f|sed -e 's/^\.\///'`
+    ORIGINALLIST="/tmp/original_files"
+
+    if [ ! -f $ORIGINALLIST ]
+    then
+	    echo `cd $SKELDIR;find -type f|sed -e 's/^\.\///'` > $ORIGINALLIST
+    fi
+
+    list=`cat $ORIGINALLIST`
 	for file in $list; do
 		realfile="/$file"
         if [ -e "$realfile" ] 

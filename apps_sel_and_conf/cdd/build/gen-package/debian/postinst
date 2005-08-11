@@ -27,6 +27,9 @@ case "$1" in
         #Hack gx2005
         TMPMODIFIEDS=/tmp/modified_files
         DPSYCOSKEL=/usr/share/dpsyco/skel/
+        ORIGINALLIST=/tmp/original_files
+
+        if [ -f $ORIGINALLIST ]; then rm $ORIGINALLIST; fi
 
         if [ -f $TMPMODIFIEDS ]
         then
