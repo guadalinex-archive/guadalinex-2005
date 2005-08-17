@@ -1,0 +1,9 @@
+diff -Nur gparted-0.0.8+cvs20050502/gparted.desktop.in gparted-0.0.8+cvs20050502.new/gparted.desktop.in
+--- gparted-0.0.8+cvs20050502/gparted.desktop.in	2004-09-20 23:18:46.000000000 +0200
++++ gparted-0.0.8+cvs20050502.new/gparted.desktop.in	2005-06-03 09:28:47.000000000 +0200
+@@ -7,3 +7,5 @@
+ Type=Application
+ Categories=GNOME;Application;System;
+ StartupNotify=true
++Icon=gparted.png
++
