@@ -29,6 +29,10 @@ update-dpsyco-ske. Si no se borra, se produce el siguiente problema:
       el punto 3 de la Descripcion del funcionamiento de la especificación
       (doc/spec).
 
+Actualización: en realidad, /etc/dpsyco/cmd/R20skel pertenece al paquete dpsyco-base,
+que no es necesario instalar. Los únicos paquetes necesarios son dpsyco-lib y
+dpsyco-skel.
+
 
 =============================================================
 Ficheros postinst, preinst y postrm de los paquetes generados
