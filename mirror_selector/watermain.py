@@ -192,12 +192,12 @@ class appgui:
 		widget.set_sensitive(False)
 		selection=app.treeview.get_selection()
 		(model,iter)=selection.get_selected()
-		if iter:
-			title=mirrors.liststore.get_value(iter,1)
-			urls=mirrors.liststore.get_value(iter,2)
-			id=mirrors.liststore.get_value(iter,3)
-			sourceslist.write(title,id,urls)
-		sys.exit(0)
+		title=mirrors.liststore.get_value(iter,1)
+		urls=mirrors.liststore.get_value(iter,2)
+		id=mirrors.liststore.get_value(iter,3)
+		sourceslist.write(title,id,urls)
+		dialog = self.xml.get_widget('dialog1')
+		dialog.show()
 
 	def bt_update_clicked(self,widget):
 		widget.set_sensitive(False)
