@@ -147,7 +147,7 @@ class appgui:
 		dic = {
 			 "on_bt_quit_clicked" : (gtk.mainquit),
 		         "on_window1_destroy" : (gtk.mainquit), 
-		         "on_treeview1_select_cursor_row" : self.treeview1_select_cursor_row, 
+		         "on_treeview1_cursor_changed" : self.treeview1_cursor_changed, 
 		         "on_bt_ok_clicked" : self.bt_ok_clicked, 
 		         "on_bt_update_clicked" : self.bt_update_clicked 
 		}
@@ -213,8 +213,9 @@ class appgui:
 		mirrors.reload()
 		return
 
-	def treeview1_select_cursor_row(self):
-		print "Activated"
+	def treeview1_cursor_changed(self,treeview):
+		widget=self.xml.get_widget('bt_ok')
+		widget.set_sensitive(True)
 		return
 
 
