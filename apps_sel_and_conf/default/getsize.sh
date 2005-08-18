@@ -7,7 +7,9 @@ packlist=`cat`
 
 #Get list of dependencies of the packages in $packlist
 #deplist=`apt-rdepends $packlist |grep '^[^ ]'|sed -e 's/^<\(.*\)>$/\1/'`
-deplist=`apt-cache depends --recurse --no-all-versions $packlist | grep "^  Depende"| awk '{ print $2 }'|sort|uniq|sed -e 's/^<\(.*\)>$/\1/'`
+#deplist=`apt-cache depends --recurse --no-all-versions $packlist | grep "^  Depende"|awk '{ print $2 }'|sort|uniq|sed -e 's/^<\(.*\)>$/\1/'`
+deplist=`apt-cache depends --recurse --no-all-versions $packlist | grep '^[^ ]'|sed -e 's/^<\(.*\)>$/\1/'`
+
 
 #Merge both lists
 mergedlist=`echo $packlist $deplist | sort | uniq`
