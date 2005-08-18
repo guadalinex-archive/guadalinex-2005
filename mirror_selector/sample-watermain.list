@@ -1,0 +1,24 @@
+
+Mirrors de Guadalinex disponibles, en formato watermain.
+Guadalinex Mirrors availables, in watermain format.
+
+#TITLE:Sitio principal de Guadalinex en la Junta de Andalucia
+#ID:jda
+deb http://www.guadalinex.es/guadalinex/ sarge main contrib non-free
+deb http://www.guadalinex.es/guadalinex-non-us/ sarge/non-US main contrib non-free
+deb http://www.guadalinex.es/guadalinex/ muflon guada
+#END
+
+#TITLE:Copia en la Universidad de Cadiz
+#ID:uca
+deb http://www.uca.es/guadalinex/ sarge main contrib non-free
+deb http://www.uca.es/guadalinex-non-us/ sarge/non-US main contrib non-free
+deb http://www.uca.es/guadalinex/ muflon guada
+#END
+
+#TITLE:Copia en el Centro de Informatica Cientifica de Andalucia
+#ID:cica
+deb http://www.cica.es/guadalinex/ sarge main contrib non-free
+deb http://www.cica.es/guadalinex-non-us/ sarge/non-US main contrib non-free
+deb http://www.cica.es/guadalinex/ muflon guada
+#END
