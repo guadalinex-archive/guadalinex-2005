@@ -156,7 +156,7 @@ class appgui:
 		self.xml.signal_autoconnect (dic)
 		self.treeview = self.xml.get_widget('treeview1')
 		self.window = self.xml.get_widget('window1')
-		self.window.set_size_request(600,250)
+		self.window.set_size_request(600,280)
 		self.treeview.set_rules_hint(True)
 
 		self.treeview.set_model(model=mirrors.liststore)
