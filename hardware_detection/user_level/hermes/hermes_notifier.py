@@ -3,6 +3,8 @@
 
 import gtk
 import dbus
+import dbus.decorators
+import dbus.service
 import egg.trayicon
 import thread
 import gobject
@@ -368,16 +370,16 @@ class HermesTray2:
 
         self.dlg = dialog
 
-class TrayObject(dbus.Object):
+class TrayObject(dbus.service.Object):
 
     def __init__(self, service, message_render = DefaultMessageRender()):
-        dbus.Object.__init__(self, "/org/guadalinex/HermesObject", service)
+        dbus.service.Object.__init__(self, service, "/org/guadalinex/HermesObject")
         self.message_render = message_render
         self.logger = logging.getLogger()
         self.logger.debug("HermesObject iniciado")
 
 
-    @dbus.method("org.guadalinex.IHermesNotifier")
+    @dbus.decorators.method("org.guadalinex.IHermesNotifier")
     def show_info(self, message):
         """
         This method shows a info message
@@ -385,13 +387,13 @@ class TrayObject(dbus.Object):
         self.logger.info("show_info: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_INFO)
 
-    @dbus.method("org.guadalinex.IHermesNotifier")
+    @dbus.decorators.method("org.guadalinex.IHermesNotifier")
     def ask_info(self, message):
         self.logger.info("ask_info: " + message)
         return self.message_render.ask_message(message, gtk.MESSAGE_INFO)
 
 
-    @dbus.method("org.guadalinex.IHermesNotifier")
+    @dbus.decorators.method("org.guadalinex.IHermesNotifier")
     def show_warning(self, message):
         """
         This method shows a info message
@@ -400,13 +402,13 @@ class TrayObject(dbus.Object):
         return self.message_render.show_message(message, gtk.MESSAGE_WARNING)
 
 
-    @dbus.method("org.guadalinex.IHermesNotifier")
+    @dbus.decorators.method("org.guadalinex.IHermesNotifier")
     def ask_warning(self, message):
         self.logger.info("ask_warning: " + message)
         return self.message_render.ask_message(message, gtk.MESSAGE_WARNING)
 
 
-    @dbus.method("org.guadalinex.IHermesNotifier")
+    @dbus.decorators.method("org.guadalinex.IHermesNotifier")
     def show_error(self, message):
         """
         This method shows a info message
@@ -414,7 +416,7 @@ class TrayObject(dbus.Object):
         self.logger.info("show_error: " + message)
         return self.message_render.show_message(message, gtk.MESSAGE_ERROR)
 
-    @dbus.method("org.guadalinex.IHermesNotifier")
+    @dbus.decorators.method("org.guadalinex.IHermesNotifier")
     def ask_error(self, message):
         self.logger.info("ask_error: " + message)
         return self.message_render.ask_message(message, gtk.MESSAGE_ERROR)
@@ -447,7 +449,7 @@ def main():
 
     tray = HermesTray2()
     session_bus = dbus.SessionBus()
-    service = dbus.Service("org.guadalinex.Hermes", bus = session_bus)
+    service = dbus.service.BusName("org.guadalinex.Hermes", session_bus)
     TrayObject(service, tray)
 
     gtk.gdk.threads_init()

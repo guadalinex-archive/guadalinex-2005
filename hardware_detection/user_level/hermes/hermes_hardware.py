@@ -176,6 +176,7 @@ class NotificationDaemon(object):
     """
     This class is a wrapper for notification-daemon program.
     """
+
     def __init__(self):
         bus = dbus.SessionBus()
         obj = bus.get_object('org.freedesktop.Notifications',
@@ -188,6 +189,31 @@ class NotificationDaemon(object):
                 'EO', 16, "Info", str(message), 
                 '', list((1,2)), list((0,0)), 
                 dbus.UInt32(10))
+
+
+
+        #notification-daemon spec: -------------------------------------------
+        #http://galago.info/specs/notification/0.7/index.html
+
+        #  UINT32 org.freedesktop.Notifications.Notify 
+        #  (STRING app_name, BYTE_ARRAY_OR_STRING app_icon, UINT32 replaces_id, 
+        #  STRING notification_type, BYTE urgency_level, STRING summary, 
+        #  STRING body, ARRAY images, DICT actions, DICT hints, BOOL expires, 
+        #  UINT32 expire_timeout);
+        
+        #self.iface.Notify("Hermes", #app_name 
+        #        '', # app_icon
+        #        0, # replaces_id
+        #        'device.added', # notification_type
+        #        1, # urgency_level
+        #        '', # summary
+        #        message, # body
+        #        '', # images
+        #        '', # actions
+        #        '', # hints
+        #        True, # expires
+        #        0  #expire_timeout
+        #        )
 
     
     def show_warning(self, message):
@@ -256,8 +282,9 @@ def main():
     DeviceListener(iface)
     gtk.main()
 
+nd = NotificationDaemon()
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
 
 
