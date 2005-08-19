@@ -1,4 +1,0 @@
-#!/bin/sh
-
-rm -f /var/lib/partman/devices/*/*/formatted 2>/dev/null
-
