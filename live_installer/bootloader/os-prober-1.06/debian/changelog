@@ -1,0 +1,211 @@
+os-prober (1.06) unstable; urgency=low
+
+  * Frans Pop
+    - Make idempotent by deleting files in /var/lib/os-prober/ on start
+      (resets count_next_label).
+    - Properly determine whether partitions are mounted or not by using
+      mapdevfs to match device names. Closes: #251794, #251662.
+    - Add dependency on di-utils-mapdevfs.
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  1 May 2005 16:52:18 -0400
+
+os-prober (1.05) unstable; urgency=low
+
+  * Colin Watson
+    - 'boot' is implicit at the end of a grub menu entry. Cope with it being
+      missing (part of #258623).
+
+ -- Colin Watson <cjwatson@debian.org>  Sat, 26 Mar 2005 16:55:23 +0000
+
+os-prober (1.04) unstable; urgency=low
+
+  * Joey Hess
+    - Fix micosoft and lsb tests to use count_next_label to get unique
+      short labels. Closes: #299001
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 11 Mar 2005 14:06:00 -0500
+
+os-prober (1.03) unstable; urgency=low
+
+  * Joey Hess
+    - Applied patch from Guillem Jover to detect many redhat derived
+      distributions.
+  * Frans Pop
+    - Exclude partitions that are part of a software raid array.
+      Closes: #273960.
+    - Don't use the description from Windows' boot.ini if it contains
+      non-ascii (or other unusual) characters. Closes: #293859.
+  * Colin Watson
+    - Probe ext3, xfs, and jfs modules too.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 11 Feb 2005 20:30:56 -0500
+
+os-prober (1.02) unstable; urgency=low
+
+  * Joshua Kwan
+    - I don't have time to test/improve os-prober these days, so removing
+      myself from Uploaders.
+  * Colin Watson
+    - Install i386 tests on amd64 too (closes: #261378).
+
+ -- Colin Watson <cjwatson@debian.org>  Thu, 21 Oct 2004 14:02:05 +0100
+
+os-prober (1.01) unstable; urgency=low
+
+  * Joey Hess
+    - Applied patch from eddyp to parse boot.ini to determine correct names
+      of modern versions of Windows. Closes: #275882
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 20 Oct 2004 15:20:12 -0400
+
+os-prober (1.00) unstable; urgency=low
+
+  * Joey Hess
+    - Fedora uses a grub.conf. This may or may not be linked to menu.lst
+      (unknown). Look for it if menu.lst is not found.
+    - Gratuitous version number bump.
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  3 Oct 2004 18:27:10 -0400
+
+os-prober (0.14) unstable; urgency=low
+
+  * Joey Hess
+    - It's actually allowed and common for /etc/lsb-release to not include a
+      DISTRIB_DESCRIPTION or DISTRIB_CODENAME, so don't call such distros
+      "Unknown semi-LSB-compliant Linux distribution", just skip to the next
+      test. This affected FC2.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 27 Aug 2004 12:57:06 -0400
+
+os-prober (0.13) unstable; urgency=low
+
+  * Giuseppe Sacco
+    - Added preliminary test for Solaris/IA32. Closes: #255206
+  * Joey Hess
+    - Add support for fstabs with UUIDs or disk labels. Closes:#257794
+    - In fallback os-prober test, skip over symlinks, since they could point
+      from root into /boot or result in confusing duplicate entries.
+      Closes: #258624
+    - Make the fallback os-prober really find kernels matched by globs.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 10 Jul 2004 14:32:17 -0400
+
+os-prober (0.12) unstable; urgency=low
+
+  * Colin Watson
+    - Fix syntax error in already-mounted case.
+    - Cope with empty initrd parameter in yaboot.conf parser.
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 12 May 2004 01:16:05 +0100
+
+os-prober (0.11) unstable; urgency=low
+
+  * Colin Watson
+    - Make linux-distro test work on architectures that don't have
+      /lib/ld-linux.so* (closes: #244076).
+    - Fix a typo in the yaboot parser.
+
+ -- Colin Watson <cjwatson@debian.org>  Sun,  9 May 2004 16:35:43 +0100
+
+os-prober (0.10) unstable; urgency=low
+
+  * Colin Watson
+    - Restore module dependencies, using debian/module-depends.$(ARCH).
+      Closes: #246700
+  * Joey Hess
+    - Have os-prober run mounted tests on partitions that are already
+      mounted (skipping /  and /target). Closes: #247080
+
+ -- Joey Hess <joeyh@debian.org>  Tue,  4 May 2004 20:52:29 -0400
+
+os-prober (0.09) unstable; urgency=low
+
+  * Guillem Jover
+    - Added more distros support.
+  * Joey Hess
+    - Use just "Windows" as the shortname for Windows 2k/NT/XP.
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 22 Apr 2004 12:07:11 -0400
+
+os-prober (0.08) unstable; urgency=low
+
+  * Joey Hess
+    - Initialise variables in lilo and grub probes, to avoid inheriting
+      settings for things like $initrd from the kernel command line.
+      This fixes processing of things like lilo.conf stanzas that do not set
+      an initrd. Thanks to Frans Pop.
+    - Add some extra debug logging.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 20 Apr 2004 16:40:16 -0400
+
+os-prober (0.07) unstable; urgency=low
+
+  * Colin Watson
+    - Add a Mac OS 6-9 check for powerpc. This is currently a copy of the
+      m68k version with a different loader name for yaboot's benefit, which
+      may not be ideal ...
+    - Send modprobe's standard output to syslog so that it doesn't confuse
+      programs parsing os-prober's output.
+
+ -- Colin Watson <cjwatson@debian.org>  Sun, 18 Apr 2004 11:23:51 +0100
+
+os-prober (0.06) unstable; urgency=low
+
+  * Colin Watson
+    - Add a Linux boot probe for /etc/yaboot.conf.
+    - Make sure hfs is available for the Mac OS 9 check.
+    - Delay hfs until last in mounted checks so that we can tell the
+      difference between that and hfsplus.
+    - Add count to Mac OS X labels; change loader type to macosx.
+    - Add myself to Uploaders.
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 14 Apr 2004 01:15:53 +0100
+
+os-prober (0.05) unstable; urgency=low
+
+  * Joey Hess
+    - Fix broken mounting of /boot partitions.
+    - Fix grub probe to support systems that have /boot on a separate
+      partition, by looking for kernels in /boot as well.
+    - Same for initrds.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 10 Apr 2004 16:06:49 -0400
+
+os-prober (0.04) unstable; urgency=low
+
+  * Joey Hess
+    - Return "hurd" as the OS type for hurd, rather than "multiboot".
+      The latter is not enough info to boot the hurd.
+    - Fix broken hurd detection.
+
+ -- Joey Hess <joeyh@debian.org>  Fri,  9 Apr 2004 22:18:54 -0400
+
+os-prober (0.03) unstable; urgency=low
+
+  * Joshua Kwan
+    - Allow for unique short names via functions in new common.sh library.
+    - Revamp all the dh_install stuff.
+    - Use /var/lib/os-prober as our sandbox.
+  * Colin Watson
+    - Add Mac OS X probing support.
+  * Joey Hess
+    - Added linux-boot-prober, with sorta working support for grub.
+    - Reorg the probes, and move to /usr/lib.
+    - Remove broken depends line.
+    - Add a linux boot probe that searches for kernels and initrds with no
+      bootloader config file, as a fallback.
+    - Add a linux boot probe that parses /etc/lilo.conf.
+
+ -- Joey Hess <joeyh@debian.org>  Wed,  7 Apr 2004 21:40:39 -0400
+
+os-prober (0.02) unstable; urgency=low
+
+  * Include init dir in the udeb.
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  4 Apr 2004 00:43:12 -0500
+
+os-prober (0.01) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Joey Hess <joeyh@debian.org>  Sat,  3 Apr 2004 23:45:29 -0500
