@@ -18,7 +18,6 @@
   <property name="skip_pager_hint">False</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
-  <property name="focus_on_map">True</property>
   <signal name="destroy" handler="on_window1_destroy" last_modification_time="Tue, 16 Aug 2005 17:05:16 GMT"/>
 
   <child>
@@ -63,10 +62,6 @@ Seleccione su repositorio preferido para las actualizaciones y pulse &lt;b&gt;Ac
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -102,9 +97,6 @@ Seleccione su repositorio preferido para las actualizaciones y pulse &lt;b&gt;Ac
 	      <property name="rules_hint">False</property>
 	      <property name="reorderable">False</property>
 	      <property name="enable_search">True</property>
-	      <property name="fixed_height_mode">False</property>
-	      <property name="hover_selection">False</property>
-	      <property name="hover_expand">False</property>
 	      <signal name="cursor_changed" handler="on_treeview1_cursor_changed" last_modification_time="Thu, 18 Aug 2005 10:50:50 GMT"/>
 	    </widget>
 	  </child>
@@ -186,7 +178,6 @@ Seleccione su repositorio preferido para las actualizaciones y pulse &lt;b&gt;Ac
   <property name="skip_pager_hint">False</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
-  <property name="focus_on_map">True</property>
   <property name="has_separator">False</property>
   <signal name="response" handler="on_dialog1_response" last_modification_time="Thu, 18 Aug 2005 15:52:18 GMT"/>
 
@@ -236,10 +227,6 @@ Seleccione su repositorio preferido para las actualizaciones y pulse &lt;b&gt;Ac
 	  <property name="xpad">16</property>
 	  <property name="ypad">0</property>
 	  <property name="mnemonic_widget">okbutton1</property>
-	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	  <property name="width_chars">-1</property>
-	  <property name="single_line_mode">False</property>
-	  <property name="angle">0</property>
 	</widget>
 	<packing>
 	  <property name="padding">10</property>

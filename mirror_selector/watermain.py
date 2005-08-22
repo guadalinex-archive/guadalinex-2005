@@ -86,7 +86,10 @@ class sourceslist:
 		try:
 			list=open(self.filename)
 		except:
-			print "ERROR: "+self.filename+" not readable"
+			pass
+# 		If sources.list doesn't exist it's not considered an error anymore 
+# 		watermain will create one !			 
+
 		else:
 			self.id=""
 			while 1:
@@ -103,11 +106,6 @@ class sourceslist:
 		backupfilename=self.filename+".bak"
 
 		try:
-			oldfile=open(self.filename)
-		except:
-			sys.exit("ERROR: "+self.filename+" not readable")
-			return
-		try:
 			newfile=open(tmpfilename,"w")
 		except:
 			sys.exit("ERROR: "+self.filename+".tmp not writable")
@@ -119,22 +117,30 @@ class sourceslist:
 		newfile.write(urls)
 		newfile.write("#END\n")
 
-		mustwrite=True
-		while 1:
-			line=oldfile.readline()
-			if line == "": 
-				break
-			if line[:6] == "#TITLE":
-				mustwrite=False
-			elif line[:4] == "#END":
-				mustwrite=True
-			elif mustwrite:
-				newfile.write(line)
+		try:
+			oldfile=open(self.filename)
+		except:
+			pass
+# 		If sources.list doesn't exist it's not considered an error anymore 
+# 		watermain will create one !			 
+		else:
+			mustwrite=True
+			while 1:
+				line=oldfile.readline()
+				if line == "": 
+					break
+				if line[:6] == "#TITLE":
+					mustwrite=False
+				elif line[:4] == "#END":
+					mustwrite=True
+				elif mustwrite:
+					newfile.write(line)
 
-		oldfile.close
+			oldfile.close
+			os.rename(self.filename,backupfilename)
+
 		newfile.close
 	
-		os.rename(self.filename,backupfilename)
 		os.rename(tmpfilename,self.filename)
 
 		return
@@ -147,6 +153,7 @@ class appgui:
 		dic = {
 			 "on_bt_quit_clicked" : (gtk.mainquit),
 		         "on_window1_destroy" : (gtk.mainquit), 
+		         "on_dialog1_response" : (gtk.mainquit), 
 		         "on_treeview1_cursor_changed" : self.treeview1_cursor_changed, 
 		         "on_bt_ok_clicked" : self.bt_ok_clicked, 
 		         "on_bt_update_clicked" : self.bt_update_clicked 
