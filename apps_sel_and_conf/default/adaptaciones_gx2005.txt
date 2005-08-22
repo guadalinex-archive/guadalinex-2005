@@ -3,15 +3,16 @@ accesorios
 graficos
 
 internet
-  ·mozilla-firefox
+  ·mozilla-firefox-locale-es-es
     *Página de inicio
-    	Tocar en /usr/lib/mozilla-firefox/chrome/en-US.jar (y dentro de ahí en locale/browser-region/region.properties)
+    	Tocar en /usr/lib/mozilla-firefox/chrome/es-ES.jar (y dentro de ahí en locale/browser-region/region.properties)
+  ·firefox
     *Favoritos
     	Tocar en /etc/mozilla-firefox/profile/bookmarks.html
     *Quick Search para el DRAE y lo que se tercie
     	Tocar en /etc/mozilla-firefox/profile/bookmarks.html
   ·liferea
-    *Carpeta con fuentes RSS de Guadalinex
+    *Carpeta con fuentes RSS de Guadalinex (si guadalinex.org tuviera fuentes RSS en un futuro)
 
 multimedia
 
@@ -21,11 +22,11 @@ systools
 
 otros
   ·gnome-menus
-    *Tunear
+    *Por definir
   ·guadalinex-artwork
-    *Fondos en /usr/share/backgrounds
+    *Fondos de Guadalinex en /usr/share/backgrounds
   ·Fondo de escritorio especificado en /etc/gconf/gconf.xml.defaults/desktop/gnome/background/%gconf.xml
-  ·Hay que averiguar cómo poner iconos en el escritorio
+  ·Averiguar cómo poner iconos en el escritorio
   ·Asociar ctrl+alt+supr a gnome-system-monitor
 	/etc/gconf/gconf.xml.defaults/apps/metacity/keybinding_commands/
 	/etc/gconf/gconf.xml.defaults/apps/metacity/global_keybindings/
