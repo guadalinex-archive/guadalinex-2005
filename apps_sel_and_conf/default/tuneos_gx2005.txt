@@ -5,8 +5,11 @@ graficos
 internet
   ·mozilla-firefox
     *Página de inicio
+    	Tocar en /usr/lib/mozilla-firefox/chrome/en-US.jar (y dentro de ahí en locale/browser-region/region.properties)
     *Favoritos
+    	Tocar en /etc/mozilla-firefox/profile/bookmarks.html
     *Quick Search para el DRAE y lo que se tercie
+    	Tocar en /etc/mozilla-firefox/profile/bookmarks.html
   ·liferea
     *Carpeta con fuentes RSS de Guadalinex
 
@@ -21,8 +24,11 @@ otros
     *Tunear
   ·guadalinex-artwork
     *Fondos en /usr/share/backgrounds
+  ·Fondo de escritorio especificado en /etc/gconf/gconf.xml.defaults/desktop/gnome/background/%gconf.xml
   ·Hay que averiguar cómo poner iconos en el escritorio
   ·Asociar ctrl+alt+supr a gnome-system-monitor
+	/etc/gconf/gconf.xml.defaults/apps/metacity/keybinding_commands/
+	/etc/gconf/gconf.xml.defaults/apps/metacity/global_keybindings/
   ·Tunear los tipos mime (preguntar en forja-distro qué
    aplicaciones son las preferidas para modificar la
    prioridad en los .desktop y mimes)
