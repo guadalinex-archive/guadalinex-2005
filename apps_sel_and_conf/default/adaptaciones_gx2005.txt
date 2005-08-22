@@ -30,7 +30,7 @@ otros
   ·Asociar ctrl+alt+supr a gnome-system-monitor
 	/etc/gconf/gconf.xml.defaults/apps/metacity/keybinding_commands/
 	/etc/gconf/gconf.xml.defaults/apps/metacity/global_keybindings/
-  ·Tunear los tipos mime (preguntar en forja-distro qué
+  ·Adaptar los tipos mime (preguntar en forja-distro qué
    aplicaciones son las preferidas para modificar la
    prioridad en los .desktop y mimes)
 
