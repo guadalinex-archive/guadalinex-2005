@@ -1,0 +1,8 @@
+base-config	tzconfig/choose_country_zone_multiple	string Europe/Madrid (mainland)
+base-config	tzconfig/gmt				boolean true
+d-i		netcfg/get_hostname			string uda
+passwd		passwd/user-fullname			string uda
+passwd		passwd/username				string uda
+passwd		passwd/user-password			password uda
+passwd		passwd/user-password-again		password uda
+
