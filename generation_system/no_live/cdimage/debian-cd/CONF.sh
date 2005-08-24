@@ -172,7 +172,8 @@ case $DIST in
   *)
     export SECRET_KEYRING=$CDIMAGE_ROOT/secret/dot-gnupg/secring.gpg
     export PUBLIC_KEYRING=$CDIMAGE_ROOT/secret/dot-gnupg/pubring.gpg
-    export SIGNING_KEYID=FBB75451
+#    export SIGNING_KEYID=FBB75451
+    export SIGNING_KEYID=E8AC3912
     ;;
 esac
 
