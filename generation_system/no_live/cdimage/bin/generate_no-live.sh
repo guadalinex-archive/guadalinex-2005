@@ -7,7 +7,9 @@ set -e
 IMAGE_TYPE="${1:-daily}"
 DATE="$(next-build-date "$IMAGE_TYPE")"
 CDIMAGE_INSTALL=1
-
+export COMPLETE=1
+export GNUPG_DIR="$CDIMAGE_ROOT/secret/dot-gnupg"
+export SIGNING_KEYID=E8AC3912
 export PROJECT CAPPROJECT DIST ARCHES CDIMAGE_INSTALL
 
 echo -n "Runnig run-germinate... "
@@ -35,3 +37,4 @@ cd "$CDIMAGE_ROOT/debian-cd"
 ./build.sh
 
 mv ../scratch/guadalinex/debian-cd/i386/breezy-install-i386.raw ../scratch/guadalinex/debian-cd/i386/breezy-install-i386.iso
+
