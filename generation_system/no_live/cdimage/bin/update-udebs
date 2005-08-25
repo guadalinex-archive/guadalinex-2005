@@ -12,14 +12,14 @@ cd $CDIMAGE_ROOT/scratch/$PROJECT/tmp
 [ ! -d fresh_udebs ] && mkdir fresh_udebs
 cd fresh_udebs
 
-#[ -f breezy-install-i386.list ] && rm breezy-install-i386.list
-#wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
+[ -f breezy-install-i386.list ] && rm breezy-install-i386.list
+wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
 
 cat breezy-install-i386.list | grep ^/pool/main | grep .udeb\$ > fresh_udebs_list_main
 
 for x in $(cat fresh_udebs_list_main)
 do
-	
+	PKG_TEST=""
 	UDEB_FILE=$(basename $x)
 	UDEB_NAME=${UDEB_FILE/_*/}
 	TMP_VERSION1=${UDEB_FILE/_all.udeb/}; TMP_VERSION2=${TMP_VERSION1/_i386.udeb/}; UDEB_VERSION=${TMP_VERSION2/*_/}
@@ -27,7 +27,7 @@ do
 	UDEB_DIR=$(echo $x | awk '{ match($1,/(\/.*\/).+(.*\.udeb)/, arr); print arr[1]}')
 
 	echo $UDEB_NAME >> $LOG
-	
+
 	if [ -d $CDIMAGE_ROOT/ftp$UDEB_DIR ]; then
 		cd $CDIMAGE_ROOT/ftp$UDEB_DIR
 	
@@ -39,6 +39,7 @@ do
 		else
 			LOCAL_VERSION_TMP=$(dpkg --field $PKG_TEST Version)
 			LOCAL_VERSION=${LOCAL_VERSION_TMP/Version:/}
+			echo "Local: $LOCAL_VERSION  External: $UDEB_VERSION" >> $LOG
 			if dpkg --compare-versions "$UDEB_VERSION" gt "$LOCAL_VERSION"; then
 				wget $MIRROR$x
 				[ "$?" == "0" ] && rm $PKG_TEST && echo "Upgraded udeb: $UDEB_NAME" >> $LOG
