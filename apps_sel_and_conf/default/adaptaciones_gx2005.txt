@@ -11,6 +11,8 @@ internet
     	Tocar en /etc/mozilla-firefox/profile/bookmarks.html
     *Quick Search para el DRAE y lo que se tercie
     	Tocar en /etc/mozilla-firefox/profile/bookmarks.html
+    *network.protocol-handler.app.ed2k
+     network.protocol-handler.external.ed2k
   ·liferea
     *Carpeta con fuentes RSS de Guadalinex (si guadalinex.org tuviera fuentes RSS en un futuro)
 
@@ -33,6 +35,7 @@ otros
   ·Adaptar los tipos mime (preguntar en forja-distro qué
    aplicaciones son las preferidas para modificar la
    prioridad en los .desktop y mimes)
+   	Leer como_manejar_mimes.txt
 
 edu
 
