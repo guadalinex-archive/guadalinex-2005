@@ -15,9 +15,9 @@ cd fresh_udebs
 [ -f breezy-install-i386.list ] && rm breezy-install-i386.list
 wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
 
-cat breezy-install-i386.list | grep ^/pool/main | grep .udeb\$ > fresh_udebs_list_main
+cat breezy-install-i386.list | grep ^/pool/ | grep .udeb\$ > fresh_udebs_list
 
-for x in $(cat fresh_udebs_list_main)
+for x in $(cat fresh_udebs_list)
 do
 	PKG_TEST=""
 	UDEB_FILE=$(basename $x)
@@ -31,8 +31,8 @@ do
 	if [ -d $CDIMAGE_ROOT/ftp$UDEB_DIR ]; then
 		cd $CDIMAGE_ROOT/ftp$UDEB_DIR
 	
-		PKG_TEST=$(find -name "$UDEB_NAME_*.udeb")
-
+		PKG_TEST=$(find -name "$UDEB_NAME\_*.udeb")
+		echo $PKG_TEST >> $LOG
 		if [ "$PKG_TEST" == "" ]; then
 			wget $MIRROR"/"$x
 			[ "$?" == "0" ] && echo "Downloaded new udeb: $x" >> $LOG

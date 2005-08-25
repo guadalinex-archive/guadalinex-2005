@@ -1,0 +1,58 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+
+MIRROR="http://archive.ubuntu.com/ubuntu"
+LOG=$CDIMAGE_ROOT/log/update-debs.log
+> $LOG
+
+cd $CDIMAGE_ROOT/scratch/$PROJECT/tmp
+[ ! -d fresh_debs ] && mkdir fresh_debs
+cd fresh_debs
+
+[ -f breezy-install-i386.list ] && rm breezy-install-i386.list
+wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
+
+cat breezy-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_list
+
+for x in $(cat fresh_debs_list)
+do
+	PKG_TEST=""
+	DEB_FILE=$(basename $x)
+	DEB_NAME=${DEB_FILE/_*/}
+	TMP_VERSION1=${DEB_FILE/_all.deb/}; TMP_VERSION2=${TMP_VERSION1/_i386.deb/}; DEB_VERSION=${TMP_VERSION2/*_/}
+	DEB_DIR=${x/\/*.deb/}
+	DEB_DIR=$(echo $x | awk '{ match($1,/(\/.*\/).+(.*\.deb)/, arr); print arr[1]}')
+
+	echo $DEB_NAME >> $LOG
+
+	if [ -d $CDIMAGE_ROOT/ftp$DEB_DIR ]; then
+		cd $CDIMAGE_ROOT/ftp$DEB_DIR
+	
+		PKG_TEST=$(find -name "$DEB_NAME\_*.deb")
+
+		if [ "$PKG_TEST" == "" ]; then
+			wget $MIRROR"/"$x
+			[ "$?" == "0" ] && echo "Downloaded new deb: $x" >> $LOG
+		else
+			LOCAL_VERSION_TMP=$(dpkg --field $PKG_TEST Version)
+			LOCAL_VERSION=${LOCAL_VERSION_TMP/Version:/}
+			echo "Local: $LOCAL_VERSION  External: $DEB_VERSION" >> $LOG
+			if dpkg --compare-versions "$DEB_VERSION" gt "$LOCAL_VERSION"; then
+				wget $MIRROR$x
+				[ "$?" == "0" ] && rm $PKG_TEST && echo "Upgraded deb: $DEB_NAME" >> $LOG
+			else
+				echo "Local version is ok" >> $LOG
+			fi
+		fi
+	else
+		mkdir -p $CDIMAGE_ROOT/ftp$DEB_DIR
+		cd $CDIMAGE_ROOT/ftp$DEB_DIR
+		wget $MIRROR$x
+		[ "$?" == "0" ] && echo "Downloaded new deb: $x" >> $LOG
+	fi
+		
+	echo "-----------------" >> $LOG
+done
