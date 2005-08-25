@@ -3,6 +3,7 @@
 from sets import Set
 import dbus
 import pickle
+import logging
 
 class DeviceList:
     """
@@ -49,6 +50,7 @@ class DeviceList:
     DEFAULT_FILE = '/var/tmp/devicelist_file'
 
     def __init__(self):
+        self.logger = logging.getLogger()
         self.__udi_set = Set()
         self.__properties_dict = {}
         self.__data = (self.__udi_set, self.__properties_dict)

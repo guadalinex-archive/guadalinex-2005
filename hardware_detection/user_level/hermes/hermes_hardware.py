@@ -22,15 +22,21 @@ class DeviceListener:
         obj = self.bus.get_object('org.freedesktop.Hal',
                                   '/org/freedesktop/Hal/Manager')
 
+        obj.connect_to_signal('DeviceAdded', 
+                self.on_device_added, 
+                dbus_interface = 'org.freedesktop.Hal.Manager')
+
         self.hal_manager = dbus.Interface(obj, 'org.freedesktop.Hal.Manager')
 
         self.bus.add_signal_receiver(self.on_device_added, 
                                  dbus_interface = 'org.freedesktop.Hal.Manager',
-                                 signal_name = 'DeviceAdded')
+                                 signal_name = 'DeviceAdded',
+                                 path = '/org/freedesktop/Hal/Manager')
 
         self.bus.add_signal_receiver(self.on_device_removed, 
                                  dbus_interface = 'org.freedesktop.Hal.Manager',
-                                 signal_name = 'DeviceRemoved')
+                                 signal_name = 'DeviceRemoved',
+                                 path = '/org/freedesktop/Hal/Manager')
 
         self.udi_dict = {}
         self.modify_handler_dict = {}
@@ -282,9 +288,8 @@ def main():
     DeviceListener(iface)
     gtk.main()
 
-nd = NotificationDaemon()
 
-#if __name__ == "__main__":
-#    main()
+if __name__ == "__main__":
+    main()
 
 
