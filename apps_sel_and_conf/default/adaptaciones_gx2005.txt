@@ -29,6 +29,8 @@ otros
     *Fondos de Guadalinex en /usr/share/backgrounds
   ·Fondo de escritorio especificado en /etc/gconf/gconf.xml.defaults/desktop/gnome/background/%gconf.xml
   ·Averiguar cómo poner iconos en el escritorio
+  	Unidades montadas, home, documentos, papelera y equipo en /etc/gconf/gconf.xml.defaults/apps/nautilus/desktop
+	Resto de cosas a ~/Desktop (/etc/skel)
   ·Asociar ctrl+alt+supr a gnome-system-monitor
 	/etc/gconf/gconf.xml.defaults/apps/metacity/keybinding_commands/
 	/etc/gconf/gconf.xml.defaults/apps/metacity/global_keybindings/
