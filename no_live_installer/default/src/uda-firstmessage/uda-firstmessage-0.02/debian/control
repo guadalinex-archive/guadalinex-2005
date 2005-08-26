@@ -1,0 +1,13 @@
+Source: uda-firstmessage
+Section: debian-installer
+Priority: optional
+Maintainer: Teófilo Ruiz Suárez <teo@yacoi.com>
+Build-Depends: po-debconf, debhelper (>= 4.2)
+Standards-Version: 3.6.1.0
+
+Package: uda-firstmessage
+XC-Package-Type: udeb
+XB-Installer-Menu-Item: 9
+Architecture: any
+Description: shows the first message in d-i
+ It show a wellcome message at the first step of debian installer.

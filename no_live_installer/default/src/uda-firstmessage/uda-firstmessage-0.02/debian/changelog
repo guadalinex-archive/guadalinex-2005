@@ -1,0 +1,14 @@
+uda-firstmessage (0.02) unstable; urgency=low
+
+  * Changed name into a more generical one.
+  * Removed empty files README and TODO
+  * Cleaned debian/rules
+  * Added 'debconf-updatepo' command at build time
+
+ -- Carlos Parra Camargo <cparra@emergya.info>  Fri, 26 Aug 2005 08:40:17 +0200
+
+gl-mini-firstmessage (0.01) unstable; urgency=low
+
+  * First revision
+
+ -- Teófilo Ruiz Suárez <teo@yacoi.com>  Thu, 27 Mar 2005 13:02:05 +0100
