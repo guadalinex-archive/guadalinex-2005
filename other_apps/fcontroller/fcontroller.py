@@ -154,17 +154,6 @@ class PackageObserver:
 
         return pack_dict
 
-    def get_contents(self, pathname):
-        result = {}
-        files = glob(pathname)
-        for filename in files:
-            print "Processing", filename
-            file_content_dict = self.__get_content_dict(filename)
-            if file_content_dict:
-                result.update(file_content_dict)
-
-        return result
-
 
     def __get_package_names(self, filename):
         """
@@ -175,76 +164,20 @@ class PackageObserver:
                 filename[1:])
 
         for line in f.readlines():
-            line_split = line.rsplit(' ', 1)
-            pkg_full_name_string = line_split[-1]
-            
-            for pkg_full_name in pkg_full_name_string.split(','):
-                pkg_full_name = pkg_full_name.strip()
-                pkg_name = pkg_full_name.split('/')[-1]
+            name = line.split(' ',1)[0].split(':')[-1]
+            name = name.strip()
 
-                result.append(pkg_name)
-
-        return result
-
-
-    def __get_content_dict(self, filename):
-        result = {}
-        gzip_file = gzip.open(filename)
-        try:
-            gzip_file.readline()
-        except IOError:
-            gzip_file = open(filename)
-
-        scan = False
-
-        #Use readline becausa at the end of file, IOError is raised"
-        line = gzip_file.readline()
-        while line:
-            if scan:
-                #scanning file
+            if name == filename[1:]:
                 line_split = line.rsplit(' ', 1)
-
-                filename = line_split[0].strip()
-                pkg_full_name_list = line_split[1]
+                pkg_full_name_string = line_split[-1]
                 
-                result[filename]=[]
-                for pkg_full_name in pkg_full_name_list:
+                for pkg_full_name in pkg_full_name_string.split(','):
+                    pkg_full_name = pkg_full_name.strip()
                     pkg_name = pkg_full_name.split('/')[-1]
-                    result[filename].append(pkg_name)
-            else:
-                try:
-                    if line.split()[0] == 'FILE':
-                        scan = True
-                except:
-                    pass
 
-            try:
-                line = gzip_file.readline()
-            except:
-                break
+                    result.append(pkg_name)
 
         return result
-
-
-
-    def __get_package_names_dict(self, filename):
-        """
-        Return the name of the filename's package container.
-        """
-        #content = os.popen("apt-file search " + filename).readlines()
-        #if len(content) == 1:
-        #    pkg_name = content[0].split(':')[0]
-        #    return pkg_name
-
-        #return None
-        if self.file_cache.has_key(filename):
-            result = []
-            for ele in self.file_cache[filename]:
-                result.append(ele)
-            return result
-        else:
-            return []
-
 
 
 
