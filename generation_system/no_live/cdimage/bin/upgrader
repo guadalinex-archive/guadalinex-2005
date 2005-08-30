@@ -20,7 +20,7 @@ class Global:
 
 	def main (self):
 		for root, dirs, files in os.walk(Global.cdimage_root + '/uda/pkgs'):
-			None
+			break
 
 		# I just want a 'mkdir -p' like bash :(
 		if not os.path.exists(Global.cdimage_root + '/ftp/old/pool/main'):
