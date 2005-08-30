@@ -1,0 +1,23 @@
+SUBDIRS = branding data
+
+INCLUDES =                                      			\
+	-DDATADIR=\"$(datadir)\"                			\
+	-I$(top_srcdir)                         			\
+	-I$(top_builddir)                       			\
+	-DUIDIR=\""$(datadir)/uda-postinstall/ui/"\"			\
+	-DBRANDINGDIR=\""$(datadir)/uda-postinstall/branding/"\"        \
+	$(UDA_POSTINSTALL_CFLAGS)
+
+
+backend_DATA = uda-postconfig-backend.sh
+backenddir = $(datadir)/uda-postinstall/backend/
+
+bin_PROGRAMS = 	uda-postinstall uda-postconfig 
+
+uda_postinstall_SOURCES = uda-postinstall.c
+uda_postinstall_LDADD = $(UDA_POSTINSTALL_LIBS)
+
+uda_postconfig_SOURCES = uda-postconfig.c
+uda_postconfig_LDADD = $(UDA_POSTINSTALL_LIBS)
+
+EXTRA_DIST = $(backend_DATA)
