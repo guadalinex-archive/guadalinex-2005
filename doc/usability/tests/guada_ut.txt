@@ -168,7 +168,7 @@ CUARTA PRUEBA
 
 4a.- Ahora crea un fichero de texto con el siguiente contenido:
 
-"Por cien cañones por banda,
+"Con diez cañones por banda,
 viento en popa a toda vela,
 no corta el mar sino vuela
 un velero bergantín".
