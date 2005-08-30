@@ -15,7 +15,15 @@ cd fresh_debs
 [ -f breezy-install-i386.list ] && rm breezy-install-i386.list
 wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
 
-cat breezy-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_list
+cat breezy-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_list_breezy
+
+PARAMS=""
+for x in $(cat $CDIMAGE_ROOT/uda/lists/exclude)
+do
+	PARAMS=$PARAMS"-e $x "
+done
+
+cat fresh_debs_list_breezy | grep -v $PARAMS > fresh_debs_list
 
 for x in $(cat fresh_debs_list)
 do
