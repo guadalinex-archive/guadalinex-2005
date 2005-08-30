@@ -4,7 +4,9 @@ set -e
 [ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
 . "$CDIMAGE_ROOT/etc/config"
 
-MIRROR="http://archive.ubuntu.com/ubuntu"
+#MIRROR="http://archive.ubuntu.com/ubuntu"
+MIRROR="http://ws-cparra/ubuntu"
+
 LOG=$CDIMAGE_ROOT/log/update-udebs.log
 > $LOG
 
