@@ -28,7 +28,6 @@ case "$1" in
             IFS=$'\n'
             for FILEPATH in $(cat $TMPMODIFIEDS 2>/dev/null)
             do
-                echo "############--> "$FILEPATH
                 cp --parents $FILEPATH $DPSYCOSKEL
             done
             rm $TMPMODIFIEDS
