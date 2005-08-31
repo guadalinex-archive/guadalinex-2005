@@ -38,6 +38,10 @@ otros
    aplicaciones son las preferidas para modificar la
    prioridad en los .desktop y mimes)
    	Leer como_manejar_mimes.txt
+  ·Añadir StartupNotify=true a los .desktop que no lo tengan para los iconos
+del escritorio (si no lo activamos el usuario no tiene conciencia de estar
+lanzando una aplicación. El icono del escritorio no cambia de estado). En el
+menú aplicaciones no hay problemas con esto.
 
 edu
 
