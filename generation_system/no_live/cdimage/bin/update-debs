@@ -14,6 +14,7 @@ cd fresh_debs
 
 [ -f breezy-install-i386.list ] && rm breezy-install-i386.list
 wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
+[ "$?" != "0" ] && echo "Problems downloading breezy-install-i386.list." >> $LOG && exit
 
 cat breezy-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_list_breezy
 
@@ -42,15 +43,27 @@ do
 		PKG_TEST=$(find -name "$DEB_NAME\_*.deb")
 
 		if [ "$PKG_TEST" == "" ]; then
-			wget $MIRROR"/"$x
-			[ "$?" == "0" ] && echo "Downloaded new deb: $x" >> $LOG
+			wget $MIRROR$x
+			if [ "$?" == "0" ]; then
+				echo "Downloaded new deb: $x" >> $LOG
+			else
+				echo "A problem ocurred downloading $x" >> $LOG
+				echo "ERROR. Have a look at the log for more information"
+				exit
+			fi
 		else
 			LOCAL_VERSION_TMP=$(dpkg --field $PKG_TEST Version)
 			LOCAL_VERSION=${LOCAL_VERSION_TMP/Version:/}
 			echo "Local: $LOCAL_VERSION  External: $DEB_VERSION" >> $LOG
 			if dpkg --compare-versions "$DEB_VERSION" gt "$LOCAL_VERSION"; then
 				wget $MIRROR$x
-				[ "$?" == "0" ] && rm $PKG_TEST && echo "Upgraded deb: $DEB_NAME" >> $LOG
+				if [ "$?" == "0" ]; then
+					rm $PKG_TEST && echo "Upgraded deb: $DEB_NAME" >> $LOG
+				else
+					echo "A problem ocurred downloading $x" >> $LOG
+					echo "ERROR. Have a look at the log for more information"
+					exit
+				fi
 			else
 				echo "Local version is ok" >> $LOG
 			fi
@@ -59,7 +72,13 @@ do
 		mkdir -p $CDIMAGE_ROOT/ftp$DEB_DIR
 		cd $CDIMAGE_ROOT/ftp$DEB_DIR
 		wget $MIRROR$x
-		[ "$?" == "0" ] && echo "Downloaded new deb: $x" >> $LOG
+		if [ "$?" == "0" ]; then
+			echo "Downloaded new deb: $x" >> $LOG
+		else
+			echo "A problem ocurred downloading $x" >> $LOG
+			echo "ERROR. Have a look at the log for more information"
+			exit
+		fi
 	fi
 		
 	echo "-----------------" >> $LOG
