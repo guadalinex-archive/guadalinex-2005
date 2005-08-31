@@ -30,7 +30,7 @@ case "$1" in
 
     if [ ! -f $ORIGINALLIST ]
     then
-	    echo `cd $SKELDIR;find -type f|sed -e 's/^\.\///'` > $ORIGINALLIST
+	    cd $SKELDIR;find -type f|sed -e 's/^\.\///' > $ORIGINALLIST
     fi
 
     list=`cat $ORIGINALLIST`
