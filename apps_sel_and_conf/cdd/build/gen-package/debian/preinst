@@ -34,6 +34,7 @@ case "$1" in
     fi
 
     list=`cat $ORIGINALLIST`
+    IFS=$'\n'
 	for file in $list; do
 		realfile="/$file"
         if [ -e "$realfile" ] 
@@ -45,6 +46,7 @@ case "$1" in
 		    fi
         fi
 	done
+    unset IFS
     ;;
 
     abort-upgrade)

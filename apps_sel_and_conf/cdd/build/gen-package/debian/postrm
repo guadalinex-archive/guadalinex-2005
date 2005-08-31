@@ -25,11 +25,13 @@ case "$1" in
 
         if [ -f $TMPMODIFIEDS ]
         then
+            IFS=$'\n'
             for FILEPATH in $(cat $TMPMODIFIEDS 2>/dev/null)
             do
                 cp --parents $FILEPATH $DPSYCOSKEL
             done
             rm $TMPMODIFIEDS
+            unset IFS
         fi
         #Hack gx2005 end
        /usr/sbin/update-dpsyco-skel
