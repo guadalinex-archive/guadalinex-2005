@@ -1,3 +1,11 @@
+uda-firstmessage (0.03) unstable; urgency=low
+
+  * Changed the way of set title. Now it's used db_settitle instead the
+    obsolete db_title.
+  * Added a new string to the template, uda-firstmessage/title.
+
+ -- carlospc <cparra@emergya.info>  Thu,  1 Sep 2005 18:35:38 +0200
+
 uda-firstmessage (0.02) unstable; urgency=low
 
   * Changed name into a more generical one.

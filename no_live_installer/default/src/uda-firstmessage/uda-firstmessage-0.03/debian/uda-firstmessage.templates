@@ -1,3 +1,7 @@
+Template: uda-firstmessage/title
+Type: title
+_Description: Bienvenido
+
 Template: uda-firstmessage/firstmessage
 Type: note
 _Description: Bienvenido a Guadalinex 2005

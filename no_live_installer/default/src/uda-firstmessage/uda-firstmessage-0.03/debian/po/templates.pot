@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-26 11:10+0200\n"
+"POT-Creation-Date: 2005-09-01 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,26 +24,32 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Type: note
+#. Type: title
 #. Description
 #: ../uda-firstmessage.templates:3
+msgid "Bienvenido"
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../uda-firstmessage.templates:7
 msgid "Bienvenido a Guadalinex 2005"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:3
+#: ../uda-firstmessage.templates:7
 msgid "Frase 1"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:3
+#: ../uda-firstmessage.templates:7
 msgid "Frase 2"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:3
+#: ../uda-firstmessage.templates:7
 msgid "Frase 3"
 msgstr ""

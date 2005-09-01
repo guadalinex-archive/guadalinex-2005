@@ -8,10 +8,10 @@ log() {
     logger -t uda-firstmessage "info: $@"
 }
 
-db_title "Bienvenido"
-db_input critical "uda-firstmessage/firstmessage" || [ $? -eq 30 ]
+db_settitle uda-firstmessage/title
+db_input critical uda-firstmessage/firstmessage || [ $? -eq 30 ]
 db_go
 
-log "Mostrado UDA firstmessage"
+log "Showing UDA firstmessage"
 
 exit 0

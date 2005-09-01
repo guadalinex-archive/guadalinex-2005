@@ -1,7 +1,7 @@
 Source: uda-firstmessage
 Section: debian-installer
 Priority: optional
-Maintainer: Teófilo Ruiz Suárez <teo@yacoi.com>
+Maintainer: Carlos Parra Camargo <cparra@emergya.info>
 Build-Depends: po-debconf, debhelper (>= 4.2)
 Standards-Version: 3.6.1.0
 
