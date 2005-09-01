@@ -10,6 +10,7 @@ while [ $# -gt 0 ]; do
 			update-udebs
 			update-debs
 			update-installer-i386
+			update-indices
 			shift
 		;;
 		--udebs)
@@ -24,8 +25,12 @@ while [ $# -gt 0 ]; do
 			update-installer-i386
 			shift
 		;;
+		--indices)
+			update-indices
+			shift
+		;;
 		*)
-			echo "Usage: $0 [--all|--udebs|--debs|--installer-i386]"
+			echo "Usage: $0 [--all|--udebs|--debs|--installer-i386|--indices]"
 			;;
 	esac
 done
