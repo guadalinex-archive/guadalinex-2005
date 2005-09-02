@@ -1,0 +1,26 @@
+Source: ttf-gx2005-nonspanish-fonts
+Section: guadalinex
+Priority: optional
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.2.1
+
+Package: ttf-gx2005-nonspanish-fonts
+Architecture: any
+Description: Fuentes GPL sin carácteres españoles
+ Añade los nuevos tipos de letra con licencia GNU/GPL:
+ .
+ Christmas Tree by Wa2ise's Fonts 
+ Dark Garden Dark Garden by Michał Kosmulski 
+ Eggs by Wa2ise's Fonts 
+ Healthcare Symbols by Jim Chiello
+ J Random by Matt Chisholm 
+ Livia Medium by S.G. Moye 
+ Misfortune by S. Ulrich - CalArts 
+ Psychotic Elephant by Matt Chisholm
+ Rubbing Font by Matt Chisholm
+ Thickhead by Scotty Ulrich
+ To Be Continued by Matt Chisholm
+ Toons One by SRY Enterprises 
+ .
+ Ejemplos disponibles en: http://www.dafont.com/en/
