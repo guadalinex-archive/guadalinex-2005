@@ -1,3 +1,12 @@
+molinux-postinstall (0.19) breezy; urgency=low
+
+  * Added libglade2-dev and libxml-parser-dev to Build-Depends
+  * Filled section at debian/control to make lintian happy
+  * Changed capital letter to make lintian happy
+  * Filled the debian/copyright correctly
+
+ -- carlospc <cparra@emergya.info>  Fri,  2 Sep 2005 11:38:39 +0200
+
 molinux-postinstall (0.16-1) hoary; urgency=low
 
   * New version
