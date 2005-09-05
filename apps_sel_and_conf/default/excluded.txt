@@ -1,4 +1,3 @@
-alien
 apache2
 apache2-common
 apache2-mpm-worker
@@ -44,7 +43,6 @@ gij
 gdb
 python-genetic
 installation-report
-iptables
 irssi-text
 python-jabber
 python2.4-jabber
@@ -144,7 +142,6 @@ python2.4-samba
 wamerican
 wbritish
 screen
-serpentine
 python-simpletal
 libsqlite0
 libsqlite3-0
