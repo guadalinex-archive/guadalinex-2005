@@ -46,12 +46,12 @@ class Global:
 			if nextdir[0:3] == 'lib':
 				nextdir = nextdir[0:4] + '/' + nextdir
 				if not os.path.exists(Global.cdimage_root + '/ftp/pool/main/' + nextdir[0:4]):
-					os.mkdir(Global.cdimage_root + '/ftp/pool/' + nextdir[0:4])
+					os.mkdir(Global.cdimage_root + '/ftp/pool/main/' + nextdir[0:4])
 			else:
 				nextdir = nextdir[0] + '/' + nextdir
 				if not os.path.exists(Global.cdimage_root + '/ftp/pool/main/' + nextdir[0]):
 					os.mkdir(Global.cdimage_root + '/ftp/pool/main/' + nextdir[0])
-					
+	
 			# If the dir doesn't exist, create it and copy directly	
 			if not os.path.exists(Global.cdimage_root + '/ftp/pool/main/' + nextdir):
 				os.mkdir(Global.cdimage_root + '/ftp/pool/main/' + nextdir)
