@@ -1,0 +1,34 @@
+Este sistema está basado en el cd live de ubuntu 5.04 (hoary).
+
+Pasos para crear una live:
+
+1) Descargar el sources.tar.gz desde:
+
+   ftp://ws314.juntadeandalucia.es/guadalinex2005/archives/sources-hoary.tar.gz   
+
+   Este es una sistema hoary instalado y con casi lo justo para ejecutar
+   ubuntu-express y peez2.
+
+2) Descargar el extracted_cd.tar.gz desde:
+
+   ftp://ws314.juntadeandalucia.es/guadalinex2005/archives/extracted_cd.tar.gz
+
+   Este fichero contiene un directorio (extracted_cd) que debe de estar en el
+   mismo directorio que el script make_live.sh.
+
+3) Configurar las siguietes variables en el make_live.sh:
+
+    SOURCESDIR: Debe contener la ruta al directorio donde se ha descomprimido el
+    sources-hoary.tar.gz.
+
+    ISONAME: Nombre del fichero iso.
+
+    NAME: Nombre de la distro.
+
+4) Ejecutar ./make_live.sh
+
+Tras muchos minutos se generará una iso en el directorio desde donde se ejecutó
+make_live.sh. 
+
+Si se quiere instalar algun paquete para probarlo en  la live, tan sólo hay que
+tirar de chroot sobre el directorio donde se descomprimió sources-hoary.tar.gz.
