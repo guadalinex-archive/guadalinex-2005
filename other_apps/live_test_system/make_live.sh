@@ -1,5 +1,6 @@
 #!/bin/bash
 SOURCESDIR=/sources-hoary
+ISONAME=custom-live.iso
 NAME="Custom Gx2005 Live"
 
 
@@ -30,7 +31,7 @@ sudo mkisofs -r -V "$NAME" \
             -J -l -b isolinux/isolinux.bin \
             -c isolinux/boot.cat -no-emul-boot \
             -boot-load-size 4 -boot-info-table \
-            -o custom-live-i386.iso $EXTRACTED_CD
+            -o $ISONAME $EXTRACTED_CD
 
 
 
