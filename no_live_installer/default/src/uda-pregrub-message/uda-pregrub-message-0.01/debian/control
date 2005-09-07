@@ -7,7 +7,7 @@ Standards-Version: 3.6.1.0
 
 Package: uda-pregrub-message
 XC-Package-Type: udeb
-XB-Installer-Menu-Item: 41
+XB-Installer-Menu-Item: 72
 Architecture: any
 Description: shows a message before grub
  It show a explaining message before grub
