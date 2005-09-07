@@ -28,7 +28,7 @@ case "$1" in
         /usr/bin/metacity &
         sleep 9
 							
-        /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES"
+        /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES" "gedit"
 	
 	# Move final sources.list into place, if necessary, so that language
 	# packs that aren't on the CD can be installed.
