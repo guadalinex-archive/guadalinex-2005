@@ -339,7 +339,7 @@ export PUBLISH_PATH="/home/jigdo-area/"
 # debian-installer). One package per line.  Lines starting with '#'
 # are comments.  The package order is important, as the packages will
 # be installed in the given order.
-#export BASE_INCLUDE="$BASEDIR"/data/$CODENAME/base_include
+export BASE_INCLUDE="$BASEDIR"/data/$CODENAME/base_include
 
 # File with list of packages to exclude as above.
 #export BASE_EXCLUDE="$BASEDIR"/data/$CODENAME/base_exclude
