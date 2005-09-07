@@ -23,8 +23,11 @@ fi
 
 diff-tasks
 
-# Let's take all the packages that aren't in Ubuntu
+## Deleting ubuntu-keyring package. We don't need that package for Guadalinex
+#cat $CDIMAGE_ROOT/debian-cd/tasks/guadalinex/breezy/installer | grep -v -e ubuntu-keyring-udeb > installer.tmp
+#mv $CDIMAGE_ROOT/debian-cd/tasks/guadalinex/breezy/installer.tmp $CDIMAGE_ROOT/debian-cd/tasks/guadalinex/breezy/installer
 
+# Let's take all the packages that aren't in Ubuntu
 echo "#ifdef ARCH_i386" > $UDA_TASK
 for pkg in $(ls $CDIMAGE_ROOT/uda/pkgs)
 do
