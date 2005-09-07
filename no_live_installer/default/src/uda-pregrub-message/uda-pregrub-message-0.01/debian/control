@@ -1,0 +1,13 @@
+Source: uda-pregrub-message
+Section: debian-installer
+Priority: optional
+Maintainer: Teófilo Ruiz Suárez <teo@yaco.es>
+Build-Depends: po-debconf, debhelper (>= 4.2)
+Standards-Version: 3.6.1.0
+
+Package: uda-pregrub-message
+XC-Package-Type: udeb
+XB-Installer-Menu-Item: 41
+Architecture: any
+Description: shows a message before grub
+ It show a explaining message before grub
