@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-PATH=$PATH:.
-
-uda-firstmessage
-
-#DEBHELPER#
-
-exit 0
