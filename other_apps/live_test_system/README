@@ -32,3 +32,6 @@ make_live.sh.
 
 Si se quiere instalar algun paquete para probarlo en  la live, tan sólo hay que
 tirar de chroot sobre el directorio donde se descomprimió sources-hoary.tar.gz.
+
+NOTA: Si se usa el sources-hoary.tar.gz, hay que tener en cuenta que el usuario
+por defecto es "guada", y su contraseña también "guada".
