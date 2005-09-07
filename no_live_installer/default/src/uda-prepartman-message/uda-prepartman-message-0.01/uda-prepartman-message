@@ -2,7 +2,7 @@
 
 . /usr/share/debconf/confmodule
 
-#ARCH=`udpkg --print-architecture`
+ARCH=`udpkg --print-architecture`
 
 log() {
     logger -t uda-prepartman-message "info: $@"
@@ -11,6 +11,6 @@ log() {
 db_input critical uda-prepartman-message/prepartman-message || [ $? -eq 30 ]
 db_go
 
-log "Showing UDA firstmessage"
+log "Showing UDA prepartman-message"
 
 exit 0
