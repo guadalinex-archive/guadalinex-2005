@@ -1,10 +1,10 @@
 Template: uda-firstmessage/title
 Type: title
-Description: Bienvenido
+_Description: Bienvenido
 
 Template: uda-firstmessage/firstmessage
 Type: note
-Description: Bienvenido a Guadalinex 2005
+_Description: Bienvenido a Guadalinex 2005
  Se va a iniciar la instalación de Guadalinex. Durante todo el proceso
  existirá un sistema de ayuda donde se mostrarán mensajes que deberá leer
  atentamente.  
@@ -16,7 +16,7 @@ Description: Bienvenido a Guadalinex 2005
 
 Template: uda-firstmessage/warning
 Type: note
-Description: Advertencia: Copia de seguridad
+_Description: Advertencia: Copia de seguridad
  Aunque normalmente la instalación de este CD no presenta ningún problema, en
  algunos casos (por un particionado incorrecto, o una interrupción de la
  corriente eléctrica...) podría resultar en un sistema dañado o inestable. 
@@ -26,7 +26,7 @@ Description: Advertencia: Copia de seguridad
 
 Template: uda-firstmessage/stages
 Type: note
-Description: Etapas de la instalación
+_Description: Etapas de la instalación
  El proceso de instalación está dividido en varias etapas:
  .
  - Seleccionar dónde (en que parte del disco duro) quiere instalar Guadalinex
@@ -39,7 +39,7 @@ Description: Etapas de la instalación
 
 Template: uda-firstmessage/requirements
 Type: note
-Description: Requisitos para la instalación
+_Description: Requisitos para la instalación
  Para instalar y utilizar esta versión de Guadalinex en su ordenador
  necesitará al menos: 
  .
