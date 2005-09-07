@@ -1,3 +1,9 @@
+uda-firstmessage (0.04) unstable; urgency=low
+
+  * New templates and screens
+
+ -- Teófilo Ruiz Suárez <teo@yaco.es>  Wed,  7 Sep 2005 11:56:38 +0200
+
 uda-firstmessage (0.03) unstable; urgency=low
 
   * Changed the way of set title. Now it's used db_settitle instead the

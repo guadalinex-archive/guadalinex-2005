@@ -2,7 +2,7 @@
 
 . /usr/share/debconf/confmodule
 
-ARCH=`udpkg --print-architecture`
+#ARCH=`udpkg --print-architecture`
 
 log() {
     logger -t uda-firstmessage "info: $@"
@@ -10,6 +10,15 @@ log() {
 
 db_settitle uda-firstmessage/title
 db_input critical uda-firstmessage/firstmessage || [ $? -eq 30 ]
+db_go
+
+db_input critical uda-firstmessage/warning || [ $? -eq 30 ]
+db_go
+
+db_input critical uda-firstmessage/stages || [ $? -eq 30 ]
+db_go
+
+db_input critical uda-firstmessage/requirements || [ $? -eq 30 ]
 db_go
 
 log "Showing UDA firstmessage"
