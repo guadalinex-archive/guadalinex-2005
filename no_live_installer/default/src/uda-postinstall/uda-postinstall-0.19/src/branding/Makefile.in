@@ -135,7 +135,7 @@ VERSION = @VERSION@
 WARN_CFLAGS = @WARN_CFLAGS@
 WARN_CXXFLAGS = @WARN_CXXFLAGS@
 
-SUBDIRS = Molinux
+SUBDIRS = Molinux Guadalinex
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../../config.h
 CONFIG_CLEAN_FILES = 

@@ -143,7 +143,7 @@ INCLUDES =  	-DDATADIR=\"$(datadir)\"                				-I$(top_srcdir)        
 backend_DATA = uda-postconfig-backend.sh
 backenddir = $(datadir)/uda-postinstall/backend/
 
-bin_PROGRAMS = uda-postinstall uda-postconfig 
+bin_PROGRAMS = uda-postinstall uda-postconfig uda-goodbye 
 
 uda_postinstall_SOURCES = uda-postinstall.c
 uda_postinstall_LDADD = $(UDA_POSTINSTALL_LIBS)
@@ -151,11 +151,15 @@ uda_postinstall_LDADD = $(UDA_POSTINSTALL_LIBS)
 uda_postconfig_SOURCES = uda-postconfig.c
 uda_postconfig_LDADD = $(UDA_POSTINSTALL_LIBS)
 
+uda_goodbye_SOURCES = uda-goodbye.c
+uda_goodbye_LDADD = $(UDA_POSTINSTALL_LIBS)
+
 EXTRA_DIST = $(backend_DATA)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../config.h
 CONFIG_CLEAN_FILES = 
-bin_PROGRAMS =  uda-postinstall$(EXEEXT) uda-postconfig$(EXEEXT)
+bin_PROGRAMS =  uda-postinstall$(EXEEXT) uda-postconfig$(EXEEXT) \
+uda-goodbye$(EXEEXT)
 PROGRAMS =  $(bin_PROGRAMS)
 
 
@@ -169,6 +173,9 @@ uda_postinstall_LDFLAGS =
 uda_postconfig_OBJECTS =  uda-postconfig.$(OBJEXT)
 uda_postconfig_DEPENDENCIES = 
 uda_postconfig_LDFLAGS = 
+uda_goodbye_OBJECTS =  uda-goodbye.$(OBJEXT)
+uda_goodbye_DEPENDENCIES = 
+uda_goodbye_LDFLAGS = 
 CFLAGS = @CFLAGS@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -183,8 +190,8 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = tar
 GZIP_ENV = --best
-SOURCES = $(uda_postinstall_SOURCES) $(uda_postconfig_SOURCES)
-OBJECTS = $(uda_postinstall_OBJECTS) $(uda_postconfig_OBJECTS)
+SOURCES = $(uda_postinstall_SOURCES) $(uda_postconfig_SOURCES) $(uda_goodbye_SOURCES)
+OBJECTS = $(uda_postinstall_OBJECTS) $(uda_postconfig_OBJECTS) $(uda_goodbye_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -273,6 +280,10 @@ uda-postinstall$(EXEEXT): $(uda_postinstall_OBJECTS) $(uda_postinstall_DEPENDENC
 uda-postconfig$(EXEEXT): $(uda_postconfig_OBJECTS) $(uda_postconfig_DEPENDENCIES)
 	@rm -f uda-postconfig$(EXEEXT)
 	$(LINK) $(uda_postconfig_LDFLAGS) $(uda_postconfig_OBJECTS) $(uda_postconfig_LDADD) $(LIBS)
+
+uda-goodbye$(EXEEXT): $(uda_goodbye_OBJECTS) $(uda_goodbye_DEPENDENCIES)
+	@rm -f uda-goodbye$(EXEEXT)
+	$(LINK) $(uda_goodbye_LDFLAGS) $(uda_goodbye_OBJECTS) $(uda_goodbye_LDADD) $(LIBS)
 
 install-backendDATA: $(backend_DATA)
 	@$(NORMAL_INSTALL)

@@ -28,7 +28,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <glade/glade.h>
-
+#include <glib/gi18n-lib.h>
 
 FILE *f;
 GIOChannel *io;
@@ -57,14 +57,14 @@ apt_action_cb(GIOChannel * io, GIOCondition condition, gpointer data)
     gchar *package_info;
 
     str = g_string_new("");
-    
+
     g_io_channel_read_line_string(io, str, NULL, NULL);
     if (strncmp(str->str, "Unpacking", strlen("Unpacking")) == 0) {
 	gchar **split_str;
 	gchar *msg;
 	split_str = g_strsplit(str->str, " ", 3);
-	printf("Desempaquetando ---> %s\n", split_str[1]);
-	msg = g_strdup_printf("Desempaquetando %s ...", split_str[1]);
+	printf(_("Unpacking ---> %s\n"), split_str[1]);
+	msg = g_strdup_printf(_("Unpacking %s ..."), split_str[1]);
 	gtk_label_set_text(GTK_LABEL(label), msg);
 	g_strfreev(split_str);
 	g_free(msg);
@@ -74,30 +74,32 @@ apt_action_cb(GIOChannel * io, GIOCondition condition, gpointer data)
 	    gchar **split_str;
 	    gchar *msg;
 	    split_str = g_strsplit(str->str, " ", 4);
-	    printf("Configurando ---> %s\n", split_str[2]);
+	    printf(_("Setting up ---> %s\n"), split_str[2]);
 
-	    if (strcmp(split_str[2], last_package) == 0){
-		gtk_widget_hide_all (hbox1);
-		if (gdk_screen_get_width(screen) >= 1024){
+	    if (strcmp(split_str[2], last_package) == 0) {
+		gtk_widget_hide_all(hbox1);
+		if (gdk_screen_get_width(screen) >= 1024) {
 		    gchar *big_pic;
-		    big_pic = g_strdup_printf ("%s/reg_doc_big.jpg", branding_path);
+		    big_pic =
+			g_strdup_printf("%s/reg_doc_big.jpg",
+					branding_path);
 		    gtk_image_set_from_file(GTK_IMAGE(im), big_pic);
-		    g_free (big_pic);
-		}else{
+		    g_free(big_pic);
+		} else {
 		    gchar *normal_pic;
-		    normal_pic = g_strdup_printf ("%s/reg_doc.jpg", branding_path);
-	            gtk_image_set_from_file(GTK_IMAGE(im), normal_pic);
-		    g_free (normal_pic);
+		    normal_pic =
+			g_strdup_printf("%s/reg_doc.jpg", branding_path);
+		    gtk_image_set_from_file(GTK_IMAGE(im), normal_pic);
+		    g_free(normal_pic);
 		}
-	    }
-	    else
-	    {
-		msg = g_strdup_printf("Configurando %s ...", split_str[2]);
-	    	gtk_label_set_text(GTK_LABEL(label), msg);
-	    	g_free(msg);
+	    } else {
+		msg =
+		    g_strdup_printf(_("Setting up %s ..."), split_str[2]);
+		gtk_label_set_text(GTK_LABEL(label), msg);
+		g_free(msg);
 	    }
 	    g_strfreev(split_str);
-	    
+
 	} else {
 	    if (strncmp(str->str, "--end install ok--",
 			strlen("--end install ok--")) == 0) {
@@ -118,24 +120,27 @@ apt_action_cb(GIOChannel * io, GIOCondition condition, gpointer data)
     y = y + x;
     gtk_progress_set_value(GTK_PROGRESS(pb), y);
     if (y > z) {
-	char *normal_pic ;
-	char *big_pic ;
-	
+	char *normal_pic;
+	char *big_pic;
+
 	switch (z) {
 	case 20:
 	case 40:
 	case 60:
 	case 80:
-	    normal_pic = g_strdup_printf ("%s/corp_pic%i.jpg", branding_path, (z/20)+1) ;
-	    big_pic = g_strdup_printf ("%s/corp_pic_big%i.jpg", branding_path, (z/20)+1) ;
-	    printf ("-> XXL = %s\n->N = %s\n", big_pic, normal_pic);
+	    normal_pic =
+		g_strdup_printf("%s/corp_pic%i.jpg", branding_path,
+				(z / 20) + 1);
+	    big_pic =
+		g_strdup_printf("%s/corp_pic_big%i.jpg", branding_path,
+				(z / 20) + 1);
 	    if (gdk_screen_get_width(screen) >= 1024)
 		gtk_image_set_from_file(GTK_IMAGE(im), big_pic);
 	    else
 		gtk_image_set_from_file(GTK_IMAGE(im), normal_pic);
-	    
-	    g_free (normal_pic);
-	    g_free (big_pic);
+
+	    g_free(normal_pic);
+	    g_free(big_pic);
 	    break;
 	}
 	z = z + 20;
@@ -156,13 +161,19 @@ void close_apt(gpointer data)
 	exit(1);
 }
 
-gchar * get_branding_path (void)
+gchar *get_branding_path(void)
 {
-	return g_strdup (BRANDINGDIR "/Molinux/es/") ;
+    return g_strdup_printf(BRANDINGDIR "/%s/%s/",
+			   g_getenv("UDA_DISTRO_NAME"),
+			   g_getenv("UDA_DISTRO_LANG"));
 }
 
 int main(int argc, char *argv[])
 {
+
+    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+    textdomain(GETTEXT_PACKAGE);
 
     gtk_init(&argc, &argv);
 
@@ -172,12 +183,12 @@ int main(int argc, char *argv[])
 	     "\t<num_of_total_packages> : This is the number of all packages that will be installated\n"
 	     "\t<packages> : name of packages or meta-packages that install all software.\n "
 	     "\tyou MUST write the names of this packages between double quotes. Example \"uda-desktop uda-base\"\n"
-	     "\t<last_package> : The last package that will be installed in the installation process\n\n" );
+	     "\t<last_package> : The last package that will be installed in the installation process\n\n");
 	return;
     }
 
     branding_path = get_branding_path();
-    last_package = g_strdup (argv[3]);
+    last_package = g_strdup(argv[3]);
 
     app = glade_xml_new(UIDIR "uda-postinstall.glade", NULL, NULL);
     win = glade_xml_get_widget(app, "window_apt");
@@ -185,7 +196,7 @@ int main(int argc, char *argv[])
     im = glade_xml_get_widget(app, "image");
     label = glade_xml_get_widget(app, "label");
     hbox1 = glade_xml_get_widget(app, "hbox1");
-    
+
     x = (100.0 / (atoi(argv[1]) * 2.0));
     y = 0;
 
@@ -206,27 +217,26 @@ int main(int argc, char *argv[])
 			G_IO_IN, apt_action_cb, NULL, close_apt);
 
     screen = gdk_screen_get_default();
-    if (gdk_screen_get_width(screen) >= 1024){
+    if (gdk_screen_get_width(screen) >= 1024) {
 	gchar *big_pic;
-	big_pic = g_strdup_printf ("%s/corp_pic_big1.jpg", branding_path); 
+	big_pic = g_strdup_printf("%s/corp_pic_big1.jpg", branding_path);
 	gtk_image_set_from_file(GTK_IMAGE(im), big_pic);
-	g_free (big_pic);
-    }
-    else {
-        gchar *normal_pic;
-        normal_pic = g_strdup_printf ("%s/corp_pic1.jpg", branding_path);
+	g_free(big_pic);
+    } else {
+	gchar *normal_pic;
+	normal_pic = g_strdup_printf("%s/corp_pic1.jpg", branding_path);
 	gtk_image_set_from_file(GTK_IMAGE(im), normal_pic);
-	g_free (normal_pic);
+	g_free(normal_pic);
     }
     gtk_widget_set_size_request(pb,
 				gdk_screen_get_width(screen) * 80 / 100,
 				-1);
     gtk_widget_show_all(win);
     gtk_window_fullscreen(GTK_WINDOW(win));
-	
+
     gtk_main();
-    
-    g_free (branding_path);
-    g_free (last_package);
+
+    g_free(branding_path);
+    g_free(last_package);
     return 0;
 }

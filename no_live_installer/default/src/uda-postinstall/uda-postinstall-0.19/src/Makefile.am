@@ -12,12 +12,15 @@ INCLUDES =                                      			\
 backend_DATA = uda-postconfig-backend.sh
 backenddir = $(datadir)/uda-postinstall/backend/
 
-bin_PROGRAMS = 	uda-postinstall uda-postconfig 
+bin_PROGRAMS = 	uda-postinstall uda-postconfig uda-goodbye 
 
 uda_postinstall_SOURCES = uda-postinstall.c
 uda_postinstall_LDADD = $(UDA_POSTINSTALL_LIBS)
 
 uda_postconfig_SOURCES = uda-postconfig.c
 uda_postconfig_LDADD = $(UDA_POSTINSTALL_LIBS)
+
+uda_goodbye_SOURCES = uda-goodbye.c
+uda_goodbye_LDADD = $(UDA_POSTINSTALL_LIBS)
 
 EXTRA_DIST = $(backend_DATA)

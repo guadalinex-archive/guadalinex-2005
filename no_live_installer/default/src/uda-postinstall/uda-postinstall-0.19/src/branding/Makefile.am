@@ -1,1 +1,1 @@
-SUBDIRS = Molinux
+SUBDIRS = Molinux Guadalinex

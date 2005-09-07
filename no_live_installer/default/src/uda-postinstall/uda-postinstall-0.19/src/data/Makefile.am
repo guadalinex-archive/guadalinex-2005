@@ -1,6 +1,6 @@
 ui_DATA =       uda-postinstall.glade 		\
                 uda-postconfig.glade 		\
-                uda-show-image-mesg.glade	\
+                uda-goodbye.glade		\
 		admin.png			\
 		computer.png			\
 		software.png

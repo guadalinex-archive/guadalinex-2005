@@ -1,2 +1,5 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
+src/data/uda-postconfig.glade
+src/uda-postconfig.c
+src/uda-postinstall.c

@@ -27,6 +27,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <glade/glade.h>
+#include <glib/gi18n-lib.h>
 
 GladeXML *app;
 GtkWidget *win, *main_vbox, *help_tv, *adm_img, *comp_img, *soft_img,
@@ -55,7 +56,32 @@ void validate_info()
 	return;
     }
 
-    if (strcmp(name, "root") == 0) {
+    if (strcmp(name, "root") == 0 ||
+	strcmp(name, "daemon") == 0 ||
+	strcmp(name, "bin") == 0 ||
+	strcmp(name, "sys") == 0 ||
+	strcmp(name, "sync") == 0 ||
+	strcmp(name, "games") == 0 ||
+	strcmp(name, "daemon") == 0 ||
+	strcmp(name, "man") == 0 ||
+	strcmp(name, "lp") == 0 ||
+	strcmp(name, "mail") == 0 ||
+	strcmp(name, "news") == 0 ||
+	strcmp(name, "uucp") == 0 ||
+	strcmp(name, "proxy") == 0 ||
+	strcmp(name, "www-data") == 0 ||
+	strcmp(name, "backup") == 0 ||
+	strcmp(name, "list") == 0 ||
+	strcmp(name, "irc") == 0 ||
+	strcmp(name, "gnats") == 0 ||
+	strcmp(name, "nobody") == 0 ||
+	strcmp(name, "Debian-exim") == 0 ||
+	strcmp(name, "identd") == 0 ||
+	strcmp(name, "sshd") == 0 ||
+	strcmp(name, "messagebus") == 0 ||
+	strcmp(name, "hal") == 0 ||
+	strcmp(name, "gdm") == 0 ||
+	strcmp(name, "postfix") == 0 || strcmp(name, "saned") == 0) {
 	gtk_widget_set_sensitive(ok_button, FALSE);
 	return;
     }
@@ -82,10 +108,12 @@ void name_entry_changed(GtkEditable * editable)
 void
 names_entry_insert(GtkEditable * editable,
 		   gchar * new_text,
-		   gint new_text_length,
-		   gint * position, gpointer user_data)
+		   gint new_text_length, gint * position,
+		   gpointer user_data)
 {
     gint pos = *position;
+    gchar c;
+
     if (new_text_length > 1) {
 	g_signal_handlers_block_by_func(editable,
 					(gpointer) names_entry_insert,
@@ -105,6 +133,19 @@ names_entry_insert(GtkEditable * editable,
 					      names_entry_insert,
 					      user_data);
 	    g_signal_stop_emission_by_name(editable, "insert_text");
+	} else {
+	    gchar *cad;
+	    g_signal_handlers_block_by_func(editable,
+					    (gpointer) names_entry_insert,
+					    user_data);
+	    gtk_editable_delete_text(editable, pos, pos + 1);
+	    cad = g_ascii_strdown(new_text, strlen(new_text));
+	    gtk_editable_insert_text(editable, cad, strlen(cad), position);
+	    g_signal_handlers_unblock_by_func(editable, (gpointer)
+					      names_entry_insert,
+					      user_data);
+	    g_signal_stop_emission_by_name(editable, "insert_text");
+	    g_free(cad);
 	}
     }
 }
@@ -170,40 +211,38 @@ void set_help_text(void)
 			       "scale", PANGO_SCALE_X_LARGE, NULL);
     gtk_text_buffer_get_iter_at_offset(buffer, &iter, 0);
 
-    gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, "AYUDA\n\n",
+    gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, _("HELP\n\n"),
 					     -1, "heading", NULL);
     gtk_text_buffer_insert_with_tags_by_name(buffer, &iter,
-					     "Usuario administrador\n", -1,
+					     _("Admin user\n"), -1,
 					     "x-large", NULL);
     gtk_text_buffer_insert(buffer, &iter,
-			   "El usuario administrador, es un usuario que "
-			   "tiene capacidades especiales con respecto al resto de los "
-			   "usuarios. Desde este usuario se tiene la posibilidad de "
-			   "acceder a las herramientas de administración (instalacion de "
-			   "software, herramientas de configuracion ...).\n\n",
+			   _
+			   ("The admin user is an user that have special permissions respect to the other users. With this user one can access the administration tools (software installation, configuration tools...).\n\n"),
 			   -1);
-    gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, "Mi equipo\n",
-					     -1, "x-large", NULL);
-    gtk_text_buffer_insert(buffer, &iter,
-			   "En sistemas como este es habitual ponerle un "
-			   "nombre al equipo para poder identificarlo. "
-			   "Puede poner como nombre \"casa\", \"oficina\" o cualquier otro "
-			   "nombre que se le ocurra , siempre y cuando sea una sola palabra"
-			   ".\n\n", -1);
+
     gtk_text_buffer_insert_with_tags_by_name(buffer, &iter,
-					     "Repositorios en internet\n",
+					     _("My Computer\n"), -1,
+					     "x-large", NULL);
+    gtk_text_buffer_insert(buffer, &iter,
+			   _
+			   ("In systems like this is a common thing to name the computer for identification. You can name it \"home\", \"office\" or any other name you want, though it must be a single word.\n\n"),
+			   -1);
+    gtk_text_buffer_insert_with_tags_by_name(buffer, &iter,
+					     _("Internet repositories\n"),
 					     -1, "x-large", NULL);
     gtk_text_buffer_insert(buffer, &iter,
-			   "Si usted dispone de conexión a Internet podra "
-			   "utilizar nuestros repositorios de manera libre y gratuita. "
-			   "Un repositorio es un lugar en Internet desde el cual usted "
-			   "podra actualizar sus programas e instalar programas nuevos. "
-			   "Esto se realiza a través de la herramienta de gestión de "
-			   "software que dispone su sistema.", -1);
+			   _
+			   ("If you have an internet connection, you can use our repositories freely. A repository is a place in the internet from you can upgrade your programs and install new ones. This can be done trough the package manager tool, installed on your system."),
+			   -1);
 }
 
 int main(int argc, char *argv[])
 {
+
+    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+    textdomain(GETTEXT_PACKAGE);
 
     gtk_init(&argc, &argv);
 
@@ -215,7 +254,8 @@ int main(int argc, char *argv[])
     event_box = gtk_event_box_new();
     title_label = gtk_label_new("");
     gtk_label_set_markup(GTK_LABEL(title_label),
-			 "<span size=\"x-large\" weight=\"bold\" foreground=\"white\">INFORMACIÓN DEL SISTEMA</span>");
+			 _
+			 ("<span size=\"x-large\" weight=\"bold\" foreground=\"white\">SYSTEM INFORMATION</span>"));
     gtk_container_add(GTK_CONTAINER(event_box), title_label);
     gtk_box_pack_start(GTK_BOX(main_vbox), event_box, FALSE, TRUE, 0);
     gtk_box_reorder_child(GTK_BOX(main_vbox), event_box, 0);

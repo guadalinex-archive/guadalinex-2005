@@ -1,6 +1,6 @@
 AC_PREREQ(2.52)
 
-AC_INIT(uda-postinstall, 0.18, http://www.molinux.info)
+AC_INIT(uda-postinstall, 0.19, http://www.molinux.info)
 AM_CONFIG_HEADER(config.h)
 
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
@@ -37,7 +37,7 @@ GNOME_COMPILE_WARNINGS
 
 GNOME_COMMON_INIT
 
-ALL_LINGUAS=""
+ALL_LINGUAS="es"
 
 GETTEXT_PACKAGE=uda-postinstall
 AC_SUBST(GETTEXT_PACKAGE)
@@ -60,6 +60,8 @@ src/data/Makefile
 src/branding/Makefile
 src/branding/Molinux/Makefile
 src/branding/Molinux/es/Makefile
+src/branding/Guadalinex/Makefile
+src/branding/Guadalinex/es/Makefile
 po/Makefile.in
 ])
 
