@@ -1,0 +1,1197 @@
+# translation of base-config_nn.po to Norwegian Bokmål
+# translation of base-config_debconf.po to Norwegian Nynorsk
+# translation of base-config.po to Norsk (Nynorsk)
+# translation of base-config.po to Norsk (Nynorsk)
+# translation of base-config.po to Norsk (Nynorsk)
+# translation of base-config.po to Norsk (Nynorsk)
+# translation of base-config.po to Norsk (Nynorsk)
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Håvard Korsvoll <korsvoll@skulelinux.no>, 2003, 2004, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config_nn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-09 12:39+0100\n"
+"PO-Revision-Date: 2005-03-15 17:48+0100\n"
+"Last-Translator: \n"
+"Language-Team: Norwegian Bokmål <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#. Type: title
+#. Description
+#: ../templates:3
+msgid "Ubuntu base system configuration"
+msgstr "Oppsett av Ubuntu-grunnsystemet"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "Choose the next step in the install process:"
+msgstr "Vel neste steg i installasjonen:"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "This is the base system configuration menu."
+msgstr "Dette er oppsettsmenyen til grunnsystemet."
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid "Welcome to your new Ubuntu system!"
+msgstr "Velkommen til det nye Ubuntu-systemet ditt!"
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid ""
+"This program will now walk you through the process of setting up your newly "
+"installed system. It will start with the basics -- time zone selection, "
+"setting a root password and adding a user, and then progress to installing "
+"additional software to tune this new Ubuntu system to your needs."
+msgstr ""
+"Dette programmet vil no føra deg gjennom oppsettet av det nye systemet ditt. "
+"Programmet vil starta med det mest grunnleggjande -- val av tidssone, å laga "
+"eit root-passord og å leggja til ein brukar. Når det er ferdig vil "
+"programmet installera fleire program slik at det nye Ubuntu-systemet ditt "
+"får det du treng."
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid "Use a PPP connection to install the system?"
+msgstr "Bruk eit PPP-samband til å installera systemet?"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"This system does not seem to be currently connected to the internet. Even if "
+"you plan to install from CD, it is wise to download at least security "
+"updates from the internet."
+msgstr ""
+"Det ser ikkje ut til at maskina er kopla til Internett. Sjølv om du vil "
+"installera frå CD, er det lurt å lasta ned dei nyaste "
+"tryggleiksoppdateringane frå Internett."
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"If you have an account on an Internet Services Provider (ISP), and you want "
+"to use it during the install, you may configure the PPP service now, and "
+"open a PPP connection to your ISP."
+msgstr ""
+"Dersom du har ein konto hos ein Internett-leverandør og vil bruka nettet ved "
+"installasjonen, kan du setja opp PPP-tenesta no for å kopla til."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid "There was a problem installing the selected software"
+msgstr "Det oppstod eit problem med installasjon av vald programvare."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"One or more packages failed to install. This may be due to bugs in the "
+"packages, or you may be out of disk space or experiencing some other problem."
+msgstr ""
+"Klarte ikkje installera ein eller fleire av pakkane. Dette kan koma av feil "
+"i pakkane, full harddisk eller andre problem."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"Simply trying to install those packages (or a slightly different set of "
+"packages) again may work around the problem, or at least move the "
+"installation process along a little further. If you want, you can go back to "
+"the package selection step, and try again."
+msgstr ""
+"Det kan vera det vil halda å berre prøva å installera pakkane ein gong til. "
+"(Eventuelt med eit litt anna pakkeutval.) I det minste kan dette føra "
+"installasjonen eit steg vidare. Viss du vil kan du gå tilbake til der du vel "
+"ut pakkar og prøva igjen."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"If you decide not to try again, bear in mind that some packages on your "
+"system will be in a broken state until you manually resolve the problem."
+msgstr ""
+"Viss du ikkje vil prøve igjen, så ver klar over at somme pakkar på systemet "
+"ditt vil vera øydelagde heilt til du løyser problemet manuelt."
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Thank you for choosing Ubuntu!"
+msgstr "Takk for at du valde Ubuntu!"
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Setup of your Ubuntu system is complete. You may now login."
+msgstr "Oppsettet av Ubuntu-systemet er no ferdig, og du kan logga deg inn."
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid ""
+"If you want to revisit this setup process at a later date, just run the base-"
+"config program."
+msgstr ""
+"Dersom du vil køyra dette oppsettet på nytt ein annan gong, kan du køyra "
+"programmet base-config."
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "System hostname:"
+msgstr "Vertsnamn til systemet:"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "Please enter your system hostname."
+msgstr "Oppgi vertsnamnet til systemet."
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid ""
+"The hostname is a name that identifies your system to the network. If you "
+"don't know what your hostname should be, consult your network administrator. "
+"If you are setting up your own home network, you can make something up here."
+msgstr ""
+"Vertsnamnet er eit namn som identifiserer systemet på nettverket. Dersom du "
+"ikkje veit kva vertsnamnet bør vera, bør du kontakta "
+"nettverksadministratoren. Dersom du set opp ditt eige heimenettverk, kan du "
+"finna på eit vertsnamn sjølv."
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid "Invalid hostname \"${HOSTNAME}\""
+msgstr "Vertsnamnet «${HOSTNAME}» er ugyldig"
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid ""
+"A valid hostname may contain period-separated parts containing only "
+"alphanumeric characters and the minus sign, be between 2 and 63 characters "
+"long, and each part cannot begin or end with a minus sign."
+msgstr ""
+"Eit gyldig vertsnamn kan berre innehalda alfanumeriske teikn og "
+"minusteiknet. Det må vera mellom 2 og 63 teikn langt, og kan ikkje starta "
+"eller slutta med eit minusteikn."
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid "Do you want to start the graphical display manager?"
+msgstr "Skal den grafiske skjermhandteraren startast opp?"
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid ""
+"The graphical display manager makes it possible to log in using a graphical "
+"environment."
+msgstr ""
+"Med den grafiske skjermhandteraren kan du logga inn i eit grafisk "
+"brukargrensesnitt."
+
+#. Type: text
+#. Description
+#: ../templates:117
+msgid "Load preseed file"
+msgstr "Last fil med førehandsoppsett"
+
+#. Type: text
+#. Description
+#: ../templates:121
+msgid "Display introductory message"
+msgstr "Vis oppstartsmelding"
+
+#. Type: text
+#. Description
+#: ../templates:125
+msgid "Configure the keyboard"
+msgstr "Set opp tastaturet"
+
+#. Type: text
+#. Description
+#. Type: title
+#. Description
+#: ../templates:129 ../tzsetup-udeb.templates:3
+msgid "Configure timezone"
+msgstr "Set opp tidssonen"
+
+#. Type: text
+#. Description
+#: ../templates:133
+msgid "Set up users and passwords"
+msgstr "Set opp brukarar og passord"
+
+#. Type: text
+#. Description
+#: ../templates:137
+msgid "Set the hostname"
+msgstr "Set opp vertsnamn"
+
+#. Type: text
+#. Description
+#: ../templates:141
+msgid "Configure and enable ppp"
+msgstr "Set opp og slå på ppp"
+
+#. Type: text
+#. Description
+#. This MUST NOT contain a comma. The same goes for other descriptions
+#. in base-config/menu/*. These form a debconf choices list.
+#. Type: title
+#. Description
+#: ../templates:147 ../apt-setup-udeb.templates:3
+msgid "Configure apt"
+msgstr "Set opp apt"
+
+#. Type: text
+#. Description
+#: ../templates:151
+msgid "Select and install packages"
+msgstr "Vel og installer pakkar"
+
+#. Type: text
+#. Description
+#: ../templates:155
+msgid "Configure the Mail Transfer Agent"
+msgstr "Set opp overføringsagent for e-post"
+
+#. Type: text
+#. Description
+#: ../templates:159
+msgid "Finish configuring the base system"
+msgstr "Ferdig med oppsettet av grunnsystemet"
+
+#. Type: text
+#. Description
+#: ../templates:163
+msgid "Exit the base system configuration"
+msgstr "Avslutt oppsettet av grunnsystemet"
+
+#. Type: text
+#. Description
+#: ../templates:167
+msgid "Execute a shell"
+msgstr "Køyr eit skal"
+
+#. Type: text
+#. Description
+#: ../templates:171
+#, fuzzy
+msgid "Installing packages"
+msgstr "Vel og installer pakkar"
+
+#. Type: text
+#. Description
+#: ../templates:175
+msgid "Preparing for installation..."
+msgstr ""
+
+#. Type: text
+#. Description
+#: ../templates:184
+msgid "Registering documentation, please wait..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:7
+msgid "Preparing to configure apt..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:11
+#, fuzzy
+msgid "Copying mirror configuration..."
+msgstr "Oppsett av tidssonar"
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:15 ../../apt-setup.templates:191
+msgid "Checking for CD-ROM..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../tzsetup.templates:3
+msgid "Time zone configuration"
+msgstr "Oppsett av tidssonar"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "Is the hardware clock set to GMT?"
+msgstr "Er maskinvareklokka sett til GMT?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid ""
+"Unix system clocks are generally set to GMT (\"Greenwich Mean Time\", also "
+"known as \"Universal Coordinated Time\", or UTC). The operating system knows "
+"your time zone and converts system time into the local time. You can specify "
+"whether the hardware clock is set to either GMT (recommended for a Linux-"
+"only system) or local time (which may be more convenient for a system that "
+"also runs other operating systems or an off-the-shelf PC)."
+msgstr ""
+"Systemklokker i Unix er generellt sett til GMT («Greenwich Mean Time», også "
+"kjent som «Universal Coordinated Time» eller UTC). Operativsystemet kjenner "
+"til tidssona di og gjer om systemtida til lokal tid. Du kan oppgje om "
+"maskinvareklokka skal vera sett til GMT (tilrådd for eit reint Linux-system) "
+"eller lokal tid (som kan passa betre viss du har fleire operativsytem på "
+"same datamaskin)."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "The hardware clock says the time is now ${hwtime}."
+msgstr "Maskinvareklokka seier at klokka no er ${hwtime}."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Do you want to change your current time zone?"
+msgstr "Vil du endra tidssone?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Your current time zone is set to ${timezone}."
+msgstr "Tidssona di er sett til ${timezone}."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:27
+msgid ""
+"Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
+"Indiana, Indiana-Starke, Michigan, Samoa, other"
+msgstr ""
+"Austleg, Sentral, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, Aust-"
+"India, Indiana-Starke, Michigan, Samoa, andre"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:28
+msgid "The following are common time zones in the United States of America."
+msgstr "Dette er vanege tidssoner i USA."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:37
+msgid ""
+"Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, other"
+msgstr ""
+"Newfoundland, Atlanteren, Austleg, Sentral, Aust-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, andre"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:38
+msgid "The following are common time zones in Canada."
+msgstr "Dette er vanlege tidssoner i Canada."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:47
+msgid "East, West, Acre, DeNoronha, other"
+msgstr "Aust, Vest, Acre, DeNoronha, andre"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid "The following are common time zones in Brazil."
+msgstr "Dette er vanlege tidssoner i Brasil."
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid ""
+"If you are in a different time zone, choose \"other\" to select from all "
+"available time zones."
+msgstr ""
+"Viss du er i ei anna tidssone, vel «andre» for å velja frå alle andre "
+"tilgjengelege tidssoner."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Are you in the ${zone} time zone?"
+msgstr "Er du i tidssona ${zone}?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Based on your country, your time zone is probably ${zone}."
+msgstr "På grunnlag av landet ditt, er tidssona di truleg ${zone}."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:62
+msgid "${choices}, other"
+msgstr "${choices}, andre"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid "Select your time zone:"
+msgstr "Vel tidssona di:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid ""
+"Based on your country, you are probably in one of these time zones. If you "
+"are not, choose \"other\" to select from all available time zones."
+msgstr ""
+"På grunnlag av landet ditt, er du truleg i ein av desse tidsonene. Viss "
+"ikkje, vel «andre» for å velja frå alle tilgjengelege tidssoner."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:69
+msgid ""
+"Africa, America, US, Canada, Asia, Atlantic Ocean, Australia, Europe, Indian "
+"Ocean, Pacific Ocean, System V style time zones, None of the above"
+msgstr ""
+"Afrika, Amerika, USA, Canada, Asia, Atlanterhavet, Australia, Europa, Det "
+"indiske hav, Stillehavet, tidssoner av typen «System V style», ingen av desse"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Area for your time zone:"
+msgstr "Vel området som passar tidssona:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Pick the geographic area in which the time zone you desire is located."
+msgstr "Vel det geografiske området med den tidssonen du vil bruka."
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid "Select a city or time zone:"
+msgstr "Vel ein by eller ei tidssone:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid ""
+"Cities represent the time zone in which they are located, so you may choose "
+"any city in the desired time zone."
+msgstr ""
+"Byane representerer heile tidssonen dei ligg i, slik at du fritt kan velja "
+"ein av byane i den tidssonen du vil bruka."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Is this information correct?"
+msgstr "Er denne informasjonen rett?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Here is your selected time zone information."
+msgstr "Her er informasjon om tidssona du har valt."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid ""
+" Local time is now:          ${tzdate}\n"
+" Universal Time is now:      ${utdate}\n"
+" Time zone is set to:        ${timezone}"
+msgstr ""
+" Di lokale tid er no:     ${tzdate}\n"
+" GMT er no:               ${utdate}\n"
+" Tidssona er sett til:    ${timezone}"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "If something looks wrong, you can go through the setup process again."
+msgstr "Viss noko ser feil ut, kan du gå gjennom dette oppsettet ein gong til."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:3
+msgid "Apt configuration"
+msgstr "Apt-oppsett"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid "HTTP proxy information (blank for none):"
+msgstr "Informasjon om HTTP-mellomtenar (eller lat feltet stå tomt):"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"If you need to use a HTTP proxy to access the outside world, please enter "
+"the proxy information here. Otherwise, leave this blank."
+msgstr ""
+"Dersom du må bruka ein HTTP-mellomtenar for å nå verda utanfor, kan du oppgi "
+"ein her. Lat feltet stå tomt dersom du ikkje treng bruka nokon mellomtenar."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"The proxy information should be the standard form of \"http://[[user][:pass]"
+"@]host[:port]\""
+msgstr ""
+"Når du oppgir mellomtenarinformasjon, skal du bruka standardforma «http://"
+"[[brukar][:passord]@]vert[:port]/»"
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:24
+msgid "cdrom, http, ftp, filesystem, edit sources list by hand"
+msgstr "cdrom, http, ftp, filsystem, endra pakkelista (sources list) for hand"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "Archive access method for apt:"
+msgstr "Arkivtilgangsmetode for apt:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"Please choose the method apt (the Ubuntu package management tool) should use "
+"to access the Ubuntu archive."
+msgstr ""
+"Vel kva for metode apt (Ubuntu-verktøyet for pakkehandtering) skal bruka til "
+"å henta pakkar frå Ubuntu-arkivet."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"For example if you have an Ubuntu cd, select \"cdrom\", while if you plan to "
+"install via an Ubuntu mirror, choose \"ftp\" or \"http\"."
+msgstr ""
+"Dersom du til dømes har ein Ubuntu-CD, vel du «cdrom». Dersom du vil "
+"installera frå eit Ubuntu-spegl, kan du velja «ftp» eller «http»."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "${note}"
+msgstr "${note}"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid "Mirror country:"
+msgstr "Land med spegl:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid ""
+"Select the country the mirror should be in. You should use a mirror in your "
+"country or region if you do not know which mirror has the best Internet "
+"connection to you."
+msgstr ""
+"Vel kva for land speglet skal vera i. Dersom du ikkje veit kva for spegl som "
+"er raskast, er det ofte best å bruka eit spegl i eller i nærleiken av ditt "
+"eige land"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid "Choose the Ubuntu mirror to use:"
+msgstr "Vel kva for apt-kjelde du vil bruka:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid ""
+"Select the Ubuntu mirror apt should use. You should select a mirror that is "
+"close to you on the net."
+msgstr ""
+"Vel den apt-kjelda du vil bruka. Du bør velja ei apt-kjelde som har kortast "
+"mogeleg veg på nettverket."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Mirror hostname:"
+msgstr "Vertsnamn til speglet:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Enter the hostname of the mirror from which Ubuntu will be downloaded."
+msgstr "Skriv vertsnamnet til speglet Ubuntu skal lastast ned frå."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Mirror directory:"
+msgstr "Speglkatalog:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Enter the directory in which the Ubuntu mirror is located."
+msgstr "Skriv namnet på katalogen der Ubuntu-speglet ligg."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:66
+msgid "The directory you entered does not exist."
+msgstr "Katalogen du skreiv inn finnst ikkje."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid "Mirror not found"
+msgstr "Fann ikkje speglet"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid ""
+"The directory you entered does not contain a subdirectory named \"dists\", "
+"so it doesn't seem to be an Ubuntu mirror."
+msgstr ""
+"Katalogen du skreiv inn inneheld ingen underkatalogar som heiter «dists», så "
+"det ser ikkje ut til at han er ei pakkekjelde for Ubuntu."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "CD-ROM missing"
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "Please insert a suitable CD."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid "CD-ROM device file:"
+msgstr "Einingsfil til CD-spelaren:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"This program was unable to auto-detect a CD-ROM drive, or there is no usable "
+"CD in the drive."
+msgstr ""
+"Programmet klarte ikkje å finna ein CD-spelar automatisk. Det kan òg henda "
+"at CD-plata er defekt."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"Enter the device file to use to access your CD-ROM, and place an Ubuntu CD "
+"in the drive."
+msgstr ""
+"Oppgi den einingsfila som høyrer til CD-spelaren og legg ein Ubuntu-CD i "
+"spelaren."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "Non-Ubuntu CD-ROM detected"
+msgstr "Fann ein CD som ikkje er ein Ubuntu-CD"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "The CD-ROM drive contains a non-Ubuntu CD."
+msgstr "CD-spelaren inneheld ein CD som ikkje er ein Ubuntu-CD."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid "Scan another CD?"
+msgstr "Har du fleire CDar å skanna?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid ""
+"If you have another Ubuntu CD (for example, the second in a two CD set), you "
+"should insert and scan it now."
+msgstr ""
+"Viss du har ein anna Ubuntu-CD (til dømes, den andre i eit CD-sett) så bør "
+"du setja han inn i CDROM-lesaren no og skanna denne."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+#, fuzzy
+msgid "Use restricted software?"
+msgstr "Vil du bruka tilleggsprogram?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+#, fuzzy
+msgid ""
+"Some restricted software has been made to work with Ubuntu. Though this "
+"software is not at all a part of Ubuntu, standard Ubuntu tools can be used "
+"to install it. This software has varying licenses which may prevent you from "
+"using, modifying, or sharing it."
+msgstr ""
+"Det finst ein del ufri programvare som verkar fint saman med Ubuntu. Sjølv "
+"om programvaren ikkje er ein del av Ubuntu, kan du installera han ved hjelp "
+"av Ubuntu-verktøya. Program av denne typen kan ha fleire ulike lisensar som "
+"kan hindra deg i å bruka dei, endra dei eller dela dei med andre."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Please choose whether you want to have it available anyway."
+msgstr "Vel om du likevel vil ha dei tilgjengelege."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid "Use contrib software?"
+msgstr "Vil du bruka tilleggsprogram?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid ""
+"Some additional software has been made to work with Ubuntu. Though this "
+"software is free, it depends on non-free software for its operation. This "
+"software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
+"install it."
+msgstr ""
+"Nokre tilleggsprogram er blitt gjort tilgjengeleg under Ubuntu. Sjølv om "
+"desse programma er frie, så er dei avhengige av ufrie program for å kunne "
+"fungera. Desse programma er ikkje ein del av Ubuntu, men du kan bruka "
+"standardverktøy i Ubuntu til å installera dei."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+#, fuzzy
+msgid "Use universe software?"
+msgstr "Vil du bruka ufri programvare?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+#, fuzzy
+msgid ""
+"Some additional software has been made to work with Ubuntu. This software is "
+"free and, though it is not a part of Ubuntu, standard Ubuntu tools can be "
+"used to install it."
+msgstr ""
+"Nokre tilleggsprogram er blitt gjort tilgjengeleg under Ubuntu. Sjølv om "
+"desse programma er frie, så er dei avhengige av ufrie program for å kunne "
+"fungera. Desse programma er ikkje ein del av Ubuntu, men du kan bruka "
+"standardverktøy i Ubuntu til å installera dei."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid ""
+"Please choose whether you want this software to be made available to you."
+msgstr "Vel om programma skal vera tilgjengelege."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:138
+msgid "Failed to access the Ubuntu archive"
+msgstr "Klarte ikkje å få kontakt med Ubuntu-arkiva"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:138
+msgid ""
+"While trying to access the Ubuntu archive using the information you "
+"provided, the Ubuntu package management tool, apt, returned the following "
+"error. The questions will be asked again."
+msgstr ""
+"Då eg prøvde å få tilgang til Ubuntu-arkiva ved hjelp av informasjonen du "
+"har oppgjeve, gav apt følgjande feilmelding. Eg vil gå gjennom spørsmåla ein "
+"gong til."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:147
+msgid "Add another apt source?"
+msgstr "Vil du leggja til fleire apt-kjelder?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:147
+msgid ""
+"${MESSAGE}. However, you may want to add another source to apt, so it can "
+"download packages from more than one location."
+msgstr ""
+"${MESSAGE}. Men kanskje vil du leggja til fleire apt-kjelder slik at du kan "
+"lasta ned pakkar frå fleire stadar?"
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:153
+msgid "edit, revert to backup"
+msgstr "rediger, gå tilbake til den lagra versjonen"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid "What do you want to do?"
+msgstr "Kva vil du gjera?"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid ""
+"The entries you added in sources.list (the file defining package sources for "
+"apt) seem to be incorrect. Here is the error message from apt:"
+msgstr ""
+"Dei oppføringane som ligg i pakkelista verkar ikkje skikkeleg. Her er "
+"feilmeldinga frå apt:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid ""
+"A backup of the sources.list was made before you edited it. You may either "
+"revert to that backup or edit the existing file and fix it."
+msgstr ""
+"Ein kopi av fila sources.list vart laga før fila vart endra. Du kan anten gå "
+"tilbake til kopien eller fiksa feilen sjølv."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:166
+msgid "Download software from the Internet?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:166
+#, fuzzy
+msgid ""
+"Ubuntu provides additional software and timely security updates via the "
+"Internet. These updates may be tracked each time you upgrade your system. If "
+"you have a connection to the Internet, this is generally a good idea."
+msgstr ""
+"Ubuntu tilbyr tryggleiksoppdateringar på nettstaden security.ubuntu.com. "
+"Desse oppdateringane kan leggjast inn kvar gong du oppgraderer systemet. "
+"Dette er vanlegvis ein god idé dersom du har tilgang til Internett."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+#, fuzzy
+msgid "Cannot access network updates"
+msgstr "Får ikkje tilgang til tryggleiksoppdateringane"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+#, fuzzy
+msgid ""
+"The software archive at ${site} couldn't be accessed, so those updates will "
+"not be made available to you at this time. You may want to investigate this "
+"later."
+msgstr ""
+"Får ikkje tilgang til tryggingsoppdateringane på security.ubuntu.com, og "
+"derfor har du ikkje tilgang til dei no. Du vil kanskje undersøkja dette "
+"seinare."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+#, fuzzy
+msgid ""
+"Commented out entries for ${site} have been added to the bottom of the /etc/"
+"apt/sources.list file."
+msgstr ""
+"Oppføringane for security.ubuntu.com er blitt kommentert ut (sett "
+"kommentarteikn «#» framom) og flytta til nedst i pakkekjeldelista (/etc/apt/"
+"sources.list)."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid "The error message returned by apt:"
+msgstr "Feilmeldinga frå apt:"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid "${apt_error}"
+msgstr "${apt_error}"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:187
+#, fuzzy
+msgid "Configuring apt..."
+msgstr "Set opp apt"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:195
+msgid "Setting up primary installation repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:199
+msgid "Testing primary installation repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:203
+msgid "Setting up network repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:207
+msgid "Testing network repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:211
+#, fuzzy
+msgid "Setting up security update repository..."
+msgstr "Vil du bruka tryggleiksoppdateringar fra security.debian.org?"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:215
+#, fuzzy
+msgid "Testing security update repository..."
+msgstr "Vil du bruka tryggleiksoppdateringar fra security.debian.org?"
+
+#, fuzzy
+#~ msgid "Installing popularity-contest"
+#~ msgstr "Vel og installer pakkar"
+
+#, fuzzy
+#~ msgid ""
+#~ "Simply trying to install those packages (or a slightly different set of "
+#~ "packages) again may work around the problem, or at least move the "
+#~ "installation process along a little further. You will now enter aptitude, "
+#~ "a package management frontend, which will give you the opportunity to do "
+#~ "this."
+#~ msgstr ""
+#~ "Det kan vera det vil halda å berre prøva å installera pakkane ein gong "
+#~ "til. (Eventuelt med eit litt anna pakkeutval.) I det minste kan dette "
+#~ "føra installasjonen eit steg vidare. Viss du vil kan du gå tilbake til "
+#~ "der du vel ut pakkar og prøva igjen."
+
+#~ msgid "Debian base system configuration"
+#~ msgstr "Oppsett av Debian-grunnsystemet"
+
+#~ msgid "Welcome to your new Debian system!"
+#~ msgstr "Velkommen til det nye Debian-systemet ditt!"
+
+#~ msgid ""
+#~ "This program will now walk you through the process of setting up your "
+#~ "newly installed system. It will start with the basics -- time zone "
+#~ "selection, setting a root password and adding a user, and then progress "
+#~ "to installing additional software to tune this new Debian system to your "
+#~ "needs."
+#~ msgstr ""
+#~ "Dette programmet vil no føra deg gjennom oppsettet av det nye systemet "
+#~ "ditt. Programmet vil starta med det mest grunnleggjande -- val av "
+#~ "tidssone, å laga eit root-passord og å leggja til ein brukar. Når det er "
+#~ "ferdig vil programmet installera fleire program slik at det nye Debian-"
+#~ "systemet ditt får det du treng."
+
+#~ msgid "Thank you for choosing Debian!"
+#~ msgstr "Takk for at du valde Debian!"
+
+#~ msgid ""
+#~ "Setup of your Debian system is complete. You may now login at the login: "
+#~ "prompt."
+#~ msgstr "Oppsettet av Debian-systemet er no ferdig, og du kan logga deg inn."
+
+#~ msgid "stable, unstable, testing"
+#~ msgstr "stable, unstable, testing"
+
+#~ msgid "Debian distribution to use:"
+#~ msgstr "Vel kva for Debian-distribusjon som skal brukast:"
+
+#~ msgid ""
+#~ "Debian comes in several flavors. Stable is well-tested and rarely "
+#~ "changes. Unstable is untested and frequently changing. Testing is a "
+#~ "middle ground, that receives many of the new versions from unstable if "
+#~ "they are not too buggy."
+#~ msgstr ""
+#~ "Det finst fleire utgåver av Debian. «Stabil» er godt testa og endrar seg "
+#~ "sjeldan. «Ustabil» er ikkje testa og endrar seg ofte. «Test» ligg midt "
+#~ "mellom, og tek inn mange av dei nye versjonane frå «ustabil» dersom dei "
+#~ "ikkje har for mange feil."
+
+#~ msgid "Please choose which version of Debian you wish to install."
+#~ msgstr "Vel kva for ein av versjon av Debian som skal installerast."
+
+#~ msgid ""
+#~ "Please choose the method apt (the Debian package management tool) should "
+#~ "use to access the Debian archive."
+#~ msgstr ""
+#~ "Vel kva for metode apt (Debian-verktøyet for pakkehandtering) skal bruka "
+#~ "til å henta pakkar frå Debian-arkivet."
+
+#~ msgid ""
+#~ "For example if you have a Debian cd, select \"cdrom\", while if you plan "
+#~ "to install via a Debian mirror, choose \"ftp\" or \"http\"."
+#~ msgstr ""
+#~ "Dersom du til dømes har ein Debian-CD, vel du «cdrom». Dersom du vil "
+#~ "installera frå eit Debian-spegl, kan du velja «ftp» eller «http»."
+
+#~ msgid "Choose the Debian mirror to use:"
+#~ msgstr "Vel kva for apt-kjelde du vil bruka:"
+
+#~ msgid ""
+#~ "Select the Debian mirror apt should use. You should select a mirror that "
+#~ "is close to you on the net."
+#~ msgstr ""
+#~ "Vel den apt-kjelda du vil bruka. Du bør velja ei apt-kjelde som har "
+#~ "kortast mogeleg veg på nettverket."
+
+#~ msgid ""
+#~ "Enter the hostname of the mirror from which Debian will be downloaded."
+#~ msgstr "Skriv vertsnamnet til speglet Debian skal lastast ned frå."
+
+#~ msgid "Enter the directory in which the Debian mirror is located."
+#~ msgstr "Skriv namnet på katalogen der Debian-speglet ligg."
+
+#~ msgid ""
+#~ "The directory you entered does not contain a subdirectory named \"dists"
+#~ "\", so it doesn't seem to be a Debian mirror."
+#~ msgstr ""
+#~ "Katalogen du skreiv inn inneheld ingen underkatalogar som heiter «dists», "
+#~ "så det ser ikkje ut til at han er ei pakkekjelde for Debian."
+
+#~ msgid ""
+#~ "Enter the device file to use to access your CD-ROM, and place a Debian CD "
+#~ "in the drive."
+#~ msgstr ""
+#~ "Oppgi den einingsfila som høyrer til CD-spelaren og legg ein Debian-CD i "
+#~ "spelaren."
+
+#~ msgid "Non-Debian CD-ROM detected"
+#~ msgstr "Fann ein CD som ikkje er ein Debian-CD"
+
+#~ msgid "The CD-ROM drive contains a non-Debian CD."
+#~ msgstr "CD-spelaren inneheld ein CD som ikkje er ein Debian-CD."
+
+#~ msgid ""
+#~ "If you have another Debian CD (for example, the second in a two CD set), "
+#~ "you should insert and scan it now."
+#~ msgstr ""
+#~ "Viss du har ein anna Debian-CD (til dømes, den andre i eit CD-sett) så "
+#~ "bør du setja han inn i CDROM-lesaren no og skanna denne."
+
+#~ msgid "Use non-free software?"
+#~ msgstr "Vil du bruka ufri programvare?"
+
+#~ msgid ""
+#~ "Some non-free software has been made to work with Debian. Though this "
+#~ "software is not at all a part of Debian, standard Debian tools can be "
+#~ "used to install it. This software has varying licenses which may prevent "
+#~ "you from using, modifying, or sharing it."
+#~ msgstr ""
+#~ "Det finst ein del ufri programvare som verkar fint saman med Debian. "
+#~ "Sjølv om programvaren ikkje er ein del av Debian, kan du installera han "
+#~ "ved hjelp av Debian-verktøya. Program av denne typen kan ha fleire ulike "
+#~ "lisensar som kan hindra deg i å bruka dei, endra dei eller dela dei med "
+#~ "andre."
+
+#~ msgid ""
+#~ "Some additional software has been made to work with Debian. Though this "
+#~ "software is free, it depends on non-free software for its operation. This "
+#~ "software is not a part of Debian, but standard Debian tools can be used "
+#~ "to install it."
+#~ msgstr ""
+#~ "Nokre tilleggsprogram er blitt gjort tilgjengeleg under Debian. Sjølv om "
+#~ "desse programma er frie, så er dei avhengige av ufrie program for å kunne "
+#~ "fungera. Desse programma er ikkje ein del av Debian, men du kan bruka "
+#~ "standardverktøy i Debian til å installera dei."
+
+#~ msgid "Failed to access the Debian archive"
+#~ msgstr "Klarte ikkje å få kontakt med Debian-arkiva"
+
+#~ msgid ""
+#~ "While trying to access the debian archive using the information you "
+#~ "provided, the Debian package management tool, apt, returned the following "
+#~ "error. The questions will be asked again."
+#~ msgstr ""
+#~ "Då eg prøvde å få tilgang til Debian-arkiva ved hjelp av informasjonen du "
+#~ "har oppgjeve, gav apt følgjande feilmelding. Eg vil gå gjennom spørsmåla "
+#~ "ein gong til."
+
+#~ msgid "Use security updates from security.debian.org?"
+#~ msgstr "Vil du bruka tryggleiksoppdateringar fra security.debian.org?"
+
+#~ msgid ""
+#~ "Debian provides timely security updates via the website security.debian."
+#~ "org. These updates may be tracked each time you upgrade your system. If "
+#~ "you have a connection to the Internet, this is generally a good idea."
+#~ msgstr ""
+#~ "Debian tilbyr tryggleiksoppdateringar på nettstaden security.debian.org. "
+#~ "Desse oppdateringane kan leggjast inn kvar gong du oppgraderer systemet. "
+#~ "Dette er vanlegvis ein god idé dersom du har tilgang til Internett."
+
+#~ msgid "Cannot access security updates"
+#~ msgstr "Får ikkje tilgang til tryggleiksoppdateringane"
+
+#~ msgid ""
+#~ "The security updates on security.debian.org couldn't be accessed, so "
+#~ "those updates will not be made available to you at this time. You may "
+#~ "want to investigate this later."
+#~ msgstr ""
+#~ "Får ikkje tilgang til tryggingsoppdateringane på security.debian.org, og "
+#~ "derfor har du ikkje tilgang til dei no. Du vil kanskje undersøkja dette "
+#~ "seinare."
+
+#~ msgid ""
+#~ "Commented out entries for security.debian.org have been added to the "
+#~ "bottom of the /etc/apt/sources.list file."
+#~ msgstr ""
+#~ "Oppføringane for security.debian.org er blitt kommentert ut (sett "
+#~ "kommentarteikn «#» framom) og flytta til nedst i pakkekjeldelista (/etc/"
+#~ "apt/sources.list)."

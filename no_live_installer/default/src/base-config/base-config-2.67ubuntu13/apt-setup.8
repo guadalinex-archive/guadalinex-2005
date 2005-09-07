@@ -1,0 +1,26 @@
+.TH APT-SETUP 8
+.SH NAME
+apt-setup \- add apt download sources
+.SH SYNOPSIS
+.B apt-setup [probe] [-N]
+.SH DESCRIPTION
+.BR apt-setup
+is an interactive program that simplifies adding sources to apt's
+sources.list. It knows about all the major debian mirrors and can help you
+select one. It can even use 
+.BR apt-cdrom (8)
+to scan CDs.
+.SH OPTIONS
+.TP
+.I "probe"
+By default no probing of CDs is done. Passing "probe" as the first argument
+to this program will make it probe for a CD in the drive on startup and add
+it to sources.list. This is useful on initial debian installs, to minimize
+interaction with the user.
+.TP
+.I "-N"
+Indicates that this is a new install.
+This parameter allows apt-setup to run in noninteractive mode if its
+debconf questions have been preseeded.
+.SH AUTHOR
+Joey Hess <joey@kitenet.net>

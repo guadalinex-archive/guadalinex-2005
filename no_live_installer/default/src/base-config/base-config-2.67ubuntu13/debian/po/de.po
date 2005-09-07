@@ -1,0 +1,1219 @@
+# German translation of base-config
+# This file is distributed under the same license as the base-config package.
+# Kurt Gramlich <kurt@lugrav.de>, 2003.
+# Dennis Stampfer <seppy@debian.org>, 2003/2004.
+#
+#    Translators, please read /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-09 12:39+0100\n"
+"PO-Revision-Date: 2005-03-26 11:47+0000\n"
+"Last-Translator: Maximilian Gerlach <m@px0.de>\n"
+"Language-Team: Debian German <debian-l10n-german@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.5\n"
+
+#. Type: title
+#. Description
+#: ../templates:3
+msgid "Ubuntu base system configuration"
+msgstr "Konfiguration des Ubuntu Grundsystems"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "Choose the next step in the install process:"
+msgstr "Wählen Sie den nächsten Installationsschritt:"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "This is the base system configuration menu."
+msgstr "Dies ist das Konfigurationsmenü des Grundsystems."
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid "Welcome to your new Ubuntu system!"
+msgstr "Willkommen zu Ihrem neuen Ubuntu System!"
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid ""
+"This program will now walk you through the process of setting up your newly "
+"installed system. It will start with the basics -- time zone selection, "
+"setting a root password and adding a user, and then progress to installing "
+"additional software to tune this new Ubuntu system to your needs."
+msgstr ""
+"Dieses Programm wird Sie nun durch die Konfiguration Ihres neu installierten "
+"Betriebssystems führen. Dabei wird mit dem Wichtigsten begonnen: Einstellung "
+"der Tastatur, Auswahl der Zeitzone, Wahl eines root-Passworts, Anlegen eines "
+"Benutzers und Installation weiterer Software, um das neue Ubuntu-System an "
+"Ihre Bedürfnisse anzupassen."
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid "Use a PPP connection to install the system?"
+msgstr "PPP Verbindung für die Installation verwenden?"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"This system does not seem to be currently connected to the internet. Even if "
+"you plan to install from CD, it is wise to download at least security "
+"updates from the internet."
+msgstr ""
+"Der Computer scheint nicht mit dem Internet verbunden zu sein. Auch wenn Sie "
+"von CD installieren möchten, ist es sinnvoll, zumindest die Sicherheits-"
+"Updates aus dem Internet zu laden."
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"If you have an account on an Internet Services Provider (ISP), and you want "
+"to use it during the install, you may configure the PPP service now, and "
+"open a PPP connection to your ISP."
+msgstr ""
+"Wenn Sie ein Konto bei einem Internet-Provider haben und Sie es für die "
+"Installation nutzen möchten, können Sie jetzt PPP konfigurieren und eine "
+"Verbindung zu Ihrem Internet-Provider herstellen."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid "There was a problem installing the selected software"
+msgstr ""
+"Es trat ein Problem bei der Installation der ausgewählten Software auf."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"One or more packages failed to install. This may be due to bugs in the "
+"packages, or you may be out of disk space or experiencing some other problem."
+msgstr ""
+"Eines oder mehrere Pakete konnten nicht installiert werden. Dies könnte "
+"durch einen Fehler im jeweiligen Paket passiert sein, die Festplatte könnte "
+"voll sein oder eine andere Ursache haben."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"Simply trying to install those packages (or a slightly different set of "
+"packages) again may work around the problem, or at least move the "
+"installation process along a little further. If you want, you can go back to "
+"the package selection step, and try again."
+msgstr ""
+"Diese Pakete einfach erneut zu installieren, könnte bereits das Problem "
+"lösen. Wenn Sie möchten, können Sie zur Paketauswahl zurückkehren und es "
+"noch einmal probieren."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"If you decide not to try again, bear in mind that some packages on your "
+"system will be in a broken state until you manually resolve the problem."
+msgstr ""
+"Wenn Sie jetzt die Installation nicht noch einmal durchführen, so denken Sie "
+"daran, dass einige Pakete auf Ihrem System noch nicht komplett und richtig "
+"installiert sind, falls Sie das Problem nicht von Hand gelöst haben."
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Thank you for choosing Ubuntu!"
+msgstr "Vielen Dank, dass Sie Ubuntu gewählt haben!"
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Setup of your Ubuntu system is complete. You may now login."
+msgstr ""
+"Die Installation von Ubuntu ist abgeschlossen. Sie können sich jetzt "
+"anmelden."
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid ""
+"If you want to revisit this setup process at a later date, just run the base-"
+"config program."
+msgstr ""
+"Wenn Sie diese Grundkonfiguration zu einem späteren Zeitpunkt wiederholen "
+"möchten, starten Sie 'base-config'."
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "System hostname:"
+msgstr "Rechnername:"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "Please enter your system hostname."
+msgstr "Bitte geben Sie den Rechnernamen Ihres Computers ein."
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid ""
+"The hostname is a name that identifies your system to the network. If you "
+"don't know what your hostname should be, consult your network administrator. "
+"If you are setting up your own home network, you can make something up here."
+msgstr ""
+"Der Rechnername ist ein Name, der Ihren Computer im Netzwerk identifiziert. "
+"Wenn Sie keine Idee haben, wie Ihr Rechnername lauten könnte, kontaktieren "
+"Sie bitte Ihren Netzwerk Administrator. Falls Sie Ihr eigenes Heim-Netzwerk "
+"einrichten, können Sie hier etwas beliebiges eingeben."
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid "Invalid hostname \"${HOSTNAME}\""
+msgstr "Ungültiger Rechnername '${HOSTNAME}'"
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid ""
+"A valid hostname may contain period-separated parts containing only "
+"alphanumeric characters and the minus sign, be between 2 and 63 characters "
+"long, and each part cannot begin or end with a minus sign."
+msgstr ""
+"Ein gültiger Rechnername kann aus durch Punkt getrennten Teilen bestehen, "
+"sowie das Minus-Zeichen enthalten und zwischen 2 und 63 Zeichen lang sein, "
+"wobei ein Teil nicht mit einem Minus anfangen oder enden darf."
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid "Do you want to start the graphical display manager?"
+msgstr "Möchten Sie den Display-Manager starten?"
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid ""
+"The graphical display manager makes it possible to log in using a graphical "
+"environment."
+msgstr ""
+"Der Display-Manager macht es möglich, sich in einer grafischen Umgebung "
+"anzumelden."
+
+#. Type: text
+#. Description
+#: ../templates:117
+msgid "Load preseed file"
+msgstr "Preseed-Datei laden"
+
+#. Type: text
+#. Description
+#: ../templates:121
+msgid "Display introductory message"
+msgstr "Einleitende Information anzeigen"
+
+#. Type: text
+#. Description
+#: ../templates:125
+msgid "Configure the keyboard"
+msgstr "Tastatur konfigurieren"
+
+#. Type: text
+#. Description
+#. Type: title
+#. Description
+#: ../templates:129 ../tzsetup-udeb.templates:3
+msgid "Configure timezone"
+msgstr "Zeitzone konfigurieren"
+
+#. Type: text
+#. Description
+#: ../templates:133
+msgid "Set up users and passwords"
+msgstr "Benutzer und Passwörter einrichten"
+
+#. Type: text
+#. Description
+#: ../templates:137
+msgid "Set the hostname"
+msgstr "Rechnername festlegen"
+
+#. Type: text
+#. Description
+#: ../templates:141
+msgid "Configure and enable ppp"
+msgstr "PPP konfigurieren und aktivieren"
+
+#. Type: text
+#. Description
+#. This MUST NOT contain a comma. The same goes for other descriptions
+#. in base-config/menu/*. These form a debconf choices list.
+#. Type: title
+#. Description
+#: ../templates:147 ../apt-setup-udeb.templates:3
+msgid "Configure apt"
+msgstr "Apt konfigurieren"
+
+#. Type: text
+#. Description
+#: ../templates:151
+msgid "Select and install packages"
+msgstr "Pakete auswählen und installieren"
+
+#. Type: text
+#. Description
+#: ../templates:155
+msgid "Configure the Mail Transfer Agent"
+msgstr "Mail Transfer Agent konfigurieren"
+
+#. Type: text
+#. Description
+#: ../templates:159
+msgid "Finish configuring the base system"
+msgstr "Konfiguration des Grundsystems abschließen"
+
+#. Type: text
+#. Description
+#: ../templates:163
+msgid "Exit the base system configuration"
+msgstr "Grundsystem-Konfiguration verlassen"
+
+#. Type: text
+#. Description
+#: ../templates:167
+msgid "Execute a shell"
+msgstr "Eine Shell ausführen"
+
+#. Type: text
+#. Description
+#: ../templates:171
+#, fuzzy
+msgid "Installing packages"
+msgstr "Pakete auswählen und installieren"
+
+#. Type: text
+#. Description
+#: ../templates:175
+#, fuzzy
+msgid "Preparing for installation..."
+msgstr "Vorbereiten auf das Konfigurieren von Apt..."
+
+#. Type: text
+#. Description
+#: ../templates:184
+msgid "Registering documentation, please wait..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:7
+msgid "Preparing to configure apt..."
+msgstr "Vorbereiten auf das Konfigurieren von Apt..."
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:11
+msgid "Copying mirror configuration..."
+msgstr "Kopiere die Spiegel-Server Konfiguration..."
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:15 ../../apt-setup.templates:191
+msgid "Checking for CD-ROM..."
+msgstr "Suche nach CD-Rom..."
+
+#. Type: title
+#. Description
+#: ../../tzsetup.templates:3
+msgid "Time zone configuration"
+msgstr "Zeitzone konfigurieren"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "Is the hardware clock set to GMT?"
+msgstr "Ist die Hardware-Uhr auf GMT eingestellt?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid ""
+"Unix system clocks are generally set to GMT (\"Greenwich Mean Time\", also "
+"known as \"Universal Coordinated Time\", or UTC). The operating system knows "
+"your time zone and converts system time into the local time. You can specify "
+"whether the hardware clock is set to either GMT (recommended for a Linux-"
+"only system) or local time (which may be more convenient for a system that "
+"also runs other operating systems or an off-the-shelf PC)."
+msgstr ""
+"Unix System-Uhren sind im Allgemeinen auf GMT (»Greenwich Mean Time«, auch "
+"bekannt als 'Universal Coordinated Time', oder UTC) gestellt. Das "
+"Betriebssystem kennt Ihre Zeitzone und konvertiert die Systemzeit in die "
+"lokale Zeit. Sie können wählen, ob die Hardware-Uhr auf GMT (empfohlen für "
+"Systeme auf denen ausschließlich Linux läuft) oder lokale Zeit (was unter "
+"Umständen bequemer ist, wenn auf dem Computer auch andere Betriebssysteme "
+"laufen) gestellt ist."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "The hardware clock says the time is now ${hwtime}."
+msgstr "Die Hardware-Uhr sagt, dass es jetzt ${hwtime} ist."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Do you want to change your current time zone?"
+msgstr "Möchten Sie eine andere Zeitzone wählen?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Your current time zone is set to ${timezone}."
+msgstr "Als Zeitzone ist momentan ${timezone} gewählt."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:27
+msgid ""
+"Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
+"Indiana, Indiana-Starke, Michigan, Samoa, other"
+msgstr ""
+"Östlich, Zentral, Gebirge, Pazifik, Alaska, Hawaii, Aleutian, Arizona, Ost-"
+"Indiana, Indiana-Starke, Michigan, Samoa, andere"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:28
+msgid "The following are common time zones in the United States of America."
+msgstr ""
+"Im folgenden sind die geläufigsten Zeitzonen in den Vereinigten Staaten von "
+"Amerika."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:37
+msgid ""
+"Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, other"
+msgstr ""
+"Newfoundland, Atlantik, Östlich, Zentral, Ost-Saskatchewan, Saskatchewan "
+"Gebirge, Pazifik, Yukon, andere"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:38
+msgid "The following are common time zones in Canada."
+msgstr "Im folgenden sind die geläufigsten Zeitzonen in Kanada."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:47
+msgid "East, West, Acre, DeNoronha, other"
+msgstr "Ost, West, Acre, DeNoronha, andere"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid "The following are common time zones in Brazil."
+msgstr "Im folgenden sind die geläufigsten Zeitzonen in Brasilien."
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid ""
+"If you are in a different time zone, choose \"other\" to select from all "
+"available time zones."
+msgstr ""
+"Wenn Sie in einer anderen Zeitzone leben, wählen Sie bitte 'andere' um eine "
+"aus allen vorhandenen Zeitzonen zu wählen."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Are you in the ${zone} time zone?"
+msgstr "Befinden Sie sich wirklich in der Zeitzone ${zone}?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Based on your country, your time zone is probably ${zone}."
+msgstr "Ihre Zeitzone ist vermutlich ${zone}."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:62
+msgid "${choices}, other"
+msgstr "${choices}, andere"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid "Select your time zone:"
+msgstr "Wählen Sie Ihre Zeitzone:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid ""
+"Based on your country, you are probably in one of these time zones. If you "
+"are not, choose \"other\" to select from all available time zones."
+msgstr ""
+"Ihrem Land nach, sind Sie vermutlich in einer dieser Zeitzonen. Falls nicht, "
+"wählen Sie 'andere' um aus allen vorhandenen Zeitzonen zu wählen."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:69
+msgid ""
+"Africa, America, US, Canada, Asia, Atlantic Ocean, Australia, Europe, Indian "
+"Ocean, Pacific Ocean, System V style time zones, None of the above"
+msgstr ""
+"Afrika, Amerika, USA, Kanada, Asien, Atlantischer Ozean, Australien, Europa, "
+"Indischer Ozean, Pazifischer Ozean, System V-Zeitzonen, keine der obigen"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Area for your time zone:"
+msgstr "Bereich Ihrer Zeitzone:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Pick the geographic area in which the time zone you desire is located."
+msgstr ""
+"Wählen Sie das geographische Gebiet, in dem sich Ihre Zeitzone befindet."
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid "Select a city or time zone:"
+msgstr "Wählen Sie eine Stadt oder Zeitzone:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid ""
+"Cities represent the time zone in which they are located, so you may choose "
+"any city in the desired time zone."
+msgstr ""
+"Städte stehen für die Zeitzone in denen Sie sich befinden, Sie können also "
+"eine beliebige Stadt aus Ihrer Zeitzone wählen."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Is this information correct?"
+msgstr "Sind diese Angaben richtig?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Here is your selected time zone information."
+msgstr "Hier ist Ihre gewählte Zeitzoneninformation:"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid ""
+" Local time is now:          ${tzdate}\n"
+" Universal Time is now:      ${utdate}\n"
+" Time zone is set to:        ${timezone}"
+msgstr ""
+" Ortszeit ist nun:           ${tzdate}\n"
+" Universal Time ist nun:     ${utdate}\n"
+" Zeitzone ist gesetzt auf:   ${timezone}"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "If something looks wrong, you can go through the setup process again."
+msgstr ""
+"Wenn irgendetwas falsch scheint, können Sie das Setup noch einmal "
+"durchlaufen."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:3
+msgid "Apt configuration"
+msgstr "Apt-Konfiguration"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid "HTTP proxy information (blank for none):"
+msgstr "Daten Ihres HTTP-Proxys (freilassen für keinen Proxy):"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"If you need to use a HTTP proxy to access the outside world, please enter "
+"the proxy information here. Otherwise, leave this blank."
+msgstr ""
+"Wenn Sie einen HTTP-Proxy für Ihre Verbindung benötigen, geben Sie die Daten "
+"hier ein. Wenn nicht, lassen Sie das Eingabefeld leer."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"The proxy information should be the standard form of \"http://[[user][:pass]"
+"@]host[:port]\""
+msgstr ""
+"Die Daten für den Proxy müssen in der Standardform 'http://[[Benutzer][:"
+"Passwort]@]Rechnername[:Port]' eingegeben werden."
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:24
+msgid "cdrom, http, ftp, filesystem, edit sources list by hand"
+msgstr ""
+"cdrom, http, ftp, Dateisystem, Liste der Paketquellen von Hand editieren"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "Archive access method for apt:"
+msgstr "Zugriffsmethode für apt auf das Archiv:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"Please choose the method apt (the Ubuntu package management tool) should use "
+"to access the Ubuntu archive."
+msgstr ""
+"Bitte wählen Sie die Zugriffsmethode auf das Ubuntu Archiv für apt (das "
+"Ubuntu Paket Management Tool):"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"For example if you have an Ubuntu cd, select \"cdrom\", while if you plan to "
+"install via an Ubuntu mirror, choose \"ftp\" or \"http\"."
+msgstr ""
+"Wenn Sie beispielsweise eine Ubuntu CD besitzen, wählen Sie 'cdrom', wenn "
+"Sie von einem Spiegel-Server aus dem Internet Installieren wollen, wählen "
+"Sie 'ftp' oder 'http'."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "${note}"
+msgstr "${note}"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid "Mirror country:"
+msgstr "Land des Spiegel-Servers:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid ""
+"Select the country the mirror should be in. You should use a mirror in your "
+"country or region if you do not know which mirror has the best Internet "
+"connection to you."
+msgstr ""
+"Bitte wählen Sie das Land, in dem sich der Spiegel-Server befindet. Falls "
+"Sie nicht wissen, welcher Spiegel-Server die beste Internet Verbindung zu "
+"Ihnen hat, sollten Sie einen Spiegel in Ihrer Nähe wählen."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid "Choose the Ubuntu mirror to use:"
+msgstr "Wählen Sie den Ubuntu Spiegel-Server aus:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid ""
+"Select the Ubuntu mirror apt should use. You should select a mirror that is "
+"close to you on the net."
+msgstr ""
+"Wählen Sie den Ubuntu Spiegel aus, den apt benutzen soll. Sie sollten einen "
+"auswählen, der sich in Ihrer Nähe befindet."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Mirror hostname:"
+msgstr "Rechnername des Spiegels:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Enter the hostname of the mirror from which Ubuntu will be downloaded."
+msgstr ""
+"Geben Sie den Rechnernamen des Spiegel-Servers ein, von dem Ubuntu "
+"heruntergeladen werden soll."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Mirror directory:"
+msgstr "Spiegel-Verzeichnis:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Enter the directory in which the Ubuntu mirror is located."
+msgstr "Geben Sie das Verzeichnis an, in dem sich der Ubuntu Spiegel befindet."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:66
+msgid "The directory you entered does not exist."
+msgstr "Das Verzeichnis, das Sie eingegeben haben, existiert nicht."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid "Mirror not found"
+msgstr "Spiegel-Server nicht gefunden."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid ""
+"The directory you entered does not contain a subdirectory named \"dists\", "
+"so it doesn't seem to be an Ubuntu mirror."
+msgstr ""
+"Das angegebene Verzeichnis enthält kein 'dists' Unterverzeichnis. Es scheint "
+"daher kein Ubuntu Spiegel zu sein."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+#, fuzzy
+msgid "CD-ROM missing"
+msgstr "Ubuntu CD-ROM fehlt"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+#, fuzzy
+msgid "Please insert a suitable CD."
+msgstr "Bitte legen Sie eine Ubuntu CD ein."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid "CD-ROM device file:"
+msgstr "CD-ROM Gerätedatei:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"This program was unable to auto-detect a CD-ROM drive, or there is no usable "
+"CD in the drive."
+msgstr ""
+"Das Programm konnte das CD-ROM Laufwerk nicht automatisch erkennen oder es "
+"ist keine benutzbare CD im Laufwerk."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"Enter the device file to use to access your CD-ROM, and place an Ubuntu CD "
+"in the drive."
+msgstr ""
+"Geben Sie die Gerätedatei ein, um auf Ihre CD zugreifen zu können und legen "
+"Sie eine Ubuntu CD ein."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "Non-Ubuntu CD-ROM detected"
+msgstr "Nicht-Ubuntu CD-ROM erkannt"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "The CD-ROM drive contains a non-Ubuntu CD."
+msgstr "Im CD-ROM Laufwerk ist keine Ubuntu CD eingelegt."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid "Scan another CD?"
+msgstr "Eine weitere CD einlesen?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid ""
+"If you have another Ubuntu CD (for example, the second in a two CD set), you "
+"should insert and scan it now."
+msgstr ""
+"Wenn Sie eine weitere Ubuntu CD haben, z.B. die zweite aus einem Satz von "
+"zwei CDs, dann sollten Sie diese jetzt einlegen und einlesen lassen."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Use restricted software?"
+msgstr "Restricted Software verwenden?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid ""
+"Some restricted software has been made to work with Ubuntu. Though this "
+"software is not at all a part of Ubuntu, standard Ubuntu tools can be used "
+"to install it. This software has varying licenses which may prevent you from "
+"using, modifying, or sharing it."
+msgstr ""
+"Einige restricted Programme wurden für den Einsatz mit Ubuntu vorbereitet. "
+"Obwohl diese Art von Software nicht Teil von Ubuntu ist, kann man sie "
+"dennoch mit den Standard Ubuntu Tools installieren. Diese Programme haben "
+"verschiedene Lizenzen, welche Sie an der Benutzung, Modifikation oder der "
+"Verbreitung der Programme hindern könnten."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Please choose whether you want to have it available anyway."
+msgstr "Bitte wählen Sie, ob Sie sie dennoch verfügbar haben möchten."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid "Use contrib software?"
+msgstr "'Contrib' Software verwenden?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid ""
+"Some additional software has been made to work with Ubuntu. Though this "
+"software is free, it depends on non-free software for its operation. This "
+"software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
+"install it."
+msgstr ""
+"Einige Zusatzprogramme wurden für die Benutzung von Ubuntu bereitgestellt. "
+"Auch wenn diese Software Frei ist, kann sie aber von non-free Programmen "
+"abhängen. Diese Software ist nicht Teil von Ubuntu, kann aber mit den "
+"Standard Ubuntu Tools installiert werden."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid "Use universe software?"
+msgstr "Nicht offiziell unterstützte ('Universe') Software verwenden?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid ""
+"Some additional software has been made to work with Ubuntu. This software is "
+"free and, though it is not a part of Ubuntu, standard Ubuntu tools can be "
+"used to install it."
+msgstr ""
+"Einige Zusatzprogramme wurden für die Benutzung von Ubuntu bereitgestellt. "
+"Diese Software ist frei, aber nicht Teil von Ubuntu, kann aber mit den "
+"Standard Ubuntu Tools installiert werden."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid ""
+"Please choose whether you want this software to be made available to you."
+msgstr ""
+"Bitte wählen Sie, ob diese Programme für Sie verfügbar gemacht werden sollen."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:138
+msgid "Failed to access the Ubuntu archive"
+msgstr "Der Zugriff auf das Ubuntu Archiv ist fehlgeschlagen."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:138
+msgid ""
+"While trying to access the Ubuntu archive using the information you "
+"provided, the Ubuntu package management tool, apt, returned the following "
+"error. The questions will be asked again."
+msgstr ""
+"Beim Versuch mit Ihren eingegebenen Daten auf das Ubuntu-Archiv zuzugreifen, "
+"gab das Ubuntu Paket-Management-Tool (apt) den folgenden Fehler zurück. Die "
+"Fragen werden Ihnen nochmals gestellt."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:147
+msgid "Add another apt source?"
+msgstr "Weitere apt-Quellen hinzufügen?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:147
+msgid ""
+"${MESSAGE}. However, you may want to add another source to apt, so it can "
+"download packages from more than one location."
+msgstr ""
+"${MESSAGE}. Dennoch möchten Sie vielleicht weitere Apt-Quellen hinzufügen, "
+"damit auch Pakete von mehr als nur einer Quelle heruntergeladen werden "
+"können."
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:153
+msgid "edit, revert to backup"
+msgstr "Modifizieren, Sicherheitskopie verwenden"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid "What do you want to do?"
+msgstr "Was möchten Sie tun?"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid ""
+"The entries you added in sources.list (the file defining package sources for "
+"apt) seem to be incorrect. Here is the error message from apt:"
+msgstr ""
+"Die Angaben, die Sie in der 'sources.list' (die Datei, in der Paket-Quellen "
+"für apt festgelegt werden) scheint fehlerhaft zu sein. Hier ist die "
+"Fehlermeldung von apt:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid ""
+"A backup of the sources.list was made before you edited it. You may either "
+"revert to that backup or edit the existing file and fix it."
+msgstr ""
+"Bevor Sie sources.list editiert haben, wurde eine Sicherungskopie erstellt. "
+"Sie können die Sicherungskopie wiederherstellen oder sie modifizieren und "
+"den Fehler selbst beheben."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:166
+msgid "Download software from the Internet?"
+msgstr "Software aus dem Internet herunterladen?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:166
+msgid ""
+"Ubuntu provides additional software and timely security updates via the "
+"Internet. These updates may be tracked each time you upgrade your system. If "
+"you have a connection to the Internet, this is generally a good idea."
+msgstr ""
+"Ubuntu bietet zusätzliche Software und aktuelle Sicherheits-Updates über das "
+"Internet an. Nach Updates ka bei jeder Aktualisierung Ihres Systems gesucht "
+"werden. Wenn Sie eine Verbindung zum Internet haben, ist dies ratsam."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid "Cannot access network updates"
+msgstr "Kann auf Updates über das Netzwerk nicht zugreifen"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid ""
+"The software archive at ${site} couldn't be accessed, so those updates will "
+"not be made available to you at this time. You may want to investigate this "
+"later."
+msgstr ""
+"Auf das Software Archiv ${site} kann nicht nicht zugegriffen werden, daher "
+"sind diese Updates für Sie derzeit nicht verfügbar. Sie können diesem "
+"Problem später noch nachgehen."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid ""
+"Commented out entries for ${site} have been added to the bottom of the /etc/"
+"apt/sources.list file."
+msgstr ""
+"Auskommentierte Einträge für ${site} wurden an das Ende der /etc/apt/sources."
+"list hinzugefügt."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid "The error message returned by apt:"
+msgstr "Die zurückgegebene Fehlermeldung von apt:"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid "${apt_error}"
+msgstr "${apt_error}"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:187
+msgid "Configuring apt..."
+msgstr "Konfiguriere Apt..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:195
+msgid "Setting up primary installation repository..."
+msgstr "Das primäre Installations Verzeichnis einrichten..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:199
+msgid "Testing primary installation repository..."
+msgstr "Das primäre Installations Verzeichnis testen..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:203
+msgid "Setting up network repository..."
+msgstr "Das Netzwerk Verzeichnis einrichten..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:207
+msgid "Testing network repository..."
+msgstr "Das Netzwerk Verzeichnis testen..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:211
+msgid "Setting up security update repository..."
+msgstr "Das Sicherheits-Update Verzeichnis einrichten..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:215
+msgid "Testing security update repository..."
+msgstr "Das Sicherheits-Update Verzeichnis testen..."
+
+#, fuzzy
+#~ msgid "Installing popularity-contest"
+#~ msgstr "Pakete auswählen und installieren"
+
+#~ msgid ""
+#~ "Simply trying to install those packages (or a slightly different set of "
+#~ "packages) again may work around the problem, or at least move the "
+#~ "installation process along a little further. You will now enter aptitude, "
+#~ "a package management frontend, which will give you the opportunity to do "
+#~ "this."
+#~ msgstr ""
+#~ "Diese Pakete (oder einen leicht unterschiedliche Paketauswahl) einfach "
+#~ "erneut zu installieren, könnte das Problem bereits lösen, oder den "
+#~ "Installationsprozess zumindest weiter voranbringen. Es wird nun "
+#~ "'aptitude', ein Packetmanager, gestartet, was Ihnen die Möglichkeit gibt "
+#~ "dies zu tun."
+
+#~ msgid "Ubuntu version to install:"
+#~ msgstr "Zu installierende Ubuntu-Version:"
+
+#, fuzzy
+#~ msgid ""
+#~ "Warty Warthog (4.10) was the first Ubuntu release. Hoary Hedgehog (5.04) "
+#~ "was the second release. Breezy Badger (5.10) is the third release."
+#~ msgstr ""
+#~ "Warty Warthog is die erste Ubuntu-Ausgabe, Version 4.10. Hoary Hedgehog "
+#~ "wird die zweite Ausgabe sein."
+
+#~ msgid "Debian base system configuration"
+#~ msgstr "Konfiguration des Debian Grundsystems"
+
+#~ msgid "Welcome to your new Debian system!"
+#~ msgstr "Willkommen zu Ihrem neuen Debian System!"
+
+#~ msgid "Thank you for choosing Debian!"
+#~ msgstr "Vielen Dank, dass Sie Debian gewählt haben!"
+
+#~ msgid ""
+#~ "Setup of your Debian system is complete. You may now login at the login: "
+#~ "prompt."
+#~ msgstr ""
+#~ "Die Installation von Debian ist abgeschlossen. Sie können sich jetzt am "
+#~ "'login:'-Prompt anmelden."
+
+#~ msgid "stable, unstable, testing"
+#~ msgstr "stable, unstable, testing"
+
+#~ msgid "Debian distribution to use:"
+#~ msgstr "Diese Debian-Distribution verwenden:"
+
+#~ msgid ""
+#~ "Debian comes in several flavors. Stable is well-tested and rarely "
+#~ "changes. Unstable is untested and frequently changing. Testing is a "
+#~ "middle ground, that receives many of the new versions from unstable if "
+#~ "they are not too buggy."
+#~ msgstr ""
+#~ "Debian ist in verschiedenen Versionen verfügbar. 'Stable' ist die "
+#~ "ausgiebig getestete Version von Debian, die kaum verändert wird. "
+#~ "'Unstable' ist nicht getestet und ändert sich ständig. 'Testing' liegt "
+#~ "dazwischen und beinhaltet viele der neuen Versionen aus 'Unstable', "
+#~ "sofern Sie nicht zu fehlerhaft sind."
+
+#~ msgid "Please choose which version of Debian you wish to install."
+#~ msgstr ""
+#~ "Bitte wählen Sie die Version von Debian, die Sie installieren möchten."
+
+#~ msgid ""
+#~ "Please choose the method apt (the Debian package management tool) should "
+#~ "use to access the Debian archive."
+#~ msgstr ""
+#~ "Bitte wählen Sie die Zugriffsmethode auf das Debian-Archiv für apt (das "
+#~ "Debian Paket Management Tool):"
+
+#~ msgid ""
+#~ "For example if you have a Debian cd, select \"cdrom\", while if you plan "
+#~ "to install via a Debian mirror, choose \"ftp\" or \"http\"."
+#~ msgstr ""
+#~ "Wenn Sie beispielsweise eine Debian CD besitzen, wählen Sie 'cdrom', wenn "
+#~ "Sie von einem Spiegel-Server aus dem Internet Installieren wollen, wählen "
+#~ "Sie 'ftp' oder 'http'."
+
+#~ msgid "Choose the Debian mirror to use:"
+#~ msgstr "Wählen Sie den Debian Spiegel-Server aus:"
+
+#~ msgid ""
+#~ "Select the Debian mirror apt should use. You should select a mirror that "
+#~ "is close to you on the net."
+#~ msgstr ""
+#~ "Wählen Sie den Debian Spiegel aus, den apt benutzen soll. Sie sollten "
+#~ "einen auswählen, der sich in Ihrer Nähe befindet."
+
+#~ msgid ""
+#~ "Enter the hostname of the mirror from which Debian will be downloaded."
+#~ msgstr ""
+#~ "Geben Sie den Rechnernamen des Spiegel-Servers ein, von dem Debian "
+#~ "heruntergeladen werden soll."
+
+#~ msgid "Enter the directory in which the Debian mirror is located."
+#~ msgstr ""
+#~ "Geben Sie das Verzeichnis an, in dem sich der Debian Spiegel befindet."
+
+#~ msgid ""
+#~ "The directory you entered does not contain a subdirectory named \"dists"
+#~ "\", so it doesn't seem to be a Debian mirror."
+#~ msgstr ""
+#~ "Das angegebene Verzeichnis enthält kein 'dists' Unterverzeichnis. Es "
+#~ "scheint daher kein Debian Spiegel zu sein."
+
+#~ msgid ""
+#~ "Enter the device file to use to access your CD-ROM, and place a Debian CD "
+#~ "in the drive."
+#~ msgstr ""
+#~ "Geben Sie die Gerätedatei ein, um auf Ihre CD zugreifen zu können und "
+#~ "legen Sie eine Debian-CD ein."
+
+#~ msgid "Non-Debian CD-ROM detected"
+#~ msgstr "Keine Debian CD-ROM erkannt"
+
+#~ msgid "The CD-ROM drive contains a non-Debian CD."
+#~ msgstr "Im CD-ROM Laufwerk ist keine Debian-CD eingelegt."
+
+#~ msgid ""
+#~ "If you have another Debian CD (for example, the second in a two CD set), "
+#~ "you should insert and scan it now."
+#~ msgstr ""
+#~ "Wenn Sie eine weitere Debian-CD haben, z.B. die zweite aus einem Satz von "
+#~ "zwei CDs, dann sollten Sie diese jetzt einlegen und einlesen lassen."
+
+#~ msgid "Use non-free software?"
+#~ msgstr "'Non-free' Software verwenden?"
+
+#~ msgid ""
+#~ "Some non-free software has been made to work with Debian. Though this "
+#~ "software is not at all a part of Debian, standard Debian tools can be "
+#~ "used to install it. This software has varying licenses which may prevent "
+#~ "you from using, modifying, or sharing it."
+#~ msgstr ""
+#~ "Einige non-free Programme wurden für den Einsatz mit Debian vorbereitet. "
+#~ "Obwohl diese Art von Software NICHT Teil von Debian ist, kann man sie "
+#~ "dennoch mit den Standard Debian Tools installieren. Diese Programme haben "
+#~ "verschiedene Lizenzen, welche Sie an der Benutzung, Modifikation oder der "
+#~ "Verbreitung der Programme hindern könnten."
+
+#~ msgid ""
+#~ "Some additional software has been made to work with Debian. Though this "
+#~ "software is free, it depends on non-free software for its operation. This "
+#~ "software is not a part of Debian, but standard Debian tools can be used "
+#~ "to install it."
+#~ msgstr ""
+#~ "Einige Zusatzprogramme wurden für die Benutzung von Debian "
+#~ "bereitgestellt. Auch wenn diese Software Frei ist, kann sie aber von non-"
+#~ "free Programmen abhängen. Diese Software ist NICHT Teil von Debian, kann "
+#~ "aber mit den Standard Debian Tools installiert werden."
+
+#~ msgid "Failed to access the Debian archive"
+#~ msgstr "Der Zugriff auf das Debian-Archiv ist fehlgeschlagen."
+
+#~ msgid ""
+#~ "While trying to access the debian archive using the information you "
+#~ "provided, the Debian package management tool, apt, returned the following "
+#~ "error. The questions will be asked again."
+#~ msgstr ""
+#~ "Beim Versuch mit Ihren eingegebenen Daten auf das Debian-Archiv "
+#~ "zuzugreifen, gab das Debian Paket-Management-Tool (apt) den folgenden "
+#~ "Fehler zurück. Die Fragen werden Ihnen nochmals gestellt."
+
+#~ msgid "Use security updates from security.debian.org?"
+#~ msgstr "Wollen Sie Sicherheits-Updates von security.debian.org benutzen?"
+
+#~ msgid ""
+#~ "Debian provides timely security updates via the website security.debian."
+#~ "org. These updates may be tracked each time you upgrade your system. If "
+#~ "you have a connection to the Internet, this is generally a good idea."
+#~ msgstr ""
+#~ "Debian bietet aktuelle Sicherheits-Updates über die Webseite security."
+#~ "debian.org an. Die Updates können bei jeder Aktualisierung Ihres Systems "
+#~ "benutzt werden. Wenn Sie eine Verbindung zum Internet haben, ist dies "
+#~ "ratsam."
+
+#~ msgid "Cannot access security updates"
+#~ msgstr "Kann auf Sicherheits-Updates nicht zugreifen"
+
+#~ msgid ""
+#~ "The security updates on security.debian.org couldn't be accessed, so "
+#~ "those updates will not be made available to you at this time. You may "
+#~ "want to investigate this later."
+#~ msgstr ""
+#~ "Auf die Sicherheits-Updates auf security.debian.org konnte nicht "
+#~ "zugegriffen werden, daher sind diese Updates für Sie derzeit nicht "
+#~ "verfügbar. Sie können diesem Problem später noch nachgehen."
+
+#~ msgid ""
+#~ "Commented out entries for security.debian.org have been added to the "
+#~ "bottom of the /etc/apt/sources.list file."
+#~ msgstr ""
+#~ "Auskommentierte Einträge für security.debian.org wurden am Ende von /etc/"
+#~ "apt/sources.list hinzugefügt."
+
+#~ msgid ""
+#~ "This program will now walk you through the process of setting up your "
+#~ "newly installed system. It will start with the basics -- time zone "
+#~ "selection and adding a user, and then progress to installing additional "
+#~ "software to tune this new Ubuntu system to your needs."
+#~ msgstr ""
+#~ "Dieses Programm wird Sie nun durch die Konfiguration Ihres neu "
+#~ "installierten Systems führen. Dabei wird mit dem wichtigsten begonnen -- "
+#~ "Auswahl der Zeitzone, Anlegen eines Benutzers und Installation weiterer "
+#~ "Software um das neue Ubuntu-System an Ihre Bedürfnisse anzupassen."

@@ -1,0 +1,19 @@
+# This is the log file for the installation of debian, and for base-config.
+# Useful mainly for post-morten debugging, and if the install went ok, it
+# will normally be deleted after one month.
+/var/log/base-config.log {
+	rotate 4
+	weekly
+	compress
+	delaycompress
+	missingok
+	nocreate
+}
+/var/log/base-config.timings {
+	rotate 4
+	weekly
+	compress
+	delaycompress
+	missingok
+	nocreate
+}

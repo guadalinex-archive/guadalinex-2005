@@ -1,0 +1,29 @@
+* TODO items in code.
+* if apt-setup fails an apt-get update run, should offer to retry as well
+  as the two choices it gives now, since it might be intermittent network
+  problems
+* It might be useful to extend the environment variable stuff to setting of
+  debconf questions. The idea being that you could then set a few at the
+  lilo command line, set the frontend to noninteractive and walk away while
+  it installs.
+* map between cdebconf frontends and debconf frontend, so you can start
+  with "text" and end with "readline". It may be better really to put this
+  mapping in debconf, or wait until cdebconf replaces debconf on the second
+  stage.
+* The problem with the unseen-only stuff and dpkg-reconfigure is that
+  if a user is using base-config in a new install at medium priority, they
+  can select a menu item multiple times, and it should work each time.
+  How to reconcile this with pre-seeding?
+* Replace the mirror selection part of apt-setup with choose-mirror from
+  d-i. Waiting on a deb, which is waiting on the archive being changed to
+  allow debs with the same name as udebs.
+* Enable job control in the shell from the menu.
+* If a menu item that is next goes away during a menu item run, the code
+  to advance menu items gets confused, and puts the cursor somewhere
+  random.
+* Stop using debconf-copydb, and use the preseeding mechanism to copy all
+  needed values from the d-i database. This will require moving preseeding
+  off of the menu, and into base-config startup. See joeyh's comments in bug
+  #279590 for some rationalle for why this would be a good idea.
+* Display message when preseeded early or late command fails, and let the
+  user retry (in case it hitds network) or abort.

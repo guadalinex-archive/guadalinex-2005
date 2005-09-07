@@ -1,0 +1,1218 @@
+# translation of ro.po to Romanian
+# Romanian translation
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans#
+#    Developers do not need to manually edit POT or PO files.
+# Eddy Petrisor <eddy_petrisor@yahoo.com>, 2004.
+# Eddy Petrisor <eddy.petrisor@gmail.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ro\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-09 12:39+0100\n"
+"PO-Revision-Date: 2005-06-26 01:53+0200\n"
+"Last-Translator: Eddy Petrişor <eddy.petrisor@gmail.com>\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: title
+#. Description
+#: ../templates:3
+msgid "Ubuntu base system configuration"
+msgstr "Configurarea sistemului de bază Ubuntu"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "Choose the next step in the install process:"
+msgstr "Alegeţi următorul pas în procesul de instalare:"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "This is the base system configuration menu."
+msgstr "Acesta este meniul de configurare a sistemului de bază."
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid "Welcome to your new Ubuntu system!"
+msgstr "Bine aţi venit în noul dvs. sistem Ubuntu!"
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid ""
+"This program will now walk you through the process of setting up your newly "
+"installed system. It will start with the basics -- time zone selection, "
+"setting a root password and adding a user, and then progress to installing "
+"additional software to tune this new Ubuntu system to your needs."
+msgstr ""
+"Acest program vă va conduce prin procesul de pregătire a noului dvs. sistem "
+"instalat. Va începe cu lucrurile de bază -- selecţia meridianului, setarea "
+"parolei de root (superutilizator) şi adăugarea unui utilizator, şi va trece "
+"apoi la instalarea de programe adiţionale pentru a adapta acest nou sistem "
+"Ubuntu la nevoile dvs."
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid "Use a PPP connection to install the system?"
+msgstr "Se foloseşte o conexiune PPP pentru a instala sistemul?"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"This system does not seem to be currently connected to the internet. Even if "
+"you plan to install from CD, it is wise to download at least security "
+"updates from the internet."
+msgstr ""
+"Acest sistem nu pare a fi conectat la internet. Chiar dacă plănuiţi să "
+"instalaţi de pe CD, este recomandat să descărcaţi cel puţin actulizările de "
+"securitate de pe internet."
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"If you have an account on an Internet Services Provider (ISP), and you want "
+"to use it during the install, you may configure the PPP service now, and "
+"open a PPP connection to your ISP."
+msgstr ""
+"Dacă aveţi un cont la un furnizor de servicii internet (ISP), şi doriţi să-l "
+"folosiţi în timpul instalării, puteţi configura serviciul PPP acum şi să "
+"deschideţi o conexiune PPP către ISP-ul dvs."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid "There was a problem installing the selected software"
+msgstr "S-a întâlnit o problemă la instalarea programelor selectate"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"One or more packages failed to install. This may be due to bugs in the "
+"packages, or you may be out of disk space or experiencing some other problem."
+msgstr ""
+"La unul sau mai multe pachete instalarea a eşuat. Acest lucru poate fi "
+"cauzat fie de defecte ale pachetelor, fie de lipsa de spaţiu pe disc sau o "
+"altă problemă."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"Simply trying to install those packages (or a slightly different set of "
+"packages) again may work around the problem, or at least move the "
+"installation process along a little further. If you want, you can go back to "
+"the package selection step, and try again."
+msgstr ""
+"O reîncercare de instalare a aceloraşi pachete (sau un set puţin diferit de "
+"pachete) ar putea rezolva problema sau ar putea duce procesul de instalare "
+"mai departe. Dacă doriţi, vă puteţi întoarce la pasul de selecţie a "
+"pachetelor şi să încercaţi din nou."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"If you decide not to try again, bear in mind that some packages on your "
+"system will be in a broken state until you manually resolve the problem."
+msgstr ""
+"Dacă vă decideţi să nu încercaţi din nou, ţineţi minte că unele pachete din "
+"sistemul dvs. vor fi într-o stare defectuoasă până rezolvaţi manual problema."
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Thank you for choosing Ubuntu!"
+msgstr "Vă mulţumim că aţi ales Ubuntu!"
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Setup of your Ubuntu system is complete. You may now login."
+msgstr ""
+"Pregătirea sistemului dvs. Ubuntu este completă. Acum veţi putea să vă "
+"autentificaţi la promptul login: ."
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid ""
+"If you want to revisit this setup process at a later date, just run the base-"
+"config program."
+msgstr ""
+"Dacă doriţi să revizitaţi acest proces de setare la un moment ulterior, "
+"puteţi rula programul base-config."
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "System hostname:"
+msgstr "Numele sistemului:"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "Please enter your system hostname."
+msgstr "Vă rugăm să introduceţi numele sistemului dvs."
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid ""
+"The hostname is a name that identifies your system to the network. If you "
+"don't know what your hostname should be, consult your network administrator. "
+"If you are setting up your own home network, you can make something up here."
+msgstr ""
+"Numele sistemului este un nume care identifică sistemul dvs. în reţea. Dacă "
+"nu ştiţi care ar trebui să fie numele sistemului dvs., consultaţi "
+"administratorul de reţea. Dacă vă pregătiţi propria dvs. reţea, aici puteţi "
+"să inventaţi ceva."
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid "Invalid hostname \"${HOSTNAME}\""
+msgstr "Nume de calculator invalid \"${HOSTNAME}\""
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid ""
+"A valid hostname may contain period-separated parts containing only "
+"alphanumeric characters and the minus sign, be between 2 and 63 characters "
+"long, and each part cannot begin or end with a minus sign."
+msgstr ""
+"Un nume valid de calculator poate conţine părţi separate prin puncte, care "
+"conţin doar caractere alfanumerice şi semnul minus; poate fi între 2 şi 63 "
+"de caractere şi fiecare parte nu poate începe sau termina cu un semn minus."
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid "Do you want to start the graphical display manager?"
+msgstr "Doriţi să porniţi managerul de afişaj grafic?"
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid ""
+"The graphical display manager makes it possible to log in using a graphical "
+"environment."
+msgstr ""
+"Managerul de afişaj grafic face posibilă autentificarea folosind un mediu "
+"grafic."
+
+#. Type: text
+#. Description
+#: ../templates:117
+msgid "Load preseed file"
+msgstr "Încarcă fişierul de preconfigurare"
+
+#. Type: text
+#. Description
+#: ../templates:121
+msgid "Display introductory message"
+msgstr "Afişează mesajul introductiv"
+
+#. Type: text
+#. Description
+#: ../templates:125
+msgid "Configure the keyboard"
+msgstr "Configurează tastatura"
+
+#. Type: text
+#. Description
+#. Type: title
+#. Description
+#: ../templates:129 ../tzsetup-udeb.templates:3
+msgid "Configure timezone"
+msgstr "Configurează fusul orar"
+
+#. Type: text
+#. Description
+#: ../templates:133
+msgid "Set up users and passwords"
+msgstr "Pregăteşte utilizatorii şi parolele"
+
+#. Type: text
+#. Description
+#: ../templates:137
+msgid "Set the hostname"
+msgstr "Iniţializează numele sistemului"
+
+#. Type: text
+#. Description
+#: ../templates:141
+msgid "Configure and enable ppp"
+msgstr "Configurează şi activează ppp"
+
+#. Type: text
+#. Description
+#. This MUST NOT contain a comma. The same goes for other descriptions
+#. in base-config/menu/*. These form a debconf choices list.
+#. Type: title
+#. Description
+#: ../templates:147 ../apt-setup-udeb.templates:3
+msgid "Configure apt"
+msgstr "Configurează apt"
+
+#. Type: text
+#. Description
+#: ../templates:151
+msgid "Select and install packages"
+msgstr "Selectează şi instalează pachete"
+
+#. Type: text
+#. Description
+#: ../templates:155
+msgid "Configure the Mail Transfer Agent"
+msgstr "Configurează agentul de transport al poştei electronice (MTA)"
+
+#. Type: text
+#. Description
+#: ../templates:159
+msgid "Finish configuring the base system"
+msgstr "Finalizează configurarea sistemului de bază"
+
+#. Type: text
+#. Description
+#: ../templates:163
+msgid "Exit the base system configuration"
+msgstr "Ieşire din configurarea sistemului de bază Ubuntu"
+
+#. Type: text
+#. Description
+#: ../templates:167
+msgid "Execute a shell"
+msgstr "Execută o consolă (shell)"
+
+#. Type: text
+#. Description
+#: ../templates:171
+#, fuzzy
+msgid "Installing packages"
+msgstr "Selectează şi instalează pachete"
+
+#. Type: text
+#. Description
+#: ../templates:175
+#, fuzzy
+msgid "Preparing for installation..."
+msgstr "Se pregăteşte să configureze apt..."
+
+#. Type: text
+#. Description
+#: ../templates:184
+msgid "Registering documentation, please wait..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:7
+msgid "Preparing to configure apt..."
+msgstr "Se pregăteşte să configureze apt..."
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:11
+msgid "Copying mirror configuration..."
+msgstr "Se copiaza configuraţia de mirror"
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:15 ../../apt-setup.templates:191
+msgid "Checking for CD-ROM..."
+msgstr "Se verifică pentru CD-ROM..."
+
+#. Type: title
+#. Description
+#: ../../tzsetup.templates:3
+msgid "Time zone configuration"
+msgstr "Configurarea fusului orar"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "Is the hardware clock set to GMT?"
+msgstr "Ceasul intern este sicronizat cu GMT-ul?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid ""
+"Unix system clocks are generally set to GMT (\"Greenwich Mean Time\", also "
+"known as \"Universal Coordinated Time\", or UTC). The operating system knows "
+"your time zone and converts system time into the local time. You can specify "
+"whether the hardware clock is set to either GMT (recommended for a Linux-"
+"only system) or local time (which may be more convenient for a system that "
+"also runs other operating systems or an off-the-shelf PC)."
+msgstr ""
+"Ceasurile de sistem Unix sunt, în general sincronizate cu GMT-ul "
+"(\"Greenwich Mean Time\" - timpul de pe fusul orar Greenwich - cunoscut ca "
+"şi \"Universal Coordinated Time\" - timpul coordonat universal - , sau UTC). "
+"Sistemul de operare cunoaşte fusul dvs. orar şi converteşte ora dată de "
+"ceasul intern la ora locală. pPuteţi specifica dacă ceasul intern este "
+"sincronizat cu GMT-ul (recomandat pentru un sistem exclusiv Linux) sau este "
+"sicronizat cu timpul local (care poate fi mai convenabil pentru un sistem "
+"care rulează şi alte sisteme de operare sau un calculator nou)."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "The hardware clock says the time is now ${hwtime}."
+msgstr "Ceasul intern indica acum ora ${hwtime}."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Do you want to change your current time zone?"
+msgstr "Doriţi să schimbaţi fusul orar?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Your current time zone is set to ${timezone}."
+msgstr "Actualul fus orar este configurat la ${timezone}."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:27
+msgid ""
+"Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
+"Indiana, Indiana-Starke, Michigan, Samoa, other"
+msgstr ""
+"Eastic, Central, Montan, Pacific, Alaska, Hawaii, Aleutian, Arizona, Indiana "
+"de est, Indiana-Starke, Michigan, Samoa, altul"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:28
+msgid "The following are common time zones in the United States of America."
+msgstr "Următoarele sunt fusuri orare comune în Statele Unite Ale Americii."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:37
+msgid ""
+"Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, other"
+msgstr ""
+"Newfoundland, Atlantic, Estic, Central, Saskatchewanul estic, Saskatchewan, "
+"Montan, Pacific, Yukon, altul"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:38
+msgid "The following are common time zones in Canada."
+msgstr "Următoarele sunt fusuri orare comune în Canada."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:47
+msgid "East, West, Acre, DeNoronha, other"
+msgstr "Est, Vest, Acre, DeNoronha, altul"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid "The following are common time zones in Brazil."
+msgstr "Următoarele sunt fusuri orare comune în Brazilia."
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid ""
+"If you are in a different time zone, choose \"other\" to select from all "
+"available time zones."
+msgstr ""
+"Dacă vă aflaţi pe un alt fus orar, alegeţi \"altul\" pentru a selecta dintre "
+"toate fusurile orare disponibile."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Are you in the ${zone} time zone?"
+msgstr "Vă aflaţi pe fusul orar ${zone}?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Based on your country, your time zone is probably ${zone}."
+msgstr ""
+"Pe baza ţării dvs., fusul orar pe care vă situaţi probabil este ${zone}."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:62
+msgid "${choices}, other"
+msgstr "${choices}, altul"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid "Select your time zone:"
+msgstr "Selectaţi fusul dvs. orar:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid ""
+"Based on your country, you are probably in one of these time zones. If you "
+"are not, choose \"other\" to select from all available time zones."
+msgstr ""
+"Pe baza ţării dvs., vă situaţi probabil pe unul din aceste fusuri orare. "
+"Dacă nu, alegeţi \"altul\" pentru a selecta unul dintre toate fusurile orare "
+"disponibile."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:69
+msgid ""
+"Africa, America, US, Canada, Asia, Atlantic Ocean, Australia, Europe, Indian "
+"Ocean, Pacific Ocean, System V style time zones, None of the above"
+msgstr ""
+"Africa, America, US, Canada, Asia, Oceanul Atlantic, Australia, Europa, "
+"Oceanul Indian, Oceanul Pacific, Fusuri orare în stil System V, Niciunul din "
+"cele de mai sus"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Area for your time zone:"
+msgstr "Zona pentru fusul dvs. orar:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Pick the geographic area in which the time zone you desire is located."
+msgstr "Alegeţi zona geografică în care fusul orar dorit se află."
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid "Select a city or time zone:"
+msgstr "selectaţi un oraş sau un fus orar:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid ""
+"Cities represent the time zone in which they are located, so you may choose "
+"any city in the desired time zone."
+msgstr ""
+"Oraşele reprezintă fusurile orare în care se află, deci puteţi alege orice "
+"oraş din fusul orar dorit."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Is this information correct?"
+msgstr "Este această informaţie corectă?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Here is your selected time zone information."
+msgstr "Iată informaţiile legate de fusul orar selectat de dvs."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid ""
+" Local time is now:          ${tzdate}\n"
+" Universal Time is now:      ${utdate}\n"
+" Time zone is set to:        ${timezone}"
+msgstr ""
+" Timpul local este acum:     ${tzdate}\n"
+" Timpull Universal is now:   ${utdate}\n"
+" Fusul orar este setat la:   ${timezone}"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "If something looks wrong, you can go through the setup process again."
+msgstr "Dacă ceva pare greşit, puteţi reparcurge procesul de setare."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:3
+msgid "Apt configuration"
+msgstr "Configurarea apt"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid "HTTP proxy information (blank for none):"
+msgstr "Informaiţi despre proxy (lăsaţi gol dacă nu există):"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"If you need to use a HTTP proxy to access the outside world, please enter "
+"the proxy information here. Otherwise, leave this blank."
+msgstr ""
+"Dacă aveţi nevoie de un proxy pentru a accesa lumea exterioară, vă rugăm să "
+"introduceţi informaţiile legate de proxy aici. Altfel, lăsaţi gol."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"The proxy information should be the standard form of \"http://[[user][:pass]"
+"@]host[:port]\""
+msgstr ""
+"Informaţiile legate de proxy ar trebui să fie în forma standard \"http://"
+"[[utilizator][:parolă]@]calculator[:port]\""
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:24
+msgid "cdrom, http, ftp, filesystem, edit sources list by hand"
+msgstr "cdrom, http, ftp, sistem de fişiere, modifică manual lista de surse"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "Archive access method for apt:"
+msgstr "Metodă de acces la arhiva apt:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"Please choose the method apt (the Ubuntu package management tool) should use "
+"to access the Ubuntu archive."
+msgstr ""
+"Vă rugăm să alegeţi metoda prin care apt (unelta de management al pachetelor "
+"în Ubuntu) trebuie să acceseze arhiva Ubuntu."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"For example if you have an Ubuntu cd, select \"cdrom\", while if you plan to "
+"install via an Ubuntu mirror, choose \"ftp\" or \"http\"."
+msgstr ""
+"De exemplu, dacă aveţi un cd Ubuntu, selectaţi \"cdrom\", iar dacă  plănuiţi "
+"să instalaţi prin intermediul unui sit alternativ Ubuntu, alegeţi \"ftp\" "
+"sau \"http\"."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "${note}"
+msgstr "${note}"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid "Mirror country:"
+msgstr "Ţara sitului alternativ:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid ""
+"Select the country the mirror should be in. You should use a mirror in your "
+"country or region if you do not know which mirror has the best Internet "
+"connection to you."
+msgstr ""
+"Selectaţi ţara în care ar trebui să se afle situl. Ar fi bine dacă aţi "
+"folosi un sit din ţara sau regiunea dvs. dacă nu ştiţi care sit are cea mai "
+"bună conexiune cu dvs."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid "Choose the Ubuntu mirror to use:"
+msgstr "Alegeţi situl alternativ Ubuntu folosit:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid ""
+"Select the Ubuntu mirror apt should use. You should select a mirror that is "
+"close to you on the net."
+msgstr ""
+"Selectaţi situl alternativ Ubuntu pe care ar trebui să-l folosească apt. Ar "
+"fi bine să selectaţi un situl alternativ care e aproape de dvs. pe intrenet."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Mirror hostname:"
+msgstr "Numele sitului:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Enter the hostname of the mirror from which Ubuntu will be downloaded."
+msgstr ""
+"Introduceţi numele calculatorului care conţine situl alternativ de pe care "
+"se va descărca Ubuntu."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Mirror directory:"
+msgstr "Directorul sitului:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Enter the directory in which the Ubuntu mirror is located."
+msgstr "Introduceţi directorul în care se află situl alternativ Ubuntu."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:66
+msgid "The directory you entered does not exist."
+msgstr "Directorul introdus de dvs. nu există."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid "Mirror not found"
+msgstr "Sit alternativ negăsit"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid ""
+"The directory you entered does not contain a subdirectory named \"dists\", "
+"so it doesn't seem to be an Ubuntu mirror."
+msgstr ""
+"Directorul introdus de dvs. nu conţine un subdirector numit \"dists\", deci "
+"nu pare a fi un sit alternativ Ubuntu."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "CD-ROM missing"
+msgstr "CD-ul lipseşte"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "Please insert a suitable CD."
+msgstr "Vă rugam să introduceţi un CD potrivit."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid "CD-ROM device file:"
+msgstr "Fişierul-dispozitiv CD-ROM:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"This program was unable to auto-detect a CD-ROM drive, or there is no usable "
+"CD in the drive."
+msgstr ""
+"Acest program nu a putut autodetecta un dispozitiv CD-ROM, sau nu există un "
+"CD utilizabil în unitatea CD-ROM."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"Enter the device file to use to access your CD-ROM, and place an Ubuntu CD "
+"in the drive."
+msgstr ""
+"Introduceţi fişierul-dispozitiv de folosit pentru a accesa CD-ROM-ul dvs., "
+"şi puneţi un CD Ubuntu în unitate."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "Non-Ubuntu CD-ROM detected"
+msgstr "S-a detectat CD non-Ubuntu"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "The CD-ROM drive contains a non-Ubuntu CD."
+msgstr "Unitatea CD-ROM conţine un CD non-Ubuntu."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid "Scan another CD?"
+msgstr "Se examinează un alt CD?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid ""
+"If you have another Ubuntu CD (for example, the second in a two CD set), you "
+"should insert and scan it now."
+msgstr ""
+"Dacă aveţi un alt CD Ubuntu (de exemplu, al doilea într-un set de două CD-"
+"uri), ar fi bine să-l introduceţi şi să-l examinaţi acum."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Use restricted software?"
+msgstr "Folosiţi software restricţionat?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid ""
+"Some restricted software has been made to work with Ubuntu. Though this "
+"software is not at all a part of Ubuntu, standard Ubuntu tools can be used "
+"to install it. This software has varying licenses which may prevent you from "
+"using, modifying, or sharing it."
+msgstr ""
+"Unele programe restricţionate au fost făcute să funcţioneze cu Ubuntu. Deşi "
+"aceste programe nu sunt deloc parte din Ubuntu, se pot folosi unelte "
+"standard pentru a le instala. Aceste programe au diverse licenţe care vă pot "
+"împiedica să le folosiţi, să le modificaţi sau să le oferiţi şi la alţii."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Please choose whether you want to have it available anyway."
+msgstr "Vă rugăm să alegeţi dacă doriţi să le aveţi oricum disponibile."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid "Use contrib software?"
+msgstr "Folosiţi software contrib?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid ""
+"Some additional software has been made to work with Ubuntu. Though this "
+"software is free, it depends on non-free software for its operation. This "
+"software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
+"install it."
+msgstr ""
+"Unele programe adiţionale au fost făcute să funcţioneze cu Ubuntu. Deşi "
+"aceste programe sunt libere, ele depind de programe non-libere pentru a "
+"opera. Aceste programe nu sunt parte din Ubuntu, dar uneltele standard "
+"Ubuntu se pot folosi pentru a le instala."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid "Use universe software?"
+msgstr "Se foloseşte şi software universe?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid ""
+"Some additional software has been made to work with Ubuntu. This software is "
+"free and, though it is not a part of Ubuntu, standard Ubuntu tools can be "
+"used to install it."
+msgstr ""
+"Unele programe adiţionale au fost făcute să funcţioneze cu Ubuntu. Deşi "
+"aceste programe sunt libere (free) şi nu sunt parte din Ubuntu, uneltele "
+"standard Ubuntu se pot folosi pentru a le instala."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid ""
+"Please choose whether you want this software to be made available to you."
+msgstr ""
+"Vă rugăm să alegeţi dacă doriţi ca aceste programe să vă fie disponibile."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:138
+msgid "Failed to access the Ubuntu archive"
+msgstr "Eşec la accesarea arhivei Ubuntu"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:138
+msgid ""
+"While trying to access the Ubuntu archive using the information you "
+"provided, the Ubuntu package management tool, apt, returned the following "
+"error. The questions will be asked again."
+msgstr ""
+"În timpul încercării de accesare a arhivei Ubuntu folosind informaţiile "
+"oferite de dvs., unealta de management al pachetelor, apt, a returnat "
+"următoarea eroare. Veţi fi întrebat din nou aceaste întrebări."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:147
+msgid "Add another apt source?"
+msgstr "Adăugaţi o altă sursă apt?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:147
+msgid ""
+"${MESSAGE}. However, you may want to add another source to apt, so it can "
+"download packages from more than one location."
+msgstr ""
+"${MESSAGE}. Totuşi, poate doriţi să adăugaţi o altă sursă apt, pentru a "
+"putea descărca pachete din mai multe locuri."
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:153
+msgid "edit, revert to backup"
+msgstr "modifică, resaturează copia de rezervă"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid "What do you want to do?"
+msgstr "Ce doriţi să faceţi?"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid ""
+"The entries you added in sources.list (the file defining package sources for "
+"apt) seem to be incorrect. Here is the error message from apt:"
+msgstr ""
+"Intrările introduse de dvs. în sources.list (fişierul care defineşte sursele "
+"de pachete pentru apt) par a fi incorecte. Acesta este mesajul de eroare de "
+"la apt:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:154
+msgid ""
+"A backup of the sources.list was made before you edited it. You may either "
+"revert to that backup or edit the existing file and fix it."
+msgstr ""
+"O copie de siguranţă a sources.list a fost făcută înainte ca dvs. să faceţi "
+"modificări. Puteţi fie să restauraţi acea copie, fie să modificaţi fişierul "
+"existent şi să-l reparaţi."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:166
+msgid "Download software from the Internet?"
+msgstr "Descărcaţi software de pe Internet?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:166
+msgid ""
+"Ubuntu provides additional software and timely security updates via the "
+"Internet. These updates may be tracked each time you upgrade your system. If "
+"you have a connection to the Internet, this is generally a good idea."
+msgstr ""
+"Ubuntu oferă periodic programe adiţionale şi actualizări de securitate "
+"prompte prin Internet. Aceste actualizări pot fi monitorizate de fiecare "
+"dată când vă veţi reactualiza sistemul. Dacă aveţi o conexiune la Internet, "
+"aceasta este, în general, o idee bună."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid "Cannot access network updates"
+msgstr "Nu se pot accesa actualizările de programe de reţea"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid ""
+"The software archive at ${site} couldn't be accessed, so those updates will "
+"not be made available to you at this time. You may want to investigate this "
+"later."
+msgstr ""
+"Arhivele de software de la ${site} nu au putut fi accesate, deci acele "
+"actualizări nu vă vor fi disponibile acum. Este recomandabil să investigaţi "
+"această problemă mai târziu."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid ""
+"Commented out entries for ${site} have been added to the bottom of the /etc/"
+"apt/sources.list file."
+msgstr ""
+"Intrările comentate pentru ${site} au fost adăugate la sfârşitul fişierului /"
+"etc/apt/sources.list."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid "The error message returned by apt:"
+msgstr "Mesajul de eroare returnat de apt:"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:173
+msgid "${apt_error}"
+msgstr "${apt_error}"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:187
+msgid "Configuring apt..."
+msgstr "Configurează apt..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:195
+msgid "Setting up primary installation repository..."
+msgstr "Se setează depozitul de instalare primară..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:199
+msgid "Testing primary installation repository..."
+msgstr "Se testează depozitul de instalare primară..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:203
+msgid "Setting up network repository..."
+msgstr "Se setează depozitul de programe de reţea.."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:207
+msgid "Testing network repository..."
+msgstr "Se testează depozitul de programe de reţea.."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:211
+msgid "Setting up security update repository..."
+msgstr "Se setează depozitul de update-uri de securitate..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:215
+msgid "Testing security update repository..."
+msgstr "Se testează depozitul de update-uri de securitate..."
+
+#, fuzzy
+#~ msgid "Installing popularity-contest"
+#~ msgstr "Selectează şi instalează pachete"
+
+#~ msgid ""
+#~ "Simply trying to install those packages (or a slightly different set of "
+#~ "packages) again may work around the problem, or at least move the "
+#~ "installation process along a little further. You will now enter aptitude, "
+#~ "a package management frontend, which will give you the opportunity to do "
+#~ "this."
+#~ msgstr ""
+#~ "Simpla încercare de instalare a acelor pachete (sau un set puţin diferit "
+#~ "de pachete) ar putea rezolva problema sau ar putea duce procesul de "
+#~ "instalare mai departe. Acum veţi intra în aptitude, o interfaţă "
+#~ "(frontend) de sistem de management al pachetelor, care vă va da "
+#~ "oprtunitatea de a a face asta."
+
+#~ msgid "Ubuntu version to install:"
+#~ msgstr "Versiunea Ubuntu de instalat:"
+
+#, fuzzy
+#~ msgid ""
+#~ "Warty Warthog (4.10) was the first Ubuntu release. Hoary Hedgehog (5.04) "
+#~ "was the second release. Breezy Badger (5.10) is the third release."
+#~ msgstr ""
+#~ "Warty Warthog este prima versiune Ubuntu, 4.10. Hoary Hedgehog va fi a "
+#~ "doua versiune."
+
+#~ msgid "Debian base system configuration"
+#~ msgstr "Configurarea sistemului de bază Debian"
+
+#~ msgid "Welcome to your new Debian system!"
+#~ msgstr "Bine aţi venit în noul dvs. sistem Debian!"
+
+#~ msgid "Thank you for choosing Debian!"
+#~ msgstr "Vă mulţumim că aţi ales Debian!"
+
+#~ msgid ""
+#~ "Setup of your Debian system is complete. You may now login at the login: "
+#~ "prompt."
+#~ msgstr ""
+#~ "Setarea sistemului dvs. Debian este completă. Acum veţi putea să vă "
+#~ "autentificaţi la promptul login: ."
+
+#~ msgid "stable, unstable, testing"
+#~ msgstr "stabil, instabil, în teste"
+
+#~ msgid "Debian distribution to use:"
+#~ msgstr "Distribuţia Debian de folosit:"
+
+#~ msgid ""
+#~ "Debian comes in several flavors. Stable is well-tested and rarely "
+#~ "changes. Unstable is untested and frequently changing. Testing is a "
+#~ "middle ground, that receives many of the new versions from unstable if "
+#~ "they are not too buggy."
+#~ msgstr ""
+#~ "Debian are diverse versiuni. Stabil - foarte bine testată şi se schimbă "
+#~ "foarte rar. Instabil este netastat si se schimbă frecvent. \"În teste\" "
+#~ "este undeva la mijloc; primeşte multe din noile versiuni din instabil "
+#~ "dacă acestea nu au probleme prea mari."
+
+#~ msgid "Please choose which version of Debian you wish to install."
+#~ msgstr "Vă rugăm să alegeţi ce versiune Debian doriţi să o instalaţi."
+
+#~ msgid ""
+#~ "Please choose the method apt (the Debian package management tool) should "
+#~ "use to access the Debian archive."
+#~ msgstr ""
+#~ "Vă rugăm să alegeţi metoda prin care apt (unelta de management al "
+#~ "pachetelor în Debian) trebuie să acceseze arhiva Debian."
+
+#~ msgid ""
+#~ "For example if you have a Debian cd, select \"cdrom\", while if you plan "
+#~ "to install via a Debian mirror, choose \"ftp\" or \"http\"."
+#~ msgstr ""
+#~ "De exemplu, dacă aveţi un cd Debian, selectaţi \"cdrom\", iar dacă  "
+#~ "plănuiţi să instalaţi Debian prin intermediul unui mirror, alegeţi \"ftp"
+#~ "\" sau \"http\"."
+
+#~ msgid "Choose the Debian mirror to use:"
+#~ msgstr "Alegeţi mirror=ul Debian de folosit:"
+
+#~ msgid ""
+#~ "Select the Debian mirror apt should use. You should select a mirror that "
+#~ "is close to you on the net."
+#~ msgstr ""
+#~ "Selectaţi mirror-ul Debian pe care ar trebui să-l folosească apt. Ar fi "
+#~ "bine să selectaţi un mirror care e aproape de dvs. pe intrenet."
+
+#~ msgid ""
+#~ "Enter the hostname of the mirror from which Debian will be downloaded."
+#~ msgstr ""
+#~ "Introduceţi numele calculatorului care conţine mirror-ul de pe care se va "
+#~ "descărca Debian."
+
+#~ msgid "Enter the directory in which the Debian mirror is located."
+#~ msgstr "Introduceţi directorul în care se alfă mirror-ul Debian."
+
+#~ msgid ""
+#~ "The directory you entered does not contain a subdirectory named \"dists"
+#~ "\", so it doesn't seem to be a Debian mirror."
+#~ msgstr ""
+#~ "Directorul introdus de dvs. nu conţine un subdirector numit \"dists\", "
+#~ "deci nu pare a fi un mirror Debian."
+
+#~ msgid ""
+#~ "Enter the device file to use to access your CD-ROM, and place a Debian CD "
+#~ "in the drive."
+#~ msgstr ""
+#~ "Introduceţi fişierul-dispozitiv de folosit pentru a accesa CD-ROM-ul "
+#~ "dvs., şi puneţi un CD Debian în unitate."
+
+#~ msgid "Non-Debian CD-ROM detected"
+#~ msgstr "Un CD non-Debian a fost detectat"
+
+#~ msgid "The CD-ROM drive contains a non-Debian CD."
+#~ msgstr "Unitatea CD-ROM conţine un CD non-Debian."
+
+#~ msgid ""
+#~ "If you have another Debian CD (for example, the second in a two CD set), "
+#~ "you should insert and scan it now."
+#~ msgstr ""
+#~ "Dacă aveţi un alt CD Debian (de exemplu, al doilea într-un set de două CD-"
+#~ "uri), ar fi bine să=l introduceţi şi să-l scanaţi acum."
+
+#~ msgid "Use non-free software?"
+#~ msgstr "Folosiţi software non-liber?"
+
+#~ msgid ""
+#~ "Some non-free software has been made to work with Debian. Though this "
+#~ "software is not at all a part of Debian, standard Debian tools can be "
+#~ "used to install it. This software has varying licenses which may prevent "
+#~ "you from using, modifying, or sharing it."
+#~ msgstr ""
+#~ "Unele programe non-free au fost făcute să funcţioneze cu Debian. Deşi "
+#~ "aceste programe nu sunt deloc parte din Debian, se pot folosi unelte "
+#~ "standard pentru a le instala. Aceste programe au diverse licenţe care vă "
+#~ "pot împiedica să le folosiţi, să le modificaţi sau să le oferiţi şi la "
+#~ "alţii."
+
+#~ msgid ""
+#~ "Some additional software has been made to work with Debian. Though this "
+#~ "software is free, it depends on non-free software for its operation. This "
+#~ "software is not a part of Debian, but standard Debian tools can be used "
+#~ "to install it."
+#~ msgstr ""
+#~ "Unele programe adiţionale au fost făcute să funcţioneze cu Debian. Deşi "
+#~ "aceste programe sunt libere (free), ele depind de programe non-fre pentru "
+#~ "a opera. Aceste programe nu sunt parte din Debian, dar uneltele standard "
+#~ "Debian se pot folosi pentru a le instala."
+
+#~ msgid "Failed to access the Debian archive"
+#~ msgstr "Eşec la accesarea arhivei Debian"
+
+#~ msgid ""
+#~ "While trying to access the debian archive using the information you "
+#~ "provided, the Debian package management tool, apt, returned the following "
+#~ "error. The questions will be asked again."
+#~ msgstr ""
+#~ "În timpul încercării de accesare a arhivei Debian folosind informaţiile "
+#~ "oferite de dvs., unealta de management al pachetelor, apt, a returnat "
+#~ "următoarea eroare. Veţi mai fi întrebat această întrebare."
+
+#~ msgid "Use security updates from security.debian.org?"
+#~ msgstr "Se folosesc update-urile de securitate de la security.debian.org?"
+
+#~ msgid ""
+#~ "Debian provides timely security updates via the website security.debian."
+#~ "org. These updates may be tracked each time you upgrade your system. If "
+#~ "you have a connection to the Internet, this is generally a good idea."
+#~ msgstr ""
+#~ "Debian oferă periodic update-uri de securitate prin site-ul security."
+#~ "debian.org. Aceste update-uri pot fi monitorizate de fiecare dată vă veţi "
+#~ "reactualiza sistemul. Dacă aveţi o cenexiune le Internet, este, în "
+#~ "general, o idee bună."
+
+#~ msgid "Cannot access security updates"
+#~ msgstr "Nu se pot accesa update-urile de securitate"
+
+#~ msgid ""
+#~ "The security updates on security.debian.org couldn't be accessed, so "
+#~ "those updates will not be made available to you at this time. You may "
+#~ "want to investigate this later."
+#~ msgstr ""
+#~ "Update-urile de securitate de la security.debian.org nu au putut fi "
+#~ "accesate, deci acele update-uri nu vă vor fi disponibile acum. Este "
+#~ "recomandabil să investigaţi această problemă mai târziu."
+
+#~ msgid ""
+#~ "Commented out entries for security.debian.org have been added to the "
+#~ "bottom of the /etc/apt/sources.list file."
+#~ msgstr ""
+#~ "Intrările comentate pentru security.debian.org au fost adăugate la "
+#~ "sfârşitul fişierului /etc/apt/sources.list."
+
+#, fuzzy
+#~ msgid ""
+#~ "This program will now walk you through the process of setting up your "
+#~ "newly installed system. It will start with the basics -- time zone "
+#~ "selection and adding a user, and then progress to installing additional "
+#~ "software to tune this new Ubuntu system to your needs."
+#~ msgstr ""
+#~ "Acest program vă va conduce prin procesul de setare a noului dvs. sistem "
+#~ "instalat. Va începe cu lucrurile de bază == selecţia meridianului, "
+#~ "setarea parolei de root (superutilizator) şi adăugarea unui utilizator, "
+#~ "şi va trece apoi la instalarea de programe adiţionale pentru a adapta "
+#~ "acest nou sistem Debian la nevoile dvs."

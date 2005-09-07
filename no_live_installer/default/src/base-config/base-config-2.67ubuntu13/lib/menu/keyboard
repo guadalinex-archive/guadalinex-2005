@@ -1,0 +1,25 @@
+#!/bin/sh -e
+# Keyboard configuration.
+#
+# Note that this needs to run before any stuff that might ask for keyboard
+# input..
+
+if [ "$1" = with_debconf ]; then
+	. /usr/share/debconf/confmodule
+
+	# Work out the keymap file to install.
+	db_get debian-installer/keymap
+	KEYMAP=$(find /usr/share/keymaps/ -name "$RET.kmap*")
+		
+	if [ ! -z "$KEYMAP" ]; then
+		install-keymap $KEYMAP >/dev/null || true
+	fi
+else
+	$0 with_debconf
+
+	# Fallback to get keyboard set up.
+	# This part cannot be run under debconf.
+	if [ ! -e /etc/console/boottime.kmap.gz ]; then
+		dpkg-reconfigure --unseen-only --default-priority console-data || true
+	fi
+fi

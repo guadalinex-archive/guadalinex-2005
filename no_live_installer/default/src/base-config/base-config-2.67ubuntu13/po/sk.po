@@ -1,0 +1,69 @@
+# Slovak translation of base-config po file.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-07 13:08+0200\n"
+"PO-Revision-Date: 2004-07-14 13:07+0200\n"
+"Last-Translator: Peter KLFMANiK Mann <Peter.Mann@tuke.sk>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: ../base-config:37
+msgid "Configuring the base system..."
+msgstr "Konfiguruje sa základný systém..."
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Napíšte 'exit' pre návrat do base-config. "
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:140
+msgid "enter information manually, "
+msgstr "údaje zadať manuálne, "
+
+#: ../apt-setup:273
+msgid "Scanning CD, this will take a minute."
+msgstr "Prehľadáva sa CD, bude to chvíľu trvať."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:357
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Nástroj Debianu na správu balíkov, apt, je teraz nastavený a môže "
+"nainštalovať ${PACKAGE_COUNT} balík"
+msgstr[1] ""
+"Nástroj Debianu na správu balíkov, apt, je teraz nastavený a môže "
+"nainštalovať ľubovoľný z ${PACKAGE_COUNT} balíkov"
+msgstr[2] ""
+"Nástroj Debianu na správu balíkov, apt, je teraz nastavený a môže "
+"nainštalovať ľubovoľný z ${PACKAGE_COUNT} balíkov"
+
+#: ../apt-setup:454
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Na inštaláciu základného Debian systému ste pravdepodobne použili CD, ktoré "
+"sa teraz nenachádza v CD mechanike. Mali by ste ho vložiť a zvoliť \"cdrom\"."
+
+#: ../apt-setup:703 ../apt-setup:778 ../apt-setup:889 ../apt-setup:902
+#: ../apt-setup:1027 ../apt-setup:1057
+msgid "Testing apt sources..."
+msgstr "Overujú sa zdroje apt..."

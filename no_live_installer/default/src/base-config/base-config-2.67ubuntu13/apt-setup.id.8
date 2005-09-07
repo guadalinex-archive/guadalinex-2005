@@ -1,0 +1,24 @@
+.TH APT-SETUP 8
+.SH NAMA
+apt-setup \- menambahkan sumber-sumber download untuk apt
+.SH RINGKASAN
+.B apt-setup [probe]
+.SH PENJELASAN
+.BR apt-setup
+merupakan program interaktif yang menyederhanakan penambahan sumber-sumber
+ke berkas sources.list dari apt. Ia mengetahui semua mirror-mirror utama
+Debian dan dapat membantu anda memilih salah satu. Ia bahkan dapat
+menggunakan
+.BR apt-cdrom (8)
+untuk memindai CD.
+.SH OPSI-OPSI
+.TP
+.I "probe"
+Secara bawaan tidak dilakukan pemeriksaan CD. Memberikan "probe" sebagai
+argumen pertama untuk program ini, akan membuat program memeriksa CD yang
+ada dalam penggerak dan menambahkannya ke berkas sources.list. Ini berguna
+pada saat instalasi awal Debian, untuk mengurangi interaksi dengan pengguna.
+.SH PENULIS
+Joey Hess <joey@kitenet.net>
+.SH PENERJEMAH
+Parlin Imanuel Toh <debian-l10n-id@gurame.fisika.ui.ac.id>

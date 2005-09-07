@@ -1,0 +1,73 @@
+# Malagasy translation of base-config.
+# Copyright (C) 2005 THE base-config'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the base-config package.
+# Jaonary Rabarisoa<jaonary@ifrance.com>, 2005.
+# jaonary <jaonary@ifrance.com>, 2005.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-07 13:08+0200\n"
+"PO-Revision-Date: 2005-02-03 11:29+0100\n"
+"Last-Translator: Jaonary Rabarisoa <jaonary@ifrance.com>\n"
+"Language-Team: Malagasy <mpandikateny@linuxmg.mg>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ../base-config:37
+msgid "Configuring the base system..."
+msgstr "Manefy ny << system >> fototra..."
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr ""
+"Soraty 'Exit' mba hiverenana any amin'ny fametrahana ny << system >> fototra."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:140
+msgid "enter information manually, "
+msgstr "ampidiro antsoratra ny filazana, "
+
+#: ../apt-setup:273
+msgid "Scanning CD, this will take a minute."
+msgstr "Misafo ny CD, mety haharitra."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:357
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Voatefy izao ny fitaovana fitantanana ny pakajy Debian, apt, ary afaka "
+"mametraka ny pakajy ${PACKAGE_COUNT}"
+msgstr[1] ""
+"Voatefy izao ny fitaovana fitantanana ny pakajy yDebian, apt, ary afaka "
+"mametraka pakajy ${PACKAGE_COUNT}"
+
+#: ../apt-setup:454
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Nampiasa CD ianao hametrahana ny << system >> fototr'i Debian, nefa toa tsy "
+"hita ao anaty mpamaky kalipa ilay izy. Tokony mampiditra ilay kapila ianao "
+"ary mifidy << cdrom >>."
+
+#: ../apt-setup:703 ../apt-setup:778 ../apt-setup:889 ../apt-setup:902
+#: ../apt-setup:1027 ../apt-setup:1057
+msgid "Testing apt sources..."
+msgstr "Misafo ny loharano apt..."
