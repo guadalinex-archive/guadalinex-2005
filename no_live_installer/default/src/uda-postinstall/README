@@ -1,0 +1,62 @@
+HOWTO DE UDA-POSTINSTALL
+
+Comandos y funcionamiento :
+
+* UDA-POSTINSTALL : 
+Este es el que se encarga de hacer la instalacion grafica del resto de los paquetes que quedan por installar . Se tienen que cumplir una serie de precondiciones antes de hacerlo funcionar. 
+    - Tienen que esta levantadas las X y el window-manager . Esto se puede ver como se hizo en la molinux 1.2 , en el paquete base-config ( /usr/lib/base-config/menu/pkgsel) 
+    - Tienen que saberse de antemano el numero de paquetes que se va a instalar y el ultimo paquete que va a ser instalado. Asi cuando detecta el ultimo paquete saca la ventana de estoy generando la documentacion. En molinux 1.2 el paquete molinux-desktop (molinux-meta en el repositorio) generaba toda la doc de golpe .
+    - NINGUN PAQUETE TIENE QUE HACER PREGUNTAS , porque sino el instalador petara, porque no hay manera de que el usuario pueda responder. Esto de todos modos es facil porque los paquetes de ubuntu no hace preguntas en esta fase.
+    - Tienen que ser exportadas estas dos variables UDA_DISTRO_NAME y UDA_DISTRO_LANG. Esto es para el sistema de branding que he hecho para uda ... luego os cuento.
+
+El funcionamiento del comando es el siguiente :
+    uda-postinstall 7 "xawtv scantv" "xawtv" 
+                             |           |                 \---------> Ultimo paquete a instalar
+                             |           \---------------------------> Listado de paquetes que se quiere instalar 
+                             |                                            (ojo siempre entre comillas)
+                             |                                            Ej: "molinux-desktop language-support-en"
+                             \---------------------------------------> Numero de paquetes que al final son instalado,
+                                                                        Contando con las dependencias que coje apt
+                                                                         Este numero se saca de unos comados que hay
+                                                                         en /usr/lib/base-config/menu/pkgsel
+
+* UDA-POSTCONFIG :
+
+Este comando se encarga de recojer los datos de usuario , password y nombre de host ....
+Este comando devuelve una serie de variables shell que luego recupera el script uda-postinstall- backend.sh . Este script no es definitivo ya que es muy dependiente de la distro , aunque es facil de copiar y pegar. Asi que podeis saltaros el script y usar el vuestro
+Este comando no tiene parametros , solo devuelve parametro en shell. 
+
+* UDA-GOODBYE :
+Este comando se ejecuta cuando se termina la instalacion para dar la bienvenida al sistema , antes de entrar en gdm. Tiene un timeout de 10 segundos al cabo del cual hace un exit y continua con el script que en el que se estuviera ejecutando. 
+Este comando no tiene parametros.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+COSAS NUEVAS !!
+
+* Nuevo sistema de branding 
+    Dentro del codigo de uda-postinstall estan los archivos de branding de uda-postinstall . 
+    Los directorios estan dispuestos en este orden :
+    
+    branding/
+    branding/Guadalinex
+    branding/Guadalinex/es
+    branding/Molinux
+    branding/Molinux/es
+
+    Dentro de los cuales hay una serie de pixmaps que deben ser respetados tanto en tamaño, como extension , como nombre . De tal manera que si nosotros pusieramos 
+
+    export UDA_DISTRO_NAME=Guadalinex
+    export UDA_DISTRO_LANG=es
+
+antes de ejecutar uda-postinstall y uda-goodbye , saldria el branding de guadalinex en español. Porque ira a buscar la ruta de "branding/Guadalinex/es"
+
+He colocado unos archivos modificados de molinux para que veais que funciona.
+
+* Internacionalizacion 
+
+Todo el codigo esta internacionalizado con gettext.
+
+* Bugs resueltos en uda-postconfig
+    - Ahora no se puede meter usuarios del sistema
+    - Tampoco se puede escribir el nombre de usuario y host en mayusculas , cuando lo intentas te lo pone obligadamente en minusculas. 
