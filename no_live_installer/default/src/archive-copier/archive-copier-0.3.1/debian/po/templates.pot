@@ -1,0 +1,100 @@
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-03-24 22:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../archive-copier.templates:4
+msgid "Copy remaining packages from CD-ROM to hard disk?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../archive-copier.templates:4
+msgid ""
+"If you have enough hard disk space, you can choose to copy all the remaining "
+"packages from the CD-ROM to the hard disk, which will mean that you no "
+"longer need the CD-ROM once you reboot. You will need about 400 MB of "
+"additional free space in /var for this."
+msgstr ""
+
+#. Type: error
+#. Description
+#: ../archive-copier.templates:24
+msgid "Copying packages failed"
+msgstr ""
+
+#. Type: error
+#. Description
+#: ../archive-copier.templates:24
+msgid ""
+"Copying packages to the hard disk failed. You may have run out of disk space "
+"in the target /var filesystem."
+msgstr ""
+
+#. Type: error
+#. Description
+#: ../archive-copier.templates:24
+msgid "Check /var/log/syslog or see virtual console 4 for the details."
+msgstr ""
+
+#. Type: text
+#. Description
+#: ../archive-copier.templates:32
+msgid "Copying remaining packages to hard disk"
+msgstr ""
+
+#. Type: text
+#. Description
+#: ../archive-copier.templates:36
+msgid "Scanning ${DIR}..."
+msgstr ""
+
+#. Type: text
+#. Description
+#: ../archive-copier.templates:40
+msgid "Copying ${PACKAGE}..."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../archive-copier.templates:45
+msgid "Download language support?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../archive-copier.templates:45
+msgid ""
+"The installation CD does not contain full support for your language. Do you "
+"want to download the required packages from the Internet?"
+msgstr ""
+
+#. Type: text
+#. Description
+#. Item in the main menu to select this package
+#: ../archive-copier.templates:52
+msgid "Copy remaining packages to hard disk"
+msgstr ""
