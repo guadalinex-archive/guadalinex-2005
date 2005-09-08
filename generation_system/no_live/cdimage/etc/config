@@ -14,6 +14,4 @@ esac
 GNUPG_DIR="$CDIMAGE_ROOT/secret/dot-gnupg"
 SIGNING_KEYID=FBB75451
 
-export MIRROR="http://archive.ubuntu.com/ubuntu"
-
 umask 002
