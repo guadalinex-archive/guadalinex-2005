@@ -48,7 +48,7 @@ msgstr ""
 #. Type: note
 #. Description
 #: ../uda-firstmessage.templates:7
-msgid "Parragraph 1.2"
+msgid "Paragraph 1.2"
 msgstr ""
 "Guadalinex es Software Libre. Cada uno de los programas y aplicaciones "
 "queintegran la distribución Guadalinex, salvo excepciones, puede "
@@ -75,8 +75,8 @@ msgstr ""
 #: ../uda-firstmessage.templates:14
 msgid "Paragraph 2.2"
 msgstr ""
-"Le recordamos la importancia de realizar una copia de seguridad de sus "
-"datosy aplicaciones más importantes antes de continuar."
+"Le recordamos la importancia de realizar una copia de seguridad de sus datos "
+"y aplicaciones más importantes antes de continuar."
 
 #. Type: note
 #. Description

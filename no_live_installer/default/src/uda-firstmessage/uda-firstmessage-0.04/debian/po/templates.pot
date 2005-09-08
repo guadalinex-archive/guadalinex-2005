@@ -45,7 +45,7 @@ msgstr ""
 #. Type: note
 #. Description
 #: ../uda-firstmessage.templates:7
-msgid "Parragraph 1.2"
+msgid "Paragraph 1.2"
 msgstr ""
 
 #. Type: note
