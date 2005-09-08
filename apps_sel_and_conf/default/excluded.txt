@@ -55,7 +55,6 @@ ltsp-server-standalone
 ltsp-server
 m4
 make
-makedepends
 mozilla-firefox-locale-en-gb
 mozilla-thunderbird-inspector
 mozilla-thunderbird-offline
