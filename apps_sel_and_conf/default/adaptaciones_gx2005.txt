@@ -44,6 +44,13 @@ del escritorio (si no lo activamos el usuario no tiene conciencia de estar
 lanzando una aplicación. El icono del escritorio no cambia de estado). En el
 menú aplicaciones no hay problemas con esto.
 
+  
+  ·/etc/lsb_release
+    DISTRIB_ID=Guadalinex
+    DISTRIB_RELEASE=2005
+    DISTRIB_CODENAME=flamenco
+    DISTRIB_DESCRIPTION="Guadalinex 2005 (Flamenco)"
+
 edu
 
 media

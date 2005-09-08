@@ -32,3 +32,9 @@ ltsp-server-standalone
 ltsp-server
 m4
 make
+rpm4
+librpm4
+wamerican
+wbritish
+ssl-cert
+tftpd-hpa
