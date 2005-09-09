@@ -1,3 +1,9 @@
+uda-first-message (0.05) unstable; urgency=low
+
+  * Renamed package
+
+ -- Carlos Parra Camargo <cparra@emergya.info>  Fri,  9 Sep 2005 09:00:37 +0200
+
 uda-firstmessage (0.04) unstable; urgency=low
 
   * New templates and screens
@@ -10,7 +16,7 @@ uda-firstmessage (0.03) unstable; urgency=low
     obsolete db_title.
   * Added a new string to the template, uda-firstmessage/title.
 
- -- carlospc <cparra@emergya.info>  Thu,  1 Sep 2005 18:35:38 +0200
+ -- Carlos Parra Camargo <cparra@emergya.info>  Thu,  1 Sep 2005 18:35:38 +0200
 
 uda-firstmessage (0.02) unstable; urgency=low
 

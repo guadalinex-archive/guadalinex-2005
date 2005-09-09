@@ -1,29 +1,29 @@
-Template: uda-firstmessage/title
+Template: uda-first-message/title
 Type: title
 _Description: Bienvenido
 
-Template: uda-firstmessage/firstmessage
+Template: uda-first-message/first-message
 Type: note
 _Description: Wellcome to Guadalinex 2005
  Possible english text1
  .
  Paragraph 1.2
 
-Template: uda-firstmessage/warning
+Template: uda-first-message/warning
 Type: note
 _Description: Warning backup
  English text 2
  .
  Paragraph 2.2
 
-Template: uda-firstmessage/stages
+Template: uda-first-message/stages
 Type: note
 _Description: Stages
  English text 3
  .
  Paragraph 3.2
 
-Template: uda-firstmessage/requirements
+Template: uda-first-message/requirements
 Type: note
 _Description: Requirements
  English text 4

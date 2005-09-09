@@ -15,7 +15,7 @@ install: build
 	dh_testdir
 	dh_testroot
 	dh_clean -k
-	dh_install uda-firstmessage  usr/bin
+	dh_install uda-first-message  usr/bin
 binary-indep: build install
 
 binary-arch: build install

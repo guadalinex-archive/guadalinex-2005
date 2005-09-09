@@ -26,78 +26,78 @@ msgstr ""
 
 #. Type: title
 #. Description
-#: ../uda-firstmessage.templates:3
+#: ../uda-first-message.templates:3
 msgid "Bienvenido"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:7
+#: ../uda-first-message.templates:7
 msgid "Wellcome to Guadalinex 2005"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:7
+#: ../uda-first-message.templates:7
 msgid "Possible english text1"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:7
+#: ../uda-first-message.templates:7
 msgid "Paragraph 1.2"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:14
+#: ../uda-first-message.templates:14
 msgid "Warning backup"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:14
+#: ../uda-first-message.templates:14
 msgid "English text 2"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:14
+#: ../uda-first-message.templates:14
 msgid "Paragraph 2.2"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:21
+#: ../uda-first-message.templates:21
 msgid "Stages"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:21
+#: ../uda-first-message.templates:21
 msgid "English text 3"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:21
+#: ../uda-first-message.templates:21
 msgid "Paragraph 3.2"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:28
+#: ../uda-first-message.templates:28
 msgid "Requirements"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:28
+#: ../uda-first-message.templates:28
 msgid "English text 4"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:28
+#: ../uda-first-message.templates:28
 msgid "Paragraph 4.2"
 msgstr ""

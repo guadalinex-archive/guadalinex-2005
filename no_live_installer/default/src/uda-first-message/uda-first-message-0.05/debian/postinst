@@ -2,7 +2,7 @@
 
 PATH=$PATH:.
 
-uda-firstmessage
+uda-first-message
 
 #DEBHELPER#
 

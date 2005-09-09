@@ -26,19 +26,19 @@ msgstr ""
 
 #. Type: title
 #. Description
-#: ../uda-firstmessage.templates:3
+#: ../uda-first-message.templates:3
 msgid "Bienvenido"
 msgstr "Bienvenido"
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:7
+#: ../uda-first-message.templates:7
 msgid "Wellcome to Guadalinex 2005"
 msgstr "Bienvenido a Guadalinex 2005"
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:7
+#: ../uda-first-message.templates:7
 msgid "Possible english text1"
 msgstr ""
 "Se va a iniciar la instalación de Guadalinex. Durante todo el "
@@ -47,7 +47,7 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:7
+#: ../uda-first-message.templates:7
 msgid "Paragraph 1.2"
 msgstr ""
 "Guadalinex es Software Libre. Cada uno de los programas y aplicaciones "
@@ -57,13 +57,13 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:14
+#: ../uda-first-message.templates:14
 msgid "Warning backup"
 msgstr "Advertencia: Copia de seguridad"
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:14
+#: ../uda-first-message.templates:14
 msgid "English text 2"
 msgstr ""
 "Aunque normalmente la instalación de este CD no presenta ningún problema, "
@@ -72,7 +72,7 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:14
+#: ../uda-first-message.templates:14
 msgid "Paragraph 2.2"
 msgstr ""
 "Le recordamos la importancia de realizar una copia de seguridad de sus datos "
@@ -80,19 +80,19 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:21
+#: ../uda-first-message.templates:21
 msgid "Stages"
 msgstr "Etapas de la instalación"
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:21
+#: ../uda-first-message.templates:21
 msgid "English text 3"
 msgstr "El proceso de instalación está dividido en varias etapas:"
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:21
+#: ../uda-first-message.templates:21
 msgid "Paragraph 3.2"
 msgstr ""
 "- Seleccionar dónde (en que parte del disco duro) quiere instalar "
@@ -105,13 +105,13 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:28
+#: ../uda-first-message.templates:28
 msgid "Requirements"
 msgstr "Requisitos para la instalación"
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:28
+#: ../uda-first-message.templates:28
 msgid "English text 4"
 msgstr ""
 "Para instalar y utilizar esta versión de Guadalinex en su "
@@ -119,7 +119,7 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../uda-firstmessage.templates:28
+#: ../uda-first-message.templates:28
 msgid "Paragraph 4.2"
 msgstr ""
 "- 2.5 Gigabytes de espacio libre en el disco duro- 128 Megabytes de memoria "

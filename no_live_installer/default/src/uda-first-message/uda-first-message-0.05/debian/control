@@ -1,11 +1,11 @@
-Source: uda-firstmessage
+Source: uda-first-message
 Section: debian-installer
 Priority: optional
 Maintainer: Carlos Parra Camargo <cparra@emergya.info>
 Build-Depends: po-debconf, debhelper (>= 4.2)
 Standards-Version: 3.6.1.0
 
-Package: uda-firstmessage
+Package: uda-first-message
 XC-Package-Type: udeb
 XB-Installer-Menu-Item: 9
 Architecture: any
