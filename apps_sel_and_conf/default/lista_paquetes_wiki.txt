@@ -1,3 +1,4 @@
+gnome-spell
 gcalctool
 file-roller
 gedit
