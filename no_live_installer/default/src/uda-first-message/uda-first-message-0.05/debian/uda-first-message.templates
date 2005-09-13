@@ -4,28 +4,47 @@ _Description: Bienvenido
 
 Template: uda-first-message/first-message
 Type: note
-_Description: Wellcome to Guadalinex 2005
- Possible english text1
+_Description: Bienvenido a Guadalinex 2005
+ Se va a iniciar la instalación de Guadalinex. Durante todo el 
+ procesoexistirá un sistema de ayuda donde se mostrarán mensajes que deberá
+ leer atentamente.
  .
- Paragraph 1.2
+ Guadalinex es Software Libre. Cada uno de los programas y aplicaciones
+ queintegran la distribución Guadalinex, salvo excepciones, puede
+ serredistribuido y usado sin ninguna restricción, excepto que se
+ redistribuya enlas mismas condiciones.
 
 Template: uda-first-message/warning
 Type: note
-_Description: Warning backup
- English text 2
+_Description: Advertencia: Copia de seguridad
+ Aunque normalmente la instalación de este CD no presenta ningún problema,
+ enalgunos casos (por un particionado incorrecto, o una interrupción de
+ lacorriente eléctrica...) podría resultar en un sistema dañado o inestable.
  .
- Paragraph 2.2
+ Le recordamos la importancia de realizar una copia de seguridad de sus datos 
+ y aplicaciones más importantes antes de continuar.
 
 Template: uda-first-message/stages
 Type: note
-_Description: Stages
- English text 3
+_Description: Etapas de la instalación
+ El proceso de instalación está dividido en varias etapas:
  .
- Paragraph 3.2
+ - Seleccionar dónde (en que parte del disco duro) quiere instalar Guadalinex
+ - Instalar los programas básicos para que su ordenador pueda arrancar
+ - Se reiniciará el ordenador
+ - A continuación se instalarán el resto de programas con un instalador 
+   gráfico y usable (es el paso que tarda más).
+ - Por último el CD será expulsado y su ordenador quedará listo para usar.
+ - En su ordenador el tiempo estimado del proceso completo es de 30 minutos.
 
 Template: uda-first-message/requirements
 Type: note
-_Description: Requirements
- English text 4
+_Description: Requisitos para la instalación
+ Para instalar y utilizar esta versión de Guadalinex en su 
+ ordenador necesitará al menos:
  .
- Paragraph 4.2
+ - 2.5 Gigabytes de espacio libre en el disco duro
+ - 128 Megabytes de memoria RAM
+ - Tarjeta gráfica SVGA
+ - Procesador Intel o compatible a 200 Megaherzios (en la 
+   documentación adicional puede consultar el hardware recomendado)
