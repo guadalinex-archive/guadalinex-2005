@@ -2,7 +2,6 @@ bicyclerepair
 diveintopython
 ed
 python-epydoc
-cpp-4.0
 fastjar
 gcc-4.0-base
 gij-4.0
@@ -11,7 +10,6 @@ libgcj-common
 libgcj6-common
 libgcj6
 libstdc++6
-cpp
 gij
 gdb
 python-genetic
