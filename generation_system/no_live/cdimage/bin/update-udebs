@@ -4,7 +4,7 @@ set -e
 [ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
 . "$CDIMAGE_ROOT/etc/config"
 
-
+MIRROR="http://archive.ubuntu.com/ubuntu"
 LOG=$CDIMAGE_ROOT/log/update-udebs.log
 > $LOG
 
@@ -25,7 +25,8 @@ do
 	UDEB_NAME=${UDEB_FILE/_*/}
 	TMP_VERSION1=${UDEB_FILE/_all.udeb/}; TMP_VERSION2=${TMP_VERSION1/_i386.udeb/}; UDEB_VERSION=${TMP_VERSION2/*_/}
 	UDEB_DIR=${x/\/*.udeb/}
-	UDEB_DIR=$(echo $x | awk '{ match($1,/(\/.*\/).+(.*\.udeb)/, arr); print arr[1]}')
+#	UDEB_DIR=$(echo $x | awk '{ match($1,/(\/.*\/).+(.*\.udeb)/, arr); print arr[1]}')
+	UDEB_DIR=$(dirname $x)
 
 	echo $UDEB_NAME >> $LOG
 
