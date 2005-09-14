@@ -94,7 +94,7 @@ gen_package () {
 		mkdir $TMPDIR/debian
 	fi
 	
-	debdepends=$(cat $TMPDIR/DEBDEPENDS || true)
+	debdepends=$(egrep -v "^#" $TMPDIR/DEBDEPENDS || true)
 	debconflicts=$(cat $TMPDIR/DEBCONFLICTS || true)
 	if [ -s $TMPDIR/DEBMAINTAINER ]
 	then
