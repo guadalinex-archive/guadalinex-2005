@@ -6,20 +6,20 @@ Template: uda-first-message/first-message
 Type: note
 _Description: Bienvenido a Guadalinex 2005
  Se va a iniciar la instalación de Guadalinex. Durante todo el 
- procesoexistirá un sistema de ayuda donde se mostrarán mensajes que deberá
+ proceso existirá un sistema de ayuda donde se mostrarán mensajes que deberá
  leer atentamente.
  .
  Guadalinex es Software Libre. Cada uno de los programas y aplicaciones
  queintegran la distribución Guadalinex, salvo excepciones, puede
- serredistribuido y usado sin ninguna restricción, excepto que se
- redistribuya enlas mismas condiciones.
+ ser redistribuido y usado sin ninguna restricción, excepto que se
+ redistribuya eni las mismas condiciones.
 
 Template: uda-first-message/warning
 Type: note
 _Description: Advertencia: Copia de seguridad
  Aunque normalmente la instalación de este CD no presenta ningún problema,
- enalgunos casos (por un particionado incorrecto, o una interrupción de
- lacorriente eléctrica...) podría resultar en un sistema dañado o inestable.
+ en algunos casos (por un particionado incorrecto, o una interrupción de
+ la corriente eléctrica...) podría resultar en un sistema dañado o inestable.
  .
  Le recordamos la importancia de realizar una copia de seguridad de sus datos 
  y aplicaciones más importantes antes de continuar.
