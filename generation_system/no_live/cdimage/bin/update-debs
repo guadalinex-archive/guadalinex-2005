@@ -21,7 +21,7 @@ cat breezy-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_lis
 PARAMS=""
 for x in $(cat $CDIMAGE_ROOT/uda/lists/exclude)
 do
-	PARAMS=$PARAMS"-e $x "
+	PARAMS=$PARAMS"-e $x"'_ '
 done
 
 cat fresh_debs_list_breezy | grep -v $PARAMS > fresh_debs_list
@@ -33,7 +33,8 @@ do
 	DEB_NAME=${DEB_FILE/_*/}
 	TMP_VERSION1=${DEB_FILE/_all.deb/}; TMP_VERSION2=${TMP_VERSION1/_i386.deb/}; DEB_VERSION=${TMP_VERSION2/*_/}
 	DEB_DIR=${x/\/*.deb/}
-	DEB_DIR=$(echo $x | awk '{ match($1,/(\/.*\/).+(.*\.deb)/, arr); print arr[1]}')
+#	DEB_DIR=$(echo $x | awk '{ match($1,/(\/.*\/).+(.*\.deb)/, arr); print arr[1]}')
+	DEB_DIR=$(dirname $x)
 
 	echo $DEB_NAME >> $LOG
 
