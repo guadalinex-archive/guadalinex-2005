@@ -2,7 +2,7 @@ Source: uda-postinstall
 Section: uda
 Priority: optional
 Maintainer: Roberto Majadas <roberto@hispafuentes.com>
-Build-Depends: debhelper (>= 4.0.0), autotools-dev, cdbs
+Build-Depends: debhelper (>= 4.0.0), autotools-dev, cdbs, libglade2-dev, libxml-parser-perl
 Standards-Version: 3.6.1
 
 Package: uda-postinstall
