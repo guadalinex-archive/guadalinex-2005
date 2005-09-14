@@ -2,6 +2,8 @@
 # -*- coding: utf8 -*- 
 
 import dbus
+if getattr(dbus, "version", (0,0,0)) >= (0,41,0):
+    import dbus.glib
 import time
 import logging
 import gtk
@@ -18,25 +20,16 @@ class DeviceListener:
         self.logger = logging.getLogger()
 
         #Inicialize
-        self.bus = dbus.Bus(dbus.Bus.TYPE_SYSTEM)
+        self.bus = dbus.SystemBus()
+
         obj = self.bus.get_object('org.freedesktop.Hal',
                                   '/org/freedesktop/Hal/Manager')
 
-        obj.connect_to_signal('DeviceAdded', 
-                self.on_device_added, 
-                dbus_interface = 'org.freedesktop.Hal.Manager')
-
         self.hal_manager = dbus.Interface(obj, 'org.freedesktop.Hal.Manager')
 
-        self.bus.add_signal_receiver(self.on_device_added, 
-                                 dbus_interface = 'org.freedesktop.Hal.Manager',
-                                 signal_name = 'DeviceAdded',
-                                 path = '/org/freedesktop/Hal/Manager')
-
-        self.bus.add_signal_receiver(self.on_device_removed, 
-                                 dbus_interface = 'org.freedesktop.Hal.Manager',
-                                 signal_name = 'DeviceRemoved',
-                                 path = '/org/freedesktop/Hal/Manager')
+        self.hal_manager.connect_to_signal('DeviceAdded', self.on_device_added)
+        self.hal_manager.connect_to_signal('DeviceRemoved', 
+                self.on_device_removed)
 
         self.udi_dict = {}
         self.modify_handler_dict = {}
@@ -50,7 +43,7 @@ class DeviceListener:
         self.logger.info("DeviceListener iniciado")
 
 
-    def on_device_added(self,  udi):
+    def on_device_added(self, udi, *args):
         self.logger.debug("DeviceAdded: " + str(udi))
         self.devicelist.save()
 
@@ -74,7 +67,7 @@ class DeviceListener:
                 self.message_render.show_warning("Dispositivo detectado, pero no identificado") 
 
 
-    def on_device_removed(self,  udi): 
+    def on_device_removed(self, udi, *args): 
         self.logger.debug("DeviceRemoved: " + str(udi))
         self.devicelist.save()
 
@@ -195,8 +188,6 @@ class NotificationDaemon(object):
                 'EO', 16, "Info", str(message), 
                 '', list((1,2)), list((0,0)), 
                 dbus.UInt32(10))
-
-
 
         #notification-daemon spec: -------------------------------------------
         #http://galago.info/specs/notification/0.7/index.html
