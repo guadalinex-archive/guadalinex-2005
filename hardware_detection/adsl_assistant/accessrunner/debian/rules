@@ -18,7 +18,6 @@ configure-stamp:
 build-arch: configure-stamp  build-arch-stamp
 build-arch-stamp:
 	dh_testdir
-	/usr/bin/docbook-to-man debian/speedtch-fw.sgml > debian/speedtch-fw.1
 	/usr/bin/docbook-to-man debian/cxacru-fw.sgml > debian/cxacru-fw.1
 	$(MAKE) binutils
 	touch build-arch-stamp
@@ -51,7 +50,6 @@ install: build
 
 	install -p -d -m 755 debian/accessrunner-usb-utils/usr/share/man/man1/
 	install -p -d -m 755 debian/accessrunner-usb-utils/usr/share/modass/overrides/
-	install -m 644 debian/speedtch-fw.1 debian/accessrunner-usb-utils/usr/share/man/man1/speedtch-fw.1
 	install -m 644 debian/cxacru-fw.1 debian/accessrunner-usb-utils/usr/share/man/man1/cxacru-fw.1
 	ln -s /usr/share/modass/packages/default.sh debian/accessrunner-usb-utils/usr/share/modass/overrides/accessrunner-usb-source
 	dh_install
@@ -100,7 +98,7 @@ KVERCOMP=$(shell uname -r)
 
 kdist_clean: prep-deb-files
 	dh_clean
-	$(MAKE) -C usbatm clean
+	$(MAKE) -C drivers/usb/atm clean
 
 kdist_config: prep-deb-files
 kdist_configure: kdist_config
@@ -111,8 +109,8 @@ binary-modules: kdist_config
 	dh_clean -k
 # build and install the module
 	$(MAKE) KVERS=$(KVERS) LINUXSRC=$(KSRC) MODPREFIX=$(CURDIR)/debian/$(PKGNAME)/ modules
-	@for mod in cxacru speedtch usbatm xusbatm; do \
-		install -m644 -b -D usbatm/$${mod}.$(KO)o $(CURDIR)/debian/$(PKGNAME)/lib/modules/$(KVERCOMP)/misc/$${mod}.$(KO)o ; \
+	@for mod in cxacru usbatm; do \
+		install -m644 -b -D drivers/usb/atm/$${mod}.$(KO)o $(CURDIR)/debian/$(PKGNAME)/lib/modules/$(KVERCOMP)/misc/$${mod}.$(KO)o ; \
 	done
 	# FIXME KVERS no tiene minor
 

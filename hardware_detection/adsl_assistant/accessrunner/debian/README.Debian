@@ -9,11 +9,13 @@ You can get more instructions about how to obtain the firmware here:
 http://accessrunner.sourceforge.net/firmware.shtml
 "Conexant usually ships the firmware embedded in a [Windows] driver library, typically CnxEtU.sys. There is a program which may help you to extract it from there, cxacru-fw."
 
-In the accessrunner-usb-utils package there are two utils to obtain firmwares of accessrunner USB devices: cxacru-fw, speedtch-fw.
+In the accessrunner-usb-utils package there are one utils to obtain firmwares of accessrunner USB devices: cxacru-fw.
 
-For example, a tipical output:
-$ cxacru-fw CnxEtU.sys firmwarefile.out
+For example, a tipical firmware configuration:
+$ cxacru-fw CnxEtU.sys cxacru-fw.bin
 found firmware in `/tmp/CnxEtU.sys' at offset 0x41c0
+
+$ sudo cp cxacru-fw.bin /lib/hotplug/firmware/cxacru-fw.bin
 
 o How do i build this module the debian way?
 

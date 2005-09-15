@@ -5,25 +5,23 @@ endif
 VERSION=$(shell echo ${KERNEL}|sed "s/^\([0-9]*\.[0-9]*\).*/\1/")
 
 binutils:
-	@make -C usbatm firmware
 	@make -C utils
 
 installbins:
 	install -c -m 755 utils/cxacru-fw ${PREFIX}/bin/cxacru-fw
-	install -c -m 755 usbatm/speedtch-fw ${PREFIX}/bin/speedtch-fw
 
 modules: all
 
 all:
-	(cd usbatm; make)
+	(cd drivers/usb/atm; make)
 
 clean:
-	@make -C usbatm clean
+	@make -C drivers/usb/atm clean
 
 install:
-	@make -C usbatm install
+	@make -C drivers/usb/atm install
 
 uninstall:
-	@make -C usbatm uninstall
+	@make -C drivers/usb/atm uninstall
 
 .PHONY : all clean install uninstall binutils installbins installmod

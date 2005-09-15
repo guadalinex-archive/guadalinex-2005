@@ -29,11 +29,8 @@
 #include <linux/atmdev.h>
 #include <linux/completion.h>
 #include <linux/config.h>
-#include <linux/device.h>
 #include <linux/kref.h>
 #include <linux/list.h>
-#include <linux/stringify.h>
-#include <linux/usb.h>
 
 /*
 #define DEBUG
@@ -44,43 +41,12 @@
 #	define DEBUG
 #endif
 
+#include <linux/usb.h>
+
 #ifdef DEBUG
 #define UDSL_ASSERT(x)	BUG_ON(!(x))
 #else
-#define UDSL_ASSERT(x)	do { if (!(x)) warn("failed assertion '%s' at line %d", __stringify(x), __LINE__); } while(0)
-#endif
-
-#define usb_err(instance, format, arg...)	\
-	dev_err(&(instance)->usb_intf->dev , format , ## arg)
-#define usb_info(instance, format, arg...)	\
-	dev_info(&(instance)->usb_intf->dev , format , ## arg)
-#define usb_warn(instance, format, arg...)	\
-	dev_warn(&(instance)->usb_intf->dev , format , ## arg)
-#ifdef DEBUG
-#define usb_dbg(instance, format, arg...)	\
-        dev_printk(KERN_DEBUG , &(instance)->usb_intf->dev , format , ## arg)
-#else
-#define usb_dbg(instance, format, arg...)	\
-	do {} while (0)
-#endif
-
-/* FIXME: move to dev_* once ATM is driver model aware */
-#define atm_printk(level, instance, format, arg...)	\
-	printk(level "ATM dev %d: " format ,		\
-	(instance)->atm_dev->number , ## arg)
-
-#define atm_err(instance, format, arg...)	\
-	atm_printk(KERN_ERR, instance , format , ## arg)
-#define atm_info(instance, format, arg...)	\
-	atm_printk(KERN_INFO, instance , format , ## arg)
-#define atm_warn(instance, format, arg...)	\
-	atm_printk(KERN_WARNING, instance , format , ## arg)
-#ifdef DEBUG
-#define atm_dbg(instance, format, arg...)	\
-	atm_printk(KERN_DEBUG, instance , format , ## arg)
-#else
-#define atm_dbg(instance, format, arg...)	\
-	do {} while (0)
+#define UDSL_ASSERT(x)	do { if (!(x)) warn("failed assertion '" #x "' at line %d", __LINE__); } while(0)
 #endif
 
 
@@ -89,9 +55,9 @@
 struct usbatm_data;
 
 /*
-*  Assuming all methods exist and succeed, they are called in this order:
+*  Assuming all methods exist and succeed, they are called like this:
 *
-*  	bind, heavy_init, atm_start, ..., atm_stop, unbind
+*  	bind, heavy_init, atm_start, atm_stop, unbind
 */
 
 struct usbatm_driver {
@@ -101,10 +67,9 @@ struct usbatm_driver {
 
 	/*
 	*  init device ... can sleep, or cause probe() failure.  Drivers with a heavy_init
-	*  method can avoid having it called by setting need_heavy_init to zero.
+	*  method can avoid the call to heavy_init by setting need_heavy_init to zero.
 	*/
-        int (*bind) (struct usbatm_data *, struct usb_interface *,
-		     const struct usb_device_id *id, int *need_heavy_init);
+        int (*bind) (struct usbatm_data *, struct usb_interface *, int *need_heavy_init);
 
 	/* additional device initialization that is too slow to be done in probe() */
         int (*heavy_init) (struct usbatm_data *, struct usb_interface *);
@@ -130,16 +95,54 @@ extern int usbatm_usb_probe(struct usb_interface *intf, const struct usb_device_
 extern void usbatm_usb_disconnect(struct usb_interface *intf);
 
 
-struct usbatm_channel {
-	int endpoint;			/* usb pipe */
-	unsigned int stride;		/* ATM cell size + padding */
-	unsigned int buf_size;		/* urb buffer size */
-	spinlock_t lock;
+/* usbatm */
+
+#define UDSL_MAX_RCV_URBS		4
+#define UDSL_MAX_SND_URBS		4
+#define UDSL_MAX_RCV_BUFS		8
+#define UDSL_MAX_SND_BUFS		8
+#define UDSL_MAX_RCV_BUF_SIZE		1024	/* ATM cells */
+#define UDSL_MAX_SND_BUF_SIZE		1024	/* ATM cells */
+#define UDSL_DEFAULT_RCV_URBS		2
+#define UDSL_DEFAULT_SND_URBS		2
+#define UDSL_DEFAULT_RCV_BUFS		4
+#define UDSL_DEFAULT_SND_BUFS		4
+#define UDSL_DEFAULT_RCV_BUF_SIZE	64	/* ATM cells */
+#define UDSL_DEFAULT_SND_BUF_SIZE	64	/* ATM cells */
+
+
+/* receive */
+
+struct usbatm_receive_buffer {
 	struct list_head list;
-	struct tasklet_struct tasklet;
-	struct timer_list delay;
-	struct usbatm_data *usbatm;
+	unsigned char *base;
+	unsigned int filled_cells;
 };
+
+struct usbatm_receiver {
+	struct list_head list;
+	struct usbatm_receive_buffer *buffer;
+	struct urb *urb;
+	struct usbatm_data *instance;
+};
+
+
+/* send */
+
+struct usbatm_send_buffer {
+	struct list_head list;
+	unsigned char *base;
+	unsigned char *free_start;
+	unsigned int free_cells;
+};
+
+struct usbatm_sender {
+	struct list_head list;
+	struct usbatm_send_buffer *buffer;
+	struct urb *urb;
+	struct usbatm_data *instance;
+};
+
 
 /* main driver data */
 
@@ -157,6 +160,10 @@ struct usbatm_data {
 	struct usb_device *usb_dev;
 	struct usb_interface *usb_intf;
 	char description[64];
+	int tx_endpoint;
+	int rx_endpoint;
+	int tx_padding;
+	int rx_padding;
 
 	/* ATM device */
 	struct atm_dev *atm_dev;
@@ -176,13 +183,31 @@ struct usbatm_data {
 	/* ATM device */
 	struct list_head vcc_list;
 
-	struct usbatm_channel rx_channel;
-	struct usbatm_channel tx_channel;
+	/* receive */
+	struct usbatm_receiver receivers[UDSL_MAX_RCV_URBS];
+	struct usbatm_receive_buffer receive_buffers[UDSL_MAX_RCV_BUFS];
+
+	spinlock_t receive_lock;
+	struct list_head spare_receivers;
+	struct list_head filled_receive_buffers;
+
+	struct tasklet_struct receive_tasklet;
+	struct list_head spare_receive_buffers;
+
+	/* send */
+	struct usbatm_sender senders[UDSL_MAX_SND_URBS];
+	struct usbatm_send_buffer send_buffers[UDSL_MAX_SND_BUFS];
 
 	struct sk_buff_head sndqueue;
-	struct sk_buff *current_skb;			/* being emptied */
 
-	struct urb *urbs[0];
+	spinlock_t send_lock;
+	struct list_head spare_senders;
+	struct list_head spare_send_buffers;
+
+	struct tasklet_struct send_tasklet;
+	struct sk_buff *current_skb;			/* being emptied */
+	struct usbatm_send_buffer *current_buffer;	/* being filled */
+	struct list_head filled_send_buffers;
 };
 
 #endif	/* _USBATM_H_ */
