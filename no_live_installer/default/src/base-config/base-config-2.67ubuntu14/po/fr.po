@@ -1,0 +1,88 @@
+# French translation of base-config po file.
+# Copyright (C) 2003 Software of Public Interest, Inc.
+# Martin Quinson <Martin.Quinson@tuxfamily.org>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config 1.51\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-07-07 20:26+0300\n"
+"PO-Revision-Date: 2004-05-24 16:09+0200\n"
+"Last-Translator: Christian Perrier <bubulle@debian.org>\n"
+"Language-Team: french <debian-l10n-french@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr ""
+"Utilisez la commande « exit » pour revenir à l'installation du système de "
+"base."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:129
+msgid "enter information manually, "
+msgstr "indiquer l'information vous-même, "
+
+#: ../apt-setup:240
+msgid "Scanning CD, this will take a minute."
+msgstr "Examen du cédérom, cela prendra environ une minute."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:314
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"L'outil Debian de gestion des paquets, apt, est maintenant configuré et va "
+"pouvoir installer ${PACKAGE_COUNT} paquet"
+msgstr[1] ""
+"L'outil Debian de gestion des paquets, apt, est maintenant configuré et va "
+"pouvoir installer ${PACKAGE_COUNT} paquets"
+
+#: ../apt-setup:395
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Vous utilisez probablement un cédérom pour l'installation du système de base "
+"de Debian, mais il n'est pas actuellement dans le lecteur. Vous devriez le "
+"mettre en place et choisir « cdrom »."
+
+#: ../apt-setup:645 ../apt-setup:715 ../apt-setup:810
+msgid "Testing apt sources..."
+msgstr "Test des sources d'APT..."
+
+#: ../base-config:37
+msgid "Configuring the base system..."
+msgstr "Configuration du système de base..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "Mise à jour du fichier « available »..."
+
+#~ msgid "dselect - old package selector (experts only)"
+#~ msgstr "dselect - ancienne méthode de choix de paquets (pour experts)"
+
+#~ msgid "aptitude - pick tasks or drill down to individual packages"
+#~ msgstr "aptitude - choix par tâches ou paquet par paquet"
+
+#~ msgid "tasksel - quickly choose from predefined collections of software"
+#~ msgstr "tasksel - choix parmi des collections prédéfinies de logiciels"
+
+#~ msgid "nothing - you may manually run apt-get or any of the above later"
+#~ msgstr "aucun - utiliser plus tard apt-get ou un des programmes ci-dessus"
+
+#~ msgid "Testing apt sources ..."
+#~ msgstr "Test des sources d'APT..."

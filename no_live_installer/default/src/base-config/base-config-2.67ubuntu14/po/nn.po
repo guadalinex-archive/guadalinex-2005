@@ -1,0 +1,96 @@
+# translation of base-config.po to Norwegian Nynorsk
+# translation of nn.po to Norwegian (Nynorsk)
+# translation of debian-installer.po to Norwegian Nynorsk
+# Norwegian Nynorsk messages for debian-installer.
+# Copyright (C) 2003 Software in the Public Interest, Inc.
+# This file is distributed under the same license as debian-installer.
+# Gaute Hvoslef Kvalnes <gaute@verdsveven.com>, 2003.
+# Håvard Korsvoll <korsvoll@skulelinux.no>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-07-07 20:26+0300\n"
+"PO-Revision-Date: 2004-04-23 17:51+0200\n"
+"Last-Translator: Håvard Korsvoll <korsvoll@skulelinux.no>\n"
+"Language-Team: Norwegian (Nynorsk) <i18n-nn@lister.ping.uio.no>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Skriv «exit» for å gå tilbake til grunnoppsett."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:129
+msgid "enter information manually, "
+msgstr "skriv inn informasjon manuelt, "
+
+#: ../apt-setup:240
+msgid "Scanning CD, this will take a minute."
+msgstr "Skannar CD, dette vil ta ei stund."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:314
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Handteringsverktøyet for debianpakkar «apt» er no sett opp, og kan "
+"installera ${PACKAGE_COUNT} pakke."
+msgstr[1] ""
+"Handteringsverktøyet for debianpakkar «apt» er no sett opp, og kan "
+"installera ${PACKAGE_COUNT} pakkar."
+
+#: ../apt-setup:395
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Du brukte truleg ein CD for å installera grunnsystemet til Debian, men han "
+"er ikkje lenger i CDROM-lesaren. Du bør setja inn CD-en og velja «cdrom»."
+
+#: ../apt-setup:645 ../apt-setup:715 ../apt-setup:810
+msgid "Testing apt sources..."
+msgstr "Testar apt-kjelder ..."
+
+#: ../base-config:37
+msgid "Configuring the base system..."
+msgstr "Set opp grunnsystemet ..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "Oppdaterer fil over det som er tilgjengeleg ..."
+
+#~ msgid "dselect - old package selector (experts only)"
+#~ msgstr "dselect - gamal pakkehandterar (berre for eksperter)"
+
+#~ msgid "aptitude - pick tasks or drill down to individual packages"
+#~ msgstr "aptitude - vel oppgåve-pakkar eller installer einskild pakkar"
+
+#~ msgid "tasksel - quickly choose from predefined collections of software"
+#~ msgstr "taksel - vel raskt frå førehandsdefinerte samlingar av programvare"
+
+#~ msgid "nothing - you may manually run apt-get or any of the above later"
+#~ msgstr ""
+#~ "ingenting - du kan køyra apt-get manuelt eller ein av dei som står over "
+#~ "seinare"
+
+#~ msgid "Testing apt sources ..."
+#~ msgstr "Testar apt-kjelder ..."
+
+#~ msgid "enter information manually"
+#~ msgstr "skriv inn informasjon manuelt"

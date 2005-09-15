@@ -1,0 +1,77 @@
+# translation of base-config_po_sl.po to Slovenian
+# translation of sl.po to Slovenian
+# Jure ÄŒuhalev <gandalf@owca.info>, 2003.
+# Matjaz Horvat <matjaz@owca.info>, 2004.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config_po_sl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-07-07 20:26+0300\n"
+"PO-Revision-Date: 2004-04-01 15:32+0100\n"
+"Last-Translator: Jure ÄŒuhalev <gandalf@owca.info>\n"
+"Language-Team: Slovenian <sl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Vnesite 'exit', èe se ¾elite vrniti v base-config."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:129
+msgid "enter information manually, "
+msgstr ""
+
+#: ../apt-setup:240
+msgid "Scanning CD, this will take a minute."
+msgstr ""
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:314
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../apt-setup:395
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+
+#: ../apt-setup:645 ../apt-setup:715 ../apt-setup:810
+msgid "Testing apt sources..."
+msgstr ""
+
+#: ../base-config:37
+msgid "Configuring the base system..."
+msgstr "Nastavljanje osnovnega sistema ..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "Posodabljam datoteko \"available\" ..."
+
+#~ msgid "dselect - old package selector (experts only)"
+#~ msgstr "dselect - staro orodje za izbiro paketov (samo za izku¹ene)"
+
+#~ msgid "aptitude - pick tasks or drill down to individual packages"
+#~ msgstr ""
+#~ "aptitude - izberite opravila ali pa se prebijte do posameznih paketkov"
+
+#~ msgid "tasksel - quickly choose from predefined collections of software"
+#~ msgstr "taksel - hitro izberite med vnaprej doloèenimi zbirkami programov"
+
+#~ msgid "nothing - you may manually run apt-get or any of the above later"
+#~ msgstr ""
+#~ "niè - pozneje lahko roèno po¾enete apt-get ali karkoli od zgoraj na¹tetega"

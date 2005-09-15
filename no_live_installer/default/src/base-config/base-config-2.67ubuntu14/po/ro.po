@@ -1,0 +1,72 @@
+# translation of ro.po to Romanian
+# Romanian translation
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Eddy Petrisor <eddy_petrisor@yahoo.com>, 2004.
+# Eddy Petrisor <eddy.petrisor@gmail.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ro\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-07-07 20:26+0300\n"
+"PO-Revision-Date: 2005-02-07 00:07+0200\n"
+"Last-Translator: Eddy Petrisor <eddy.petrisor@gmail.com>\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Scrieţi 'exit' pentru a vă întoarce la base-config."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:129
+msgid "enter information manually, "
+msgstr "introducere manuală a informaţiei, "
+
+#: ../apt-setup:240
+msgid "Scanning CD, this will take a minute."
+msgstr "Se scanează CD-ul, lucrul acesta va dura puţin."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:314
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Apt, instrumentul de management al pachetelor Debian, este acum configurat "
+"şi poate instala ${PACKAGE_COUNT} pachet"
+msgstr[1] ""
+"Apt, instrumentul de management al pachetelor Debian, este acum configurat "
+"şi poate instala ${PACKAGE_COUNT} pachete"
+
+#: ../apt-setup:395
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Probabil aţi folosit un CD pentru instalarea sistemului de bază Debian, dar "
+"acesta nu este în unitate. Probabil că ar trebui să îl introduceţi şi să "
+"selectaţi \"cdrom\"."
+
+#: ../apt-setup:645 ../apt-setup:715 ../apt-setup:810
+msgid "Testing apt sources..."
+msgstr "Se testează sursele apt ..."
+
+#: ../base-config:37
+msgid "Configuring the base system..."
+msgstr "Se configurează sistemul de bază..."

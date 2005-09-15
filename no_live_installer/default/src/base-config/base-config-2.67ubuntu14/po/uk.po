@@ -1,0 +1,94 @@
+# translation of base-config.po to Ukrainian
+# translation of uk.po to Ukrainian
+# Ukrainian translations for PACKAGE package.
+# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Eugeniy Meshcheryakov <eugen@univ.kiev.ua>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config_uk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-07-07 20:26+0300\n"
+"PO-Revision-Date: 2004-06-15 17:00+0300\n"
+"Last-Translator: Eugeniy Meshcheryakov <eugen@univ.kiev.ua>\n"
+"Language-Team: Ukrainian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.3.1\n"
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Наберіть \"exit\", щоб повернутися до base-config"
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:129
+msgid "enter information manually, "
+msgstr "ввести інформацію вручну, "
+
+#: ../apt-setup:240
+msgid "Scanning CD, this will take a minute."
+msgstr "Сканування CD, зачекайте хвилинку."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:314
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Програма роботи з пакунками, apt, зараз налаштована і може встановити "
+"${PACKAGE_COUNT} пакет"
+msgstr[1] ""
+"Програма роботи з пакунками, apt, зараз налаштована і може встановити "
+"${PACKAGE_COUNT} пакета"
+msgstr[2] ""
+"Програма роботи з пакунками, apt, зараз налаштована і може встановити "
+"${PACKAGE_COUNT} пакетів"
+
+#: ../apt-setup:395
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Здається, ви встановили базову систему Debian з компакт-диска, який зараз "
+"відсутній в дисководі. Скоріше за все, вам слід вставити цей диск та вибрати "
+"\"компакт-диск\"."
+
+#: ../apt-setup:645 ../apt-setup:715 ../apt-setup:810
+msgid "Testing apt sources..."
+msgstr "Перевірка джерел apt..."
+
+#: ../base-config:37
+msgid "Configuring the base system..."
+msgstr "Налаштування базової системи..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "Оновлення файлу \"available\"..."
+
+#~ msgid "dselect - old package selector (experts only)"
+#~ msgstr "dselect - стара програма вибору пакунків (тільки для експертів)"
+
+#~ msgid "aptitude - pick tasks or drill down to individual packages"
+#~ msgstr "aptitude - вибір програм окремо або за областями застосування"
+
+#~ msgid "tasksel - quickly choose from predefined collections of software"
+#~ msgstr "tasksel - швидкий вибір серед встановлених пакетів програм"
+
+#~ msgid "nothing - you may manually run apt-get or any of the above later"
+#~ msgstr "нічого - вручну запустити apt-get або щось з вказаного пізніше"
+
+#~ msgid "Testing apt sources ..."
+#~ msgstr "Перевірка джерел apt..."
