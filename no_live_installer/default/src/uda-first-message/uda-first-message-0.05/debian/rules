@@ -5,7 +5,7 @@
 PACKAGE=$(shell dh_listpackages)
 
 build:
-	debconf-updatepo
+#	debconf-updatepo
 clean:
 	dh_testdir
 	dh_testroot
