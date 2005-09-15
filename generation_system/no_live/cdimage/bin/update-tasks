@@ -28,12 +28,36 @@ diff-tasks
 #mv $CDIMAGE_ROOT/debian-cd/tasks/guadalinex/breezy/installer.tmp $CDIMAGE_ROOT/debian-cd/tasks/guadalinex/breezy/installer
 
 # Let's take all the packages that aren't in Ubuntu
-echo "#ifdef ARCH_i386" > $UDA_TASK
+
+#for pkg in $(ls $CDIMAGE_ROOT/uda/pkgs)
+#do
+#	echo ${pkg/_*/} >> $UDA_TASK
+#done
+#echo "#endif /* ARCH_i386 */" >> $UDA_TASK
+
+# Add all packages under uda/pkgs
 for pkg in $(ls $CDIMAGE_ROOT/uda/pkgs)
-do
-	echo ${pkg/_*/} >> $UDA_TASK
+do         
+	echo ${pkg/_*/} >> $UDA_TASK.tmp
 done
+
+# Add all packages listed in uda/lists/include_breezy
+for pkg in $(cat $CDIMAGE_ROOT/uda/lists/include_breezy)
+do 
+	echo $pkg >> $UDA_TASK.tmp
+done
+
+# Add all packages listed in uda/lists/include_uda
+for pkg in $(cat $CDIMAGE_ROOT/uda/lists/include_uda)
+do
+	echo $pkg >> $UDA_TASK.tmp
+done
+
+echo "#ifdef ARCH_i386" > $UDA_TASK
+cat $UDA_TASK.tmp | sort | uniq >> $UDA_TASK
 echo "#endif /* ARCH_i386 */" >> $UDA_TASK
+
+rm $UDA_TASK.tmp
 
 mkdir -p "$TASKS/$DIST"
 cp "$SCRATCH/$DIST"/* "$TASKS/$DIST/"
