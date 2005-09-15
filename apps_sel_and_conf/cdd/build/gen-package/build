@@ -153,7 +153,11 @@ do
 	pkgname=$(echo $pkg | sed  -e 's/^[0-9]*_//')
 	gen_package skel_setup
 	gen_package meta_setup
-	big_meta_deps="$big_meta_deps, $pkgname-conf, $pkgname"
+	if [ -f $CDDPACKAGESDIR/$section/$pkgname-conf*.deb ];then
+		big_meta_deps="$big_meta_deps, $pkgname-conf, $pkgname"
+	else
+		big_meta_deps="$big_meta_deps, $pkgname"
+	fi
 done
 gen_package "big_meta_setup $big_meta_deps"
 
