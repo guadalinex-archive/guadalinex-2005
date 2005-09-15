@@ -813,6 +813,7 @@ while (<STDIN>) {
         last if (--$cnt <= 0);
       }
     }
+    undef $val;
   }
 }
 for $v (keys %fields) {

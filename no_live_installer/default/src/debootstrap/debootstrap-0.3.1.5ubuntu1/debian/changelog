@@ -1,3 +1,17 @@
+debootstrap (0.3.1.5ubuntu1) breezy; urgency=low
+
+  * Resynchronise with Debian.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 12 Sep 2005 14:17:53 +0100
+
+debootstrap (0.3.1.5) unstable; urgency=low
+
+  * NMU.
+  * Fixed "--variant=buildd option does not work" for pbuilder,
+    closes: #314858. Patch by Matt Kraai <kraai@ftbfs.org>.
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Sat, 13 Aug 2005 15:38:54 +1000
+
 debootstrap (0.3.1.4ubuntu4) breezy; urgency=low
 
   * [breezy] Add libc6-sparc64 for buildd variant on sparc.
