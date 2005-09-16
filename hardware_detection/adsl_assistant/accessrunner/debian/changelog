@@ -2,9 +2,10 @@ accessrunner-usb (0.2) unstable; urgency=low
 
   * Driver stable instead of CVS driver
   * drivers/usb/atm/cxacru.c: added support for 0x1242:0x2003 device
-  * debian/REAME.Debian: Update of firmware section with example
+  * debian/README.Debian: Update of firmware section with example
+  * debian/README.Debian: More instructions about firmwares
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 15 Sep 2005 08:59:22 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 16 Sep 2005 17:58:04 +0200
 
 accessrunner-usb (0.1) unstable; urgency=low
 
