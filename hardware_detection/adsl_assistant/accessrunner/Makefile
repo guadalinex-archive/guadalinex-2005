@@ -17,6 +17,7 @@ all:
 
 clean:
 	@make -C drivers/usb/atm clean
+	@make -C utils clean
 
 install:
 	@make -C drivers/usb/atm install
