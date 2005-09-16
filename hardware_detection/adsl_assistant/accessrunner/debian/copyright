@@ -1,0 +1,16 @@
+This package was debianized by Vicente J. Ruiz Jurado on Mon, 12 Sep 2005 10:23:34.
+
+It was downloaded from <http://accessrunner.sourceforge.net>
+
+Copyright:
+
+Upstream Authors:
+
+ *  Copyright (C) 2001, Alcatel
+ *  Copyright (C) 2003, Duncan Sands, SolNegro, Josep Comas
+ *  Copyright (C) 2004, David Woodhouse, Roman Kagan
+
+License:
+
+This package is released under the GNU General Public License, which
+you can find in /usr/share/common-licenses/ on Debian systems.
