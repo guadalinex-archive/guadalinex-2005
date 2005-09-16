@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<confmode_list>
+  <mode id='0001' name='Monopuesto Estático'/>
+  <mode id='0002' name='Monopuesto Dinámico'/>
+  <mode id='0003' name='Multipuesto Estático'/>
+  <mode id='0004' name='Multipuesto Dinámico'/>
+</confmode_list>

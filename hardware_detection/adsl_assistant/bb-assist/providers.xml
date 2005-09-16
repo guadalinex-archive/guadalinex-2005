@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<provider_list>
+  <provider id='0001' name='Telefónica de España'/>
+  <provider id='0002' name='Operadora ficticia sin equipos soportados solo para pruebas'/>
+</provider_list>

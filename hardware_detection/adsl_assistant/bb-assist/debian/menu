@@ -1,0 +1,4 @@
+?package(bb-assist):needs="X11" section="Apps/Net" \
+  title="BroadBand Assistant" \
+  icon="/usr/share/bb-assist/glade/pixmaps/bb-assist16.xpm" \
+  command="/usr/bin/bb-assist"

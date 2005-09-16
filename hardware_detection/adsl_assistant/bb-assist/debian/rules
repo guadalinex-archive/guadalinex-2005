@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/python-distutils.mk
+
+build/bb-assist::
+	/usr/bin/docbook-to-man debian/bb-assist.sgml > debian/bb-assist.1
+
+install/bb-assist::
+	install -p -d -m 755 debian/$(cdbs_curpkg)/usr/share/man/man1/
+	install -m 644 debian/bb-assist.1 debian/$(cdbs_curpkg)/usr/share/man/man1/bb-assist.1
