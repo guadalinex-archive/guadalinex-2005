@@ -1,4 +1,2 @@
-netcfg
-ethdetect
-pcmcia-cs-udeb
-wireless-tools-udeb
+uda-pregrub-message
+uda-prepartman-message

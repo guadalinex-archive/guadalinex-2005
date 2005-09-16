@@ -5,6 +5,7 @@ d-i		netcfg/get_hostname			string uda
 d-i		ethdetect/use_firewire_ethernet		boolean false
 d-i		hw-detect/load_floppy			boolean false
 d-i 		archive-copier/desktop-task		string ubuntu-desktop
+d-i		netcfg/dhcp_options			string Do not configure the network at this time
 passwd		passwd/user-fullname			string uda
 passwd		passwd/username				string uda
 passwd		passwd/user-password			password gnuuda
