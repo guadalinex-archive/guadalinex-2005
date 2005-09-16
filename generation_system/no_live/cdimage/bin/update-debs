@@ -21,7 +21,7 @@ cat breezy-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_lis
 PARAMS=""
 for x in $(cat $CDIMAGE_ROOT/uda/lists/exclude)
 do
-	PARAMS=$PARAMS"-e $x"'_ '
+	PARAMS=$PARAMS'-e /'$x'_ '
 done
 
 cat fresh_debs_list_breezy | grep -v $PARAMS > fresh_debs_list
