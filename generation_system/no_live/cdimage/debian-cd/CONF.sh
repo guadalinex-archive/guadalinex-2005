@@ -218,8 +218,8 @@ if [ "$CDIMAGE_DVD" = 1 ]; then
   export DEFBINSIZE=4600
   export DEFSRCSIZE=4600
 else
-  export DEFBINSIZE=650
-  export DEFSRCSIZE=645
+  export DEFBINSIZE=700
+  export DEFSRCSIZE=690
 fi
 
 # We don't want certain packages to take up space on CD1...
