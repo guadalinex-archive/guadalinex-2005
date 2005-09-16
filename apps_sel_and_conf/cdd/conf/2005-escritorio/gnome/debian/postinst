@@ -24,7 +24,9 @@ set -e
 
 case "$1" in
     configure)
+    if [ ! -e /usr/share/pixmaps/splash/guadalinex-splash.png ];then
     	ln -s /usr/share/pixmaps/splash/gnome-splash.png /usr/share/pixmaps/splash/guadalinex-splash.png
+    fi
 
     ;;
 
