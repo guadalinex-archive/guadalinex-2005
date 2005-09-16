@@ -1,0 +1,32 @@
+#!/bin/bash
+
+. cdd.cfg
+DEBIANSRC="meta-pkg"
+
+if [ ! $# -gt 0 ];then
+	echo "Usage: $0 depend [depend..]"
+	exit 1
+fi
+
+cd $DEBIANSRC
+
+echo "Source: meta-guadalinex-2005
+Section: misc
+Priority: optional
+Maintainer: Gabriel Rodríguez Alberich <grodriguez@yaco.es>
+Standards-Version: 3.6.0
+
+Package: meta-guadalinex-2005
+Architecture: all" > debian/control
+
+depends=$(echo $@ | sed -e 's/ /, /g')
+echo "Depends: $depends" >> debian/control
+
+echo "Description: Guadalinex 2005 metapackage
+ This metapackage installs a whole Guadalinex 2005 distribution." >> debian/control
+
+
+fakeroot debian/rules binary
+fakeroot debian/rules clean
+cd ..
+mv meta-guadalinex-2005*.deb $CDDPACKAGESDIR

@@ -1,0 +1,11 @@
+Source: meta-guadalinex-2005
+Section: misc
+Priority: optional
+Maintainer: Gabriel Rodríguez Alberich <grodriguez@yaco.es>
+Standards-Version: 3.6.0
+
+Package: meta-guadalinex-2005
+Architecture: all
+Depends: meta-guadalinex-2005-base, meta-guadalinex-2005-escritorio, meta-guadalinex-2005-noescritorio
+Description: Guadalinex 2005 metapackage
+ This metapackage installs a whole Guadalinex 2005 distribution.
