@@ -37,6 +37,16 @@
     <device_type id='0001'/>
     <support>1</support>
     <deviceid_list>
+      <deviceid vendor='0572' model='cafe'/>
+      <deviceid vendor='0572' model='cb00'/>
+      <deviceid vendor='0572' model='cb01'/>
+      <deviceid vendor='0572' model='cb06'/>
+      <deviceid vendor='08e3' model='0100'/>
+      <deviceid vendor='08e3' model='0102'/>
+      <deviceid vendor='0eb0' model='3457'/>
+      <deviceid vendor='1803' model='5510'/>
+      <deviceid vendor='0675' model='0200'/>
+      <deviceid vendor='0586' model='330a'/>
       <deviceid vendor='1242' model='2003'/>
     </deviceid_list>
     <provider id='0001'>

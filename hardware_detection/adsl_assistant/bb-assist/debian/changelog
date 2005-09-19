@@ -1,3 +1,10 @@
+bb-assist (0.2) unstable; urgency=low
+
+  * New icons
+  * bb-assist-uml.xmi: first version of the UML model of the assistant
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 19 Sep 2005 20:32:53 +0200
+
 bb-assist (0.1) unstable; urgency=low
 
   * Initial Release. 
