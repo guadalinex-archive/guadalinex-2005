@@ -5,6 +5,7 @@ set -e
 . "$CDIMAGE_ROOT/etc/config"
 
 MIRROR="http://archive.ubuntu.com/ubuntu"
+
 LOG=$CDIMAGE_ROOT/log/update-udebs.log
 > $LOG
 

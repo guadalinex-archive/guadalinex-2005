@@ -65,12 +65,12 @@ libdebconfclient0-udeb
 libdebian-installer4-udeb
 libdevmapper1.01-udeb
 libfribidi0-udeb
-libiw27-udeb
 libiw28-udeb
 libnss-dns-udeb
 libnss-files-udeb
 libparted1.6-udeb
 libreiserfs0.3-udeb
+libslang2-udeb
 libusb-0.1-udeb
 libuuid1-udeb
 lilo-installer
@@ -104,9 +104,9 @@ os-prober
 partconf-find-partitions
 partconf-mkfstab
 parted-udeb
-partman
 partman-auto
 partman-auto-lvm
+partman-base
 partman-basicfilesystems
 partman-basicmethods
 partman-ext3
@@ -129,7 +129,6 @@ rootskel
 rootskel-bootfloppy
 rootskel-locale
 save-logs
-slang1a-utf8-udeb
 tzsetup-udeb
 ubuntu-keyring-udeb
 udev-udeb

@@ -1,8 +1,8 @@
 #ifdef ARCH_i386
-anacron
 at
 bind9-host
 bsdmainutils
+cron
 dmidecode
 dmsetup
 dnsutils
@@ -16,6 +16,7 @@ ftp
 groff-base
 hdparm
 hwdata
+info
 iptables
 iputils-arping
 iputils-tracepath
@@ -35,16 +36,12 @@ libncursesw5
 libparted1.6-12
 libpcap0.8
 libreadline4
-libselinux1
 logrotate
 lshw
 lshw-common
 ltrace
-lvm-common
-lvm2
 man-db
 manpages
-mdadm
 mime-support
 mtr-tiny
 nano
@@ -57,7 +54,9 @@ pppoeconf
 psmisc
 reportbug
 rsync
+tcpdump
 telnet
+time
 ubuntu-standard
 w3m
 wget
