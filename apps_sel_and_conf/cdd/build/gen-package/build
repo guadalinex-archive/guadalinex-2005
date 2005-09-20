@@ -74,7 +74,20 @@ big_meta_setup () {
 	#pkgdesc=$CDDMSG3_$CDDLANG
 	pkgdesc="Definición del $section de $CDDNAME/$CDDFLAVOUR"
 	debmaintainer=$CDDMAINTAINER
-	echo "cdd:Depends=$*" >> $TMPDIR/debian/substvars
+	TODOS=$(echo $* | sed -e 's/,//g')
+	for x in $TODOS
+	do
+		LONG_TMP=$(echo `expr length "$x"`)
+		LONG=$(expr $LONG_TMP - 4)
+		if [ "$(echo $x | cut -c "$LONG"-)" == "-conf" ]; then
+			DEPENDS=$DEPENDS", "$x
+		else
+			PREDEPENDS=$PREDEPENDS", "$x	
+		fi
+
+	done
+	echo "cdd:Depends=$DEPENDS" >> $TMPDIR/debian/substvars
+	echo "cdd:Pre-Depends=$PREDEPENDS" >> $TMPDIR/debian/substvars
 	echo "cdd:Maintainer=$debmaintainer" >> $TMPDIR/debian/substvars
 	clean_skel
 	touch $TMPDIR/debian/skel
