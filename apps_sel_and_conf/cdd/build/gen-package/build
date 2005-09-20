@@ -61,7 +61,7 @@ meta_setup () {
 	pkgname=$flavourservname
 	#pkgdesc=$CDDMSG2_$CDDLANG
 	pkgdesc="Servicio de $servname para el $section de $CDDNAME/$CDDFLAVOUR"
-	echo "cdd:Depends=$debdepends" >> $TMPDIR/debian/substvars
+	echo "cdd:Pre-Depends=$debdepends" >> $TMPDIR/debian/substvars
 	echo "cdd:Conflicts=$debconflicts" >> $TMPDIR/debian/substvars
 	echo "cdd:Maintainer=$debmaintainer" >> $TMPDIR/debian/substvars
 	clean_skel
