@@ -54,3 +54,7 @@ menú aplicaciones no hay problemas con esto.
 edu
 
 media
+
+base
+
+  ·Configurar el teclado español en consola
