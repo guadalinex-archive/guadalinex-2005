@@ -4,8 +4,9 @@
 	./build ../../conf/2005-noescritorio
 	./buildmeta meta-guadalinex-2005-base meta-guadalinex-2005-escritorio meta-guadalinex-2005-noescritorio
 
-mini: packages-mini
-	./build ../../conf/mini
+mini: packages-mini-escritorio
+	./build ../../conf/2005-mini-escritorio
+	./buildmeta-mini meta-guadalinex-2005-base meta-guadalinex-2005-mini-escritorio meta-guadalinex-2005-mini-noescritorio
 
 test: packages-test
 	./build ../../conf/test

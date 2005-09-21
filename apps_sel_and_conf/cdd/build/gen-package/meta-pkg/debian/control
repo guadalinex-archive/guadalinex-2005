@@ -1,11 +1,11 @@
-Source: meta-guadalinex-2005
+Source: meta-guadalinex-2005-mini
 Section: misc
 Priority: optional
-Maintainer: Gabriel Rodríguez Alberich <grodriguez@yaco.es>
+Maintainer: Gumersindo Coronel Pérez <gcoronel@emergya.info>
 Standards-Version: 3.6.0
 
-Package: meta-guadalinex-2005
+Package: meta-guadalinex-2005-mini
 Architecture: all
-Depends: meta-guadalinex-2005-base, meta-guadalinex-2005-escritorio, meta-guadalinex-2005-noescritorio
-Description: Guadalinex 2005 metapackage
- This metapackage installs a whole Guadalinex 2005 distribution.
+Depends: meta-guadalinex-2005-mini-base, meta-guadalinex-2005-mini-escritorio, meta-guadalinex-2005-mini-noescritorio
+Description: Guadalinex 2005 Mini metapackage
+ This metapackage installs a whole Guadalinex 2005 Mini distribution.
