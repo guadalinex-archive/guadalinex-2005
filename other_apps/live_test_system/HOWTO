@@ -1,0 +1,34 @@
+
+    Los scripts «prepare_source.sh» y «tune_source.sh» están pensados para
+automatizar la generación de la imagen ISO de pruebas. Están preparados
+para trabajar bajo los siguientes supuestos:
+
+    Hay un directorio con las fuentes que queremos utilizar. Dentro de
+este directorio, en «tmp/», están los paquetes de «ubuntu-express» (6
+paquetes) y «peez2» (2 paquetes) que queremos probar. Los paquetes de
+«ubuntu-express» pueden generarse a partir de las fuentes del repositorio
+(rama «live_installer/default/»). «Peez2» puede descargarse de la web de
+«Activa Sistemas» ( http://activasistemas.com/forja/files/peez2 ).
+
+    Modo de uso:
+
+1. Suponiendo que las fuentes están en «./sources-breezy», primero
+   debemos ejecutar «prepare_source.
+
+   $ sudo ./prepare_source.sh sources-breezy
+
+2. Una vez hecho eso, estaremos dentro de «sources-breezy» con un «chroot»,
+   y «tune_source.sh» se habrá copiado al actual «/tmp/», así que tendremos
+   que tendremos que hacer:
+
+   # /tmp/tune_source.sh
+
+3. El proceso es no interactivo, excepto por la configuración de los locales
+   (tendremos que eleguir «es_ES.utf8»). Una vez finalizadas todas las
+   comprobaciones y ajustes, debemos salir del entorno «chroot»:
+
+   # exit
+
+4. En ese momento terminará de ejecutarse el script externo
+   («prepare_source.sh») y habremos terminado.
+
