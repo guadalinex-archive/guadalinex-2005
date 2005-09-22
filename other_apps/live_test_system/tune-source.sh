@@ -2,8 +2,6 @@
 
 echo "pushd / ..."
 pushd /
-echo "mount /proc/ ..."
-mount /proc/
 echo "chown root:root etc/gksu.conf ..."
 chown root:root etc/gksu.conf
 echo "chown root:root var/run/sshd/ ..."
@@ -23,10 +21,11 @@ echo "Reconfiguring locales (please select es_ES.utf8) ..."
 dpkg-reconfigure locales
 echo "Deleting doc ..."
 rm -rf usr/doc/* usr/share/doc/*
-echo "Removing old peez2 and ubuntu-express packages ..."
+echo "Removing old peez2, ubuntu-express and gparted packages ..."
 dpkg --remove `dpkg -l | grep peez2 | cut -d' ' -f 3`
 dpkg --remove `dpkg -l | grep ubuntu-express | cut -d' ' -f 3`
-echo "Installing new peez2 and ubuntu-express packages in tmp/ ..."
+dpkg --remove `dpkg -l | grep gparted | cut -d' ' -f 3`
+echo "Installing new peez2, ubuntu-express and gparted packages in tmp/ ..."
 pushd tmp/
 dpkg --install *.deb
 rm -rf *.deb
@@ -44,8 +43,6 @@ if [ ! -e sys/ ]; then mkdir sys/; fi
 if [ ! -e proc/ ]; then mkdir proc/; fi
 if [ ! -e dev/ ]; then mkdir dev/; fi
 if [ ! -e etc/sudoers ]; then echo "Warning: there is no etc/sudoers file!"; fi
-echo "umount /proc/ ..."
-umount /proc/
 echo "popd ..."
 popd
 
