@@ -5,12 +5,12 @@ if [ 1 != $# ]; then
     exit 1
 fi
 
-echo cp tune-source.sh $1/tmp/ ...
+echo "cp tune-source.sh $1/tmp/ ..."
 cp tune-source.sh $1/tmp/
 chmod u+x $1/tmp/tune-source.sh
-echo now you should execute /tmp/tune-source.sh
+echo "Now you should execute /tmp/tune-source.sh"
 chroot $1
 rm $1/tmp/tune-source.sh
-echo chroot $1 ldconfig ...
+echo "chroot $1 ldconfig ..."
 chroot $1 ldconfig
 

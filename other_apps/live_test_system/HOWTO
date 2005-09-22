@@ -1,5 +1,5 @@
 
-    Los scripts «prepare_source.sh» y «tune_source.sh» están pensados para
+    Los scripts «prepare-source.sh» y «tune_source.sh» están pensados para
 automatizar la generación de la imagen ISO de pruebas. Están preparados
 para trabajar bajo los siguientes supuestos:
 
@@ -13,9 +13,9 @@ paquetes) y «peez2» (2 paquetes) que queremos probar. Los paquetes de
     Modo de uso:
 
 1. Suponiendo que las fuentes están en «./sources-breezy», primero
-   debemos ejecutar «prepare_source.
+   debemos ejecutar «prepare-source.
 
-   $ sudo ./prepare_source.sh sources-breezy
+   $ sudo ./prepare-source.sh sources-breezy
 
 2. Una vez hecho eso, estaremos dentro de «sources-breezy» con un «chroot»,
    y «tune_source.sh» se habrá copiado al actual «/tmp/», así que tendremos
@@ -30,5 +30,5 @@ paquetes) y «peez2» (2 paquetes) que queremos probar. Los paquetes de
    # exit
 
 4. En ese momento terminará de ejecutarse el script externo
-   («prepare_source.sh») y habremos terminado.
+   («prepare-source.sh») y habremos terminado.
 
