@@ -46,16 +46,6 @@ if [ ! -e etc/sudoers ]; then echo "Warning: there is no etc/sudoers file!"; fi
 echo "popd ..."
 popd
 
-
-# Asegurar que está instalado libntfs5
-
-
-# Asegurar que están instalados:
-# libglibmm-2.4-1 libgtkmm-2.4-1 libsigc++-2.0-0 libstdc++5
-
-
-# Asegurar sources.list a sus valores correctos!
-
-
-# Cambiar /var/log/installer -- ya existe tras instalar el live!
-
+# Asegurar que está instalado libntfs5 (para peez2).
+# Comprobar dependencias de gparted.
+# Asegurar sources.list a sus valores correctos.
