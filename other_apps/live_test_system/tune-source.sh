@@ -49,3 +49,4 @@ popd
 # Asegurar que está instalado libntfs5 (para peez2).
 # Comprobar dependencias de gparted.
 # Asegurar sources.list a sus valores correctos.
+# Asegurar que /etc/lsb-release es el de Guadalinex.
