@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<cmd_list>
+  <initial_cmd>0001</initial_cmd>
+  <serial_params tty='0' baudrate='9600' bits='8' parity='N' stopbits='1'/>
+  <default_timeout>30</default_timeout>
+  <cmd id='0001' type='sendline' cmd='' timeout='5'>
+    <expect_list>
+      <expect out='Password:' nextcmdid='0002'/>
+      <expect out='(CLI -|>)' nextcmdid='0003'/>
+    </expect_list>
+  </cmd>
+  <cmd id='0002' type='sendline' cmd='adminttd' timeout='10'>
+    <expect_list>
+      <expect out='Password:' nextcmdid='0005'/>
+      <expect out='Login incorrect' nextcmdid='0005'/>
+      <expect out='>' nextcmdid='0003'/>
+    </expect_list>
+  </cmd>
+  <cmd id='0003' type='sendline' cmd='exit cli' timeout='10'>
+    <expect_list>
+      <expect out='Password:' nextcmdid='0004'/>
+      <expect out='(CLI - |Login incorrect)' nextcmdid='0005'/>
+    </expect_list>
+  </cmd>
+  <cmd id='0004' type='exit' return='ok'/>
+  <cmd id='0005' type='exit' return='error'/>
+  <cmd id='5000' type='exit' return='eof'/>
+  <cmd id='5001' type='exit' return='timeout'/>  
+</cmd_list>
