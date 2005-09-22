@@ -46,3 +46,6 @@ if [ ! -e etc/sudoers ]; then echo "Warning: there is no etc/sudoers file!"; fi
 echo "popd ..."
 popd
 
+
+# Añadir /etc/lsb-release --> Guadalinex
+
