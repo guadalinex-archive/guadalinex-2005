@@ -1,6 +1,7 @@
 base-config	tzconfig/choose_country_zone_multiple	string Europe/Madrid (mainland)
 base-config	tzconfig/gmt				boolean true
 base-config	base-config/install-language-support	boolean true
+base-config     base-config/get-hostname        	string  uda
 d-i		netcfg/get_hostname			string uda
 d-i		ethdetect/use_firewire_ethernet		boolean false
 d-i		hw-detect/load_floppy			boolean false
@@ -10,3 +11,4 @@ passwd		passwd/user-fullname			string uda
 passwd		passwd/username				string uda
 passwd		passwd/user-password			password gnuuda
 passwd		passwd/user-password-again		password gnuuda
+xserver-xorg	xserver-xorg/config/inputdevice/keyboard/layout	string es
