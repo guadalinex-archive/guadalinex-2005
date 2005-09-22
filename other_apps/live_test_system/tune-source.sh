@@ -47,5 +47,15 @@ echo "popd ..."
 popd
 
 
-# Añadir /etc/lsb-release --> Guadalinex
+# Asegurar que está instalado libntfs5
+
+
+# Asegurar que están instalados:
+# libglibmm-2.4-1 libgtkmm-2.4-1 libsigc++-2.0-0 libstdc++5
+
+
+# Asegurar sources.list a sus valores correctos!
+
+
+# Cambiar /var/log/installer -- ya existe tras instalar el live!
 
