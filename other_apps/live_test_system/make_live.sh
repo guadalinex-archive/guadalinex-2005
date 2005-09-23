@@ -1,8 +1,8 @@
 #!/bin/bash
-SOURCESDIR=/sources-hoary
-ISONAME=custom-live.iso
-NAME="Custom Gx2005 Live"
 
+SOURCESDIR=/sources
+ISONAME=gx2005.iso
+NAME="Custom Gx2005 Live"
 
 EXTRACTED_CD=./extracted_cd
 #Creamos la imagen
@@ -32,6 +32,4 @@ sudo mkisofs -r -V "$NAME" \
             -c isolinux/boot.cat -no-emul-boot \
             -boot-load-size 4 -boot-info-table \
             -o $ISONAME $EXTRACTED_CD
-
-
 

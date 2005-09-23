@@ -17,7 +17,7 @@ pushd lab/default
 dpkg-buildpackage -rfakeroot
 popd
 
-if [ -e live_test/sources-breezy/tmp/ ]; then
-    cp peez2*.deb lab/ubuntu-express*.deb live_test/sources-breezy/tmp/
+if [ -e live_test/sources/tmp/ ]; then
+    cp peez2*.deb gparted*.deb lab/ubuntu-express*.deb live_test/sources/tmp/
 fi
 
