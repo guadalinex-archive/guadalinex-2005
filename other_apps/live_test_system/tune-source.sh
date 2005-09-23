@@ -2,6 +2,8 @@
 
 echo "pushd / ..."
 pushd /
+echo "chown -R guada:guada /home/guada ..."
+chown -R guada:guada /home/guada
 echo "chown root:root etc/gksu.conf ..."
 chown root:root etc/gksu.conf
 echo "chown root:root var/run/sshd/ ..."
@@ -15,12 +17,14 @@ fi
 
 echo "apt-get update ..."
 apt-get update
-echo "dpkg -l | grep firefox-gnome-support || apt-get install -y firefox-gnome-support ..."
-dpkg -l | grep firefox-gnome-support || apt-get install -y firefox-gnome-support
 echo "Reconfiguring locales (please select es_ES.utf8) ..."
 dpkg-reconfigure locales
+# echo "dpkg -l | grep firefox-gnome-support || apt-get install -y firefox-gnome-support ..."
+# dpkg -l | grep firefox-gnome-support || apt-get install -y firefox-gnome-support
 echo "Deleting doc ..."
 rm -rf usr/doc/* usr/share/doc/*
+echo "Resetting language ..."
+export LANGUAGE="es_ES.UTF-8"
 echo "Removing old peez2, ubuntu-express and gparted packages ..."
 dpkg --remove `dpkg -l | grep peez2 | cut -d' ' -f 3`
 dpkg --remove `dpkg -l | grep ubuntu-express | cut -d' ' -f 3`
@@ -28,6 +32,7 @@ dpkg --remove `dpkg -l | grep gparted | cut -d' ' -f 3`
 echo "Installing new peez2, ubuntu-express and gparted packages in tmp/ ..."
 pushd tmp/
 dpkg --install *.deb
+apt-get -y install -f
 rm -rf *.deb
 popd
 echo "Cleaning APT cache ..."
@@ -46,7 +51,3 @@ if [ ! -e etc/sudoers ]; then echo "Warning: there is no etc/sudoers file!"; fi
 echo "popd ..."
 popd
 
-# Asegurar que está instalado libntfs5 (para peez2).
-# Comprobar dependencias de gparted.
-# Asegurar sources.list a sus valores correctos.
-# Asegurar que /etc/lsb-release es el de Guadalinex.

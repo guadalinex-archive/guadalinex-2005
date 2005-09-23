@@ -5,7 +5,7 @@ el subdirectorio «lab/» dentro del directorio actual. Necesita un
 parámetro: la ruta de la rama «live_installer» del repositorio. Por
 ejemplo:
 
-    $ sudo ./pack.sh ../../live_installer/
+    $ sudo ./pack.sh repo/live_installer/
 
     Los guiones «prepare-source.sh» y «tune-source.sh» están pensados para
 automatizar la generación de la imagen ISO de pruebas. Están preparados
@@ -14,12 +14,20 @@ para trabajar bajo los siguientes supuestos:
     Hay un directorio con las fuentes que queremos utilizar. Dentro de
 este directorio, en «tmp/», están los paquetes de «ubuntu-express» (6
 paquetes), «peez2» (2 paquetes) y «gparted» (un paquete) que queremos
-probar. Los paquetes de «ubuntu-express» pueden generarse a partir de las
-fuentes del repositorio (rama «live_installer/default/»). «Peez2» puede
-descargarse de la web de «Activa Sistemas»
+probar.
+
+    Los paquetes de «ubuntu-express» pueden generarse a partir de las
+fuentes del repositorio (rama «live_installer/default/»).
+
+    «Peez2» puede descargarse de la web de «Activa Sistemas»
 ( http://activasistemas.com/forja/files/peez2 ) y la versión modificada
 de «Gparted» puede obtenerse del FTP de la forja del proyecto
-( ftp://ws314.juntadeandalucia.es/guadalinex2005/archives ).
+( ftp://ws314.juntadeandalucia.es/guadalinex2005/archives ). Estos 3
+paquetes están también en este directorio del repositorio (la versión
+de «gparted» es la última compilada por Rafa Martín).
+
+    Además, es necesario tener en el directorio actual los archivos
+«sources.list» y  «lsb-release».
 
     Modo de uso:
 
