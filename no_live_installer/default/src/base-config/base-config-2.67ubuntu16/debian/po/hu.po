@@ -107,7 +107,6 @@ msgstr ""
 #. Type: note
 #. Description
 #: ../templates:69
-#, fuzzy
 msgid ""
 "Simply trying to install those packages (or a slightly different set of "
 "packages) again may work around the problem, or at least move the "
@@ -133,18 +132,16 @@ msgstr ""
 #. Type: note
 #. Description
 #: ../templates:84
-#, fuzzy
 msgid "Thank you for choosing Ubuntu!"
 msgstr "Köszönjük, hogy az Ubuntut választotta!"
 
 #. Type: note
 #. Description
 #: ../templates:84
-#, fuzzy
 msgid "Setup of your Ubuntu system is complete. You may now login."
 msgstr ""
-"Ubuntu-rendszerének telepítése végetért. Ezután a login: feliratnál "
-"bejelentkezhet."
+"Az Ubuntu rendszerének telepítése befejeződött. Ezután a bejelentkezés "
+"feliratnál beléphet."
 
 #. Type: note
 #. Description
@@ -289,9 +286,8 @@ msgstr "Alaprendszer konfigurálásának befejezése"
 #. Type: text
 #. Description
 #: ../templates:163
-#, fuzzy
 msgid "Exit the base system configuration"
-msgstr "Debian-alaprendszer konfigurálása"
+msgstr "Kilépés az alaprendszer beállításából"
 
 #. Type: text
 #. Description
@@ -302,22 +298,20 @@ msgstr "Parancsértelmező futtatása"
 #. Type: text
 #. Description
 #: ../templates:171
-#, fuzzy
 msgid "Installing packages"
-msgstr "Csomagok kiválasztása és telepítése"
+msgstr "Csomagok telepítése"
 
 #. Type: text
 #. Description
 #: ../templates:175
-#, fuzzy
 msgid "Preparing for installation..."
-msgstr "Az apt konfigurálásának előkészítése folyamatban..."
+msgstr "Telepítés előkészítése..."
 
 #. Type: text
 #. Description
 #: ../templates:184
 msgid "Registering documentation, please wait..."
-msgstr ""
+msgstr "Dokumentációk bejegyzése, kérem várjon..."
 
 #. Type: title
 #. Description
@@ -699,14 +693,12 @@ msgstr ""
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:77
-#, fuzzy
 msgid "CD-ROM missing"
-msgstr "Az Ubuntu CD-ROM hiányzik."
+msgstr "Az Ubuntu CD-ROM hiányzik"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:77
-#, fuzzy
 msgid "Please insert a suitable CD."
 msgstr "Kérem tegye be az Ubuntu CD-t."
 
@@ -767,25 +759,23 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:107
-#, fuzzy
 msgid "Use restricted software?"
 msgstr "Járulékos szoftvereket is használ?"
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:107
-#, fuzzy
 msgid ""
 "Some restricted software has been made to work with Ubuntu. Though this "
 "software is not at all a part of Ubuntu, standard Ubuntu tools can be used "
 "to install it. This software has varying licenses which may prevent you from "
 "using, modifying, or sharing it."
 msgstr ""
-"Egyes nemszabad szoftvereket felkészítettek a Ubuntu alatti működésre.  "
-"Habár ezek a programok egyáltalán NEM részei a Debiannak, telepítésük a "
-"szokásos Ubuntu-segédprogramokkal megoldható. E programok különféle licencei "
-"egyes esetekben megtilthatják (egyebek közt) a használatot, a módosítást "
-"vagy a terjesztést."
+"Egyes nemszabad szoftvereket felkészítettek a Ubuntu alatti működésre. Habár "
+"ezek a programok egyáltalán nem részei az Ubuntunak, telepítésük a szokásos "
+"Ubuntu-segédprogramokkal megoldható. E programok különféle licenszei egyes "
+"esetekben megtilthatják (egyebek közt) a használatot, a módosítást vagy a "
+"terjesztést."
 
 #. Type: boolean
 #. Description
@@ -802,7 +792,6 @@ msgstr "Járulékos szoftvereket is használ?"
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:118
-#, fuzzy
 msgid ""
 "Some additional software has been made to work with Ubuntu. Though this "
 "software is free, it depends on non-free software for its operation. This "
@@ -811,15 +800,14 @@ msgid ""
 msgstr ""
 "Egyes további programokat is felkészítettek a Ubuntu alatti működésre. Ezek "
 "működéséhez szükségesek nemszabad szoftverek is, bár maguk ugyan szabad "
-"szoftverek. Ezek a programok SEM részei a Debiannak, de telepítésük a "
+"szoftverek. Ezek a programok nem részei az Ubuntunak, de telepítésük a "
 "szokásos Ubuntu-segédprogramokkal megoldható."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:129
-#, fuzzy
 msgid "Use universe software?"
-msgstr "Nemszabad szoftvereket is használ?"
+msgstr "Közösségi karbantartású szoftvereket is használ?"
 
 #. Type: boolean
 #. Description
@@ -832,7 +820,7 @@ msgid ""
 msgstr ""
 "Egyes további programokat is felkészítettek az Ubuntu alatti működésre. Ezek "
 "működéséhez szükségesek nemszabad szoftverek is, bár maguk ugyan szabad "
-"szoftverek. Ezek a programok SEM részei a Debiannak, de telepítésük a "
+"szoftverek. Ezek a programok SEM részei az Ubuntunak, de telepítésük a "
 "szokásos Ubuntu-segédprogramokkal megoldható."
 
 #. Type: boolean
@@ -931,52 +919,45 @@ msgstr ""
 #. Description
 #: ../../apt-setup.templates:177
 msgid "Download software from the Internet?"
-msgstr ""
+msgstr "Tölt le szoftvereket az Internetől?"
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:177
-#, fuzzy
 msgid ""
 "Ubuntu provides additional software and timely security updates via the "
 "Internet. These updates may be tracked each time you upgrade your system. If "
 "you have a connection to the Internet, this is generally a good idea."
 msgstr ""
-"Az Ubuntu az ismertté vált biztonsági hibákat mielőbb javítja a http://"
-"security.ubuntu.com/ webhelyen megjelenő csomagokkal. Rendszerének minden "
-"frissítésekor ezeket is figyelemmel követheti. Ha gépe bármilyen módon "
-"csatlakozik az internetre, akkor ez melegen ajánlott."
+"Az Ubuntu az ismertté vált biztonsági hibákat mielőbb javítja. Rendszerének "
+"minden frissítésekor ezeket is figyelemmel követheti. Ha gépe bármilyen "
+"módon csatlakozik az internetre, akkor ez ajánlott."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
-#, fuzzy
 msgid "Cannot access network updates"
-msgstr "A biztonsági frissítések nem érhetőek el"
+msgstr "A hálózati frissítések nem érhetőek el"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
-#, fuzzy
 msgid ""
 "The software archive at ${site} couldn't be accessed, so those updates will "
 "not be made available to you at this time. You may want to investigate this "
 "later."
 msgstr ""
-"Nem sikerült a security.ubuntu.com géphez csatlakozni, ezért ezek a "
-"frissítések jelenleg nem elérhetőek. Később mindenképpen érdemes ezt "
-"rendbetennie."
+"Nem sikerült csatlakozni a ${site} arhívumhoz, ezért a frissítések ezúttal "
+"nem elérhetőek. A későbbiekben lehetősége lesz megismételni ezt a folyamatot."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
-#, fuzzy
 msgid ""
 "Commented out entries for ${site} have been added to the bottom of the /etc/"
 "apt/sources.list file."
 msgstr ""
-"Ennek megkönnyítésére az /etc/apt/sources.list fájl végére a security.ubuntu."
-"com-ra mutató, megjegyzésbe tett sorok kerültek."
+"Az /etc/apt/sources.list fájl végére a ${site}-ra mutató sorok kerültek."
 
 #. Type: note
 #. Description
@@ -993,49 +974,44 @@ msgstr "${apt_error}"
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:198
-#, fuzzy
 msgid "Configuring apt..."
-msgstr "Az apt csomagkezelő konfigurálása"
+msgstr "Az apt beállítása..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:206
 msgid "Setting up primary installation repository..."
-msgstr "Az elsődleges telepítő repository beállítása folyamarban..."
+msgstr "Az elsődleges telepítő repository beállítása..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:210
 msgid "Testing primary installation repository..."
-msgstr "Az elsődleges telepítő repository tesztelése folyamatban..."
+msgstr "Az elsődleges telepítő repository tesztelése..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:214
 msgid "Setting up network repository..."
-msgstr "A hálózati repository beállítása folyamatban..."
+msgstr "A hálózati repository beállítása..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:218
 msgid "Testing network repository..."
-msgstr "A hálózati repository tesztelése folyamatban..."
+msgstr "A hálózati repository tesztelése..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:222
-#, fuzzy
 msgid "Setting up security update repository..."
-msgstr ""
-"A biztonsági frissítéseket tartalmazó repository beállítása folyamatban..."
+msgstr "A biztonsági frissítéseket tartalmazó repository beállítása..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:226
-#, fuzzy
 msgid "Testing security update repository..."
-msgstr ""
-"A biztonsági frissítéseket tartalmazó repository tesztelése folyamatban..."
+msgstr "A biztonsági frissítéseket tartalmazó repository tesztelése..."
 
 #, fuzzy
 #~ msgid "Installing popularity-contest"

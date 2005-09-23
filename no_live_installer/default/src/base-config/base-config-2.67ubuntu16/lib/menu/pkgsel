@@ -20,16 +20,16 @@ case "$1" in
 	ln -sf /bin/true /usr/bin/scrollkeeper-rebuilddb
 	touch /usr/lib/base-config/installing
 
-	echo -n "Reconfiguring x... " > $LOG
-	dpkg-reconfigure -phigh xserver-xorg >> $LOG
-	echo "[OK]" >> $LOG
+#	echo -n "Reconfiguring x... " > $LOG
+#	dpkg-reconfigure -phigh xserver-xorg >> $LOG
+#	echo "[OK]" >> $LOG
 
 	echo -n "Exporting display... " >> $LOG
         /usr/bin/X11/X :8 -dpms -br -s 120 -dpi 100 -nolisten tcp &
         export DISPLAY=:8
 	echo "[OK]" >> $LOG
 		
-        PACKAGES="gedit gnome-applets gdm whois language-pack-en language-support-en"
+        PACKAGES="meta-guadalinex-2005 language-pack-en language-support-en"
         NUM_PACKAGES=$(apt-get install -s $PACKAGES | grep ^Inst | nl | tail -n 1 | cut -f1 | sed -e "s/ //g")
 
 	echo -n "Running metacity... " >> $LOG
@@ -38,8 +38,8 @@ case "$1" in
         sleep 9
 	echo "[OK]" >> $LOG
 
-	echo -n "Running uda-postinstall $NUM_PACKAGES $PACKAGES whois... " >> $LOG
-        /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES" "whois"
+	echo -n "Running uda-postinstall $NUM_PACKAGES $PACKAGES meta-guadalinex-2005... " >> $LOG
+        /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES" "meta-guadalinex-2005"
 	echo "[OK]" >> $LOG
 	
 	# Move final sources.list into place, if necessary, so that language

@@ -301,22 +301,20 @@ msgstr "Executar um prompt de comandos"
 #. Type: text
 #. Description
 #: ../templates:171
-#, fuzzy
 msgid "Installing packages"
-msgstr "Instalar pacotes selecionados"
+msgstr "Instalando pacotes"
 
 #. Type: text
 #. Description
 #: ../templates:175
-#, fuzzy
 msgid "Preparing for installation..."
-msgstr "Preparando para configurar o apt..."
+msgstr "Preparando para a instalação..."
 
 #. Type: text
 #. Description
 #: ../templates:184
 msgid "Registering documentation, please wait..."
-msgstr ""
+msgstr "Registrando documentação, por favor aguarde..."
 
 #. Type: title
 #. Description
@@ -702,16 +700,14 @@ msgstr ""
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:77
-#, fuzzy
 msgid "CD-ROM missing"
-msgstr "CD-ROM do Ubuntu faltando"
+msgstr "CD-ROM faltando"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:77
-#, fuzzy
 msgid "Please insert a suitable CD."
-msgstr "Por favor insira um CD do Ubuntu."
+msgstr "Por favor insira um CD válido."
 
 #. Type: string
 #. Description
@@ -765,13 +761,13 @@ msgid ""
 "should insert and scan it now."
 msgstr ""
 "Caso você possua outro CD Ubuntu (por exemplo, o segundo num conjunto de "
-"CDs), você deve inserí-lo e scaneá-lo agora."
+"dois CDs), você deve inserí-lo e scaneá-lo agora."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:107
 msgid "Use restricted software?"
-msgstr "Usar software restricted ?"
+msgstr "Usar software restritos (não-livres) ?"
 
 #. Type: boolean
 #. Description
@@ -782,10 +778,10 @@ msgid ""
 "to install it. This software has varying licenses which may prevent you from "
 "using, modifying, or sharing it."
 msgstr ""
-"Alguns programas não-livres foram criados para trabalhar com o Ubuntu. "
-"Apesar desse software não ser parte oficial do Ubuntu, as ferramentas padrão "
-"do Ubuntu podem ser usadas para instalá-lo. Tal software possui licenças "
-"variadas que podem impedir que você o use, modifique ou o compartilhe."
+"Apesar desses softwares não ser parte oficial do Ubuntu, as ferramentas "
+"padrão do Ubuntu podem ser usadas para instalá-los. Tais softwares possuem "
+"licenças variadas que podem impedir que você o use, modifique ou o "
+"compartilhe."
 
 #. Type: boolean
 #. Description
@@ -818,9 +814,8 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:129
-#, fuzzy
 msgid "Use universe software?"
-msgstr "Usar programas não-livres? (universe)"
+msgstr "Usar programas parte do conjunto universe?"
 
 #. Type: boolean
 #. Description

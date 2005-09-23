@@ -1,49 +1,53 @@
-# translation of fr-new.po to French
-# translation of fr.po to French
-# This file is distributed under the same license as the PACKAGE package.
-#
-#    Translators, please read /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
-# Christian Perrier <bubulle@debian.org>, 2004.
-#
+# translation of fi.po to Finnish
+# translation of base-config to Finnish
+# Translators, if you are not familiar with the PO format, gettext
+# documentation is worth reading, especially sections dedicated to
+# this format, e.g. by running:
+# info -n '(gettext)PO Files'
+# info -n '(gettext)Header Entry'
+# Some information specific to po-debconf are available at
+# /usr/share/doc/po-debconf/README-trans
+# or http://www.debian.org/intl/l10n/po-debconf/README-trans
+# Developers do not need to manually edit POT or PO files.
+# Tommi Vainikainen <thv+debian@iki.fi>, 2003-2004.
+# Tapio Lehtonen <tale@debian.org>, 2004.
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: base-config 1.70\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-09-10 19:59+0100\n"
-"PO-Revision-Date: 2005-06-06 12:12+0200\n"
-"Last-Translator: Christian Perrier <bubulle@debian.org>\n"
-"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
+"PO-Revision-Date: 2005-01-24 14:00+0200\n"
+"Last-Translator: Tapio Lehtonen <tale@debian.org>\n"
+"Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=n>1;\n"
 
 #. Type: title
 #. Description
 #: ../templates:3
 msgid "Ubuntu base system configuration"
-msgstr "Configuration du systËme de base d'Ubuntu"
+msgstr "Ubuntun peruskokoonpanon asetukset"
 
 #. Type: select
 #. Description
 #: ../templates:8
 msgid "Choose the next step in the install process:"
-msgstr "Choisissez l'Ètape suivante du processus d'installation†:"
+msgstr "Valitse asennuksen seuraava vaihe:"
 
 #. Type: select
 #. Description
 #: ../templates:8
 msgid "This is the base system configuration menu."
-msgstr "Ceci est le menu de configuration du systËme de base."
+msgstr "T√§m√§ valikko on peruskokoonpanon asetuksille."
 
 #. Type: note
 #. Description
 #: ../templates:13
 msgid "Welcome to your new Ubuntu system!"
-msgstr "Bienvenue sur votre nouveau systËme Ubuntu†!"
+msgstr "Tervetuloa uuteen Ubuntu-j√§rjestelm√§√§si!"
 
 #. Type: note
 #. Description
@@ -54,17 +58,16 @@ msgid ""
 "setting a root password and adding a user, and then progress to installing "
 "additional software to tune this new Ubuntu system to your needs."
 msgstr ""
-"Ce programme va maintenant vous guider dans le processus de configuration de "
-"votre nouveau systËme. Il commencera par les opÈrations de base (choix du "
-"fuseau horaire, du mot de passe du superutilisateur et ajout d'un "
-"utilisateur), et s'occupera ensuite d'installer des logiciels "
-"supplÈmentaires pour adapter ce nouveau systËme Ubuntu ‡ vos besoins."
+"T√§m√§ ohjelma k√§y nyt kanssasi l√§pi vasta asennetun j√§rjestelm√§si asetukset. "
+"Alussa on perusasetukset -- aikavy√∂hykkeen valinta, p√§√§k√§ytt√§j√§n salasanan "
+"asettaminen ja k√§ytt√§j√§n lis√§√§minen, sitten edet√§√§n lis√§ohjelmistojen "
+"asentamiseen jotta Ubuntu-j√§rjestelm√§ sovitetaan tarpeisiisi."
 
 #. Type: boolean
 #. Description
 #: ../templates:23
 msgid "Use a PPP connection to install the system?"
-msgstr "Faut-il installer le systËme via une connexion PPP†?"
+msgstr "K√§ytet√§√§nk√∂ PPP-yhteytt√§ j√§rjestelm√§n asennuksessa?"
 
 #. Type: boolean
 #. Description
@@ -74,9 +77,9 @@ msgid ""
 "you plan to install from CD, it is wise to download at least security "
 "updates from the internet."
 msgstr ""
-"Ce systËme ne semble pas actuellement disposer d'une connexion ‡ l'Internet. "
-"MÍme si vous prÈvoyez une installation par cÈdÈrom, il serait judicieux de "
-"pouvoir au moins tÈlÈcharger les mises ‡ jour de sÈcuritÈ depuis l'Internet."
+"T√§m√§ laitteisto ei n√§ht√§v√§sti ole juuri nyt yhteydess√§ Internetiin. Vaikka "
+"aikoisitkin asentaa CD:lt√§, on syyt√§ hakea ainakin tietoturvap√§ivitykset "
+"Internetist√§."
 
 #. Type: boolean
 #. Description
@@ -86,17 +89,15 @@ msgid ""
 "to use it during the install, you may configure the PPP service now, and "
 "open a PPP connection to your ISP."
 msgstr ""
-"Si vous avez un compte chez un fournisseur d'accËs ‡ Internet et que vous "
-"voulez l'utiliser pendant l'installation, vous pouvez configurer le service "
-"PPP maintenant afin qu'une connexion PPP vers votre fournisseur d'accËs "
-"puisse Ítre Ètablie."
+"Jos sinulla on k√§ytt√§j√§tunnus palveluntarjoajalla ja haluat noutaa sit√§ "
+"k√§ytt√§en Internetist√§ j√§rjestelm√§√§si asennettavat paketit, voit tehd√§ PPP:n "
+"asetukset nyt ja avata PPP-yhteyden Internet-palveluntarjoajallesi."
 
 #. Type: note
 #. Description
 #: ../templates:69
 msgid "There was a problem installing the selected software"
-msgstr ""
-"Un problËme a ÈtÈ rencontrÈ lors de l'installation des logiciels choisis"
+msgstr "Valittuja ohjelmia asennettaessa ilmeni ongelmia"
 
 #. Type: note
 #. Description
@@ -105,9 +106,8 @@ msgid ""
 "One or more packages failed to install. This may be due to bugs in the "
 "packages, or you may be out of disk space or experiencing some other problem."
 msgstr ""
-"Un ou plusieurs paquets n'ont pas pu Ítre installÈs correctement. Cela est "
-"probablement d˚ ‡ des bogues dans ces paquets, ‡ un disque plein ou ‡ un "
-"autre problËme non identifiÈ."
+"Yhden tai useamman paketin asennus ep√§onnistui. T√§m√§ voi johtua vioista "
+"paketeissa, mahdollisesti levytila t√§yttyi tai jokin muu pulmaa ilmeni."
 
 #. Type: note
 #. Description
@@ -118,10 +118,9 @@ msgid ""
 "installation process along a little further. If you want, you can go back to "
 "the package selection step, and try again."
 msgstr ""
-"RÈinstaller les paquets (ou des paquets Èquivalents) peut permettre de "
-"contourner le problËme ou au moins de faire progresser l'installation. Si "
-"vous le souhaitez, vous pouvez revenir ‡ la sÈlection des paquets et "
-"rÈessayer."
+"Yritt√§m√§ll√§ asentaa ne paketit (tai hiukan eri joukko paketteja) uudelleen "
+"saattaa ongelma korjaantua tai ainakin asennus p√§√§see v√§h√§n eteenp√§in. Jos "
+"haluat, voit palata pakettienvalintavaiheeseen ja yritt√§√§ uudelleen."
 
 #. Type: note
 #. Description
@@ -130,23 +129,20 @@ msgid ""
 "If you decide not to try again, bear in mind that some packages on your "
 "system will be in a broken state until you manually resolve the problem."
 msgstr ""
-"Si vous dÈcidez de continuer malgrÈ tout, vous devrez garder ‡ l'esprit que "
-"certains de vos programmes resteront dÈfectueux tant que le problËme n'aura "
-"pas ÈtÈ rÈsolu."
+"Jos p√§√§t√§t olla yritt√§m√§tt√§ uudelleen, muista osan j√§rjestelm√§si paketeista "
+"olevan rikkin√§isess√§ tilassa kunnes itse selvit√§t ongelman."
 
 #. Type: note
 #. Description
 #: ../templates:84
 msgid "Thank you for choosing Ubuntu!"
-msgstr "Merci d'avoir choisi Ubuntu†!"
+msgstr "Kiitoksia Ubuntun valitsemista!"
 
 #. Type: note
 #. Description
 #: ../templates:84
 msgid "Setup of your Ubuntu system is complete. You may now login."
-msgstr ""
-"La configuration de votre systËme Ubuntu est terminÈe. Vous pouvez "
-"maintenant vous connecter."
+msgstr "Ubuntu-j√§rjestelm√§n asennus on valmis. Voit nyt kirjautua sis√§√§n."
 
 #. Type: note
 #. Description
@@ -155,20 +151,20 @@ msgid ""
 "If you want to revisit this setup process at a later date, just run the base-"
 "config program."
 msgstr ""
-"Si vous souhaitez recommencer ce processus de configuration plus tard, "
-"utilisez simplement le programme ´†base-config†ª."
+"Jos haluat my√∂hemmin palata takaisin t√§h√§n asetusten tekoon, k√§ynnist√§ base-"
+"config -ohjelma."
 
 #. Type: string
 #. Description
 #: ../templates:93
 msgid "System hostname:"
-msgstr "Nom d'hÙte du systËme†:"
+msgstr "J√§rjestelm√§n konenimi:"
 
 #. Type: string
 #. Description
 #: ../templates:93
 msgid "Please enter your system hostname."
-msgstr "Veuillez indiquer le nom d'hÙte de votre systËme."
+msgstr "Sy√∂t√§ tietokoneesi konenimi."
 
 #. Type: string
 #. Description
@@ -178,16 +174,15 @@ msgid ""
 "don't know what your hostname should be, consult your network administrator. "
 "If you are setting up your own home network, you can make something up here."
 msgstr ""
-"Le nom d'hÙte (´†hostname†ª) est un nom qui identifie votre systËme sur le "
-"rÈseau. Si vous ne savez pas quel nom d'hÙte doit Ítre utilisÈ par votre "
-"systËme, veuillez interroger l'administrateur de votre rÈseau. Si vous "
-"mettez en place un rÈseau personnel, vous pouvez choisir ce que vous voulez."
+"Konenimi on nimi, jolla j√§rjestelm√§si tunnistetaan verkossa. Jos et tied√§ "
+"mik√§ konenimen pit√§isi olla, kysy verkkosi yll√§pit√§j√§lt√§. Jos olet "
+"pystytt√§m√§ss√§ omaa kotiverkkoasi, voit keksi√§ t√§h√§n jotain."
 
 #. Type: note
 #. Description
 #: ../templates:103
 msgid "Invalid hostname \"${HOSTNAME}\""
-msgstr "Le nom d'hÙte ´†${HOSTNAME}†ª n'est pas valable."
+msgstr "Konenimi \"${HOSTNAME}\" ei kelpaa."
 
 #. Type: note
 #. Description
@@ -197,16 +192,15 @@ msgid ""
 "alphanumeric characters and the minus sign, be between 2 and 63 characters "
 "long, and each part cannot begin or end with a minus sign."
 msgstr ""
-"Un nom d'hÙte valable peut contenir plusieurs parties ne comportant que des "
-"caractËres alphanumÈriques ou le caractËre ´†tiret†ª sÈparÈs par des points. "
-"Il peut comporter de 2 ‡ 63†caractËres et aucune de ses parties ne peut "
-"commencer ou se terminer par le caractËre ´†tiret†ª."
+"Kelvollinen konenimi voi sis√§lt√§√§ pisteell√§ eroteltuja osia, jotka "
+"sis√§lt√§v√§t vain aakkosnumeerisia ja miinusmerkkej√§, ovat 2-63 merkki√§ pitki√§ "
+"ja mik√§√§n osa ei ala tai p√§√§ty miinusmerkkiin."
 
 #. Type: boolean
 #. Description
 #: ../templates:111
 msgid "Do you want to start the graphical display manager?"
-msgstr "Souhaitez-vous dÈmarrer le gestionnaire graphique de sessions†?"
+msgstr "Haluatko k√§ynnist√§√§ graafisen kirjautumisohjelman?"
 
 #. Type: boolean
 #. Description
@@ -215,26 +209,25 @@ msgid ""
 "The graphical display manager makes it possible to log in using a graphical "
 "environment."
 msgstr ""
-"Le gestionnaire graphique de sessions permet la connexion au systËme via un "
-"environnement graphique."
+"Kirjautumisohjelma mahdollistaa sis√§√§nkirjautumisen graafisessa ymp√§rist√∂ss√§."
 
 #. Type: text
 #. Description
 #: ../templates:117
 msgid "Load preseed file"
-msgstr "Charger un fichier de prÈconfiguration"
+msgstr "Hae esit√§ytetyt arvot tiedostosta"
 
 #. Type: text
 #. Description
 #: ../templates:121
 msgid "Display introductory message"
-msgstr "Afficher le message de prÈsentation"
+msgstr "N√§yt√§ johdantoviesti"
 
 #. Type: text
 #. Description
 #: ../templates:125
 msgid "Configure the keyboard"
-msgstr "Configurer le clavier"
+msgstr "Tee n√§pp√§imist√∂asetukset"
 
 #. Type: text
 #. Description
@@ -242,25 +235,25 @@ msgstr "Configurer le clavier"
 #. Description
 #: ../templates:129 ../tzsetup-udeb.templates:3
 msgid "Configure timezone"
-msgstr "Configurer le fuseau horaire"
+msgstr "Aseta aikavy√∂hyke"
 
 #. Type: text
 #. Description
 #: ../templates:133
 msgid "Set up users and passwords"
-msgstr "CrÈer les utilisateurs et les mots de passe"
+msgstr "Luo k√§ytt√§j√§tunnukset ja salasanat"
 
 #. Type: text
 #. Description
 #: ../templates:137
 msgid "Set the hostname"
-msgstr "DÈfinir le nom d'hÙte du systËme"
+msgstr "Aseta konenimi"
 
 #. Type: text
 #. Description
 #: ../templates:141
 msgid "Configure and enable ppp"
-msgstr "Configurer et activer PPP"
+msgstr "Tee PPP-asetukset ja ota se k√§ytt√∂√∂n"
 
 #. Type: text
 #. Description
@@ -270,87 +263,85 @@ msgstr "Configurer et activer PPP"
 #. Description
 #: ../templates:147 ../apt-setup-udeb.templates:3
 msgid "Configure apt"
-msgstr "Configurer l'outil de gestion des paquets (apt)"
+msgstr "Tee apt:n asetukset"
 
 #. Type: text
 #. Description
 #: ../templates:151
 msgid "Select and install packages"
-msgstr "Choisir et installer des paquets"
+msgstr "Valitse ja asenna paketteja"
 
 #. Type: text
 #. Description
 #: ../templates:155
 msgid "Configure the Mail Transfer Agent"
-msgstr "Configurer l'agent de transport du courriel"
+msgstr "Tee s√§hk√∂postin v√§litt√§v√§n ohjelman (MTA) asetukset"
 
 #. Type: text
 #. Description
 #: ../templates:159
 msgid "Finish configuring the base system"
-msgstr "Terminer la configuration du systËme de base"
+msgstr "Saata p√§√§t√∂kseen peruskokoonpanon asetukset"
 
 #. Type: text
 #. Description
 #: ../templates:163
 msgid "Exit the base system configuration"
-msgstr "Quitter la configuration du systËme de base"
+msgstr "Poistu peruskokoonpanon asetuksista"
 
 #. Type: text
 #. Description
 #: ../templates:167
 msgid "Execute a shell"
-msgstr "ExÈcuter un interprÈteur de commandes (´†shell†ª)"
+msgstr "K√§ynnist√§ komentotulkki"
 
 #. Type: text
 #. Description
 #: ../templates:171
-#, fuzzy
 msgid "Installing packages"
-msgstr "Installer les paquets choisis"
+msgstr "Asennetaan paketteja"
 
 #. Type: text
 #. Description
 #: ../templates:175
-#, fuzzy
 msgid "Preparing for installation..."
-msgstr "PrÈparation de la configuration d'apt..."
+msgstr "Valmistellaan asennusta..."
 
 #. Type: text
 #. Description
 #: ../templates:184
 msgid "Registering documentation, please wait..."
-msgstr ""
+msgstr "Rekister√∂id√§√§n dokumentaatiota, odota..."
 
 #. Type: title
 #. Description
 #: ../apt-setup-udeb.templates:7
 msgid "Preparing to configure apt..."
-msgstr "PrÈparation de la configuration d'apt..."
+msgstr "Valmistellaan apt:n asettamista..."
 
 #. Type: title
 #. Description
 #: ../apt-setup-udeb.templates:11
 msgid "Copying mirror configuration..."
-msgstr "Copie de la configuration du miroir..."
+msgstr "Kopioidaan peilausasetukset..."
 
 #. Type: title
 #. Description
 #: ../apt-setup-udeb.templates:15 ../../apt-setup.templates:202
 msgid "Checking for CD-ROM..."
-msgstr "VÈrification de la prÈsence du cÈdÈrom..."
+msgstr "Etsit√§√§n CD-ROM:ia..."
 
 #. Type: title
 #. Description
 #: ../../tzsetup.templates:3
 msgid "Time zone configuration"
-msgstr "Configuration du fuseau horaire"
+msgstr "Aikavy√∂hykkeen asetukset"
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:8
 msgid "Is the hardware clock set to GMT?"
-msgstr "L'horloge systËme est-elle ‡ l'heure GMT†?"
+msgstr "Onko laitteiston kello asetettu GMT-aikaan?"
 
 #. Type: boolean
 #. Description
@@ -363,31 +354,31 @@ msgid ""
 "only system) or local time (which may be more convenient for a system that "
 "also runs other operating systems or an off-the-shelf PC)."
 msgstr ""
-"Les horloges systËme sous Unix sont souvent calÈes sur le fuseau horaire de "
-"Greenwich (heure GMT, aussi appelÈe UTC pour ´†Temps Universel CoordonnÈ†ª). "
-"Le systËme d'exploitation connaÓt votre fuseau horaire et convertit l'heure "
-"du systËme en heure locale. Vous pouvez indiquer si l'horloge systËme est "
-"mise ‡ l'heure GMT (ce qui est recommandÈ sur un systËme utilisant seulement "
-"Linux) ou ‡ l'heure locale (ce qui peut Ítre pratique si plusieurs systËmes "
-"d'exploitation cohabitent ou sur une machine clÈs en main)."
+"Unix-j√§rjestelmien kellot on yleens√§ asetettu maailmanaikaan eli GMT-aikaan "
+"(Greenwichin aika, joka tunnetaan my√∂s \"Universaalina koordinoituna aikana"
+"\" eli UTC). K√§ytt√∂j√§rjestelm√§ tiet√§√§ aikavy√∂hykkeesi ja muuntaa "
+"j√§rjestelm√§ajan paikalliseksi ajaksi. Voit m√§√§ritt√§√§ onko laitteistokello "
+"asetettuna GMT- (suositellaan, jos vain Linux j√§rjestelm√§ss√§) vai "
+"paikalliseen aikaan (joka voi olla k√§tev√§mpi j√§rjestelm√§ss√§, jossa ajetaan "
+"muitakin k√§ytt√∂j√§rjestelmi√§ tai kaupanhyllylt√§-PC-koneisiin)."
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:8
 msgid "The hardware clock says the time is now ${hwtime}."
-msgstr "L'horloge systËme indique que l'heure actuelle est†: ${hwtime}."
+msgstr "Laitteiston kello n√§ytt√§√§ ajaksi nyt ${hwtime}."
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:21
 msgid "Do you want to change your current time zone?"
-msgstr "Souhaitez-vous changer de fuseau horaire†?"
+msgstr "Haluatko vaihtaa t√§m√§nhetkist√§ aikavy√∂hykett√§?"
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:21
 msgid "Your current time zone is set to ${timezone}."
-msgstr "Votre fuseau horaire est positionnÈ sur ${timezone}."
+msgstr "T√§m√§nhetkiseksi aikavy√∂hykkeeksi on asetettu ${timezone}."
 
 #. Type: select
 #. Choices
@@ -396,17 +387,14 @@ msgid ""
 "Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
 "Indiana, Indiana-Starke, Michigan, Samoa, other"
 msgstr ""
-"Est (´†Eastern†ª), Centre (´†Central†ª), Rocheuses (´†Mountain†ª), "
-"Pacifique, Alaska, Hawaii, AlÈoutiennes, Arizona, Indiana Est, Indiana-"
-"Starke, Michigan, Samoa, Autre"
+"Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
+"Indiana, Indiana-Starke, Michigan, Samoa, jokin muu"
 
 #. Type: select
 #. Description
 #: ../../tzsetup.templates:28
 msgid "The following are common time zones in the United States of America."
-msgstr ""
-"Les fuseaux horaires suivants sont les fuseaux usuels aux …tats-Unis "
-"d'AmÈrique. "
+msgstr "Pohjois-Amerikan Yhdysvalloissa on seuraavat aikavy√∂hykkeet."
 
 #. Type: select
 #. Choices
@@ -415,27 +403,26 @@ msgid ""
 "Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
 "Mountain, Pacific, Yukon, other"
 msgstr ""
-"Terre-Neuve, Atlantique, Est (´†Eastern†ª), Centre (´†Central†ª), "
-"Saskatchewan Est, Saskatchewan, Rocheuses (´†Mountain†ª), Pacifique, Yukon, "
-"Autre"
+"Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, jokin muu"
 
 #. Type: select
 #. Description
 #: ../../tzsetup.templates:38
 msgid "The following are common time zones in Canada."
-msgstr "Les fuseaux horaires suivants sont les fuseaux usuels au Canada."
+msgstr "Kanadassa on seuraavat aikavy√∂hykkeet."
 
 #. Type: select
 #. Choices
 #: ../../tzsetup.templates:47
 msgid "East, West, Acre, DeNoronha, other"
-msgstr "Est, Ouest, Acre, De Noronha, Autre"
+msgstr "East, West, Acre, DeNoronha, jokin muu"
 
 #. Type: select
 #. Description
 #: ../../tzsetup.templates:48
 msgid "The following are common time zones in Brazil."
-msgstr "Les fuseaux horaires suivants sont les fuseaux usuels au BrÈsil."
+msgstr "Brasiliassa on seuraavat aikavy√∂hykkeet."
 
 #. Type: select
 #. Description
@@ -444,32 +431,32 @@ msgid ""
 "If you are in a different time zone, choose \"other\" to select from all "
 "available time zones."
 msgstr ""
-"Si vous vous situez dans un fuseau horaire diffÈrent, veuillez choisir "
-"´†Autre†ª pour sÈlectionner le fuseau horaire dans une liste complËte."
+"Jos aikavy√∂hykkeesi ei ole luettelossa, valitse \"jokin muu\" ja p√§√§set "
+"valitsemaan kaikista aikavy√∂hykkeist√§."
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:57
 msgid "Are you in the ${zone} time zone?"
-msgstr "Utilisez-vous le fuseau horaire ${zone}†?"
+msgstr "Onko aikavy√∂hykkeesi ${zone}?"
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:57
 msgid "Based on your country, your time zone is probably ${zone}."
-msgstr "D'aprËs votre pays, votre fuseau horaire est probablement ${zone}."
+msgstr "Maan perusteella arvattu aikavy√∂hyke on ${zone}."
 
 #. Type: select
 #. Choices
 #: ../../tzsetup.templates:62
 msgid "${choices}, other"
-msgstr "${choices}, Autre"
+msgstr "${choices}, jokin muu"
 
 #. Type: select
 #. Description
 #: ../../tzsetup.templates:63
 msgid "Select your time zone:"
-msgstr "Choisissez votre fuseau horaire†:"
+msgstr "Valitse aikavy√∂hyke:"
 
 #. Type: select
 #. Description
@@ -478,9 +465,8 @@ msgid ""
 "Based on your country, you are probably in one of these time zones. If you "
 "are not, choose \"other\" to select from all available time zones."
 msgstr ""
-"D'aprËs votre pays, vous Ítes probablement situÈ dans l'un des fuseaux "
-"horaires suivants. Si cela n'est pas le cas, veuillez choisir ´†Autre†ª pour "
-"sÈlectionner le fuseau horaire dans une liste complËte."
+"Maan perusteella arvaten aikavy√∂hykkeesi on luultavasti jokin n√§ist√§. Jos ei "
+"ole, valitse \"jokin muu\" ja p√§√§set valitsemaan kaikista aikavy√∂hykkeist√§."
 
 #. Type: select
 #. Choices
@@ -489,28 +475,27 @@ msgid ""
 "Africa, America, US, Canada, Asia, Atlantic Ocean, Australia, Europe, Indian "
 "Ocean, Pacific Ocean, System V style time zones, None of the above"
 msgstr ""
-"Afrique, AmÈrique, …tats-Unis, Canada, Asie, OcÈan Atlantique, Australie, "
-"Europe, OcÈan Indien, OcÈan Pacifique, Fuseaux suivant le style System V, "
-"Aucun des prÈcÈdents"
+"Afrikka, Amerikka, Yhdysvallat, Kanada, Aasia, Atlantin valtameri, "
+"Australia, Eurooppa, Intian valtameri, Tyyni valtameri, System V -tyyliset "
+"aikavy√∂hykkeet, Ei mik√§√§n n√§ist√§"
 
 #. Type: select
 #. Description
 #: ../../tzsetup.templates:70
 msgid "Area for your time zone:"
-msgstr "RÈgion de votre fuseau horaire†:"
+msgstr "Alue aikavy√∂hykkeellesi:"
 
 #. Type: select
 #. Description
 #: ../../tzsetup.templates:70
 msgid "Pick the geographic area in which the time zone you desire is located."
-msgstr ""
-"Choisissez la zone gÈographique o˘ se trouve le fuseau horaire souhaitÈ."
+msgstr "Valitse maantieteellinen alue, jolla haluamasi aikavy√∂hyke sijaitsee."
 
 #. Type: select
 #. Description
 #: ../../tzsetup.templates:76
 msgid "Select a city or time zone:"
-msgstr "Choisissez une ville ou un fuseau horaire†:"
+msgstr "Valitse kaupunki tai aikavy√∂hyke:"
 
 #. Type: select
 #. Description
@@ -519,21 +504,20 @@ msgid ""
 "Cities represent the time zone in which they are located, so you may choose "
 "any city in the desired time zone."
 msgstr ""
-"Les villes reprÈsentent le fuseau horaire dans lequel elles sont situÈes, si "
-"bien que vous pouvez choisir n'importe quelle ville dans le fuseau horaire "
-"souhaitÈ."
+"Kaupungit edustavat aikavy√∂hykett√§, jolla kaupunki sijaitsee. Voit siis "
+"valita mink√§ tahansa kaupungin haluamaltasi aikavy√∂hykkeelt√§."
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:82
 msgid "Is this information correct?"
-msgstr "Ces informations sont-elles correctes†?"
+msgstr "Ovatko tiedot oikein?"
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:82
 msgid "Here is your selected time zone information."
-msgstr "Voici le rÈsultat de votre choix de fuseau horaire."
+msgstr "T√§ss√§ ovat valitsemasi aikavy√∂hyketiedot."
 
 #. Type: boolean
 #. Description
@@ -543,28 +527,27 @@ msgid ""
 " Universal Time is now:      ${utdate}\n"
 " Time zone is set to:        ${timezone}"
 msgstr ""
-" Heure locale               †: ${tzdate}\n"
-" Temps universel†           †: ${utdate}\n"
-" Fuseau†horaire             †: ${timezone}"
+" Paikallinen aika on nyt:      ${tzdate}\n"
+" Universaali aika on nyt:      ${utdate}\n"
+" Aikavy√∂hykkeeksi on asetettu: ${timezone}"
 
 #. Type: boolean
 #. Description
 #: ../../tzsetup.templates:82
 msgid "If something looks wrong, you can go through the setup process again."
-msgstr ""
-"Si quelque chose vous semble incorrect, vous pouvez reprendre ces rÈglages."
+msgstr "Jos jokin n√§ytt√§√§ v√§√§r√§lt√§, voit tehd√§ asetukset uudelleen."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:3
 msgid "Apt configuration"
-msgstr "Configuration de l'outil Debian de gestion des paquets (apt)"
+msgstr "Apt:n asetukset"
 
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:15
 msgid "HTTP proxy information (blank for none):"
-msgstr "Mandataire (´†proxy†ª) HTTP (laisser vide pour ne pas en utiliser)†:"
+msgstr "Sy√∂t√§ http-v√§lipalvelintiedot (j√§t√§ tyhj√§ksi jos sit√§ ei tarvita):"
 
 #. Type: string
 #. Description
@@ -573,9 +556,8 @@ msgid ""
 "If you need to use a HTTP proxy to access the outside world, please enter "
 "the proxy information here. Otherwise, leave this blank."
 msgstr ""
-"Si vous devez utiliser un mandataire HTTP (souvent appelÈ ´†proxy†ª) pour "
-"accÈder au monde extÈrieur, veuillez indiquer ses paramËtres ici. Sinon, "
-"laissez ce champ vide."
+"Jos sinun t√§ytyy k√§ytt√§√§ http-v√§lipalvelinta p√§√§st√§ksesi ulkomaailmaan, "
+"sy√∂t√§ v√§lipalvelimen tiedot t√§h√§n. Muutoin j√§t√§ t√§m√§ tyhj√§ksi."
 
 #. Type: string
 #. Description
@@ -584,22 +566,20 @@ msgid ""
 "The proxy information should be the standard form of \"http://[[user][:pass]"
 "@]host[:port]\""
 msgstr ""
-"Lorsque vous indiquez les paramËtres du mandataire, veuillez utiliser la "
-"forme normalisÈe†: ´†http://[[utilisateur][:mot-de-passe]@]hÙte[:port]†ª"
+"Kun sy√∂t√§t v√§lipalvelintietoja, k√§yt√§ standardimuotoa \"http://[[k√§ytt√§j√§][:"
+"salasana]@]konenimi[:portti]\""
 
 #. Type: select
 #. Choices
 #: ../../apt-setup.templates:24
 msgid "cdrom, http, ftp, filesystem, edit sources list by hand"
-msgstr ""
-"cÈdÈrom, http, ftp, systËme de fichiers, modifier vous-mÍme la liste des "
-"sources"
+msgstr "cdrom, http, ftp, tiedostoj√§rjestelm√§, muokkaa l√§hdelistaa"
 
 #. Type: select
 #. Description
 #: ../../apt-setup.templates:26
 msgid "Archive access method for apt:"
-msgstr "MÈthode d'accËs utilisÈe par apt†:"
+msgstr "Mill√§ tavalla apt noutaa tiedostot:"
 
 #. Type: select
 #. Description
@@ -607,9 +587,7 @@ msgstr "MÈthode d'accËs utilisÈe par apt†:"
 msgid ""
 "Please choose the method apt (the Ubuntu package management tool) should use "
 "to access the Ubuntu archive."
-msgstr ""
-"Veuillez choisir la mÈthode utilisÈe par apt (l'outil de gestion des paquets "
-"d'Ubuntu) pour accÈder ‡ l'archive Ubuntu†:"
+msgstr "Valitse tapa jolla apt noutaa Ubuntu-asennuspaketit:"
 
 #. Type: select
 #. Description
@@ -618,9 +596,8 @@ msgid ""
 "For example if you have an Ubuntu cd, select \"cdrom\", while if you plan to "
 "install via an Ubuntu mirror, choose \"ftp\" or \"http\"."
 msgstr ""
-"Par exemple, si vous installez ‡ partir d'un cÈdÈrom, choisissez "
-"´†cÈdÈrom†ª, si vous installez ‡ partir d'un site miroir, choisissez ´†ftp†ª "
-"ou ´†http†ª."
+"Jos sinulla esimerkiksi on Ubuntu-CD, valitse \"cdrom\", asennettaessa "
+"Ubuntu-asennuspalvelimesta valitse \"ftp\" tai \"http\"."
 
 #. Type: select
 #. Description
@@ -632,7 +609,7 @@ msgstr "${note}"
 #. Description
 #: ../../apt-setup.templates:40
 msgid "Mirror country:"
-msgstr "Pays du miroir†:"
+msgstr "Asennuspalvelimen maa:"
 
 #. Type: select
 #. Description
@@ -642,15 +619,15 @@ msgid ""
 "country or region if you do not know which mirror has the best Internet "
 "connection to you."
 msgstr ""
-"Veuillez choisir le pays o˘ est situÈ le miroir Debian. Vous devriez "
-"utiliser un miroir situÈ dans votre pays ou votre rÈgion si vous ne savez "
-"pas quel miroir possËde la meilleure connectivitÈ Internet avec vous."
+"Valitse maa jossa asennuspalvelimen olisi oltava. Olisi k√§ytett√§v√§ omassa "
+"maassa tai l√§hialueella olevaa palvelinta jos et tied√§ mill√§ on paras "
+"Internet-yhteys koneeseesi."
 
 #. Type: select
 #. Description
 #: ../../apt-setup.templates:49
 msgid "Choose the Ubuntu mirror to use:"
-msgstr "Veuillez choisir le miroir Ubuntu ‡ utiliser†:"
+msgstr "Valitse k√§ytett√§v√§ Ubuntu-asennuspalvelin:"
 
 #. Type: select
 #. Description
@@ -659,48 +636,44 @@ msgid ""
 "Select the Ubuntu mirror apt should use. You should select a mirror that is "
 "close to you on the net."
 msgstr ""
-"Veuillez choisir le site Ubuntu qu'apt va utiliser. Vous devez essayer de "
-"choisir le site avec lequel vous avez la meilleure connexion."
+"Valitse apt:n k√§ytt√∂√∂n Ubuntu-asennuspalvelin. Yrit√§ valita palvelin, joka "
+"on l√§hell√§ sinua verkossa."
 
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:55
 msgid "Mirror hostname:"
-msgstr "Nom du miroir†:"
+msgstr "Asennuspalvelimen konenimi:"
 
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:55
 msgid "Enter the hostname of the mirror from which Ubuntu will be downloaded."
-msgstr ""
-"Veuillez indiquer le nom d'hÙte du site miroir Ubuntu que vous souhaitez "
-"utiliser."
+msgstr "Sy√∂t√§ konenimi asennuspalvelimelle, josta Ubuntu noudetaan."
 
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:61
 msgid "Mirror directory:"
-msgstr "RÈpertoire du miroir†:"
+msgstr "Asennuspalvelimen hakemisto:"
 
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:61
 msgid "Enter the directory in which the Ubuntu mirror is located."
-msgstr ""
-"Veuillez indiquer le nom du rÈpertoire dans lequel est situÈ le miroir "
-"Ubuntu."
+msgstr "Kirjoita hakemisto, jossa Ubuntu-asennustiedostot sijaitsevat."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:66
 msgid "The directory you entered does not exist."
-msgstr "Le rÈpertoire que vous avez indiquÈ n'existe pas."
+msgstr "Sy√∂tt√§m√§√§si hakemistoa ei ole olemassa."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:71
 msgid "Mirror not found"
-msgstr "Miroir introuvable"
+msgstr "Asennuspalvelinta ei l√∂ytynyt."
 
 #. Type: note
 #. Description
@@ -709,26 +682,26 @@ msgid ""
 "The directory you entered does not contain a subdirectory named \"dists\", "
 "so it doesn't seem to be an Ubuntu mirror."
 msgstr ""
-"Le rÈpertoire que vous avez indiquÈ ne contient pas de sous-rÈpertoire nommÈ "
-"´†dists†ª†: il semble donc que ce ne soit pas un miroir de l'archive Ubuntu."
+"Sy√∂tt√§m√§si hakemisto ei sis√§ll√§ alihakemistoa nimelt√§ \"dists\", joten "
+"siell√§ ei n√§yt√§ olevan Ubuntu-asennustiedostoja."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:77
 msgid "CD-ROM missing"
-msgstr "CÈdÈrom absent"
+msgstr "CD-ROM puuttuu"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:77
 msgid "Please insert a suitable CD."
-msgstr "Veuillez insÈrer un cÈdÈrom adaptÈ."
+msgstr "Laita asemaan sopiva CD."
 
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:85
 msgid "CD-ROM device file:"
-msgstr "Nom de pÈriphÈrique du cÈdÈrom†:"
+msgstr "CD-ROM-laitetiedosto:"
 
 #. Type: string
 #. Description
@@ -737,8 +710,8 @@ msgid ""
 "This program was unable to auto-detect a CD-ROM drive, or there is no usable "
 "CD in the drive."
 msgstr ""
-"Ce programme n'a pas pu dÈtecter automatiquement le lecteur de cÈdÈroms ou "
-"il n'y a pas de cÈdÈrom utilisable dans le lecteur."
+"T√§m√§ ohjelma ei kyennyt tunnistamaan CD-ROM-asemaa, tai k√§ytt√∂kelpoista CD:"
+"t√§ ei ole asemassa."
 
 #. Type: string
 #. Description
@@ -747,27 +720,26 @@ msgid ""
 "Enter the device file to use to access your CD-ROM, and place an Ubuntu CD "
 "in the drive."
 msgstr ""
-"Veuillez indiquer le nom du fichier de pÈriphÈrique correspondant ‡ votre "
-"lecteur de cÈdÈroms et placer un cÈdÈrom Ubuntu dans le lecteur."
+"Sy√∂t√§ laitetiedosto, jonka kautta CD-ROMia k√§sitell√§√§n, ja aseta Ubuntu-CD "
+"asemaan."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:94
 msgid "Non-Ubuntu CD-ROM detected"
-msgstr "CÈdÈrom non Ubuntu dÈtectÈ"
+msgstr "Romppu ei ole Ubuntu-romppu"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:94
 msgid "The CD-ROM drive contains a non-Ubuntu CD."
-msgstr ""
-"Le lecteur de cÈdÈroms contient un disque qui n'est pas un cÈdÈrom Ubuntu."
+msgstr "Asemassa oleva CD-ROM ei ole Ubuntu-CD."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:100
 msgid "Scan another CD?"
-msgstr "Faut-il examiner un autre cÈdÈrom†?"
+msgstr "Tutki toinen CD?"
 
 #. Type: boolean
 #. Description
@@ -776,15 +748,14 @@ msgid ""
 "If you have another Ubuntu CD (for example, the second in a two CD set), you "
 "should insert and scan it now."
 msgstr ""
-"Si vous avez un autre cÈdÈrom Ubuntu (par exemple, le second d'un jeu de "
-"deux cÈdÈroms), vous devriez maintenant le placer dans le lecteur afin de "
-"l'examiner."
+"Jos sinulla on viel√§ toinen Ubuntu-CD (esim. j√§lkimm√§inen kahden CD:n "
+"paketista), laita se asemaan ja tutki se nyt."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:107
 msgid "Use restricted software?"
-msgstr "Souhaitez-vous utiliser les logiciels de la section ´†restricted†ª†?"
+msgstr "K√§yt√§ restricted-ohjelmistoja?"
 
 #. Type: boolean
 #. Description
@@ -795,22 +766,24 @@ msgid ""
 "to install it. This software has varying licenses which may prevent you from "
 "using, modifying, or sharing it."
 msgstr ""
-"Certains logiciels limitÈs peuvent fonctionner avec Ubuntu. Bien qu'ils ne "
-"fassent pas partie d'Ubuntu, les outils habituels peuvent Ítre utilisÈs pour "
-"les installer. Ces logiciels comportent des licences qui peuvent restreindre "
-"leur distribution, leur modification ou leur utilisation."
+"Jotkin ep√§vapaat ohjelmistot on muokattu toimimaan Ubuntun kanssa. Vaikka "
+"n√§m√§ ohjelmistot eiv√§t ole osa Ubuntua, ne voidaan asentaa Ubuntun "
+"vakioty√∂kaluilla. N√§ill√§ ohjelmistoilla on vaihtelevia lisenssej√§, jotka "
+"voivat est√§√§ sinua k√§ytt√§m√§st√§, muokkaamasta tai jakamasta niit√§."
 
+# Miss√§ kohtaa t√§m√§ esiintyy? V√§h√§n ep√§varmaa
+# mit√§ oikein tarkoitetaan.
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:107
 msgid "Please choose whether you want to have it available anyway."
-msgstr "Veuillez indiquer si vous souhaitez y avoir accËs malgrÈ tout."
+msgstr "Haluatko sen olevan kuitenkin saatavilla?"
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:118
 msgid "Use contrib software?"
-msgstr "Souhaitez-vous utiliser les logiciels de la section ´†contrib†ª†?"
+msgstr "K√§yt√§ contrib-ohjelmistoja?"
 
 #. Type: boolean
 #. Description
@@ -821,16 +794,16 @@ msgid ""
 "software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
 "install it."
 msgstr ""
-"Certains logiciels supplÈmentaires sont prÈvus pour fonctionner avec Ubuntu. "
-"Bien que libres, ils ne fonctionnent pas sans certains logiciels non libres. "
-"Ces programmes ne font pas partie d'Ubuntu, mais les outils habituels "
-"peuvent Ítre utilisÈs pour les installer."
+"Jotkut lis√§ohjelmistot on otettu mukaan Ubuntuun. Vaikka n√§m√§ ohjelmat "
+"itsess√§√§n ovat vapaita, vaativat ne toimiakseen ep√§vapaita ohjelmia. "
+"T√§llaiset ohjelmistot eiv√§t ole lainkaan osa Ubuntua, mutta Ubuntun "
+"vakioty√∂kaluja voi k√§ytt√§√§ asentamaan niit√§."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:129
 msgid "Use universe software?"
-msgstr "Souhaitez-vous utiliser des logiciels d'universe†?"
+msgstr "K√§yt√§ universe-ohjelmistoja?"
 
 #. Type: boolean
 #. Description
@@ -840,16 +813,16 @@ msgid ""
 "free and, though it is not a part of Ubuntu, standard Ubuntu tools can be "
 "used to install it."
 msgstr ""
-"Certains logiciels supplÈmentaires sont prÈvus pour fonctionner avec Ubuntu. "
-"Ces programmes sont libres, et bien qu'ils ne fassent pas partie d'Ubuntu "
-"les outils habituels peuvent Ítre utilisÈs pour les installer."
+"Jotkut lis√§ohjelmistot on tehty toimiviksi Ubuntun kanssa. N√§m√§ ohjelmat "
+"ovat vapaita ja, vaikka eiv√§t olekaan osa Ubuntua, Ubuntun vakioty√∂kaluja "
+"voi k√§ytt√§√§ asentamaan niit√§."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:139
 #, fuzzy
 msgid "Use backported software?"
-msgstr "Souhaitez-vous utiliser les logiciels de la section ´†contrib†ª†?"
+msgstr "K√§yt√§ contrib-ohjelmistoja?"
 
 #. Type: boolean
 #. Description
@@ -866,13 +839,13 @@ msgstr ""
 #: ../../apt-setup.templates:139
 msgid ""
 "Please choose whether you want this software to be made available to you."
-msgstr "Veuillez indiquer si vous souhaitez avoir accËs ‡ ces logiciels."
+msgstr "Haluatko t√§m√§n ohjelman olevan asennettavissa."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:149
 msgid "Failed to access the Ubuntu archive"
-msgstr "Impossible d'accÈder ‡ l'archive Ubuntu"
+msgstr "Ubuntu-asennustiedostoihin ei p√§√§sty"
 
 #. Type: note
 #. Description
@@ -882,15 +855,15 @@ msgid ""
 "provided, the Ubuntu package management tool, apt, returned the following "
 "error. The questions will be asked again."
 msgstr ""
-"Lors de la tentative d'accËs ‡ l'archive Ubuntu avec les informations que "
-"vous avez fournies, l'outil de gestion des paquets Ubuntu, apt, a retournÈ "
-"l'erreur ci-dessous. Les paramËtres d'accËs vont vous Ítre redemandÈs."
+"Yritys ottaa k√§ytt√∂√∂n Ubuntun asennuspalvelin antamiesi tietojen mukaan "
+"p√§√§ttyi virheeseen. apt antoi seuraavan virheilmoituksen. Kysymykset "
+"esitet√§√§n uudelleen."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:158
 msgid "Add another apt source?"
-msgstr "Faut-il ajouter une autre source pour apt†?"
+msgstr "Lis√§√§ toinen apt-l√§hde?"
 
 #. Type: boolean
 #. Description
@@ -899,20 +872,20 @@ msgid ""
 "${MESSAGE}. However, you may want to add another source to apt, so it can "
 "download packages from more than one location."
 msgstr ""
-"${MESSAGE}. Cependant, vous avez la possibilitÈ d'ajouter une autre source "
-"pour qu'apt puisse tÈlÈcharger des logiciels depuis plusieurs sites."
+"${MESSAGE}. Haluat ehk√§ lis√§t√§ apt:lle toisen l√§hteen, jotta se voi noutaa "
+"paketteja useammasta kuin yhdest√§ paikasta."
 
 #. Type: select
 #. Choices
 #: ../../apt-setup.templates:164
 msgid "edit, revert to backup"
-msgstr "Modifier, Revenir ‡ la version prÈcÈdente"
+msgstr "muokkaa, palauta varmuuskopio"
 
 #. Type: select
 #. Description
 #: ../../apt-setup.templates:165
 msgid "What do you want to do?"
-msgstr "Que souhaitez-vous faire†?"
+msgstr "Mit√§ haluat tehd√§?"
 
 #. Type: select
 #. Description
@@ -921,9 +894,9 @@ msgid ""
 "The entries you added in sources.list (the file defining package sources for "
 "apt) seem to be incorrect. Here is the error message from apt:"
 msgstr ""
-"Les entrÈes que vous avez ajoutÈes dans sources.list (le fichier qui dÈfinit "
-"les sources de rÈcupÈration de paquets pour le programme apt) ne "
-"fonctionnent pas. Voici le message d'erreur d'apt†:"
+"Tekem√§si lis√§ykset tiedostossa sources.list eiv√§t toimineet (tuossa "
+"tiedostossa m√§√§ritet√§√§n apt:n k√§ytt√§m√§t l√§hteet). T√§ss√§ on virheilmoitus apt-"
+"ohjelmalta:"
 
 #. Type: select
 #. Description
@@ -932,15 +905,15 @@ msgid ""
 "A backup of the sources.list was made before you edited it. You may either "
 "revert to that backup or edit the existing file and fix it."
 msgstr ""
-"Une sauvegarde de l'ancienne version de sources.list a ÈtÈ rÈalisÈe avant "
-"votre modification. Vous pouvez revenir ‡ cette version ou modifier et "
-"corriger le fichier actuel."
+"Varmuuskopio tiedostosta sources.list ennen muokkaamistasi on tallessa. "
+"Palautetaanko t√§m√§ varmuuskopio vai haluatko muokata nykyist√§ tiedostoa ja "
+"korjata sen?"
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:177
 msgid "Download software from the Internet?"
-msgstr "TÈlÈchargez des logiciels ‡ partir d'Internet†?"
+msgstr "Lataa ohjelmia Internetist√§?"
 
 #. Type: boolean
 #. Description
@@ -950,15 +923,16 @@ msgid ""
 "Internet. These updates may be tracked each time you upgrade your system. If "
 "you have a connection to the Internet, this is generally a good idea."
 msgstr ""
-"Ubuntu fournit rÈguliËrement des mises ‡ jour de sÈcuritÈ ‡ travers "
-"Internet. Ces mises ‡ jour peuvent Ítre recherchÈes ‡ chaque mise ‡ jour du "
-"systËme. C'est une bonne idÈe si vous Ítes connectÈ ‡ l'Internet."
+"Ubuntu tarjoaa lis√§ohjelmia ja oikea-aikaisia tietoturvap√§ivityksi√§ "
+"Internetin v√§lityksell√§. N√§it√§ p√§ivityksi√§ voidaan seurata joka kerta kun "
+"p√§ivit√§t j√§rjestelm√§√§si. Jos sinulla Internet-yhteys, on t√§m√§ yleens√§ hyv√§ "
+"idea."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
 msgid "Cannot access network updates"
-msgstr "Impossible d'accÈder aux mises ‡ jour rÈseau"
+msgstr "Verkkop√§ivityksiin ei p√§√§sty k√§siksi."
 
 #. Type: note
 #. Description
@@ -968,9 +942,9 @@ msgid ""
 "not be made available to you at this time. You may want to investigate this "
 "later."
 msgstr ""
-"Il est impossible d'accÈder ‡ l'archive logicielle ${site}, si bien que ces "
-"mises ‡ jour ne seront pas disponibles pour cette fois. Vous devriez "
-"chercher la raison de cette erreur ultÈrieurement."
+"Ohjelmapalvelimeen sijainnissa ${site} ei p√§√§ty k√§siksi, joten kyseiset "
+"p√§ivitykset eiv√§t ole nyt saatavilla. Saatat haluta tutkia t√§t√§ asiaa "
+"my√∂hemmin."
 
 #. Type: note
 #. Description
@@ -979,14 +953,14 @@ msgid ""
 "Commented out entries for ${site} have been added to the bottom of the /etc/"
 "apt/sources.list file."
 msgstr ""
-"Des entrÈes dÈsactivÈes pour ${site} ont ÈtÈ ajoutÈes en bas du fichier /etc/"
-"apt/sources.list."
+"Kommentoidut rivit sijainnille ${site} on lis√§tty /etc/apt/sources.list -"
+"tiedoston loppuun."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
 msgid "The error message returned by apt:"
-msgstr "Message d'erreur renvoyÈ par le programme apt†:"
+msgstr "apt:n antama virheilmoitus:"
 
 #. Type: note
 #. Description
@@ -998,48 +972,49 @@ msgstr "${apt_error}"
 #. Description
 #: ../../apt-setup.templates:198
 msgid "Configuring apt..."
-msgstr "Configuration d'apt..."
+msgstr "Tehd√§√§n apt:n asetuksia..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:206
 msgid "Setting up primary installation repository..."
-msgstr "Configuration de l'archive principale pour l'installation..."
+msgstr "Asetetaan ensisijaista asennuksen ohjelmavarastoa..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:210
 msgid "Testing primary installation repository..."
-msgstr "Essai de l'archive principale pour l'installation..."
+msgstr "Testataan ensisijaista asennuksen ohjelmavarastoa..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:214
 msgid "Setting up network repository..."
-msgstr "Configuration de l'archive rÈseau..."
+msgstr "Asetetaan verkko-ohjelmavarastoa..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:218
 msgid "Testing network repository..."
-msgstr "Essai de l'archive rÈseau..."
+msgstr "Testataan verkko-ohjelmavarastoa..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:222
 msgid "Setting up security update repository..."
-msgstr "Configuration de l'archive pour les mises ‡ jour de sÈcuritÈ..."
+msgstr "Asetetaan tietoturvap√§ivitysten ohjelmavarastoa..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:226
 msgid "Testing security update repository..."
-msgstr "Essai de l'archive pour les mises ‡ jour de sÈcuritÈ..."
+msgstr "Testataan tietoturvap√§ivitysten ohjelmavarastoa..."
 
 #, fuzzy
 #~ msgid "Installing popularity-contest"
-#~ msgstr "Installer les paquets choisis"
+#~ msgstr "Asenna valitut paketit"
 
+#, fuzzy
 #~ msgid ""
 #~ "Simply trying to install those packages (or a slightly different set of "
 #~ "packages) again may work around the problem, or at least move the "
@@ -1047,43 +1022,32 @@ msgstr "Essai de l'archive pour les mises ‡ jour de sÈcuritÈ..."
 #~ "a package management frontend, which will give you the opportunity to do "
 #~ "this."
 #~ msgstr ""
-#~ "RÈinstaller les paquets (ou des paquets Èquivalents) peut permettre de "
-#~ "contourner le problËme ou au moins de faire progresser l'installation. "
-#~ "Vous allez maintenant Ítre renvoyÈ ‡ aptitude, une interface de gestion "
-#~ "de paquets ‡ partir de laquelle vous pourrez faire cela."
-
-#~ msgid "Ubuntu version to install:"
-#~ msgstr "Version d'Ubuntu ‡ installer†:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Warty Warthog (4.10) was the first Ubuntu release. Hoary Hedgehog (5.04) "
-#~ "was the second release. Breezy Badger (5.10) is the third release."
-#~ msgstr ""
-#~ "Warty Warthog est la premiËre version d'Ubuntu, 4.10. Hoary Hedgehog sera "
-#~ "la seconde version."
+#~ "Yritt√§m√§ll√§ asentaa ne paketit (tai hiukan eri joukko paketteja) "
+#~ "uudelleen saattaa ongelma korjaantua tai ainakin asennus p√§√§see v√§h√§n "
+#~ "eteenp√§in. Jos haluat, voit palata pakettienvalintavaiheeseen ja yritt√§√§ "
+#~ "uudelleen."
 
 #~ msgid "Debian base system configuration"
-#~ msgstr "Configuration du systËme de base de Debian"
+#~ msgstr "Debianin peruskokoonpanon asetukset"
 
 #~ msgid "Welcome to your new Debian system!"
-#~ msgstr "Bienvenue sur votre nouveau systËme Debian†!"
+#~ msgstr "Tervetuloa uuteen Debian-j√§rjestelm√§√§si!"
 
 #~ msgid "Thank you for choosing Debian!"
-#~ msgstr "Merci d'avoir choisi Debian†!"
+#~ msgstr "Kiitoksia Debianin valitsemista!"
 
 #~ msgid ""
 #~ "Setup of your Debian system is complete. You may now login at the login: "
 #~ "prompt."
 #~ msgstr ""
-#~ "La configuration de votre systËme Debian est terminÈe. Vous pouvez "
-#~ "maintenant vous connecter ‡ l'apparition de l'invite ´†login:†ª."
+#~ "Debian-j√§rjestelm√§n asennus on valmis. Voit nyt kirjautua sis√§√§n login:-"
+#~ "kehotteessa."
 
 #~ msgid "stable, unstable, testing"
-#~ msgstr "stable, unstable, testing"
+#~ msgstr "vakaa, ep√§vakaa, testattava"
 
 #~ msgid "Debian distribution to use:"
-#~ msgstr "Distribution Debian ‡ utiliser†:"
+#~ msgstr "Valitse k√§ytett√§v√§ Debian-jakelu:"
 
 #~ msgid ""
 #~ "Debian comes in several flavors. Stable is well-tested and rarely "
@@ -1091,82 +1055,72 @@ msgstr "Essai de l'archive pour les mises ‡ jour de sÈcuritÈ..."
 #~ "middle ground, that receives many of the new versions from unstable if "
 #~ "they are not too buggy."
 #~ msgstr ""
-#~ "Debian est disponible en plusieurs versions. ´†Stable†ª est bien testÈe "
-#~ "et change rarement. ´†Unstable†ª n'est pas testÈe et change trËs "
-#~ "frÈquemment. ´†Testing†ª est entre les deux, elle rÈcupËre beaucoup de "
-#~ "nouvelles versions d'´†Unstable†ª si elles ne sont pas trop boguÈes."
+#~ "Debian on saatavilla useina vivahteina. Vakaa on hyvin testattu ja "
+#~ "muuttuu harvoin. Ep√§vakaa on testaamaton ja muuttuu usein. Testattava on "
+#~ "silt√§ v√§lilt√§, useat uudet versiot ep√§vakaasta siirtyv√§t siihen jos "
+#~ "niiss√§ ei ole liikaa vikoja. "
 
 #~ msgid "Please choose which version of Debian you wish to install."
-#~ msgstr "Veuillez choisir la version de Debian ‡ installer."
+#~ msgstr "Valitse mik√§ versio Debianista asennetaan."
 
 #~ msgid ""
 #~ "Please choose the method apt (the Debian package management tool) should "
 #~ "use to access the Debian archive."
-#~ msgstr ""
-#~ "Veuillez choisir la mÈthode utilisÈe par apt (l'outil de gestion des "
-#~ "paquets de Debian) pour accÈder ‡ l'archive Debian†:"
+#~ msgstr "Valitse tapa jolla apt noutaa Debian-asennuspaketit:"
 
 #~ msgid ""
 #~ "For example if you have a Debian cd, select \"cdrom\", while if you plan "
 #~ "to install via a Debian mirror, choose \"ftp\" or \"http\"."
 #~ msgstr ""
-#~ "Par exemple, si vous installez ‡ partir d'un cÈdÈrom, choisissez "
-#~ "´†cÈdÈrom†ª, si vous installez ‡ partir d'un site miroir, choisissez "
-#~ "´†ftp†ª ou ´†http†ª."
+#~ "Jos sinulla esimerkiksi on Debian-CD, valitse \"cdrom\", asennettaessa "
+#~ "Debian-asennuspalvelimesta valitse \"ftp\" tai \"http\"."
 
 #~ msgid "Choose the Debian mirror to use:"
-#~ msgstr "Veuillez choisir le miroir Debian ‡ utiliser†:"
+#~ msgstr "Valitse k√§ytett√§v√§ Debian-asennuspalvelin:"
 
 #~ msgid ""
 #~ "Select the Debian mirror apt should use. You should select a mirror that "
 #~ "is close to you on the net."
 #~ msgstr ""
-#~ "Veuillez choisir le site Debian qu'apt va utiliser. Vous devez essayer de "
-#~ "choisir le site avec lequel vous avez la meilleure connexion."
+#~ "Valitse apt:n k√§ytt√∂√∂n Debian-asennuspalvelin. Yrit√§ valita palvelin, "
+#~ "joka on l√§hell√§ sinua verkossa."
 
 #~ msgid ""
 #~ "Enter the hostname of the mirror from which Debian will be downloaded."
-#~ msgstr ""
-#~ "Veuillez indiquer le nom d'hÙte du site miroir Debian que vous souhaitez "
-#~ "utiliser."
+#~ msgstr "Sy√∂t√§ konenimi asennuspalvelimelle, josta Debian noudetaan."
 
 #~ msgid "Enter the directory in which the Debian mirror is located."
-#~ msgstr ""
-#~ "Veuillez indiquer le nom du rÈpertoire dans lequel est situÈ le miroir "
-#~ "Debian."
+#~ msgstr "Kirjoita hakemisto, jossa Debian-asennustiedostot sijaitsevat."
 
 #~ msgid ""
 #~ "The directory you entered does not contain a subdirectory named \"dists"
 #~ "\", so it doesn't seem to be a Debian mirror."
 #~ msgstr ""
-#~ "Le rÈpertoire que vous avez indiquÈ ne contient pas de sous-rÈpertoire "
-#~ "nommÈ ´†dists†ª†: il semble donc que ce ne soit pas un miroir de "
-#~ "l'archive Debian."
+#~ "Sy√∂tt√§m√§si hakemisto ei sis√§ll√§ alihakemistoa nimelt√§ \"dists\", joten "
+#~ "siell√§ ei n√§yt√§ olevan Debian-asennustiedostoja."
 
 #~ msgid ""
 #~ "Enter the device file to use to access your CD-ROM, and place a Debian CD "
 #~ "in the drive."
 #~ msgstr ""
-#~ "Veuillez indiquer le nom du fichier de pÈriphÈrique correspondant ‡ votre "
-#~ "lecteur de cÈdÈroms et placer un cÈdÈrom Debian dans le lecteur."
+#~ "Sy√∂t√§ laitetiedosto, jonka kautta CD-ROMia k√§sitell√§√§n, ja aseta Debian-"
+#~ "CD asemaan."
 
 #~ msgid "Non-Debian CD-ROM detected"
-#~ msgstr "CÈdÈrom non Debian dÈtectÈ"
+#~ msgstr "Romppu ei ole Debian-romppu"
 
 #~ msgid "The CD-ROM drive contains a non-Debian CD."
-#~ msgstr ""
-#~ "Le lecteur de cÈdÈroms contient un disque qui n'est pas un cÈdÈrom Debian."
+#~ msgstr "Asemassa oleva CD-ROM ei ole Debian-CD."
 
 #~ msgid ""
 #~ "If you have another Debian CD (for example, the second in a two CD set), "
 #~ "you should insert and scan it now."
 #~ msgstr ""
-#~ "Si vous avez un autre cÈdÈrom Debian (par exemple, le second d'un jeu de "
-#~ "deux cÈdÈroms), vous devriez maintenant le placer dans le lecteur afin de "
-#~ "l'examiner."
+#~ "Jos sinulla on viel√§ toinen Debian-CD (esim. j√§lkimm√§inen kahden CD:n "
+#~ "paketista), laita se asemaan ja tutki se nyt."
 
 #~ msgid "Use non-free software?"
-#~ msgstr "Souhaitez-vous utiliser des logiciels non libres†?"
+#~ msgstr "K√§yt√§ ep√§vapaita ohjelmistoja?"
 
 #~ msgid ""
 #~ "Some non-free software has been made to work with Debian. Though this "
@@ -1174,10 +1128,11 @@ msgstr "Essai de l'archive pour les mises ‡ jour de sÈcuritÈ..."
 #~ "used to install it. This software has varying licenses which may prevent "
 #~ "you from using, modifying, or sharing it."
 #~ msgstr ""
-#~ "Certains logiciels non libres peuvent fonctionner avec Debian. Bien "
-#~ "qu'ils ne fassent pas partie de Debian, les outils habituels peuvent Ítre "
-#~ "utilisÈs pour les installer. Ces logiciels comportent des restrictions en "
-#~ "ce qui concerne leur distribution, leur modification ou leur utilisation."
+#~ "Jotkin ep√§vapaat ohjelmistot on muokattu toimimaan Debianin kanssa. "
+#~ "Vaikka n√§m√§ ohjelmistot eiv√§t ole osa Debiania, ne voidaan asentaa "
+#~ "Debianin vakioty√∂kaluilla. N√§ill√§ ohjelmistoilla on vaihtelevia "
+#~ "lisenssej√§, jotka voivat est√§√§ sinua k√§ytt√§m√§st√§, muokkaamasta tai "
+#~ "jakamasta niit√§."
 
 #~ msgid ""
 #~ "Some additional software has been made to work with Debian. Though this "
@@ -1185,90 +1140,84 @@ msgstr "Essai de l'archive pour les mises ‡ jour de sÈcuritÈ..."
 #~ "software is not a part of Debian, but standard Debian tools can be used "
 #~ "to install it."
 #~ msgstr ""
-#~ "Certains logiciels supplÈmentaires sont prÈvus pour fonctionner avec "
-#~ "Debian. Bien que libres, ils ne fonctionnent pas sans certains logiciels "
-#~ "non libres. Ces programmes ne font pas partie de Debian, mais les outils "
-#~ "habituels peuvent Ítre utilisÈs pour les installer."
+#~ "Jotkut lis√§ohjelmistot on otettu mukaan Debianiin. Vaikka n√§m√§ ohjelmat "
+#~ "itsess√§√§n ovat vapaita, vaativat ne toimiakseen ep√§vapaita ohjelmia. "
+#~ "T√§llaiset ohjelmistot eiv√§t ole lainkaan osa Debiania, mutta Debianin "
+#~ "vakioty√∂kaluja voi k√§ytt√§√§ asentamaan niit√§."
 
 #~ msgid "Failed to access the Debian archive"
-#~ msgstr "Impossible d'accÈder ‡ l'archive Debian"
+#~ msgstr "Debian-asennustiedostoihin ei p√§√§sty"
 
 #~ msgid ""
 #~ "While trying to access the debian archive using the information you "
 #~ "provided, the Debian package management tool, apt, returned the following "
 #~ "error. The questions will be asked again."
 #~ msgstr ""
-#~ "Lors de la tentative d'accËs ‡ l'archive Debian avec les informations que "
-#~ "vous avez fournies, l'outil de gestion des paquets Debian, apt, a "
-#~ "retournÈ l'erreur ci-dessous. Les paramËtres d'accËs vont vous Ítre "
-#~ "redemandÈs."
+#~ "Yritys ottaa k√§ytt√∂√∂n Debianin asennuspalvelin antamiesi tietojen mukaan "
+#~ "p√§√§ttyi virheeseen. apt antoi seuraavan virheilmoituksen. Kysymykset "
+#~ "esitet√§√§n uudelleen."
 
 #~ msgid "Use security updates from security.debian.org?"
-#~ msgstr ""
-#~ "Faut-il utiliser les mises ‡ jour de sÈcuritÈ de security.debian.org†?"
+#~ msgstr "K√§yt√§ tietoturvap√§ivityksi√§ security.debian.org:sta?"
 
 #~ msgid ""
 #~ "Debian provides timely security updates via the website security.debian."
 #~ "org. These updates may be tracked each time you upgrade your system. If "
 #~ "you have a connection to the Internet, this is generally a good idea."
 #~ msgstr ""
-#~ "Debian fournit rÈguliËrement des mises ‡ jour de sÈcuritÈ ‡ travers le "
-#~ "site http://security.debian.org/. Ces mises ‡ jour peuvent Ítre "
-#~ "recherchÈes ‡ chaque mise ‡ jour du systËme. C'est une bonne idÈe si vous "
-#~ "Ítes connectÈ ‡ l'Internet."
+#~ "Debian tarjoaa oikea-aikaisia tietoturvap√§ivityksi√§ www-sivuston http://"
+#~ "security.debian.org/ kautta. N√§it√§ p√§ivityksi√§ voidaan seurata joka kerta "
+#~ "kun p√§ivit√§t j√§rjestelm√§√§ Jos sinulla Internet-yhteys on t√§m√§ yleens√§ "
+#~ "hyv√§ idea."
 
 #~ msgid "Cannot access security updates"
-#~ msgstr "Impossible d'accÈder aux mises ‡ jour de sÈcuritÈ"
+#~ msgstr "Tietoturvap√§ivityksiin ei p√§√§sty k√§siksi."
 
 #~ msgid ""
 #~ "The security updates on security.debian.org couldn't be accessed, so "
 #~ "those updates will not be made available to you at this time. You may "
 #~ "want to investigate this later."
 #~ msgstr ""
-#~ "Il a ÈtÈ impossible d'accÈder aux mises ‡ jour de sÈcuritÈ sur le site "
-#~ "security.debian.org, si bien que ces mises ‡ jour ne seront pas "
-#~ "disponibles pour cette fois. Vous devriez chercher la raison de cette "
-#~ "erreur ultÈrieurement."
+#~ "Tietoturvap√§ivityksiin security.debian.org:ssa ei p√§√§st√§ k√§siksi, joten "
+#~ "p√§ivityksi√§ ei ole k√§yt√∂ss√§si t√§ll√§ hetkell√§. Kenties haluat tutkia t√§t√§ "
+#~ "my√∂hemmin."
 
 #~ msgid ""
 #~ "Commented out entries for security.debian.org have been added to the "
 #~ "bottom of the /etc/apt/sources.list file."
 #~ msgstr ""
-#~ "Des entrÈes dÈsactivÈes pour le serveur security.debian.org ont ÈtÈ "
-#~ "ajoutÈes ‡ la fin du fichier de configuration de l'outil de gestion des "
-#~ "paquets APT (/etc/apt/sources.list)."
+#~ "security.debian.org -rivit on lis√§tty /etc/apt/sources.list -tiedoston "
+#~ "loppuun, mutta ne on merkitty kommenteiksi."
 
+#, fuzzy
 #~ msgid ""
 #~ "This program will now walk you through the process of setting up your "
 #~ "newly installed system. It will start with the basics -- time zone "
 #~ "selection and adding a user, and then progress to installing additional "
 #~ "software to tune this new Ubuntu system to your needs."
 #~ msgstr ""
-#~ "Ce programme va maintenant vous guider dans le processus de configuration "
-#~ "de votre nouveau systËme. Il commencera par les opÈrations de base (choix "
-#~ "du fuseau horaire et ajout d'un utilisateur), et s'occupera ensuite "
-#~ "d'installer des logiciels supplÈmentaires pour adapter ce nouveau systËme "
-#~ "Ubuntu ‡ vos besoins."
-
-#~ msgid "Exit base-config"
-#~ msgstr "Quitter la configuration du systËme de base"
+#~ "T√§m√§ ohjelma k√§y nyt kanssasi l√§pi vasta asennetun j√§rjestelm√§si "
+#~ "asetukset. Alussa on perusasetukset -- aikavy√∂hykkeen valinta, "
+#~ "p√§√§k√§ytt√§j√§n salasanan asettaminen ja k√§ytt√§j√§n lis√§√§minen, sitten "
+#~ "edet√§√§n lis√§ohjelmistojen asentamiseen jotta Ubuntu-j√§rjestelm√§ "
+#~ "sovitetaan tarpeisiisi."
 
 #~ msgid "Software selection method:"
-#~ msgstr "MÈthode de choix des logiciels†:"
+#~ msgstr "Miten haluat valita asennettavat ohjelmapaketit:"
 
 #~ msgid ""
 #~ "You can choose more software to be installed to customize the computer "
 #~ "for your particular needs. The following methods are available to select "
 #~ "software to install."
 #~ msgstr ""
-#~ "Vous pouvez choisir d'installer d'autres programmes pour que l'ordinateur "
-#~ "rÈponde ‡ vos besoins spÈcifiques. Les mÈthodes suivantes sont "
-#~ "disponibles pour choisir d'autres logiciels†:"
+#~ "Voit valita lis√§√§ ohjelmistoja asennettavaksi kun muokkaat tietokoneen "
+#~ "tarpeitasi vastaavaksi. Seuraavat tavat ovat k√§ytett√§viss√§ "
+#~ "lis√§ohjelmistojen valitsemiseen."
 
+#, fuzzy
 #~ msgid ""
 #~ "The following are common time zones in Brazil. If you are in a different "
 #~ "time zone, choose \"other\" to select from all available time zones."
 #~ msgstr ""
-#~ "Les fuseaux horaires suivants sont les fuseaux usuels au BrÈsil. Si vous "
-#~ "vous situez dans un fuseau horaire diffÈrent, veuillez choisir ´ Autre ª "
-#~ "pour sÈlectionner le fuseau horaire dans une liste complËte."
+#~ "Maan perusteella arvaten aikavy√∂hykkeesi on luultavasti jokin n√§ist√§. Jos "
+#~ "ei ole, valitse \"muu\" ja p√§√§set valitsemaan kaikista aikavy√∂hykkeist√§."

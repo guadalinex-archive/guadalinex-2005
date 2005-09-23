@@ -21,9 +21,8 @@ msgstr ""
 #. Type: title
 #. Description
 #: ../templates:3
-#, fuzzy
 msgid "Ubuntu base system configuration"
-msgstr "Конфигурација на основниот систем на Дебиан"
+msgstr "Конфигурација на основниот Убунту систем"
 
 #. Type: select
 #. Description
@@ -40,24 +39,22 @@ msgstr "Ова е конфигурациското мени за основни�
 #. Type: note
 #. Description
 #: ../templates:13
-#, fuzzy
 msgid "Welcome to your new Ubuntu system!"
-msgstr "Добрeдојде во твојот нов Дебиан систем!"
+msgstr "Добрoдојдовте во Вашиот нов Убунту систем!"
 
 #. Type: note
 #. Description
 #: ../templates:13
-#, fuzzy
 msgid ""
 "This program will now walk you through the process of setting up your newly "
 "installed system. It will start with the basics -- time zone selection, "
 "setting a root password and adding a user, and then progress to installing "
 "additional software to tune this new Ubuntu system to your needs."
 msgstr ""
-"Оваа програма ќе ти помогне при поставување на твојот нов систем. Ќе почне "
+"Оваа програма ќе Ви помогне при поставување на Вашиот нов систем. Ќе почне "
 "со основите - избор на временска зона, поставување на рут лозинка и додавање "
 "корисник, потоа ќе продолжи со инсталирање на дополнителен софтвер за пофино "
-"да го намести твојото нов Дебиан систем по твоите потреби."
+"да го намести Вашиот нов Убунту систем според Вашите потреби."
 
 #. Type: boolean
 #. Description
@@ -133,16 +130,15 @@ msgstr ""
 #. Type: note
 #. Description
 #: ../templates:84
-#, fuzzy
 msgid "Thank you for choosing Ubuntu!"
-msgstr "Ти благодариме што го одбра Дебиан!"
+msgstr "Ви благодариме што го избравте Убунту!"
 
 #. Type: note
 #. Description
 #: ../templates:84
-#, fuzzy
 msgid "Setup of your Ubuntu system is complete. You may now login."
-msgstr "Поставувањето на твојот Дебиан систем е завршено. Може да се најавиш."
+msgstr ""
+"Поставувањето на Вашиот Убунту систем е завршено. Можете да се најавите."
 
 #. Type: note
 #. Description
@@ -299,40 +295,38 @@ msgstr "Изврши школка"
 #. Type: text
 #. Description
 #: ../templates:171
-#, fuzzy
 msgid "Installing packages"
-msgstr "Избери и инсталирај пакети"
+msgstr "Инсталирам пакети"
 
 #. Type: text
 #. Description
 #: ../templates:175
 msgid "Preparing for installation..."
-msgstr ""
+msgstr "Се припремам за инсталација..."
 
 #. Type: text
 #. Description
 #: ../templates:184
 msgid "Registering documentation, please wait..."
-msgstr ""
+msgstr "Регистрирам документација, ве молам почекајте..."
 
 #. Type: title
 #. Description
 #: ../apt-setup-udeb.templates:7
 msgid "Preparing to configure apt..."
-msgstr ""
+msgstr "Се припремам за конфигурација на apt..."
 
 #. Type: title
 #. Description
 #: ../apt-setup-udeb.templates:11
-#, fuzzy
 msgid "Copying mirror configuration..."
-msgstr "Конфигурација на временска зона"
+msgstr "Копирам конфигурациј од огледалото..."
 
 #. Type: title
 #. Description
 #: ../apt-setup-udeb.templates:15 ../../apt-setup.templates:202
 msgid "Checking for CD-ROM..."
-msgstr ""
+msgstr "Проверувам CD-ROM..."
 
 #. Type: title
 #. Description
@@ -590,24 +584,22 @@ msgstr "Метод за пристап до архивите за апт:"
 #. Type: select
 #. Description
 #: ../../apt-setup.templates:26
-#, fuzzy
 msgid ""
 "Please choose the method apt (the Ubuntu package management tool) should use "
 "to access the Ubuntu archive."
 msgstr ""
-"Те молам одбери го начинот кој треба да го користи апт (Алатката за "
-"манипулација со пакети на Дебиан) за да им пристапи на Дебиан архивите."
+"Ве молам одберете го начинот кој треба да го користи apt (Алатката за "
+"справување со пакети на Убунту) за да им пристапи на архивите на Убунту."
 
 #. Type: select
 #. Description
 #: ../../apt-setup.templates:26
-#, fuzzy
 msgid ""
 "For example if you have an Ubuntu cd, select \"cdrom\", while if you plan to "
 "install via an Ubuntu mirror, choose \"ftp\" or \"http\"."
 msgstr ""
-"На пример ако имаш Дебиан цд, одвери „цдром“, додека ако сакаш да го "
-"инсталираш Дебиан од алтернативна локација одбери „фтп“ или „хттп“."
+"На пример ако имаш Убунту цд, одвери „цдром“, додека ако сакаш да го "
+"инсталираш Убунту од алтернативна локација одбери „фтп“ или „хттп“."
 
 #. Type: select
 #. Description
@@ -636,20 +628,18 @@ msgstr ""
 #. Type: select
 #. Description
 #: ../../apt-setup.templates:49
-#, fuzzy
 msgid "Choose the Ubuntu mirror to use:"
-msgstr "Одбери Дебиан алтернативна локација која ќе се користи:"
+msgstr "Одберете огледало за Убунту за употреба:"
 
 #. Type: select
 #. Description
 #: ../../apt-setup.templates:49
-#, fuzzy
 msgid ""
 "Select the Ubuntu mirror apt should use. You should select a mirror that is "
 "close to you on the net."
 msgstr ""
-"Избери Дебиан алтернативна локација која треба апт да ја користи. Треба да "
-"одбереш таква што е блиску до тебе во мрежата."
+"Изберете apt огледало за Убунту. Треба да одберете некое што е поблиску до "
+"Вас."
 
 #. Type: string
 #. Description
@@ -660,10 +650,8 @@ msgstr "Хостнејм на алтернативната локација:"
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:55
-#, fuzzy
 msgid "Enter the hostname of the mirror from which Ubuntu will be downloaded."
-msgstr ""
-"Внеси го хостнејмот на алтернативната локација од која Дебиан ќе се презема."
+msgstr "Внесете го името на хостот на огледалото од кое што ќе презема Убунту."
 
 #. Type: string
 #. Description
@@ -674,10 +662,8 @@ msgstr "Директориум:"
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:61
-#, fuzzy
 msgid "Enter the directory in which the Ubuntu mirror is located."
-msgstr ""
-"Внеси го директориумот во кој алтернативната локација за Дебиан се наоѓа."
+msgstr "Внесете го директориумот во кој што се наоѓа огледалото за Убунту."
 
 #. Type: note
 #. Description
@@ -694,25 +680,24 @@ msgstr "Алтернативна локација не е најдена"
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:71
-#, fuzzy
 msgid ""
 "The directory you entered does not contain a subdirectory named \"dists\", "
 "so it doesn't seem to be an Ubuntu mirror."
 msgstr ""
-"Директорумот кој го внесе не содржи поддиректорум со име „dists“, па изгледа "
-"дека не е Дебиан алтернативна локација."
+"Директорумот кој го внесовте не содржи поддиректорум со име „dists“, па "
+"изгледа дека не е огледало за Убунту."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:77
 msgid "CD-ROM missing"
-msgstr ""
+msgstr "Недостасува CD-ROM"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:77
 msgid "Please insert a suitable CD."
-msgstr ""
+msgstr "Ве молам внесете го соодветното CD"
 
 #. Type: string
 #. Description
@@ -733,27 +718,24 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../../apt-setup.templates:85
-#, fuzzy
 msgid ""
 "Enter the device file to use to access your CD-ROM, and place an Ubuntu CD "
 "in the drive."
 msgstr ""
-"Внеси уред-датотека за пристап до твојот ЦД-РОМ и внеси Дебиан ЦД во "
-"единицата."
+"Внесете уред-датотека за пристап до Вашиот CD-ROM и внесете Убунту CD во "
+"уредот."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:94
-#, fuzzy
 msgid "Non-Ubuntu CD-ROM detected"
-msgstr "Не-Дебиан ЦД-РОМ детектиран."
+msgstr "Детектиран е CD-ROM кој што не е Убунту"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:94
-#, fuzzy
 msgid "The CD-ROM drive contains a non-Ubuntu CD."
-msgstr "Во ЦД-РОМ уредот има не-Дебиан ЦД."
+msgstr "CD-ROM уредот содржи CD што не е Убунту."
 
 #. Type: boolean
 #. Description
@@ -764,41 +746,38 @@ msgstr "Скенирај друго ЦД?"
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:100
-#, fuzzy
 msgid ""
 "If you have another Ubuntu CD (for example, the second in a two CD set), you "
 "should insert and scan it now."
 msgstr ""
-"Ако имаш друго Дебиан ЦД (пр. второто во пакет од две) треба да го внесеш и "
-"да го скенираш сега."
+"Ако имате друго Убунту CD (пр. второто во пакет од две) треба да го внесете "
+"и да го скенирате сега."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:107
-#, fuzzy
 msgid "Use restricted software?"
-msgstr "Користи придонесен софтвер?"
+msgstr "Да користам забранет софтвер?"
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:107
-#, fuzzy
 msgid ""
 "Some restricted software has been made to work with Ubuntu. Though this "
 "software is not at all a part of Ubuntu, standard Ubuntu tools can be used "
 "to install it. This software has varying licenses which may prevent you from "
 "using, modifying, or sharing it."
 msgstr ""
-"Некој неслободен софтвер беше направен да работи со Дебиан. Иако овој "
-"софтвер воопшто не е дел од Дебиан, може да се инсталира со стандардните "
-"Дебиан алатки. Овој софтвер може да има различна лиценца која може да ти "
+"Некој неслободен софтвер е направен да работи со Убунту. Иако овој софтвер "
+"воопшто не е дел од Убунту, може да се инсталира со стандардните алатки на "
+"Убунту. Овој софтвер може да има различна лиценца која шѕо може да Ви "
 "оневозможи негово користење, измена или делење."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:107
 msgid "Please choose whether you want to have it available anyway."
-msgstr "Те молам одбери дали сепак сакаш да го инсталираш."
+msgstr "Ве молам одберете дали сепак сакате да го инсталирате."
 
 #. Type: boolean
 #. Description
@@ -809,38 +788,35 @@ msgstr "Користи придонесен софтвер?"
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:118
-#, fuzzy
 msgid ""
 "Some additional software has been made to work with Ubuntu. Though this "
 "software is free, it depends on non-free software for its operation. This "
 "software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
 "install it."
 msgstr ""
-"Некој дополнителен софтвер беше направен да работи со Дебиан. Иако овој "
-"софтвер е слободен, потребен му е затворен софтвер за да работи. Овој "
-"софтвер не е дел од Дебиан, но вообичаените алатки на Дебиан може да се "
-"користата да се инсталира."
+"Некој дополнителен софтвер e направен да работи со Убунту. Иако овој софтвер "
+"е слободен, потребен му е затворен софтвер за да работи. Овој софтвер не е "
+"дел од Убунту, но можете да ги користите алатките на Убунту за да го "
+"инсталирате."
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:129
-#, fuzzy
 msgid "Use universe software?"
-msgstr "Користни не отворен софтвер?"
+msgstr "Да користам додатен софтвер?"
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:129
-#, fuzzy
 msgid ""
 "Some additional software has been made to work with Ubuntu. This software is "
 "free and, though it is not a part of Ubuntu, standard Ubuntu tools can be "
 "used to install it."
 msgstr ""
-"Некој дополнителен софтвер беше направен да работи со Дебиан. Иако овој "
-"софтвер е слободен, потребен му е затворен софтвер за да работи. Овој "
-"софтвер не е дел од Дебиан, но вообичаените алатки на Дебиан може да се "
-"користата да се инсталира."
+"Некој дополнителен софтвер e направен да работи со Убунту. Иако овој софтвер "
+"е слободен, потребен му е затворен софтвер за да работи. Овој софтвер не е "
+"дел од Убунту, но можете да ги користите алатките на Убунту за да го "
+"инсталирате."
 
 #. Type: boolean
 #. Description
@@ -864,27 +840,25 @@ msgstr ""
 #: ../../apt-setup.templates:139
 msgid ""
 "Please choose whether you want this software to be made available to you."
-msgstr "Те молам одбери дали сакаш овој софтвер да ти биде достапен."
+msgstr "Ве молам одберете дали сакате да Ви биде достапен овој софтвер."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:149
-#, fuzzy
 msgid "Failed to access the Ubuntu archive"
-msgstr "Неуспеав да и пристапам на Дебиан архивата"
+msgstr "Не успеав да и пристапам на архивата на Убунту"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:149
-#, fuzzy
 msgid ""
 "While trying to access the Ubuntu archive using the information you "
 "provided, the Ubuntu package management tool, apt, returned the following "
 "error. The questions will be asked again."
 msgstr ""
-"Додека пробував да и пристапам на дебиан архивата користејќи ги информациите "
-"кои ги внесе, алаката за манипулација со пакети на Дебиан, апт ја врати "
-"следната грешка. Прашањата ќе бидат повторно прашани."
+"Додека пробував да и пристапам на архивата на Убунту користејќи ги "
+"информациите кои ги внесовте, алаката за справување со пакети на, apt, ја "
+"врати следната грешка. Прашањата ќе бидат повторно прашани."
 
 #. Type: boolean
 #. Description
@@ -939,51 +913,46 @@ msgstr ""
 #. Description
 #: ../../apt-setup.templates:177
 msgid "Download software from the Internet?"
-msgstr ""
+msgstr "Да преземам софтвер од интернет?"
 
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:177
-#, fuzzy
 msgid ""
 "Ubuntu provides additional software and timely security updates via the "
 "Internet. These updates may be tracked each time you upgrade your system. If "
 "you have a connection to the Internet, this is generally a good idea."
 msgstr ""
-"Дебиан овозможува повремени сигурносни закрпи преки страната security.debian."
-"org. Овие закрпи може да бидат следени секој пат кога го доградуваш твојот "
-"систем. Ако имаш конекција со Интернет ова главно е добра идеја."
+"Убунту преку интернет овозможува повремени безбедносни закрпи. Овие закрпи "
+"можат да бидат додавани секој пат кога го надоградувате Вашиот систем. Ако "
+"имате интернет врска ова е добра идеја."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
-#, fuzzy
 msgid "Cannot access network updates"
-msgstr "Неможам да им пристапам на сигурносните закрпи"
+msgstr "Не можам да им пристапам на безбедносните закрпи"
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
-#, fuzzy
 msgid ""
 "The software archive at ${site} couldn't be accessed, so those updates will "
 "not be made available to you at this time. You may want to investigate this "
 "later."
 msgstr ""
-"Неможеше да се пристапи до сигурносните закрпи од security.debian.org, па "
-"ова време овие закрпи нема да ти бидат достапни. Убаво е да истражиш околу "
-"ова подоцна."
+"Не можам да и пристапам на софтверската архива на ${site} и затоа "
+"надградбите не се достапни во моментов. Би било добро да го истражите ова."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
-#, fuzzy
 msgid ""
 "Commented out entries for ${site} have been added to the bottom of the /etc/"
 "apt/sources.list file."
 msgstr ""
-"Коментирани ставки за security.debian.org беа додадени на крајот од "
-"датотеката /etc/apt/sources.list"
+"Коментирани ставки за ${site} беа додадени на крајот од датотеката /etc/apt/"
+"sources.list"
 
 #. Type: note
 #. Description
@@ -1000,47 +969,44 @@ msgstr "${apt_error}"
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:198
-#, fuzzy
 msgid "Configuring apt..."
-msgstr "Конфигурирај apt"
+msgstr "Конфигурирај apt..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:206
 msgid "Setting up primary installation repository..."
-msgstr ""
+msgstr "Ги поставувам главните складишта..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:210
 msgid "Testing primary installation repository..."
-msgstr ""
+msgstr "Ги тестирам главните складишта..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:214
 msgid "Setting up network repository..."
-msgstr ""
+msgstr "Ги поставувам мрежните складишта..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:218
 msgid "Testing network repository..."
-msgstr ""
+msgstr "Тестирам мрежни складишта..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:222
-#, fuzzy
 msgid "Setting up security update repository..."
-msgstr "Користи сигурностни закрпи од security.debian.org?"
+msgstr "Поставувам складиште за безбедносни надградби..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:226
-#, fuzzy
 msgid "Testing security update repository..."
-msgstr "Користи сигурностни закрпи од security.debian.org?"
+msgstr "Тестирам складиште за безбедносни надградби..."
 
 #, fuzzy
 #~ msgid "Installing popularity-contest"

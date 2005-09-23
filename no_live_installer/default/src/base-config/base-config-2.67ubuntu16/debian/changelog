@@ -1,3 +1,19 @@
+base-config (2.67ubuntu16) breezy; urgency=low
+
+  * Fix the length of the X-preconfiguration part of pkgsel's progress bar.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 20 Sep 2005 20:26:25 +0100
+
+base-config (2.67ubuntu15) breezy; urgency=low
+
+  * Update Ubuntu-specific translations from Rosetta: Greek, Spanish,
+    Finnish, French, Hungarian, Macedonian, Portuguese, Brazilian
+    Portuguese, Slovak.
+  * Restore old translations of base-config/install-problem from Debian:
+    Greek, Hungarian.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 19 Sep 2005 19:11:33 +0100
+
 base-config (2.67ubuntu14) breezy; urgency=low
 
   * Add commented-out backports lines to default sources.list (closes:
