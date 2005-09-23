@@ -35,6 +35,20 @@
 #define ARRAY_SEARCH(array, compare, key) \
     (key && bsearch(&key, array, n_##array, sizeof *array, &compare))
 
+#define ARRAY_SPLIT(array, string, delim) do { \
+    char *value = strdup(string); \
+    const char *word; \
+    for (word = strsep(&value, delim); word; word = strsep(&value, delim)) { \
+	ARRAY_APPEND(array, word); \
+	if (value) { \
+	    /* advance over any duplicate delimiters */ \
+	    while (*value && strchr(delim, *value)) \
+		++value; \
+	} \
+    } \
+    free(value); \
+} while (0)
+
 const char *force_base_prefix = "linux-image-";
 
 void die(const char *format, ...)
@@ -302,23 +316,10 @@ int main(int argc, char **argv)
 		version = encode_colons(line + 9);
 	    else if (!strncasecmp(line, "Filename: ", 10))
 		filename = line + 10;
-	    else if (!strncasecmp(line, "Task: ", 6)) {
-		char *value = strdup(line + 6);
-		const char *task;
-
-		free(tasks);
-		/* split value on ", " into array */
-		for (task = strsep(&value, ", "); task;
-		     task = strsep(&value, ", ")) {
-		    ARRAY_APPEND(tasks, task);
-		    if (value) {
-			/* advance over any duplicate delimiters */
-			while (*value && strchr(", ", *value))
-			    ++value;
-		    }
-		}
-		free(value);
-	    }
+	    else if (!strncasecmp(line, "Task: ", 6))
+		ARRAY_SPLIT(tasks, line + 6, ", ");
+	    else if (!strncasecmp(line, "Archive-Copier-Set: ", 20))
+		ARRAY_SPLIT(tasks, line + 20, ", ");
 	}
 
 	if (version && filename) {
@@ -342,6 +343,8 @@ int main(int argc, char **argv)
 		status = "supported";
 	    printf("%s %s %s\n", filename, version, status);
 	}
+
+	free(tasks);
     }
 
     munmap(packages, packages_st.st_size);

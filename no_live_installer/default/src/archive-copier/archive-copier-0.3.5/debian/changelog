@@ -1,3 +1,33 @@
+archive-copier (0.3.5) breezy; urgency=low
+
+  * Fix handling of multiple Task headers in a single package stanza.
+  * Fix a memory leak on each package stanza containing a Task header.
+  * Make -D/-S match Archive-Copier-Set headers (which cdimage will
+    synthesise) as well as Task headers, so that we don't have to pollute
+    user-visible Task headers with stuff that's just there to help
+    archive-copier.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 21 Sep 2005 14:35:11 +0100
+
+archive-copier (0.3.4) breezy; urgency=low
+
+  * Update translations from Rosetta: Greek, Hungarian.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 19 Sep 2005 19:42:12 +0100
+
+archive-copier (0.3.3) breezy; urgency=low
+
+  * Expand on archive-copier/copy-failed text to explain that failures may
+    be due to CD problems.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 19 Sep 2005 10:53:30 +0100
+
+archive-copier (0.3.2) breezy; urgency=low
+
+  * Add Portuguese translation (thanks, Hugo Monteiro).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri, 16 Sep 2005 15:14:47 +0100
+
 archive-copier (0.3.1) breezy; urgency=low
 
   * Always copy dash as part of desktop, since discover1 depends on it.

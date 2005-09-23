@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ubuntu Installer\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-24 22:32+0000\n"
+"Report-Msgid-Bugs-To: cjwatson@ubuntu.com\n"
+"POT-Creation-Date: 2005-09-19 10:51+0100\n"
 "PO-Revision-Date: 2005-03-08 20:54+0200\n"
 "Last-Translator: Canonical Ltd <translations@canonical.com>\n"
 "Language-Team: Xhosa <xh-translate@ubuntu.com>\n"
@@ -48,9 +48,12 @@ msgstr "Ukukopa iifayili zemiqulu yenkqubo akuphumelelanga"
 #. Type: error
 #. Description
 #: ../archive-copier.templates:24
+#, fuzzy
 msgid ""
 "Copying packages to the hard disk failed. You may have run out of disk space "
-"in the target /var filesystem."
+"in the target /var filesystem, or your CD drive may be having problems "
+"reading packages from the CD. Cleaning the CD drive or burning the CD at a "
+"lower speed may help."
 msgstr ""
 "Ukukopa imiqulu yenkqubo uzisa kwidiski eyakhelwe ngaphakathi "
 "akuphumelelanga. Mhlawumbi uphelelwe yindawo kwidiski kwinkqubo yefayili i-"
@@ -66,31 +69,31 @@ msgstr ""
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:32
+#: ../archive-copier.templates:34
 msgid "Copying remaining packages to hard disk"
 msgstr "Ikopela imiqulu eseleyo kwidiski eyakhelwe ngaphakathi"
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:36
+#: ../archive-copier.templates:38
 msgid "Scanning ${DIR}..."
 msgstr "Iskena i ${DIR}..."
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:40
+#: ../archive-copier.templates:42
 msgid "Copying ${PACKAGE}..."
 msgstr "Ikopa ${PACKAGE}..."
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid "Download language support?"
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid ""
 "The installation CD does not contain full support for your language. Do you "
 "want to download the required packages from the Internet?"
@@ -99,6 +102,6 @@ msgstr ""
 #. Type: text
 #. Description
 #. Item in the main menu to select this package
-#: ../archive-copier.templates:52
+#: ../archive-copier.templates:54
 msgid "Copy remaining packages to hard disk"
 msgstr "Kopela imiqulu eseleyo kwidiski eyakhelwe ngaphakathi"

@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-installer\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-24 22:32+0000\n"
+"Report-Msgid-Bugs-To: cjwatson@ubuntu.com\n"
+"POT-Creation-Date: 2005-09-19 10:51+0100\n"
 "PO-Revision-Date: 2005-04-04 21:08+0200\n"
 "Last-Translator: Terance Edward Sola <terance@lyse.net>\n"
 "Language-Team:  <en@li.org>\n"
@@ -54,9 +54,12 @@ msgstr "Feilet å kopiere pakker"
 #. Type: error
 #. Description
 #: ../archive-copier.templates:24
+#, fuzzy
 msgid ""
 "Copying packages to the hard disk failed. You may have run out of disk space "
-"in the target /var filesystem."
+"in the target /var filesystem, or your CD drive may be having problems "
+"reading packages from the CD. Cleaning the CD drive or burning the CD at a "
+"lower speed may help."
 msgstr ""
 "Feil under kopiering av pakker til harddisken. Du har kanskje ikke mer ledig "
 "plass igjen på /var filsystemet."
@@ -71,31 +74,31 @@ msgstr ""
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:32
+#: ../archive-copier.templates:34
 msgid "Copying remaining packages to hard disk"
 msgstr "Kopierer gjenværende pakker til hard disk"
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:36
+#: ../archive-copier.templates:38
 msgid "Scanning ${DIR}..."
 msgstr "Søker gjennom ${DIR} ..."
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:40
+#: ../archive-copier.templates:42
 msgid "Copying ${PACKAGE}..."
 msgstr "Kopierer ${PACKAGE}..."
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid "Download language support?"
 msgstr "Laste ned språkstøtte?"
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid ""
 "The installation CD does not contain full support for your language. Do you "
 "want to download the required packages from the Internet?"
@@ -106,6 +109,6 @@ msgstr ""
 #. Type: text
 #. Description
 #. Item in the main menu to select this package
-#: ../archive-copier.templates:52
+#: ../archive-copier.templates:54
 msgid "Copy remaining packages to hard disk"
 msgstr "Kopierer gjenværende pakker til hard disk"

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-installer\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-24 22:32+0000\n"
+"Report-Msgid-Bugs-To: cjwatson@ubuntu.com\n"
+"POT-Creation-Date: 2005-09-19 10:51+0100\n"
 "PO-Revision-Date: 2005-03-26 23:54+0100\n"
 "Last-Translator: Dominik Zablotny <dominz@wp.pl>\n"
 "Language-Team: Polish <pddp@debian.linux.org.pl>\n"
@@ -49,9 +49,12 @@ msgstr "Nie powiod³o siê kopiowanie pakietów"
 #. Type: error
 #. Description
 #: ../archive-copier.templates:24
+#, fuzzy
 msgid ""
 "Copying packages to the hard disk failed. You may have run out of disk space "
-"in the target /var filesystem."
+"in the target /var filesystem, or your CD drive may be having problems "
+"reading packages from the CD. Cleaning the CD drive or burning the CD at a "
+"lower speed may help."
 msgstr ""
 "Nie powiod³o siê kopiowanie pakietów na twardy dysk. Mo¿e to byæ spowodowane "
 "brakiem wolnego miejsca w docelowym systemie plików /var."
@@ -65,31 +68,31 @@ msgstr ""
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:32
+#: ../archive-copier.templates:34
 msgid "Copying remaining packages to hard disk"
 msgstr "Kopiowanie pozosta³ych pakietów na twardy dysk"
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:36
+#: ../archive-copier.templates:38
 msgid "Scanning ${DIR}..."
 msgstr "Skanowanie ${DIR}..."
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:40
+#: ../archive-copier.templates:42
 msgid "Copying ${PACKAGE}..."
 msgstr "Kopiowanie ${PACKAGE}..."
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid "Download language support?"
 msgstr "Czy pobraæ obs³ugê jêzyków?"
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid ""
 "The installation CD does not contain full support for your language. Do you "
 "want to download the required packages from the Internet?"
@@ -100,6 +103,6 @@ msgstr ""
 #. Type: text
 #. Description
 #. Item in the main menu to select this package
-#: ../archive-copier.templates:52
+#: ../archive-copier.templates:54
 msgid "Copy remaining packages to hard disk"
 msgstr "Kopiowanie pozosta³ych pakietów na dysk twardy"

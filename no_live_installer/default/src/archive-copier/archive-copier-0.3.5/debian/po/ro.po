@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-installer\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-24 22:32+0000\n"
+"Report-Msgid-Bugs-To: cjwatson@ubuntu.com\n"
+"POT-Creation-Date: 2005-09-19 10:51+0100\n"
 "PO-Revision-Date: 2005-03-30 22:10-0500\n"
 "Last-Translator: Ovidiu Damian <deelerious@gmail.com>\n"
 "Language-Team: Romanian <Romanian>\n"
@@ -60,9 +60,12 @@ msgstr "Copierea pachetelor a eşuat"
 #. Type: error
 #. Description
 #: ../archive-copier.templates:24
+#, fuzzy
 msgid ""
 "Copying packages to the hard disk failed. You may have run out of disk space "
-"in the target /var filesystem."
+"in the target /var filesystem, or your CD drive may be having problems "
+"reading packages from the CD. Cleaning the CD drive or burning the CD at a "
+"lower speed may help."
 msgstr ""
 "Copierea pachetelor pe hard disc a eşuat. S-ar putea să nu mai aveţi spaţiu "
 "in fişierul ţintă /var."
@@ -76,31 +79,31 @@ msgstr ""
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:32
+#: ../archive-copier.templates:34
 msgid "Copying remaining packages to hard disk"
 msgstr "Se copiază pachetele rămase pe hard disc"
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:36
+#: ../archive-copier.templates:38
 msgid "Scanning ${DIR}..."
 msgstr "Se scanează ${DIR}..."
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:40
+#: ../archive-copier.templates:42
 msgid "Copying ${PACKAGE}..."
 msgstr "Se copiază ${PACKAGE}..."
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid "Download language support?"
 msgstr "Descarcaţi (download) suportul de limba?"
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid ""
 "The installation CD does not contain full support for your language. Do you "
 "want to download the required packages from the Internet?"
@@ -111,6 +114,6 @@ msgstr ""
 #. Type: text
 #. Description
 #. Item in the main menu to select this package
-#: ../archive-copier.templates:52
+#: ../archive-copier.templates:54
 msgid "Copy remaining packages to hard disk"
 msgstr "Copiază pachetele ramase pe hard disc"

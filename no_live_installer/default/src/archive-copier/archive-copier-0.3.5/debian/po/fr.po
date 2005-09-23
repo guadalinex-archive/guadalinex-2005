@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-installer\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-24 22:32+0000\n"
+"Report-Msgid-Bugs-To: cjwatson@ubuntu.com\n"
+"POT-Creation-Date: 2005-09-19 10:51+0100\n"
 "PO-Revision-Date: 2005-04-03 12:47+0200\n"
 "Last-Translator: French Team <debian-l10n-french@lists.debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -55,9 +55,12 @@ msgstr "Erreur lors de la réception des paquets"
 #. Type: error
 #. Description
 #: ../archive-copier.templates:24
+#, fuzzy
 msgid ""
 "Copying packages to the hard disk failed. You may have run out of disk space "
-"in the target /var filesystem."
+"in the target /var filesystem, or your CD drive may be having problems "
+"reading packages from the CD. Cleaning the CD drive or burning the CD at a "
+"lower speed may help."
 msgstr ""
 "La copie des paquets sur le disque dur a échouée. Il se peut que la "
 "partition /var du système cible ne dispose pas assez d'espace disque."
@@ -72,31 +75,31 @@ msgstr ""
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:32
+#: ../archive-copier.templates:34
 msgid "Copying remaining packages to hard disk"
 msgstr "Copie des paquets restants sur le disque dur"
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:36
+#: ../archive-copier.templates:38
 msgid "Scanning ${DIR}..."
 msgstr "Examen du répertoire ${DIR}..."
 
 #. Type: text
 #. Description
-#: ../archive-copier.templates:40
+#: ../archive-copier.templates:42
 msgid "Copying ${PACKAGE}..."
 msgstr "Copie de ${PACKAGE}..."
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid "Download language support?"
 msgstr "Télécharger de quoi supporter votre langue ?"
 
 #. Type: boolean
 #. Description
-#: ../archive-copier.templates:45
+#: ../archive-copier.templates:47
 msgid ""
 "The installation CD does not contain full support for your language. Do you "
 "want to download the required packages from the Internet?"
@@ -107,6 +110,6 @@ msgstr ""
 #. Type: text
 #. Description
 #. Item in the main menu to select this package
-#: ../archive-copier.templates:52
+#: ../archive-copier.templates:54
 msgid "Copy remaining packages to hard disk"
 msgstr "Copier les paquets restant sur le disque dur"
