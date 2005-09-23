@@ -208,9 +208,7 @@ int main(int argc, char *argv[])
 
     z = 20;			/* Next percent for show the next corporative image */
     cmd =
-	g_strdup_printf("LANG=C /usr/bin/apt-get -y --force-yes install %s\
-						&& echo \"--end install ok--\"  \
-						|| echo \"--end install fail--\"", argv[2]);
+	g_strdup_printf("LANG=C DEBCONF_PRIORITY=critical /usr/bin/apt-get -y --force-yes install %s && echo \"--end install ok--\" || echo \"--end install fail--\"", argv[2]);
     f = popen(cmd, "r");
     io = g_io_channel_unix_new(fileno(f));
     g_io_add_watch_full(io, G_PRIORITY_LOW,
