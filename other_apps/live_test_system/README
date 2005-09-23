@@ -15,7 +15,7 @@ Pasos para crear una live:
 2) Descargar el extracted_cd.tar.gz desde:
    ftp://ws314.juntadeandalucia.es/guadalinex2005/archives/extracted_cd.tar.gz
    Este fichero contiene un directorio (extracted_cd) que debe de estar en el
-   mismo directorio que el script make_live.sh.
+   mismo directorio que el guión make_live.sh.
 
 3) Configurar las siguietes variables en el make_live.sh:
     SOURCESDIR: Debe contener la ruta al directorio donde se ha descomprimido el
