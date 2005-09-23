@@ -3,8 +3,11 @@ bb-assist (0.2) unstable; urgency=low
   * New icons
   * bb-assist-uml.xmi: first version of the UML model of the assistant
   * Prototipe of xml/xsl pexpect backend
+  * examples directory with xml examples files for test
+  * exp-backend.py: now better support of serial parameters
+  * New cmd-list.xsl file with device commands and an operation example
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 22 Sep 2005 18:51:59 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 23 Sep 2005 13:22:36 +0200
 
 bb-assist (0.1) unstable; urgency=low
 

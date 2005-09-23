@@ -46,8 +46,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
 
 import os, sys
-import pexpect
-from xml.dom.ext.reader import PyExpat
+import pexpect                          # Depends: python-pexpect
+import serial                           #   python-serial
+from serial.serialutil import *
+from xml.dom.ext.reader import PyExpat  #   python-xml
 from xml.xpath          import Evaluate
 
 CMDENCODING='iso-8859-1'
@@ -55,28 +57,47 @@ CMDENCODING='iso-8859-1'
 reader = PyExpat.Reader( )
 dom = reader.fromStream(sys.stdin)
 
-tty             = Evaluate("serial_params",
+tty_read        = Evaluate("serial_params",
                            dom.documentElement)[0].getAttribute('tty')
-baudrate        = Evaluate("serial_params",
+baudrate_read   = Evaluate("serial_params",
                            dom.documentElement)[0].getAttribute('baudrate')
-bits            = Evaluate("serial_params",
+bits_read       = Evaluate("serial_params",
                            dom.documentElement)[0].getAttribute('bits')
-parity          = Evaluate("serial_params",
+parity_read     = Evaluate("serial_params",
                            dom.documentElement)[0].getAttribute('parity')
-stopbits        = Evaluate("serial_params",
+stopbits_read   = Evaluate("serial_params",
                            dom.documentElement)[0].getAttribute('stopbits')
+xonxoff_read    = Evaluate("serial_params",
+                           dom.documentElement)[0].getAttribute('xonxoff')
+rtscts_read     = Evaluate("serial_params",
+                           dom.documentElement)[0].getAttribute('rtscts')
 
 cmd_ini         = Evaluate("initial_cmd/text( )",
                            dom.documentElement)[0].nodeValue
 default_timeout = Evaluate("default_timeout/text( )",
                            dom.documentElement)[0].nodeValue
 
-fd = os.open('/dev/ttyS'+tty, os.O_RDWR|os.O_NOCTTY)
-if os.path.exists("/var/lock/LCK..ttyS"+tty):
+if   (parity_read == "N") : parity_cte = PARITY_NONE
+elif (parity_read == "E") : parity_cte = PARITY_EVEN
+elif (parity_read == "O") : parity_cte = PARITY_ODD
+
+ser = serial.Serial(
+  port     = int(tty_read),
+  baudrate = int(baudrate_read),
+  bytesize = int(bits_read),
+  parity   = parity_cte,
+  stopbits = int(stopbits_read),
+  timeout  = None,               # set a timeout value, None to wait forever
+  xonxoff  = int(xonxoff_read),  # enable software flow control
+  rtscts   = int(rtscts_read),   # enable RTS/CTS flow control
+  writeTimeout = None,          # set a timeout for writes
+)
+
+# FIXME: serial/eth configuration
+fd = ser.fd
+if os.path.exists("/var/lock/LCK..ttyS"+tty_read):
   raise Exception( _("Puerto serie bloqueado"))
 #FIXME: block tty, check if LCK process already exist
-
-#FIXME: open with correct tty params
 
 child = pexpect.spawn(fd)
 fout = file('/tmp/bb-assist.log','a') # FIXME: clean
@@ -102,10 +123,8 @@ while not fin_cmds:
       expect_list += [expectact.getAttribute('out').encode(CMDENCODING)]
       cmdid_list += [expectact.getAttribute('nextcmdid').encode(CMDENCODING)]
     cmd_timeout = actcmd.getAttribute('timeout')
-    if cmd_timeout != '':
-      act_timeout = int(cmd_timeout)
-    else:
-      act_timeout = int(default_timeout)
+    if cmd_timeout != '': act_timeout = int(cmd_timeout)
+    else:                 act_timeout = int(default_timeout)
     expopt = child.expect(expect_list, timeout=act_timeout)
     cmd_act=cmdid_list[expopt]
   elif type_cmd == 'exit':

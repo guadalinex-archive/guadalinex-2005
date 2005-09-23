@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<operation>
+  <initial_cmd>0001</initial_cmd>
+  <serial_params tty='0' baudrate='9600' bits='8' parity='N' stopbits='1' xonxoff='0' rtscts='0'/>
+  <default_timeout>15</default_timeout>
+  <passwd1>adminttd</passwd1>
+</operation>
