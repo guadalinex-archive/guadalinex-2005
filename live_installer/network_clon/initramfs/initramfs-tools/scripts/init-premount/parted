@@ -1,0 +1,54 @@
+#!/bin/sh
+# Partitioning the disk as the scheme:
+#/dev/hda1  -> /
+#/dev/hda2  -> swap
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# Cheching if there is any activated swap and deactivating it. Just in case
+while [ "$(grep -q dev /proc/swaps ; echo $?)" == "0" ]; do
+        sync
+        echo swapoff -a >> /tmp/install.log 2>&1
+done
+
+# Calculating the optimus swap partition size
+let MEM=$(grep ^MemTotal /proc/meminfo | while read a b c ; do echo $b ; done)/1024
+
+if [ $MEM -gt 256 ]
+then
+    let SWAP_SIZE=256*1024
+else
+    let SWAP_SIZE=$MEM*1024
+fi
+
+# Finding the first disk
+DISK=$(grep '[sh]d[a-g]' /proc/partitions | while read a b c d ; do echo $d | cut -c 0-3 ; done | sort -u | head -1)
+DISK='/dev/${DISK}'
+
+# Now the size of the disk
+DISK_SIZE=$(sfdisk -uM -s ${DISK})
+
+# First partition is going to be the main partition and
+# the size will be the disk size minus the swap partition size
+let ROOT_SIZE=$DISK_SIZE-$SWAP_SIZE
+
+# Let's break the disk ;-)
+sfdisk -uM $DISK << EOF
+,$ROOT_SIZE,L
+,,S
+EOF
+
+
