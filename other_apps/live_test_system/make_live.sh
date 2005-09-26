@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCESDIR=/sources
+SOURCESDIR=./sources
 ISONAME=gx2005.iso
 NAME="Custom Gx2005 Live"
 
