@@ -1,0 +1,3 @@
+- initramfs/script/init-premount/built-tree: semi-live stuff. Unionfs and so on
+- inirtamfs.tgz: create it
+- server_clone.sh: regenerate the initramfs

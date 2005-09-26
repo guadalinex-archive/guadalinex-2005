@@ -1,0 +1,59 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+BUILDDIR=$(CURDIR)/debian/server-clone
+
+build: build-stamp
+
+build-stamp:
+	dh_testdir
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -fr build-stamp $(BUILDDIR)
+
+	dh_clean 
+
+install:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs -A
+
+	install -m 755 $(CURDIR)/server_clone.sh $(BUILDDIR)/usr/sbin/server-clone
+	install -m 755 $(CURDIR)/server-clone-start.sh $(BUILDDIR)/usr/sbin/server-clone-start
+	install -m 644 $(CURDIR)/udhcpd.conf $(BUILDDIR)/usr/share/server-clone/udhcpd.conf
+	install -m 755 $(CURDIR)/isolinux/* $(BUILDDIR)/usr/share/server-clone/isolinux/
+	cp -a $(CURDIR)/initramfs/* $(BUILDDIR)/usr/share/server-clone/initramfs/
+	#rm -rf `find $(CURDIR)/debian/ -mindepth 2 -type d -name .svn`
+
+# Build architecture-independent files here.
+binary-indep: install
+
+# Build architecture-dependent files here.
+binary-arch: install
+	dh_testdir -A
+	dh_testroot -A
+	dh_installchangelogs
+	dh_installdocs -A
+#	dh_installexamples -A
+#	dh_install -A
+#	dh_installdebconf -A
+#	dh_installman -A
+	dh_strip -A
+	dh_compress -A
+	dh_fixperms -A
+#	dh_python -A
+	dh_installdeb -A
+	dh_shlibdeps -A
+	dh_gencontrol -A
+	dh_md5sums -A
+	dh_builddeb -A
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

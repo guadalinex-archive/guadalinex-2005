@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+
+install -m 755 /usr/lib/syslinux/isolinux.bin /usr/share/server-clone/isolinux/

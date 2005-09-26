@@ -1,0 +1,16 @@
+Source: server-clone
+Section: admin
+Priority: optional
+Maintainer: Juanje Ojeda <juanje@interactors.coop>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.2.1
+
+Package: server-clone
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, dialog, oftpd, udhcpd, mkisofs, syslinux
+Recommends: 
+Description: Guadalinex apps to clone Guadalinex into a several pcs
+ This is the server part of the client. Here the admin config and
+ generate the iso with the client will be able to connect to the 
+ server and start the clone process.
+

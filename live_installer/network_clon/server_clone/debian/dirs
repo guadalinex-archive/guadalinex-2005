@@ -1,0 +1,4 @@
+usr/sbin/
+usr/share/server-clone
+usr/share/server-clone/isolinux
+usr/share/server-clone/initramfs
