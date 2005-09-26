@@ -5,7 +5,6 @@ set -e
 . "$CDIMAGE_ROOT/etc/config"
 
 MIRROR="http://archive.ubuntu.com/ubuntu"
-
 LOG=$CDIMAGE_ROOT/log/update-debs.log
 > $LOG
 
@@ -26,6 +25,16 @@ do
 done
 
 cat fresh_debs_list_breezy | grep -v $PARAMS > fresh_debs_list
+
+> /tmp/breezy_cd
+
+for x in $(cat fresh_debs_list)
+do 
+	TMP=${x/*\//}
+	echo ${TMP/_*/} >> /tmp/breezy_cd
+done
+
+mv /tmp/breezy_cd $CDIMAGE_ROOT/uda/lists/breezy_cd
 
 for x in $(cat fresh_debs_list)
 do
