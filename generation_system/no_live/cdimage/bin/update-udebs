@@ -5,7 +5,6 @@ set -e
 . "$CDIMAGE_ROOT/etc/config"
 
 MIRROR="http://archive.ubuntu.com/ubuntu"
-
 LOG=$CDIMAGE_ROOT/log/update-udebs.log
 > $LOG
 
@@ -17,7 +16,14 @@ cd fresh_udebs
 wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
 [ "$?" != "0" ] && echo "Problems downloading breezy-install-i386.list." >> $LOG && exit
 
-cat breezy-install-i386.list | grep ^/pool/ | grep .udeb\$ > fresh_udebs_list
+[ -f breezy-live-i386.list ] && rm breezy-live-i386.list
+wget http://cdimage.ubuntulinux.org/daily-live/current/breezy-live-i386.list
+[ "$?" != "0" ] && echo "Problems downloading breezy-live-i386.list." >> $LOG && exit
+
+cat breezy-install-i386.list | grep ^/pool/ | grep .udeb\$ > fresh_udebs_tmp_list
+cat breezy-live-i386.list | grep ^/pool/ | grep .udeb\$ >> fresh_udebs_tmp_list
+
+cat fresh_udebs_tmp_list | sort | uniq > fresh_udebs_list
 
 for x in $(cat fresh_udebs_list)
 do
@@ -26,7 +32,6 @@ do
 	UDEB_NAME=${UDEB_FILE/_*/}
 	TMP_VERSION1=${UDEB_FILE/_all.udeb/}; TMP_VERSION2=${TMP_VERSION1/_i386.udeb/}; UDEB_VERSION=${TMP_VERSION2/*_/}
 	UDEB_DIR=${x/\/*.udeb/}
-#	UDEB_DIR=$(echo $x | awk '{ match($1,/(\/.*\/).+(.*\.udeb)/, arr); print arr[1]}')
 	UDEB_DIR=$(dirname $x)
 
 	echo $UDEB_NAME >> $LOG
