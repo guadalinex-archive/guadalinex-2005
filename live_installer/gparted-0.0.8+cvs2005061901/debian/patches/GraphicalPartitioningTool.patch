@@ -867,7 +867,7 @@ diff -Nur gparted-0.0.8+cvs2005061901/src/VBox_VisualDisk.cc gparted-0.0.8+cvs20
 +		gtk_container_add(GTK_CONTAINER(plug), GTK_WIDGET(vbox_main.gobj()));
 +		gtk_widget_show(GTK_WIDGET(vbox_main.gobj()));
 +		gtk_widget_show(plug);
-+		this ->iconify();
++		this ->set_default_size(1, 1); this ->set_keep_below(1);
 +		init_partition_menu( );
 +	}
 +	else
@@ -950,13 +950,13 @@ diff -Nur gparted-0.0.8+cvs2005061901/src/VBox_VisualDisk.cc gparted-0.0.8+cvs20
 +	toolbutton_undo ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_undo) );	toolbar_main.append(*toolbutton_undo); toolbutton_undo ->set_sensitive( false );
 +	toolbutton_undo ->set_tooltip(tooltips, _("Undo last operation") );		
 +
-+	if ( installer_mode > 0 )
++	/** if ( installer_mode > 0 )
 +	{
 +		image = manage( new Gtk::Image( Gtk::Stock::SAVE, Gtk::ICON_SIZE_LARGE_TOOLBAR ) );
 +		toolbutton_apply = Gtk::manage(new Gtk::ToolButton( *image, _("Save and Exit") ));
 +	}
-+	else
-+		toolbutton_apply = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
++	else **/
++		toolbutton_apply = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::SAVE));
 +
 +	toolbutton_apply ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_apply) );	toolbar_main.append(*toolbutton_apply); toolbutton_apply ->set_sensitive( false );
 +	toolbutton_apply ->set_tooltip(tooltips, _("Apply all operations") );		
