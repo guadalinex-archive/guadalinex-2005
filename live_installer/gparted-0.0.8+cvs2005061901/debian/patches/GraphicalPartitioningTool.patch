@@ -867,7 +867,7 @@ diff -Nur gparted-0.0.8+cvs2005061901/src/VBox_VisualDisk.cc gparted-0.0.8+cvs20
 +		gtk_container_add(GTK_CONTAINER(plug), GTK_WIDGET(vbox_main.gobj()));
 +		gtk_widget_show(GTK_WIDGET(vbox_main.gobj()));
 +		gtk_widget_show(plug);
-+		this ->set_default_size(1, 1); this ->set_keep_below(1);
++		this ->set_default_size(1, 1); this ->set_keep_below(1); this ->set_position(Gtk::WIN_POS_CENTER);
 +		init_partition_menu( );
 +	}
 +	else
