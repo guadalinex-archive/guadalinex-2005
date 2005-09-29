@@ -3,8 +3,9 @@ bb-assist (0.3) unstable; urgency=low
   * Improves in bb-assist Gui
   * New xml/xsl files and structure
   * bb-assist-uml.xmi: update of the UML model of the assistant
+  * debian/control: dependencies update
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 29 Sep 2005 16:54:08 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 29 Sep 2005 18:19:56 +0200
 
 bb-assist (0.2) unstable; urgency=low
 

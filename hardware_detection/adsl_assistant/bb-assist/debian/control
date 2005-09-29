@@ -8,7 +8,7 @@ Standards-Version: 3.6.2
 Package: bb-assist
 Architecture: any
 Depends: python (>= 2.4), python (<< 3), python-gtk2, python-gnome2, python-glade2, python2.4-dbus, python-xml
-Recommends: eagle-usb-utils, eagle-usb-data, eagle-usb-source, accessrunner-usb-utils, accessrunner-usb-source, pppoe, ppp, libatm1, atm-tools
+Recommends: eagle-usb-utils, eagle-usb-data, eagle-usb-source, accessrunner-usb-utils, accessrunner-usb-source, pppoe, ppp, libatm1, atm-tools, python-serial, python-pexpect, python2.4-4suite
 Description: A BroadBand Assistant configurator
  This package is an assistant for help in the configuration of several types of 
  Broadband (DSL, etc) devices.
