@@ -20,5 +20,6 @@ if __name__ == '__main__' :
 			(os.path.join(PATH, 'glade'), glob.glob('glade/*.glade')),
 			(os.path.join(PATH, 'glade/pixmaps'), glob.glob('glade/pixmaps/*')),
 			(PATH, glob.glob('*.xml')),
+			(PATH, glob.glob('*.xsl')),
 		]
 	)

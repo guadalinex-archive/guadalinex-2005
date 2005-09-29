@@ -35,7 +35,6 @@
 	  <property name="text" translatable="yes">Bienvenido al Asistente de Configuración de Equipos de Banda Ancha</property>
 	  <property name="background_color">#0806706e2121</property>
 	  <property name="logo_background_color">#0806706e2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	</widget>
       </child>
 
@@ -45,7 +44,6 @@
 	  <property name="title" translatable="yes">Verificación previa</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 
 	  <child internal-child="vbox">
 	    <widget class="GtkVBox" id="druid-vbox1">
@@ -105,7 +103,6 @@ En caso de que se cumplan los requerimientos mínimos, podrá seguir con el asis
 	  <property name="title" translatable="yes">Resultados de la verificación</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="prepare" handler="on_druidVerificationResults_prepare" last_modification_time="Fri, 09 Sep 2005 18:34:44 GMT"/>
 	  <signal name="next" handler="on_druidVerificationResults_next" last_modification_time="Fri, 09 Sep 2005 21:49:03 GMT"/>
 
@@ -195,7 +192,6 @@ En caso de que se cumplan los requerimientos mínimos, podrá seguir con el asis
 	  <property name="title" translatable="yes">Configuración de equipo</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 
 	  <child internal-child="vbox">
 	    <widget class="GtkVBox" id="druid-vbox102">
@@ -252,12 +248,11 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
       </child>
 
       <child>
-	<widget class="GnomeDruidPageStandard" id="druidProviderSelectOld">
+	<widget class="GnomeDruidPageStandard" id="druidProviderSelect">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Operadora</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="prepare" handler="on_druidProviderSelect_prepare" after="yes" last_modification_time="Sat, 10 Sep 2005 03:10:14 GMT"/>
 
 	  <child internal-child="vbox">
@@ -277,7 +272,7 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 		  <property name="column_spacing">0</property>
 
 		  <child>
-		    <widget class="GtkLabel" id="providerSelectOld">
+		    <widget class="GtkLabel" id="providerSelect">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Seleccione Operadora:</property>
 		      <property name="use_underline">False</property>
@@ -340,7 +335,6 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 	  <property name="title" translatable="yes">Dispositivo</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="prepare" handler="on_druidDeviceSel_prepare" after="yes" last_modification_time="Mon, 05 Sep 2005 09:26:27 GMT"/>
 
 	  <child internal-child="vbox">
@@ -420,167 +414,73 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
       <child>
 	<widget class="GnomeDruidPageStandard" id="druidOperationSelect">
 	  <property name="visible">True</property>
-	  <property name="title" translatable="yes">Tipo de operación</property>
+	  <property name="title" translatable="yes">Seleccione operación</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
-	  <signal name="next" handler="on_druidOperationSelect_next" last_modification_time="Wed, 07 Sep 2005 10:54:34 GMT"/>
+	  <signal name="next" handler="on_druidOperationSelect_next" after="yes" last_modification_time="Wed, 07 Sep 2005 10:54:34 GMT"/>
 	  <signal name="back" handler="on_druidOperationSelect_back" last_modification_time="Wed, 07 Sep 2005 13:17:00 GMT"/>
+	  <signal name="prepare" handler="on_druidOperationSelect_prepare" after="yes" last_modification_time="Mon, 26 Sep 2005 15:25:18 GMT"/>
 
 	  <child internal-child="vbox">
-	    <widget class="GtkVBox" id="druid-vbox3">
+	    <widget class="GtkVBox" id="druid-vbox-opersel">
 	      <property name="border_width">16</property>
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">6</property>
 
 	      <child>
-		<widget class="GtkVBox" id="vbox1">
+		<widget class="GtkTable" id="table12">
 		  <property name="visible">True</property>
+		  <property name="n_rows">2</property>
+		  <property name="n_columns">1</property>
 		  <property name="homogeneous">False</property>
-		  <property name="spacing">0</property>
+		  <property name="row_spacing">0</property>
+		  <property name="column_spacing">0</property>
 
 		  <child>
-		    <widget class="GtkLabel" id="label3">
+		    <widget class="GtkLabel" id="OperationSel">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Seleccione las operaciones que quiere realizar:</property>
+		      <property name="label" translatable="yes">Seleccione la operación que quiere realizar:</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">True</property>
+		      <property name="wrap">False</property>
 		      <property name="selectable">False</property>
 		      <property name="xalign">0</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
-		      <property name="ypad">5</property>
+		      <property name="ypad">0</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
 		      <property name="angle">0</property>
 		    </widget>
 		    <packing>
-		      <property name="padding">0</property>
-		      <property name="expand">False</property>
-		      <property name="fill">False</property>
+		      <property name="left_attach">0</property>
+		      <property name="right_attach">1</property>
+		      <property name="top_attach">0</property>
+		      <property name="bottom_attach">1</property>
+		      <property name="y_padding">10</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options"></property>
 		    </packing>
 		  </child>
 
 		  <child>
-		    <widget class="GtkVBox" id="vbox2">
+		    <widget class="GtkComboBox" id="combooperationsel">
 		      <property name="visible">True</property>
-		      <property name="homogeneous">False</property>
-		      <property name="spacing">0</property>
-
-		      <child>
-			<widget class="GtkRadioButton" id="operConfDevice">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Configurar</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			  <signal name="activate" handler="on_operConfDevice_activate" last_modification_time="Wed, 07 Sep 2005 10:38:08 GMT"/>
-			  <signal name="toggled" handler="on_operConfDevice_toggled" last_modification_time="Wed, 07 Sep 2005 10:43:30 GMT"/>
-			  <signal name="group_changed" handler="on_operConfDevice_group_changed" last_modification_time="Wed, 07 Sep 2005 10:44:35 GMT"/>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkRadioButton" id="operUpdateFirmware">
-			  <property name="visible">True</property>
-			  <property name="sensitive">False</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Actualizar firmware</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			  <property name="group">operConfDevice</property>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkRadioButton" id="operConfPorts">
-			  <property name="visible">True</property>
-			  <property name="sensitive">False</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Configurar puertos</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			  <property name="group">operConfDevice</property>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkRadioButton" id="operChangePwd">
-			  <property name="visible">True</property>
-			  <property name="sensitive">False</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Cambiar contraseña</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			  <property name="group">operConfDevice</property>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkRadioButton" id="operExit">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Salir</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			  <property name="group">operConfDevice</property>
-			  <signal name="activate" handler="on_operExit_activate" last_modification_time="Wed, 07 Sep 2005 10:40:56 GMT"/>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">False</property>
-			  <property name="fill">False</property>
-			</packing>
-		      </child>
+		      <property name="items"></property>
+		      <property name="add_tearoffs">False</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="changed" handler="on_combooperationsel_changed" after="yes" last_modification_time="Mon, 05 Sep 2005 11:21:51 GMT"/>
 		    </widget>
 		    <packing>
-		      <property name="padding">0</property>
-		      <property name="expand">True</property>
-		      <property name="fill">True</property>
+		      <property name="left_attach">0</property>
+		      <property name="right_attach">1</property>
+		      <property name="top_attach">1</property>
+		      <property name="bottom_attach">2</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
 		</widget>
@@ -601,7 +501,6 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 	  <property name="title" translatable="yes">Modo de Configuración</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="next" handler="on_druidModConf_next" last_modification_time="Wed, 07 Sep 2005 12:25:54 GMT"/>
 	  <signal name="back" handler="on_druidModConf_back" last_modification_time="Wed, 07 Sep 2005 13:16:52 GMT"/>
 
@@ -685,7 +584,7 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 			    <widget class="GtkRadioButton" id="multiConectionButton">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Modo multipuesto. (Conexión simultánea a Internet a través de varios equipos).</property>
+			      <property name="label" translatable="yes">Modo multipuesto (varios equipos pueden acceder a Internet simultáneamente).</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -842,7 +741,6 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 	  <property name="title" translatable="yes">Configuración IP usuario</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="back" handler="on_druidUsuIP_back" last_modification_time="Wed, 07 Sep 2005 13:16:37 GMT"/>
 	  <signal name="next" handler="on_druidUsuIP_next" last_modification_time="Wed, 07 Sep 2005 13:16:44 GMT"/>
 
@@ -1062,7 +960,6 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 	  <property name="title" translatable="yes">Configuración IP de gestión del equipo</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="next" handler="on_druidGestIP_next" last_modification_time="Wed, 07 Sep 2005 12:58:22 GMT"/>
 	  <signal name="back" handler="on_druidGestIP_back" last_modification_time="Wed, 07 Sep 2005 13:16:31 GMT"/>
 
@@ -1283,7 +1180,6 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 	  <property name="title" translatable="yes">Parámetros de configuración</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="next" handler="on_druidDinamConf_next" last_modification_time="Fri, 09 Sep 2005 22:49:04 GMT"/>
 	  <signal name="back" handler="on_druidDinamConf_back" last_modification_time="Fri, 09 Sep 2005 22:49:09 GMT"/>
 
@@ -1504,7 +1400,6 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 	  <property name="title" translatable="yes">Configuración Multipuesto</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="back" handler="on_druidMultiConf_back" last_modification_time="Wed, 07 Sep 2005 13:16:01 GMT"/>
 	  <signal name="next" handler="on_druidMultiConf_next" last_modification_time="Wed, 07 Sep 2005 13:16:08 GMT"/>
 
@@ -2047,12 +1942,562 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
       </child>
 
       <child>
+	<widget class="GnomeDruidPageStandard" id="druidSelecInterface">
+	  <property name="visible">True</property>
+	  <property name="title" translatable="yes">Seleccione el interfaz de configuración</property>
+	  <property name="background">#0807706f2121</property>
+	  <property name="logo_background">#0807706f2121</property>
+	  <signal name="prepare" handler="on_druidSelecInterface_prepare" after="yes" last_modification_time="Thu, 29 Sep 2005 01:26:09 GMT"/>
+	  <signal name="back" handler="on_druidSelecInterface_back" last_modification_time="Thu, 29 Sep 2005 01:26:14 GMT"/>
+	  <signal name="next" handler="on_druidSelecInterface_next" last_modification_time="Thu, 29 Sep 2005 01:26:19 GMT"/>
+
+	  <child internal-child="vbox">
+	    <widget class="GtkVBox" id="druid-vbox1192">
+	      <property name="border_width">16</property>
+	      <property name="visible">True</property>
+	      <property name="homogeneous">False</property>
+	      <property name="spacing">6</property>
+
+	      <child>
+		<widget class="GtkLabel" id="label66">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">Indique el interfaz del PC a través del cual configurará el disposibivo de Banda Ancha</property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">False</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">True</property>
+		  <property name="selectable">False</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkRadioButton" id="radiobuttonSerialPort">
+		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
+		  <property name="label" translatable="yes">Configuración a través de cable serie</property>
+		  <property name="use_underline">True</property>
+		  <property name="relief">GTK_RELIEF_NORMAL</property>
+		  <property name="focus_on_click">True</property>
+		  <property name="active">False</property>
+		  <property name="inconsistent">False</property>
+		  <property name="draw_indicator">True</property>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkFrame" id="frame10">
+		  <property name="visible">True</property>
+		  <property name="label_xalign">0</property>
+		  <property name="label_yalign">0.5</property>
+		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+
+		  <child>
+		    <widget class="GtkAlignment" id="alignment16">
+		      <property name="visible">True</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xscale">1</property>
+		      <property name="yscale">1</property>
+		      <property name="top_padding">0</property>
+		      <property name="bottom_padding">0</property>
+		      <property name="left_padding">12</property>
+		      <property name="right_padding">0</property>
+
+		      <child>
+			<widget class="GtkTable" id="table10">
+			  <property name="visible">True</property>
+			  <property name="n_rows">1</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">True</property>
+			  <property name="row_spacing">0</property>
+			  <property name="column_spacing">0</property>
+
+			  <child>
+			    <widget class="GtkLabel" id="label62">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Puerto serie del PC donde está
+conectado el dispositivo a configurar</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">False</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">10</property>
+			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+			      <property name="width_chars">-1</property>
+			      <property name="single_line_mode">False</property>
+			      <property name="angle">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkComboBox" id="comboboxserialport">
+			      <property name="visible">True</property>
+			      <property name="items"></property>
+			      <property name="add_tearoffs">False</property>
+			      <property name="focus_on_click">True</property>
+			      <signal name="changed" handler="on_comboboxSerialPort_changed" last_modification_time="Thu, 29 Sep 2005 01:50:42 GMT"/>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options">fill</property>
+			    </packing>
+			  </child>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkLabel" id="label58">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Configuración por puerto serie (COM)</property>
+		      <property name="use_underline">False</property>
+		      <property name="use_markup">True</property>
+		      <property name="justify">GTK_JUSTIFY_LEFT</property>
+		      <property name="wrap">False</property>
+		      <property name="selectable">False</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xpad">0</property>
+		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		      <property name="width_chars">-1</property>
+		      <property name="single_line_mode">False</property>
+		      <property name="angle">0</property>
+		    </widget>
+		    <packing>
+		      <property name="type">label_item</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">True</property>
+		  <property name="fill">True</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkRadioButton" id="radiobuttonEthPort">
+		  <property name="visible">True</property>
+		  <property name="sensitive">False</property>
+		  <property name="can_focus">True</property>
+		  <property name="label" translatable="yes">Configuración a través de cable y red ethernet</property>
+		  <property name="use_underline">True</property>
+		  <property name="relief">GTK_RELIEF_NORMAL</property>
+		  <property name="focus_on_click">True</property>
+		  <property name="active">False</property>
+		  <property name="inconsistent">False</property>
+		  <property name="draw_indicator">True</property>
+		  <property name="group">radiobuttonSerialPort</property>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkFrame" id="frame11">
+		  <property name="visible">True</property>
+		  <property name="sensitive">False</property>
+		  <property name="label_xalign">0</property>
+		  <property name="label_yalign">0.5</property>
+		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+
+		  <child>
+		    <widget class="GtkAlignment" id="alignment17">
+		      <property name="visible">True</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xscale">1</property>
+		      <property name="yscale">1</property>
+		      <property name="top_padding">0</property>
+		      <property name="bottom_padding">0</property>
+		      <property name="left_padding">12</property>
+		      <property name="right_padding">0</property>
+
+		      <child>
+			<widget class="GtkTable" id="table11">
+			  <property name="visible">True</property>
+			  <property name="n_rows">2</property>
+			  <property name="n_columns">2</property>
+			  <property name="homogeneous">True</property>
+			  <property name="row_spacing">0</property>
+			  <property name="column_spacing">0</property>
+
+			  <child>
+			    <widget class="GtkLabel" id="label64">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Interfaz Ethernet del PC conectada
+a la misma LAN que el dispositivo</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">False</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">10</property>
+			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+			      <property name="width_chars">-1</property>
+			      <property name="single_line_mode">False</property>
+			      <property name="angle">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label65">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Dirección IP actual del dispositivo a configurar</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">False</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">10</property>
+			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+			      <property name="width_chars">-1</property>
+			      <property name="single_line_mode">False</property>
+			      <property name="angle">0</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">1</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkEntry" id="entryIpDevToConf">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="editable">True</property>
+			      <property name="visibility">True</property>
+			      <property name="max_length">0</property>
+			      <property name="text" translatable="yes"></property>
+			      <property name="has_frame">True</property>
+			      <property name="invisible_char">*</property>
+			      <property name="activates_default">False</property>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">1</property>
+			      <property name="bottom_attach">2</property>
+			      <property name="y_options"></property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkComboBox" id="comboboxetheport">
+			      <property name="visible">True</property>
+			      <property name="items"></property>
+			      <property name="add_tearoffs">False</property>
+			      <property name="focus_on_click">True</property>
+			      <signal name="changed" handler="on_comboboxEthePort_changed" last_modification_time="Thu, 29 Sep 2005 01:51:10 GMT"/>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">1</property>
+			      <property name="right_attach">2</property>
+			      <property name="top_attach">0</property>
+			      <property name="bottom_attach">1</property>
+			      <property name="x_options">fill</property>
+			      <property name="y_options">fill</property>
+			    </packing>
+			  </child>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkLabel" id="label59">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Configuración por Ethernet</property>
+		      <property name="use_underline">False</property>
+		      <property name="use_markup">True</property>
+		      <property name="justify">GTK_JUSTIFY_LEFT</property>
+		      <property name="wrap">False</property>
+		      <property name="selectable">False</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xpad">0</property>
+		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		      <property name="width_chars">-1</property>
+		      <property name="single_line_mode">False</property>
+		      <property name="angle">0</property>
+		    </widget>
+		    <packing>
+		      <property name="type">label_item</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">True</property>
+		  <property name="fill">True</property>
+		</packing>
+	      </child>
+	    </widget>
+	  </child>
+	</widget>
+      </child>
+
+      <child>
+	<widget class="GnomeDruidPageStandard" id="druidPasswdSel">
+	  <property name="visible">True</property>
+	  <property name="title" translatable="yes">Seleccione Contraseña Actual</property>
+	  <property name="background">#0807706f2121</property>
+	  <property name="logo_background">#0807706f2121</property>
+	  <signal name="back" handler="on_druidPasswdSel_back" last_modification_time="Thu, 29 Sep 2005 07:53:03 GMT"/>
+	  <signal name="next" handler="on_druidPasswdSel_next" last_modification_time="Thu, 29 Sep 2005 07:53:08 GMT"/>
+
+	  <child internal-child="vbox">
+	    <widget class="GtkVBox" id="druid-vbox119">
+	      <property name="border_width">16</property>
+	      <property name="visible">True</property>
+	      <property name="homogeneous">False</property>
+	      <property name="spacing">6</property>
+
+	      <child>
+		<widget class="GtkLabel" id="label41">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">Si ha cambiado en algún momento la contraseña por defecto del dispositivo de Banda Ancha, introduzca la contraseña actual. Si no la ha modicado se usará la contraseña por defecto.</property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">True</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">True</property>
+		  <property name="selectable">False</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkHBox" id="hbox4">
+		  <property name="visible">True</property>
+		  <property name="homogeneous">True</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkCheckButton" id="checkbuttonDefPasswd">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">Usar contraseña diferente
+de la por defecto</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <property name="active">False</property>
+		      <property name="inconsistent">False</property>
+		      <property name="draw_indicator">True</property>
+		      <signal name="toggled" handler="on_checkbuttonDefPasswd_toggled" last_modification_time="Thu, 29 Sep 2005 08:12:15 GMT"/>
+		      <signal name="activate" handler="on_checkbuttonDefPasswd_activate" last_modification_time="Thu, 29 Sep 2005 08:13:09 GMT"/>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkEntry" id="entryOtherPasswd">
+		      <property name="visible">True</property>
+		      <property name="sensitive">False</property>
+		      <property name="can_focus">True</property>
+		      <property name="editable">True</property>
+		      <property name="visibility">False</property>
+		      <property name="max_length">0</property>
+		      <property name="text" translatable="yes"></property>
+		      <property name="has_frame">True</property>
+		      <property name="invisible_char">*</property>
+		      <property name="activates_default">False</property>
+		      <signal name="changed" handler="on_entryOtherPasswd_changed" last_modification_time="Thu, 29 Sep 2005 08:14:19 GMT"/>
+		      <signal name="editing_done" handler="on_entryOtherPasswd_editing_done" last_modification_time="Thu, 29 Sep 2005 08:14:24 GMT"/>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">True</property>
+		      <property name="fill">True</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">True</property>
+		</packing>
+	      </child>
+	    </widget>
+	  </child>
+	</widget>
+      </child>
+
+      <child>
+	<widget class="GnomeDruidPageStandard" id="druidNewPasswd">
+	  <property name="visible">True</property>
+	  <property name="title" translatable="yes">Nueva Contraseña</property>
+	  <property name="background">#0807706f2121</property>
+	  <property name="logo_background">#0807706f2121</property>
+	  <signal name="back" handler="on_druidNewPasswd_back" last_modification_time="Thu, 29 Sep 2005 08:29:26 GMT"/>
+	  <signal name="next" handler="on_druidNewPasswd_next" last_modification_time="Thu, 29 Sep 2005 08:29:31 GMT"/>
+	  <signal name="prepare" handler="on_druidNewPasswd_prepare" after="yes" last_modification_time="Thu, 29 Sep 2005 08:29:39 GMT"/>
+
+	  <child internal-child="vbox">
+	    <widget class="GtkVBox" id="druid-vbox-newpasswd">
+	      <property name="border_width">16</property>
+	      <property name="visible">True</property>
+	      <property name="homogeneous">False</property>
+	      <property name="spacing">6</property>
+
+	      <child>
+		<widget class="GtkVBox" id="vbox23">
+		  <property name="border_width">10</property>
+		  <property name="visible">True</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkLabel" id="labelEntryPasswd">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Introduzca la nueva contraseña que se configurará en el dispositivo de Banda Ancha</property>
+		      <property name="use_underline">False</property>
+		      <property name="use_markup">False</property>
+		      <property name="justify">GTK_JUSTIFY_LEFT</property>
+		      <property name="wrap">True</property>
+		      <property name="selectable">False</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xpad">0</property>
+		      <property name="ypad">8</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		      <property name="width_chars">-1</property>
+		      <property name="single_line_mode">False</property>
+		      <property name="angle">0</property>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkAlignment" id="alignment18">
+		      <property name="visible">True</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xscale">1</property>
+		      <property name="yscale">1</property>
+		      <property name="top_padding">0</property>
+		      <property name="bottom_padding">0</property>
+		      <property name="left_padding">100</property>
+		      <property name="right_padding">100</property>
+
+		      <child>
+			<widget class="GtkEntry" id="entryNewPasswd">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="editable">True</property>
+			  <property name="visibility">False</property>
+			  <property name="max_length">0</property>
+			  <property name="text" translatable="yes"></property>
+			  <property name="has_frame">True</property>
+			  <property name="invisible_char">*</property>
+			  <property name="activates_default">True</property>
+			  <signal name="editing_done" handler="on_entryNewPasswd_editing_done" last_modification_time="Thu, 29 Sep 2005 08:51:04 GMT"/>
+			  <signal name="changed" handler="on_entryNewPasswd_changed" last_modification_time="Thu, 29 Sep 2005 08:51:15 GMT"/>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">True</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">True</property>
+		</packing>
+	      </child>
+	    </widget>
+	  </child>
+	</widget>
+      </child>
+
+      <child>
 	<widget class="GnomeDruidPageStandard" id="druidVerifParamsConf">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Parámetros elegidos</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="back" handler="on_druidVerifParamsConf_back" last_modification_time="Wed, 07 Sep 2005 12:59:28 GMT"/>
 	  <signal name="next" handler="on_druidVerifParamsConf_next" last_modification_time="Wed, 07 Sep 2005 13:16:21 GMT"/>
 	  <signal name="prepare" handler="on_druidVerifParamsConf_prepare" last_modification_time="Wed, 07 Sep 2005 13:40:20 GMT"/>
@@ -2118,8 +2563,8 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 			    <widget class="GtkScrolledWindow" id="scrolledwindow1">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="hscrollbar_policy">GTK_POLICY_ALWAYS</property>
-			      <property name="vscrollbar_policy">GTK_POLICY_ALWAYS</property>
+			      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+			      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 			      <property name="shadow_type">GTK_SHADOW_NONE</property>
 			      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
@@ -2136,7 +2581,7 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 				      <property name="use_underline">False</property>
 				      <property name="use_markup">True</property>
 				      <property name="justify">GTK_JUSTIFY_LEFT</property>
-				      <property name="wrap">True</property>
+				      <property name="wrap">False</property>
 				      <property name="selectable">True</property>
 				      <property name="xalign">0.0299999993294</property>
 				      <property name="yalign">0.0500000007451</property>
@@ -2197,12 +2642,229 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
       </child>
 
       <child>
-	<widget class="GnomeDruidPageStandard" id="backendInDevel">
+	<widget class="GnomeDruidPageStandard" id="druidRunOper">
 	  <property name="visible">True</property>
-	  <property name="title" translatable="yes">Backend en Desarrollo</property>
+	  <property name="title" translatable="yes">Confirme la operación</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
+	  <signal name="prepare" handler="on_druidRunOper_prepare" after="yes" last_modification_time="Thu, 29 Sep 2005 01:25:18 GMT"/>
+	  <signal name="back" handler="on_druidRunOper_back" last_modification_time="Thu, 29 Sep 2005 01:24:49 GMT"/>
+	  <signal name="next" handler="on_druidRunOper_next" last_modification_time="Thu, 29 Sep 2005 01:25:36 GMT"/>
+
+	  <child internal-child="vbox">
+	    <widget class="GtkVBox" id="druid-vbox119">
+	      <property name="border_width">16</property>
+	      <property name="visible">True</property>
+	      <property name="homogeneous">False</property>
+	      <property name="spacing">6</property>
+
+	      <child>
+		<widget class="GtkVBox" id="vbox19">
+		  <property name="visible">True</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkLabel" id="label53">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">&lt;b&gt;¿Está seguro de continuar con esta operación?&lt;/b&gt;
+
+Pulse &lt;b&gt;Aplicar&lt;/b&gt; para realizar la operación.</property>
+		      <property name="use_underline">False</property>
+		      <property name="use_markup">True</property>
+		      <property name="justify">GTK_JUSTIFY_LEFT</property>
+		      <property name="wrap">True</property>
+		      <property name="selectable">False</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xpad">0</property>
+		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		      <property name="width_chars">-1</property>
+		      <property name="single_line_mode">False</property>
+		      <property name="angle">0</property>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+	    </widget>
+	  </child>
+	</widget>
+      </child>
+
+      <child>
+	<widget class="GnomeDruidPageStandard" id="druidOperResult">
+	  <property name="visible">True</property>
+	  <property name="title" translatable="yes">Resultado de la Operación</property>
+	  <property name="background">#0807706f2121</property>
+	  <property name="logo_background">#0807706f2121</property>
+	  <signal name="next" handler="on_druidOperResult_next" last_modification_time="Thu, 29 Sep 2005 01:27:05 GMT"/>
+	  <signal name="back" handler="on_druidOperResult_back" last_modification_time="Thu, 29 Sep 2005 01:27:14 GMT"/>
+
+	  <child internal-child="vbox">
+	    <widget class="GtkVBox" id="druid-vbox119">
+	      <property name="border_width">16</property>
+	      <property name="visible">True</property>
+	      <property name="homogeneous">False</property>
+	      <property name="spacing">422</property>
+
+	      <child>
+		<widget class="GtkVBox" id="vbox20">
+		  <property name="visible">True</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkLabel" id="labelOperResult">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">&lt;b&gt;No se ha podido obtener el resultado de la operación&lt;/b&gt;</property>
+		      <property name="use_underline">False</property>
+		      <property name="use_markup">True</property>
+		      <property name="justify">GTK_JUSTIFY_LEFT</property>
+		      <property name="wrap">True</property>
+		      <property name="selectable">False</property>
+		      <property name="xalign">0.5</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xpad">0</property>
+		      <property name="ypad">33</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		      <property name="width_chars">-1</property>
+		      <property name="single_line_mode">False</property>
+		      <property name="angle">0</property>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkVBox" id="vbox21">
+		      <property name="visible">True</property>
+		      <property name="homogeneous">False</property>
+		      <property name="spacing">0</property>
+
+		      <child>
+			<widget class="GtkHSeparator" id="hseparator1">
+			  <property name="visible">True</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkExpander" id="expander1">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="expanded">False</property>
+			  <property name="spacing">0</property>
+
+			  <child>
+			    <widget class="GtkScrolledWindow" id="scrolledwindow3">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+			      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+			      <property name="shadow_type">GTK_SHADOW_NONE</property>
+			      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+
+			      <child>
+				<widget class="GtkViewport" id="viewport3">
+				  <property name="visible">True</property>
+				  <property name="shadow_type">GTK_SHADOW_IN</property>
+
+				  <child>
+				    <widget class="GtkLabel" id="labelOperDebug">
+				      <property name="visible">True</property>
+				      <property name="label" translatable="yes">No se ha podido obtener el resultado detallado de la operación</property>
+				      <property name="use_underline">False</property>
+				      <property name="use_markup">False</property>
+				      <property name="justify">GTK_JUSTIFY_LEFT</property>
+				      <property name="wrap">True</property>
+				      <property name="selectable">False</property>
+				      <property name="xalign">0.0500000007451</property>
+				      <property name="yalign">0.5</property>
+				      <property name="xpad">0</property>
+				      <property name="ypad">0</property>
+				      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+				      <property name="width_chars">-1</property>
+				      <property name="single_line_mode">False</property>
+				      <property name="angle">0</property>
+				    </widget>
+				  </child>
+				</widget>
+			      </child>
+			    </widget>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="label56">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Salida detallada</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">False</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+			      <property name="width_chars">-1</property>
+			      <property name="single_line_mode">False</property>
+			      <property name="angle">0</property>
+			    </widget>
+			    <packing>
+			      <property name="type">label_item</property>
+			    </packing>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">True</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">True</property>
+		      <property name="fill">True</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">True</property>
+		  <property name="fill">True</property>
+		</packing>
+	      </child>
+	    </widget>
+	  </child>
+	</widget>
+      </child>
+
+      <child>
+	<widget class="GnomeDruidPageStandard" id="druidNotUsed1">
+	  <property name="visible">True</property>
+	  <property name="title" translatable="yes">Not Used</property>
+	  <property name="background">#0807706f2121</property>
+	  <property name="logo_background">#0807706f2121</property>
 
 	  <child internal-child="vbox">
 	    <widget class="GtkVBox" id="druid-vbox119">
@@ -2214,15 +2876,11 @@ Si dispone de un módem USB conéctelo igualmente a la computadora mediante el c
 	      <child>
 		<widget class="GtkLabel" id="label41">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">
-
-&lt;b&gt;Lo siento el configurador está todavía en desarrollo.
-
-El asistente finalizará&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Pulse 'Adelante' para realizar la operación sobre el equipo, o 'Cancelar' o 'Atras' para no realizarla.</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
-		  <property name="justify">GTK_JUSTIFY_CENTER</property>
-		  <property name="wrap">False</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">True</property>
 		  <property name="selectable">False</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
@@ -2252,7 +2910,6 @@ El asistente finalizará&lt;/b&gt;</property>
 	  <property name="text" translatable="yes">Ha terminado de ejecutar el Asistente de Banda Ancha</property>
 	  <property name="background_color">#0807706f2121</property>
 	  <property name="logo_background_color">#0807706f2121</property>
-	  <property name="logo">pixmaps/bb-assist48.png</property>
 	  <signal name="finish" handler="on_druidpagefinish_finish" after="yes" last_modification_time="Wed, 07 Sep 2005 13:03:10 GMT"/>
 	  <signal name="back" handler="on_druidpagefinish_back" last_modification_time="Wed, 07 Sep 2005 13:03:06 GMT"/>
 	</widget>
@@ -2379,6 +3036,142 @@ El asistente finalizará&lt;/b&gt;</property>
 	  <property name="padding">0</property>
 	  <property name="expand">False</property>
 	  <property name="fill">False</property>
+	</packing>
+      </child>
+    </widget>
+  </child>
+</widget>
+
+<widget class="GtkDialog" id="dialogProgressBarOper">
+  <property name="title" translatable="yes">Progreso</property>
+  <property name="type">GTK_WINDOW_TOPLEVEL</property>
+  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="modal">False</property>
+  <property name="resizable">True</property>
+  <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <property name="focus_on_map">True</property>
+  <property name="has_separator">True</property>
+
+  <child internal-child="vbox">
+    <widget class="GtkVBox" id="dialog-vbox-progress-bar">
+      <property name="visible">True</property>
+      <property name="homogeneous">False</property>
+      <property name="spacing">0</property>
+
+      <child internal-child="action_area">
+	<widget class="GtkHButtonBox" id="dialog-action_area_progress">
+	  <property name="visible">True</property>
+	  <property name="layout_style">GTK_BUTTONBOX_END</property>
+
+	  <child>
+	    <widget class="GtkButton" id="button_cancel_operation">
+	      <property name="visible">True</property>
+	      <property name="sensitive">False</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-stop</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="on_button_cancel_clicked" last_modification_time="Thu, 23 Dec 2004 15:53:57 GMT"/>
+	    </widget>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">False</property>
+	  <property name="fill">True</property>
+	  <property name="pack_type">GTK_PACK_END</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHBox" id="hboxProgressBar">
+	  <property name="border_width">6</property>
+	  <property name="visible">True</property>
+	  <property name="homogeneous">False</property>
+	  <property name="spacing">12</property>
+
+	  <child>
+	    <widget class="GtkImage" id="imageProgressBar">
+	      <property name="visible">True</property>
+	      <property name="xalign">0</property>
+	      <property name="yalign">0</property>
+	      <property name="xpad">0</property>
+	      <property name="ypad">0</property>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">False</property>
+	      <property name="fill">False</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkVBox" id="vboxProgresBar">
+	      <property name="visible">True</property>
+	      <property name="homogeneous">False</property>
+	      <property name="spacing">12</property>
+
+	      <child>
+		<widget class="GtkLabel" id="labelProgressOperation">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">&lt;span weight=&quot;bold&quot; size=&quot;larger&quot;&gt;Operación en Proceso&lt;/span&gt;
+
+Esta operación puede durar unos segundos. Sea paciente.</property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">True</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">True</property>
+		  <property name="selectable">False</property>
+		  <property name="xalign">0</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkProgressBar" id="progressbar_operation">
+		  <property name="visible">True</property>
+		  <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
+		  <property name="fraction">0</property>
+		  <property name="pulse_step">0.10000000149</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">True</property>
+	      <property name="fill">True</property>
+	    </packing>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">True</property>
+	  <property name="fill">True</property>
 	</packing>
       </child>
     </widget>

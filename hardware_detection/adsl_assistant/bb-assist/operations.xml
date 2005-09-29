@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operation_list>
+
+  <operation id='0001' bb_device='0001' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="en" name='Verify device access'/>
+      <opername lang="es_ES" name='Verificar acceso al equipo'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_cmd>0001</initial_cmd>
+    <default_timeout>15</default_timeout>
+    <druid_page_list>
+      <druid_page>druidVerifParamsConf</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0002' bb_device='0001' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Monopuesto Estático'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_cmd>0000</initial_cmd>
+    <default_timeout>15</default_timeout>
+    <druid_page_list>
+      <druid_page>druidUsuIP</druid_page>
+      <druid_page>druidGestIP</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0003' bb_device='0001' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Monopuesto Dinámico'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_cmd>0000</initial_cmd>
+    <default_timeout>15</default_timeout>
+    <druid_page_list>
+      <druid_page>druidDinamConf</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0004' bb_device='0001' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Multipuesto Estático'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_cmd>0000</initial_cmd>
+    <default_timeout>15</default_timeout>
+    <druid_page_list>
+      <druid_page>druidUsuIP</druid_page>
+      <druid_page>druidGestIP</druid_page>
+      <druid_page>druidMultiConf</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0005' bb_device='0001' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Multipuesto Dinámico'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_cmd>0000</initial_cmd>
+    <default_timeout>15</default_timeout>
+    <druid_page_list>
+      <druid_page>druidDinamConf</druid_page>
+      <druid_page>druidMultiConf</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0006' bb_device='0001' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="en" name='Change password'/>
+      <opername lang="es_ES" name='Cambiar contraseña'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_cmd>0008</initial_cmd>
+    <default_timeout>15</default_timeout>
+    <druid_page_list>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidNewPasswd</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+</operation_list>

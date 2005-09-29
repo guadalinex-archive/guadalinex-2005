@@ -1,20 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<device_list>
-  <device name='Comtrend'>
-    <device_type id='0001'/>
-    <support>1</support>
-    <deviceid_list>
-      <deviceid vendor='1110' model='900f'/>
-    </deviceid_list>
-    <provider id='0001'>
-      <confmode_list>
-        <mode id='0001'/>
-        <mode id='0002'/>
-      </confmode_list>
-    </provider>
-    <console>0</console>
-  </device>
-  <device name='3Com OfficeConnect 812'>
+<bb_device_list>
+  <bb_device name='3Com OfficeConnect 812'>
     <device_type id='0002'/>
     <support>1</support>
     <provider id='0001'>
@@ -32,6 +18,20 @@
     <list_firmware>
       <fw1>V1.1.7</fw1>
     </list_firmware>
+  </device>
+  <device name='Comtrend'>
+    <device_type id='0001'/>
+    <support>1</support>
+    <deviceid_list>
+      <deviceid vendor='1110' model='900f'/>
+    </deviceid_list>
+    <provider id='0001'>
+      <confmode_list>
+        <mode id='0001'/>
+        <mode id='0002'/>
+      </confmode_list>
+    </provider>
+    <console>0</console>
   </device>
   <device name='Vitelcom Messenger'>
     <device_type id='0001'/>

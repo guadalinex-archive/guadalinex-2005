@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bb_device_list>
+
+  <bb_device id='0001' name='3Com OfficeConnect 812'>
+    <device_type id='0002'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+	<confmode_list>
+	  <mode id='0001'/>
+	  <mode id='0002'/>
+	  <mode id='0003'/>
+	  <mode id='0004'/>
+	</confmode_list>
+	<default_passwd_list>
+	  <default_passwd id='0001' passwd='adminttd'/>
+	</default_passwd_list>
+      </provider>
+    </provider_list>
+    <console>1</console>
+    <tty_conf id='0001'/>
+    <list_firmware>
+      <fw id='0001'/>
+    </list_firmware>
+    <operation_list>
+      <operation id='0001'/>
+      <operation id='0002'/>
+      <operation id='0003'/>
+    </operation_list>
+  </bb_device>
+
+  <bb_device id='0002' name='Comtrend'>
+    <device_type id='0001'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+	<confmode_list>
+	  <mode id='0001'/>
+	  <mode id='0002'/>
+	</confmode_list>
+      </provider>
+    </provider_list>
+    <console>0</console>
+    <usb_conf>
+      <linux_driver>eagle</linux_driver>
+      <deviceid_list>
+	<deviceid vendor='1110' model='900f'/>
+      </deviceid_list>
+    </usb_conf>
+    <list_firmware>
+    </list_firmware>
+    <operation_list>
+      <!-- FIXME -->
+    </operation_list>
+  </bb_device>
+
+  <bb_device id='0003' name='Vitelcom Messenger'>
+    <device_type id='0001'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+	<confmode_list>
+	  <mode id='0001'/>
+	  <mode id='0002'/>
+	</confmode_list>
+      </provider>
+    </provider_list>
+    <console>0</console>
+    <usb_conf>
+      <linux_driver>accessrunner</linux_driver>
+      <deviceid_list>
+	<deviceid vendor='0572' model='cafe'/>
+	<deviceid vendor='0572' model='cb00'/>
+	<deviceid vendor='0572' model='cb01'/>
+	<deviceid vendor='0572' model='cb06'/>
+	<deviceid vendor='08e3' model='0100'/>
+	<deviceid vendor='08e3' model='0102'/>
+	<deviceid vendor='0eb0' model='3457'/>
+	<deviceid vendor='1803' model='5510'/>
+	<deviceid vendor='0675' model='0200'/>
+	<deviceid vendor='0586' model='330a'/>
+	<deviceid vendor='1242' model='2003'/>
+      </deviceid_list>
+    </usb_conf>
+    <list_firmware>
+      <!-- FIXME -->
+    </list_firmware>
+    <operation_list>
+      <!-- FIXME -->
+    </operation_list>
+  </bb_device>
+
+  <bb_device id='0004' name='Efficient SpeedStream 5660'>
+    <device_type id='0002'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+	<confmode_list>
+	  <mode id='0001'/>
+	  <mode id='0002'/>
+	  <mode id='0003'/>
+	  <mode id='0004'/>
+	</confmode_list>
+	<default_passwd_list>
+	  <default_passwd id='0001' passwd='adminttd'/>
+	</default_passwd_list>
+      </provider>
+    </provider_list>
+    <console>1</console>
+    <tty_conf id='0002'/>
+    <list_firmware>
+      <fw id='0002'/>
+    </list_firmware>
+    <operation_list>
+      <!-- FIXME -->
+    </operation_list>
+  </bb_device>
+
+
+</bb_device_list>
