@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . cdd.cfg
-DEBIANSRC="meta-pkg"
+DEBIANSRC="meta-pkg-mini"
 
 if [ ! $# -gt 0 ];then
 	echo "Usage: $0 depend [depend..]"
