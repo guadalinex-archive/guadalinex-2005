@@ -1,3 +1,9 @@
+server-clone (0.4-2) unstable; urgency=low
+
+  * Added initramfs template, the kernel and finished some scripts.
+
+ -- Juanje Ojeda <juanje@interactors.coop>  Fri, 30 Sep 2005 15:16:51 +0100
+
 server-clone (0.4-1) unstable; urgency=low
 
   * Initial Release.
