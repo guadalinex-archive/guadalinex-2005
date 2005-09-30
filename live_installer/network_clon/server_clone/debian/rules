@@ -29,7 +29,7 @@ install:
 	install -m 755 $(CURDIR)/server-clone-start.sh $(BUILDDIR)/usr/sbin/server-clone-start
 	install -m 644 $(CURDIR)/udhcpd.conf $(BUILDDIR)/usr/share/server-clone/udhcpd.conf
 	install -m 755 $(CURDIR)/isolinux/* $(BUILDDIR)/usr/share/server-clone/isolinux/
-	cp -a $(CURDIR)/initramfs/* $(BUILDDIR)/usr/share/server-clone/initramfs/
+	tar -zcvf $(BUILDDIR)/usr/share/server-clone/initramfs.tgz --exclude="*/.svn" $(CURDIR)/initramfs/
 	#rm -rf `find $(CURDIR)/debian/ -mindepth 2 -type d -name .svn`
 
 # Build architecture-independent files here.

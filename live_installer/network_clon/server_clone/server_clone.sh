@@ -13,7 +13,7 @@ done
 
 # Create temp directories
 ISOLINUXDIR=$(mktemp -d /tmp/client-image.XXXXXX)
-INITRAMFSDIR=$(mktemp -d /tmp/initramfs.XXXXXX)
+INITRAMFSDIR="/tmp/initramfs"
 
 # Default options (by now)
 NET=192.168.10.1
@@ -80,7 +80,6 @@ Gracias." \
 # untarting the initramfs template
 
 tar -C ${INITRAMFSDIR} -zxf /usr/share/server-clone/initramfs.tgz >> /tmp/server-clone.log 2>&1
-mkdir -p ${INITRAMFSDIR}/etc/
 
 cat > ${INITRAMFSDIR}/etc/config.cfg  <<EOF
 serverip=$NET
