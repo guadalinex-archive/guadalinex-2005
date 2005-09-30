@@ -1,0 +1,25 @@
+#!/bin/sh
+# Here we make the hw detection in the better debian way we can
+# Which things:
+# - Network devices
+# - X
+# - Sound
+# - Something else
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+
+
