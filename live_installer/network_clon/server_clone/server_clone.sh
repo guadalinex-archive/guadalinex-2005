@@ -16,7 +16,7 @@ ISOLINUXDIR=$(mktemp -d /tmp/client-image.XXXXXX)
 INITRAMFSDIR=$(mktemp -d /tmp/initramfs.XXXXXX)
 
 # Default options (by now)
-NET=192.168.0.1
+NET=192.168.10.1
 MOUNTPOINTS="/:/dev/@@@da1;swap:/dev/@@@da2"
 
 #NET=$(dialog --title "Configuración de la red" \
