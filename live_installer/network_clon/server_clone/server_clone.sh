@@ -17,7 +17,7 @@ INITRAMFSDIR=$(mktemp -d /tmp/initramfs.XXXXXX)
 
 # Default options (by now)
 NET=192.168.0.1
-MOUNTPOINTS="/:/dev/hda1;swap:/dev/hda2"
+MOUNTPOINTS="/:/dev/@@@da1;swap:/dev/@@@da2"
 
 #NET=$(dialog --title "Configuración de la red" \
 #    --inputbox "¿Cuál es la dirección del servidor?" \
@@ -79,7 +79,7 @@ Gracias." \
 
 # untarting the initramfs template
 
-#untar -C ${INITRAMFSDIR} -zxf /usr/share/server-clone/initramfs.tgz >> /tmp/server-clone.log 2>&1
+tar -C ${INITRAMFSDIR} -zxf /usr/share/server-clone/initramfs.tgz >> /tmp/server-clone.log 2>&1
 mkdir -p ${INITRAMFSDIR}/etc/
 
 cat > ${INITRAMFSDIR}/etc/config.cfg  <<EOF
@@ -101,15 +101,18 @@ DEV=$DEV
 IP=$NET
 EOF
 
+# Creating the initramfs file
+(cd ${INITRAMFSDIR} && find . | cpio --quiet --dereference -o -H newc | gzip -9 >${ISOLINUXDIR}/initramfs)
+
 # Placeing the rest of the stuff
 
-#cp -a /usr/share/server-clone/isolinux/* ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
+cp -a /usr/share/server-clone/isolinux/* ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
 
 # Create the cd image
 
-#mkisofs -l -r -J -V "Guadalinex Clone System" -hide-rr-moved -v -b isolinux.bin \
-#-c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table \
-#-o /tmp/client-image.iso ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
+mkisofs -l -r -J -V "Guadalinex Clone System" -hide-rr-moved -v -b isolinux.bin \
+-c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table \
+-o /tmp/client-image.iso ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
 
 dialog --title "Generando la imagen de los clientes" \
     --msgbox "\nSe ha generando la imagen de los clientes.\n
@@ -120,6 +123,6 @@ Si lo desea puede encontrar los logs del proceso\n
 realizado en: /tmp/server-clone.log" \
     10 50
 
-#rm -fr ${INITRAMFSDIR} ${ISOLINUXDIR}
+rm -fr ${INITRAMFSDIR} ${ISOLINUXDIR}
 
 
