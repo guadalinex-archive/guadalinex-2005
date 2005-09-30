@@ -1,0 +1,169 @@
+/lib/modules/2.6.12-6-386/initrd/vesafb.ko: /lib/modules/2.6.12-6-386/kernel/drivers/video/cfbcopyarea.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/cfbimgblt.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/cfbfillrect.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/softcursor.ko
+/lib/modules/2.6.12-6-386/initrd/capability.ko: /lib/modules/2.6.12-6-386/kernel/security/commoncap.ko
+/lib/modules/2.6.12-6-386/kernel/security/commoncap.ko:
+/lib/modules/2.6.12-6-386/kernel/lib/crc-ccitt.ko:
+/lib/modules/2.6.12-6-386/kernel/net/unix/unix.ko:
+/lib/modules/2.6.12-6-386/kernel/net/packet/af_packet.ko:
+/lib/modules/2.6.12-6-386/kernel/net/sunrpc/sunrpc.ko:
+/lib/modules/2.6.12-6-386/kernel/fs/xfs/xfs.ko: /lib/modules/2.6.12-6-386/kernel/fs/exportfs/exportfs.ko
+/lib/modules/2.6.12-6-386/kernel/fs/exportfs/exportfs.ko:
+/lib/modules/2.6.12-6-386/kernel/fs/reiserfs/reiserfs.ko:
+/lib/modules/2.6.12-6-386/kernel/fs/nfs/nfs.ko: /lib/modules/2.6.12-6-386/kernel/fs/lockd/lockd.ko /lib/modules/2.6.12-6-386/kernel/net/sunrpc/sunrpc.ko
+/lib/modules/2.6.12-6-386/kernel/fs/lockd/lockd.ko: /lib/modules/2.6.12-6-386/kernel/net/sunrpc/sunrpc.ko
+/lib/modules/2.6.12-6-386/kernel/fs/isofs/isofs.ko:
+/lib/modules/2.6.12-6-386/kernel/fs/ext3/ext3.ko: /lib/modules/2.6.12-6-386/kernel/fs/jbd/jbd.ko
+/lib/modules/2.6.12-6-386/kernel/fs/jbd/jbd.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/video/vga16fb.ko: /lib/modules/2.6.12-6-386/kernel/drivers/video/cfbcopyarea.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/vgastate.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/cfbimgblt.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/cfbfillrect.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/softcursor.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/video/vgastate.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/video/console/fbcon.ko: /lib/modules/2.6.12-6-386/kernel/drivers/video/console/tileblit.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/console/font.ko /lib/modules/2.6.12-6-386/kernel/drivers/video/console/bitblit.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/video/console/tileblit.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/video/console/font.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/video/console/bitblit.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/video/cfbcopyarea.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/video/cfbimgblt.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/video/cfbfillrect.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/video/softcursor.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/acpi/thermal.ko: /lib/modules/2.6.12-6-386/kernel/drivers/acpi/processor.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/acpi/processor.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/acpi/fan.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/message/i2o/i2o_block.ko: /lib/modules/2.6.12-6-386/kernel/drivers/message/i2o/i2o_core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/message/i2o/i2o_core.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/base/firmware_class.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/block/cciss.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/cdrom/cdrom.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/yellowfin.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/via-velocity.ko: /lib/modules/2.6.12-6-386/kernel/lib/crc-ccitt.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/via-rhine.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tulip/xircom_tulip_cb.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tulip/xircom_cb.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tulip/winbond-840.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tulip/tulip.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tulip/dmfe.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tulip/de4x5.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tulip/de2104x.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tlan.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/tg3.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/sunhme.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/sungem.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/sungem_phy.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/sungem_phy.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/sundance.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/starfire.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/slhc.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/skge.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/sis900.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/s2io.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/r8169.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/pcnet32.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/ns83820.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/netconsole.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/ne2k-pci.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/8390.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/natsemi.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/hp100.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/forcedeth.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/fealnx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/eql.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/epic100.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/e100.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/e1000/e1000.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/dl2k.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/defxx.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/bnx2.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/b44.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/8390.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/net/8139too.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/8139cp.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/3c59x.ko: /lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/net/mii.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/tmscsim.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sym53c8xx_2/sym53c8xx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_spi.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sd_mod.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_iscsi.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_vsc.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_via.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_uli.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_sx4.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_svw.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_sis.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_sil.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_qstor.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_nv.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/sata_promise.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qlogicfc.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qlogicfas408.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla6312.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2xxx.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_fc.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2322.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2xxx.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_fc.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2300.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2xxx.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_fc.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2200.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2xxx.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_fc.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2100.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2xxx.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_fc.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla2xxx/qla2xxx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_fc.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/qla1280.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/osst.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/nsp32.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/megaraid/megaraid_mbox.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/megaraid/megaraid_mm.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/megaraid/megaraid_mm.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/megaraid.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/lpfc/lpfc.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_fc.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_fc.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/ips.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/ipr.ko: /lib/modules/2.6.12-6-386/kernel/drivers/base/firmware_class.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/initio.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/fdomain.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/eata.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/dpt_i2o.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/dmx3191d.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/dc395x.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/ch.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/BusLogic.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/atp870u.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/ata_piix.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_spi.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/aic7xxx/aic7xxx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_transport_spi.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/aic7xxx/aic79xx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/ahci.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/libata.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/aacraid/aacraid.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/3w-xxxx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/3w-9xxx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/via82cxxx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/trm290.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/triflex.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/slc90e66.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/sis5513.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/siimage.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/serverworks.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/sc1200.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/rz1000.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/piix.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/pdc202xx_old.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/pdc202xx_new.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/opti621.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/ns87415.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/hpt366.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/hpt34x.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/generic.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/cy82c693.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/cs5530.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/cs5520.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/cmd64x.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/atiixp.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/amd74xx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/alim15x3.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/pci/aec62xx.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-generic.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-disk.ko: /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-cd.ko: /lib/modules/2.6.12-6-386/kernel/drivers/cdrom/cdrom.ko /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/usb/storage/usb-storage.ko: /lib/modules/2.6.12-6-386/kernel/drivers/usb/core/usbcore.ko /lib/modules/2.6.12-6-386/kernel/drivers/scsi/scsi_mod.ko /lib/modules/2.6.12-6-386/kernel/drivers/ide/ide-core.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/usb/input/usbhid.ko: /lib/modules/2.6.12-6-386/kernel/drivers/usb/core/usbcore.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/usb/host/uhci-hcd.ko: /lib/modules/2.6.12-6-386/kernel/drivers/usb/core/usbcore.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/usb/host/ohci-hcd.ko: /lib/modules/2.6.12-6-386/kernel/drivers/usb/core/usbcore.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/usb/host/ehci-hcd.ko: /lib/modules/2.6.12-6-386/kernel/drivers/usb/core/usbcore.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/usb/core/usbcore.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/md/dm-mod.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/md/raid6.ko: /lib/modules/2.6.12-6-386/kernel/drivers/md/md.ko /lib/modules/2.6.12-6-386/kernel/drivers/md/xor.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/md/raid5.ko: /lib/modules/2.6.12-6-386/kernel/drivers/md/md.ko /lib/modules/2.6.12-6-386/kernel/drivers/md/xor.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/md/xor.ko:
+/lib/modules/2.6.12-6-386/kernel/drivers/md/raid1.ko: /lib/modules/2.6.12-6-386/kernel/drivers/md/md.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/md/raid0.ko: /lib/modules/2.6.12-6-386/kernel/drivers/md/md.ko
+/lib/modules/2.6.12-6-386/kernel/drivers/md/md.ko:
