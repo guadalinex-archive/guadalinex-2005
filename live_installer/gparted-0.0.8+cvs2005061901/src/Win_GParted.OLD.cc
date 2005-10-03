@@ -16,16 +16,12 @@
  */
  
 #include "../include/Win_GParted.h"
-#include <gtk/gtk.h>
 
 namespace GParted
 {
 	
-Win_GParted::Win_GParted( guint installer )
+Win_GParted::Win_GParted( )
 {
-
-	installer_mode = installer;
-
 	copied_partition .Reset( ) ;
 	selected_partition .Reset( ) ;
 	new_count = 1;
@@ -33,30 +29,16 @@ Win_GParted::Win_GParted( guint installer )
 	vbox_visual_disk = NULL;
 	pulse = false ;
 	
-	// Plug hacks for embedding gparted into ubuntu-express
-	if ( installer_mode > 0)
-	{
-		GtkWidget * plug;
-		plug = gtk_plug_new(installer_mode);
-		gtk_container_add(GTK_CONTAINER(plug), GTK_WIDGET(vbox_main.gobj()));
-		gtk_widget_show(GTK_WIDGET(vbox_main.gobj()));
-		gtk_widget_show(plug);
-		this ->set_default_size(1, 1); this ->set_keep_below(1); this ->set_position(Gtk::WIN_POS_CENTER);
-		init_partition_menu( );
-	}
-	else
-	{
-		//==== GUI =========================
-		this ->set_title( _("GParted") );
-		this ->set_default_size( 775, 500 );
+	//==== GUI =========================
+	this ->set_title( _("GParted") );
+	this ->set_default_size( 775, 500 );
+		
+	//Pack the main box
+	this ->add( vbox_main ); 
 	
-		//Pack the main box
-		this ->add( vbox_main ); 
-	
-		//menubar....
-		init_menubar( ) ;
-		vbox_main .pack_start( menubar_main, Gtk::PACK_SHRINK );
-	}
+	//menubar....
+	init_menubar( ) ;
+	vbox_main .pack_start( menubar_main, Gtk::PACK_SHRINK );
 	
 	//toolbar....
 	init_toolbar( ) ;
@@ -85,21 +67,17 @@ Win_GParted::Win_GParted( guint installer )
 	statusbar .add( *pulsebar );
 	vbox_main .pack_start( statusbar, Gtk::PACK_SHRINK );
 	
-	if ( installer_mode > 0 )
-	    vbox_main .show_all_children( );
-	else
-	    this ->show_all_children( );
+	this ->show_all_children( );
 	
 	//make sure harddisk information and operationlist are closed..
 	hpaned_main .get_child1( ) ->hide( ) ;
 	close_operationslist( ) ;
-
+	
 	conn = dispatcher .connect( sigc::mem_fun( *this, &Win_GParted::menu_gparted_refresh_devices ) );
 	dispatcher( ) ;
-
 }
 
-void Win_GParted::init_menubar( )
+void Win_GParted::init_menubar( ) 
 {
 	//fill menubar_main and connect callbacks 
 	//gparted
@@ -156,37 +134,22 @@ void Win_GParted::init_toolbar( )
 	toolbutton ->set_tooltip(tooltips, _("Resize/Move the selected partition") );		
 	toolbar_main.append( *(Gtk::manage(new Gtk::SeparatorToolItem)) );
 	
-	if ( installer_mode == 0 )
-	{
-		//COPY and PASTE
-		toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::COPY));
-		toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_copy) );
-		toolbar_main.append(*toolbutton);
-		toolbutton ->set_tooltip(tooltips, _("Copy the selected partition to the clipboard") );
-
-		toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::PASTE));
-		toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_paste) );
-		toolbar_main.append(*toolbutton);
-		toolbutton ->set_tooltip(tooltips, _("Paste the partition from the clipboard") );
-
-		toolbar_main.append( *(Gtk::manage(new Gtk::SeparatorToolItem)) );
-	}
+	//COPY and PASTE
+	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::COPY));
+	toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_copy) );	toolbar_main.append(*toolbutton);
+	toolbutton ->set_tooltip(tooltips, _("Copy the selected partition to the clipboard") );		
+	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::PASTE));
+	toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_paste) );	toolbar_main.append(*toolbutton);
+	toolbutton ->set_tooltip(tooltips, _("Paste the partition from the clipboard") );		
+	toolbar_main.append( *(Gtk::manage(new Gtk::SeparatorToolItem)) );
 	
 	//UNDO and APPLY
-	toolbutton_undo = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::UNDO));
-	toolbutton_undo ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_undo) );	toolbar_main.append(*toolbutton_undo); toolbutton_undo ->set_sensitive( false );
-	toolbutton_undo ->set_tooltip(tooltips, _("Undo last operation") );		
-
-	/** if ( installer_mode > 0 )
-	{
-		image = manage( new Gtk::Image( Gtk::Stock::SAVE, Gtk::ICON_SIZE_LARGE_TOOLBAR ) );
-		toolbutton_apply = Gtk::manage(new Gtk::ToolButton( *image, _("Save and Exit") ));
-	}
-	else **/
-		toolbutton_apply = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::SAVE));
-
-	toolbutton_apply ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_apply) );	toolbar_main.append(*toolbutton_apply); toolbutton_apply ->set_sensitive( false );
-	toolbutton_apply ->set_tooltip(tooltips, _("Apply all operations") );		
+	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::UNDO));
+	toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_undo) );	toolbar_main.append(*toolbutton); toolbutton ->set_sensitive( false );
+	toolbutton ->set_tooltip(tooltips, _("Undo last operation") );		
+	toolbutton = Gtk::manage(new Gtk::ToolButton(Gtk::Stock::APPLY));
+	toolbutton ->signal_clicked().connect( sigc::mem_fun(*this, &Win_GParted::activate_apply) );	toolbar_main.append(*toolbutton); toolbutton ->set_sensitive( false );
+	toolbutton ->set_tooltip(tooltips, _("Apply all operations") );		
 	
 	//initizialize and pack optionmenu_devices
 	optionmenu_devices .set_menu( * manage( new Gtk::Menu( ) ) );
@@ -371,23 +334,7 @@ void Win_GParted::init_hpaned_main( )
 	scrollwindow ->set_policy( Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC );
 	
 	//connect signal and add treeview_detail
-	treeview_detail.signal_partition_selected.
-		connect( sigc::mem_fun( *this, &Win_GParted::on_partition_selected ) );
-	treeview_detail.signal_partition_activated.
-		connect( sigc::mem_fun( *this, &Win_GParted::on_partition_activated ) );
-	treeview_detail.signal_popup_menu.
-		connect( sigc::mem_fun( *this, &Win_GParted::on_popup_menu ) );
-
-	if ( installer_mode > 0 )
-	{
-		treeview_detail .signal_set_mount_point
-			.connect( sigc::mem_fun( *this, &Win_GParted::on_set_mount_point ) );
-		treeview_detail .signal_get_mount_point
-			.connect( sigc::mem_fun( *this, &Win_GParted::on_get_mount_point ) );
-
-		treeview_detail .Add_Mount_Point_Column( );
-	}
-
+	treeview_detail .signal_mouse_click .connect( sigc::mem_fun( this, &Win_GParted::mouse_click ) );
 	scrollwindow ->add( treeview_detail );
 	hpaned_main.pack2( *scrollwindow, true, true );
 }
@@ -424,10 +371,7 @@ void Win_GParted::Show_Pulsebar( )
 	
 	//disable all input stuff
 	toolbar_main .set_sensitive( false ) ;
-
-	if ( installer_mode == 0 )
-		menubar_main .set_sensitive( false ) ;
-
+	menubar_main .set_sensitive( false ) ;
 	optionmenu_devices .set_sensitive( false ) ;
 	menu_partition .set_sensitive( false ) ;
 		
@@ -449,10 +393,7 @@ void Win_GParted::Show_Pulsebar( )
 		
 	//enable all disabled stuff
 	toolbar_main .set_sensitive( true ) ;
-
-	if ( installer_mode == 0 )
-		menubar_main .set_sensitive( true ) ;
-
+	menubar_main .set_sensitive( true ) ;
 	optionmenu_devices .set_sensitive( true ) ;
 	menu_partition .set_sensitive( true ) ;
 }
@@ -578,12 +519,7 @@ void Win_GParted::Refresh_Visual( )
 	}
 	
 	vbox_visual_disk = new VBox_VisualDisk ( partitions, devices[ current_device ] .length ) ;
-	vbox_visual_disk ->signal_partition_selected.
-		connect( sigc::mem_fun( treeview_detail, &TreeView_Detail::Set_Selected ) );
-	vbox_visual_disk ->signal_partition_activated.
-		connect( sigc::mem_fun( *this, &Win_GParted::on_partition_activated ) );
-	vbox_visual_disk ->signal_popup_menu.
-		connect( sigc::mem_fun( *this, &Win_GParted::on_popup_menu ) );
+	vbox_visual_disk ->signal_mouse_click.connect( sigc::mem_fun( this, &Win_GParted::mouse_click ) ) ;
 	hbox_visual .pack_start( *vbox_visual_disk, Gtk::PACK_EXPAND_PADDING ) ;
 	hbox_visual .show_all_children( ) ;
 
@@ -609,10 +545,9 @@ bool Win_GParted::Quit_Check_Operations( )
 		Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_NONE, true);
 		dialog .add_button( Gtk::Stock::QUIT, Gtk::RESPONSE_CLOSE );
 		dialog .add_button( Gtk::Stock::CANCEL,Gtk::RESPONSE_CANCEL );
-
-		//In installer mode, don't dump the mount point list
-		//if the user requested to discard pending operations.
-		return ( dialog .run( ) == Gtk::RESPONSE_CLOSE );
+		
+		if ( dialog .run( ) == Gtk::RESPONSE_CANCEL )
+			return false;//don't close GParted
 	}
 
 	return true; //close GParted
@@ -633,7 +568,7 @@ void Win_GParted::Set_Valid_Operations( )
 	//only unmount is allowed
 	if ( selected_partition .busy )
 	{
-		if ( ! selected_partition .Is_Swap( ) && selected_partition .type != GParted::EXTENDED )
+		if ( selected_partition .filesystem != "linux-swap" && selected_partition .type != GParted::EXTENDED )
 			allow_unmount( true ) ;
 		
 		return;
@@ -713,8 +648,7 @@ void Win_GParted::open_operationslist( )
 			Gtk::Main::iteration( );
 	}
 	
-	if ( installer_mode == 0 )
-		( (Gtk::CheckMenuItem *) & menubar_main .items( ) [ 1 ] .get_submenu( ) ->items( ) [ 1 ] ) ->set_active( true ) ;
+	( (Gtk::CheckMenuItem *) & menubar_main .items( ) [ 1 ] .get_submenu( ) ->items( ) [ 1 ] ) ->set_active( true ) ;
 }
 
 void Win_GParted::close_operationslist( ) 
@@ -729,9 +663,7 @@ void Win_GParted::close_operationslist( )
 	}
 	
 	hbox_operations .hide( ) ;
-
-	if ( installer_mode == 0 )
-		( (Gtk::CheckMenuItem *) & menubar_main .items( ) [ 1 ] .get_submenu( ) ->items() [ 1 ] ) ->set_active( false ) ;
+	( (Gtk::CheckMenuItem *) & menubar_main .items( ) [ 1 ] .get_submenu( ) ->items() [ 1 ] ) ->set_active( false ) ;
 }
 
 void Win_GParted::clear_operationslist( ) 
@@ -763,10 +695,7 @@ void Win_GParted::menu_gparted_refresh_devices( )
 	//check if current_device is still available (think about hotpluggable shit like usbdevices)
 	if ( current_device >= devices .size( ) )
 		current_device = 0 ;
-
-	if ( operations .empty( ) )
-		gparted_core .Realign_Mount_Point_Map( devices );
-
+	
 	//show read-only warning if necessary
 	Glib::ustring readonly_paths ;
 	
@@ -806,11 +735,8 @@ void Win_GParted::menu_gparted_refresh_devices( )
 	{	
 		optionmenu_devices .hide( ) ;
 		
-		if ( installer_mode == 0 )
-		{
-			menubar_main .items( )[ 2 ] .set_sensitive( false ) ;
-			menubar_main .items( )[ 3 ] .set_sensitive( false ) ;
-		}
+		menubar_main .items( )[ 2 ] .set_sensitive( false ) ;
+		menubar_main .items( )[ 3 ] .set_sensitive( false ) ;
 		toolbar_main .set_sensitive( false ) ;
 		optionmenu_devices .set_sensitive( false ) ;
 		
@@ -836,11 +762,9 @@ void Win_GParted::menu_gparted_refresh_devices( )
 	
 	else //at least one device detected
 	{
-		if ( installer_mode == 0 )
-		{
-			menubar_main .items( )[ 2 ] .set_sensitive( true ) ;
-			menubar_main .items( )[ 3 ] .set_sensitive( true ) ;
-		}
+		menubar_main .items( )[ 2 ] .set_sensitive( true ) ;
+		menubar_main .items( )[ 3 ] .set_sensitive( true ) ;
+		
 		Refresh_OptionMenu( ) ;	
 	}
 }
@@ -868,14 +792,14 @@ void Win_GParted::menu_view_harddisk_info( )
 { 
 	if ( ( (Gtk::CheckMenuItem *) & menubar_main .items( ) [ 1 ] .get_submenu( ) ->items( ) [ 0 ] ) ->get_active( ) )
 	{ //open harddisk information
-		hpaned_main .get_child1( ) ->show( ) ;
+		hpaned_main .get_child1( ) ->show( ) ;		
 		for ( int t = hpaned_main .get_position( ) ; t < 250 ; t +=15 )
 		{
 			hpaned_main .set_position( t );
 			while ( Gtk::Main::events_pending( ) )
 				Gtk::Main::iteration( );
 		}
-	} 
+	}
 	else 
 	{ 	//close harddisk information
 		for ( int t=hpaned_main .get_position( ) ;  t > 0 ; t -=15 )
@@ -892,7 +816,7 @@ void Win_GParted::menu_view_operations( )
 {
 	if ( ( (Gtk::CheckMenuItem *) & menubar_main .items( ) [ 1 ] .get_submenu( ) ->items( ) [ 1 ] ) ->get_active( ) )
 		open_operationslist( ) ;
-	else
+	else 
 		close_operationslist( ) ;
 }
 
@@ -914,38 +838,25 @@ void Win_GParted::menu_help_about( )
 	dialog .run( );
 }
 
-void Win_GParted::on_partition_selected( const Partition & partition )
+void Win_GParted::mouse_click( GdkEventButton *event, const Partition & partition )
 {
-	vbox_visual_disk ->Set_Selected( partition );
-
 	selected_partition = partition;
-
-	Set_Valid_Operations( );
-}
-
-void Win_GParted::on_partition_activated( const Partition & partition )
-{
-	if ( ! pulse )
-		activate_info( );
-}
-
-void Win_GParted::on_popup_menu( unsigned int button, guint32 time )
-{
-	//prepare convert menu
-	if ( selected_partition .type != GParted::UNALLOCATED )
-		Set_Valid_Convert_Filesystems( ) ;
-
-	menu_partition .popup( button, time );
-}
-
-void Win_GParted::on_set_mount_point( const Partition & partition, const Glib::ustring & mount_point )
-{
-	gparted_core .Set_Mount_Point( devices[ current_device ] .path, partition, mount_point );
-}
-
-Glib::ustring Win_GParted::on_get_mount_point( const Partition & partition )
-{
-	return gparted_core .Get_Mount_Point( devices[ current_device ] .path, partition );
+	
+	Set_Valid_Operations( ) ;
+	
+	treeview_detail .Set_Selected( partition );
+	vbox_visual_disk ->Set_Selected( partition );
+	
+	if ( event ->type == GDK_2BUTTON_PRESS && ! pulse )
+		activate_info( ) ;
+	else if ( event ->button == 3 )  //right-click
+	{
+		//prepare convert menu
+		if ( selected_partition .type != GParted::UNALLOCATED )
+			Set_Valid_Convert_Filesystems( ) ;
+		
+		menu_partition .popup( event ->button, event ->time );
+	}
 }
 
 bool Win_GParted::max_amount_prim_reached( ) 
@@ -1018,9 +929,6 @@ void Win_GParted::activate_resize( )
 	{
 		dialog .hide( ) ;//i want to be sure the dialog is gone _before_ operationslist shows up (only matters if first operation)
 		
-	//unset any mount point associated with this partition
-	gparted_core .Set_Mount_Point( devices[ current_device ] .path, selected_partition, Glib::ustring( ) );
-
 		//if selected_partition is NEW we simply remove the NEW operation from the list and add it again with the new size and position ( unless it's an EXTENDED )
 		if ( selected_partition .status == GParted::STAT_NEW && selected_partition.type != GParted::EXTENDED )
 		{
@@ -1124,10 +1032,7 @@ void Win_GParted::activate_delete( )
 	if ( dialog .run( ) == Gtk::RESPONSE_OK )
 	{
 		dialog .hide( ) ;//i want to be sure the dialog is gone _before_ operationslist shows up (only matters if first operation)
-
-		//unset any mount point associated with this partition
-		gparted_core .Set_Mount_Point( devices[ current_device ] .path, selected_partition, Glib::ustring( ) );
-
+		
 		//if deleted partition was on the clipboard we erase it...
 		if ( selected_partition .partition == copied_partition .partition )
 			copied_partition .Reset( ) ;
@@ -1203,10 +1108,6 @@ void Win_GParted::activate_convert( const Glib::ustring & new_fs )
 		return ;
 	}
 	
-	//unset any mount point associated with this partition
-	gparted_core .Set_Mount_Point( devices[ current_device ] .path, selected_partition, Glib::ustring( ) );
-
-
 	//ok we made it :P lets create an fitting partition object
 	Partition part_temp;
 	part_temp .Set( selected_partition .partition, selected_partition .partition_number, selected_partition .type, new_fs, selected_partition .sector_start, selected_partition .sector_end, selected_partition .inside_extended, false ) ;
@@ -1239,12 +1140,12 @@ void  Win_GParted::activate_unmount( )
 	char c_buf[ 512 ] ;
 	Glib::ustring output ;
 
-	FILE *f = popen( ( "umount " + selected_partition .partition + " 2>&1" ) .c_str( ), "r" ) ;
+        FILE *f = popen( ( "umount " + selected_partition .partition + " 2>&1" ) .c_str( ), "r" ) ;
 	
 	while ( fgets( c_buf, 512, f ) )
 		output += c_buf ;
 	
-	pclose( f ) ;
+        pclose( f ) ;
 	
 	if ( ! output .empty( ) ) 
 	{
@@ -1279,10 +1180,7 @@ void Win_GParted::activate_disklabel( )
 			Gtk::MessageDialog dialog( *this, _("Error while setting new disklabel"), true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true ) ;
 			dialog .run( ) ;
 		}
-
-		//unset any mount point associated with this partition
-		gparted_core .Unset_Device_Mount_Points( devices[ current_device ] .path );
-
+			
 		menu_gparted_refresh_devices( ) ;
 	}
 }
@@ -1367,12 +1265,6 @@ void Win_GParted::activate_apply( )
 		
 		//reread devices and their layouts...
 		menu_gparted_refresh_devices( ) ;
-
-		if ( installer_mode > 0 )
-		{
-			gparted_core .Dump_Mount_Point_List( devices, std::cout );
-			hide( );
-		}
 	}
 }
 
@@ -1380,13 +1272,14 @@ void Win_GParted::apply_operations_thread( )
 { 
 	for ( unsigned int t = 0 ; t < operations .size( ) && apply ; t++ )
 	{ 			
-		dialog_progress ->Set_Current( operations[ t ] .str_operation,
-					       gparted_core .get_estimated_time( operations[ t ] ) );
+		dialog_progress ->current_operation = operations[ t ] .str_operation ;
+		dialog_progress ->TIME_LEFT = gparted_core .get_estimated_time( operations[ t ] ) ;
 		dispatcher( ) ;
 		
 		gparted_core .Apply_Operation_To_Disk( operations[ t ] );
 	}
-	dispatcher( );
+	
+	dialog_progress ->response( Gtk::RESPONSE_OK );
 }
 
 
