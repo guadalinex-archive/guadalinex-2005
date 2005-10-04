@@ -1368,11 +1368,11 @@ void Win_GParted::activate_apply( )
 		//reread devices and their layouts...
 		menu_gparted_refresh_devices( ) ;
 
-		if ( installer_mode > 0 )
-		{
-			gparted_core .Dump_Mount_Point_List( devices, std::cout );
-			hide( );
-		}
+		// if ( installer_mode > 0 )
+		// {
+		// 	gparted_core .Dump_Mount_Point_List( devices, std::cout );
+		// 	hide( );
+		// }
 	}
 }
 
