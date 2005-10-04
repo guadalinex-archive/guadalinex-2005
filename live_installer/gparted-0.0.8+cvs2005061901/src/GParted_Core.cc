@@ -350,6 +350,7 @@ void GParted_Core::Apply_Operation_To_Disk( Operation & operation )
 										
 			break;
 		case COPY:
+		  break;
 			//if ( ! Copy( operation .device .path, operation .copied_partition_path, operation .partition_new ) ) 
 			//	Show_Error( String::ucompose( _("Error while copying %1"), operation .partition_new .partition ) ) ;
 	}
