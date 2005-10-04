@@ -2,7 +2,7 @@
 
 namespace GParted
 {
-
+	
 GParted_Core::GParted_Core( ) 
 {
 	device = NULL ;
@@ -14,13 +14,11 @@ GParted_Core::GParted_Core( )
 	//get valid flags ...
 	for ( PedPartitionFlag flag = ped_partition_flag_next( (PedPartitionFlag) NULL ) ; flag ; flag = ped_partition_flag_next( flag ) )
 		flags .push_back( flag ) ;	
-
-#if 0 /* TODO: make writing junk to stdout conditional or drop it */
+	
 	//throw libpartedversion to the stdout to see which version is actually used.
 	std::cout << "======================" << std::endl ;
 	std::cout << "libparted : " << ped_get_version( ) << std::endl ;
 	std::cout << "======================" << std::endl ;
-#endif
 	
 	//initialize filesystemlist
 	find_supported_filesystems( ) ;
@@ -194,7 +192,7 @@ void GParted_Core::set_device_partitions( Device & device )
 							c_partition ->type,
 							ped_partition_is_busy( c_partition ) );
 					
-				if ( ! partition_temp .Is_Swap( ) )
+				if ( partition_temp .filesystem != "linux-swap" )
 				{
 					Set_Used_Sectors( partition_temp ) ;
 					
@@ -330,28 +328,28 @@ void GParted_Core::Apply_Operation_To_Disk( Operation & operation )
 	switch ( operation .operationtype )
 	{
 		case DELETE:
-			//if ( ! Delete( operation .device .path, operation .partition_original ) ) 
-			//	Show_Error( String::ucompose( _("Error while deleting %1"), operation .partition_original .partition ) ) ;
+			if ( ! Delete( operation .device .path, operation .partition_original ) ) 
+				Show_Error( String::ucompose( _("Error while deleting %1"), operation .partition_original .partition ) ) ;
 														
 			break;
 		case CREATE:
-			//if ( ! Create( operation .device, operation .partition_new ) ) 
-			//	Show_Error( String::ucompose( _("Error while creating %1"), operation .partition_new .partition ) );
+			if ( ! Create( operation .device, operation .partition_new ) ) 
+				Show_Error( String::ucompose( _("Error while creating %1"), operation .partition_new .partition ) );
 											
 			break;
 		case RESIZE_MOVE:
-			//if ( ! Resize( operation .device, operation .partition_original, operation .partition_new ) )
-			//	Show_Error( String::ucompose( _("Error while resizing/moving %1"), operation .partition_new .partition ) ) ;
+			if ( ! Resize( operation .device, operation .partition_original, operation .partition_new ) )
+				Show_Error( String::ucompose( _("Error while resizing/moving %1"), operation .partition_new .partition ) ) ;
 											
 			break;
 		case CONVERT:
-			//if ( ! Convert_FS( operation .device .path, operation .partition_new ) ) 
-			//	Show_Error( String::ucompose( _("Error while converting filesystem of %1"), operation .partition_new .partition ) ) ;
+			if ( ! Convert_FS( operation .device .path, operation .partition_new ) ) 
+				Show_Error( String::ucompose( _("Error while converting filesystem of %1"), operation .partition_new .partition ) ) ;
 										
 			break;
 		case COPY:
-			//if ( ! Copy( operation .device .path, operation .copied_partition_path, operation .partition_new ) ) 
-			//	Show_Error( String::ucompose( _("Error while copying %1"), operation .partition_new .partition ) ) ;
+			if ( ! Copy( operation .device .path, operation .copied_partition_path, operation .partition_new ) ) 
+				Show_Error( String::ucompose( _("Error while copying %1"), operation .partition_new .partition ) ) ;
 	}
 }
 
@@ -526,7 +524,7 @@ Glib::ustring GParted_Core::get_sym_path( const Glib::ustring & real_path )
 	
 		if ( real_path == device_name ) { 
 			fclose ( proc_part_file );
-			return ( Glib::ustring( short_path ) );
+		  	return ( Glib::ustring( short_path ) );
 		}
 		
 	}
@@ -683,7 +681,7 @@ bool GParted_Core::Resize_Normal_Using_Libparted( const Glib::ustring & device_p
 				{
 					if ( 	ped_disk_set_partition_geom ( disk, c_partition, constraint, partition_new .sector_start, partition_new .sector_end ) &&
 						ped_file_system_resize ( fs, & c_partition ->geom, NULL )
-					   )
+                                           )
 							return_value = Commit( disk ) ;
 										
 					ped_constraint_destroy ( constraint );
@@ -714,11 +712,11 @@ void GParted_Core::Show_Error( Glib::ustring message )
 {
 	message = "<span weight=\"bold\" size=\"larger\">" + message + "</span>\n\n" ;
 	message += _( "Be aware that the failure to apply this operation could affect other operations on the list." ) ;
-	// Gtk::MessageDialog dialog( message ,true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true );
+	Gtk::MessageDialog dialog( message ,true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true );
 	
-	// gdk_threads_enter( );
-	// dialog .run( );
-	// gdk_threads_leave( );
+	gdk_threads_enter( );
+	dialog .run( );
+	gdk_threads_leave( );
 }
 
 void GParted_Core::set_proper_filesystem( const Glib::ustring & filesystem )
@@ -755,158 +753,6 @@ void GParted_Core::set_proper_filesystem( const Glib::ustring & filesystem )
 
 	if ( p_filesystem )
 		p_filesystem ->textbuffer = textbuffer ;
-}
-
-void GParted_Core::Set_Mount_Point( const Glib::ustring & device_name, const Partition & partition, const Glib::ustring & mount_point )
-{
-	MountPoint_Map & map = device_map[ device_name .raw( ) ];
-	MountPoint_Map::iterator p = map .find( partition .sector_start );
-
-	if ( p != map .end( ) )
-	{
-		if ( ! mount_point .empty( ) )
-			p ->second = mount_point;
-		else
-			map .erase( p );
-	}
-	else
-	{
-		if ( ! mount_point .empty( ) )
-			map .insert( std::make_pair( partition .sector_start, mount_point ) );
-	}
-}
-
-Glib::ustring GParted_Core::Get_Mount_Point( const Glib::ustring & device_name, const Partition & partition ) const
-{
-	Device_Map::const_iterator pdevice = device_map .find( device_name .raw( ) );
-
-	if ( pdevice != device_map .end( ) )
-	{
-		MountPoint_Map::const_iterator p = pdevice ->second .find( partition .sector_start );
-
-		if ( p != pdevice ->second .end( ) )
-			return p ->second;
-	}
-
-	return Glib::ustring( );
-}
-
-void GParted_Core::Unset_Device_Mount_Points( const Glib::ustring & device_name )
-{
-	device_map[ device_name .raw( ) ] .clear( );
-}
-
-void GParted_Core::Realign_Mount_Point_Map( const std::vector<Device> & devices )
-{
-	Device_Map::iterator pdevice = device_map .begin( );
-
-	while ( pdevice != device_map .end( ) )
-	{
-		unsigned int devidx = 0;
-
-		while ( devidx < devices .size( ) && devices[ devidx ] .path .raw( ) != pdevice ->first )
-			++devidx;
-
-		if ( devidx == devices .size( ) ) //not found
-		{
-			device_map .erase( pdevice++ );
-			continue;
-		}
-
-		//Use the cylinder size to judge the plausibility of the
-		//difference between requested and actual start sector.
-		Sector cylsize = devices[ devidx ] .heads * devices[ devidx ] .sectors;
-
-		if ( cylsize < MEGABYTE )
-			cylsize = MEGABYTE;
-
-		//Build a new map with the start sectors realigned
-		//to actual partition boundaries.
-		MountPoint_Map map_temp;
-		MountPoint_Map & map = pdevice ->second;
-
-		for ( MountPoint_Map::iterator p = map .begin( ); p != map .end( ); ++p )
-		{
-			Sector closest = Find_Closest_Start_Sector(
-				devices[ devidx ] .device_partitions, p ->first );
-
-			if ( closest >= 0 && std::abs( closest - p ->first ) < cylsize )
-				map_temp .insert( std::make_pair( closest, p ->second ) );
-		}
-
-		//Now replace the original map with the realigned one.
-		map .swap( map_temp );
-
-		++pdevice;
-	}
-}
-
-//static
-Sector GParted_Core::Find_Closest_Start_Sector( const std::vector<Partition> & partitions, Sector start )
-{
-	Sector closest = -1;
-
-	for ( unsigned int i = 0; i < partitions .size( ); ++i )
-	{
-		Sector current;
-
-		switch ( partitions[ i ] .type )
-		{
-			case GParted::PRIMARY:
-			case GParted::LOGICAL:
-				current = partitions[ i ] .sector_start;
-				break;
-			case GParted::EXTENDED:
-				current = Find_Closest_Start_Sector( partitions[ i ] .logicals, start );
-				break;
-			default:
-				continue;
-		}
-
-		if ( closest < 0 || std::abs( current - start ) < std::abs( closest - start ) )
-			closest = current;
-	}
-
-	return closest;
-}
-
-void GParted_Core::Dump_Mount_Point_List( const std::vector<Device> & devices, std::ostream & os ) const
-{
-	for ( unsigned int i = 0; i < devices .size( ); ++i )
-	{
-		Device_Map::const_iterator pdevice = device_map .find( devices[ i ] .path .raw( ) );
-
-		if ( pdevice != device_map .end( ) )
-			Dump_Device_Mount_Points( devices[ i ] .device_partitions, pdevice ->second, os );
-	}
-}
-
-//static
-void GParted_Core::Dump_Device_Mount_Points( const std::vector<Partition> & partitions, const MountPoint_Map & map, std::ostream & os )
-{
-	for ( unsigned int i = 0; i < partitions .size( ); ++i )
-	{
-		switch ( partitions[ i ] .type )
-		{
-			case GParted::PRIMARY:
-			case GParted::LOGICAL:
-			{
-				MountPoint_Map::const_iterator p = map .find( partitions[ i ] .sector_start );
-				if ( p != map .end( ) )
-				{
-					os << partitions[ i ] .partition .raw( ) << '\t'
-					   << partitions[ i ] .filesystem .raw( ) << '\t'
-					   << p ->second .raw( ) << '\n';
-				}
-				break;
-			}
-			case GParted::EXTENDED:
-				Dump_Device_Mount_Points( partitions[ i ] .logicals, map, os );
-				break;
-			default:
-				break;
-		}
-	}
 }
 
 } //GParted
