@@ -371,7 +371,7 @@ bool GParted_Core::Create( const Device & device, Partition & new_partition )
 		return p_filesystem ->Create( new_partition ) ;
 	}
 	
-	return false ;
+	return true ;
 }
 
 bool GParted_Core::Convert_FS( const Glib::ustring & device_path, const Partition & partition )
@@ -449,7 +449,7 @@ bool GParted_Core::Resize( const Device & device, const Partition & partition_ol
 		}
 	}
 	
-	return false ;
+	return true ;
 }
 
 bool GParted_Core::Copy( const Glib::ustring & dest_device_path, const Glib::ustring & src_part_path, Partition & partition_dest ) 
