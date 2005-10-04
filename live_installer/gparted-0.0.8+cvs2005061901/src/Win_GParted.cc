@@ -607,7 +607,7 @@ bool Win_GParted::Quit_Check_Operations( )
 			str_temp += _("1 operation is currently pending.");
 				
 		Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_NONE, true);
-		dialog .set_keep_aboove( true )
+		dialog .set_keep_above( true )
 		dialog .add_button( Gtk::Stock::QUIT, Gtk::RESPONSE_CLOSE );
 		dialog .add_button( Gtk::Stock::CANCEL,Gtk::RESPONSE_CANCEL );
 
@@ -787,7 +787,7 @@ void Win_GParted::menu_gparted_refresh_devices( )
 		str_temp += _("Unmount all mounted partitions on a device to get full access.") ;
 		
 		Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_WARNING, Gtk::BUTTONS_OK, true ) ;
-		dialog .set_keep_aboove( true )
+		dialog .set_keep_above( true )
 		dialog .run( ) ;
 	}
 	
@@ -904,7 +904,7 @@ void Win_GParted::menu_help_contents( )
 	str_temp += "\n" ;
 	str_temp += _( "Please visit http://gparted.sf.net for more information and support.") ;
 	Gtk::MessageDialog dialog( *this, str_temp, false, Gtk::MESSAGE_INFO, Gtk::BUTTONS_OK, true );
-	dialog .set_keep_aboove( true )
+	dialog .set_keep_above( true )
 	dialog .run( );
 }
 
@@ -962,7 +962,7 @@ bool Win_GParted::max_amount_prim_reached( )
 		str_temp += _( "If you want more partitions you should first create an extended partition. Such a partition can contain other partitions.") ;
 										
 		Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true ) ;
-		dialog .set_keep_aboove( true )
+		dialog .set_keep_above( true )
 		dialog .run( ) ;
 		return true ;
 	}
@@ -982,7 +982,7 @@ void Win_GParted::activate_resize( )
 		str_temp += "\n";
 						
 		Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_WARNING, Gtk::BUTTONS_CANCEL, true) ; 
-		dialog .set_keep_aboove( true )
+		dialog .set_keep_above( true )
 		//pffff this whole mess only for this f*cked up filesystem :-(
 		Gtk::Button button_resize_move ;
 		Gtk::HBox hbox_resize_move;
@@ -1107,7 +1107,7 @@ void Win_GParted::activate_delete( )
 		str_temp += "</span>\n\n" ;
 		str_temp += String::ucompose( _("Please unmount any logical partitions having a number higher than %1"), selected_partition .partition_number ) ;
 		Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true ) ;
-		dialog .set_keep_aboove( true )
+		dialog .set_keep_above( true )
 		dialog .run( ) ;
 		return;
 	}
@@ -1121,7 +1121,7 @@ void Win_GParted::activate_delete( )
 	}
 	
 	Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_NONE, true);
-	dialog .set_keep_aboove( true )
+	dialog .set_keep_above( true )
 	/*TO TRANSLATORS: dialogtitle, looks like   Delete /dev/hda2 (ntfs, 2345 MB) */
 	dialog .set_title( String::ucompose( _("Delete %1 (%2, %3 MB)"), selected_partition .partition, selected_partition .filesystem, selected_partition .Get_Length_MB() ) );
 	dialog .add_button( Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL );
@@ -1181,7 +1181,7 @@ void Win_GParted::activate_convert( const Glib::ustring & new_fs )
 	str_temp += String::ucompose( _("This operation will destroy all data on %1"), selected_partition .partition ) ;
 	
 	Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_CANCEL, true );
-	dialog .set_keep_aboove( true )
+	dialog .set_keep_above( true )
 	
 	dialog. add_button( Gtk::Stock::CONVERT, Gtk::RESPONSE_OK ) ;
 	dialog. show_all_children( ) ;
@@ -1207,7 +1207,7 @@ void Win_GParted::activate_convert( const Glib::ustring & new_fs )
 		
 		
 		Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true );
-		dialog .set_keep_aboove( true )
+		dialog .set_keep_above( true )
 		dialog .run( ) ;
 		return ;
 	}
@@ -1262,7 +1262,7 @@ void  Win_GParted::activate_unmount( )
 		str_temp += "</span>\n\n" ;
 				
 		Gtk::MessageDialog dialog( *this, str_temp + output, true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true );
-		dialog .set_keep_aboove( true )
+		dialog .set_keep_above( true )
 		dialog.run( ) ;
 	} 
 	else
@@ -1282,13 +1282,13 @@ void Win_GParted::activate_disklabel( )
 		str_temp += String::ucompose( _("This operation will destroy all data on %1"), devices[ current_device ] .path ) ;
 		
 		Gtk::MessageDialog m_dialog( *this, str_temp, true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_CANCEL, true ) ;
-		dialog .set_keep_aboove( true )
+		dialog .set_keep_above( true )
 		m_dialog .add_button( _("Create"), Gtk::RESPONSE_OK );
 		
 		if ( m_dialog .run( ) == Gtk::RESPONSE_OK && ! gparted_core .Set_Disklabel( devices[ current_device ] .path, dialog .Get_Disklabel( ) ) )
 		{
 			Gtk::MessageDialog dialog( *this, _("Error while setting new disklabel"), true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true ) ;
-			dialog .set_keep_aboove( true )
+			dialog .set_keep_above( true )
 			dialog .run( ) ;
 		}
 
@@ -1321,7 +1321,7 @@ void Win_GParted::activate_apply( )
 	str_temp += _( "It is recommended to backup valueable data before proceeding.") ;
 	
 	Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_WARNING, Gtk::BUTTONS_NONE, true );
-	dialog .set_keep_aboove( true )
+	dialog .set_keep_above( true )
 	dialog .set_title( _( "Apply operations to harddisk" ) );
 	
 	dialog .add_button( Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL );
@@ -1367,7 +1367,7 @@ void Win_GParted::activate_apply( )
 			str_temp += _("Because making changes to a busy device may confuse the kernel, you are advised to reboot your computer.") ;
 
 			Gtk::MessageDialog dialog( *this, str_temp, true, Gtk::MESSAGE_WARNING, Gtk::BUTTONS_OK, true );
-			dialog .set_keep_aboove( true )
+			dialog .set_keep_above( true )
 			dialog .run( ) ;
 		}			
 					
