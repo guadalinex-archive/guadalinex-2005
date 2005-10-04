@@ -1,0 +1,27 @@
+[Icon Theme]
+Name=Human
+Comment=Ubuntu default theme
+Inherits=gnome
+Directories=scalable/apps,scalable/filesystems,scalable/devices
+Example=gnome-fs-home.svg
+
+[scalable/apps]
+MinSize=1
+Size=128
+MaxSize=256
+Context=Applications
+Type=scalable
+
+[scalable/devices]
+MinSize=1
+Size=128
+MaxSize=256
+Context=Devices
+Type=scalable
+
+[scalable/filesystems]
+MinSize=1
+Size=128
+MaxSize=128
+Context=FileSystems
+Type=scalable
