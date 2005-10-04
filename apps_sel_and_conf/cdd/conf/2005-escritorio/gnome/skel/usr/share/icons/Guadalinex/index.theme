@@ -1,6 +1,6 @@
 [Icon Theme]
-Name=Human
-Comment=Ubuntu default theme
+Name=Guadalinex
+Comment=Tema de Guadalinex
 Inherits=gnome
 Directories=scalable/apps,scalable/filesystems,scalable/devices
 Example=gnome-fs-home.svg
