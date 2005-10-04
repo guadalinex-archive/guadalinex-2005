@@ -41,7 +41,9 @@ Win_GParted::Win_GParted( guint installer )
 		gtk_container_add(GTK_CONTAINER(plug), GTK_WIDGET(vbox_main.gobj()));
 		gtk_widget_show(GTK_WIDGET(vbox_main.gobj()));
 		gtk_widget_show(plug);
-		this ->set_default_size(1, 1); this ->set_keep_below(1); this ->set_position(Gtk::WIN_POS_CENTER);
+		this ->set_position(Gtk::WIN_POS_NONE);
+		this ->set_default_size( 0, 0 );
+		this ->set_keep_above();
 		init_partition_menu( );
 	}
 	else
