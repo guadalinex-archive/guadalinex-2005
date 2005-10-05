@@ -44,9 +44,8 @@
 #Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import dbus
-if getattr(dbus, "version", (0,0,0)) >= (0,41,0):
+if getattr(dbus, "version", (0, 0, 0)) >= (0, 41, 0):
     import dbus.glib
-import time
 import logging
 import gtk
 
@@ -252,13 +251,12 @@ class NotificationDaemon(object):
     # Main Message #######################################################
 
     def show(self, summary, message, icon, actions = {}): 
-
         if actions != {}:
             (notify_actions, action_handlers) = self.__process_actions(actions)
 
             def action_invoked(nid, action_id):
-                print "nid:", nid, "    action_id:", action_id
                 if action_handlers.has_key(action_id) and res == nid:
+                    #Execute the action handler
                     action_handlers[action_id]()
 
                 self.iface.CloseNotification(dbus.UInt32(nid))
@@ -267,11 +265,10 @@ class NotificationDaemon(object):
 
         else:
             #Fixing no actions
-            notify_actions = [(1,2)]
+            notify_actions = [(1, 2)]
             
-
         res = self.iface.Notify("Hermes", 
-                [icon],
+                [dbus.String(icon)],
                 dbus.UInt32(0), 
                 '', 
                 1, 
@@ -298,6 +295,14 @@ class NotificationDaemon(object):
         return self.show(summary, message, "gtk-dialog-error", actions)
 
 
+    def close(self, nid):
+        try:
+            self.iface.CloseNotification(dbus.UInt32(nid))
+        except:
+            pass
+
+
+    # Private methods ###################################
     def __process_actions(self, actions):
         """
         Devuelve una 2-tupla donde cada elemento es un diccionario.
@@ -319,9 +324,9 @@ class NotificationDaemon(object):
         action_handlers = {}
         i = 1
         for key, value in actions.items():
-           notify_actions[key] = i
-           action_handlers[i] = value
-           i += 1
+            notify_actions[key] = i
+            action_handlers[i] = value
+            i += 1
 
         return notify_actions, action_handlers
         
@@ -343,6 +348,7 @@ def main():
             help = 'Use notification-daemon as notification tool')
 
     (options, args) = parser.parse_args()
+    del args
     
     if options.debug:
         level = logging.DEBUG
@@ -364,6 +370,7 @@ def main():
         iface = dbus.Interface(object, "org.guadalinex.IHermesNotifier")
 
     DeviceListener(iface)
+    gtk.threads_init()
     gtk.main()
 
 

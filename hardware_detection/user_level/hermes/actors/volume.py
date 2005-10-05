@@ -48,6 +48,7 @@ import os.path
 from deviceactor import DeviceActor
 
 VOLUMEICON = os.path.abspath('actors/img/volume.png') 
+
 class Actor (DeviceActor):
 
     __required__ = {'info.category': 'volume'}
@@ -64,11 +65,11 @@ class Actor (DeviceActor):
                     def open_volume():
                         os.system('nautilus ' + mount_point) 
 
-                    self.message_render.show("Montado", "Dispositivo montado en %s" %
-                         (mount_point,), VOLUMEICON,
-                         actions = {"Abrir": open_volume})
+                    self.message_render.show("Almacenamiento", 
+                        "Dispositivo montado en", VOLUMEICON,
+                        actions = {mount_point: open_volume})
                 else:
-                    self.message_render.show("Desmontado", 
+                    self.message_render.show("Almacenamiento", 
                             "Dispositivo desmontado", VOLUMEICON) 
 
             except Exception, e:
