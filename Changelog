@@ -1,0 +1,50 @@
+Guadalinex 2005 v.1.0a (05-10-06)
+----------------------
+
+- No-live-installer:
+  - Updated installer to last version of Ubuntu one
+  - Easier partitioning system (partman)
+  - Removed several questions to users to make installation easier
+  - Removed network part of the installer to make installation easier
+  - Pool question removed (added automagically)
+  - Solved bug of trying to download file from the Internet without connection
+  - Solved bug of apt-get update finishing the first part of the installation
+
+- Live-installer:
+  - Solved bug of closing gparted at saving changes
+  - Solved bug in partition creation of gparted
+  - Changed association between partitions and mountpoints
+  - Added description for different partitioning options
+  - Different messages for user translated to spanish
+  - Exec permissions to backend scripts
+  - Added ubuntu-express to the Gnome menu
+  - Improved syntax error detection in user name selection
+  - Added validation in mount points
+  - Improved partitions and mountpoints information
+  - Complete spanish support for the installer
+  - Added "Back" button
+
+- Distribution:
+
+  - OOo in spanish
+  - FireFox in spanish
+  - X console for spanish kbd
+  - Added new aplication: acroread
+  - Improved translation of "file-roller" to spanish
+  - Added Evo support to OO
+  - Added desktop icons
+  - Changed kbd configuration to spanish in Gnome
+  - Added manual network configuration option during installation
+  - Corrected name of "lsb-release"
+
+And lots of minor bug fixes and improvements
+
+Guadalinex 2005 v.1.0 pre-alpha
+-------------------------------
+
+Initial release (for testing purposes only):
+
+- Initial version of live-installer (in a non-definitive live system)
+- Initial version of no-live-installer
+- Initial version of the whole system
+
