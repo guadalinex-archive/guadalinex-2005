@@ -19,8 +19,8 @@ echo "apt-get update ..."
 apt-get update
 echo "Reconfiguring locales (please select es_ES.utf8) ..."
 dpkg-reconfigure locales
-# echo "dpkg -l | grep firefox-gnome-support || apt-get install -y firefox-gnome-support ..."
-# dpkg -l | grep firefox-gnome-support || apt-get install -y firefox-gnome-support
+echo "apt-get install -y openssh-server ..."
+apt-get install -y openssh-server
 echo "Deleting doc ..."
 rm -rf usr/doc/* usr/share/doc/*
 echo "Resetting language ..."
