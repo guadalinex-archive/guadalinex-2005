@@ -42,8 +42,11 @@
 #You should have received a copy of the GNU General Public License
 #along with Foobar; if not, write to the Free Software
 #Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+import os.path
 
 from deviceactor import DeviceActor
+
+USBICON = os.path.abspath('actors/img/usb.png')
 
 class Actor(DeviceActor):
 
@@ -54,11 +57,16 @@ class Actor(DeviceActor):
             product = self.properties['usb_device.product']
             vendor = self.properties['info.vendor']
             vendor = vendor and vendor + ', ' or ''
-            self.msg_render.show_info("Dispositivo usb detectado: " + vendor +\
-                    product)
+            self.msg_render.show("USB", "Dispositivo usb detectado:\n" +\
+                    vendor + product, USBICON)
+                    
+            #self.msg_render.show_info("Dispositivo usb detectado:\n" + vendor +\
+            #        product)
+
         except:
-            self.msg_render.show_info("Dispositivo usb detectado")
+            self.msg_render.show("USB", "Dispositivo usb detectado", USBICON)
+            #self.msg_render.show_info("Dispositivo usb detectado")
 
 
-    def  on_removed(self):
-        self.msg_render.show_info("Dispositivo usb desconectado")
+    def on_removed(self):
+        self.msg_render.show("USB", "Dispositivo usb desconectado", USBICON)

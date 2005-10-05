@@ -43,8 +43,11 @@
 #along with Foobar; if not, write to the Free Software
 #Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+import os.path
+
 from deviceactor import DeviceActor
 
+VOLUMEICON = os.path.abspath('actors/img/volume.png') 
 class Actor (DeviceActor):
 
     __required__ = {'info.category': 'volume'}
@@ -56,10 +59,17 @@ class Actor (DeviceActor):
         if key == 'volume.is_mounted':
             try:
                 if self.properties['volume.is_mounted']:
-                    self.message_render.show_info("Dispositivo montado en %s" %
-                         (self.properties['volume.mount_point'],))
+                    mount_point = self.properties['volume.mount_point']
+
+                    def open_volume():
+                        os.system('nautilus ' + mount_point) 
+
+                    self.message_render.show("Montado", "Dispositivo montado en %s" %
+                         (mount_point,), VOLUMEICON,
+                         actions = {"Abrir": open_volume})
                 else:
-                    self.message_render.show_info("Dispositivo desmontado") 
+                    self.message_render.show("Desmontado", 
+                            "Dispositivo desmontado", VOLUMEICON) 
 
             except Exception, e:
                 print "Error: ", e

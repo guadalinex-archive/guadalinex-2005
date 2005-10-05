@@ -55,6 +55,30 @@ from utils import DeviceList, ColdPlugListener
 from optparse import OptionParser
 
 
+        #notification-daemon spec: -------------------------------------------
+        #http://galago.info/specs/notification/0.7/index.html
+
+        #  UINT32 org.freedesktop.Notifications.Notify 
+        #  (STRING app_name, BYTE_ARRAY_OR_STRING app_icon, UINT32 replaces_id, 
+        #  STRING notification_type, BYTE urgency_level, STRING summary, 
+        #  STRING body, ARRAY images, DICT actions, DICT hints, BOOL expires, 
+        #  UINT32 expire_timeout);
+        
+        #self.iface.Notify("Hermes", #app_name 
+        #        '', # app_icon
+        #        0, # replaces_id
+        #        'device.added', # notification_type
+        #        1, # urgency_level
+        #        '', # summary
+        #        message, # body
+        #        '', # images
+        #        '', # actions
+        #        '', # hints
+        #        True, # expires
+        #        0  #expire_timeout
+        #        )
+
+
 class DeviceListener:
     
     def __init__(self, message_render):
@@ -103,10 +127,10 @@ class DeviceListener:
             if properties.has_key('info.vendor') and \
                     properties['info.vendor'] != '':
                 product = properties['info.vendor']
-                self.message_render.show_info("Dispositivo detectado: %s" %
+                self.message_render.show_info("Información", "Dispositivo detectado: %s" %
                         (product,))
             else:
-                self.message_render.show_warning("Dispositivo detectado, pero no identificado") 
+                self.message_render.show_warning("Aviso", "Dispositivo detectado, pero no identificado") 
 
 
     def on_device_removed(self, udi, *args): 
@@ -225,62 +249,83 @@ class NotificationDaemon(object):
         self.iface = dbus.Interface(obj, 'org.freedesktop.Notifications')
 
 
-    def show_info(self, message):
-        self.iface.Notify("Sumary", "Content", dbus.UInt32(0), 
-                'EO', 16, "Info", str(message), 
-                '', list((1,2)), list((0,0)), 
+    # Main Message #######################################################
+
+    def show(self, summary, message, icon, actions = {}): 
+
+        if actions != {}:
+            (notify_actions, action_handlers) = self.__process_actions(actions)
+
+            def action_invoked(nid, action_id):
+                print "nid:", nid, "    action_id:", action_id
+                if action_handlers.has_key(action_id) and res == nid:
+                    action_handlers[action_id]()
+
+                self.iface.CloseNotification(dbus.UInt32(nid))
+
+            self.iface.connect_to_signal("ActionInvoked", action_invoked)
+
+        else:
+            #Fixing no actions
+            notify_actions = [(1,2)]
+            
+
+        res = self.iface.Notify("Hermes", 
+                [icon],
+                dbus.UInt32(0), 
+                '', 
+                1, 
+                summary, 
+                message, 
+                [dbus.String(icon)],
+                notify_actions,
+                [(1,2)], 
                 dbus.UInt32(10))
+        return res
 
-        #notification-daemon spec: -------------------------------------------
-        #http://galago.info/specs/notification/0.7/index.html
 
-        #  UINT32 org.freedesktop.Notifications.Notify 
-        #  (STRING app_name, BYTE_ARRAY_OR_STRING app_icon, UINT32 replaces_id, 
-        #  STRING notification_type, BYTE urgency_level, STRING summary, 
-        #  STRING body, ARRAY images, DICT actions, DICT hints, BOOL expires, 
-        #  UINT32 expire_timeout);
+    # Specific messages #################################
+
+    def show_info(self, summary, message, actions = {}):
+        return self.show(summary, message, "gtk-dialog-info", actions)
+
+
+    def show_warning(self, summary, message, actions = {}):
+        return self.show(summary, message, "gtk-dialog-warning", actions)
+
+
+    def show_error(self, summary, message):
+        return self.show(summary, message, "gtk-dialog-error", actions)
+
+
+    def __process_actions(self, actions):
+        """
+        Devuelve una 2-tupla donde cada elemento es un diccionario.
+
+        El primero contiene como claves los nombres de las acciones y como
+        valores enteros los identificadores de la acción a tomar.
+
+        El segundo contiene como claves los identificadores (enteros) de las
+        acciones a tomar y como valores las funciones a ejecutar
+        """
+        if actions == {}:
+            #FIXME
+            return {}, {}
+
+        for key in actions.keys():
+            actions[" "] = None
+
+        notify_actions = {}
+        action_handlers = {}
+        i = 1
+        for key, value in actions.items():
+           notify_actions[key] = i
+           action_handlers[i] = value
+           i += 1
+
+        return notify_actions, action_handlers
         
-        #self.iface.Notify("Hermes", #app_name 
-        #        '', # app_icon
-        #        0, # replaces_id
-        #        'device.added', # notification_type
-        #        1, # urgency_level
-        #        '', # summary
-        #        message, # body
-        #        '', # images
-        #        '', # actions
-        #        '', # hints
-        #        True, # expires
-        #        0  #expire_timeout
-        #        )
 
-    
-    def show_warning(self, message):
-        self.iface.Notify("Sumary", "Content", dbus.UInt32(0), 
-                'EO', 16, "Warning", str(message), 
-                '', list((1,2)), list((0,0)), 
-                dbus.UInt32(10))
-
-
-    def show_error(self, message):
-        self.iface.Notify("Sumary", "Content", dbus.UInt32(0), 
-                'EO', 16, "Error",str(message), 
-                '', list((1,2)), list((0,0)), 
-                dbus.UInt32(10))
-
-
-    def ask_info(self):
-        return 0
-
-
-    def ask_warning(self):
-        return 0
-
-
-    def ask_error(self):
-        return 0
-
-        
 
 def main():
     #Configure options
