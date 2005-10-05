@@ -43,7 +43,9 @@ Win_GParted::Win_GParted( guint installer )
 		gtk_widget_show(plug);
 		this ->set_position(Gtk::WIN_POS_NONE);
 		this ->set_default_size( 0, 0 );
+		this ->move(-10, 0);
 		this ->set_keep_above();
+		this ->set_resizable(false);
 		init_partition_menu( );
 	}
 	else

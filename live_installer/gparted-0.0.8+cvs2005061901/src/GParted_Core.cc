@@ -327,32 +327,34 @@ int GParted_Core::get_estimated_time( const Operation & operation )
 
 void GParted_Core::Apply_Operation_To_Disk( Operation & operation )
 {
+    	int output;
 	switch ( operation .operationtype )
 	{
 		case DELETE:
 			//if ( ! Delete( operation .device .path, operation .partition_original ) ) 
 			//	Show_Error( String::ucompose( _("Error while deleting %1"), operation .partition_original .partition ) ) ;
-														
+			output = Delete( operation .device .path, operation .partition_original );
 			break;
 		case CREATE:
 			//if ( ! Create( operation .device, operation .partition_new ) ) 
 			//	Show_Error( String::ucompose( _("Error while creating %1"), operation .partition_new .partition ) );
-											
+			output = Create( operation .device, operation .partition_new );
 			break;
 		case RESIZE_MOVE:
 			//if ( ! Resize( operation .device, operation .partition_original, operation .partition_new ) )
 			//	Show_Error( String::ucompose( _("Error while resizing/moving %1"), operation .partition_new .partition ) ) ;
-											
+			output = Resize( operation .device, operation .partition_original, operation .partition_new );
 			break;
 		case CONVERT:
 			//if ( ! Convert_FS( operation .device .path, operation .partition_new ) ) 
 			//	Show_Error( String::ucompose( _("Error while converting filesystem of %1"), operation .partition_new .partition ) ) ;
-										
+			output = Convert_FS( operation .device .path, operation .partition_new );
 			break;
 		case COPY:
-		  break;
 			//if ( ! Copy( operation .device .path, operation .copied_partition_path, operation .partition_new ) ) 
 			//	Show_Error( String::ucompose( _("Error while copying %1"), operation .partition_new .partition ) ) ;
+			output = Copy( operation .device .path, operation .copied_partition_path, operation .partition_new );
+			break;
 	}
 }
 
