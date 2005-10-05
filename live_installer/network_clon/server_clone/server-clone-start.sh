@@ -34,7 +34,7 @@ ifconfig $DEV $IP up
 
 # Start the servers
 oftpd -i ${DEV} -N root /cdrom/META/ &
-sed 's|@@DEV@@|eth1|g' /usr/share/server-clone/udhcpd.conf > /etc/udhcpd.conf
+sed "s|@@DEV@@|${DEV}|g" /usr/share/server-clone/udhcpd.conf > /etc/udhcpd.conf
 /etc/init.d/udhcpd start
 
 cat <<EOF
