@@ -15,7 +15,7 @@
       <druid_page>druidPasswdSel</druid_page>
     </druid_page_list>
     <param_list>
-      <!-- FIXME -->
+			<param>passwd1</param>
     </param_list>
   </operation>
 
@@ -110,7 +110,8 @@
       <druid_page>druidVerifParamsConf</druid_page>
     </druid_page_list>
     <param_list>
-      <!-- FIXME -->
+			<param>passwd1</param>
+			<param>passwd2</param>
     </param_list>
   </operation>
 

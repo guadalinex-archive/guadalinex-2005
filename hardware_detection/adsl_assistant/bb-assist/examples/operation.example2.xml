@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='iso-8859-1'?>
 <operation>
-  <initial_cmd>0008</initial_cmd>
-  <eth_params dev='/dev/eth0' ip='10.0.0.1' port='23'/>
+  <model>3Com OfficeConnect 812</model>
+  <initial_func>listConf3com</initial_func>
+  <!--<initial_func>conf3com</initial_func>-->
+  <serial_params tty='0' baudrate='9600' bits='8' parity='N' stopbits='1' xonxoff='0' rtscts='0'/>
+  <!--<eth_params dev='/dev/eth0' ip='10.0.0.1' port='23'/>-->
   <default_timeout>15</default_timeout>
   <passwd1>adminttd</passwd1>
-  <passwd2>adminttd</passwd2>
 </operation>

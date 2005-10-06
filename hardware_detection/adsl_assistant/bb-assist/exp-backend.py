@@ -16,7 +16,7 @@ bb-assist es software libre. Puede redistribuirlo y/o modificarlo
 bajo los términos de la Licencia Pública General de GNU según es
 publicada por la Free Software Foundation, bien de la versión 2 de dicha
 Licencia o bien (según su elección) de cualquier versión posterior.
-
+ 
 bb-assist se distribuye con la esperanza de que sea útil,
 pero SIN NINGUNA GARANTÍA, incluso sin la garantía MERCANTIL
 implícita o sin garantizar la CONVENIENCIA PARA UN PROPÓSITO
@@ -48,16 +48,97 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os, sys
 import pexpect                          # Depends: python-pexpect
 import serial                           #   python-serial
+import re
 from serial.serialutil import *
 from xml.dom.ext.reader import PyExpat  #   python-xml
 from xml.xpath          import Evaluate
 
 CMDENCODING='iso-8859-1'
 
+def func_parse(func):
+    path_cmd = "cmd_func[@id='"+ func +"']/cmd"
+    cmds = Evaluate(path_cmd, dom.documentElement)
+    if (len(cmds) < 1):
+        raise SyntaxError, _("en modulo de expect. Función call desconocida")
+    return (cmd_parse(cmds))
+
+
+def cmd_parse(cmds):
+    for actcmd in cmds:
+        send_cmd = actcmd.getAttribute('send')
+        ret_cmd = actcmd.getAttribute('return')
+        act_exp_ok = actcmd.getAttribute('exp_ok')
+        call_cmd = actcmd.getAttribute('call')
+        act_except = actcmd.getAttribute('on_excep')
+        err = actcmd.getAttribute('err')
+        
+        if ret_cmd: type_cmd = 'return'
+        elif call_cmd: type_cmd = 'call'
+        elif (act_exp_ok): type_cmd = 'sendline'
+        else: raise SyntaxError, _("en modulo de expect. Comando desconocido")
+
+        if type_cmd == 'sendline':
+            child.sendline(send_cmd)
+            expect_list = []
+            cmdid_list = []
+
+            if err != '':
+                expect_list += [re.compile(err.encode(CMDENCODING))]
+                cmdid_list += ['__exit__']
+
+            expect_list += [re.compile(act_exp_ok.encode(CMDENCODING))]
+            cmdid_list += ['__plus1__']
+            
+            expects = Evaluate("expect_list/expect", actcmd)
+            
+            for expectact in expects:
+                expect_list += [re.compile(expectact.getAttribute('out').encode(CMDENCODING))]
+                inner_cmds = Evaluate('cmd', expectact)
+                cmdid_list += [inner_cmds]
+
+            cmd_timeout = actcmd.getAttribute('timeout')
+            if cmd_timeout != '': act_timeout = int(cmd_timeout)
+            else: 
+                act_timeout = int(default_timeout)
+
+            if act_except != '':
+                expect_list += [pexpect.EOF, pexpect.TIMEOUT]
+                cmdid_list += [act_except, act_except]
+            
+            expopt = child.expect_list(expect_list, timeout=act_timeout)
+
+            if cmdid_list[expopt] == '__plus1__':
+                pass
+            elif cmdid_list[expopt] == act_except:
+                sub_ret = func_parse(act_except)
+                if sub_ret != 0:
+                    # if return != 0 raise the error
+                    return sub_ret
+            elif cmdid_list[expopt] == '__exit__':
+                sub_ret = func_parse('__exit__')
+                if sub_ret != 0:
+                    # if return != 0 raise the error
+                    return sub_ret
+            elif type(cmdid_list[expopt]) == list:
+                sub_ret = cmd_parse(cmdid_list[expopt])
+                if sub_ret != 0:
+                    # if return != 0 raise the error
+                    return sub_ret
+        elif type_cmd == 'call':
+            sub_ret = func_parse(call_cmd)
+            if sub_ret != 0:
+                # if return != 0 raise the error
+                return sub_ret
+        elif type_cmd == 'return':
+            return(int(ret_cmd))
+            
+    # All commands ok, return 0
+    return 0
+
 reader = PyExpat.Reader( )
 dom = reader.fromStream(sys.stdin)
 
-cmd_ini         = Evaluate("initial_cmd/text( )",
+cmd_ini         = Evaluate("initial_func/text( )",
                            dom.documentElement)[0].nodeValue
 default_timeout = Evaluate("default_timeout/text( )",
                            dom.documentElement)[0].nodeValue
@@ -102,8 +183,8 @@ if by_serial:
         writeTimeout = None,          # set a timeout for writes
         )
     fd = ser.fd
-    if os.path.exists("/var/lock/LCK..ttyS"+tty_read):
-        raise Exception( _("Puerto serie bloqueado"))
+    #    if os.path.exists("/var/lock/LCK..ttyS"+tty_read):
+    #FIXME       raise Exception( _("Puerto serie bloqueado"))
     # FIXME: block tty, check if LCK process already exist
     child = pexpect.spawn(fd)
 else:
@@ -114,29 +195,6 @@ fout = file('/tmp/bb-assist.log','a') # FIXME: clean
 child.setlog (fout)
 
 cmd_act = cmd_ini
-fin_cmds = False
-while not fin_cmds:
-    path_cmd = "cmd[@id="+ cmd_act +"]"
-    cmds = Evaluate(path_cmd, dom.documentElement)
-    if (len(cmds) <> 1):
-        raise SyntaxError, _("en entrada al modulo de expect")
-    actcmd = cmds[0]
-    type_cmd = actcmd.getAttribute('type')
-    if type_cmd == 'sendline':
-        sendcmd = actcmd.getAttribute('cmd')
-        child.sendline(sendcmd)
-        expects = Evaluate("expect_list/expect", actcmd)
-        expect_list = [pexpect.EOF, pexpect.TIMEOUT]
-        cmdid_list = ['5000', '5001']
-        for expectact in expects:
-            expect_list += [expectact.getAttribute('out').encode(CMDENCODING)]
-            cmdid_list += [expectact.getAttribute('nextcmdid').encode(CMDENCODING)]
-        cmd_timeout = actcmd.getAttribute('timeout')
-        if cmd_timeout != '': act_timeout = int(cmd_timeout)
-        else: 
-            act_timeout = int(default_timeout)
-        expopt = child.expect(expect_list, timeout=act_timeout)
-        cmd_act=cmdid_list[expopt]
-    elif type_cmd == 'exit':
-        fin_cmds= True
-        print actcmd.getAttribute('return') # FIXME: borrar
+
+ret = func_parse(cmd_act)
+sys.exit(ret)
