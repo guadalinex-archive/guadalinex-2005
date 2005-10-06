@@ -15,10 +15,25 @@ prereqs)
 	;;
 esac
 
+for x in $(cat /proc/cmdline); do
+	case $x in
+		clone)
+			;;
+		*)
+			exit 0
+	esac
+done 
+
 DEVS=$(grep [0-9]: /proc/net/dev | grep -v sit | tr -s '  ' ' ' | cut -d ' ' -f 2 | cut -d ':' -f 1)
 for DEV in $DEVS
         do
 	ifconfig $DEV
 	udhcpc $DEV
 done
+
+SERVER=$(grep serverip /etc/config.cfg | cut -d '=' -f 2)
+
+mkdir -p /mnt/META/
+ftpget $SERVER /mnt/META/META.squashfs /cdrom/META/META.squashfs
+
 

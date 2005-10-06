@@ -1,1 +1,4 @@
 - initramfs/script/init-premount/built-tree: semi-live stuff. Unionfs and so on
+- move the scripts to live-*/
+- put in order using the PREREQ var
+- move hwdetect to s../live-bottom/

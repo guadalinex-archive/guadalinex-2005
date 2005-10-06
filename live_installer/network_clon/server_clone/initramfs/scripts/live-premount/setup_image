@@ -1,7 +1,7 @@
 #!/bin/sh
 # Get the image, putting in the rigth place and mount it
 
-PREREQ=""
+PREREQ="network"
 
 prereqs()
 {
@@ -16,13 +16,11 @@ prereqs)
 	;;
 esac
 
-SERVER=$(grep serverip /etc/config.cfg | cut -d '=' -f 2)
-
-mkdir -p /mnt/META/
-ftpget $SERVER /mnt/META/META.squashfs /cdrom/META/META.squashfs
-
 # Just to be sure
 modprobe -q squashfs
 modprobe -q loop
 
-mount -o loop -t squashfs /mnt/META/META.squashfs /root 
+IMAGE=${rootmnt}/image
+mkdir -p ${IMAGE}
+
+mount -o loop -t squashfs /mnt/META/META.squashfs $IMAGE
