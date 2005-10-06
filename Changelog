@@ -2,13 +2,17 @@ Guadalinex 2005 v.1.0a (05-10-06)
 ----------------------
 
 - No-live-installer:
-  - Updated installer to last version of Ubuntu one
+  - Updated installer to last version of Ubuntu one (rc)
   - Easier partitioning system (partman)
   - Removed several questions to users to make installation easier
   - Removed network part of the installer to make installation easier
+  - Added manual network configuration option during installation
+  - Added network autodetection system based on DHCP
   - Pool question removed (added automagically)
   - Solved bug of trying to download file from the Internet without connection
   - Solved bug of apt-get update finishing the first part of the installation
+  - Less number of initial messages in the beginning
+  - Corrected format of that messages
 
 - Live-installer:
   - Solved bug of closing gparted at saving changes
@@ -34,7 +38,6 @@ Guadalinex 2005 v.1.0a (05-10-06)
   - Added Evo support to OO
   - Added desktop icons
   - Changed kbd configuration to spanish in Gnome
-  - Added manual network configuration option during installation
   - Corrected name of "lsb-release"
 
 And lots of minor bug fixes and improvements
