@@ -4,7 +4,7 @@
 # Parameter: Where to mount the filesystem
 mountroot ()
 {
-	# FIXME: Move to here the scripts (parted,format,network,etc)
+	# checkings
 	log_begin_msg "Running /scripts/live-top"
 	run_scripts /scripts/live-top
 	log_end_msg
@@ -14,7 +14,7 @@ mountroot ()
 		panic "ALERT!  ${ROOT} does not exist.  Dropping to a shell!"
 	fi
 
-	# FIXME: Find and mount the Image
+	# Find and mount the Image
 	log_begin_msg "Running /scripts/live-premount"
 	run_scripts /scripts/live-premount
 	log_end_msg
