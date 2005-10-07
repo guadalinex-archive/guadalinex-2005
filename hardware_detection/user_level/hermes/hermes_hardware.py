@@ -52,30 +52,31 @@ import gtk
 from actors import ACTORSLIST
 from utils import DeviceList, ColdPlugListener
 from optparse import OptionParser
+from utils.notification import NotificationDaemon
 
 
-        #notification-daemon spec: -------------------------------------------
-        #http://galago.info/specs/notification/0.7/index.html
+#notification-daemon spec: -------------------------------------------
+#http://galago.info/specs/notification/0.7/index.html
 
-        #  UINT32 org.freedesktop.Notifications.Notify 
-        #  (STRING app_name, BYTE_ARRAY_OR_STRING app_icon, UINT32 replaces_id, 
-        #  STRING notification_type, BYTE urgency_level, STRING summary, 
-        #  STRING body, ARRAY images, DICT actions, DICT hints, BOOL expires, 
-        #  UINT32 expire_timeout);
-        
-        #self.iface.Notify("Hermes", #app_name 
-        #        '', # app_icon
-        #        0, # replaces_id
-        #        'device.added', # notification_type
-        #        1, # urgency_level
-        #        '', # summary
-        #        message, # body
-        #        '', # images
-        #        '', # actions
-        #        '', # hints
-        #        True, # expires
-        #        0  #expire_timeout
-        #        )
+#  UINT32 org.freedesktop.Notifications.Notify 
+#  (STRING app_name, BYTE_ARRAY_OR_STRING app_icon, UINT32 replaces_id, 
+#  STRING notification_type, BYTE urgency_level, STRING summary, 
+#  STRING body, ARRAY images, DICT actions, DICT hints, BOOL expires, 
+#  UINT32 expire_timeout);
+
+#self.iface.Notify("Hermes", #app_name 
+#        '', # app_icon
+#        0, # replaces_id
+#        'device.added', # notification_type
+#        1, # urgency_level
+#        '', # summary
+#        message, # body
+#        '', # images
+#        '', # actions
+#        '', # hints
+#        True, # expires
+#        0  #expire_timeout
+#        )
 
 
 class DeviceListener:
@@ -147,7 +148,7 @@ class DeviceListener:
             self.__print_properties(disp.properties)
             del self.udi_dict[udi]
         else:
-            self.message_render.show_warning("Dispositivo desconectado")
+            self.message_render.show_warning("Aviso", "Dispositivo desconectado")
 
 
     def on_property_modified(self, udi, num, values):
@@ -206,6 +207,7 @@ class DeviceListener:
         for key in keys:
             print key + ':' + str(properties[key])
 
+
     def __count_equals(self, prop, required):
         """
         Devuelve el número de coincidencias entre el diccionario prop y
@@ -236,116 +238,23 @@ class DeviceListener:
             properties = obj.GetAllProperties()
             self.add_actor_from_properties(properties)
 
-class NotificationDaemon(object):
-    """
-    This class is a wrapper for notification-daemon program.
-    """
-
-    def __init__(self):
-        bus = dbus.SessionBus()
-        obj = bus.get_object('org.freedesktop.Notifications',
-                '/org/freedesktop/Notifications')
-        self.iface = dbus.Interface(obj, 'org.freedesktop.Notifications')
-
-
-    # Main Message #######################################################
-
-    def show(self, summary, message, icon, actions = {}): 
-        if actions != {}:
-            (notify_actions, action_handlers) = self.__process_actions(actions)
-
-            def action_invoked(nid, action_id):
-                if action_handlers.has_key(action_id) and res == nid:
-                    #Execute the action handler
-                    action_handlers[action_id]()
-
-                self.iface.CloseNotification(dbus.UInt32(nid))
-
-            self.iface.connect_to_signal("ActionInvoked", action_invoked)
-
-        else:
-            #Fixing no actions
-            notify_actions = [(1, 2)]
-            
-        res = self.iface.Notify("Hermes", 
-                [dbus.String(icon)],
-                dbus.UInt32(0), 
-                '', 
-                1, 
-                summary, 
-                message, 
-                [dbus.String(icon)],
-                notify_actions,
-                [(1,2)], 
-                dbus.UInt32(10))
-        return res
-
-
-    # Specific messages #################################
-
-    def show_info(self, summary, message, actions = {}):
-        return self.show(summary, message, "gtk-dialog-info", actions)
-
-
-    def show_warning(self, summary, message, actions = {}):
-        return self.show(summary, message, "gtk-dialog-warning", actions)
-
-
-    def show_error(self, summary, message):
-        return self.show(summary, message, "gtk-dialog-error", actions)
-
-
-    def close(self, nid):
-        try:
-            self.iface.CloseNotification(dbus.UInt32(nid))
-        except:
-            pass
-
-
-    # Private methods ###################################
-    def __process_actions(self, actions):
-        """
-        Devuelve una 2-tupla donde cada elemento es un diccionario.
-
-        El primero contiene como claves los nombres de las acciones y como
-        valores enteros los identificadores de la acción a tomar.
-
-        El segundo contiene como claves los identificadores (enteros) de las
-        acciones a tomar y como valores las funciones a ejecutar
-        """
-        if actions == {}:
-            #FIXME
-            return {}, {}
-
-        for key in actions.keys():
-            actions[" "] = None
-
-        notify_actions = {}
-        action_handlers = {}
-        i = 1
-        for key, value in actions.items():
-            notify_actions[key] = i
-            action_handlers[i] = value
-            i += 1
-
-        return notify_actions, action_handlers
-        
 
 
 def main():
     #Configure options
     parser = OptionParser(usage = 'usage: %prog [options]')
     parser.set_defaults(debug = False)
+    parser.set_defaults(hermes_notify = False)
 
     parser.add_option('-d', '--debug', 
             action = 'store_true',
             dest = 'debug',
             help = 'start in debug mode')
 
-    parser.add_option('-n', '--notification-daemon',
+    parser.add_option('-n', '--hermes-notification',
             action = 'store_true',
-            dest = 'notification_daemon',
-            help = 'Use notification-daemon as notification tool')
+            dest = 'hermes_notify',
+            help = 'Use hermes_notify (it must be running) as notification tool')
 
     (options, args) = parser.parse_args()
     del args
@@ -360,14 +269,12 @@ def main():
                     filename='/var/tmp/hermes-hardware.log',
                     filemode='a')
 
-    if options.notification_daemon:
-        iface = NotificationDaemon()
-
-    else:
-        #Connect to dbus
+    if options.hermes_notify:
         bus = dbus.SessionBus()
         object = bus.get_object("org.guadalinex.Hermes", "/org/guadalinex/HermesObject")
         iface = dbus.Interface(object, "org.guadalinex.IHermesNotifier")
+    else:
+        iface = NotificationDaemon()
 
     DeviceListener(iface)
     gtk.threads_init()

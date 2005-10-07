@@ -1,7 +1,9 @@
-#-*- coding: utf8 -*-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#Módulo volumeactor- Módulo que implementa el "actor hardware" para los
-#dispositivos de volumen (dispositivos que se montan como unidades de disco) 
+
+#Módulo bluetooth - Módulo que implementa el "actor hardware" para los
+#dispositivos bluetooth
 #
 #Copyright (C) 2005 Junta de Andalucía
 #
@@ -44,34 +46,46 @@
 #Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import os.path
+from utils.synaptic import Synaptic
 
 from deviceactor import DeviceActor
 
-VOLUMEICON = os.path.abspath('actors/img/volume.png') 
+BLUEICON = os.path.abspath('actors/img/bluetooth.png')
 
-class Actor (DeviceActor):
+class Actor(DeviceActor):
 
-    __required__ = {'info.category': 'volume'}
+    __required__ = {'info.category':'bluetooth_hci'}
 
-    #def on_added(self):
-    #    self.msg_render.show_info("Dispositivo de volumen conectado")
+    def on_added(self):
+        s = Synaptic()
+        packages = ['gnome-bluetooth', 'obexserver', 'bluez-utils']
 
-    def on_modified(self, key):
-        if key == 'volume.is_mounted':
-            try:
-                if self.properties['volume.is_mounted']:
-                    mount_point = self.properties['volume.mount_point']
+        def install_packages():
+            s.install(packages)
+            open_scan()
 
-                    def open_volume():
-                        os.system('nautilus ' + mount_point) 
+        def open_scan():
+            os.system('gnome-bluetooth-manager')
+            os.system('gnome-obex-server')
 
-                    self.message_render.show("Almacenamiento", 
-                        "Dispositivo montado en", VOLUMEICON,
-                        actions = {mount_point: open_volume})
-                else:
-                    self.message_render.show("Almacenamiento", 
-                            "Dispositivo desmontado", VOLUMEICON) 
+        if s.check(packages):
+            actions = {"Abrir el administrador bluetooth": open_scan}
+        else:
+            actions = {"Instalar los paquetes necesarios": install_packages}
 
-            except Exception, e:
-                self.logger.error("Error: " + str(e))
+        if self.properties.has_key('bluetooth_hci.interface_name'):
+            interface = ': ' + self.properties['bluetooth_hci.interface_name']
+        else:
+            interface = ''
+
+        self.msg_render.show("BLUETOOTH", 
+             "Nueva interfaz bluetooth configurada " + str(interface) +
+             '.',
+             BLUEICON, actions = actions)
+
+    def on_removed(self):
+        self.msg_render.show("BLUETOOTH", "Interfaz bluetooth desconectada",
+                BLUEICON)
+
+
 

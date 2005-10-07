@@ -73,12 +73,16 @@ class DeviceList:
         try:
             file = open(filename, 'r')
         except IOError:
-            self.logger.warning("Creando el fichero " + filename)
+            self.logger.warning("Creating " + filename)
             self.save(filename)
             file = open(filename, 'r')
 
-        self.__data_to_compare = pickle.load(file)
-        file.close()
+        try:
+            self.__data_to_compare = pickle.load(file)
+            file.close()
+        except EOFError, e:
+            self.__data_to_compare = {}
+            self.logger.warning("Error reading from: " + filename)
 
 
 

@@ -59,13 +59,9 @@ class Actor(DeviceActor):
             vendor = vendor and vendor + ', ' or ''
             self.msg_render.show("USB", "Dispositivo usb detectado:\n" +\
                     vendor + product, USBICON)
-                    
-            #self.msg_render.show_info("Dispositivo usb detectado:\n" + vendor +\
-            #        product)
 
         except:
             self.msg_render.show("USB", "Dispositivo usb detectado", USBICON)
-            #self.msg_render.show_info("Dispositivo usb detectado")
 
 
     def on_removed(self):

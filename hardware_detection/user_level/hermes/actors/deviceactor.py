@@ -100,6 +100,7 @@ class Actor(DeviceActor):
 """
 
 import dbus
+import logging
 
 class DeviceActor(object):
     """
@@ -115,14 +116,7 @@ class DeviceActor(object):
         self.properties = device_properties
         self.msg_no = None
         self.udi = device_properties['info.udi']
-
-        #Create the dbus comunication
-        #udi = self.udi
-        #self.bus = dbus.Bus(dbus.Bus.TYPE_SYSTEM)
-        #self.bus.add_signal_receiver(lambda *args: self.__on_property_modified(udi, *args),
-        #    dbus_interface = 'org.freedesktop.Hal.Device',
-        #    signal_name = "PropertyModified",
-        #    path = udi)
+        self.logger = logging.getLogger()
 
 
     def __on_property_modified(self, udi, num, values):
