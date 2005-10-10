@@ -29,8 +29,7 @@
   <xsl:variable name="ip_lan_router" select="//ip_lan_router"/>
   <xsl:variable name="dns1" select="//dns1"/>
   <xsl:variable name="dns2" select="//dns2"/>
-  <xsl:variable name="dinamic" select="//dinamic"/>
-  <xsl:variable name="static" select="//static"/>
+  <xsl:variable name="mod_conf" select="//mod_conf"/>
   <xsl:variable name="PPPuser" select="//PPPuser"/>
   <xsl:variable name="PPPpasswd" select="//PPPpasswd"/>
   <xsl:variable name="usuIP" select="//usuIP"/>
@@ -78,15 +77,15 @@
       <expect_list>
         <expect out='(CLI -|>)'>
           <cmd send='exit cli' exp_ok='Password:' err='CLI - ' on_excep='checkNoPasswd3com'/>
-	</expect>
+        </expect>
       </expect_list>
       </cmd>
       <cmd send='{$passwd1}' exp_ok='>'>
-	<expect_list>
-	  <expect out='Password:'>
-	    <cmd return='4'/> <!-- Wrong passwd -->
-	  </expect>
-	</expect_list>
+        <expect_list>
+          <expect out='Password:'>
+            <cmd return='4'/> <!-- Wrong passwd -->
+          </expect>
+        </expect_list>
       </cmd>
     </cmd_func>
     
@@ -110,6 +109,7 @@
       <cmd return='0'/>
     </cmd_func>
     
+
     <cmd_func id='listConf3com'>
       <cmd call='auth3com'/>
       
@@ -123,6 +123,19 @@
       <cmd send='show adsl transceiver_status' exp_ok='>' err='CLI - '/>
     </cmd_func>
     
+    <cmd_func id='confDinamic3com'>
+        <!-- //Si es multipuesto dinamico: -->
+        <cmd send='Set vc internet network_service pppoec send_name {$PPPuser} send_password {$PPPpasswd}' exp_ok='>' err='CLI - '/>
+        <cmd send='Set vc internet local_ip_address 255.255.255.255' exp_ok='>' err='CLI - '/>
+        <cmd send='Set vc internet address_selection negotiate' exp_ok='>' err='CLI - '/>
+    </cmd_func>
+
+    <cmd_func id='confStatic3com'>
+        <!-- //Si es multipuesto estatico: -->
+        <cmd send='Set vc internet network_service rfc_1483' exp_ok='>' err='CLI - '/>
+        <cmd send='Set vc internet local_ip_address {$usuIP}' exp_ok='>' err='CLI - '/>
+        <cmd send='Set vc internet remote_ip_address {$gestIP}/{$gestMask}' exp_ok='>' err='CLI - '/>
+    </cmd_func>
     <cmd_func id='conf3com'>
       
       <cmd call='auth3com'/>
@@ -139,13 +152,13 @@
       <!-- // Si fija la clave de acceso al modem -->
       <cmd send='enable command password {$passwd1}' exp_ok='>' err='CLI - '/>
       <xsl:if test = "$dhcp='True'">
-	<!-- // Si se desea DHCP se escribe -->
-	<cmd send='set dhcp mode server' exp_ok='>'/>
-	<cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$mask} router {$ip_lan_router} dns1 {$dns1} dns2 {$dns2} lease 60' exp_ok='>'/>
+        <!-- // Si se desea DHCP se escribe -->
+        <cmd send='set dhcp mode server' exp_ok='>'/>
+        <cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$mask} router {$ip_lan_router} dns1 {$dns1} dns2 {$dns2} lease 60' exp_ok='>'/>
       </xsl:if>
       <xsl:if test = "$dhcp='False'">
-	<!-- // Si no se desea DHCP se escribe -->
-	<cmd send='set dhcp mode disabled' exp_ok='>' err='CLI - '/>
+        <!-- // Si no se desea DHCP se escribe -->
+        <cmd send='set dhcp mode disabled' exp_ok='>' err='CLI - '/>
       </xsl:if>
       
       <!-- // Bridge o NAT -->
@@ -153,23 +166,14 @@
       <cmd send='Add ip network LAN interface eth:1 address {$ip_lan_router}/{$mask}' exp_ok='>' err='CLI - '/>
       <cmd send='add vc internet' exp_ok='>' err='CLI - '/>
       <cmd send='Set vc internet ip enable ipx disable bridging disable' exp_ok='>' err='CLI - '/>
-      
+
       <!-- //Aqui el codigo se separa en 2, segun sea dinamico o estatico -->
-      
-      <xsl:if test = "$dinamic='True'">
-	<!-- //Si es multipuesto dinamico: -->
-	<cmd send='Set vc internet network_service pppoec send_name {$PPPuser} send_password {$PPPpasswd}' exp_ok='>' err='CLI - '/>
-	<cmd send='Set vc internet local_ip_address 255.255.255.255' exp_ok='>' err='CLI - '/>
-	<cmd send='Set vc internet address_selection negotiate' exp_ok='>' err='CLI - '/>
-      </xsl:if>
-      
-      <xsl:if test = "$static='True'">
-	<!-- //Si es multipuesto estatico: -->
-	<cmd send='Set vc internet network_service rfc_1483' exp_ok='>' err='CLI - '/>
-	<cmd send='Set vc internet local_ip_address {$usuIP}' exp_ok='>' err='CLI - '/>
-	<cmd send='Set vc internet remote_ip_address {$gestIP}/{$gestMask}' exp_ok='>' err='CLI - '/>
-      </xsl:if>
-      
+
+      <xsl:if test = "$mod_conf='multidinamic'"><cmd call='confDinamic3com'/></xsl:if>
+      <xsl:if test = "$mod_conf='monodinamic'"><cmd call='confDinamic3com'/></xsl:if>
+      <xsl:if test = "$mod_conf='monostatic'"><cmd call='confStatic3com'/></xsl:if>
+      <xsl:if test = "$mod_conf='multistatic'"><cmd call='confStatic3com'/></xsl:if>
+
       <!-- // A partir de aqui vuelve a ser comun -->
       <cmd send='Set vc internet atm vpi 8 vci 32 category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
       <cmd send='Set vc internet mac_routing disable' exp_ok='>' err='CLI - '/>
@@ -177,21 +181,21 @@
       <cmd send='Set vc internet default_route_option enable' exp_ok='>' err='CLI - '/>
       <cmd send='disable network service httpd' exp_ok='>' err='CLI - '/>
       <cmd send='set adsl open ansi' exp_ok='>' err='CLI - '/>
-      
+
       <!-- //Filtro para bloquear puerto 23 desde internet, a todo el mundo excepto a una subred -->
       <!-- FIXME
-	   <cmd send='capture text_file filtro' exp_ok='>' err='CLI - '/>
-	   <cmd send='#filter' exp_ok='>' err='CLI - '/>
-	   <cmd send='IP:' exp_ok='>' err='CLI - '/>
-	   <cmd send='1 ACCEPT src-addr=[Ip de subred con permisos de acceso al puerto 23. Ej: 80.80.23.0]/[Mascara en formato bits. Ej:24];' exp_ok='>' err='CLI - '/>
-	   <cmd send='2 REJECT tcp-dst-port=23;' exp_ok='>' err='CLI - '/>
+           <cmd send='capture text_file filtro' exp_ok='>' err='CLI - '/>
+           <cmd send='#filter' exp_ok='>' err='CLI - '/>
+           <cmd send='IP:' exp_ok='>' err='CLI - '/>
+           <cmd send='1 ACCEPT src-addr=[Ip de subred con permisos de acceso al puerto 23. Ej: 80.80.23.0]/[Mascara en formato bits. Ej:24];' exp_ok='>' err='CLI - '/>
+           <cmd send='2 REJECT tcp-dst-port=23;' exp_ok='>' err='CLI - '/>
       -->
       <!-- // En este punto se manda el caracter de control CTRL+D que tiene codigo ASCII 004 -->
       <!-- FIXME
-	   <cmd send='add filter filtro' exp_ok='>' err='CLI - '/>
-	   <cmd send='set interface atm:1 input_filter filtro' exp_ok='>' err='CLI - '/>
-	   <cmd send='set command login_required yes' exp_ok='>' err='CLI - '/>
-	   <cmd send='enable security_option remote_user administration' exp_ok='>' err='CLI - '/>
+           <cmd send='add filter filtro' exp_ok='>' err='CLI - '/>
+           <cmd send='set interface atm:1 input_filter filtro' exp_ok='>' err='CLI - '/>
+           <cmd send='set command login_required yes' exp_ok='>' err='CLI - '/>
+           <cmd send='enable security_option remote_user administration' exp_ok='>' err='CLI - '/>
       -->
       <!-- // Gestion de usuario y clave. Suponemos que usuario=clave -->
       <cmd send='add user {$passwd1} password {$passwd1}' exp_ok='>' err='CLI - '/>
@@ -199,7 +203,7 @@
       
       <!-- //Ejemplo de mapeo -->
       <!-- FIXME
-	   <cmd send='add nat tcp vc internet private_add [IP PC. Ej:192.168.1.33] private_port [Puerto interno, Ej: 21] public_port [Puerto publico.Ej: 21]' exp_ok='>' err='CLI - '/>
+           <cmd send='add nat tcp vc internet private_add [IP PC. Ej:192.168.1.33] private_port [Puerto interno, Ej: 21] public_port [Puerto publico.Ej: 21]' exp_ok='>' err='CLI - '/>
       -->
       <cmd send='set vc internet intelligent_nat_option disable' exp_ok='>' err='CLI - '/>
       <cmd send='disable dns' exp_ok='>' err='CLI - '/>

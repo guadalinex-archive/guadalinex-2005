@@ -55,15 +55,14 @@ from xml.xpath          import Evaluate
 
 CMDENCODING='iso-8859-1'
 
-def func_parse(func):
+def func_parse(dom, child, func, default_timeout = -1):
     path_cmd = "cmd_func[@id='"+ func +"']/cmd"
     cmds = Evaluate(path_cmd, dom.documentElement)
     if (len(cmds) < 1):
         raise SyntaxError, _("en modulo de expect. Función call desconocida")
-    return (cmd_parse(cmds))
+    return (cmd_parse(dom, child, cmds, default_timeout))
 
-
-def cmd_parse(cmds):
+def cmd_parse(dom, child, cmds, default_timeout = -1):
     for actcmd in cmds:
         send_cmd = actcmd.getAttribute('send')
         ret_cmd = actcmd.getAttribute('return')
@@ -110,91 +109,96 @@ def cmd_parse(cmds):
             if cmdid_list[expopt] == '__plus1__':
                 pass
             elif cmdid_list[expopt] == act_except:
-                sub_ret = func_parse(act_except)
+                sub_ret = func_parse(dom, child, act_except, default_timeout)
                 if sub_ret != 0:
                     # if return != 0 raise the error
                     return sub_ret
             elif cmdid_list[expopt] == '__exit__':
-                sub_ret = func_parse('__exit__')
+                sub_ret = func_parse(dom, child, '__exit__', timeout)
                 if sub_ret != 0:
                     # if return != 0 raise the error
                     return sub_ret
             elif type(cmdid_list[expopt]) == list:
-                sub_ret = cmd_parse(cmdid_list[expopt])
+                sub_ret = cmd_parse(dom, child, cmdid_list[expopt], default_timeout)
                 if sub_ret != 0:
                     # if return != 0 raise the error
                     return sub_ret
         elif type_cmd == 'call':
-            sub_ret = func_parse(call_cmd)
+            sub_ret = func_parse(dom, child, call_cmd, default_timeout)
             if sub_ret != 0:
                 # if return != 0 raise the error
                 return sub_ret
         elif type_cmd == 'return':
             return(int(ret_cmd))
-            
     # All commands ok, return 0
     return 0
 
-reader = PyExpat.Reader( )
-dom = reader.fromStream(sys.stdin)
+def processOper(fin, fout):
+    reader = PyExpat.Reader( )
+    dom = reader.fromStream(open(fin.name, "r"))
+    cmd_ini         = Evaluate("initial_func/text( )",
+                               dom.documentElement)[0].nodeValue
+    default_timeout = Evaluate("default_timeout/text( )",
+                               dom.documentElement)[0].nodeValue
+    ethnode = Evaluate("eth_params", dom.documentElement)
+    if len(ethnode) == 1:
+        by_serial = False
+        eth_dev = ethnode[0].getAttribute('dev')
+        ip = ethnode[0].getAttribute('ip')
+        port = ethnode[0].getAttribute('port')
+    else:
+        by_serial = True
+        tty_read        = Evaluate("serial_params",
+                                   dom.documentElement)[0].getAttribute('tty')
+        baudrate_read   = Evaluate("serial_params",
+                                   dom.documentElement)[0].getAttribute('baudrate')
+        bits_read       = Evaluate("serial_params",
+                                   dom.documentElement)[0].getAttribute('bits')
+        parity_read     = Evaluate("serial_params",
+                                   dom.documentElement)[0].getAttribute('parity')
+        stopbits_read   = Evaluate("serial_params",
+                                   dom.documentElement)[0].getAttribute('stopbits')
+        xonxoff_read    = Evaluate("serial_params",
+                                   dom.documentElement)[0].getAttribute('xonxoff')
+        rtscts_read     = Evaluate("serial_params",
+                                   dom.documentElement)[0].getAttribute('rtscts')
+    if by_serial:
+        if   (parity_read == "N") : parity_cte = PARITY_NONE
+        elif (parity_read == "E") : parity_cte = PARITY_EVEN
+        elif (parity_read == "O") : parity_cte = PARITY_ODD
 
-cmd_ini         = Evaluate("initial_func/text( )",
-                           dom.documentElement)[0].nodeValue
-default_timeout = Evaluate("default_timeout/text( )",
-                           dom.documentElement)[0].nodeValue
+        ser = serial.Serial(
+            port     = int(tty_read),
+            baudrate = int(baudrate_read),
+            bytesize = int(bits_read),
+            parity   = parity_cte,
+            stopbits = int(stopbits_read),
+            timeout  = None,               # set a timeout value, None to wait forever
+            xonxoff  = int(xonxoff_read),  # enable software flow control
+            rtscts   = int(rtscts_read),   # enable RTS/CTS flow control
+            writeTimeout = None,          # set a timeout for writes
+            )
+        fd = ser.fd
+        if os.path.exists("/var/lock/LCK..ttyS"+tty_read):
+            raise Exception( _("Puerto serie bloqueado"))
+        # FIXME: block tty, check if LCK process already exist
+        child = pexpect.spawn(fd)
+    else:
+        telnet_cmd = 'telnet ' + ip + " " + port
+        child = pexpect.spawn(telnet_cmd)
+    child.setlog(fout)
+    cmd_act = cmd_ini
+    return func_parse(dom, child, cmd_act, default_timeout)
 
-ethnode = Evaluate("eth_params", dom.documentElement)
-if len(ethnode) == 1:
-    by_serial = False
-    eth_dev = ethnode[0].getAttribute('dev')
-    ip = ethnode[0].getAttribute('ip')
-    port = ethnode[0].getAttribute('port')
-else:
-    by_serial = True
-    tty_read        = Evaluate("serial_params",
-                               dom.documentElement)[0].getAttribute('tty')
-    baudrate_read   = Evaluate("serial_params",
-                               dom.documentElement)[0].getAttribute('baudrate')
-    bits_read       = Evaluate("serial_params",
-                               dom.documentElement)[0].getAttribute('bits')
-    parity_read     = Evaluate("serial_params",
-                               dom.documentElement)[0].getAttribute('parity')
-    stopbits_read   = Evaluate("serial_params",
-                               dom.documentElement)[0].getAttribute('stopbits')
-    xonxoff_read    = Evaluate("serial_params",
-                               dom.documentElement)[0].getAttribute('xonxoff')
-    rtscts_read     = Evaluate("serial_params",
-                               dom.documentElement)[0].getAttribute('rtscts')
+def main(fin, fout):
+    ret = processOper(fin, fout)
+    sys.exit(ret)
 
-if by_serial:
-    if   (parity_read == "N") : parity_cte = PARITY_NONE
-    elif (parity_read == "E") : parity_cte = PARITY_EVEN
-    elif (parity_read == "O") : parity_cte = PARITY_ODD
-
-    ser = serial.Serial(
-        port     = int(tty_read),
-        baudrate = int(baudrate_read),
-        bytesize = int(bits_read),
-        parity   = parity_cte,
-        stopbits = int(stopbits_read),
-        timeout  = None,               # set a timeout value, None to wait forever
-        xonxoff  = int(xonxoff_read),  # enable software flow control
-        rtscts   = int(rtscts_read),   # enable RTS/CTS flow control
-        writeTimeout = None,          # set a timeout for writes
-        )
-    fd = ser.fd
-    #    if os.path.exists("/var/lock/LCK..ttyS"+tty_read):
-    #FIXME       raise Exception( _("Puerto serie bloqueado"))
-    # FIXME: block tty, check if LCK process already exist
-    child = pexpect.spawn(fd)
-else:
-    telnet_cmd = 'telnet ' + ip + " " + port
-    child = pexpect.spawn(telnet_cmd)
-
-fout = file('/tmp/bb-assist.log','a') # FIXME: clean
-child.setlog (fout)
-
-cmd_act = cmd_ini
-
-ret = func_parse(cmd_act)
-sys.exit(ret)
+if __name__ == "__main__":
+    if len(sys.argv) == 3:
+        # argv[1] = inputfile, argv[2] = errorfile
+        fin =  open(sys.argv[1], "r")
+        fout = open(sys.argv[2], "w")
+        main(fin, fout)
+    else:
+        main(sys.stdin, sys.stdout)

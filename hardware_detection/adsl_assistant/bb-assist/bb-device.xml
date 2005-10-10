@@ -6,19 +6,14 @@
     <support>1</support>
     <provider_list>
       <provider id='0001'>
-	<confmode_list>
-	  <mode id='0001'/>
-	  <mode id='0002'/>
-	  <mode id='0003'/>
-	  <mode id='0004'/>
-	</confmode_list>
-	<default_passwd_list>
-	  <default_passwd id='0001' passwd='adminttd'/>
-	</default_passwd_list>
+        <default_passwd_list>
+          <default_passwd id='0001' passwd='adminttd'/>
+        </default_passwd_list>
       </provider>
     </provider_list>
     <console>1</console>
     <tty_conf id='0001'/>
+    <eth_conf_port>23</eth_conf_port>
     <list_firmware>
       <fw id='0001'/>
     </list_firmware>
@@ -34,17 +29,13 @@
     <support>1</support>
     <provider_list>
       <provider id='0001'>
-	<confmode_list>
-	  <mode id='0001'/>
-	  <mode id='0002'/>
-	</confmode_list>
       </provider>
     </provider_list>
     <console>0</console>
     <usb_conf>
       <linux_driver>eagle</linux_driver>
       <deviceid_list>
-	<deviceid vendor='1110' model='900f'/>
+        <deviceid vendor='1110' model='900f'/>
       </deviceid_list>
     </usb_conf>
     <list_firmware>
@@ -59,27 +50,27 @@
     <support>1</support>
     <provider_list>
       <provider id='0001'>
-	<confmode_list>
-	  <mode id='0001'/>
-	  <mode id='0002'/>
-	</confmode_list>
+        <confmode_list>
+          <mode id='0001'/>
+          <mode id='0002'/>
+        </confmode_list>
       </provider>
     </provider_list>
     <console>0</console>
     <usb_conf>
       <linux_driver>accessrunner</linux_driver>
       <deviceid_list>
-	<deviceid vendor='0572' model='cafe'/>
-	<deviceid vendor='0572' model='cb00'/>
-	<deviceid vendor='0572' model='cb01'/>
-	<deviceid vendor='0572' model='cb06'/>
-	<deviceid vendor='08e3' model='0100'/>
-	<deviceid vendor='08e3' model='0102'/>
-	<deviceid vendor='0eb0' model='3457'/>
-	<deviceid vendor='1803' model='5510'/>
-	<deviceid vendor='0675' model='0200'/>
-	<deviceid vendor='0586' model='330a'/>
-	<deviceid vendor='1242' model='2003'/>
+        <deviceid vendor='0572' model='cafe'/>
+        <deviceid vendor='0572' model='cb00'/>
+        <deviceid vendor='0572' model='cb01'/>
+        <deviceid vendor='0572' model='cb06'/>
+        <deviceid vendor='08e3' model='0100'/>
+        <deviceid vendor='08e3' model='0102'/>
+        <deviceid vendor='0eb0' model='3457'/>
+        <deviceid vendor='1803' model='5510'/>
+        <deviceid vendor='0675' model='0200'/>
+        <deviceid vendor='0586' model='330a'/>
+        <deviceid vendor='1242' model='2003'/>
       </deviceid_list>
     </usb_conf>
     <list_firmware>
@@ -95,19 +86,20 @@
     <support>1</support>
     <provider_list>
       <provider id='0001'>
-	<confmode_list>
-	  <mode id='0001'/>
-	  <mode id='0002'/>
-	  <mode id='0003'/>
-	  <mode id='0004'/>
-	</confmode_list>
-	<default_passwd_list>
-	  <default_passwd id='0001' passwd='adminttd'/>
-	</default_passwd_list>
+        <confmode_list>
+          <mode id='0001'/>
+          <mode id='0002'/>
+          <mode id='0003'/>
+          <mode id='0004'/>
+        </confmode_list>
+        <default_passwd_list>
+          <default_passwd id='0001' passwd='adminttd'/>
+        </default_passwd_list>
       </provider>
     </provider_list>
     <console>1</console>
     <tty_conf id='0002'/>
+    <eth_conf_port>23</eth_conf_port>
     <list_firmware>
       <fw id='0002'/>
     </list_firmware>

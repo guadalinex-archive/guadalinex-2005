@@ -7,7 +7,7 @@
       <opername lang="es_ES" name='Verificar acceso al equipo'/>
     </opername_list>
     <firmware>*</firmware>
-    <initial_cmd>0001</initial_cmd>
+    <initial_func>verif3com</initial_func>
     <default_timeout>15</default_timeout>
     <druid_page_list>
       <druid_page>druidVerifParamsConf</druid_page>
@@ -24,7 +24,7 @@
       <opername lang="es_ES" name='Configurar en modo Monopuesto Estático'/>
     </opername_list>
     <firmware>*</firmware>
-    <initial_cmd>0000</initial_cmd>
+    <initial_func>conf3com</initial_func>
     <default_timeout>15</default_timeout>
     <druid_page_list>
       <druid_page>druidUsuIP</druid_page>
@@ -43,7 +43,7 @@
       <opername lang="es_ES" name='Configurar en modo Monopuesto Dinámico'/>
     </opername_list>
     <firmware>*</firmware>
-    <initial_cmd>0000</initial_cmd>
+    <initial_func>conf3com</initial_func>
     <default_timeout>15</default_timeout>
     <druid_page_list>
       <druid_page>druidDinamConf</druid_page>
@@ -61,7 +61,7 @@
       <opername lang="es_ES" name='Configurar en modo Multipuesto Estático'/>
     </opername_list>
     <firmware>*</firmware>
-    <initial_cmd>0000</initial_cmd>
+    <initial_func>conf3com</initial_func>
     <default_timeout>15</default_timeout>
     <druid_page_list>
       <druid_page>druidUsuIP</druid_page>
@@ -81,7 +81,7 @@
       <opername lang="es_ES" name='Configurar en modo Multipuesto Dinámico'/>
     </opername_list>
     <firmware>*</firmware>
-    <initial_cmd>0000</initial_cmd>
+    <initial_func>conf3com</initial_func>
     <default_timeout>15</default_timeout>
     <druid_page_list>
       <druid_page>druidDinamConf</druid_page>
@@ -101,7 +101,7 @@
       <opername lang="es_ES" name='Cambiar contraseña'/>
     </opername_list>
     <firmware>*</firmware>
-    <initial_cmd>0008</initial_cmd>
+    <initial_func>chgPass3com</initial_func>
     <default_timeout>15</default_timeout>
     <druid_page_list>
       <druid_page>druidPasswdSel</druid_page>

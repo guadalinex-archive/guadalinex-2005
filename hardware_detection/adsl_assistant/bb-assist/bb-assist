@@ -56,6 +56,7 @@ import getopt, sys, os, tempfile, time
 import gettext, locale
 import socket
 import dbus
+import expbackend
 from xml.dom.ext.reader import PyExpat
 from xml.xpath          import Evaluate
 from Ft.Xml             import MarkupWriter
@@ -182,20 +183,35 @@ class bb_device:
             self.name = devnode.getAttribute("name")
             self.id = devnode.getAttribute("id")
 
-            self.console = Evaluate("console/text( )", devnode)[0].nodeValue           
-            self.support = Evaluate("support/text( )", devnode)[0].nodeValue            
-            self.device_type = devicetype(Evaluate("device_type", devnode)[0].getAttribute("id"))
+            self.console = Evaluate("console/text( )", devnode)[0].nodeValue
+            self.support = Evaluate("support/text( )", devnode)[0].nodeValue
+
+            self.device_type = devicetype(Evaluate("device_type",
+                                                   devnode)[0].getAttribute("id"))
             if self.device_type.dt_id == '0001':
                 #DSL USB
                 self.tty_conf = None
                 # FIXME: get usb_conf
             else:
                 #DSL Router
-                self.tty_conf = tty_conf(Evaluate("tty_conf", devnode)[0].getAttribute("id"))
+                self.tty_conf = tty_conf(Evaluate("tty_conf",
+                                                  devnode)[0].getAttribute("id"))
+                self.eth_conf_port = Evaluate("eth_conf_port/text( )", devnode)[0].nodeValue
             if devprovider != None:
                 self.provider = devprovider
+                defpass_node = Evaluate("provider_list/provider[@id=" +
+                                        devprovider.prov_id +
+                                        "]/default_passwd_list/" +
+                                        "default_passwd[@id='0001']",
+                                        devnode)
+                if len(defpass_node) > 0:
+                    self.default_passwd = defpass_node[0].getAttribute("passwd")
+                else:
+                    self.default_passwd = None
             else:
                 self.provider = provider()
+                self.default_passwd = None
+
         # FIXME: get operations
         self.numoper = 0
 
@@ -223,7 +239,7 @@ class operation:
             self.ui_public = 0
             self.opername = None
             self.firmware = None
-            self.initial_cmd = None
+            self.initial_func = None
             self.default_timeout = None
             self.druid_page_list = []
         else:
@@ -235,7 +251,7 @@ class operation:
             for opername_node in Evaluate("opername_list/opername", opernode):
                 self.opername[opername_node.getAttribute("lang")] = opername_node.getAttribute("name")
             self.firmware = Evaluate("firmware/text( )", opernode)[0].nodeValue
-            self.initial_cmd = Evaluate("initial_cmd/text( )", opernode)[0].nodeValue
+            self.initial_func = Evaluate("initial_func/text( )", opernode)[0].nodeValue
             self.default_timeout = Evaluate("default_timeout/text( )", opernode)[0].nodeValue
             self.druid_page_list = []
             for druid_page_node in Evaluate("druid_page_list/druid_page/text( )", opernode):
@@ -243,7 +259,7 @@ class operation:
     def __str__(self):      
         return "%s %s %s %s %s %s %s %s %s" % \
                (self.id, self.bb_device, self.supported, self.ui_public, self.opername,
-                self.firmware, self.initial_cmd, self.default_timeout, self.druid_page_list)
+                self.firmware, self.initial_func, self.default_timeout, self.druid_page_list)
 
 class Assist:
     def initdbus(self):
@@ -430,9 +446,10 @@ class Assist:
         
     def on_druidProviderSelect_prepare(self, *args):
         if self.provider:
-            self.druid1.set_buttons_sensitive(True, True, True, True)
+            #self.druid1.set_buttons_sensitive(True, True, True, True)
+            pass
         else:
-            self.druid1.set_buttons_sensitive(True, False, True, True)
+            #self.druid1.set_buttons_sensitive(True, False, True, True)
             self.remProviders()
             self.getProviders()
 
@@ -538,18 +555,22 @@ class Assist:
             self.devcf.param['mod_conf'] = "monodinamic"
         elif self.operation_sel.id == '0004':
             self.devcf.param['mod_conf'] = "multistatic"
-            self.devcf.param['withDhcp'] = True
+            self.devcf.param['dhcp'] = True
         elif self.operation_sel.id == '0005':
             self.devcf.param['mod_conf'] = "multidinamic"
-            self.devcf.param['withDhcp'] = True
+            self.devcf.param['dhcp'] = True
         elif self.operation_sel.id == '0006': # change passd 3com
             pass
         if self.portsGuiConf == False:
             # Do this only one time (eth/ser don't change)
             for act_tty in self.ttylist:
                 self.comboboxserialport.append_text(act_tty)
+                self.comboboxserialport.set_active(0)
+                self.tty_to_use = self.comboboxserialport.get_active_text()
             for act_eth in self.ethlist:
                 self.comboboxetheport.append_text(act_eth)
+                self.comboboxetheport.set_active(0)
+                self.eth_to_use = self.comboboxetheport.get_active_text()
             self.portsGuiConf = True
             
     # Conf Params
@@ -583,17 +604,17 @@ class Assist:
             return True
 
     def on_druidDinamConf_next(self, *args):
-        self.devcf.param['ppp_user'] = self.PPPuser.get_text()
-        self.devcf.param['ppp_passwd'] = self.PPPpasswd.get_text()
-        if self.devcf.param['ppp_user'] == "":
+        self.devcf.param['PPPuser'] = self.PPPuser.get_text()
+        self.devcf.param['PPPpasswd'] = self.PPPpasswd.get_text()
+        if self.devcf.param['PPPuser'] == "":
             error_dialog(_("Usuario incorrecto"), self.windowIni)
             return True
-        if self.devcf.param['ppp_passwd'] == "":
+        if self.devcf.param['PPPpasswd'] == "":
             error_dialog(_("Password incorrecta"), self.windowIni)
             return True
 
     def on_druidMultiConf_next(self, *args):
-        if self.devcf.param['withDhcp']:
+        if self.devcf.param['dhcp']:
             try: self.dhcpIPaddress = socket.inet_aton(self.dhcpIPaddressEntry.get_text())
             except socket.error:
                 error_dialog(_("Error en") + ": " + \
@@ -628,24 +649,17 @@ class Assist:
         
     def on_sinDhcpRadioButton_clicked(self, *args):
         if self.dhcpRadioButton.get_active():
-            self.devcf.param['withDhcp'] = True
+            self.devcf.param['dhcp'] = True
             self.IPaddressPcEntry.set_sensitive(False)
             self.maskAddressPcEntry.set_sensitive(False)
             self.dhcpIPaddressEntry.set_sensitive(True)
             self.dhcpMaskEntry.set_sensitive(True)   
         else:
-            self.devcf.param['withDhcp'] = False
+            self.devcf.param['dhcp'] = False
             self.IPaddressPcEntry.set_sensitive(True)
             self.maskAddressPcEntry.set_sensitive(True)
             self.dhcpIPaddressEntry.set_sensitive(False)
             self.dhcpMaskEntry.set_sensitive(False)
-
-    def on_druidSelecInterface_prepare(self, *args):
-        if self.tty_to_use:
-            self.druid1.set_buttons_sensitive(True, True, True, True)
-        else:
-            self.druid1.set_buttons_sensitive(True, False, True, True)
-            pass
 
     def on_checkbuttonDefPasswd_toggled(self, *args):
         if self.checkbuttonDefPasswd.get_active():
@@ -668,10 +682,22 @@ class Assist:
             self.druid1.set_page(self.druidNewPasswd)
             return True
     
-    def on_comboboxSerialPort_changed(self, *args):          
+    def on_comboboxSerialPort_changed(self, *args):
         self.tty_to_use = self.comboboxserialport.get_active_text()
-        self.druid1.set_buttons_sensitive(True, True, True, True)
-    
+        self.eth_to_use = None
+
+    def on_comboboxEthePort_changed(self, *args):
+        self.eth_to_use = self.comboboxetheport.get_active_text()
+        self.tty_to_use = None
+
+    def on_druidSelecInterface_prepare(self, *args):
+        if self.radiobuttonSerialPort.get_active():
+            self.tty_to_use = self.comboboxserialport.get_active_text()
+            self.eth_to_use = None
+        else:
+            self.tty_to_use = None
+            self.eth_to_use = self.comboboxetheport.get_active_text()
+
     def on_druidVerifParamsConf_prepare(self, *args):
         msg = boldme(_("Operación")) + ": "
         if self.devcf.param['mod_conf'] != "":
@@ -695,9 +721,9 @@ class Assist:
                 msg += boldme(self.gestMaskLabel.get_text()) + \
                       ": " + socket.inet_ntoa(self.devcf.param['gest_mask']) + "\n"
             if self.devcf.param['mod_conf'] == "multidinamic" or self.devcf.param['mod_conf'] == "monodinamic":
-                msg += boldme(_("Usuario")) + ": " + self.devcf.param['ppp_user'] + "\n"
+                msg += boldme(_("Usuario")) + ": " + self.devcf.param['PPPuser'] + "\n"
             if self.devcf.param['mod_conf'] == "multistatic" or self.devcf.param['mod_conf'] == "multidinamic":
-                if self.devcf.param['withDhcp']:
+                if self.devcf.param['dhcp']:
                     msg += boldme(self.dhcpIPaddressLabel.get_text()) + \
                            ": " + socket.inet_ntoa(self.dhcpIPaddress) + "\n"
                     msg += boldme(self.dhcpMaskLabel.get_text()) + \
@@ -724,41 +750,125 @@ class Assist:
         self.druid1.next.set_label('gtk-go-forward')
 
     def callBackEnd(self, *args):
+        self.show_cursor_watch()
         output_xmlfile = tempfile.NamedTemporaryFile()
         writer = MarkupWriter(output_xmlfile, encoding='iso-8859-1', indent=u"yes")
         writer.startDocument()
         writer.startElement(u'operation')
-        writer.startElement(u'initial_cmd')
-        writer.text(self.operation_sel.initial_cmd)
-        writer.endElement(u'initial_cmd')
-        writer.startElement(u'default-timeout')
+        writer.startElement(u'model')
+        writer.text(self.devcf.name)
+        writer.endElement(u'model')
+        writer.startElement(u'initial_func')
+        writer.text(self.operation_sel.initial_func)
+        writer.endElement(u'initial_func')
+        writer.startElement(u'default_timeout')
         writer.text(self.operation_sel.default_timeout)
-        writer.endElement(u'default-timeout')
+        writer.endElement(u'default_timeout')
+        if self.tty_to_use:
+            writer.startElement(u'serial_params')
+            writer.attribute(u'tty', unicode(self.tty_to_use.strip("/dev/ttyS")))
+            writer.attribute(u'baudrate', unicode(self.devcf.tty_conf.tty_baudrate))
+            writer.attribute(u'bits', unicode(self.devcf.tty_conf.tty_bits))
+            writer.attribute(u'parity', unicode(self.devcf.tty_conf.tty_parity))
+            writer.attribute(u'stopbits', unicode(self.devcf.tty_conf.tty_stopbits))
+            writer.attribute(u'xonxoff', unicode(self.devcf.tty_conf.tty_xonxoff))
+            writer.attribute(u'rtscts', unicode(self.devcf.tty_conf.tty_rtscts))
+            writer.endElement(u'serial_params')
+        else:
+            writer.startElement(u'eth_params')
+            writer.attribute(u'dev', unicode(self.eth_to_use))
+            writer.attribute(u'ip', unicode(self.entryIpDevToConf.get_text()))
+            writer.attribute(u'port', unicode(self.devcf.eth_conf_port))
+            writer.endElement(u'eth_params')
         for actparam in self.devcf.param.keys():
             writer.startElement(unicode(actparam))
             writer.text(unicode(self.devcf.param[actparam]))
             writer.endElement(unicode(actparam))
         writer.endElement(u'operation')
         writer.endDocument()
-        output_xmlfile.flush()
+        output_xmlfile.flush()        
 
         processor = Processor.Processor()
         xsl_cmd_list  = InputSource.DefaultFactory.fromUri(OsPathToUri(os.path.join(PATH, "cmd-list.xsl")))
         xml_operation = InputSource.DefaultFactory.fromUri(OsPathToUri(output_xmlfile.name))
         processor.appendStylesheet(xsl_cmd_list)
-        result = processor.run(xml_operation)
+        cmd_lines_result = processor.run(xml_operation)
+        msg =  "\n"
+        msg += "********************************************\n"
+        msg +=  _("XML operation") + "\n" # Debug msg
+        msg += "********************************************\n"
+        msg += open(output_xmlfile.name).read( )
+        msg += "\n"
+        msg += "\n"
+        msg += "********************************************\n"
+        msg += _("XSL/XML command lines") + "\n"
+        msg += "********************************************\n"
+        msg += cmd_lines_result
+        msg += "\n"
 
-        #f = codecs.open('tmp.xml', encoding='utf-8', mode='w+')
-        #result = proc.run(src_isrc, outputStream=sys.stdout)
-        msg =  "XSL/XML operation\n"
-        msg += "*****************\n"
-        msg += result
-        
+        # Show debug temporary output
         self.labelOperDebug.set_text(msg)
         self.labelOperDebug.set_use_markup(False)
 
+        # Exec operation
+        exp_input_file  = tempfile.NamedTemporaryFile()
+        exp_output_file = tempfile.NamedTemporaryFile()
+        exp_input_file.writelines(cmd_lines_result)
+        exp_input_file.flush()
+
+        retOper = expbackend.processOper(exp_input_file, exp_output_file)
+
+        msg += "\n"
+        msg += "********************************************\n"
+        msg += _("Operation output") + "\n" # Debug msg
+        msg += "********************************************\n"
+        msg += open(exp_output_file.name).read( )
+        msg += "\n"
+
+        if retOper == 0:
+            msgResult = _("Operación realizada con éxito")
+        elif retOper == 1:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Por favor envíe un informe de error con los detalles de la operación al foro FIXME")
+        elif retOper == 2:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Se ha interrumpido la conexión con el equipo inesperadamente")
+        elif retOper == 3:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Tiempo de espera excedido")
+        elif retOper == 4:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Contraseña actual incorrecta.")
+        else:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Resultado inexperado.")
+        self.labelOperDebug.set_text(msg)
+        self.labelOperDebug.set_use_markup(False)
+        self.labelOperResult.set_text(boldme(msgResult))
+        self.labelOperResult.set_use_markup(True)
+        self.hide_cursor_watch()
+
     def on_druidRunOper_next(self, *args):
         self.druid1.next.set_label('gtk-go-forward')
+
+        # Commons vars
+        if self.checkbuttonDefPasswd.get_active():
+            print "por aquí" # FIXME
+            self.devcf.param['passwd1'] = self.entryOtherPasswd.get_text()
+        else:
+            print "por allá"
+            self.devcf.param['passwd1'] = self.devcf.default_passwd
+
+        if (self.devcf.param['mod_conf'] == "monostatic" or 
+            self.devcf.param['mod_conf'] == "multistatic"):
+            pass
+        if (self.devcf.param['mod_conf'] == "multidinamic" or
+            self.devcf.param['mod_conf'] == "monodinamic"):
+            pass
+        if self.operation_sel.id == '0006':
+            self.devcf.param['passwd2'] = self.entryNewPasswd.get_text()
+            # FIXME check sizes
+        
         self.callBackEnd()
         self.druid1.back.hide()
 

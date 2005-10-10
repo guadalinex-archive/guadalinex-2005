@@ -9,8 +9,12 @@ bb-assist (0.3) unstable; urgency=low
   * glade/bb-assist.glade: - computadora + ordenador
   * cmd-list.xsl: update with new syntax
   * bb-assist: show watch icon for long operations
+  * expbackend.py: rename and clean of the code
+  * bb-assist: connection with expect backend, error processing, debug
+    processing, serial/eth dialog fixes, pass dialog fixes.
+  * cmd-list.xsl: 3com device commands added
 
- -- Vicente J. Ruiz Jurado <vjrj@gipsy.hi.inet>  Thu,  6 Oct 2005 13:08:11 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 10 Oct 2005 19:45:37 +0200
 
 bb-assist (0.2) unstable; urgency=low
 
