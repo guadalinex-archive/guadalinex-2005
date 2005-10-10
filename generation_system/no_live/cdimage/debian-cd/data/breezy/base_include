@@ -3,6 +3,9 @@ beforelight
 bitmap
 cpp
 cpp-4.0
+dhcp3-client
+dhcp3-common
+debianutils
 defoma
 editres
 fontconfig
