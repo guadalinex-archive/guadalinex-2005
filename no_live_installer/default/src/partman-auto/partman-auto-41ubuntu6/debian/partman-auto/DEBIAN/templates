@@ -1,0 +1,1332 @@
+Template: partman-auto/progress/title
+Type: text
+Description: Please wait...
+Description-ar.UTF-8: رجاءً انتظر...
+Description-bg.UTF-8: Моля, почакайте...
+Description-bs.UTF-8: Molim pričekajte...
+Description-ca.UTF-8: Si us plau, espereu...
+Description-cs.UTF-8: Prosím čekejte...
+Description-cy.UTF-8: Arhoswch os gwelwch yn dda...
+Description-da.UTF-8: Vent venligst...
+Description-de.UTF-8: Bitte warten...
+Description-el.UTF-8: Παρακαλώ περιμένετε...
+Description-es.UTF-8: Espere por favor...
+Description-eu.UTF-8: Itxoin mesedez...
+Description-fa.UTF-8: لطفا صبر کنید...
+Description-fi.UTF-8: Odota...
+Description-fr.UTF-8: Veuillez patienter...
+Description-gl.UTF-8: Por favor, agarde...
+Description-he.UTF-8: אנא המתן...
+Description-hr.UTF-8: Molim pričekajte...
+Description-hu.UTF-8: Legyen türelemmel...
+Description-id.UTF-8: Silakan tunggu...
+Description-it.UTF-8: Attendere
+Description-ja.UTF-8: しばらくお待ちください...
+Description-ko.UTF-8: 잠시 기다리십시오...
+Description-lt.UTF-8: Lukterėkite...
+Description-nb.UTF-8: Vent litt ...
+Description-nl.UTF-8: Even geduld...
+Description-nn.UTF-8: Vent litt ...
+Description-no.UTF-8: Vent litt ...
+Description-pl.UTF-8: Proszę czekać...
+Description-pt.UTF-8: Por favor aguarde...
+Description-pt_BR.UTF-8: Por favor, aguarde...
+Description-ro.UTF-8: Vă rugăm să aşteptaţi...
+Description-ru.UTF-8: Подождите...
+Description-sk.UTF-8: Čakajte, prosím...
+Description-sl.UTF-8: Prosim, počakajte...
+Description-sq.UTF-8: Të lutem prit...
+Description-sv.UTF-8: Vänta...
+Description-tr.UTF-8: Lütfen bekleyin...
+Description-uk.UTF-8: Зачекайте, будь ласка...
+Description-zh_CN.UTF-8: 请稍候...
+Description-zh_TW.UTF-8: 請稍候...
+
+Template: partman-auto/progress/info
+Type: text
+Description: Computing the new partitions...
+Description-ar.UTF-8: جاري حساب التّجزئات الجديدة...
+Description-bg.UTF-8: Пресмятане на новите дялове...
+Description-bs.UTF-8: Računam nove particije...
+Description-ca.UTF-8: S'estan computant les noves particions...
+Description-cs.UTF-8: Vypočítávají se nové oblasti...
+Description-cy.UTF-8: Yn cyfrifo'r rhaniadau newydd...
+Description-da.UTF-8: Beregner de nye partitioner...
+Description-de.UTF-8: Errechne die neuen Partitionen...
+Description-el.UTF-8: Υπολογισμός των νέων τμημάτων...
+Description-es.UTF-8: Calculando las nuevas particiones...
+Description-eu.UTF-8: Partizio berriak kalkulatzen...
+Description-fa.UTF-8: در حال محاسبه‌ی پارتیشن جدید...
+Description-fi.UTF-8: Lasketaan uusien levyosioiden koot...
+Description-fr.UTF-8: Calcul des nouvelles partitions...
+Description-gl.UTF-8: Calculando as novas particións...
+Description-he.UTF-8: מחשב את המחיצות החדשות...
+Description-hr.UTF-8: Određujem nove particije...
+Description-hu.UTF-8: Új partíciók meghatározása...
+Description-id.UTF-8: Menghitung kapasitas partisi-partisi baru...
+Description-it.UTF-8: Calcolo delle nuove partizioni in corso
+Description-ja.UTF-8: 新しいパーティションを計算しています...
+Description-ko.UTF-8: 새로 만들 파티션을 계산하는 중입니다...
+Description-lt.UTF-8: Apskaičiuojami nauji disko skirsniai...
+Description-nb.UTF-8: Beregner de nye partisjonene ...
+Description-nl.UTF-8: Nieuwe partities worden berekend...
+Description-nn.UTF-8: Set opp dei nye partisjonane ...
+Description-no.UTF-8: Beregner de nye partisjonene ...
+Description-pl.UTF-8: Obliczanie nowych partycji...
+Description-pt.UTF-8: Processando as novas partições...
+Description-pt_BR.UTF-8: Computando as novas partições...
+Description-ro.UTF-8: Se calculează partiţiile noi...
+Description-ru.UTF-8: Просчёт новых разделов...
+Description-sk.UTF-8: Vypočítavajú sa nové oblasti...
+Description-sl.UTF-8: Računanje novih razdelkov...
+Description-sq.UTF-8: Duke llogaritur ndarjet e reja...
+Description-sv.UTF-8: Beräknar de nya partitionerna...
+Description-tr.UTF-8: Yeni bölümler hesaplanıyor...
+Description-uk.UTF-8: Обрахунок нових розділів...
+Description-zh_CN.UTF-8: 正在估算新分区...
+Description-zh_TW.UTF-8: 正在計算新的分割區...
+
+Template: partman-auto/no_recipe
+Type: error
+Description: Failed to partition the selected disk
+ This probably happened because the selected disk or free space is too
+ small to be automatically partitioned.
+Description-ar.UTF-8: فشلت تجزئة القرص المنتقى
+ حدث هذا على الأرجح لأن القرص المنتقى أو
+ المساحة المتاحة صغيران على أن تتم
+ تجزئتهما آليّاً.
+Description-bg.UTF-8: Грешка при разделяне на избрания диск
+ Това вероятно се е случило, защото
+ избраният диск или свободното
+ пространство са твърде малки, за да
+ бъдат автоматично разделени.
+Description-bs.UTF-8: Nemogu particionisati odabrani disk
+ Ovo se vjerovatno dogodilo zato što je odabrani disk ili slobodni prostor
+ premali da bi se automatski particionisao.
+Description-ca.UTF-8: No s'ha pogut particionar el disc seleccionat
+ Probablement això ha ocorregut perque el disc o espai lliure seleccionat
+ és massa petit per a ser particionat automàticament.
+Description-cs.UTF-8: Selhalo rozdělení vybraného disku
+ Možná se to stalo proto, že vybraný disk nebo volné místo je
+ příliš malé pro automatické rozdělení.
+Description-cy.UTF-8: Methwyd rhaniadu'r disg a ddewiswyd
+ Mae'n debyg digwyddodd hyn oherwydd mae'r disg neu ofod rhydd a ddewiswyd
+ yn rhy fach i'w rhaniadu'n awtomatig.
+Description-da.UTF-8: Kunne ikke partitionere den valgte disk
+ Dette skete sandsynligvis fordi den valgte disk eller den valgte frie
+ plads er for lille til automatisk partitionering.
+Description-de.UTF-8: Die gewählte Partition konnte nicht formatiert werden.
+ Vermutlich ist die ausgewählte Festplatte oder der ausgewählte freie
+ Speicher nicht groß genug, um automatisch partitioniert zu werden.
+Description-el.UTF-8: Αποτυχία κατάτμησης του επιλεγμένου δίσκου
+ Αυτό πιθανόν συνέβη διότι ο επιλεγμένος
+ δίσκος ή διαθέσιμος χώρος δεν έχουν το
+ απαραίτητο μέγεθος για αυτόματη
+ κατάτμηση.
+Description-es.UTF-8: Falló el particionado en el disco seleccionado:
+ Esto sucedió posiblemente porque o bien el disco escogido o bien el
+ espacio libre es demasiado pequeño para ser particionado de forma
+ automática.
+Description-eu.UTF-8: Huts aukeratutako diska partitzerakoan
+ Hau ziurrenik aukeratutako diska edo leku librea automatikoki partitzeko
+ txikiegia delako da.
+Description-fa.UTF-8: پارتیشن‌بندی دیسک انتخاب شده شکست خورد
+ این اتفاق احتمالا به خاطر این اتفاق
+ افتاده است که دیسک یا فضای انتخاب شده
+ برای پارتیشن شدن خودکار خیلی کوچک است.
+Description-fi.UTF-8: Valitun levyn osiointi ei onnistunut
+ Luultavimmin näin kävi koska valittu levy tai vapaa tila on liian pieni
+ automaattisesti osioitavaksi.
+Description-fr.UTF-8: Échec du partitionnement du disque choisi
+ Le disque ou l'espace disponible sont probablement trop petits pour que le
+ partitionnement automatique puisse fonctionner.
+Description-gl.UTF-8: Non se puido particionar o disco seleccionado
+ Seguramente isto ocorreu porque o disco ou espacio seleccionado é pequeno
+ de máis para o particionamento automático.
+Description-he.UTF-8: כשלון בחלוקת הדיסק הנבחר למחיצות
+ זה כנראה קרה כי בחרת דיסק או מקום פנוי
+ הקטנים מדי לחלוקה אוטומטית למחיצות
+Description-hr.UTF-8: Particioniranje izabranog diska neuspjelo
+ To se dogodilo vjerojatno zato što su izabrani disk ili slobodan prostor
+ premali za automatsko particioniranje.
+Description-hu.UTF-8: A kiválasztott lemez partícionálása sikertelenül zárult
+ Valószínű ok: a kiválasztott meghajtó vagy szabad hely túl kicsi az
+ automatikus partícionáláshoz.
+Description-id.UTF-8: Gagal memartisi hard disk yang telah dipilih
+ Hal ini terjadi mungkin disebabkan karena hard disk atau ruang kosong yang
+ dipilih terlalu kecil ukurannya untuk dapat dipartisi secara otomatis.
+Description-it.UTF-8: Partizionamento del disco selezionato fallito
+ Questo probabilmente è accaduto perché il disco selezionato o lo spazio
+ libero è troppo piccolo per essere partizionato automaticamente.
+Description-ja.UTF-8: 選択されたディスクのパーティショニングに失敗しました
+ これはおそらく、選択されたディスクまたは空き領域が自動的にパーティショニングするには小さすぎるために起きたのでしょう。
+Description-ko.UTF-8: 선택한 디스크를 파티션하는 데 실패했습니다
+ 선택한 드라이브나 남은 공간이 너무 작기 때문에 자동
+ 파티션이 실패했을 것입니다.
+Description-lt.UTF-8: Pasirinkto disko dalijimas nepavyko
+ Galbūt tai atsitiko todėl, kad pasirinktas diskas ar laisva vieta yra
+ per maži automatiniam dalijimui skirsniais.
+Description-nb.UTF-8: Klarte ikke å partisjonere den valgte harddisken
+ Dette skjedde sannsynligvis fordi den harddisken eller det området som
+ ble valgt er for lite(n) eller har for lite ledig plass til å bli
+ partisjonert automatisk.
+Description-nl.UTF-8: Indelen van de uitgekozen schijf is mislukt
+ Dit werd waarschijnlijk veroorzaakt doordat de geselecteerde schijf/vrije
+ ruimte te klein is voor de automatische indeling.
+Description-nn.UTF-8: Klarte ikkje partisjonera den valde disken
+ Dette skjedde truleg fordi den valde disken eller det ledige området er
+ for lite til å bli automatisk partisjonert.
+Description-no.UTF-8: Klarte ikke å partisjonere den valgte harddisken
+ Dette skjedde sannsynligvis fordi den harddisken eller det området som
+ ble valgt er for lite(n) eller har for lite ledig plass til å bli
+ partisjonert automatisk.
+Description-pl.UTF-8: Nie udało się spartycjonować wybranego dysku
+ Stało się to prawdopodobnie dlatego, że wybrany napęd lub wolna
+ przestrzeń jest zbyt mała do automatycznego partycjonowania.
+Description-pt.UTF-8: Falhou o particionamento do disco seleccionado
+ Isto provavelmente aconteceu porque o disco seleccionado ou o espaço
+ livre são muito pequenos para serem particionados automaticamente.
+Description-pt_BR.UTF-8: Falha ao particionar o disco selecionado
+ Isso provavelmente ocorreu devido ao disco ou o espaço livre selecionado
+ ser muito pequeno para ser particionado automaticamente.
+Description-ro.UTF-8: Eşec la partiţionarea discului selectat
+ Aceasta s-a întâmplat, probabil, deoarece discul sau spaţiul liber
+ selectat este prea mic pentru a fi partiţionat automat.
+Description-ru.UTF-8: Не удалось разбить выбранный диск
+ Это произошло скорее всего из-за того,
+ что на указанном вами жёстком диске или
+ в указанном свободном участке жёсткого
+ диска недостаточно места для
+ авто-разбивки.
+Description-sk.UTF-8: Pri rozdeľovaní zvoleného disku došlo k chybe
+ Možno sa to stalo kvôli tomu, že na zvolenom disku alebo voľnom
+ priestore je príliš málo miesta na automatické rozdelenie.
+Description-sl.UTF-8: Nisem uspel razdeliti izrabnega diska
+ Do napake je verjetno prišlo, ker je izbran pogon ali nezaseden prostor
+ premajhen za samodejno razdeljevanje.
+Description-sq.UTF-8: Dështoi në ndarjen e diskut të zgjedhur
+ Kjo ndoshta ndodhi ngaqë disku apo hapësira e zgjedhur është shumë e
+ vogël për tu ndarë automatikisht.
+Description-sv.UTF-8: Misslyckades att partitionera den valda hårddisken
+ Detta skedde förmodligen för att den valda hårddisken eller det lediga
+ utrymmet är för litet för att partitioneras automatiskt.
+Description-tr.UTF-8: Seçilen disk başarıyla bölümlenemedi
+ Bunun nedeni büyük ihtimalle otomatik bölümleme için seçilen disk
+ veya boş alanın çok küçük olmasıdır.
+Description-uk.UTF-8: Не вдалося розбити вибраний диск
+ Це сталося скоріше за все через те, що
+ вибраний диск або вільний простір
+ занадто малі для автоматичної розбивки.
+Description-zh_CN.UTF-8: 对所选磁盘分区失败
+ 可能是因为被选的驱动器或空闲空间太小，以至于无法进行自动分区。
+Description-zh_TW.UTF-8: 無法分割所選定的磁碟。
+ 發生原因或許是因為所指定的磁碟或未使用空間太小了，以至於無法進行自動磁碟分割。
+
+Template: partman-auto/autopartitioning_failed
+Type: error
+Description: Failed to partition the selected disk
+ This probably happened because there are too many (primary) partitions in
+ the partition table.
+Description-ar.UTF-8: فشلت تجزئة القرص المنتقى
+ حدث هذا على الأرجح بسبب وجود الكثير من
+ التّجزئات (الأوّليّة) في جدول التّجزئة.
+Description-bg.UTF-8: Грешка при разделяне на избрания диск
+ Вероятно причината е, че има твърде
+ много главни (primary) дялове в таблицата с
+ дяловете.
+Description-bs.UTF-8: Nemogu particionisati odabrani disk
+ Ovo se vjerovatno dogodilo zato što ima previše (primarnih) particija u
+ particionoj tabeli.
+Description-ca.UTF-8: No s'ha pogut particionar el disc seleccionat
+ Probablement això ha ocorregut perque hi ha massa particions (primàries)
+ en la taula de particions.
+Description-cs.UTF-8: Selhalo rozdělení vybraného disku
+ Možná se to stalo kvůli tomu, že v tabulce oblastí existuje příliš
+ mnoho (primárních) oblastí.
+Description-cy.UTF-8: Methwyd rhaniadu'r disg a ddewiswyd
+ Mae'n debyg digwyddodd hyn oherwydd mae gormod o rhaniadau (cynradd) yn y
+ tabl rhaniadau.
+Description-da.UTF-8: Kunne ikke partitionere den valgte disk
+ Dette skyldes sandsynligvis at der er for mange (primære) partitioner i
+ partitionstabellen.
+Description-de.UTF-8: Die gewählte Partition konnte nicht formatiert werden.
+ Vermutlich haben Sie zu viele (primäre) Partitionen in Ihrer
+ Partitionstabelle.
+Description-el.UTF-8: Αποτυχία κατάτμησης του επιλεγμένου δίσκου
+ Αυτό πιθανόν συνέβη διότι υπάρχουν
+ πολλά (πρωτεύοντα) τμήματα στον πίνακα
+ τμημάτων.
+Description-es.UTF-8: Falló el particionado en el disco seleccionado:
+ Esto sucedió posiblemente porque hay demasiadas particiones (primarias)
+ en la tabla de particiones.
+Description-eu.UTF-8: Huts aukeratutako diska partitzerakoan
+ Hau ziurrenik partizio taulan partizio (primario) geihegi daudelako da.
+Description-fa.UTF-8: پارتیشن‌بندی دیسک انتخاب شده شکست خورد
+ این اتفاق احتمالا به علت تعدد
+ پارتیشن‌ّای اولیه بر روی دیسک رخ داده
+ است.
+Description-fi.UTF-8: Valitun levyn osiointi ei onnistunut
+ Luultavimmin näin kävi koska levyn osiotaulussa on liian monta
+ (ensisijaista eli primary) osiota.
+Description-fr.UTF-8: Échec du partitionnement du disque choisi
+ Cet échec est probablement dû à un nombre trop important de partitions
+ primaires dans la table de partitions.
+Description-gl.UTF-8: Non se puido particionar o disco seleccionado
+ Seguramente isco ocorreu porque hai demasiadas particións (primarias) na
+ táboa de particións.
+Description-he.UTF-8: כשלון בחלוקת הדיסק הנבחר למחיצות
+ זה כנראה קרה כי יש יותר מידי מחיצות
+ (ראשיות) בטבלת המחיצות
+Description-hr.UTF-8: Particioniranje izabranog diska neuspjelo
+ To se dogodilo vjerojatno zato što ima previše (primarnih) particija u
+ particijskoj tablici.
+Description-hu.UTF-8: A kiválasztott lemez partícionálása sikertelenül zárult
+ Valószínű ok: a partíciós táblában túl sok (elsődleges)
+ partíció szerepel.
+Description-id.UTF-8: Gagal memartisi hard disk yang telah dipilih
+ Hal ini mungkin terjadi karena terlalu banyak partisi (primer) pada tabel
+ partisi.
+Description-it.UTF-8: Partizionamento del disco selezionato fallito
+ Questo probabilmente è accaduto perché ci sono troppe partizioni
+ primarie nella tabella delle partizioni.
+Description-ja.UTF-8: 選択されたディスクのパーティショニングに失敗しました
+ おそらく、多すぎる (基本)
+ パーティションがパーティションテーブルにあるために起きたのでしょう。
+Description-ko.UTF-8: 선택한 디스크를 파티션하는 데 실패했습니다
+ 파티션 테이블에 (프라이머리) 파티션이 너무 많기
+ 때문에 실패했을 것입니다.
+Description-lt.UTF-8: Pasirinkto disko dalijimas nepavyko
+ Galbūt tai atsitiko todėl, kad disko skirsnių lentelėje yra per daug
+ (pirminių) skirsnių.
+Description-nb.UTF-8: Klarte ikke å partisjonere den valgte harddisken
+ Dette skjedde sannsynligvis fordi det er for mange (primære) partisjoner
+ i partisjonstabellen.
+Description-nl.UTF-8: Indelen van de uitgekozen schijf is mislukt
+ De oorzaak hiervan is waarschijnlijk dat er teveel (primaire) partities
+ aanwezig zijn in de schijfindelingstabel.
+Description-nn.UTF-8: Klarte ikkje partisjonera den valde disken
+ Dette skjedde truleg fordi det er for mange (primære) partisjonar i
+ partisjonstabellen.
+Description-no.UTF-8: Klarte ikke å partisjonere den valgte harddisken
+ Dette skjedde sannsynligvis fordi det er for mange (primære) partisjoner
+ i partisjonstabellen.
+Description-pl.UTF-8: Nie udało się spartycjonować wybranego dysku
+ Prawdopodobnie stało się to dlatego, że jest za wiele
+ (podstawowych)partycji w tablicy partycji.
+Description-pt.UTF-8: Falhou o particionamento do disco seleccionado
+ Isto provavelmente aconteceu porque existem muitas partições
+ (primárias) na tabela de partições.
+Description-pt_BR.UTF-8: Falha ao particionar o disco selecionado
+ Isso provavelmente aconteceu devido a existirem muitas partições
+ (primárias) na tabela de partições.
+Description-ro.UTF-8: Eşec la partiţionarea discului selectat
+ Aceasta s-a întâmplat probabil deoarece sunt prea multe partiţii
+ (primare) în tabela de partiţii.
+Description-ru.UTF-8: Не удалось разбить выбранный диск
+ Это произошло скорее всего из-за того,
+ что в таблице разделов слишком много
+ (первичных) разделов.
+Description-sk.UTF-8: Pri rozdeľovaní zvoleného disku došlo k chybe
+ Možno sa to stalo kvôli tomu, že v tabuľke oblastí (partition table)
+ existuje príliš veľa (primárnych) oblastí.
+Description-sl.UTF-8: Nisem uspel razdeliti izrabnega diska
+ Do napake je verjetno prišlo, ker je preveč (primarnih) razdelkov v
+ tabeli razdelkov.
+Description-sq.UTF-8: Dështoi në ndarjen e diskut të zgjedhur
+ Kjo ndodhi ngaqë ndoshta ka shumë ndarje parësore në tabelën e
+ ndarjes.
+Description-sv.UTF-8: Misslyckades att partitionera den valda hårddisken
+ Detta skedde förmodligen för att det finns för många (primära)
+ partitioner i partitionstabellen.
+Description-tr.UTF-8: Seçilen disk başarıyla bölümlenemedi
+ Bunun nedeni büyük ihtimalle bölümleme tablosunda çok sayıda
+ (birincil) bölüm olmasıdır.
+Description-uk.UTF-8: Не вдалося розбити вибраний диск
+ Це сталося скоріше за все через те, що в
+ таблиці розділів занадто багато
+ (первинних) розділів.
+Description-zh_CN.UTF-8: 对所选磁盘分区失败
+ 可能是因为分区表中存在过多(主)分区。
+Description-zh_TW.UTF-8: 無法分割所選定的磁碟。
+ 這或許是因為在磁碟分割表中有過多的 (主) 分割區。
+
+Template: partman-auto/init_automatically_partition
+Type: select
+Choices: ${CHOICES}
+Description: Partitioning method:
+ This installer can guide you through partitioning a disk for use by
+ Ubuntu, or if you prefer, you can do it manually. If you do choose to
+ use the guided partitioning tool, you will still have a chance later to
+ see the results, customise it, and even undo the partitioning if you do
+ not like it.
+Description-bg.UTF-8: Начин за разделяне:
+ Този инсталатор може автоматично да
+ разделя диск за ползване от Ubuntu, но ако
+ предпочитате, можете да направите това и
+ ръчно. Ако изберете автоматичното
+ разделяне на устройство, ще можете
+ по-късно да видите резултата и да го
+ донастроите, включително и да се
+ откажете от предложеното разделяне.
+Description-ca.UTF-8: Mètode de particionat:
+ Aquest instal·lador pot guiar-vos a través del particionat d'un disc per
+ a que es puga usar amb Ubuntu, o, si ho preferiu, podeu fer-ho manualment.
+ Si decidiu utilitzar l'eina de particionat guiat, encara tindreu
+ l'oportunitat de veure els resultats, personalitzar-los i inclús desfer
+ el particionat si no vos agrada.
+Description-cy.UTF-8: Dull rhaniadu:
+ Gall y sefydlydd hwn eich arwain drwy rhaniadu disg er mwyn ei ddefnyddio
+ gyda Ubuntu yn awtomatig, neu os hoffech, gallwch ei wneud e â llaw. Os
+ ydych chi'n dewis defnyddio'r teclyn rhaniadu arweiniedig, cewch gyfle yn
+ hwyrach i weld y canlyniadau, eu addasu nhw, a hyd yn oed datwneud y
+ rhaniadu os nad ydych chi'n ei hoffi.
+Description-da.UTF-8: Partitioneringsmetode:
+ Dette installationsprogram kan guide dig gennem partitioneringen af en
+ disk til brug under Ubuntu. Du kan også vælge at gøre det selv. Hvis du
+ vælger det guidede partitioneringsværktøj, vil du stadig få chance for
+ senere at gennemse resultatet og tilrette det eller ligefrem fortryde
+ partitioneringen, hvis du ikke synes om den.
+Description-de.UTF-8: Wie soll partitioniert werden?
+ Dieser Installer beinhaltet einen Assistenten, der Ihnen helfen kann, Ihre
+ Festplatte für Ubuntu einzuteilen. Wenn Sie möchten, können Sie dies
+ auch von Hand tun. Wählen Sie den Assistenten, können Sie später die
+ Einteilung einsehen, anpassen oder die Partitionierung rückgängig
+ machen.
+Description-el.UTF-8: Μέθοδος κατάτμησης:
+ Το πρόγραμμα εγκατάστασης μπορεί να σας
+ οδηγήσει κατά την κατάτμηση ενός δίσκου
+ για χρήση στο Ubuntu, ή αν προτιμάτε
+ μπορείτε να τον κατατμήσετε
+ χειροκίνητα. Αν επιλέξετε τον οδηγό
+ κατάτμησης, και πάλι έχετε τη δυνατότητα
+ να δείτε τα αποτελέσματα της κατάτμησης,
+ να την παραμετροποιήσετε και ακόμη και
+ να επαναφέρετε το δίσκο στην
+ προηγούμενη κατάστασή του.
+Description-es.UTF-8: Método de particionado:
+ Este instalador puede guiarle en el particionado del disco para que la
+ utilice Ubuntu o, si lo desea, puede hacerlo de forma manual. Si escoge el
+ sistema de particionado guiado tendrá la oportunidad de ver los
+ resultados, adaptarlos e incluso deshacer el particionado si no le gusta.
+Description-eu.UTF-8: Partitze metodoa:
+ Instalatzaileak automatikoki Ubuntu erabiltzeko diska partitu dezake, edo
+ nahiago bazenu, zuk eskuz egin dezakezu.: Automatikoki egitea aukeratzen
+ baduzu emaitzak ikusi aldatu eta hala nahi izan ezkero aldatu edo
+ partitzea desegiteko aukera izango duzu.
+Description-fi.UTF-8: Levyn osiontitapa:
+ Asennin opastaa levyosioiden teossa Ubuntun käyttöön tai halutessasi
+ voit tehdä ne itse. Vaikka valitset opastetun levyosioiden teon, voit
+ silti myöhemmin nähtyäsi osiot, muokata niitä ja jopa perua osioinnin
+ jos et pidä siitä.
+Description-fr.UTF-8: Méthode de partitionnement :
+ Cet outil d'installation peut vous assister pour le partitionnement d'un
+ disque dans le but d'y installer Ubuntu. Vous pouvez également effectuer
+ ce partitionnement vous-même. Si vous choisissez le partitionnement
+ assisté, vous aurez la possibilité de vérifier les choix effectués, de
+ les personnaliser ou même de les abandonner s'ils ne vous conviennent
+ pas.
+Description-gl.UTF-8: Método de particionamento:
+ Este instalador pode guialo polo particionamento dun disco para empregar
+ Ubuntu, ou se o prefire, pode facelo manualmente. Se desexa empregar a
+ ferramenta de particionamento guiado ha ter despois unha oportunidade para
+ ver o resultado, persoalizalo e incluso desfacer o particionamento se non
+ lle gosta.
+Description-he.UTF-8: שיטה לחלוקה למחיצות:
+ המתקין יכול להדריך אותך בזמן החלוקה
+ למחיצות לשימוש של אובונטו. אם תעדיף, תוכל
+ לעשות זאת באופן ידני. אם תבחר להשתמש
+ באפשרות המודרכת, תוכל אחר כך לראות את
+ התוצאות, לשנות אותן ואף להחזיר אותן
+ לאחור, אם החלוקה לא נראית לך.
+Description-hr.UTF-8: Način particioniranja:
+ Program za instalaciju vas može automatski provesti kroz particioniranje
+ diskova za Ubuntu, ili to možete učiniti ručno. Ako uporabite
+ automatski alat, ipak ćete kasnije moći vidjeti rezultate, popraviti ih,
+ pa čak i poništiti ako vam ne odgovaraju.
+Description-hu.UTF-8: Partícionálási mód:
+ A telepítő segítséget nyújthat egy Ubuntunak szánt meghajtó
+ partícionálásában, de igény szerint ezt mindenféle segítség
+ nélkül sajátkezűleg is végezheti. Ha a telepítővel segített
+ partícionálást választja, utána akkor is lesz lehetősége az
+ eredmény megtekintésére, testreszabására, vagy (ellenérzések
+ esetén) akár visszavonására is.
+Description-id.UTF-8: Metode pemartisian:
+ Program instalasi ini dapat membimbing Anda memartisi hard disk untuk
+ digunakan oleh Ubuntu, atau bila Anda suka, Anda dapat melakukannya secara
+ manual. Jika Anda memilih alat pemartisian terpandu, Anda akan tetap
+ memiliki kesempatan di lain waktu untuk melihat hasilnya, menyesuaikan,
+ dan bahkan membatalkan partisi bila Anda tidak menyukai hasilnya.
+Description-it.UTF-8: Metodo di partizionamento:
+ Questo programma di installazione può guidare nel partizionare un disco
+ per usarlo con Ubuntu o, se si preferisce, si può procedere manualmente.
+ Se si sceglie di usare la procedura guidata, si potrà successivamente
+ vederne i risultati, adattarli alle proprie esigenze e anche annullare
+ l'operazione se non si è soddisfatti.
+Description-ja.UTF-8: パーティショニングの方法:
+ このインストーラは Ubuntu
+ で利用するディスクをパーティショニングするのをガイドし、望むなら手動でもできます。ガイドに従ったパーティショニングツールを使うことを選んでも、あとでその結果を見る機会があり、それをカスタマイズしたり、好ましくなければパーティショニングを元に戻したりすることもできます。
+Description-lt.UTF-8: Disko dalijimo metodas:
+ Disko dalijimą Ubuntu galite atlikti padedami šio įdiegiklio, arba
+ rankiniu būdu. Jei pasirinksite automatinį dalijimą, vėliau vistiek
+ turėsite galimybę matyti, keisti, ar atšaukti Jums nepatikusį
+ dalijimą.
+Description-nb.UTF-8: Partisjoneringsmetode:
+ Denne installereren kan lede deg gjennom partisjonering av en harddisk for
+ bruk av Ubuntu, eller du kan gjøre det manuelt hvis du vil. Hvis du
+ velger å bli ledet gjennom partisjoneringa, vil du likevel senere kunne
+ se på resultatet, endre på det, og til og med angre partisjoneringa hvis
+ du ikke er fornøyd.
+Description-nl.UTF-8: Schijfindelingsmethode:
+ Tenzij u verkiest om dit handmatig te doen zal het installatieproces u bij
+ de schijfindelingen begeleiden. Wanneer u de begeleide schijfindeling
+ kiest heeft u de mogelijkheid om de voorgestelde indeling te bekijken, aan
+ te passen, en - mocht het resultaat u niet helemaal bevallen - af te
+ slaan.
+Description-nn.UTF-8: Partisjoneringsmetode:
+ Dette installasjonsprogrammet kan leia deg gjennom partisjonering av ein
+ harddisk for bruk av Ubuntu, eller du kan gjera det manuellt viss du vil.
+ Viss du vel å bli leia gjennom partisjoneringa, vil du framleis ha høve
+ til seinare å sjå resultatet, endra på det og til og med angra
+ partisjoneringa viss du ikkje likar ho.
+Description-no.UTF-8: Partisjoneringsmetode:
+ Denne installereren kan lede deg gjennom partisjonering av en harddisk for
+ bruk av Ubuntu, eller du kan gjøre det manuelt hvis du vil. Hvis du
+ velger å bli ledet gjennom partisjoneringa, vil du likevel senere kunne
+ se på resultatet, endre på det, og til og med angre partisjoneringa hvis
+ du ikke er fornøyd.
+Description-pl.UTF-8: Sposób partycjonowania:
+ Instalator może przeprowadzić Cię przez proces partycjonowania dysku
+ dla Ubuntu lub jeśli chcesz możesz tego dokonać ręcznie. Jeśli
+ wybierzesz partycjonowanie z użyciem przewodnika, nadal będzie
+ możliwość obejrzenia rezultatów, dostosowania ich do swoich potrzeb
+ czy nawet cofnięcia partycjonowania jeśli nie będzie Ci odpowiadać.
+Description-pt.UTF-8: Método de particionamento:
+ Este instalador pode guia-lo através do particionamento de um disco para
+ utilizar com Ubuntu, ou se preferir, pode fazê-lo manualmente. Se
+ escolher utilizar a ferramenta de particionamento guiada, ainda terá a
+ oportunidade de mais tarde ver os resultados, altera-los, e mesmo voltar
+ atrás no particionamento se não gostar dele.
+Description-pt_BR.UTF-8: Método de particionamento :
+ Este instalador pode guiá-lo através do particionamento de um disco a
+ ser usado pelo Ubuntu ou, caso você prefira, você pode fazê-lo
+ manualmente. Caso você opte por ser guiado através do uso da ferramenta
+ de particionamento, você ainda terá uma chance de ver os resultados
+ posteriormente, modificá-los, e até mesmo desfazer o particionamento
+ caso não concorde com o mesmo.
+Description-ro.UTF-8: Metoda de partiţionare:
+ Acest instaler vă poate ghida pentru a vă ajuta să partiţionaţi un
+ disc pentru a fi utilizat de Ubuntu, sau, dacă preferaţi, se poate şi
+ manual. Dacă alegeţi să folosiţi unealta de ghidare, veţi putea, mai
+ târziu, vedea rezultatele, schimba partiţionarea, sau chiar să anulaţi
+ partiţionarea dacă nu vă place.
+Description-ru.UTF-8: Принцип разбивки:
+ Программа установки может показать вам,
+ как разбить диск на разделы для Ubuntu, либо
+ это можно сделать вручную. Даже если вы
+ выберете разбивку из программы
+ установки, то у вас все равно будет
+ возможность посмотреть её результаты,
+ подправить или отказаться от неё, если
+ вас что-то не устроит.
+Description-sk.UTF-8: Spôsob rozdeľovania:
+ Tento inštalačný program vás môže sprevádzať rozdeľovaním disku,
+ na ktorom chcete používať Ubuntu, no môžete to urobiť aj manuálne.
+ Pri zvolení sprevádzania rozdeľovaním máte stále možnosť pozrieť
+ si neskôr výsledok, upraviť rozdelenie a prípadne ho aj zrušiť, ak
+ sa vám nepozdáva.
+Description-sq.UTF-8: Mënyra e ndarjes:
+ Instaluesi mund të të udhëzojë në ndarjen e një disku për tu
+ përdorur nga Ubuntu, ose nëse dëshiron, mund ta ndash manualisht. Nëse
+ zgjedh ndarjen e ndihmësit, do kesh mundësinë të shikosh rezultatet
+ më vonë, ti rregullosh, ose edhe ti zhbësh ndarjet nëse nuk të
+ pëlqejnë.
+Description-sv.UTF-8: Partitioneringsmetod:
+ Detta installationsprogram kan guida dig igenom partitioneringen av en
+ hårddisk för användning med Ubuntu, eller så kan du göra det manuellt
+ om du föredrar det. Om du väljer att använda det guidande
+ partitioneringsverktyget så kommer du ändå senare att få en chans att
+ se resultatet, anpassa det, och till och med ångra partitioneringen om du
+ inte tycker om den.
+Description-tr.UTF-8: Bölümleme yöntemi:
+ Kurulum programı, Ubuntu tarafından kullanılacak bir diskin
+ bölümlenmesi sırasında size kılavuzluk edebilir veya işlemi elle de
+ yapabilirsiniz.  Bölümlemede kılavuzluk yapacak aracı kullanmayı
+ seçerseniz, daha sonra sonuçları görmek, özelleştirmek ve hatta
+ beğenmezseniz bölümlemeyi geri almak için size fırsat verilecektir.
+Description-uk.UTF-8: Метод розбивки:
+ Цей встановлювач може допомогти вам у
+ розбивці диску на розділи для
+ використання системою Ubuntu або, якщо
+ бажаєте, ви можете зробити це вручну.
+ Якщо ви виберете розбивку диску за
+ допомогою встановлювача, вам пізніше
+ буде надана можливість побачити
+ результати, змінити їх та навіть
+ відмінити розбивку, якщо результати вам
+ не сподобаються.
+Description-zh_CN.UTF-8: 分区方法：
+ 安装程序能够指导您对 Ubuntu
+ 将要使用的磁盘进行分区，如果您喜欢，也可以手动进行。如果选择了分区向导，稍后您还是有机会看到分区结果，并可以自定义修改它。如果您不喜欢这个结果，也可以撤消分区动作。
+Description-zh_TW.UTF-8: 磁碟分割方式：
+ 安裝程式會在分割 Ubuntu
+ 所使用的磁碟的過程中進行引導﹔或者依您喜好，您也可以選擇手動進行。如果您選擇了使用磁碟分割的引導程式，在稍後您將可以看到分割結果。如果您不喜歡的話，您可以加以修改，或甚至取消這些分割動作。
+
+Template: partman-auto/disk
+Type: string
+Description: device to partition, in either devfs or non format
+
+Template: partman-auto/automatically_partition
+Type: select
+Choices: ${CHOICES}
+Description: Disk space to partition:
+Description-ar.UTF-8: مساحة القرص المطلوب تجزئتها:
+Description-bg.UTF-8: Свободно място за разделяне:
+Description-bs.UTF-8: Prostor na disku za particionisanje:
+Description-ca.UTF-8: Espai en disc a particionar:
+Description-cs.UTF-8: Diskový prostor pro rozdělení:
+Description-cy.UTF-8: Gofod disg i'w rhaniadu:
+Description-da.UTF-8: Diskplads at partitionere:
+Description-de.UTF-8: Diesen Festplattenspeicher partitionieren:
+Description-el.UTF-8: Χώρος στο δίσκο προς κατάτμηση:
+Description-es.UTF-8: Espacio en disco a particionar:
+Description-eu.UTF-8: Partitu beharreko diska lekua:
+Description-fi.UTF-8: Osioitava levyalue:
+Description-fr.UTF-8: Espace disque à partitionner :
+Description-gl.UTF-8: Espacio de disco a particionar:
+Description-he.UTF-8: שטח דיסק לחלוקה למחיצות:
+Description-hr.UTF-8: Diskovni prostor za particioniranje:
+Description-hu.UTF-8: Partícionálandó lemezterület:
+Description-id.UTF-8: Ruang hard disk yang ingin dipartisi:
+Description-it.UTF-8: Spazio disco da partizionare:
+Description-ja.UTF-8: パーティショニングするディスク領域:
+Description-ko.UTF-8: 파티션 나눌 디스크 공간:
+Description-lt.UTF-8: Diskas vieta dalijimui skirsniais:
+Description-lv.UTF-8: Diska vieta, ko particionēt:
+Description-nb.UTF-8: Diskområdet som skal partisjoneres:
+Description-nl.UTF-8: In te delen schijfruimte:
+Description-nn.UTF-8: Diskområde som skal partisjonerast:
+Description-no.UTF-8: Diskområdet som skal partisjoneres:
+Description-pl.UTF-8: Przestrzeń dyskowa do partycjonowania:
+Description-pt.UTF-8: Espaço do disco a particionar:
+Description-pt_BR.UTF-8: Espaço em disco a ser particionado :
+Description-ro.UTF-8: Spaţiul de pe disc de partiţionat:
+Description-ru.UTF-8: Выберите разбиваемое дисковое пространство:
+Description-sk.UTF-8: Diskový priestor na rozdelenie:
+Description-sl.UTF-8: Prostor na disku za radeljevanje:
+Description-sq.UTF-8: Hapësira e diskut për tu ndarë:
+Description-sv.UTF-8: Diskutrymme som ska partitioneras:
+Description-tr.UTF-8: Bölümlenecek disk alanı:
+Description-uk.UTF-8: Дисковий простір для розбивки:
+Description-zh_CN.UTF-8: 要分区的磁盘空间：
+Description-zh_TW.UTF-8: 要進行分割的磁碟空間：
+
+Template: partman-auto/choose_recipe
+Type: select
+Choices: ${CHOICES}
+Description: Partitioning scheme:
+ The disk can be partitioned using one of several different schemes.
+ If you are unsure, choose the first one.
+Description-ar.UTF-8: خطّة التجزئة:
+ يمكن تجزئة القرص باستخدام إحدى عدّة خططٍ
+ مختلفة. إن لم تكن واثقاً فاختر الأولى.
+Description-bg.UTF-8: Схема за разделяне:
+ Дискът може да бъде разделен по един от
+ многото начини. Ако не сте сигурни,
+ изберете първия.
+Description-bs.UTF-8: Particiona šema:
+ Ovaj disk se može particionisati koristeći jednu od više različitih
+ šema. Ako niste sigurni, odaberite prvu.
+Description-ca.UTF-8: Esquema de particionat:
+ El disc es pot particionar utilitzant diversos esquemes. Si no esteu
+ segur, seleccioneu el primer.
+Description-cs.UTF-8: Způsob rozdělení:
+ Disk můžete rozdělit různými způsoby. Pokud si nejste jisti, vyberte
+ první z nich.
+Description-cy.UTF-8: Cynllun rhaniadu:
+ Gellir rhaniadu'r disg gan ddefnyddio un o nifer o gynlluniau gwahanol. Os
+ nad ydych chi'n siwr, dewiswch yr un cyntaf.
+Description-da.UTF-8: Partitioneringsmetode:
+ Disken kan partitioneres på flere måder. Hvis du er usikker, så vælg
+ den første.
+Description-de.UTF-8: Partitionsschema:
+ Es gibt verschieden Möglichkeiten, ein Laufwerk zu partitionieren. Wenn
+ Sie sich nicht sicher sind, wählen Sie den ersten Eintrag.
+Description-el.UTF-8: Σχήμα κατάτμησης:
+ Είναι δυνατή η επιλογή διαφορετικών
+ μεθόδων για την κατάτμηση αυτού του
+ δίσκου. Αν δεν είστε βέβαιοι, επιλέξτε
+ την πρώτη.
+Description-es.UTF-8: Esquema de particionado:
+ Esta disco puede ser particionado siguiendo uno o varios de los diferentes
+ esquemas disponibles. Si no está seguro, escoja el primero de ellos.
+Description-eu.UTF-8: Partizio eskema:
+ Gailu hau eskura dauden eskemetako batenbatekin automatikoki partitu
+ daiteke. Ziur ez bazaude lehenengoa aukeratu.
+Description-fa.UTF-8: شکار پارتیشن‌بندی:
+ این دیسک میتواند با استفاده از چند شمای
+ مختلف پارتیشن‌بندی گردد. اگر در این مورد
+ اطلاعاتی ندارید گزینه‌ی اول را انتخاب
+ کنید.
+Description-fi.UTF-8: Levyn osiontimalli:
+ Levyn osiot voidaan tehdä käyttäen tarjolla olevia osiointimalleja. Jos
+ olet epävarma, valitse ensimmäinen.
+Description-fr.UTF-8: Schéma de partitionnement :
+ Le disque peut être partitionné selon plusieurs schémas possibles. Dans
+ le doute, choisissez celui qui est proposé en premier.
+Description-gl.UTF-8: Esquema de particionamento:
+ O disco pódese particionar empregando un esquema dos fornecidos. Se non
+ está seguro, escolla o primeiro.
+Description-he.UTF-8: סכמת חלוקה למחיצות:
+ הדיסק יכול להיות מחולק למחיצות בעזרת כמה
+ סכמות. אם אינך בטוח, השתמש בראשונה.
+Description-hr.UTF-8: Shema particioniranja:
+ Disk možete particionirati rabeći jednu ili više različitih shema. Ako
+ ste nesigurni, izaberite prvu.
+Description-hu.UTF-8: Partícionálási mód:
+ Többfajta partícionálási mód közül választhat. Ha bizonytalan a
+ döntésben, válassza a legelsőt.
+Description-id.UTF-8: Pola partisi:
+ Hard disk dapat dipartisi dengan satu dari beberapa pola yang berbeda.
+ Jika Anda tidak yakin, pilih yang pertama.
+Description-it.UTF-8: Schema di partizionamento:
+ Il disco può essere partizionato in uno dei diversi schemi. Se insicuri
+ scegliere il primo.
+Description-ja.UTF-8: パーティショニング機構:
+ ディスクは、いくつかの異なる機構のうちの 1
+ つでパーティショニングされます。よくわからなければ、最初の選択肢を選んでください。
+Description-ko.UTF-8: 파티션 나누기 방법:
+ 여러가지 방법중의 하나로 드라이브를 파티션을 나눌
+ 수 있습니다. 잘 모르겠으면 첫번째를 선택하십시오.
+Description-lt.UTF-8: Disko dalijimo schema:
+ Diskas gali būti dalijamas naudojant vieną iš keleto skirtingų
+ schemų. Jei abejojate, pasirinkite pirmąją.
+Description-nb.UTF-8: Partisjoneringsoppsett:
+ Lagringsenheten kan partisjoneres på en av flere forhåndsvalgte måter.
+ Hvis du er usikker, velg den første.
+Description-nl.UTF-8: Schijfindelingsschema:
+ De schijf kan op verschillende manieren worden ingedeeld. Bij twijfel
+ kiest u best de eerste manier.
+Description-nn.UTF-8: Partisjoneringsoppsett:
+ Disken kan partisjonerast på ein av fleire førehandsdefinerte måtar.
+ Viss du ikkje er sikker, vel den første.
+Description-no.UTF-8: Partisjoneringsoppsett:
+ Lagringsenheten kan partisjoneres på en av flere forhåndsvalgte måter.
+ Hvis du er usikker, velg den første.
+Description-pl.UTF-8: Metoda partycjonowania:
+ Napęd może zostać spartycjonowany na jeden z wielu różnych
+ schematów. Wybierz pierwszy jeśli nie jesteś pewien.
+Description-pt.UTF-8: Esquema de particionamento:
+ O disco pode ser particionado usando um de vários esquemas diferentes. Se
+ não tiver a certeza, escolha o primeiro.
+Description-pt_BR.UTF-8: Esquema de particionamento :
+ O disco pode ser particionado usando um dentre diversos esquemas
+ diferentes. Caso você não tenha certeza, escolha o primeiro esquema.
+Description-ro.UTF-8: Modelul de partiţionare:
+ Discul poate fi partiţionat după unul din următoarele modele. Dacă nu
+ sunteţi sigur, alegeţi prima variantă.
+Description-ru.UTF-8: Принцип разбивки:
+ Диск может быть разбит одним из
+ нескольких методов. Если вы не уверены,
+ выбирайте первый из них.
+Description-sk.UTF-8: Spôsob rozdeľovania:
+ Na rozdelenie disku existuje viacero rôznych spôsobov. Ak sa neviete
+ rozhodnúť, zvoľte si prvý spôsob.
+Description-sl.UTF-8: Shema razdeljevanja:
+ Pogon lahko razdelite z uporabo ene izmed večih shem. Če niste
+ prepričani, katera je najprimernejša, izberite prvo.
+Description-sq.UTF-8: Skema e ndarjes:
+ Disku mund të ndahet duke përdorur një nga skemat e ndryshme ndarëse.
+ Nëse nuk je i sigurtë, zgjidh të parën.
+Description-sv.UTF-8: Partitioneringsplan:
+ Hårddisken kan partitioneras på flera olika sätt. Välj det första
+ sättet om du är osäker.
+Description-tr.UTF-8: Bölümleme yöntemi:
+ Disk birkaç farklı şekilde bölümlendirilebilir.  Emin değilseniz,
+ birinci yöntemi seçin.
+Description-uk.UTF-8: Принцип розбивки:
+ Диск може бути розбитий за однією з
+ декількох різних схем. Якщо ви не
+ впевнені, то виберіть першу.
+Description-zh_CN.UTF-8: 分区方案：
+ 对此磁盘可以使用多种不同的方案进行分区。如果您不太确定，请选择第一方案。
+Description-zh_TW.UTF-8: 磁碟分割方式：
+ 該磁碟可以使用以下數種不同方式之一來進行分割。如果您不確定，請選擇第一個。
+
+Template: partman-auto/unusable_space
+Type: error
+Description: Unusable free space
+ Partitioning failed because the chosen free space may not be used.
+ There are probably too many (primary) partitions in the partition table.
+Description-ar.UTF-8: مساحة حرّة غير قابلة للاستخدام
+ فشلت التّجزئة لأن المساحة المتاحة
+ المحدّدة لا يمكن استخدامها. هناك على
+ الأرجح الكثير من التّجزئات (الأوّليّة)
+ في جدول التّجزئة.
+Description-bg.UTF-8: Неизползваемо свободно пространство
+ Автоматичното разделяне се провали,
+ защото избраното свободно пространство
+ не може да бъде използвано. Вероятно има
+ твърде много главни (primary) дялове в
+ таблицата с дяловете.
+Description-bs.UTF-8: Iskoristivi slobodni prostor
+ Particionisanje nije uspjelo zato što se izabrani slobodni prostor ne
+ može koristiti.  Vjerovatno ima previše (primarnih) particija u
+ particionoj tabeli.
+Description-ca.UTF-8: Espai lliure no utilitzable
+ El particionat ha fallat perque l'espai lliure seleccionat no es pot
+ utilitzar. Probablement hi ha massa particions (primàries) en la taula de
+ particions.
+Description-cs.UTF-8: Nepoužitelné volné místo
+ Rozdělování selhalo, protože zvolené volné místo se nedá použít.
+ V tabulce oblastí možná existuje příliš mnoho (primárních)
+ oblastí.
+Description-cy.UTF-8: Gofod rhydd ni ellir defnyddio
+ Methodd rhaniadu oherwydd ni ellir defnyddio'r gofod rhydd a ddewiswyd.
+ Mwy na thebyg, mae gormod o rhaniadau (cynradd) yn y tabl rhaniadau.
+Description-da.UTF-8: Ubrugelig fri plads
+ Partitioneringen mislykkedes, da den valgte frie plads ikke kan bruges.
+ Der er sandsynligvis for mange (primære) partitioner i
+ partitionstabellen.
+Description-de.UTF-8: Unbrauchbarer, freier Speicher
+ Die Partitionierung schlug fehl, da der ausgewählte freie Speicher nicht
+ genutzt werden kann. Vermutlich befinden sich zu viele (primäre)
+ Partitionen in der Partitionstabelle.
+Description-el.UTF-8: Μη χρησιμοποιήσιμος διαθέσιμος χώρος
+ Η κατάτμηση απέτυχε διότι ο επιλεγμένος
+ διαθέσιμος χώρος δε μπορεί να
+ χρησιμοποιηθεί.  Πιθανώς υπάρχουν πολλά
+ (πρωτεύοντα) τμήματα στον πίνακα
+ τμημάτων.
+Description-es.UTF-8: Espacio libre no utilizado
+ Falló el particionado porque el espacio libre escogido no puede ser
+ utilizado. Probablemente haya demasiadas particiones (primarias) en la
+ tabla de particiones.
+Description-eu.UTF-8: Erbiligabeko leku librea
+ Aukeratutako leku libre ezin denez erabili partitze automatikoak huts egin
+ du. Ziurrenik partizio (primario) geihegi daude partizio taulan.
+Description-fa.UTF-8: فضای خالی غیر قابل استفاده
+ عملیات پارتیشن‌بندی شکست خورد. زیرا
+ فضای خالی انتخاب شده قابل استفاده نیست.
+ این مشکل احتمالا به خاطر تعدد پارتیشنها
+ (ی احتمالا ولیه) بر روی دیسک است.
+Description-fi.UTF-8: Käyttökelvotonta vapaata tilaa
+ Levyn osiointi epäonnistui koska valittua vapaata tilaa ei voi
+ käyttää. Levyn osiotaulussa on luultavasti liian monta (ensisijaista)
+ osiota.
+Description-fr.UTF-8: Espace libre inutilisable
+ Le partitionnement a échoué car l'espace libre choisi ne peut pas être
+ utilisé. Il existe probablement trop de partitions primaires dans la
+ table de partitions.
+Description-gl.UTF-8: Espacio libre non utilizable
+ Non se puido particionar porque non se pode empregar o espacio libre
+ seleccionado. Probablemente haxa demasiadas particións (primarias) na
+ táboa de particións.
+Description-he.UTF-8: מקום פנוי לא שמיש
+ כשלון בחלוקה למחיצות מאחר והמקום הפנוי
+ לא ניתן לשימוש. כנראה שיש יותר מידי
+ מחיצות (ראשיות) בטבלת המחיצות.
+Description-hr.UTF-8: Neuporabljiv prostor
+ Particioniranje nije uspjelo jer izabrani slobodni prostor nije moguće
+ koristiti. Vjerojatno ima previše (primarnih) particija u particijskoj
+ tablici.
+Description-hu.UTF-8: Felhasználhatatlan szabad hely
+ A partícionálás nem járt sikerrel, mert a kiválasztott szabad hely
+ nem felhasználható. A partíciós táblában valószínűleg túl sok
+ (elsődleges) partíció szerepel.
+Description-id.UTF-8: Ruang kosong tidak dapat dipakai
+ Proses pemartisian gagal karena karena ruang kosong yang dipilih tidak
+ dapat digunakan. Mungkin terlalu banyak partisi (primer) pada tabel
+ partisi.
+Description-it.UTF-8: Spazio libero inutilizzabile
+ Il partizionamento è fallito perché lo spazio libero scelto non può
+ essere usato. Ci sono probabilmente troppe partizioni (primarie) nella
+ tabella delle partizioni.
+Description-ja.UTF-8: 空き領域を利用できません
+ 選択された空き領域が利用できなかったため、パーティショニングに失敗しました。おそらく、多すぎる
+ (基本)
+ パーティションがパーティションテーブルにあるために起きたのでしょう。
+Description-ko.UTF-8: 남은 공간을 사용할 수 없습니다
+ 선택한 남은 공간을 사용할 수 없어서 파티션 나누기에
+ 실패했습니다.  파티션 테이블에 (프라이머리) 파티션이
+ 너무 많기 때문에 실패했을 것입니다.
+Description-lt.UTF-8: Netinkama laisva vieta
+ Disko dalijimas nepavyko, nes pasirinkta laisva vieta negali būti
+ panaudota. Galbūt disko skirsnių lentelėje yra per daug (pirminių)
+ skirsnių.
+Description-nb.UTF-8: Kan ikke bruke det ledige området
+ Klarte ikke å partisjonere automatisk fordi det ledige området ikke kan
+ brukes. Det er trolig for mange (primære) partisjoner i
+ partisjonstabellen.
+Description-nl.UTF-8: Onbruikbare vrije ruimte
+ Schijfindeling is mislukt omdat de gekozen vrije ruimte niet gebruikt kan
+ worden. Waarschijnlijk zijn er teveel (primaire) partities in de
+ schijfindelingstabel.
+Description-nn.UTF-8: Ikkje brukbart ledig område
+ Klarte ikkje partisjonera automatisk fordi det ledige området ikkje kan
+ brukast. Det er truleg for mange (primære) partisjonar i
+ partisjonstabellen.
+Description-no.UTF-8: Kan ikke bruke det ledige området
+ Klarte ikke å partisjonere automatisk fordi det ledige området ikke kan
+ brukes. Det er trolig for mange (primære) partisjoner i
+ partisjonstabellen.
+Description-pl.UTF-8: Nieprzydatna wolna przestrzeń
+ Partycjonowanie z użyciem kreatora nie powiodło się, ponieważ wolna
+ przestrzeń nie może być wykorzystana. Prawdopodobnie posiadasz za dużo
+ (podstawowych) partycji w tablicy partycji.
+Description-pt.UTF-8: Espaço livre não utilizável
+ O particionamento falhou o particionamento porque o espaço livre
+ escolhido não pode ser utilizado. Provavelmente existem muitas
+ partições (primárias) na tabela de partições.
+Description-pt_BR.UTF-8: Espaço livre não utilizável
+ O particionamento falhou devido ao espaço livre escolhido não poder ser
+ usado. Provavelmente existem muitas partições (primárias) na tabela de
+ partições.
+Description-ro.UTF-8: Spaţiu liber inutilizabil
+ Partiţionare a eşuat deoarece spaţiul liber ales nu poate fi utilizat.
+ Probabil că sunt prea multe partiţii (primare) în tabela de partiţii.
+Description-ru.UTF-8: Непригодное свободное место
+ Автоматическая разбивка не удалась,
+ поскольку не получилось
+ воспользоваться указанным свободным
+ местом. Скорее всего, в таблице разделов
+ слишком много (первичных) разделов.
+Description-sk.UTF-8: Nepoužiteľné voľné miesto
+ Sprievodca pri rozdeľovaní zlyhal kvôli nepoužiteľnosti voľného
+ miesta. V tabuľke oblastí asi existuje príliš veľa (primárnych)
+ oblastí.
+Description-sl.UTF-8: Neuporaben nezaseden prostor
+ Razdeljevanje ni uspelo, ker izbran nezaseden prostor ni uporaben. 
+ Verjetno je preveč (primarnih) razdelkov v tabeli razdelkov.
+Description-sq.UTF-8: Hapësirë e lirë e papërdorur
+ Ndarja dështoi ngaqë hapësira e lirë e zgjedhur nuk mund të
+ përdoret. Ndoshta ka shumë ndarje (parësore) në tabelën e ndarjeve.
+Description-sv.UTF-8: Oanvändbart ledigt utrymme
+ Partitioneringen misslyckades eftersom det valda lediga utrymmet inte kan
+ användas. Det finns förmodligen för många (primära) partitioner i
+ partitionstabellen.
+Description-tr.UTF-8: Kullanılamayan boş alan
+ Seçtiğiniz boş alan kullanılamaz durumda olabileceğinden bölümleme
+ işlemi başarısızlıkla sonuçlandı.  Muhtemelen bölümleme
+ tablosunda çok sayıda (birincil) bölüm bulunuyor.
+Description-uk.UTF-8: Непридатний вільний простір
+ Розбивка не вдалася, оскільки вибраний
+ вільний простір не може бути
+ використаний. Можливо, в таблиці
+ розділів занадто багато (первинних)
+ розділів.
+Description-zh_CN.UTF-8: 不可用的空闲空间
+ 分区失败的原因是无法使用被选的空闲空间。分区表中可能存在过多(主)分区。
+Description-zh_TW.UTF-8: 無法使用的未使用空間
+ 也許是因為所指定的未使用空間無法使用，以致於無法分割該磁碟。在磁碟分割表中可能有過多的
+ (主) 分割區。
+
+Template: partman-auto/expert_recipe_file
+Type: string
+Description: file to load for expert recipe
+
+Template: partman-auto/expert_recipe
+Type: string
+Description: expert recipe content
+
+Template: partman-auto/text/automatically_partition
+Type: text
+Description: Guided partitioning
+Description-ar.UTF-8: تجزئة موجّهة
+Description-bg.UTF-8: Автоматично разделяне
+Description-bs.UTF-8: Vodić za particionisanje
+Description-ca.UTF-8: Particionat guiat
+Description-cs.UTF-8: Asistované rozdělení
+Description-cy.UTF-8: Rhaniadu arweiniedig
+Description-da.UTF-8: Guidet partitionering
+Description-de.UTF-8: Geführte Partitionierung
+Description-el.UTF-8: Οδηγός κατάτμησης
+Description-es.UTF-8: Particionado guiado
+Description-eu.UTF-8: Partitze automatikoa
+Description-fa.UTF-8: پارتیشن‌بندی راهبری شده
+Description-fi.UTF-8: Opastettu levyosioiden teko
+Description-fr.UTF-8: Partitionnement assisté
+Description-gl.UTF-8: Particionamento guiado
+Description-he.UTF-8: חלוקה מודרכת למחיצות
+Description-hr.UTF-8: Automatsko particioniranje
+Description-hu.UTF-8: Telepítővel segített partícionálás
+Description-id.UTF-8: Pemartisian terpandu
+Description-it.UTF-8: Partizionamento guidato
+Description-ja.UTF-8: ガイドによるパーティショニング
+Description-ko.UTF-8: 단계에 따라 파티션
+Description-lt.UTF-8: Vadovaujantis disko dalijimas
+Description-lv.UTF-8: Vadīta particionēšana
+Description-nb.UTF-8: Partisjonering med veiledning
+Description-nl.UTF-8: Begeleide schijfindeling
+Description-nn.UTF-8: Partisjonering med rettleiing
+Description-no.UTF-8: Partisjonering med veiledning
+Description-pl.UTF-8: Partycjonowanie z przewodnikiem
+Description-pt.UTF-8: Particionamento guiado
+Description-pt_BR.UTF-8: Particionamento assistido
+Description-ro.UTF-8: Partiţionare ghidată
+Description-ru.UTF-8: Автоматическая разбивка
+Description-sk.UTF-8: Sprievodca rozdeľovaním
+Description-sl.UTF-8: Vodeno razdeljevanje
+Description-sq.UTF-8: Ndarje e udhëzuar
+Description-sv.UTF-8: Guidad partitionering
+Description-tr.UTF-8: Bölümleme yardımcısını kullanarak bölümle
+Description-uk.UTF-8: Розбивка за допомогою встановлювача
+Description-zh_CN.UTF-8: 分区向导
+Description-zh_TW.UTF-8: 磁碟分割導引
+
+Template: partman-auto/text/use_biggest_free
+Type: text
+Description: Use the largest continuous free space
+Description-ar.UTF-8: استخدام أكبر مساحة متاحة متواصلة
+Description-bg.UTF-8: Използване на най-голямото непрекъснато свободно пространство
+Description-bs.UTF-8: Koristiti najveći neprekidni slobodni prostor
+Description-ca.UTF-8: Utilitza l'espai lliure continu més gran
+Description-cs.UTF-8: Použít největší spojité volné místo
+Description-cy.UTF-8: Defnyddio'r gofod rhydd parhaol mwyaf
+Description-da.UTF-8: Brug den største sammenhængende fri plads
+Description-de.UTF-8: Größten, ununterbrochenen freien Speicher benutzen
+Description-el.UTF-8: Χρησιμοποίησε τον μεγαλύτερο συνεχές ελεύθερο χώρο
+Description-es.UTF-8: Utilizar el espacio libre contíguo más grande
+Description-eu.UTF-8: Erabili alboko leku libre handiena
+Description-fi.UTF-8: Käytä suurinta yhtenäistä vapaata tilaa
+Description-fr.UTF-8: Utiliser le plus grand espace disponible possible
+Description-gl.UTF-8: Empregar o espacio libre contiguo máis grande
+Description-he.UTF-8: השתמש בשטח הדיסק הפנוי הרציף הכי גדול
+Description-hr.UTF-8: Iskoristi najveći cjeloviti slobodan prostor
+Description-hu.UTF-8: Legnagyobb összefüggő szabad hely felhasználása
+Description-id.UTF-8: Menggunakan ruang kosong paling besar
+Description-it.UTF-8: Usare il più ampio spazio contiguo disponibile.
+Description-ja.UTF-8: 最大の連続空き領域を使う
+Description-ko.UTF-8: 가장 큰 연속된 공간 사용
+Description-lt.UTF-8: Naudoti didžiausią ištisinę laisvą vietą
+Description-nb.UTF-8: Bruk området med størst sammenhengende ledig plass
+Description-nl.UTF-8: Grootste aaneensluitende vrije ruimte gebruiken
+Description-nn.UTF-8: Bruk området som har mest samanhengande ledig plass
+Description-no.UTF-8: Bruk området med størst sammenhengende ledig plass
+Description-pl.UTF-8: Użyj największej, ciągłej, wolnej przestrzeni
+Description-pt.UTF-8: Usar o maior espaço livre contínuo
+Description-pt_BR.UTF-8: Usar o maior espaço livre contínuo
+Description-ro.UTF-8: Utilizează cel mai mare spaţiu liber continuu
+Description-ru.UTF-8: Использовать самое большое непрерывное свободное место
+Description-sk.UTF-8: Použiť najväčšie súvislé voľné miesto
+Description-sl.UTF-8: Uporabi največji neprekinjen nezaseden prostor
+Description-sq.UTF-8: Përdor hapësirën e lirë më të madhe vijuese
+Description-sv.UTF-8: Använd det största oavbrutna lediga utrymmet
+Description-tr.UTF-8: En büyük kesintisiz boş alanı kullan
+Description-uk.UTF-8: Використати найбільший послідовний шматок вільного простору
+Description-zh_CN.UTF-8: 使用最大的连续空闲空间
+Description-zh_TW.UTF-8: 使用最大的連續未使用空間
+
+Template: partman-auto/text/use_device
+Type: text
+Description: Erase entire disk: ${DEVICE}
+Description-ar.UTF-8: مسح القرص بكامله: ${DEVICE}
+Description-bg.UTF-8: Изтриване на цял диск: ${DEVICE}
+Description-bs.UTF-8: Obrisati cijeli disk: ${DEVICE}
+Description-ca.UTF-8: Esborra el disc sencer: ${DEVICE}
+Description-cs.UTF-8: Smazat celý disk: ${DEVICE}
+Description-cy.UTF-8: Dileu'r disg cyfan: ${DEVICE}
+Description-da.UTF-8: Slet hele denne disk: ${DEVICE}
+Description-de.UTF-8: Gesamtes Laufwerk löschen: ${DEVICE}
+Description-el.UTF-8: Χρήση ολόκληρου του δίσκου: ${DEVICE}
+Description-es.UTF-8: Borrar el disco completo: ${DEVICE}
+Description-eu.UTF-8: Ezabatu gailu osoa: ${DEVICE}
+Description-fa.UTF-8: پاک کردن کل دیسک : ${DEVICE}
+Description-fi.UTF-8: Tyhjennä koko levy: ${DEVICE}
+Description-fr.UTF-8: Utiliser intégralement le disque ${DEVICE}
+Description-gl.UTF-8: Borrar todo o disco: ${DEVICE}
+Description-he.UTF-8: מחק את כל הדיסק: ${DEVICE}
+Description-hr.UTF-8: Obriši cijeli disk: ${DEVICE}
+Description-hu.UTF-8: Egész lemez törlése: ${DEVICE}
+Description-id.UTF-8: Hapus seluruh hard disk: ${DEVICE}
+Description-it.UTF-8: Cancellare l'intero disco: ${DEVICE}
+Description-ja.UTF-8: ディスク全体を消去する: ${DEVICE}
+Description-ko.UTF-8: 전체 드라이브 지우기: ${DEVICE}
+Description-lt.UTF-8: Ištrinti visą diską: ${DEVICE}
+Description-nb.UTF-8: Slett hele harddisken: ${DEVICE}
+Description-nl.UTF-8: Volledige schijf wissen: ${DEVICE}
+Description-nn.UTF-8: Slett heile disken: ${DEVICE}
+Description-no.UTF-8: Slett hele harddisken: ${DEVICE}
+Description-pl.UTF-8: Wyczyść cały dysk: ${DEVICE}
+Description-pt.UTF-8: Apagar o disco inteiro: ${DEVICE}
+Description-pt_BR.UTF-8: Apagar todo o disco : ${DEVICE}
+Description-ro.UTF-8: Utilizează întregul disc ${DEVICE}
+Description-ru.UTF-8: Стереть весь диск: ${DEVICE}
+Description-sk.UTF-8: Zmazať celý disk: ${DEVICE}
+Description-sl.UTF-8: Izbriši celoten pogon: ${DEVICE}
+Description-sq.UTF-8: Fshi të gjithë diskun: ${DEVICE}
+Description-sv.UTF-8: Töm hela hårddisken: ${DEVICE}
+Description-tr.UTF-8: Tüm diski sil: ${DEVICE}
+Description-uk.UTF-8: Стерти весь диск: ${DEVICE}
+Description-zh_CN.UTF-8: 清空整个磁盘：${DEVICE}
+Description-zh_TW.UTF-8: 刪除整個磁碟：${DEVICE}
+
+Template: partman-auto/text/custom_partitioning
+Type: text
+Description: Manually edit partition table
+Description-ar.UTF-8: تحرير جدول التّجزئة يدويّاً
+Description-bg.UTF-8: Ръчно редактиране на таблицата с дяловете
+Description-bs.UTF-8: Ručno uredite particionu tabelu
+Description-ca.UTF-8: Edita manualment la taula de particions
+Description-cs.UTF-8: Ručně upravit tabulku oblastí
+Description-cy.UTF-8: Golygu'r tabl rhaniadau â llaw
+Description-da.UTF-8: Redigér selv partitionestabellen
+Description-de.UTF-8: Partitionstabelle von Hand eingeben
+Description-el.UTF-8: Χειροκίνητη επεξεργασία του πίνακα τμημάτων
+Description-es.UTF-8: Editar manualmente la tabla de particiones
+Description-eu.UTF-8: Partizio taula eskuz editatu
+Description-fa.UTF-8: ویرایش دستی جدول پارتیشن
+Description-fi.UTF-8: Muokkaa itse osiotaulua
+Description-fr.UTF-8: Modifier manuellement la table de partitions
+Description-gl.UTF-8: Editar manualmente a táboa de particións
+Description-he.UTF-8: עריכת טבלת מחיצות באופן ידני
+Description-hr.UTF-8: Ručno uredi particijsku tablicu
+Description-hu.UTF-8: Partíciós tábla kézi szerkesztése
+Description-id.UTF-8: Ubah tabel partisi secara manual
+Description-it.UTF-8: Modificare la tabella delle partizioni manualmente
+Description-ja.UTF-8: 手動でパーティションテーブルを編集
+Description-ko.UTF-8: 수동으로 파티션 테이블 편집
+Description-lt.UTF-8: Rankiniu būdu taisyti skirsnių lentelę
+Description-nb.UTF-8: Rediger partisjonstabellen manuelt
+Description-nl.UTF-8: Schijfindeling handmatig bepalen
+Description-nn.UTF-8: Rediger partisjonstabellen manuelt
+Description-no.UTF-8: Rediger partisjonstabellen manuelt
+Description-pl.UTF-8: Modyfikuj ręcznie tablicę partycji
+Description-pt.UTF-8: Manualmente editar a tabela de partições
+Description-pt_BR.UTF-8: Editar manualmente a tabela de partições
+Description-ro.UTF-8: Editează manual tabela de partiţii
+Description-ru.UTF-8: Изменить таблицу разделов вручную
+Description-sk.UTF-8: Manuálne upraviť tabuľku oblastí
+Description-sl.UTF-8: Ročno uredi tabelo razdelkov
+Description-sq.UTF-8: Ndrysho manualisht tabelën e ndarjes
+Description-sv.UTF-8: Redigera partitionstabellen manuellt
+Description-tr.UTF-8: Bölümleme tablosunu elle düzenle
+Description-uk.UTF-8: Редагувати таблицю розділів вручну
+Description-zh_CN.UTF-8: 手动编辑分区表
+Description-zh_TW.UTF-8: 手動編輯磁碟分割表
+
+Template: partman-auto/text/auto_free_space
+Type: text
+Description: Automatically partition the free space
+Description-ar.UTF-8: تجزئة المساحة المتاحة آليّاً
+Description-bg.UTF-8: Автоматично разделяне на свободното пространство
+Description-bs.UTF-8: Automatski particioniši slobodni prostor
+Description-ca.UTF-8: Particiona automàticament l'espai lliure
+Description-cs.UTF-8: Automaticky rozdělit volné místo
+Description-cy.UTF-8: Rhaniadu'r gofod rhydd yn awtomatig
+Description-da.UTF-8: Automatisk partitionering af den frie plads
+Description-de.UTF-8: Freien Speicher automatisch partitionieren
+Description-el.UTF-8: Αυτόματη κατάτμηση του ελεύθερου χώρου
+Description-es.UTF-8: Particionar de forma automática el espacio libre
+Description-eu.UTF-8: Leku librea automatikoki partitu
+Description-fa.UTF-8: فضای آزاد را به صورت اتوماتیک پارتیشن بندی کن
+Description-fi.UTF-8: Osioi automaattisesti vapaa tila
+Description-fr.UTF-8: Partitionner automatiquement l'espace disponible
+Description-gl.UTF-8: Particionar automaticamente o espacio libre
+Description-he.UTF-8: חלוקה אוטומטית את המקום הפנוי
+Description-hr.UTF-8: Automatski particioniraj slobodan prostor
+Description-hu.UTF-8: Szabad hely automatikus partícionálása
+Description-id.UTF-8: Partisi ruang kosong secara otomatis
+Description-it.UTF-8: Partizionare automaticamente lo spazio libero
+Description-ja.UTF-8: ガイドによるパーティショニング
+Description-ko.UTF-8: 남은 공간을 자동으로 파티션
+Description-lt.UTF-8: Automatiškai sudalinti laisvą disko vietą
+Description-lv.UTF-8: Automātiski particionēt brīvo vietu
+Description-nb.UTF-8: Partisjoner det ledige området automatisk
+Description-nl.UTF-8: De beschikbare vrije ruimte automatisch indelen
+Description-nn.UTF-8: Partisjoner det ledige området automatisk
+Description-no.UTF-8: Partisjoner det ledige området automatisk
+Description-pl.UTF-8: Automatycznie partycjonuj wolną przestrzeń
+Description-pt.UTF-8: Particionar automaticamente o espaço livre
+Description-pt_BR.UTF-8: Particionar automaticamente o espaço livre
+Description-ro.UTF-8: Partiţionează automat spaţiul liber
+Description-ru.UTF-8: Автоматически разбить свободное место
+Description-sk.UTF-8: Automaticky rozdeliť voľné miesto
+Description-sl.UTF-8: Samodejno razdeli nezasedeni prostor
+Description-sq.UTF-8: Ndaj automatikisht hapësirën e lirë
+Description-sv.UTF-8: Partitionera automatiskt det lediga utrymmet
+Description-tr.UTF-8: Boş alanı otomatik olarak bölümle
+Description-uk.UTF-8: Автоматично розбити вільний простір
+Description-zh_CN.UTF-8: 对空闲空间进行自动分区
+Description-zh_TW.UTF-8: 對未使用空間進行自動磁碟分割
+
+Template: partman-auto/text/atomic_scheme
+Type: text
+Description: All files in one partition (recommended for new users)
+Description-ar.UTF-8: كل الملفّات في تجزيءٍ واحد (ينصح به للمستخدمين الجدد)
+Description-bg.UTF-8: Всички файлове в един дял (препоръчително за нови потребители)
+Description-bs.UTF-8: Sve datoteke na jednoj particiji (preporučuje se novim korisnicima)
+Description-ca.UTF-8: Tots els fitxers en una partició (recomanat per a nous usuaris)
+Description-cs.UTF-8: Všechny soubory v jedné oblasti (doporučeno pro začátečníky)
+Description-cy.UTF-8: Pob ffeil ar un rhaniad (argymhellir ar gyfer defnyddwyr newydd)
+Description-da.UTF-8: Alle filer i én partition (anbefales for nye brugere)
+Description-de.UTF-8: Alle Dateien auf eine Partition (für Anfänger empf.)
+Description-el.UTF-8: Όλα τα αρχεία στο ίδιο τμήμα (συνιστάται για νέους χρήστες)
+Description-es.UTF-8: Todos los ficheros en una partición (recomendado para novatos)
+Description-eu.UTF-8: Partizioa bakarrean (erabiltzaile berrientzat gomendaturik)
+Description-fa.UTF-8: تمام فایلها در یک پارتیشن(این گزینه برای تازه ماران پیشنهاد میشود)
+Description-fi.UTF-8: Kaikki tiedostot samassa levyosiossa (suositellaan uusille käyttäjille)
+Description-fr.UTF-8: Tout dans une seule partition (recommandé pour les débutants)
+Description-gl.UTF-8: Tódolos ficheiros nunha soa partición (recomendado para novos usuarios)
+Description-he.UTF-8: כל הקבצים במחיצה אחת (מומלץ למתשתמשים חדשים)
+Description-hr.UTF-8: Sve datoteke na jednoj particiji (preporučeno za novake)
+Description-hu.UTF-8: Minden fájl egyetlen partícióra (új felhasználóknak)
+Description-id.UTF-8: Semua berkas berada dalam satu partisi (disarankan bagi para pengguna baru)
+Description-it.UTF-8: Tutti i file in una partizione (raccomandata per nuovi utenti)
+Description-ja.UTF-8: すべてのファイルを 1 つのパーティションに (初心者ユーザには推奨)
+Description-ko.UTF-8: 모든 파일을 파티션 하나에 (처음 사용하는 경우 추천)
+Description-lt.UTF-8: Visi failai viename disko skirsnyje (rekomenduojama naujiems naudotojams)
+Description-nb.UTF-8: Alle filene på en partisjon (anbefales for nye brukere)
+Description-nl.UTF-8: Alles in één partitie (aanbevolen voor nieuwe gebruikers)
+Description-nn.UTF-8: Alle filer på ein partisjon (tilrådd for nye brukarar)
+Description-no.UTF-8: Alle filene på en partisjon (anbefales for nye brukere)
+Description-pl.UTF-8: Wszystko na jednej partycji (zalecane dla nowych użytkowników)
+Description-pt.UTF-8: Todos os ficheiros numa partição (recomendado para novos utilizadores)
+Description-pt_BR.UTF-8: Todos os arquivos em uma única partição (para iniciantes)
+Description-ro.UTF-8: Toate fişierele pe o partiţie (recomandat pentru utilizatori începători)
+Description-ru.UTF-8: Все файлы в одном разделе (рекомендуется для новых пользователей)
+Description-sk.UTF-8: Všetky súbory na jednej oblasti (odporúčané pre začiatočníkov)
+Description-sl.UTF-8: Vse datoteke v enem razdelku (priporočeno za nove uporabnike)
+Description-sq.UTF-8: Gjithçka në një ndarje (e këshillueshme për përdoruesit e rinj)
+Description-sv.UTF-8: Alla filer på en partition (rekommenderas för nya användare)
+Description-tr.UTF-8: Tüm dosyalar tek bölümde (yeni kullanıcılar için önerilir)
+Description-uk.UTF-8: Всі файли в одному розділі (рекомендується для новаків)
+Description-zh_CN.UTF-8: 将所有文件放在同一个分区中(推荐新手使用)
+Description-zh_TW.UTF-8: 把所有的檔案全部放到同一個分割區中 (新手推介)
+
+Template: partman-auto/text/home_scheme
+Type: text
+Description: Desktop machine
+Description-ar.UTF-8: جهاز لسطح المكتب
+Description-bg.UTF-8: Машина за работен плот
+Description-bs.UTF-8: Desktop mašina
+Description-ca.UTF-8: Ordinador d'escriptori
+Description-cs.UTF-8: Desktopový počítač
+Description-cy.UTF-8: Peiriant penbwrdd
+Description-da.UTF-8: Desktop-maskine
+Description-de.UTF-8: Desktop-Computer
+Description-el.UTF-8: Σταθμός εργασίας (Desktop)
+Description-es.UTF-8: Equipo de ofimática
+Description-eu.UTF-8: Idazmahai makina
+Description-fi.UTF-8: Pöytäkone
+Description-fr.UTF-8: Ordinateur de bureau
+Description-gl.UTF-8: Máquina de escritorio
+Description-he.UTF-8: מחשב שולחני
+Description-hr.UTF-8: Kućno računalo
+Description-hu.UTF-8: Otthoni vagy irodai gép
+Description-id.UTF-8: Mesin desktop
+Description-it.UTF-8: Computer desktop
+Description-ja.UTF-8: デスクトップマシン
+Description-ko.UTF-8: 데스크탑 컴퓨터
+Description-lt.UTF-8: Stalinis (desktop) kompiuteris
+Description-nb.UTF-8: Skrivebordsmaskin
+Description-nl.UTF-8: Desktopmachine
+Description-nn.UTF-8: Skrivebordsmaskin
+Description-no.UTF-8: Skrivebordsmaskin
+Description-pl.UTF-8: Komputer biurkowy
+Description-pt.UTF-8: Máquina de Desktop
+Description-pt_BR.UTF-8: Máquina Desktop
+Description-ro.UTF-8: Maşina de desktop (birou)
+Description-ru.UTF-8: Настольная машина
+Description-sk.UTF-8: Stolný počítač
+Description-sl.UTF-8: Namizni stroj
+Description-sq.UTF-8: Kompjuter tavoline (desktop)
+Description-sv.UTF-8: Skrivbordsdator
+Description-tr.UTF-8: Masaüstü makinesi
+Description-uk.UTF-8: Настільний комп'ютер
+Description-zh_CN.UTF-8: 桌面电脑
+Description-zh_TW.UTF-8: 桌面電腦
+
+Template: partman-auto/text/multi_user_scheme
+Type: text
+Description: Multi-user workstation
+Description-ar.UTF-8: محطّة عمل بعدّة مستخدمين
+Description-bg.UTF-8: Многопотребителска работна станция
+Description-bs.UTF-8: Višekorisnička radna stanica
+Description-ca.UTF-8: Estació de treball multiusuari
+Description-cs.UTF-8: Víceuživatelská pracovní stanice
+Description-cy.UTF-8: System aml-ddefnyddiwr
+Description-da.UTF-8: Flerbruger-arbejdsstation
+Description-de.UTF-8: Mehrbenutzer-Arbeitsplatzrechner
+Description-el.UTF-8: Πολυχρηστικός σταθμός εργασίας
+Description-es.UTF-8: Estación de trabajo multi-usuario
+Description-eu.UTF-8: Erabiltzaile anitzeko sistema
+Description-fi.UTF-8: Monen käyttäjän työasema
+Description-fr.UTF-8: Station de travail multiutilisateur
+Description-gl.UTF-8: Estación de traballo multiusuario
+Description-he.UTF-8: תחנת עבודה מרובת משתמשים
+Description-hr.UTF-8: Višekorisnička radna stanica
+Description-hu.UTF-8: Többfelhasználós munkaállomás
+Description-id.UTF-8: Stasiun kerja banyak pengguna
+Description-it.UTF-8: Sistema multi utente
+Description-ja.UTF-8: マルチユーザワークステーション
+Description-ko.UTF-8: 여러사람이 쓰는 워크스테이션
+Description-lt.UTF-8: Daugelio naudotojų (multi-user) systema (workstation)
+Description-nb.UTF-8: Flerbrukermaskin
+Description-nl.UTF-8: Werkstation met meerdere gebruikers
+Description-nn.UTF-8: Fleirbrukar arbeidsstasjon
+Description-no.UTF-8: Flerbrukermaskin
+Description-pl.UTF-8: Wieloużytkownikowa stacja robocza
+Description-pt.UTF-8: Estação de trabalho multi-utilizador
+Description-pt_BR.UTF-8: Estação de trabalho multi-usuário
+Description-ro.UTF-8: Staţie de lucru multi-utilizator
+Description-ru.UTF-8: Многопользовательская система
+Description-sk.UTF-8: Viacpoužívateľská pracovná stanica
+Description-sl.UTF-8: Več-uporabniški sistem
+Description-sq.UTF-8: Sistem shumë-përdorues
+Description-sv.UTF-8: Arbetsstation med flera användare
+Description-tr.UTF-8: Çok kullanıcılı iş istasyonu
+Description-uk.UTF-8: Багатокористувацька робоча станція
+Description-zh_CN.UTF-8: 多用户工作站
+Description-zh_TW.UTF-8: 多使用者工作站
+
+Template: partman-auto/text/resize_use_free
+Type: text
+Description: Resize ${PARTITION} and use freed space
+Description-el.UTF-8: Αλλαγή μεγέθους ${PARTITION} και χρήση του ελέυθερου χώρου
+Description-es.UTF-8: Conseguir espacio en disco para la instalación
+Description-fr.UTF-8: Redimensionner ${PARTITION} et utiliser l'espace libéré
+Description-hu.UTF-8: Átméretezés ${PARTITION} és a felszabadított hely használata
+Description-it.UTF-8: Ridimensiona ${PARTITION} e usa lo spazio liberato
+Description-pt.UTF-8: Mudar o tamanho de ${PARTITION} e utilizar o espaço libertado
+Description-pt_BR.UTF-8: Redimensionar ${PARTITION} e utilizar o espaço liberado
+Description-sk.UTF-8: Zmeniť veľkosť oblasti ${PARTITION} a použiť voľné miesto
+Description-sv.UTF-8: Ändra storlek på ${PARTITION} och använd frigjort utrymme
+
+Template: partman-auto/resize_insufficient_space
+Type: error
+Description: Failed to create enough space for installation
+ The resize operation did not create enough free space for the installation.
+ Resizing may have failed. You will have to set up partitions manually.
+Description-el.UTF-8: Αποτυχία δημιουργίας αρκετού ελεύθερου χώρου για την εγκατάσταση
+ Η λειτουργία αλλαγής μεγέθους δεν
+ δημιούργησε αρκετό χώρο για την
+ εγκατάσταση, Η αλλαγή μεγέθους μπορεί να
+ απέτυχε. Θα πρέπει να ρυθμίσετε τα
+ τμήματα χειροκίνητα.
+Description-es.UTF-8: Error al crear espacio suficiente para la instalación
+ La operación de cambio de tamaño no ha creado suficiente espacio libre
+ para la instalación. El cambio de tamaño pudo haber fallado. Deberá
+ configurar las particiones manualmente.
+Description-fr.UTF-8: Pas assez d'espace pour l'installation
+ L'opération de redimensionnement n'a pas libéré assez d'espace pour
+ l'installation. Il se peut que le redimensionnement ait échoué. Vous
+ allez devoir configurer vos partitions manuellement.
+Description-hu.UTF-8: Nem sikerült a telepítőnek elegendő üres helyet létrehozni
+ Az átméretezés nem tudott elegendő helyet felszabadítani a
+ telepítéshez. Az átméretezés talán nem sikerült. Kézzel kell
+ beállítania a partíciókat.
+Description-it.UTF-8: Impossibile creare sufficiente spazio per l'installazione
+ L'operazione non ha creato sufficiente spazio per l'installazione. Il
+ ridimensionamento potrebbe non aver funzionato. Dovrai dimensionare le
+ partizioni manualmente.
+Description-pt_BR.UTF-8: Falhou ao criar espaço suficiente para a instalação
+ A operação de redimensionamento não criou espaço livre suficiente para
+ a instalação. O redimensionamento deve ter falhado. Você terá que
+ definir as partições manualmente.
+Description-sk.UTF-8: Nepodarilo sa uvoľniť dostatok voľného miesta na inštaláciu.
+ Zmenou veľkosti oblasti sa nepodarilo uvoľniť dostatok voľného miesta
+ na inštaláciu. Budete musieť nastaviť oblasti manuálne.
+Description-sv.UTF-8: Kunde inte skapa tillräckligt mycket utrymme för installation
+ Storleksändringen frigjorde inte tillräckligt med ledigt utrymme för
+ installationen. Operationen kan ha misslyckats. Du måste ställa in
+ partitionerna manuellt.
