@@ -78,8 +78,8 @@ gettext.install(app_name, diri18n, unicode=1)
 msg_lang = 'es_ES' # Only Spanish support now
 
 # Paths
-#PATH = '/usr/share/bb-assist/'
-PATH = './'
+PATH = '/usr/share/bb-assist/'
+#PATH = './'
 GLADEDIR = os.path.join(PATH, 'glade')
 PIXMAPSDIR = os.path.join(GLADEDIR, 'pixmaps')
 
