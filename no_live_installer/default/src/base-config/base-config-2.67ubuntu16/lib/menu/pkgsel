@@ -20,15 +20,15 @@ case "$1" in
 	ln -sf /bin/true /usr/bin/scrollkeeper-rebuilddb
 	touch /usr/lib/base-config/installing
 
-#	echo -n "Reconfiguring x... " > $LOG
-#	dpkg-reconfigure -phigh xserver-xorg >> $LOG
-#	echo "[OK]" >> $LOG
+	echo -n "Reconfiguring x... " > $LOG
+	dpkg-reconfigure -pcritical xserver-xorg >> $LOG
+	echo "[OK]" >> $LOG
 
 	echo -n "Exporting display... " >> $LOG
         /usr/bin/X11/X :8 -dpms -br -s 120 -dpi 100 -nolisten tcp &
         export DISPLAY=:8
 	echo "[OK]" >> $LOG
-		
+
         PACKAGES="meta-guadalinex-2005 language-pack-en language-support-en"
         NUM_PACKAGES=$(apt-get install -s $PACKAGES | grep ^Inst | nl | tail -n 1 | cut -f1 | sed -e "s/ //g")
 
@@ -38,10 +38,26 @@ case "$1" in
         sleep 9
 	echo "[OK]" >> $LOG
 
+	echo -n "Run dhclient ..." >> $LOG
+	/sbin/dhclient &
+	echo "[OK]" >> $LOG
+
 	echo -n "Running uda-postinstall $NUM_PACKAGES $PACKAGES meta-guadalinex-2005... " >> $LOG
         /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES" "meta-guadalinex-2005"
 	echo "[OK]" >> $LOG
 	
+	INTERFACES=$(cat /var/lib/dhcp3/dhclient.leases | grep interface | awk '{print $2}' | sed -e s/[\"\;]//g | uniq)
+
+	if [ -z $INTERFACES ]; then
+		echo "No interfaces found that use dhcp" >> $LOG
+	else
+		for x in $INTERFACES
+		do
+			echo "iface $x inet dhcp" >> /etc/network/interfaces
+			touch /tmp/dhcp_ok
+		done
+	fi
+
 	# Move final sources.list into place, if necessary, so that language
 	# packs that aren't on the CD can be installed.
 	echo -n "Moving final sources.list into place... " >> $LOG
@@ -63,12 +79,12 @@ case "$1" in
 	echo -n "Running uda-postconfig-bacend.sh... " >> $LOG
         bash /usr/share/uda-postinstall/backend/uda-postconfig-backend.sh >> $LOG
 	echo "[OK]" >> $LOG
-	
+
 	echo -n "Removing dirs... " >> $LOG
 	rm -fr /var/lib/uda-postconfig >> $LOG
         rm /usr/lib/base-config/installing >> $LOG
 	echo "[OK]" >> $LOG
-	
+
 	echo -n "Running uda-goodbye... " >> $LOG
 	/usr/bin/uda-goodbye >> $LOG
 	echo "[OK]" >> $LOG
@@ -76,7 +92,7 @@ case "$1" in
 	echo -n "Running apt-get clean... " >> $LOG
         apt-get clean >> $LOG
 	echo "[OK]" >> $LOG
-	
+
 	echo -n "Killing x... " >> $LOG
         kill -9 $( ps -e | grep Xorg | awk '{print $1}' ) >> $LOG
 	echo "[OK]" >> $LOG
