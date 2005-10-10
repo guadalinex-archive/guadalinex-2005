@@ -7,6 +7,10 @@ set -e
 [ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/main/binary-i386 ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/main/binary-i386
 [ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/main/debian-installer/binary-i386 ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/main/debian-installer/binary-i386
 [ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/main/source ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/main/source
+
+[ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/universe/binary-i386 ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/universe/binary-i386
+[ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/universe/source ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/universe/source
+
 echo "Creando repositorios... "
 cd $CDIMAGE_ROOT/ftp
 apt-ftparchive -c $CDIMAGE_ROOT/uda/conf/apt_flamenco.conf generate $CDIMAGE_ROOT/uda/conf/flamenco.conf
