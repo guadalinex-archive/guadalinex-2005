@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=aMSN
+Name[es]=Mensajería Instantánea MSN (aMSN)
+Exec=amsn
+Icon=/usr/share/pixmaps/amsn/amsn.xpm
+Info=AMSN
+Categories=Application;Network;
+Comment="MSN Messenger for Linux"
+Comment[fr]="MSN Messenger pour Linux"
+Comment[de]="MSN Messenger für Linux"
+Comment[es]="MSN Messenger para Linux"
+Comment[nl]="MSN Messenger voor Linux"
+Comment[no]="MSN Messenger for Linux"
+Terminal=0
+Type=Application
