@@ -16,6 +16,7 @@ if __name__ == '__main__' :
 		scripts=[
 			'bb-assist',
 		],
+		py_modules = ["bbexpbackend"],
 		data_files=[
 			(os.path.join(PATH, 'glade'), glob.glob('glade/*.glade')),
 			(os.path.join(PATH, 'glade/pixmaps'), glob.glob('glade/pixmaps/*')),

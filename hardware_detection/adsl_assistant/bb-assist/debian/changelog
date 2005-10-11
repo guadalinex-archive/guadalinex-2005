@@ -13,8 +13,10 @@ bb-assist (0.3) unstable; urgency=low
   * bb-assist: connection with expect backend, error processing, debug
     processing, serial/eth dialog fixes, pass dialog fixes.
   * cmd-list.xsl: 3com device commands added
+  * setup.py: fixed installation of module
+  * glade/bb-assist.glade: "be patient" message
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 10 Oct 2005 19:45:37 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@gipsy.hi.inet>  Tue, 11 Oct 2005 09:45:51 +0200
 
 bb-assist (0.2) unstable; urgency=low
 

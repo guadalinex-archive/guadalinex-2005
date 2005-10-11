@@ -56,7 +56,7 @@ import getopt, sys, os, tempfile, time
 import gettext, locale
 import socket
 import dbus
-import expbackend
+import bbexpbackend
 from xml.dom.ext.reader import PyExpat
 from xml.xpath          import Evaluate
 from Ft.Xml             import MarkupWriter
@@ -816,7 +816,7 @@ class Assist:
         exp_input_file.writelines(cmd_lines_result)
         exp_input_file.flush()
 
-        retOper = expbackend.processOper(exp_input_file, exp_output_file)
+        retOper = bbexpbackend.processOper(exp_input_file, exp_output_file)
 
         msg += "\n"
         msg += "********************************************\n"
@@ -853,10 +853,8 @@ class Assist:
 
         # Commons vars
         if self.checkbuttonDefPasswd.get_active():
-            print "por aquí" # FIXME
             self.devcf.param['passwd1'] = self.entryOtherPasswd.get_text()
         else:
-            print "por allá"
             self.devcf.param['passwd1'] = self.devcf.default_passwd
 
         if (self.devcf.param['mod_conf'] == "monostatic" or 
