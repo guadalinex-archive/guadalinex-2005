@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=Sintetizador de música y muestras (SoundTracker)
 Exec=soundtracker
-Icon=gnome-grecord.ong
+Icon=gnome-grecord.png
 Terminal=false
 Type=Application
 Categories=Application;AudioVideo;Audio;
