@@ -55,7 +55,6 @@ msgstr "Απέτυχε η αντιγραφή των πακέτων"
 #. Type: error
 #. Description
 #: ../archive-copier.templates:24
-#, fuzzy
 msgid ""
 "Copying packages to the hard disk failed. You may have run out of disk space "
 "in the target /var filesystem, or your CD drive may be having problems "
@@ -63,7 +62,9 @@ msgid ""
 "lower speed may help."
 msgstr ""
 "Η αντιγραφή πακέτων στο σκληρό δίσκο απέτυχε. Πιθανόν να ξεμείνατε από "
-"ελεύθερο χώροστο σύστημα αρχείων /var."
+"ελεύθερο χώρο στο σύστημα αρχείων /var, ή ο οδηγός CD να μην μπορεί να "
+"διαβάσει πακέτα από το CD. Ο καθαρισμός του CD ή η επανεγγραφή του σε "
+"χαμηλότερη ταχύτητα μπορεί να βοηθήσουν."
 
 #. Type: error
 #. Description

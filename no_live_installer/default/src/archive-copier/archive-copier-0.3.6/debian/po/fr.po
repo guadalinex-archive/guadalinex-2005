@@ -44,18 +44,17 @@ msgstr ""
 "Si vous avez assez d'espace disque, vous pouvez choisir de copier tous les "
 "paquets restant à partir du cédérom sur le disque dur, ce qui signifie que "
 "vous n'aurez plus besoin du cédérom après avoir redémarré. Vous avez besoin "
-"d'environs 400 Mo d'espace libre supplémentaire dans /var pour cela."
+"d'environ 400 Mo d'espace libre supplémentaire dans /var pour cela."
 
 #. Type: error
 #. Description
 #: ../archive-copier.templates:24
 msgid "Copying packages failed"
-msgstr "Erreur lors de la réception des paquets"
+msgstr "Erreur lors de la copie des paquets"
 
 #. Type: error
 #. Description
 #: ../archive-copier.templates:24
-#, fuzzy
 msgid ""
 "Copying packages to the hard disk failed. You may have run out of disk space "
 "in the target /var filesystem, or your CD drive may be having problems "
@@ -63,7 +62,10 @@ msgid ""
 "lower speed may help."
 msgstr ""
 "La copie des paquets sur le disque dur a échouée. Il se peut que la "
-"partition /var du système cible ne dispose pas assez d'espace disque."
+"partition /var du système cible ne dispose pas assez d'espace disque, ou que "
+"votre lecteur de cédérom ait des problèmes à lire les paquets à partir du "
+"cédérom. Nettoyer le lecteur de cédérom ou enregistrer le cédérom a une "
+"vitesse plus faible peut aider."
 
 #. Type: error
 #. Description
@@ -95,7 +97,7 @@ msgstr "Copie de ${PACKAGE}..."
 #. Description
 #: ../archive-copier.templates:47
 msgid "Download language support?"
-msgstr "Télécharger de quoi supporter votre langue ?"
+msgstr "Télécharger le support pour votre langue ?"
 
 #. Type: boolean
 #. Description
@@ -104,7 +106,7 @@ msgid ""
 "The installation CD does not contain full support for your language. Do you "
 "want to download the required packages from the Internet?"
 msgstr ""
-"Le cédérom d'installation ne contient par le support complet pour votre "
+"Le cédérom d'installation ne contient pas le support complet pour votre "
 "langue. Voulez-vous télécharger les paquets nécessaires à partir d'Internet ?"
 
 #. Type: text

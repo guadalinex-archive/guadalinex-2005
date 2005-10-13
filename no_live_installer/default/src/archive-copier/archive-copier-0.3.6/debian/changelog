@@ -1,3 +1,11 @@
+archive-copier (0.3.6) breezy; urgency=low
+
+  * Update French translation (thanks, Sebastien Bacher, Vincent Untz, and
+    Rosetta).
+  * Update Greek and Norwegian Bokmål translations from Rosetta.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue,  4 Oct 2005 18:00:44 +0100
+
 archive-copier (0.3.5) breezy; urgency=low
 
   * Fix handling of multiple Task headers in a single package stanza.
