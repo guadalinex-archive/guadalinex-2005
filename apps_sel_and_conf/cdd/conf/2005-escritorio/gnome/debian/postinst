@@ -32,6 +32,7 @@ case "$1" in
 
     $GCONF --type string --set /desktop/gnome/interface/gtk_theme Guadalinex
     $GCONF --type string --set /desktop/gnome/interface/icon_theme Guadalinex
+    $GCONF --type string --set /desktop/gnome/background/picture_filename /usr/share/backgrounds/gx2005background.png
 
     ;;
 
