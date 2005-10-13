@@ -1,0 +1,26 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Firefox Web Browser
+Name[es]=Navegador web (Mozilla Firefox)
+Name[fr]=Firefox Navigateur Web
+Name[nb]=Firefox Nettleser
+Name[nn]=Firefox Nettlesar
+Name[no]=Firefox Nettleser
+Name[cs]=Firefox Webový prohlížeč
+Name[pt_BR]=Navegador Web Firefox
+Comment=Browse the World Wide Web
+Comment[es]=Navegue por la WWW
+Comment[fr]=Navigue sur Internet
+Comment[nb]=Surf pÃ¥ nettet
+Comment[nn]=Surf pÃ¥ nettet
+Comment[no]=Surf pÃ¥ nettet
+Comment[cs]=Prohlížení stránek World Wide Webu
+Comment[pt_BR]=Navegue na Internet
+Exec=firefox %u
+Terminal=false
+MultipleArgs=false
+Type=Application
+Icon=/usr/share/pixmaps/firefox_logo.png
+Categories=Application;Network
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;x-directory/webdav;x-directory/webdav-prefer-directory;image/gif;image/jpeg;image/png
+StartupWMClass=Firefox-bin

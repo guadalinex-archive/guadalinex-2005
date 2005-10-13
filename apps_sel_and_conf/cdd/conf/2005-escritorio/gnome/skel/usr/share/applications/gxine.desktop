@@ -1,7 +1,9 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=gxine
+Name[es]=Reproductor de vídeo (GXine)
 Comment=A free video player
+Comment[es]=Reproduzca películas
 Exec=gxine
 Icon=/usr/share/gxine/pixmaps/gxine-icon.xpm
 Terminal=false
