@@ -940,25 +940,23 @@ msgstr "Não pode aceder a actualizações de segurança"
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
-#, fuzzy
 msgid ""
 "The software archive at ${site} couldn't be accessed, so those updates will "
 "not be made available to you at this time. You may want to investigate this "
 "later."
 msgstr ""
-"As actualizações de segurança em security.ubuntu.com não puderam ser poderam "
-"ser acedidas, deste modo as actualizações não estarão disponíveis desta vez. "
-"Você pode querer investigar mais tarde."
+"O arquivo de software em ${site} não pôde ser acedido, por isso estas "
+"actualizações não serão disponibilizadas agora. Poderá investigar o problema "
+"posteriormente."
 
 #. Type: note
 #. Description
 #: ../../apt-setup.templates:184
-#, fuzzy
 msgid ""
 "Commented out entries for ${site} have been added to the bottom of the /etc/"
 "apt/sources.list file."
 msgstr ""
-"As entradas comentadas para security.ubuntu.com foram adicionadas no fim do "
+"As entradas comentadas do sítio ${site} foram adicionadas no fim do "
 "ficheiro /etc/apt/sources.list."
 
 #. Type: note
@@ -976,9 +974,8 @@ msgstr "${apt_error}"
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:198
-#, fuzzy
 msgid "Configuring apt..."
-msgstr "Configurar apt"
+msgstr "A Configurar apt..."
 
 #. Type: title
 #. Description
@@ -1007,16 +1004,14 @@ msgstr "Testando respositório de rede"
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:222
-#, fuzzy
 msgid "Setting up security update repository..."
-msgstr "Usar actualizações de segurança a partir de security.debian.org?"
+msgstr "A configurar o repositório de actualizações de segurança..."
 
 #. Type: title
 #. Description
 #: ../../apt-setup.templates:226
-#, fuzzy
 msgid "Testing security update repository..."
-msgstr "Usar actualizações de segurança a partir de security.debian.org?"
+msgstr "A testar repositório de actualizações de segurança..."
 
 #, fuzzy
 #~ msgid "Installing popularity-contest"

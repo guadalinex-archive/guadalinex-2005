@@ -17,6 +17,7 @@ Archive-rsync: ubuntu-ports/
 Archive-architecture: hppa ia64 sparc
 Country: GB Great Britain
 Location: London
+Source-site: archive.ubuntu.com
 
 Site: ${CC}.archive.ubuntu.com
 Type: Push-Secondary

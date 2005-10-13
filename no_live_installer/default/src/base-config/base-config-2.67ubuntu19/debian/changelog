@@ -1,3 +1,28 @@
+base-config (2.67ubuntu19) breezy; urgency=low
+
+  * Always list restricted, universe, and multiverse in (commented-out by
+    default) backports line (closes: Ubuntu #15066).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu,  6 Oct 2005 10:44:58 +0100
+
+base-config (2.67ubuntu18) breezy; urgency=low
+
+  * Use type to check for usplash_write, not which.
+  * Display "Configuring the base system..." in usplash if usplash is
+    running.
+  * Update Ubuntu-specific translations from Rosetta: Greek, Hungarian,
+    Polish, Portuguese, Brazilian Portuguese, Slovak, Swedish.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue,  4 Oct 2005 14:05:46 +0100
+
+base-config (2.67ubuntu17) breezy; urgency=low
+
+  * Use archive.ubuntu.com for deb-src lines corresponding to
+    ports.ubuntu.com deb lines (closes: Ubuntu #16461).
+  * Update French translation (thanks, Sebastien Bacher).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 28 Sep 2005 17:16:02 +0100
+
 base-config (2.67ubuntu16) breezy; urgency=low
 
   * Fix the length of the X-preconfiguration part of pkgsel's progress bar.

@@ -858,9 +858,8 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../../apt-setup.templates:139
-#, fuzzy
 msgid "Use backported software?"
-msgstr "Θέλετε να χρησιμοποιήσετε συνεισφερόμενο λογισμικό;"
+msgstr "Θέλετε να χρησιμοποιήσετε backported λογισμικό;"
 
 #. Type: boolean
 #. Description
@@ -871,6 +870,10 @@ msgid ""
 "such complete testing as that contained in the release, it includes newer "
 "versions of some applications which may provide useful features."
 msgstr ""
+"Κάποιο λογισμικό έχει γίνει backported από το δένδρο ανάπτυξης του Ubuntu "
+"για να λειτουργήσει σε αυτή την εκδοση του Ubuntu. Αν και αυτό το λογισμικό "
+"δεν έχει περάσει από ολοκληρωτικό έλεγχο, παρέχει νεότερες εκδόσεις κάποιων "
+"εφαρμογών που μπορεί να περιέχουν χρήσιμες λειτουργίες."
 
 #. Type: boolean
 #. Description

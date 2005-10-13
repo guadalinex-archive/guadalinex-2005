@@ -34,8 +34,14 @@ fi
 SHELL=/bin/sh
 export SHELL
 
-gettext "Configuring the base system..."
-echo
+if type usplash_write >/dev/null 2>&1 && pidof usplash >/dev/null; then
+	# Untranslated, as usplash doesn't have a full Unicode font yet
+	# anyway.
+	usplash_write "TEXT Configuring the base system..." || true
+else
+	gettext "Configuring the base system..."
+	echo
+fi
 
 cleanup () {
 	cd /

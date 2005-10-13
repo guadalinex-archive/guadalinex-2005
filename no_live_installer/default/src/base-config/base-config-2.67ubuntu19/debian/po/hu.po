@@ -317,14 +317,13 @@ msgstr "Dokumentációk bejegyzése, kérem várjon..."
 #. Description
 #: ../apt-setup-udeb.templates:7
 msgid "Preparing to configure apt..."
-msgstr "Az apt konfigurálásának előkészítése folyamatban..."
+msgstr "Az apt beállításának előkészítése..."
 
 #. Type: title
 #. Description
 #: ../apt-setup-udeb.templates:11
-#, fuzzy
 msgid "Copying mirror configuration..."
-msgstr "Időzóna konfigurálása"
+msgstr "Időzóna beállítása"
 
 #. Type: title
 #. Description
@@ -798,7 +797,7 @@ msgid ""
 "software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
 "install it."
 msgstr ""
-"Egyes további programokat is felkészítettek a Ubuntu alatti működésre. Ezek "
+"Egyes további programokat is felkészítettek az Ubuntu alatti működésre. Ezek "
 "működéséhez szükségesek nemszabad szoftverek is, bár maguk ugyan szabad "
 "szoftverek. Ezek a programok nem részei az Ubuntunak, de telepítésük a "
 "szokásos Ubuntu-segédprogramokkal megoldható."

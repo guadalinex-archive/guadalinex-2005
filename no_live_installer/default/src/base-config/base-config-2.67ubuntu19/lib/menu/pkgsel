@@ -42,12 +42,16 @@ case "$1" in
 	/sbin/dhclient &
 	echo "[OK]" >> $LOG
 
+	UDA_CUSTOM_COLOR="#087021"
+
 	echo -n "Running uda-postinstall $NUM_PACKAGES $PACKAGES meta-guadalinex-2005... " >> $LOG
         /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES" "meta-guadalinex-2005"
 	echo "[OK]" >> $LOG
 	
-	INTERFACES=$(cat /var/lib/dhcp3/dhclient.leases | grep interface | awk '{print $2}' | sed -e s/[\"\;]//g | uniq)
+	echo "auto lo" >> /etc/network/interfaces
 
+	INTERFACES=$(cat /var/lib/dhcp3/dhclient.leases | grep interface | awk '{print $2}' | sed -e s/[\"\;]//g | uniq)
+	
 	if [ -z $INTERFACES ]; then
 		echo "No interfaces found that use dhcp" >> $LOG
 	else

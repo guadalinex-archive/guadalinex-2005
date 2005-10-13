@@ -264,6 +264,30 @@ mirror_dir () {
 	' $1 $2
 }
 
+# Some sites don't mirror source; in these cases, look for a Source-site:
+# field in the mirror list and use that instead.
+source_site () {
+	expand_mirror_list | perl -ne '
+		BEGIN { $/="\n\n"; $mirror=shift }
+		if (/Archive-architecture: (.*)/i and length $ENV{ARCH}) {
+			my @arches = split " ", $1;
+			if (grep /^!/, @arches) {
+				my %notarches = map { substr($_, 1) => 1 } grep /^!/, @arches;
+				next if exists $notarches{$ENV{ARCH}};
+			} else {
+				my %arches = map { $_ => 1 } @arches;
+				next if not exists $arches{$ENV{ARCH}};
+			}
+		}
+		if (/Site: $mirror/) {
+			if (/Source-site: (.*)\n/i) {
+				print $1;
+			}
+			exit;
+		}
+	' $1
+}
+
 # After mounting a cd, call this function to scan
 # it with apt-cdrom, which also adds it to the sources.list.
 # The cd will then be unmounted.
@@ -738,6 +762,14 @@ while [ "$MAINLOOP" ] || add_another; do
 	db_get mirror/suite
 	DIST="$RET"
 
+	SRCHOST="$(source_site "$HOST")"
+	if [ "$SRCHOST" ]; then
+		SRCDIR="$(mirror_dir "$URI" "$SRCHOST")"
+	else
+		SRCHOST="$HOST"
+		SRCDIR="$DIR"
+	fi
+
 	db_get apt-setup/non-free
 	if [ "$RET" = true ]; then
 		NONFREE=" restricted"
@@ -761,7 +793,7 @@ while [ "$MAINLOOP" ] || add_another; do
 	fi
 
 	echo "deb $URI:$SEP$HOST$DIR $DIST main$NONFREE$UNIVERSE" >> $tmpsources
-	SRCENTRY="deb-src $URI:$SEP$HOST$DIR $DIST main$NONFREE$UNIVERSE"
+	SRCENTRY="deb-src $URI:$SEP$SRCHOST$SRCDIR $DIST main$NONFREE$UNIVERSE"
 
 	# If there is a http proxy, make apt use it temporarily.
 	db_get mirror/http/proxy
@@ -839,6 +871,13 @@ db_get apt-setup/directory
 DIR="$RET"
 db_get mirror/suite
 DIST="$RET"
+SRCHOST="$(source_site "$HOST")"
+if [ "$SRCHOST" ]; then
+	SRCDIR="$(mirror_dir http "$SRCHOST")"
+else
+	SRCHOST="$HOST"
+	SRCDIR="$DIR"
+fi
 db_get apt-setup/non-free
 if [ "$RET" = true ]; then
 	NONFREE=" restricted"
@@ -863,6 +902,7 @@ if [ "$URI" = "cdrom" ] && ! grep -q 'ncomment the following' ${APTETC}sources.l
 	fi
 
 	LINE="http://$HOST$DIR $DIST main$NONFREE"
+	SRCLINE="http://$SRCHOST$SRCDIR $DIST main$NONFREE"
 
 	COMMENT="# "
 	SRCCOMMENT="# "
@@ -905,7 +945,7 @@ if [ "$URI" = "cdrom" ] && ! grep -q 'ncomment the following' ${APTETC}sources.l
 		else
 			COMMENT=""
 			# checking the src too
-			echo "deb-src $LINE" > $tmpsources
+			echo "deb-src $SRCLINE" > $tmpsources
 			clear_screen
 			if [ ! "$DO_PROGRESS" ]; then
 				gettext "Testing apt sources..."
@@ -925,7 +965,7 @@ if [ "$URI" = "cdrom" ] && ! grep -q 'ncomment the following' ${APTETC}sources.l
 	fi
 
 	echo "${COMMENT}deb $LINE" >> ${APTETC}sources.list
-	echo "${SRCCOMMENT}deb-src $LINE" >> ${APTETC}sources.list
+	echo "${SRCCOMMENT}deb-src $SRCLINE" >> ${APTETC}sources.list
 
 	if [ "$COMMENT" ]; then
 		cat <<EOF >> ${APTETC}sources.list
@@ -942,7 +982,7 @@ EOF
 	fi
 
 	echo "${COMMENT}deb http://$HOST$DIR $DIST-updates main$NONFREE" >> ${APTETC}sources.list
-	echo "${SRCCOMMENT}deb-src http://$HOST$DIR $DIST-updates main$NONFREE" >> ${APTETC}sources.list
+	echo "${SRCCOMMENT}deb-src http://$SRCHOST$SRCDIR $DIST-updates main$NONFREE" >> ${APTETC}sources.list
 fi
 
 if ([ "$URI" = "cdrom" ] || [ "$URI" = "http" ] || [ "$URI" = "ftp" ]) && ! grep -q 'universe' ${APTETC}sources.list; then
@@ -963,7 +1003,7 @@ EOF
 ## universe WILL NOT receive any review or updates from the Ubuntu security
 ## team.
 ${COMMENT}deb http://$HOST$DIR $DIST universe
-${COMMENT}deb-src http://$HOST$DIR $DIST universe
+${COMMENT}deb-src http://$SRCHOST$SRCDIR $DIST universe
 EOF
 fi
 
@@ -984,8 +1024,8 @@ EOF
 ## newer versions of some applications which may provide useful features.
 ## Also, please note that software in backports WILL NOT receive any review
 ## or updates from the Ubuntu security team.
-${COMMENT}deb http://$HOST$DIR $DIST-backports main$NONFREE$UNIVERSE
-${COMMENT}deb-src http://$HOST$DIR $DIST-backports main$NONFREE$UNIVERSE
+${COMMENT}deb http://$HOST$DIR $DIST-backports main restricted universe multiverse
+${COMMENT}deb-src http://$SRCHOST$SRCDIR $DIST-backports main restricted universe multiverse
 EOF
 fi
 
