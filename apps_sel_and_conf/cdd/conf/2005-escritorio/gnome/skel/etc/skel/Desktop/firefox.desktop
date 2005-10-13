@@ -25,3 +25,4 @@ Categories=Application;Network
 MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;x-directory/webdav;x-directory/webdav-prefer-directory;image/gif;image/jpeg;image/png;
 StartupWMClass=Firefox-bin
 GenericName[es_ES]=
+StartupNotify=True
