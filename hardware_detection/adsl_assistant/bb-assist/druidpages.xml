@@ -8,7 +8,7 @@
   <druid_page id='druidDeviceSel' optional='0'/>
   <druid_page id='druidOperationSelect' optional='0'/>
   <druid_page id='druidNewPasswd' optional='1'/>
-  <druid_page id='druidModConf' optional='1'/>
+  <druid_page id='druidEffSpeedAdvice' optional='1'/>
   <druid_page id='druidUsuIP' optional='1'/>
   <druid_page id='druidGestIP' optional='1'/>
   <druid_page id='druidDinamConf' optional='1'/>

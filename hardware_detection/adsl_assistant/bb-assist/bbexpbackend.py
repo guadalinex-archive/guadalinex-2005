@@ -45,7 +45,7 @@ along with Foobar; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
 
-import os, sys
+import os, sys, time
 import pexpect                          # Depends: python-pexpect
 import serial                           #   python-serial
 import re
@@ -55,32 +55,61 @@ from xml.xpath          import Evaluate
 
 CMDENCODING='iso-8859-1'
 
-def func_parse(dom, child, func, default_timeout = -1):
+def sendline_delayed(child, string, delay=0):
+    """This sends a string to the expect child
+    and returns the number of bytes written.
+    """
+    s = string
+    total_act = len(s)
+    total_bytes = 0
+    while total_act > 0:
+        n = child.send(s[0])
+        if n >= 1:
+            s = s[1:]
+            total_act -= n
+        elif n == 0:
+            pass
+        total_bytes += n
+        time.sleep(float(delay)/1000.0)
+    os.write(child.child_fd, os.linesep)
+    return total_bytes
+
+def func_parse(dom, child, func, default_timeout = -1, sdelay = 0):
+    """ Parse a func in the xml and process every cmd in
+    the function.
+    """
     path_cmd = "cmd_func[@id='"+ func +"']/cmd"
     cmds = Evaluate(path_cmd, dom.documentElement)
     if (len(cmds) < 1):
-        raise SyntaxError, _("en modulo de expect. Función call desconocida")
-    return (cmd_parse(dom, child, cmds, default_timeout))
+        raise SyntaxError, _("en modulo de expect. Función call") + \
+              " '" + func + "' " + _("desconocida")
+    return (cmd_parse(dom, child, cmds, default_timeout, sdelay))
 
-def cmd_parse(dom, child, cmds, default_timeout = -1):
+def cmd_parse(dom, child, cmds, default_timeout = -1, sdelay = 0):
+    """ Process a command. There are several types of commands:
+    - send: send a command to a tty/telnet
+    - return: return a result
+    - call: calls to another function
+    """
     for actcmd in cmds:
-        send_cmd = actcmd.getAttribute('send')
+        send_cmd = actcmd.getAttribute('send').decode('string_escape')
         ret_cmd = actcmd.getAttribute('return')
-        act_exp_ok = actcmd.getAttribute('exp_ok')
+        act_exp_ok = actcmd.getAttribute('exp_ok').decode('string_escape')
         call_cmd = actcmd.getAttribute('call')
         act_except = actcmd.getAttribute('on_excep')
-        err = actcmd.getAttribute('err')
+        err = actcmd.getAttribute('err').decode('string_escape')
         
         if ret_cmd: type_cmd = 'return'
         elif call_cmd: type_cmd = 'call'
-        elif (act_exp_ok): type_cmd = 'sendline'
-        else: raise SyntaxError, _("en modulo de expect. Comando desconocido")
+        else: type_cmd = 'sendline'
 
         if type_cmd == 'sendline':
-            child.sendline(send_cmd)
+            if (sdelay != 0):
+                sendline_delayed(child, send_cmd, sdelay)
+            else:
+                child.sendline(send_cmd)
             expect_list = []
             cmdid_list = []
-
             if err != '':
                 expect_list += [re.compile(err.encode(CMDENCODING))]
                 cmdid_list += ['__exit__']
@@ -103,43 +132,56 @@ def cmd_parse(dom, child, cmds, default_timeout = -1):
             if act_except != '':
                 expect_list += [pexpect.EOF, pexpect.TIMEOUT]
                 cmdid_list += [act_except, act_except]
-            
+            else:
+                expect_list += [pexpect.EOF, pexpect.TIMEOUT]
+                cmdid_list += ['__eof__', '__timeout__']
+
             expopt = child.expect_list(expect_list, timeout=act_timeout)
 
             if cmdid_list[expopt] == '__plus1__':
-                pass
+                sub_ret = 0
             elif cmdid_list[expopt] == act_except:
-                sub_ret = func_parse(dom, child, act_except, default_timeout)
-                if sub_ret != 0:
-                    # if return != 0 raise the error
-                    return sub_ret
+                sub_ret = func_parse(dom, child, act_except,
+                                     default_timeout, sdelay)
             elif cmdid_list[expopt] == '__exit__':
-                sub_ret = func_parse(dom, child, '__exit__', timeout)
-                if sub_ret != 0:
-                    # if return != 0 raise the error
-                    return sub_ret
+                sub_ret = func_parse(dom, child, '__exit__',
+                                     default_timeout, sdelay)
+            elif cmdid_list[expopt] == '__eof__':
+                sub_ret = func_parse(dom, child, '__eof__',
+                                     default_timeout, sdelay)
+            elif cmdid_list[expopt] == '__timeout__':
+                sub_ret = func_parse(dom, child, '__timeout__',
+                                     default_timeout, sdelay)
             elif type(cmdid_list[expopt]) == list:
-                sub_ret = cmd_parse(dom, child, cmdid_list[expopt], default_timeout)
-                if sub_ret != 0:
-                    # if return != 0 raise the error
-                    return sub_ret
+                sub_ret = cmd_parse(dom, child, cmdid_list[expopt],
+                                    default_timeout, sdelay)
         elif type_cmd == 'call':
-            sub_ret = func_parse(dom, child, call_cmd, default_timeout)
-            if sub_ret != 0:
-                # if return != 0 raise the error
-                return sub_ret
+            sub_ret = func_parse(dom, child, call_cmd,
+                                 default_timeout, sdelay)
         elif type_cmd == 'return':
             return(int(ret_cmd))
+        if sub_ret != 0:
+            # if return != 0 raise the error
+            return sub_ret
     # All commands ok, return 0
     return 0
 
 def processOper(fin, fout):
+    """ A operation consist in a initial function a serial/ethernet
+    over the operation is executed, a default timeout for commands.
+    """
     reader = PyExpat.Reader( )
-    dom = reader.fromStream(open(fin.name, "r"))
+    if (fin != sys.stdin):
+      dom = reader.fromStream(open(fin.name, "r"))
+    else:
+      dom = reader.fromStream(sys.stdin)
     cmd_ini         = Evaluate("initial_func/text( )",
                                dom.documentElement)[0].nodeValue
     default_timeout = Evaluate("default_timeout/text( )",
                                dom.documentElement)[0].nodeValue
+    sdelay          = int(Evaluate("send_delay/text( )",
+                               dom.documentElement)[0].nodeValue)
+
     ethnode = Evaluate("eth_params", dom.documentElement)
     if len(ethnode) == 1:
         by_serial = False
@@ -188,7 +230,7 @@ def processOper(fin, fout):
         child = pexpect.spawn(telnet_cmd)
     child.setlog(fout)
     cmd_act = cmd_ini
-    return func_parse(dom, child, cmd_act, default_timeout)
+    return func_parse(dom, child, cmd_act, default_timeout, sdelay)
 
 def main(fin, fout):
     ret = processOper(fin, fout)
@@ -197,7 +239,7 @@ def main(fin, fout):
 if __name__ == "__main__":
     if len(sys.argv) == 3:
         # argv[1] = inputfile, argv[2] = errorfile
-        fin =  open(sys.argv[1], "r")
+        fin  = open(sys.argv[1], "r")
         fout = open(sys.argv[2], "w")
         main(fin, fout)
     else:

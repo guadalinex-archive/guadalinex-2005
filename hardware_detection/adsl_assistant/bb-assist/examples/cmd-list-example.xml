@@ -1,48 +1,59 @@
-<?xml version='1.0' encoding='iso-8859-1'?>
-
-<!-- Example of anidation -->
-
-<!-- 3Com OfficeConnect 812 -->
+<?xml version="1.0" encoding="iso-8859-1"?>
 <cmd_list>
-  <initial_cmd>verif3com</initial_cmd>
-<!--  <eth_params dev='/dev/eth0' ip='10.0.0.1' port='23'/> -->
-  <serial_params tty='0' baudrate='9600' bits='8' parity='N' stopbits='1' xonxoff='0' rtscts='0'/>
+  <initial_func>verif3com</initial_func>
   <default_timeout>15</default_timeout>
-  <!-- Primero se reseta a los valores de fabrica: -->
-
-  <cmd_func id='auth3com'>
-    <cmd send='' exp_ok='PassTESTTESTd:'>
+  <send_delay>0</send_delay>
+  <serial_params parity="N" baudrate="9600" tty="0" xonxoff="0" rtscts="0" stopbits="1" bits="8"/>
+  <cmd_func id="__ok__">
+    <cmd return="0"/>
+  </cmd_func>
+  <cmd_func id="__exit__">
+    <cmd return="1"/>
+  </cmd_func>
+  <cmd_func id="__eof__">
+    <cmd return="2"/>
+  </cmd_func>
+  <cmd_func id="__timeout__">
+    <cmd return="3"/>
+  </cmd_func>
+  <cmd_func id="auth3com">
+    <cmd exp_ok="(CLI -|>)" send="">
       <expect_list>
-        <expect out='(CLI -|>)'>
-          <cmd send='exit cli' exp_ok='Password:'/>
-        </expect>
-	<expect out='Password:'>
-          <cmd send='' exp_ok='PasTESTsword:'>
-	    <expect_list>
-	      <expect out='Password:'>
-		<cmd send='a' exp_ok='Password:'/>
-	      </expect>
-	    </expect_list>
-	  </cmd>
+        <expect out="Password:">
+          <cmd exp_ok=">" send="adminttd">
+            <expect_list>
+              <expect out="Password:">
+                <cmd return="4"/>
+              </expect>
+            </expect_list>
+          </cmd>
         </expect>
       </expect_list>
     </cmd>
-    <cmd send='adminttd' exp_ok='>'>
-      <expect_list>
-        <expect out='Password:'>
-          <cmd return='1'/>
-        </expect>
-      </expect_list>
-    </cmd>
-  </cmd_func>  
-
-  <cmd_func id='verif3com'>
-    <cmd call='auth3com'/>
-    <cmd send='exitTESTTEST cli' exp_ok='Password:' on_excep='excepExample3com'/>
-  </cmd_func>  
-
-  <cmd_func id='excepExample3com'>
-    <cmd send='exit cli' exp_ok='Password:'/>
-  </cmd_func>  
+  </cmd_func>
+  <cmd_func id="verif3com">
+    <cmd call="auth3com"/>
+    <cmd exp_ok="Password:" err="CLI - " send="exit cli"/>
+  </cmd_func>
+  <cmd_func id="chgPass3com">
+    <cmd call="auth3com"/>
+    <cmd exp_ok=">" err="CLI - " send="delete user adminttd"/>
+    <cmd exp_ok=">" err="CLI - " send="enable command password "/>
+    <cmd exp_ok=">" err="CLI - " send="add user  password "/>
+    <cmd exp_ok=">" err="CLI - " send="save all"/>
+    <cmd exp_ok="Password:" err="CLI - " send="exit cli"/>
+    <cmd return="0"/>
+  </cmd_func>
+  <cmd_func id="listConf3com">
+    <cmd call="auth3com"/>
+    <cmd exp_ok=">" err="CLI - " send="show ip network LAN settings"/>
+    <cmd exp_ok="stop output:" err="CLI - " send="show vc internet settings"/>
+    <cmd exp_ok=">" err="CLI - " send=""/>
+    <cmd exp_ok=">" err="CLI - " send="show dhcp server settings"/>
+    <cmd exp_ok=">" err="CLI - " send="show system"/>
+    <cmd exp_ok=">" err="CLI - " send="show ethernet settings"/>
+    <cmd exp_ok=">" err="CLI - " send="list vc"/>
+    <cmd exp_ok=">" err="CLI - " send="show adsl transceiver_status"/>
+  </cmd_func>
 
 </cmd_list>

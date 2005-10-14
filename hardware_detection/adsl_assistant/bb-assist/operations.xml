@@ -9,6 +9,7 @@
     <firmware>*</firmware>
     <initial_func>verif3com</initial_func>
     <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidVerifParamsConf</druid_page>
       <druid_page>druidSelecInterface</druid_page>
@@ -26,6 +27,7 @@
     <firmware>*</firmware>
     <initial_func>conf3com</initial_func>
     <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidUsuIP</druid_page>
       <druid_page>druidGestIP</druid_page>
@@ -45,6 +47,7 @@
     <firmware>*</firmware>
     <initial_func>conf3com</initial_func>
     <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidDinamConf</druid_page>
       <druid_page>druidPasswdSel</druid_page>
@@ -63,6 +66,7 @@
     <firmware>*</firmware>
     <initial_func>conf3com</initial_func>
     <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidUsuIP</druid_page>
       <druid_page>druidGestIP</druid_page>
@@ -83,6 +87,7 @@
     <firmware>*</firmware>
     <initial_func>conf3com</initial_func>
     <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidDinamConf</druid_page>
       <druid_page>druidMultiConf</druid_page>
@@ -103,6 +108,7 @@
     <firmware>*</firmware>
     <initial_func>chgPass3com</initial_func>
     <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidPasswdSel</druid_page>
       <druid_page>druidNewPasswd</druid_page>
@@ -115,4 +121,23 @@
     </param_list>
   </operation>
 
+  <operation id='0007' bb_device='0004' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="en" name='Verify device access'/>
+      <opername lang="es_ES" name='Verificar acceso al equipo'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>verifEff5660</initial_func>
+    <default_timeout>15</default_timeout>
+    <send_delay>75</send_delay>
+    <druid_page_list>
+      <druid_page>druidVerifParamsConf</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidEffSpeedAdvice</druid_page>
+    </druid_page_list>
+    <param_list>
+			<param>passwd1</param>
+    </param_list>
+  </operation>
 </operation_list>

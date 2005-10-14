@@ -6,8 +6,10 @@
   <initial_func>conf3com</initial_func>
   <serial_params tty='0' baudrate='9600' bits='8' parity='N' stopbits='1' xonxoff='0' rtscts='0'/>
   <default_timeout>15</default_timeout>
+  <send_delay>10</send_delay>
   <passwd1>adminttd</passwd1>
   <passwd2>adminttd</passwd2>
+  <mod_conf>monodinamic</mod_conf>
   <dhcp>False</dhcp>
   <dhcp_ip_start>10.96.124.0</dhcp_ip_start>
   <dhcp_ip_end>10.96.124.255</dhcp_ip_end>
@@ -15,8 +17,6 @@
   <ip_lan_router>192.168.1.1</ip_lan_router>
   <dns1>80.58.0.33</dns1>
   <dns2>80.58.32.97</dns2>
-  <dinamic>True</dinamic>
-  <static>False</static>
   <PPPuser>testuser</PPPuser>
   <PPPpasswd>testpasswd</PPPpasswd>
   <usuIP>10.96.124.15</usuIP>

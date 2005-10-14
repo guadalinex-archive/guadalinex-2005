@@ -15,8 +15,14 @@ bb-assist (0.3) unstable; urgency=low
   * cmd-list.xsl: 3com device commands added
   * setup.py: fixed installation of module
   * glade/bb-assist.glade: "be patient" message
+  * Basic Efficient Speedstream 5660 device commands added
+  * expbackend.py: add send_delay option to send chars one by one and with
+    delay, for troubleshoot Efficient Speedstream 5660 sickness
+  * new examples of commands and operations
+  * return codes of operations better support
+  * 3com officeconnect: better authentication, filter securization
 
- -- Vicente J. Ruiz Jurado <vjrj@gipsy.hi.inet>  Tue, 11 Oct 2005 09:45:51 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 14 Oct 2005 01:29:47 +0200
 
 bb-assist (0.2) unstable; urgency=low
 
