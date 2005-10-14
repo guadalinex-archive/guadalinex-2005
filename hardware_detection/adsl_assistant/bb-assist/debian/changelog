@@ -21,8 +21,11 @@ bb-assist (0.3) unstable; urgency=low
   * new examples of commands and operations
   * return codes of operations better support
   * 3com officeconnect: better authentication, filter securization
+  * Improvements frontend/backend in the pass of variables
+  * doc/net-diagram.txt: with ASCII diagram of net variables
+  * Efficient Speedstream 5660 new operations, but it need improvements
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 14 Oct 2005 01:29:47 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 14 Oct 2005 20:14:15 +0200
 
 bb-assist (0.2) unstable; urgency=low
 

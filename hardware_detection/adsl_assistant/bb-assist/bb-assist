@@ -54,7 +54,7 @@ import gnome.ui
 import gnome
 import getopt, sys, os, tempfile, time
 import gettext, locale
-import socket
+import socket, struct
 import dbus
 import bbexpbackend
 from xml.dom.ext.reader import PyExpat
@@ -78,8 +78,8 @@ gettext.install(app_name, diri18n, unicode=1)
 msg_lang = 'es_ES' # Only Spanish support now
 
 # Paths
-#PATH = '/usr/share/bb-assist/'
-PATH = './'
+PATH = '/usr/share/bb-assist/'
+#PATH = './'
 GLADEDIR = os.path.join(PATH, 'glade')
 PIXMAPSDIR = os.path.join(GLADEDIR, 'pixmaps')
 
@@ -116,14 +116,22 @@ def searchPathXml(search_path, xmlfile):
     dom = reader.fromStream(xml_file)
     return Evaluate(search_path, dom.documentElement)
 
+def ipMasqIncrem(ipAddress, ipMask, increment):
+    return (socket.inet_ntoa((struct.pack('>L', (struct.unpack('>L',socket.inet_aton(ipAddress))[0] & 
+                                                 struct.unpack('>L',socket.inet_aton(ipMask))[0]) +
+                                          increment))))
 class provider:
     def __init__(self, xpath_devnode = None):
         if xpath_devnode == None:
             self.prov_id = ""
             self.prov_name = ""
+            self.dns1 = ""
+            self.dns2 = ""
         else:
             self.prov_id   = xpath_devnode.getAttribute("id")
             self.prov_name = xpath_devnode.getAttribute("name")
+            self.dns1 = Evaluate("dns1/text( )", xpath_devnode)[0].nodeValue
+            self.dns2 = Evaluate("dns2/text( )", xpath_devnode)[0].nodeValue
     def __str__(self):      
         return "%s %s" % (self.prov_id, self.prov_name)
 
@@ -562,10 +570,10 @@ class Assist:
             self.devcf.param['mod_conf'] = "monodinamic"
         elif self.operation_sel.id == '0004':
             self.devcf.param['mod_conf'] = "multistatic"
-            self.devcf.param['dhcp'] = True
+            self.devcf.param['dhcp'] = 'True'
         elif self.operation_sel.id == '0005':
             self.devcf.param['mod_conf'] = "multidinamic"
-            self.devcf.param['dhcp'] = True
+            self.devcf.param['dhcp'] = 'True'
         elif self.operation_sel.id == '0006': # change passd 3com
             pass
         if self.portsGuiConf == False:
@@ -583,13 +591,13 @@ class Assist:
     # Conf Params
 
     def on_druidUsuIP_next(self, *args):
-        try: self.devcf.param['usu_ip'] = socket.inet_aton(self.usuIP.get_text())
+        try: self.devcf.param['usu_ip'] = socket.inet_ntoa(socket.inet_aton(self.usuIP.get_text()))
         except socket.error:
             error_dialog(_("Error en") + ": " + \
                          self.usuIpLabel.get_text(), self.windowIni)
             self.druid1.set_page(self.druidUsuIP)
             return True
-        try: self.devcf.param['usu_mask'] = socket.inet_aton(self.usuMask.get_text())
+        try: self.devcf.param['usu_mask'] = socket.inet_ntoa(socket.inet_aton(self.usuMask.get_text()))
         except socket.error:
             error_dialog(_("Error en") + ": " + \
                          self.usuMaskLabel.get_text(), self.windowIni)
@@ -597,13 +605,13 @@ class Assist:
             return True
 
     def on_druidGestIP_next(self, *args):
-        try: self.devcf.param['gest_ip'] = socket.inet_aton(self.gestIP.get_text())
+        try: socket.inet_aton(self.gestIP.get_text())
         except socket.error:
             error_dialog(_("Error en") + ": " + \
                          self.gestIpLabel.get_text(), self.windowIni)
             self.druid1.set_page(self.druidGestIP)
             return True
-        try: self.devcf.param['gest_mask'] = socket.inet_aton(self.gestMask.get_text())
+        try: socket.inet_aton(self.gestMask.get_text())
         except socket.error:
             error_dialog(_("Error en") + ": " + \
                          self.gestMaskLabel.get_text(), self.windowIni)
@@ -621,33 +629,33 @@ class Assist:
             return True
 
     def on_druidMultiConf_next(self, *args):
-        if self.devcf.param['dhcp']:
-            try: self.dhcpIPaddress = socket.inet_aton(self.dhcpIPaddressEntry.get_text())
+        if self.devcf.param['dhcp'] == 'True':
+            try: socket.inet_aton(self.dhcpIPaddressEntry.get_text())
             except socket.error:
                 error_dialog(_("Error en") + ": " + \
                              self.dhcpIPaddressLabel.get_text(), self.windowIni)
                 self.druid1.set_page(self.druidMultiConf)
                 return True
-            try: self.dhcpMask = socket.inet_aton(self.dhcpMaskEntry.get_text())
+            try: socket.inet_aton(self.dhcpMaskEntry.get_text())
             except socket.error:
                 error_dialog(_("Error en") + ": " + \
                              self.dhcpMaskLabel.get_text(), self.windowIni)
                 self.druid1.set_page(self.druidMultiConf)
                 return True
         else:
-            try: self.IPaddressPc = socket.inet_aton(self.IPaddressPcEntry.get_text())
+            try: socket.inet_aton(self.IPaddressPcEntry.get_text())
             except socket.error:
                 error_dialog(_("Error en") + ": " + \
                              self.IPaddressPcLabel.get_text(), self.windowIni)
                 self.druid1.set_page(self.druidMultiConf)
                 return True
-            try: self.maskAddressPc = socket.inet_aton(self.maskAddressPcEntry.get_text())
+            try: socket.inet_aton(self.maskAddressPcEntry.get_text())
             except socket.error:
                 error_dialog(_("Error en") + ": " + \
                              self.maskAddressPcLabel.get_text(), self.windowIni)
                 self.druid1.set_page(self.druidMultiConf)
                 return True
-        try: self.ipGateway = socket.inet_aton(self.ipGatewayEntry.get_text())
+        try: socket.inet_aton(self.ipGatewayEntry.get_text())
         except socket.error:
             error_dialog(_("Error en") + ": " + \
                          self.ipGatewayLabel.get_text(), self.windowIni)
@@ -656,13 +664,13 @@ class Assist:
         
     def on_sinDhcpRadioButton_clicked(self, *args):
         if self.dhcpRadioButton.get_active():
-            self.devcf.param['dhcp'] = True
+            self.devcf.param['dhcp'] = 'True'
             self.IPaddressPcEntry.set_sensitive(False)
             self.maskAddressPcEntry.set_sensitive(False)
             self.dhcpIPaddressEntry.set_sensitive(True)
             self.dhcpMaskEntry.set_sensitive(True)   
         else:
-            self.devcf.param['dhcp'] = False
+            self.devcf.param['dhcp'] = 'False'
             self.IPaddressPcEntry.set_sensitive(True)
             self.maskAddressPcEntry.set_sensitive(True)
             self.dhcpIPaddressEntry.set_sensitive(False)
@@ -706,48 +714,102 @@ class Assist:
             self.eth_to_use = self.comboboxetheport.get_active_text()
 
     def on_druidVerifParamsConf_prepare(self, *args):
-        msg = boldme(_("Operación")) + ": "
-        if self.devcf.param['mod_conf'] != "":
-            msg += _("Reconfiguración de dispositivo de Banda Ancha") + "\n"
-            msg += boldme(_("Modo de Configuración:")) + " "
-            if self.devcf.param['mod_conf'] == "monostatic":
-                msg += _("Monopuesto Estático") + "\n"
-            elif self.devcf.param['mod_conf'] == "monodinamic":
-                msg += _("Monopuesto Dinámico") + "\n"
-            elif self.devcf.param['mod_conf'] == "multistatic":
-                msg += _("Multipuesto Estático") + "\n"
-            elif self.devcf.param['mod_conf'] == "multidinamic":
-                msg += _("Multipuesto Dinámico") + "\n"
-            if self.devcf.param['mod_conf'] == "monostatic" or self.devcf.param['mod_conf'] == "multistatic":
-                msg += boldme(self.usuIpLabel.get_text()) + \
-                      ": " + socket.inet_ntoa(self.devcf.param['usu_ip']) + "\n"
-                msg += boldme(self.usuMaskLabel.get_text()) + \
-                      ": " + socket.inet_ntoa(self.devcf.param['usu_mask']) + "\n"
-                msg += boldme(self.gestIpLabel.get_text()) + \
-                      ": " + socket.inet_ntoa(self.devcf.param['gest_ip']) + "\n"
-                msg += boldme(self.gestMaskLabel.get_text()) + \
-                      ": " + socket.inet_ntoa(self.devcf.param['gest_mask']) + "\n"
-            if self.devcf.param['mod_conf'] == "multidinamic" or self.devcf.param['mod_conf'] == "monodinamic":
-                msg += boldme(_("Usuario")) + ": " + self.devcf.param['PPPuser'] + "\n"
-            if self.devcf.param['mod_conf'] == "multistatic" or self.devcf.param['mod_conf'] == "multidinamic":
-                if self.devcf.param['dhcp']:
-                    msg += boldme(self.dhcpIPaddressLabel.get_text()) + \
-                           ": " + socket.inet_ntoa(self.dhcpIPaddress) + "\n"
-                    msg += boldme(self.dhcpMaskLabel.get_text()) + \
-                           ": " + socket.inet_ntoa(self.dhcpMask) + "\n"
-                else:
-                    msg += boldme(self.IPaddressPcLabel.get_text()) + \
-                           ": " + socket.inet_ntoa(self.IPaddressPc) + "\n"
-                    msg += boldme(self.maskAddressPcLabel.get_text()) + \
-                           ": " + socket.inet_ntoa(self.maskAddressPc) + "\n"
-                    msg += boldme(self.ipGatewayLabel.get_text()) + \
-                           ": " + socket.inet_ntoa(self.ipGateway) + "\n"
-        # FIXME: Model and operation name
-        if self.operation_sel.id == '0001':
-            msg += _("Verificación de acceso a dispositivo de Banda Ancha") + "\n"
-        elif self.operation_sel.id == '0006':
-            msg += _("Cambio de contraseña de dispositivo de Banda Ancha") + "\n"
-        msg += boldme(_("Puerto serie a usar")) + ": " + self.tty_to_use + "\n"
+
+        # Commons vars
+        if self.checkbuttonDefPasswd.get_active():
+            self.devcf.param['passwd1'] = self.entryOtherPasswd.get_text()
+        else:  
+            self.devcf.param['passwd1'] = self.devcf.default_passwd
+
+        if (self.devcf.param['mod_conf'] == "monostatic"):
+            self.devcf.param['remote_ip']       = ipMasqIncrem(self.gestIP.get_text(),
+                                                               self.gestMask.get_text(), 2)
+            self.devcf.param['remote_mask']     = self.gestMask.get_text()
+            self.devcf.param['ext_ip_router']   = self.gestIP.get_text()
+            self.devcf.param['ext_mask_router'] = self.gestMask.get_text()
+            self.devcf.param['int_ip_router']   = ipMasqIncrem(self.usuIP.get_text(),
+                                                               self.usuMask.get_text(), 1)
+            self.devcf.param['int_mask_router'] = self.usuMask.get_text()
+            self.devcf.param['ip_computer']     = self.usuIP.get_text()
+            self.devcf.param['mask_computer']   = self.usuMask.get_text()
+            self.devcf.param['gw_computer']     = self.devcf.param['int_ip_router']
+            # FIXME: configure Ethernet Computer
+
+        if (self.devcf.param['mod_conf'] == "monodinamic"):
+            self.devcf.param['remote_ip']       = '' # Bridged
+            self.devcf.param['remote_mask']     = '' # Bridged
+            self.devcf.param['ext_ip_router']   = '' # Bridged
+            self.devcf.param['ext_mask_router'] = '' # Bridged
+            self.devcf.param['int_ip_router']   = '' # Bridged
+            self.devcf.param['int_mask_router'] = '' # Bridged
+            self.devcf.param['ip_computer']     = '' # PPPOE
+            self.devcf.param['mask_computer']   = '' # PPPOE
+            self.devcf.param['gw_computer']     = '' # PPPOE
+            # FIXME : Configure PPPOE
+
+        if (self.devcf.param['mod_conf'] == "multistatic"):
+            self.devcf.param['remote_ip']       = ipMasqIncrem(self.usuIP.get_text(),
+                                                               self.usuMask.get_text(), 2)
+            self.devcf.param['remote_mask']     = self.usuMask.get_text()
+            self.devcf.param['ext_ip_router']   = self.usuIP.get_text()
+            self.devcf.param['ext_mask_router'] = self.usuMask.get_text()
+            self.devcf.param['int_ip_router']   = self.ipGatewayEntry.get_text()
+            self.devcf.param['int_mask_router'] = self.dhcpMaskEntry.get_text()
+                                    
+        if (self.devcf.param['mod_conf'] == "multidinamic"):
+            self.devcf.param['remote_ip']       = '' # PPPOA
+            self.devcf.param['remote_mask']     = '' # PPPOA
+            self.devcf.param['ext_ip_router']   = '' # PPPOA
+            self.devcf.param['ext_mask_router'] = '' # PPPOA
+            self.devcf.param['int_ip_router']   = self.ipGatewayEntry.get_text()
+            self.devcf.param['int_mask_router'] = self.dhcpMaskEntry.get_text()
+            
+        if (self.devcf.param['mod_conf'] == "multidinamic") or \
+               (self.devcf.param['mod_conf'] == "multistatic"):
+            if self.devcf.param['dhcp'] == 'True':
+                self.devcf.param['dhcp_ip_start'] = self.dhcpIPaddressEntry.get_text()
+                broad = struct.unpack('>L',socket.inet_aton(self.dhcpIPaddressEntry.get_text()))[0] | \
+                        (struct.unpack('>L',socket.inet_aton('255.255.255.255'))[0] - \
+                         struct.unpack('>L',socket.inet_aton(self.dhcpMaskEntry.get_text()))[0])
+                self.devcf.param['dhcp_ip_end'] = socket.inet_ntoa(struct.pack('>L', broad))
+                self.devcf.param['dhcp_mask'] = self.dhcpMaskEntry.get_text()
+                self.devcf.param['dhcp_ip_gw'] = self.ipGatewayEntry.get_text()
+                self.devcf.param['dns1'] = self.provider.dns1
+                self.devcf.param['dns2'] = self.provider.dns2
+                # ip_computer = mask_computer = gw_computer = [configuredByDHCP]
+                # FIMXE: configure Ethernet with DHCP
+            else:
+                self.devcf.param['ip_computer']   = self.IPaddressPcEntry.get_text()
+                self.devcf.param['mask_computer'] = self.maskAddressPcEntry.get_text()
+                self.devcf.param['gw_computer']   = self.ipGatewayEntry.get_text()
+                # FIXME: configure Ethernet Computer
+     
+        if self.operation_sel.id == '0006':
+            self.devcf.param['passwd2'] = self.entryNewPasswd.get_text()
+            # FIXME check sizes
+        
+        msg =  boldme(_("Operación")) + ": " + self.operation_sel.opername[msg_lang] + "\n"
+        msg += boldme(_("Dispositivo")) + ": " + self.devcf.name + "\n"
+
+        if self.tty_to_use:
+            msg += boldme(_('Parámetros serie')) + ": "
+            msg += 'tty: ' + self.tty_to_use + ", "
+            msg += 'baudrate: ' + self.devcf.tty_conf.tty_baudrate + ", "
+            msg += 'bits: ' + self.devcf.tty_conf.tty_bits + ", "
+            msg += 'parity: ' + self.devcf.tty_conf.tty_parity + ", "
+            msg += 'stopbits: ' + self.devcf.tty_conf.tty_stopbits + ", "
+            msg += 'xonxoff: ' + self.devcf.tty_conf.tty_xonxoff + ", "
+            msg += 'rtscts: ' + self.devcf.tty_conf.tty_rtscts + "\n"
+        else:
+            msg += boldme(_('Parámetros ethernet')) + ": "
+            msg += 'dev: ' + self.eth_to_use + ", "
+            msg += 'ip: ' + self.entryIpDevToConf.get_text() + ", "
+            msg += 'port: ' + self.devcf.eth_conf_port + "\n"
+
+        msg += boldme(_('Otros Parámetros de la operación')) + ":\n"
+        for actparam in self.devcf.param.keys():
+            msg += "* " + actparam + ": " + self.devcf.param[actparam] + "\n"
+        
         self.verifParamConfLabel.set_text(msg)
         self.verifParamConfLabel.set_use_markup(True)
 
@@ -853,6 +915,9 @@ class Assist:
         elif retOper == 4:
             msgResult = _("Error en la operación") + ": " + \
                         _("Contraseña actual incorrecta.")
+        elif retOper == 5:
+            msgResult = _("Error configurando el servidor DHCP") + ": " + \
+                        _("Parámetros incorrectos.")
         else:
             msgResult = _("Error en la operación") + ": " + \
                         _("Resultado inexperado.")
@@ -864,25 +929,8 @@ class Assist:
 
     def on_druidRunOper_next(self, *args):
         self.druid1.next.set_label('gtk-go-forward')
-
-        # Commons vars
-        if self.checkbuttonDefPasswd.get_active():
-            self.devcf.param['passwd1'] = self.entryOtherPasswd.get_text()
-        else:  
-            self.devcf.param['passwd1'] = self.devcf.default_passwd
-
-        if (self.devcf.param['mod_conf'] == "monostatic" or 
-            self.devcf.param['mod_conf'] == "multistatic"):
-            pass
-        if (self.devcf.param['mod_conf'] == "multidinamic" or
-            self.devcf.param['mod_conf'] == "monodinamic"):
-            pass
-        if self.operation_sel.id == '0006':
-            self.devcf.param['passwd2'] = self.entryNewPasswd.get_text()
-            # FIXME check sizes
-        
         self.callBackEnd()
-        self.druid1.back.hide()
+        # FIXME - FIXME only for repeat probes: self.druid1.back.hide()
 
     # Finish
                      

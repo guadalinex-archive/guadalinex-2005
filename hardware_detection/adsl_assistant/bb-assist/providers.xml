@@ -1,4 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <provider_list>
-  <provider id='0001' name='Telefónica de España'/>
+  <provider id='0001' name='Telefónica de España'>
+    <dns1>80.58.0.33</dns1>
+    <dns2>80.58.32.97</dns2>
+  </provider>
 </provider_list>

@@ -597,7 +597,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 
       <child>
 	<widget class="GnomeDruidPageStandard" id="druidUsuIP">
-	  <property name="title" translatable="yes">Configuración IP usuario</property>
+	  <property name="title" translatable="yes">Configuración IP pública</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
 	  <signal name="back" handler="on_druidUsuIP_back" last_modification_time="Wed, 07 Sep 2005 13:16:37 GMT"/>
@@ -619,7 +619,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 		  <child>
 		    <widget class="GtkLabel" id="label9">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Introduzca los siguientes datos, necesarios para llevar a cabo el proceso de configuración. Puede consultarlos en la carta que recibió de Telefónica al contrantar el servicio.</property>
+		      <property name="label" translatable="yes">Introduzca la dirección IP pública (proporcionada por su Proveedor)</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -672,7 +672,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 			      <child>
 				<widget class="GtkLabel" id="usuIpLabel">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Dirección usuario</property>
+				  <property name="label" translatable="yes">Dirección pública</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -700,7 +700,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 			      <child>
 				<widget class="GtkLabel" id="usuMaskLabel">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Máscara usuario</property>
+				  <property name="label" translatable="yes">Máscara pública</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -776,7 +776,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 		      <child>
 			<widget class="GtkLabel" id="label8">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">&lt;b&gt;Dirección IP&lt;/b&gt;</property>
+			  <property name="label" translatable="yes">&lt;b&gt;Dirección IP pública&lt;/b&gt;</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -838,7 +838,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 		  <child>
 		    <widget class="GtkLabel" id="label12">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Introduzca también los datos de gestión.</property>
+		      <property name="label" translatable="yes">Introduzca también los datos de gestión (proporcionado por su Proveedor)</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -919,7 +919,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 			      <child>
 				<widget class="GtkLabel" id="gestMaskLabel">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Máscara de subred</property>
+				  <property name="label" translatable="yes">Máscara de gestión</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1058,7 +1058,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 		  <child>
 		    <widget class="GtkLabel" id="label19">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Introduzca los siguientes datos, necesarios para llevar a cabo el proceso de configuración. Puede consultarlos en la carta que recibió de Telefónica al contratar el servicio.</property>
+		      <property name="label" translatable="yes">Introduzca los datos de usuario  y contraseña para su configuración dinámica (proporcionados por su Proveedor):</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1111,7 +1111,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 			      <child>
 				<widget class="GtkLabel" id="label20">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Nombre del usuario:</property>
+				  <property name="label" translatable="yes">Nombre del usuario</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1139,7 +1139,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 			      <child>
 				<widget class="GtkLabel" id="label21">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Contraseña:</property>
+				  <property name="label" translatable="yes">Contraseña</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2588,12 +2588,13 @@ Dependiendo de la operación, su duración puede ser larga. Sea paciente.</prope
 		  <child>
 		    <widget class="GtkLabel" id="labelOperResult">
 		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">&lt;b&gt;No se ha podido obtener el resultado de la operación&lt;/b&gt;</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">True</property>
-		      <property name="selectable">False</property>
+		      <property name="selectable">True</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>

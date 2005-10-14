@@ -112,7 +112,10 @@ def cmd_parse(dom, child, cmds, default_timeout = -1, sdelay = 0):
             cmdid_list = []
             if err != '':
                 expect_list += [re.compile(err.encode(CMDENCODING))]
-                cmdid_list += ['__exit__']
+                if act_except != '':
+                    cmdid_list += [act_except]
+                else:
+                    cmdid_list += ['__exit__']
 
             expect_list += [re.compile(act_exp_ok.encode(CMDENCODING))]
             cmdid_list += ['__plus1__']
@@ -183,9 +186,9 @@ def processOper(fin, fout):
                                dom.documentElement)[0].nodeValue)
 
     ethnode = Evaluate("eth_params", dom.documentElement)
-    if len(ethnode) == 1:
+    eth_dev = ethnode[0].getAttribute('dev')
+    if len(eth_dev) != 0:
         by_serial = False
-        eth_dev = ethnode[0].getAttribute('dev')
         ip = ethnode[0].getAttribute('ip')
         port = ethnode[0].getAttribute('port')
     else:
