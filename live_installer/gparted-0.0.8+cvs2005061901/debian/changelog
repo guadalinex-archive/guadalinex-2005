@@ -5,6 +5,19 @@ gparted (0.0.8+cvs2005061901-0uda2) breezy; urgency=low
 
  -- Javier Carranza <javier.carranza@interactors.coop>  Wed, 16 Aug 2005 16:27:15 +0200
 
+gparted (0.0.8+cvs2005061901-0ubuntu4) breezy; urgency=low
+
+  * debian/patches/locale.patch
+    - cvs fix for segfaults with some locales  
+
+ -- Charles Majola <charles@ubuntu.com>  Wed, 31 Aug 2005 13:26:56 +0200
+
+gparted (0.0.8+cvs2005061901-0ubuntu3) breezy; urgency=low
+
+  * Rebuild with the new cairo version
+
+ -- Sebastien Bacher <seb128@canonical.com>  Thu, 18 Aug 2005 17:19:43 +0000
+
 gparted (0.0.8+cvs2005061901-0ubuntu2) breezy; urgency=low
 
   * debian/control:
