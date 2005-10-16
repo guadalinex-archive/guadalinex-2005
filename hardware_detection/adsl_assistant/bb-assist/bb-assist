@@ -57,6 +57,8 @@ import gettext, locale
 import socket, struct
 import dbus
 import bbexpbackend
+import bbsysbackend
+from bbutils import *
 from xml.dom.ext.reader import PyExpat
 from xml.xpath          import Evaluate
 from Ft.Xml             import MarkupWriter
@@ -77,12 +79,6 @@ gettext.install(app_name, diri18n, unicode=1)
 #msg_lang = locale.getlocale()[0]
 msg_lang = 'es_ES' # Only Spanish support now
 
-# Paths
-PATH = '/usr/share/bb-assist/'
-#PATH = './'
-GLADEDIR = os.path.join(PATH, 'glade')
-PIXMAPSDIR = os.path.join(GLADEDIR, 'pixmaps')
-
 def getParams():
     try:
         (opts, args) = getopt.getopt(sys.argv[1:], "v", ["verbose"])
@@ -94,9 +90,6 @@ def getParams():
     for o in opts:
         if o[0] in ("-v", "--verbose"):
             verbose = True
-
-def boldme(string):
-    return "<b>" + string + "</b>"
     
 def usage():
     sys.stderr.write("Usage: %s [--verbose] [--help]\n\t%s\n" %(sys.argv[0], ""))
@@ -109,172 +102,6 @@ def error_dialog(message, parent_dialog):
     ret = dialog.run()
     dialog.destroy()
     return ret
-
-def searchPathXml(search_path, xmlfile):
-    reader = PyExpat.Reader( )
-    xml_file = open(os.path.join(PATH, xmlfile), "r")
-    dom = reader.fromStream(xml_file)
-    return Evaluate(search_path, dom.documentElement)
-
-def ipMasqIncrem(ipAddress, ipMask, increment):
-    return (socket.inet_ntoa((struct.pack('>L', (struct.unpack('>L',socket.inet_aton(ipAddress))[0] & 
-                                                 struct.unpack('>L',socket.inet_aton(ipMask))[0]) +
-                                          increment))))
-class provider:
-    def __init__(self, xpath_devnode = None):
-        if xpath_devnode == None:
-            self.prov_id = ""
-            self.prov_name = ""
-            self.dns1 = ""
-            self.dns2 = ""
-        else:
-            self.prov_id   = xpath_devnode.getAttribute("id")
-            self.prov_name = xpath_devnode.getAttribute("name")
-            self.dns1 = Evaluate("dns1/text( )", xpath_devnode)[0].nodeValue
-            self.dns2 = Evaluate("dns2/text( )", xpath_devnode)[0].nodeValue
-    def __str__(self):      
-        return "%s %s" % (self.prov_id, self.prov_name)
-
-class tty_conf:
-    def __init__(self, id_tty = ""):
-        if id_tty == "":
-            self.tty_id = ""
-            self.tty_baudrate = ""
-            self.tty_bits = ""
-            self.tty_parity = ""
-            self.tty_stopbits = ""
-            self.tty_xonxoff = ""
-            self.tty_rtscts = ""
-        else:
-            path_tty = "tty_conf[@id=" + id_tty + "]"
-            devnode = searchPathXml(path_tty, 'ttyconf.xml')
-            if (len(devnode) <> 1):
-                raise SyntaxError, _("en tty_conf")
-            self.tty_id = id_tty
-            self.tty_baudrate = devnode[0].getAttribute("baudrate")
-            self.tty_bits = devnode[0].getAttribute("bits")
-            self.tty_parity = devnode[0].getAttribute("parity")
-            self.tty_stopbits = devnode[0].getAttribute("stopbits")
-            self.tty_xonxoff = devnode[0].getAttribute("xonxoff")
-            self.tty_rtscts = devnode[0].getAttribute("rtscts")
-    def __str__(self):      
-        return "%s %s" % (self.tty_id, self.tty_baudrate)
-
-class devicetype:
-    def __init__(self, id_devtype = ""):
-        if id_devtype == "":
-            self.dt_id = ""
-            self.dt_name = ""
-        else:
-            self.dt_id = id_devtype
-            path_dt = "devicetype[@id=" + id_devtype + "]"
-            devnode = searchPathXml(path_dt, 'devicetypes.xml')
-            if (len(devnode) <> 1):
-                raise SyntaxError, _("en devicetype")
-            self.dt_name = devnode[0].getAttribute("name")
-    def __str__(self):      
-        return "%s %s" % (self.dt_id, self.dt_name)
-
-class bb_device:
-    def __init__(self, devnode = None, devprovider = None):
-        if devnode == None:
-            self.devnode = None
-            self.name = None
-            self.id = None
-            self.console = None
-            self.support = None
-            self.device_type = None
-            self.tty_conf = None
-            self.provider = provider()
-        else:
-            self.devnode = devnode
-            self.name = devnode.getAttribute("name")
-            self.id = devnode.getAttribute("id")
-
-            self.console = Evaluate("console/text( )", devnode)[0].nodeValue
-            self.support = Evaluate("support/text( )", devnode)[0].nodeValue
-
-            self.device_type = devicetype(Evaluate("device_type",
-                                                   devnode)[0].getAttribute("id"))
-            if self.device_type.dt_id == '0001':
-                #DSL USB
-                self.tty_conf = None
-                # FIXME: get usb_conf
-            else:
-                #DSL Router
-                self.tty_conf = tty_conf(Evaluate("tty_conf",
-                                                  devnode)[0].getAttribute("id"))
-                self.eth_conf_port = Evaluate("eth_conf_port/text( )", devnode)[0].nodeValue
-            if devprovider != None:
-                self.provider = devprovider
-                defpass_node = Evaluate("provider_list/provider[@id=" +
-                                        devprovider.prov_id +
-                                        "]/default_passwd_list/" +
-                                        "default_passwd[@id='0001']",
-                                        devnode)
-                if len(defpass_node) > 0:
-                    self.default_passwd = defpass_node[0].getAttribute("passwd")
-                else:
-                    self.default_passwd = None
-            else:
-                self.provider = provider()
-                self.default_passwd = None
-
-        # FIXME: get operations
-        self.numoper = 0
-
-    def __str__(self):
-        return "%s %s %s %s %s (%s) (%s) %s" % \
-                (self.name, self.id, self.console, self.support,
-                 self.device_type, self.tty_conf, self.provider, self.numoper)
-
-class bb_device_conf(bb_device):
-    __bb = bb_device
-    def __init__(self, ini_bb_dev = None):
-        if ini_bb_dev:
-            self.__bb.__init__(self, ini_bb_dev.devnode, ini_bb_dev.provider)
-        else:
-            self.__bb.__init__(self)
-        # Dynamic parameters
-        self.param = {}
-        
-class operation:
-    def __init__(self, opernode = None):
-        if opernode == None:
-            self.id = None
-            self.bb_device = None
-            self.supported = 0
-            self.ui_public = 0
-            self.opername = None
-            self.firmware = None
-            self.initial_func = None
-            self.default_timeout = None
-            self.send_delay = None
-            self.druid_page_list = []
-        else:
-            self.id = opernode.getAttribute("id")
-            self.bb_device = opernode.getAttribute("bb_device")
-            self.supported = opernode.getAttribute("supported")
-            self.ui_public = opernode.getAttribute("ui_public")
-            self.opername = {}
-            for opername_node in Evaluate("opername_list/opername", opernode):
-                self.opername[opername_node.getAttribute("lang")] = opername_node.getAttribute("name")
-            self.firmware = Evaluate("firmware/text( )",
-                                     opernode)[0].nodeValue
-            self.initial_func = Evaluate("initial_func/text( )",
-                                         opernode)[0].nodeValue
-            self.default_timeout = Evaluate("default_timeout/text( )",
-                                            opernode)[0].nodeValue
-            self.send_delay = Evaluate("send_delay/text( )",
-                                            opernode)[0].nodeValue
-            self.druid_page_list = []
-            for druid_page_node in Evaluate("druid_page_list/druid_page/text( )",
-                                            opernode):
-                self.druid_page_list += [druid_page_node.nodeValue]
-    def __str__(self):      
-        return "%s %s %s %s %s %s %s %s %s" % \
-               (self.id, self.bb_device, self.supported, self.ui_public, self.opername,
-                self.firmware, self.initial_func, self.default_timeout, self.druid_page_list)
 
 class Assist:
     def initdbus(self):
@@ -552,6 +379,7 @@ class Assist:
             
     def on_combooperationsel_changed(self, *args):
         if len(self.pub_operations) != 0:
+            self.devcf.param = {} # FIXME: check if it's correct
             self.operation_sel = self.pub_operations[self.combooperationsel.get_active()]
             self.druid1.set_buttons_sensitive(True, True, True, True)
             druid_pages_to_act = self.operation_sel.druid_page_list
@@ -562,20 +390,16 @@ class Assist:
 
     def on_druidOperationSelect_next(self, *args):
         self.devcf.param['mod_conf'] = ""
-        if self.operation_sel.id == '0001': # verif 3com
-            pass
-        elif self.operation_sel.id == '0002':
+        if self.operation_sel.id == '0002' or self.operation_sel.id == '0008':
             self.devcf.param['mod_conf'] = "monostatic"
-        elif self.operation_sel.id == '0003':
+        elif self.operation_sel.id == '0003' or self.operation_sel.id == '0009':
             self.devcf.param['mod_conf'] = "monodinamic"
-        elif self.operation_sel.id == '0004':
+        elif self.operation_sel.id == '0004' or self.operation_sel.id == '0010':
             self.devcf.param['mod_conf'] = "multistatic"
             self.devcf.param['dhcp'] = 'True'
-        elif self.operation_sel.id == '0005':
+        elif self.operation_sel.id == '0005' or self.operation_sel.id == '0011':
             self.devcf.param['mod_conf'] = "multidinamic"
             self.devcf.param['dhcp'] = 'True'
-        elif self.operation_sel.id == '0006': # change passd 3com
-            pass
         if self.portsGuiConf == False:
             # Do this only one time (eth/ser don't change)
             for act_tty in self.ttylist:
@@ -705,16 +529,21 @@ class Assist:
         self.eth_to_use = self.comboboxetheport.get_active_text()
         self.tty_to_use = None
 
-    def on_druidSelecInterface_prepare(self, *args):
+    def on_druidSelecInterface_next(self, *args):
         if self.radiobuttonSerialPort.get_active():
             self.tty_to_use = self.comboboxserialport.get_active_text()
             self.eth_to_use = None
         else:
             self.tty_to_use = None
             self.eth_to_use = self.comboboxetheport.get_active_text()
+            try: socket.inet_aton(self.entryIpDevToConf.get_text())
+            except socket.error:
+                error_dialog(_("Error en") + ": " + \
+                             self.ipAddressDevActLabel.get_text(), self.windowIni)
+                self.druid1.set_page(self.druidSelecInterface)
+                return True
 
     def on_druidVerifParamsConf_prepare(self, *args):
-
         # Commons vars
         if self.checkbuttonDefPasswd.get_active():
             self.devcf.param['passwd1'] = self.entryOtherPasswd.get_text()
@@ -754,7 +583,10 @@ class Assist:
             self.devcf.param['ext_ip_router']   = self.usuIP.get_text()
             self.devcf.param['ext_mask_router'] = self.usuMask.get_text()
             self.devcf.param['int_ip_router']   = self.ipGatewayEntry.get_text()
-            self.devcf.param['int_mask_router'] = self.dhcpMaskEntry.get_text()
+            if self.devcf.param['dhcp'] == 'True':
+                self.devcf.param['int_mask_router'] = self.dhcpMaskEntry.get_text()
+            else:
+                self.devcf.param['int_mask_router'] = self.maskAddressPcEntry.get_text()
                                     
         if (self.devcf.param['mod_conf'] == "multidinamic"):
             self.devcf.param['remote_ip']       = '' # PPPOA
@@ -762,8 +594,11 @@ class Assist:
             self.devcf.param['ext_ip_router']   = '' # PPPOA
             self.devcf.param['ext_mask_router'] = '' # PPPOA
             self.devcf.param['int_ip_router']   = self.ipGatewayEntry.get_text()
-            self.devcf.param['int_mask_router'] = self.dhcpMaskEntry.get_text()
-            
+            if self.devcf.param['dhcp'] == 'True':
+                self.devcf.param['int_mask_router'] = self.dhcpMaskEntry.get_text()
+            else:
+                self.devcf.param['int_mask_router'] = self.maskAddressPcEntry.get_text()
+                
         if (self.devcf.param['mod_conf'] == "multidinamic") or \
                (self.devcf.param['mod_conf'] == "multistatic"):
             if self.devcf.param['dhcp'] == 'True':
@@ -808,7 +643,8 @@ class Assist:
 
         msg += boldme(_('Otros Parámetros de la operación')) + ":\n"
         for actparam in self.devcf.param.keys():
-            msg += "* " + actparam + ": " + self.devcf.param[actparam] + "\n"
+            if len(self.devcf.param[actparam]) > 0:
+                msg += "* " + actparam + ": " + self.devcf.param[actparam] + "\n"
         
         self.verifParamConfLabel.set_text(msg)
         self.verifParamConfLabel.set_use_markup(True)
@@ -893,7 +729,7 @@ class Assist:
         except:
             self.hide_cursor_watch()
             msg += _("Error en la sintaxis de la operación")
-                    
+        exp_output_file.flush()        
         msg += "\n"
         msg += "********************************************\n"
         msg += _("Operation output") + "\n" # Debug msg
@@ -901,36 +737,46 @@ class Assist:
         msg += open(exp_output_file.name).read( )
         msg += "\n"
 
-        if retOper == 0:
+        if retOper == BBNOERR:
             msgResult = _("Operación realizada con éxito")
-        elif retOper == 1:
+        elif retOper == BBERRGEN:
             msgResult = _("Error en la operación") + ": " + \
                         _("Por favor envíe un informe de error con los detalles de la operación al foro FIXME")
-        elif retOper == 2:
+        elif retOper == BBERREOF:
             msgResult = _("Error en la operación") + ": " + \
                         _("Se ha interrumpido la conexión con el equipo inesperadamente")
-        elif retOper == 3:
+        elif retOper == BBERRTOUT:
             msgResult = _("Error en la operación") + ": " + \
                         _("Tiempo de espera excedido")
-        elif retOper == 4:
+        elif retOper == BBERRPWD:
             msgResult = _("Error en la operación") + ": " + \
-                        _("Contraseña actual incorrecta.")
-        elif retOper == 5:
+                        _("No se ha podido autenticar contra el equipo.")
+        elif retOper == BBERRDHCP:
             msgResult = _("Error configurando el servidor DHCP") + ": " + \
                         _("Parámetros incorrectos.")
+        elif retOper == BBERRLOCK:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Puerto serie bloqueado.")
         else:
             msgResult = _("Error en la operación") + ": " + \
                         _("Resultado inexperado.")
+        if retOper != BBNOERR:
+            msgResult = boldme(msgResult) + "\n\n" + \
+                        _("Puede intentar reintentar la operación ") + \
+                        _("pulsando <b>Atrás</b> cambiando algún parámetro ") + \
+                        _("y luego volviendo a <b>Aplicar</b>.")
+        else:
+            msgResult = boldme(msgResult)
         self.labelOperDebug.set_text(msg)
         self.labelOperDebug.set_use_markup(False)
-        self.labelOperResult.set_text(boldme(msgResult))
+        self.labelOperResult.set_text(msgResult)
         self.labelOperResult.set_use_markup(True)
         self.hide_cursor_watch()
 
     def on_druidRunOper_next(self, *args):
         self.druid1.next.set_label('gtk-go-forward')
         self.callBackEnd()
-        # FIXME - FIXME only for repeat probes: self.druid1.back.hide()
+        # self.druid1.back.hide() # With this we can't repeat operations
 
     # Finish
                      
@@ -948,5 +794,11 @@ class Assist:
 if __name__ == "__main__":
     gnome.program_init(app_name, app_version)
     getParams()
+    if os.geteuid() != 0:
+        dialogNotRoot = gtk.MessageDialog(None, 0, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                                   _("Necesita ser root para ejecutar este programa"))
+        dialogNotRoot.run()
+        dialogNotRoot.destroy()
+        sys.exit(1)
     assist = Assist()
     assist.main()

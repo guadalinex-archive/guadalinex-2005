@@ -143,6 +143,86 @@
 
   <operation id='0008' bb_device='0004' supported='1' ui_public='1'>
     <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Monopuesto Estático'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>confEff5660</initial_func>
+    <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <druid_page>druidUsuIP</druid_page>
+      <druid_page>druidGestIP</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0009' bb_device='0004' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Monopuesto Dinámico'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>confEff5660</initial_func>
+    <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <druid_page>druidDinamConf</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0010' bb_device='0004' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Multipuesto Estático'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>confEff5660</initial_func>
+    <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <druid_page>druidUsuIP</druid_page>
+      <druid_page>druidGestIP</druid_page>
+      <druid_page>druidMultiConf</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0011' bb_device='0004' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Multipuesto Dinámico'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>confEff5660</initial_func>
+    <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <druid_page>druidDinamConf</druid_page>
+      <druid_page>druidMultiConf</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+    <param_list>
+      <!-- FIXME -->
+    </param_list>
+  </operation>
+
+  <operation id='0012' bb_device='0004' supported='1' ui_public='1'>
+    <opername_list>
       <opername lang="en" name='Change password'/>
       <opername lang="es_ES" name='Cambiar contraseña'/>
     </opername_list>

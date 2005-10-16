@@ -16,10 +16,11 @@ if __name__ == '__main__' :
 		scripts=[
 			'bb-assist',
 		],
-		py_modules = ["bbexpbackend"],
+		py_modules = ["bbutils", "bbexpbackend", "bbsysbackend"],
 		data_files=[
 			(os.path.join(PATH, 'glade'), glob.glob('glade/*.glade')),
 			(os.path.join(PATH, 'glade/pixmaps'), glob.glob('glade/pixmaps/*')),
+      ('/usr/share/applications', ['bb-assist.desktop']),
 			(PATH, glob.glob('*.xml')),
 			(PATH, glob.glob('*.xsl')),
 		]

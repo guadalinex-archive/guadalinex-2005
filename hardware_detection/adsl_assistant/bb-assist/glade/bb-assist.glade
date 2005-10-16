@@ -501,8 +501,6 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 	  <property name="title" translatable="yes">Advertencia</property>
 	  <property name="background">#0807706f2121</property>
 	  <property name="logo_background">#0807706f2121</property>
-	  <signal name="next" handler="on_druidModConf_next" last_modification_time="Wed, 07 Sep 2005 12:25:54 GMT"/>
-	  <signal name="back" handler="on_druidModConf_back" last_modification_time="Wed, 07 Sep 2005 13:16:52 GMT"/>
 
 	  <child internal-child="vbox">
 	    <widget class="GtkVBox" id="druid-vbox13">
@@ -1324,6 +1322,7 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
 			      <signal name="activate" handler="on_dhcpRadioButton_activate" last_modification_time="Fri, 09 Sep 2005 23:32:47 GMT"/>
+			      <signal name="clicked" handler="on_dhcpRadioButton_clicked" last_modification_time="Sat, 15 Oct 2005 14:50:46 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -1973,7 +1972,6 @@ conectado el dispositivo a configurar</property>
 	      <child>
 		<widget class="GtkRadioButton" id="radiobuttonEthPort">
 		  <property name="visible">True</property>
-		  <property name="sensitive">False</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">Configuración a través de cable y red ethernet</property>
 		  <property name="use_underline">True</property>
@@ -1983,6 +1981,7 @@ conectado el dispositivo a configurar</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
 		  <property name="group">radiobuttonSerialPort</property>
+		  <signal name="clicked" handler="on_radiobuttonEthPort_clicked" last_modification_time="Sat, 15 Oct 2005 14:51:39 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -1994,7 +1993,6 @@ conectado el dispositivo a configurar</property>
 	      <child>
 		<widget class="GtkFrame" id="frame11">
 		  <property name="visible">True</property>
-		  <property name="sensitive">False</property>
 		  <property name="label_xalign">0</property>
 		  <property name="label_yalign">0.5</property>
 		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
@@ -2050,7 +2048,7 @@ a la misma LAN que el dispositivo</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkLabel" id="label65">
+			    <widget class="GtkLabel" id="ipAddressDevActLabel">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Dirección IP actual del dispositivo a configurar</property>
 			      <property name="use_underline">False</property>

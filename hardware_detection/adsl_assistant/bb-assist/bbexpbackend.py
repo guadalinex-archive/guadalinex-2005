@@ -49,7 +49,8 @@ import os, sys, time
 import pexpect                          # Depends: python-pexpect
 import serial                           #   python-serial
 import re
-from serial.serialutil import *
+from bbutils            import *
+from serial.serialutil  import *
 from xml.dom.ext.reader import PyExpat  #   python-xml
 from xml.xpath          import Evaluate
 
@@ -92,12 +93,13 @@ def cmd_parse(dom, child, cmds, default_timeout = -1, sdelay = 0):
     - call: calls to another function
     """
     for actcmd in cmds:
+        # regexp, with escaped chars
         send_cmd = actcmd.getAttribute('send').decode('string_escape')
-        ret_cmd = actcmd.getAttribute('return')
         act_exp_ok = actcmd.getAttribute('exp_ok').decode('string_escape')
-        call_cmd = actcmd.getAttribute('call')
-        act_except = actcmd.getAttribute('on_excep')
+        act_except = actcmd.getAttribute('on_except') # on error call func
         err = actcmd.getAttribute('err').decode('string_escape')
+        ret_cmd = actcmd.getAttribute('return') # returns a value
+        call_cmd = actcmd.getAttribute('call')  # call a function
         
         if ret_cmd: type_cmd = 'return'
         elif call_cmd: type_cmd = 'call'
@@ -116,7 +118,6 @@ def cmd_parse(dom, child, cmds, default_timeout = -1, sdelay = 0):
                     cmdid_list += [act_except]
                 else:
                     cmdid_list += ['__exit__']
-
             expect_list += [re.compile(act_exp_ok.encode(CMDENCODING))]
             cmdid_list += ['__plus1__']
             
@@ -144,6 +145,7 @@ def cmd_parse(dom, child, cmds, default_timeout = -1, sdelay = 0):
             if cmdid_list[expopt] == '__plus1__':
                 sub_ret = 0
             elif cmdid_list[expopt] == act_except:
+                print "EXCEPTION" # FIXME only for fast debug
                 sub_ret = func_parse(dom, child, act_except,
                                      default_timeout, sdelay)
             elif cmdid_list[expopt] == '__exit__':
@@ -216,24 +218,30 @@ def processOper(fin, fout):
             port     = int(tty_read),
             baudrate = int(baudrate_read),
             bytesize = int(bits_read),
+            
             parity   = parity_cte,
             stopbits = int(stopbits_read),
             timeout  = None,               # set a timeout value, None to wait forever
             xonxoff  = int(xonxoff_read),  # enable software flow control
             rtscts   = int(rtscts_read),   # enable RTS/CTS flow control
-            writeTimeout = None,          # set a timeout for writes
+            writeTimeout = None,           # set a timeout for writes
             )
         fd = ser.fd
         if os.path.exists("/var/lock/LCK..ttyS"+tty_read):
-            raise Exception( _("Puerto serie bloqueado"))
-        # FIXME: block tty, check if LCK process already exist
+            return BBERRLOCK
+        lock = open("/var/lock/LCK..ttyS" + tty_read, "w")
+        lock.write(str(os.getpid()))
         child = pexpect.spawn(fd)
     else:
         telnet_cmd = 'telnet ' + ip + " " + port
         child = pexpect.spawn(telnet_cmd)
     child.setlog(fout)
     cmd_act = cmd_ini
-    return func_parse(dom, child, cmd_act, default_timeout, sdelay)
+    ret_val = func_parse(dom, child, cmd_act, default_timeout, sdelay)
+    if by_serial:
+        ser.close()
+        os.remove("/var/lock/LCK..ttyS" + tty_read)
+    return ret_val
 
 def main(fin, fout):
     ret = processOper(fin, fout)

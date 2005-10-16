@@ -1,3 +1,18 @@
+bb-assist (0.4) unstable; urgency=low
+
+  * Serial lock support during operations
+  * fixed bug in on_except send commands
+  * Improved configuration Efficient Speedstream 5660: now support of more
+    configurations
+  * Improved of 3com configuration modes
+  * Added .desktop menu
+  * bbsysbackend: Added backend for configure local computer interfaces
+  * Now requires gksudo
+  * bbutils and bb-assist code reorganized
+  * Icons and menu improved
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 16 Oct 2005 15:42:49 +0200
+
 bb-assist (0.3) unstable; urgency=low
 
   * Improves in bb-assist Gui
@@ -25,7 +40,7 @@ bb-assist (0.3) unstable; urgency=low
   * doc/net-diagram.txt: with ASCII diagram of net variables
   * Efficient Speedstream 5660 new operations, but it need improvements
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 14 Oct 2005 20:14:15 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 16 Oct 2005 06:39:28 +0200
 
 bb-assist (0.2) unstable; urgency=low
 
