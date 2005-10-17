@@ -42,7 +42,7 @@ class NotificationDaemon(object):
                 [dbus.String(icon)],
                 dbus.UInt32(0), 
                 '', 
-                1, 
+                dbus.Byte(0), 
                 summary, 
                 message, 
                 [dbus.String(icon)],
