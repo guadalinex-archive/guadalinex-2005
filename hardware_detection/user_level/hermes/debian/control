@@ -1,13 +1,13 @@
-Source: hermes
+Source: hermeshardware
 Section: utils
 Priority: optional
 Maintainer: Carlos Parra Camargo <cparra@emergya.info>
 Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.6.1
 
-Package: hermes
+Package: hermeshardware
 Architecture: any
-Depends: python, libnotify0, notification-daemon, ${shlibs:Depends}, ${misc:Depends}
+Depends: hal, dbus, python2.4-dbus, python2.4, notification-daemon, ${shlibs:Depends}, ${misc:Depends}
 Description: detección y soporte de dispositivos
  el sistema de detección de hardware engloba tanto las tareas de detección
  y soporte de dispositivos, como aquellas que tienen que ver con la 
