@@ -1,9 +1,11 @@
 # -*- coding: utf8 -*-
 
-from sets import Set
 import dbus
 import pickle
 import logging
+import os
+
+from sets import Set
 
 class DeviceList:
     """
@@ -47,7 +49,7 @@ class DeviceList:
     
     """
 
-    DEFAULT_FILE = '/var/tmp/devicelist_file'
+    DEFAULT_FILE = '/var/tmp/devicelist-file-%s' % os.getlogin()
 
     def __init__(self):
         self.logger = logging.getLogger()

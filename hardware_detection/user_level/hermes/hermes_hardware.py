@@ -48,6 +48,7 @@ if getattr(dbus, "version", (0, 0, 0)) >= (0, 41, 0):
     import dbus.glib
 import logging
 import gtk
+import os
 
 from utils import DeviceList, ColdPlugListener
 from optparse import OptionParser
@@ -266,7 +267,7 @@ def main():
 
     logging.basicConfig(level = level,
             format='%(asctime)s %(levelname)s %(message)s',
-                    filename='/var/tmp/hermes-hardware.log',
+                    filename='/var/tmp/hermes-hardware-%s.log' % os.getlogin(),
                     filemode='a')
 
     if options.hermes_notify:
