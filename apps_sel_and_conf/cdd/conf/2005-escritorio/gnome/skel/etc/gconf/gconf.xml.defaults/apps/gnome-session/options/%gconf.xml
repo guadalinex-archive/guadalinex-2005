@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<gconf>
-        <entry name="logout_option" mtime="1126736681" schema="/schemas/apps/gnome-session/options/logout_option"/>
-        <entry name="splash_image" mtime="1126736681" type="string"><stringvalue>/usr/share/pixmaps/splash/guadalinex-splash.png</stringvalue></entry>
-        <entry name="allow_tcp_connections" mtime="1126736681" schema="/schemas/apps/gnome-session/options/allow_tcp_connections"/>
-        <entry name="logout_prompt" mtime="1126736681" schema="/schemas/apps/gnome-session/options/logout_prompt"/>
-        <entry name="auto_save_session" mtime="1126736681" schema="/schemas/apps/gnome-session/options/auto_save_session"/>
-        <entry name="show_splash_screen" mtime="1126736681" schema="/schemas/apps/gnome-session/options/show_splash_screen"/>
-</gconf>
