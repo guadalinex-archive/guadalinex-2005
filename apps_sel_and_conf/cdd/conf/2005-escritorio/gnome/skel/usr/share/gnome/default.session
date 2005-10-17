@@ -35,4 +35,4 @@ num_clients=9
 7,RestartCommand=update-notifier --sm-client-id default7
 8,id=default8
 8,Priority=51
-8,RestartCommand=update-notifier --sm-client-id default8
+8,RestartCommand=hermeshardware
