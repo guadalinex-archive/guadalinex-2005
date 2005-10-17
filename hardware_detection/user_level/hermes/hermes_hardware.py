@@ -267,7 +267,8 @@ def main():
 
     logging.basicConfig(level = level,
             format='%(asctime)s %(levelname)s %(message)s',
-                    filename='/var/tmp/hermes-hardware-%s.log' % os.getlogin(),
+                    filename='/var/tmp/hermes-hardware-%s-%s.log' % 
+                    (os.getlogin(), os.getuid()),
                     filemode='a')
 
     if options.hermes_notify:

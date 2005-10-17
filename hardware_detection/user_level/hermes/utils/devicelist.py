@@ -49,7 +49,8 @@ class DeviceList:
     
     """
 
-    DEFAULT_FILE = '/var/tmp/devicelist-file-%s' % os.getlogin()
+    DEFAULT_FILE = '/var/tmp/devicelist-file-%s-%s' % \
+                (os.getlogin(),os.getuid())
 
     def __init__(self):
         self.logger = logging.getLogger()
