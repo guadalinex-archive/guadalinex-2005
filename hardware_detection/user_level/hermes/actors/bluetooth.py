@@ -65,8 +65,8 @@ class Actor(DeviceActor):
             open_scan()
 
         def open_scan():
-            os.system('gnome-bluetooth-manager')
-            os.system('gnome-obex-server')
+            os.system('gnome-bluetooth-manager &')
+            os.system('gnome-obex-server &')
 
         if s.check(packages):
             actions = {"Abrir el administrador bluetooth": open_scan}

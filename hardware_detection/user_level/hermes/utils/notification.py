@@ -35,7 +35,7 @@ class NotificationDaemon(object):
             self.iface.connect_to_signal("ActionInvoked", action_invoked)
 
         else:
-            #Fixing no actions
+            #Fixing no actions messages
             notify_actions = [(1, 2)]
             
         res = self.iface.Notify("Hermes", 
@@ -48,7 +48,9 @@ class NotificationDaemon(object):
                 [dbus.String(icon)],
                 notify_actions,
                 [(1,2)], 
-                dbus.UInt32(10))
+                dbus.Boolean(1),
+                dbus.UInt32(7))
+
         return res
 
 

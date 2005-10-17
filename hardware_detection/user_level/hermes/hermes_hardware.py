@@ -49,7 +49,6 @@ if getattr(dbus, "version", (0, 0, 0)) >= (0, 41, 0):
 import logging
 import gtk
 
-from actors import ACTORSLIST
 from utils import DeviceList, ColdPlugListener
 from optparse import OptionParser
 from utils.notification import NotificationDaemon
@@ -258,6 +257,7 @@ def main():
 
     (options, args) = parser.parse_args()
     del args
+
     
     if options.debug:
         level = logging.DEBUG
@@ -275,6 +275,9 @@ def main():
         iface = dbus.Interface(object, "org.guadalinex.IHermesNotifier")
     else:
         iface = NotificationDaemon()
+
+    global ACTORSLIST
+    from actors import ACTORSLIST
 
     DeviceListener(iface)
     gtk.threads_init()
