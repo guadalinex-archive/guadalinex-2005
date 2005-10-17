@@ -30,6 +30,7 @@ install: build
 	# Add here commands to install the package into debian/hermes.
 #	$(MAKE) install DESTDIR=$(CURDIR)/debian/hermes
 	dh_install actors doc img utils hermes_hardware.py list_hal_devices.py test_hermes.py /usr/share/hermes
+	dh_install hermes_hardware /usr/bin
 
 
 # Build architecture-independent files here.
