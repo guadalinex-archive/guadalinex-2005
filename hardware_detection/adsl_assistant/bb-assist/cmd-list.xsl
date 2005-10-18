@@ -181,7 +181,6 @@
 
 	<cmd send='Set vc internet atm vpi 8 vci 32 category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
 	<cmd send='Set vc internet default_route_option enable' exp_ok='>' err='CLI - '/>
-	<!-- FIXME: Set vc internet nat_default_address -->
     </cmd_func>
 
     <cmd_func id='conf3com'>
@@ -198,7 +197,7 @@
 
       <xsl:if test = "$dhcp='True'">
         <cmd send='set dhcp mode server' exp_ok='>'/>
-        <cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$dhcp_mask} router {$dhcp_ip_gw} dns1 {$dns1} dns2 {$dns2} lease 60' exp_ok='>' err='CLI - ' on_except='errServDhcp3com' />
+        <cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$dhcp_mask} router {$dhcp_ip_gw} dns1 {$dns1} dns2 {$dns2} lease 3600' exp_ok='>' err='CLI - ' on_except='errServDhcp3com' />
       </xsl:if>
       <xsl:if test = "$dhcp='False'">
         <cmd send='set dhcp mode disabled' exp_ok='>' err='CLI - '/>
@@ -237,7 +236,6 @@
       <cmd send='disable network service httpd' exp_ok='>' err='CLI - '/>
       <cmd send='set adsl open ansi' exp_ok='>' err='CLI - '/>
 
-      <!-- // Gestion de usuario y clave. Suponemos que usuario=clave -->
       <cmd send='add user {$passwd1} password {$passwd1}' exp_ok='>' err='CLI - '/>
       <cmd send='set user {$passwd1} session_timeout 180' exp_ok='>' err='CLI - '/>
       
@@ -267,7 +265,7 @@
     <cmd_func id='testDHCP3c'>   <!-- FIXME erase when finished -->
       <cmd call='auth3com'/>
       <cmd send='set dhcp mode server' exp_ok='>' err='CLI - ' on_except='errServDhcp3com' />
-      <cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$dhcp_mask} router {$dhcp_ip_gw} dns1 {$dns1} dns2 {$dns2} lease 60' exp_ok='>' err='CLI - ' on_except='errServDhcp3com' />
+      <cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$dhcp_mask} router {$dhcp_ip_gw} dns1 {$dns1} dns2 {$dns2} lease 120' exp_ok='>' err='CLI - ' on_except='errServDhcp3com' />
       <cmd send='exit cli' exp_ok='Password:' err='CLI - '/>
     </cmd_func>
 
@@ -343,6 +341,7 @@
 
     <cmd_func id='verifEff5660'>
       <cmd call='authEff5660'/>
+      <cmd send='\r' exp_ok='Command->'/>
       <cmd send='exit' exp_ok=""/>
       <cmd call='speedNegEff5660'/>
     </cmd_func>
@@ -351,73 +350,76 @@
     
     <cmd_func id='chgPassEff5660'>
       <cmd call='authEff5660'/>
+      <cmd send='\r' exp_ok='Command->'/>
       <cmd send='set password' exp_ok='Old password :'/>
-      <cmd send='{$passwd1}' exp_ok='New password :'/>
-      <cmd send='{$passwd1}' exp_ok='New password :'/>
-      <cmd send='{$passwd1}' exp_ok='Password updated'/>
-      <cmd send='' exp_ok='Command->'/>
+      <cmd send='{$passwd2}\r' exp_ok='New password :'/>
+      <cmd send='{$passwd2}\r' exp_ok='New password :'/>
+      <cmd send='{$passwd2}\r' exp_ok='Password updated'/>
+      <cmd send='exit' exp_ok=""/>
+      <cmd call='speedNegEff5660'/>
     </cmd_func>
+
+    <!-- Efficient SpeedStream 5660 - Configuration -->
 
     <cmd_func id='confBridgeEff5660'>
       <cmd send='set vc 8 32 llc max' exp_ok='Command->'/>
     </cmd_func>
 
     <cmd_func id='confNoBridgeEff5660'>
-      <cmd send='Set dns disable' exp_ok='Command->'/>
+      <cmd send='Set dns disable' exp_ok='Command->' err='(failed|for help)'/>
             
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='set vc ppp 8 32 max 0.0.0.0' exp_ok='Command->'/>
-	<cmd send='set pppauth {$PPPuser} {$PPPpasswd}' exp_ok='Command->'/>
+	<cmd send='set vc ppp 8 32 max 0.0.0.0' exp_ok='Command->' err='(failed|for help)'/>
+	<cmd send='set pppauth {$PPPuser} {$PPPpasswd}' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
-      <xsl:if test = "$mod_conf='multistatic'">
-	<cmd send='set vc 1483r 8 32 llc max {$ext_ip_router} {$ext_mask_router}' exp_ok='Command->'/>
-	<cmd send='set ipgateway {$remote_ip}' exp_ok='Command->'/>      
-      </xsl:if>
-
-      <xsl:if test = "$mod_conf='monostatic'">
-	<cmd send='set vc 1483r 8 32 llc max {$ext_ip_router} {$ext_mask_router}' exp_ok='Command->'/>
-	<cmd send='set ipgateway {$remote_ip}' exp_ok='Command->'/>      
+      <xsl:if test = "$mod_conf!='multidinamic'">
+	<cmd send='set vc 1483r 8 32 llc max {$ext_ip_router} {$ext_mask_router}' exp_ok='Command->' err='(failed|for help)'/>
+	<cmd send='set ipgateway {$ext_ip_router}' exp_ok='Command->' err='for help'/>      
       </xsl:if>
 
     </cmd_func>      
 
     <cmd_func id='confEff5660'>
       <cmd call='authEff5660'/>
-      <!-- // Primero lo resetamos -->
+
       <cmd send='default all' exp_ok='Setting VC configuration to factory defaults, reboot required'/>
-      <cmd send='\n' exp_ok='Command->'/>
+      <cmd send='\r' exp_ok='Command->'/>
 
-      <!-- // Empezamos a configurar -->
-      <cmd send='set bridge disable' exp_ok='Command->'/>
+      <xsl:if test = "$mod_conf='multidinamic'">
+	<cmd send='set bridge disable' exp_ok='Command->' err='(failed|for help)'/>
+      </xsl:if>
+
       <!-- FIXME: Password must be at least 8 chars -->
-      <cmd send='set password' exp_ok='Old password :'/>
-      <cmd send='{$passwd1}' exp_ok='New password :'/>
-      <cmd send='{$passwd1}' exp_ok='New password :'/>
-      <cmd send='{$passwd1}' exp_ok='Password updated'/>
+      <cmd send='set password' exp_ok='Old password :' err='(failed|for help)'/>
+      <cmd send='{$passwd1}\r' exp_ok='New password :'/>
+      <cmd send='{$passwd1}\r' exp_ok='New password :'/>
+      <cmd send='{$passwd1}\r' exp_ok='Password updated'/>
 
-      <cmd send='set ethip {$int_ip_router} {$int_mask_router}' exp_ok='y,n'/>
-      <cmd send='n' exp_ok='Command->'/>
-      <cmd send='set hostname telefonica' exp_ok='Command->'/>
-      <cmd send='set ethcfg full' exp_ok='Command->'/>
+      <cmd send='set ethip {$int_ip_router} {$int_mask_router}' exp_ok='Selected IP address is on same network as another interface' err='for help'>
+        <expect_list>
+	  <expect out='y,n'>
+	    <cmd send='n' exp_ok='Command->'/>
+	  </expect>
+	</expect_list>
+      </cmd>
+      <cmd send='\r' exp_ok='Command->'/>
+      <cmd send='set hostname telefonica' exp_ok='Command->' err='(failed|for help)'/>
+      <cmd send='set ethcfg full' exp_ok='Command->' err='(failed|for help)'/>
 
       <xsl:if test = "$mod_conf!='monodinamic'">
-	<!-- No bridged -->
-	<cmd send='set serverport HTTP 80 disable' exp_ok='Command->'/>
-	<cmd send='set serverport FTP 21 disable' exp_ok='Command->'/>
-	<cmd send='set serverport SNMP 161 disable' exp_ok='Command->'/>
-	<cmd send='set serverport telnet 23 enable' exp_ok='Command->'/>
+	<cmd send='set serverport HTTP 80 disable' exp_ok='Command->' err='(failed|for help)'/>
+	<cmd send='set serverport FTP 21 disable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <xsl:if test = "$dhcp!='True'">
 	<xsl:if test = "$mod_conf!='monodinamic'">
-	  <!-- No bridged -->
-	  <cmd send='set dhcp disable' exp_ok='Command->'/>
+	  <cmd send='set dhcp disable' exp_ok='Command->' err='(failed|for help)'/>
 	</xsl:if>
       </xsl:if>
 
       <xsl:if test = "$dhcp='True'">
-	<cmd send='set dhcpcfg server {$dhcp_ip_start} {$dhcp_mask} {$dhcp_ip_end} {$dhcp_ip_gw} {$dns1} {$dns2} 0.0.0.0 0.0.0.0 megavia none server 60' exp_ok='Command->'/>
+	<cmd send='set dhcpcfg server {$dhcp_ip_start} {$dhcp_mask} {$dhcp_ip_end} {$dhcp_ip_gw} {$dns1} {$dns2} 0.0.0.0 0.0.0.0 megavia none server 120' exp_ok='Command->' err='(failed|for help)'/>
 	<cmd send='set dhcp enable' exp_ok='Command->'/>
       </xsl:if>
 
@@ -426,29 +428,28 @@
       <xsl:if test = "$mod_conf='multidinamic'"><cmd call='confNoBridgeEff5660'/></xsl:if>
       <xsl:if test = "$mod_conf='multistatic'"><cmd call='confNoBridgeEff5660'/></xsl:if>
 
-      <!-- // A partir de aqui vuelve a ser comun -->
-      <cmd send='set ripcfg none' exp_ok='Command->'/>
-
-      <xsl:if test = "$mod_conf='monodinamic'">
-	<cmd send='set napt disable' exp_ok='Command->'/>
+      <xsl:if test = "$mod_conf!='monodinamic'">
+	<cmd send='set ripcfg none' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
+
       <xsl:if test = "$mod_conf='monostatic'">
-	<cmd send='set napt enable' exp_ok='Command->'/>
+	<cmd send='set napt disable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='set napt enable' exp_ok='Command->'/>
+	<cmd send='set napt enable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
       <xsl:if test = "$mod_conf='multistatic'">
-	<cmd send='set napt enable' exp_ok='Command->'/>
+	<cmd send='set napt enable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
-      <!-- //Filtro para bloquear puerto 23 desde internet, a todo el mundo excepto a una subred -->
-      <cmd send='set ipfiltercfg 1 in permit all 193.152.37.192 255.255.255.240 any any' exp_ok='Command->'/>
-      <cmd send='set ipfiltercfg 2 in deny tcp any any any eq 80 yes' exp_ok='Command->'/>
-      <cmd send='set ipfiltercfg 3 in deny tcp any any any eq 21 yes' exp_ok='Command->'/>
-      <cmd send='set ipfiltercfg 4 in deny tcp any any any eq 23 yes' exp_ok='Command->'/>
-      <cmd send='set ipfiltercfg 5 in permit all any any' exp_ok='Command->'/>
-      <cmd send='set ipfilter enable' exp_ok='Command->'/>
+      <xsl:if test = "$mod_conf!='monodinamic'">
+	<cmd send='set ipfiltercfg 1 in permit all 193.152.37.192 255.255.255.240 any any' exp_ok='Command->' err='for help'/>
+	<cmd send='set ipfiltercfg 2 in deny tcp any any any eq 80 yes' exp_ok='Command->' err='for help'/>
+	<cmd send='set ipfiltercfg 3 in deny tcp any any any eq 21 yes' exp_ok='Command->' err='for help'/>
+	<cmd send='set ipfiltercfg 4 in deny tcp any any any eq 23 yes' exp_ok='Command->' err='for help'/>
+	<cmd send='set ipfiltercfg 5 in permit all any any' exp_ok='Command->' err='for help'/>
+	<cmd send='set ipfilter enable' exp_ok='Command->' err='(failed|for help)'/>
+      </xsl:if>
 
       <!-- //Hacemos un mapeo -->
       <!--
@@ -456,12 +457,21 @@
 	  [Puerto publico.Ej: 21] [IP PC. Ej:192.168.1.33]' exp_ok='Command->'/>
       -->
 
-      <!-- // Reiniciamos para aplica cambios -->
       <cmd send='reboot' exp_ok='y,n'/>
-      <cmd send='y' exp_ok='System rebooting as requested'/>
+      <cmd send='y' exp_ok='System rebooting as requested' err='(failed|for help)'/>
+    </cmd_func>
+
+    <cmd_func id='resetEff5660'>
+      <cmd call='authEff5660'/>
+
+      <cmd send='default all' exp_ok='Setting VC configuration to factory defaults, reboot required'/>
+      <cmd send='\r' exp_ok='Command->'/>
+      <cmd send='reboot' exp_ok='y,n'/>
+      <cmd send='y' exp_ok='System rebooting as requested' err='(failed|for help)'/>
     </cmd_func>
   </xsl:if>
 </cmd_list>
 </xsl:template>
 </xsl:stylesheet>
+
 

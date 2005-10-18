@@ -629,7 +629,7 @@ class Assist:
                 self.devcf.param['gw_computer']   = self.ipGatewayEntry.get_text()
                 # FIXME: configure Ethernet Computer (also with DNS)
      
-        if self.operation_sel.id == '0006':
+        if self.operation_sel.id == '0006' or self.operation_sel.id == '0012':
             self.devcf.param['passwd2'] = self.entryNewPasswd.get_text()
             # FIXME check sizes
         
@@ -653,7 +653,8 @@ class Assist:
 
         msg += boldme(_('Otros Parámetros de la operación')) + ":\n"
         for actparam in self.devcf.param.keys():
-            if len(self.devcf.param[actparam]) > 0:
+            if len(self.devcf.param[actparam]) > 0 and \
+               (actparam.find('passwd') == -1):
                 msg += "* " + actparam + ": " + self.devcf.param[actparam] + "\n"
         
         self.verifParamConfLabel.set_text(msg)
@@ -752,13 +753,13 @@ class Assist:
             msgResult = _("Operación realizada con éxito")
         elif retOper == BBERRGEN:
             msgResult = _("Error en la operación") + ": " + \
-                        _("Por favor envíe un informe de error con los detalles de la operación al foro FIXME")
+                        _("Por favor envíe un informe de error con los detalles de la operación en http://www.guadalinex.org/errores.")
         elif retOper == BBERREOF:
             msgResult = _("Error en la operación") + ": " + \
                         _("Se ha interrumpido la conexión con el equipo inesperadamente")
         elif retOper == BBERRTOUT:
             msgResult = _("Error en la operación") + ": " + \
-                        _("Tiempo de espera excedido")
+                        _("Tiempo de espera excedido.")
         elif retOper == BBERRPWD:
             msgResult = _("Error en la operación") + ": " + \
                         _("No se ha podido autenticar contra el equipo.")

@@ -560,7 +560,11 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 		  <child>
 		    <widget class="GtkLabel" id="label67">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Este equipo puede tener comportamientos inesperados debido a problemas de recalentamiento. Por ello es recomendable que antes de intentar configurarlo, &lt;b&gt;lo apague y lo vuelva a encender&lt;/b&gt;, e incluso que lo deje enfriar por unos minutos antes de encenderlo. También es recomendable que durante su funcionamiento esté en posición vertical y si es posible con un pequeño ventilador externo acoplado.</property>
+		      <property name="label" translatable="yes">Este equipo puede tener comportamientos inesperados si se configura con un cable serie de consola, debido a problemas de recalentamiento.
+
+Por ello es recomendable que antes de intentar configurarlo de esta forma, &lt;b&gt;lo apague y lo vuelva a encender&lt;/b&gt;, e incluso que lo deje enfriar por unos minutos antes de encenderlo.
+
+También es recomendable que durante su funcionamiento esté en posición vertical y si es posible con un pequeño ventilador externo acoplado.</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_FILL</property>
@@ -2587,7 +2591,8 @@ Dependiendo de la operación, su duración puede ser larga. Sea paciente.</prope
 		    <widget class="GtkLabel" id="labelOperResult">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;No se ha podido obtener el resultado de la operación&lt;/b&gt;</property>
+		      <property name="label" translatable="yes">&lt;b&gt;No se ha podido obtener el resultado de la operación&lt;/b&gt;
+Por favor envíe un informe de error con los detalles de la operación en http://www.guadalinex.org/errores</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
