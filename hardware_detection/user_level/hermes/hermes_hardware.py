@@ -50,6 +50,7 @@ import logging
 import gtk
 import os
 
+
 from utils import DeviceList, ColdPlugListener
 from optparse import OptionParser
 from utils.notification import NotificationDaemon
@@ -265,10 +266,13 @@ def main():
     else:
         level = logging.INFO
 
+    logfilename = '/var/tmp/hermes-hardware-' + \
+            os.environ['USER'] + str(os.getuid()) + \
+            '.log' 
+
     logging.basicConfig(level = level,
             format='%(asctime)s %(levelname)s %(message)s',
-                    filename='/var/tmp/hermes-hardware-%s-%s.log' % 
-                    (os.getlogin(), os.getuid()),
+                    filename = logfilename,
                     filemode='a')
 
     if options.hermes_notify:

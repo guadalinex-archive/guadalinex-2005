@@ -4,6 +4,8 @@ import dbus
 import pickle
 import logging
 import os
+import pwd
+import time
 
 from sets import Set
 
@@ -46,11 +48,11 @@ class DeviceList:
     dl = DeviceList()
     dl.get_added()
     dl.get_removed()
-    
     """
 
-    DEFAULT_FILE = '/var/tmp/devicelist-file-%s-%s' % \
-                (os.getlogin(),os.getuid())
+    DEFAULT_FILE = '/var/tmp/devicelist-file-' + \
+            os.environ['USER'] + \
+            str(os.getuid())
 
     def __init__(self):
         self.logger = logging.getLogger()
