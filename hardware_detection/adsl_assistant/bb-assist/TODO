@@ -1,3 +1,5 @@
-- Incluir en el menu gnome/Internet (ya lo está en el menu debian)
 - Bug, on_except
-- DHCP: ¿mascara gw? no puede incluirse en el rango
+- meter más doc en paquete, documentando backend
+- mejorar delay bbexpbackend
+- Meter soporte redirección puertos
+- mejorar comprobación de redes/mascaras

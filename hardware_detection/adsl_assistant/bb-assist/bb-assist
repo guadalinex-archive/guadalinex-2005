@@ -552,7 +552,7 @@ class Assist:
 
         if (self.devcf.param['mod_conf'] == "monostatic"):
             self.devcf.param['remote_ip']       = ipMasqIncrem(self.gestIP.get_text(),
-                                                               self.gestMask.get_text(), 2)
+                                                               self.gestMask.get_text(), 1)
             self.devcf.param['remote_mask']     = self.gestMask.get_text()
             self.devcf.param['ext_ip_router']   = self.gestIP.get_text()
             self.devcf.param['ext_mask_router'] = self.gestMask.get_text()
@@ -562,19 +562,28 @@ class Assist:
             self.devcf.param['ip_computer']     = self.usuIP.get_text()
             self.devcf.param['mask_computer']   = self.usuMask.get_text()
             self.devcf.param['gw_computer']     = self.devcf.param['int_ip_router']
-            # FIXME: configure Ethernet Computer
+            # We also use dhcp for configure the PC from the router
+            self.devcf.param['dhcp']            = 'True'
+            self.devcf.param['dhcp_ip_start']   = self.devcf.param['ip_computer']
+            self.devcf.param['dhcp_ip_end']     = self.devcf.param['ip_computer']
+            self.devcf.param['dhcp_mask']       = self.devcf.param['mask_computer']
+            self.devcf.param['dhcp_ip_gw']      = self.devcf.param['int_ip_router']
+            self.devcf.param['dns1']            = self.provider.dns1
+            self.devcf.param['dns2']            = self.provider.dns2
+            # FIXME: configure Ethernet Computer (with dhcp)
 
         if (self.devcf.param['mod_conf'] == "monodinamic"):
             self.devcf.param['remote_ip']       = '' # Bridged
             self.devcf.param['remote_mask']     = '' # Bridged
             self.devcf.param['ext_ip_router']   = '' # Bridged
             self.devcf.param['ext_mask_router'] = '' # Bridged
-            self.devcf.param['int_ip_router']   = '' # Bridged
-            self.devcf.param['int_mask_router'] = '' # Bridged
+            self.devcf.param['int_ip_router']   = '192.168.1.1'   
+            self.devcf.param['int_mask_router'] = '255.255.255.0' 
             self.devcf.param['ip_computer']     = '' # PPPOE
             self.devcf.param['mask_computer']   = '' # PPPOE
             self.devcf.param['gw_computer']     = '' # PPPOE
-            # FIXME : Configure PPPOE
+            self.devcf.param['dhcp']            = 'False'
+            # FIXME: Configure pppoe
 
         if (self.devcf.param['mod_conf'] == "multistatic"):
             self.devcf.param['remote_ip']       = ipMasqIncrem(self.usuIP.get_text(),
@@ -603,10 +612,11 @@ class Assist:
                (self.devcf.param['mod_conf'] == "multistatic"):
             if self.devcf.param['dhcp'] == 'True':
                 self.devcf.param['dhcp_ip_start'] = self.dhcpIPaddressEntry.get_text()
+                # FIXME: Investigate what dhcp_ip_end we need to use
                 broad = struct.unpack('>L',socket.inet_aton(self.dhcpIPaddressEntry.get_text()))[0] | \
                         (struct.unpack('>L',socket.inet_aton('255.255.255.255'))[0] - \
-                         struct.unpack('>L',socket.inet_aton(self.dhcpMaskEntry.get_text()))[0])
-                self.devcf.param['dhcp_ip_end'] = socket.inet_ntoa(struct.pack('>L', broad))
+                         struct.unpack('>L',socket.inet_aton('255.255.255.192'))[0])
+                self.devcf.param['dhcp_ip_end'] = socket.inet_ntoa(struct.pack('>L', broad - 2))
                 self.devcf.param['dhcp_mask'] = self.dhcpMaskEntry.get_text()
                 self.devcf.param['dhcp_ip_gw'] = self.ipGatewayEntry.get_text()
                 self.devcf.param['dns1'] = self.provider.dns1
@@ -617,7 +627,7 @@ class Assist:
                 self.devcf.param['ip_computer']   = self.IPaddressPcEntry.get_text()
                 self.devcf.param['mask_computer'] = self.maskAddressPcEntry.get_text()
                 self.devcf.param['gw_computer']   = self.ipGatewayEntry.get_text()
-                # FIXME: configure Ethernet Computer
+                # FIXME: configure Ethernet Computer (also with DNS)
      
         if self.operation_sel.id == '0006':
             self.devcf.param['passwd2'] = self.entryNewPasswd.get_text()
@@ -725,6 +735,7 @@ class Assist:
         exp_input_file.writelines(cmd_lines_result)
         exp_input_file.flush()
 
+        retOper = BBERRGEN
         try: retOper = bbexpbackend.processOper(exp_input_file, exp_output_file)
         except:
             self.hide_cursor_watch()

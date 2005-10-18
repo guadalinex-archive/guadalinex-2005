@@ -10,8 +10,9 @@ bb-assist (0.4) unstable; urgency=low
   * Now requires gksudo
   * bbutils and bb-assist code reorganized
   * Icons and menu improved
+  * Full support to 3Com OfficeConnect 812 device
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 16 Oct 2005 15:42:49 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Tue, 18 Oct 2005 13:21:35 +0200
 
 bb-assist (0.3) unstable; urgency=low
 

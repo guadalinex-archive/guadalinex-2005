@@ -161,7 +161,7 @@
       <cmd send='2 REJECT tcp-dst-port=21;' exp_ok=''/>
       <cmd send='3 REJECT tcp-dst-port=80;' exp_ok=''/>
       <cmd send='4 REJECT tcp-dst-port=23;' exp_ok=''/>
-      <cmd send='\004' exp_ok='>'/>
+      <cmd send='\004' exp_ok='>' timeout='40'/>
       <cmd send='add filter filtro' exp_ok='>' err='CLI - '/>
       <cmd send='set interface atm:1 input_filter filtro' exp_ok='>' err='CLI - '/>
     </cmd_func>
@@ -170,8 +170,6 @@
         <cmd send='Set vc internet ip disable ipx disable bridging enable' exp_ok='>' err='CLI - '/>
         <cmd send='Set vc internet network_service rfc_1483' exp_ok='>' err='CLI - '/>
         <cmd send='Set vc internet atm vpi 8 vci 32 category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
-        <cmd send='Set vc internet mac_routing disable' exp_ok='>' err='CLI - '/>
-        <cmd send='Set vc internet nat_option disable' exp_ok='>' err='CLI - '/>
     </cmd_func>
 
     <cmd_func id='confNoBridge3com'>
@@ -182,21 +180,6 @@
 	<xsl:if test = "$mod_conf='multistatic'"><cmd call='confStatic3com'/></xsl:if>
 
 	<cmd send='Set vc internet atm vpi 8 vci 32 category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
-	<cmd send='Set vc internet mac_routing disable' exp_ok='>' err='CLI - '/>
-	
-	<!-- NAT -->
-	<xsl:if test = "$mod_conf='multistatic'">
-	  <cmd send='Set vc internet nat_option enable' exp_ok='>' err='CLI - '/>
-        </xsl:if>
-	<xsl:if test = "$mod_conf='multidinamic'">
-	  <cmd send='Set vc internet nat_option enable' exp_ok='>' err='CLI - '/>
-        </xsl:if>
-
-	<!-- No NAT -->
-	<xsl:if test = "$mod_conf='monodinamic'">
-	  <cmd send='Set vc internet nat_option disable' exp_ok='>' err='CLI - '/>
-        </xsl:if>
-
 	<cmd send='Set vc internet default_route_option enable' exp_ok='>' err='CLI - '/>
 	<!-- FIXME: Set vc internet nat_default_address -->
     </cmd_func>
@@ -212,6 +195,7 @@
       <cmd send='set system name telefonica' exp_ok='>' err='CLI - '/>
 
       <cmd send='enable command password {$passwd1}' exp_ok='>' err='CLI - '/>
+
       <xsl:if test = "$dhcp='True'">
         <cmd send='set dhcp mode server' exp_ok='>'/>
         <cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$dhcp_mask} router {$dhcp_ip_gw} dns1 {$dns1} dns2 {$dns2} lease 60' exp_ok='>' err='CLI - ' on_except='errServDhcp3com' />
@@ -220,35 +204,36 @@
         <cmd send='set dhcp mode disabled' exp_ok='>' err='CLI - '/>
       </xsl:if>
       
-      <!-- // Bridge o NAT -->
-      <xsl:if test = "$mod_conf='monostatic'">
-	<cmd send='enable ip forwarding' exp_ok='>' err='CLI - '/>
-      </xsl:if>
-
       <xsl:if test = "$mod_conf='monodinamic'">
-        <cmd send='add bridge network internet' exp_ok='>' err='CLI - '/>
+        <cmd send='add bridge network puente' exp_ok='>' err='CLI - '/>
         <cmd send='disable ip forwarding' exp_ok='>' err='CLI - '/>
       </xsl:if>
 
-      <xsl:if test = "$mod_conf='multistatic'">
-	<cmd send='enable ip forwarding' exp_ok='>' err='CLI - '/>
-      </xsl:if>
-
-      <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='enable ip forwarding' exp_ok='>' err='CLI - '/>
-      </xsl:if>
-
       <xsl:if test = "$mod_conf!='monodinamic'">
-	<cmd send='Add ip network LAN interface eth:1 address {$int_ip_router}/{$int_mask_router} frame ethernet_ii enable yes' exp_ok='>' err='CLI - '/>
+	<cmd send='enable ip forwarding' exp_ok='>' err='CLI - '/>
       </xsl:if>
 
+      <cmd send='Add ip network LAN interface eth:1 address {$int_ip_router}/{$int_mask_router} frame ethernet_ii enable yes' exp_ok='>' err='CLI - '/>
       <cmd send='add vc internet' exp_ok='>' err='CLI - '/>
 
-      <xsl:if test = "$mod_conf='monodinamic'"><cmd call='confBridge3com'/></xsl:if>
-      <xsl:if test = "$mod_conf='monostatic'"><cmd call='confNoBridge3com'/></xsl:if>
-      <xsl:if test = "$mod_conf='multidinamic'"><cmd call='confNoBridge3com'/></xsl:if>
-      <xsl:if test = "$mod_conf='multistatic'"><cmd call='confNoBridge3com'/></xsl:if>
+      <xsl:if test = "$mod_conf='monodinamic'">
+	<cmd call='confBridge3com'/>
+	<cmd send='Set vc internet nat_option disable' exp_ok='>' err='CLI - '/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf='monostatic'">
+	<cmd send='Set vc internet nat_option disable' exp_ok='>' err='CLI - '/>
+	<cmd call='confNoBridge3com'/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf='multidinamic'">
+	<cmd call='confNoBridge3com'/>
+	<cmd send='Set vc internet nat_option enable' exp_ok='>' err='CLI - '/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf='multistatic'">
+	<cmd call='confNoBridge3com'/>
+	<cmd send='Set vc internet nat_option enable' exp_ok='>' err='CLI - '/>
+      </xsl:if>
 
+      <cmd send='Set vc internet mac_routing disable' exp_ok='>' err='CLI - '/>
       <cmd send='disable network service httpd' exp_ok='>' err='CLI - '/>
       <cmd send='set adsl open ansi' exp_ok='>' err='CLI - '/>
 
@@ -268,13 +253,12 @@
            <cmd send='add nat tcp vc internet private_add [IP PC. Ej:192.168.1.33] private_port [Puerto interno, Ej: 21] public_port [Puerto publico.Ej: 21]' exp_ok='>' err='CLI - '/>
       -->
 
+      <!-- Not sure 
       <cmd send='set vc internet intelligent_nat_option disable' exp_ok='>' err='CLI - '/>
       <cmd send='disable dns' exp_ok='>' err='CLI - '/>
       <cmd send='disable network service tftpd' exp_ok='>' err='CLI - '/>
       <cmd send='disable security_option snmp user_access' exp_ok='>' err='CLI - '/>
-      <xsl:if test = "$mod_conf!='monodinamic'">
-	<cmd send='disable ip rip' exp_ok='>' err='CLI - '/>
-      </xsl:if>
+      -->
       <cmd send='enable vc internet' exp_ok='>' err='CLI - '/>
       <cmd send='save all' exp_ok='>' err='CLI - '/>
       <cmd send='exit cli' exp_ok='>' err='CLI - '/>
