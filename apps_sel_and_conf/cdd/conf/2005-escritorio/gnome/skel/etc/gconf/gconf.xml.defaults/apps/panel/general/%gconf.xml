@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<gconf>
+        <entry name="profiles_migrated" mtime="1129627789" schema="/schemas/apps/panel/general/profiles_migrated" type="bool" value="false">
+        </entry>
+        <entry name="object_id_list" mtime="1129627789" schema="/schemas/apps/panel/general/object_id_list" type="list" ltype="string">
+        <li type="string">
+                <stringvalue>yelp_launcher_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>email_launcher_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>browser_launcher_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>menu_bar_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>logout_button0</stringvalue>
+        </li>
+        </entry>
+        <entry name="applet_id_list" mtime="1129627789" schema="/schemas/apps/panel/general/applet_id_list" type="list" ltype="string">
+        <li type="string">
+                <stringvalue>trashapplet_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>workspace_switcher_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>window_list_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>show_desktop_button_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>notification_area_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>clock_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>mixer_screen0</stringvalue>
+        </li>
+        </entry>
+        <entry name="toplevel_id_list" mtime="1129627789" schema="/schemas/apps/panel/general/toplevel_id_list" type="list" ltype="string">
+        <li type="string">
+                <stringvalue>bottom_panel_screen0</stringvalue>
+        </li>
+        <li type="string">
+                <stringvalue>top_panel_screen0</stringvalue>
+        </li>
+        </entry>
+        <entry name="enable_autocompletion" mtime="1129627789" schema="/schemas/apps/panel/general/enable_autocompletion" type="bool" value="true">
+        </entry>
+        <entry name="show_program_list" mtime="1129627789" schema="/schemas/apps/panel/general/show_program_list" type="bool" value="false">
+        </entry>
+        <entry name="enable_program_list" mtime="1129627789" schema="/schemas/apps/panel/general/enable_program_list" type="bool" value="true">
+        </entry>
+</gconf>
