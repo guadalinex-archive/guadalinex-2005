@@ -22,6 +22,8 @@ set -e
 #     installation fails and the `postinst' is called with `abort-upgrade',
 #     `abort-remove' or `abort-deconfigure'.
 
+GCONF="/usr/bin/gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults"
+
 case "$1" in
     configure)
     if [ ! -e /usr/share/pixmaps/splash/guadalinex-splash.png ];then
