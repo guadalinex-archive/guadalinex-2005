@@ -22,19 +22,13 @@ set -e
 #     installation fails and the `postinst' is called with `abort-upgrade',
 #     `abort-remove' or `abort-deconfigure'.
 
-GCONF="/usr/bin/gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults"
-
 case "$1" in
     configure)
     if [ ! -e /usr/share/pixmaps/splash/guadalinex-splash.png ];then
     	ln -s /usr/share/pixmaps/splash/gnome-splash.png /usr/share/pixmaps/splash/guadalinex-splash.png
     fi
 
-    $GCONF --type string --set /desktop/gnome/interface/gtk_theme Guadalinex
-    $GCONF --type string --set /desktop/gnome/interface/icon_theme Guadalinex
-    $GCONF --type string --set /desktop/gnome/background/picture_filename /usr/share/backgrounds/Fondo1600flamenco.jpg
     $GCONF --load /usr/share/gnome/panel.entries
-
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
