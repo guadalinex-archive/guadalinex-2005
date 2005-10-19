@@ -1,0 +1,171 @@
+# Rules.make for busybox
+#
+# Copyright (C) 1999-2004 by Erik Andersen <andersen@codepoet.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#
+
+#--------------------------------------------------------
+PROG      := busybox
+VERSION   := 1.00-pre10
+BUILDTIME := $(shell TZ=UTC date -u "+%Y.%m.%d-%H:%M%z")
+
+
+#--------------------------------------------------------
+# With a modern GNU make(1) (highly recommended, that's what all the
+# developers use), all of the following configuration values can be
+# overridden at the command line.  For example:
+#   make CROSS=powerpc-linux- BB_SRC_DIR=$HOME/busybox PREFIX=/mnt/app
+#--------------------------------------------------------
+
+AR             = ar
+CC             = gcc
+LD             = @LD@
+STRIP          = strip
+MAKEFILES      = $(TOPDIR).config
+
+host_cpu = i686
+host_cpu_unified = i386
+host_cpu_modutils = i386
+host_cpu_modutils_biarch = 
+host_os = linux-gnu
+host_os_unified = linux
+
+# Select the compiler needed to build binaries for your development system
+HOSTCC    = gcc
+HOSTCFLAGS= -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer
+
+# Ensure consistent sort order, 'gcc -print-search-dirs' behavior, etc.
+LC_ALL:= C
+
+# If you want to add some simple compiler switches (like -march=i686),
+# especially from the command line, use this instead of CFLAGS directly.
+# For optimization overrides, it's better still to set OPTIMIZATION.
+CFLAGS_EXTRA=$(subst ",, $(strip $(EXTRA_CFLAGS_OPTIONS)))
+
+# If you have a "pristine" source directory, point BB_SRC_DIR to it.
+# Experimental and incomplete; tell the mailing list
+# <busybox@busybox.net> if you do or don't like it so far.
+BB_SRC_DIR=
+
+# To compile vs some other alternative libc, you may need to use/adjust
+# the following lines to meet your needs...
+#
+# If you are using Red Hat 6.x with the compatible RPMs (for developing under
+# Red Hat 5.x and glibc 2.0) uncomment the following.  Be sure to read about
+# using the compatible RPMs (compat-*) at http://www.redhat.com !
+#LIBCDIR:=/usr/i386-glibc20-linux
+#
+# For other libraries, you are on your own.  But these may (or may not) help...
+#LDFLAGS+=-nostdlib
+#LIBRARIES:=$(LIBCDIR)/lib/libc.a -lgcc
+#CROSS_CFLAGS+=-nostdinc -I$(LIBCDIR)/include -I$(GCCINCDIR)
+#GCCINCDIR:=$(shell gcc -print-search-dirs | sed -ne "s/install: \(.*\)/\1include/gp")
+
+WARNINGS=-Wall -Wstrict-prototypes -Wshadow
+CFLAGS=-I$(TOPDIR)include
+ARFLAGS=-r
+
+# Pull in the user's busybox configuration
+ifeq ($(filter $(noconfig_targets),$(MAKECMDGOALS)),)
+-include $(TOPDIR).config
+endif
+
+#--------------------------------------------------------
+# Arch specific compiler optimization stuff should go here.
+# Unless you want to override the defaults, do not set anything
+# for OPTIMIZATION...
+
+# use '-Os' optimization
+OPTIMIZATIONS = -Os -fomit-frame-pointer
+
+# Some nice architecture specific optimizations
+ifeq ($(host_cpu_unified),arm)
+	OPTIMIZATIONS += -fstrict-aliasing
+endif
+ifeq ($(host_cpu_unified),i386)
+	OPTIMIZATIONS += -mpreferred-stack-boundary=2
+	OPTIMIZATIONS += -falign-functions=0 -falign-jumps=0 -falign-loops=0
+endif
+
+#
+#--------------------------------------------------------
+# If you're going to do a lot of builds with a non-vanilla configuration,
+# it makes sense to adjust parameters above, so you can type "make"
+# by itself, instead of following it by the same half-dozen overrides
+# every time.  The stuff below, on the other hand, is probably less
+# prone to casual user adjustment.
+#
+
+ifeq ($(strip $(CONFIG_LFS)),y)
+    # For large file summit support
+    CFLAGS+=-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
+endif
+ifeq ($(strip $(CONFIG_DMALLOC)),y)
+    # For testing mem leaks with dmalloc
+    CFLAGS+=-DDMALLOC
+    LIBRARIES:=-ldmalloc
+else
+    ifeq ($(strip $(CONFIG_EFENCE)),y)
+	LIBRARIES:=-lefence
+    endif
+endif
+ifeq ($(host_os),linux-gnu)
+	CFLAGS += -D_GNU_SOURCE
+endif
+ifeq ($(strip $(CONFIG_DEBUG)),y)
+    CFLAGS  +=$(WARNINGS) -g
+    LDFLAGS +=-Wl,-warn-common
+    STRIPCMD:=/bin/true -Not_stripping_since_we_are_debugging
+else
+    CFLAGS+=$(WARNINGS) $(OPTIMIZATIONS) -DNDEBUG
+    LDFLAGS += -s -Wl,-warn-common
+    STRIPCMD:=$(STRIP) --remove-section=.note --remove-section=.comment
+endif
+ifeq ($(strip $(CONFIG_STATIC)),y)
+    LDFLAGS += --static
+endif
+
+ifeq ($(strip $(PREFIX)),)
+    PREFIX:=`pwd`/_install
+endif
+
+# Additional complications due to support for pristine source dir.
+# Include files in the build directory should take precedence over
+# the copy in BB_SRC_DIR, both during the compilation phase and the
+# shell script that finds the list of object files.
+# Work in progress by <ldoolitt@recycle.lbl.gov>.
+#
+ifneq ($(strip $(BB_SRC_DIR)),)
+    VPATH:=$(BB_SRC_DIR)
+endif
+
+OBJECTS:=$(APPLET_SOURCES:.c=.o) busybox.o usage.o applets.o
+CFLAGS    += $(CROSS_CFLAGS)
+ifdef BB_INIT_SCRIPT
+    CFLAGS += -DINIT_SCRIPT='"$(BB_INIT_SCRIPT)"'
+endif
+
+# Put user-supplied flags at the end, where they
+# have a chance of winning.
+CFLAGS += $(CFLAGS_EXTRA)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c -o $@ $<
+
+.PHONY: dummy
+
+.EXPORT_ALL_VARIABLES:
+
