@@ -1,0 +1,20 @@
+#!/bin/sh
+# Set the tmpfs partition
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+mkdir /mnt
+mount -t tmpfs -o "size=80%" tmpfs /mnt
+

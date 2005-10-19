@@ -1,0 +1,28 @@
+#!/bin/sh
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# Hooks for loading modules necessaries for the live system into the initramfs
+
+. /usr/share/initramfs-tools/hook-functions
+
+. /etc/mkinitramfs/initramfs.conf
+
+if [ "${BOOT}" == "live" ]; then
+	for x in squashfs unionfs loop vfat ntfs isofs ; do
+		manual_add_modules ${x}
+	done
+fi

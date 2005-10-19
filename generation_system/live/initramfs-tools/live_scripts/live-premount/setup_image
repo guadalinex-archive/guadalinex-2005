@@ -1,0 +1,33 @@
+#!/bin/sh
+# Get the image, putting in the rigth place and mount it
+
+PREREQ="local"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+echo "SETUP_IMAGE: Antes de cargar los modulos squashfs y loop" >> /messages.txt
+# Just to be sure
+modprobe -q squashfs
+modprobe -q loop
+
+IMAGE=/mnt/image
+mkdir -p ${IMAGE}
+
+echo "SETUP_IMAGE: Antes de montar la imagen" >> /messages.txt
+mount -o loop -t squashfs /mnt/dev/META/META.squashfs $IMAGE
+if [ $? = 0 ]; then
+	echo "SETUP_IMAGE: Montada la imagen" >> /messages.txt
+else
+	echo "SETUP_IMAGE: ERROR -> NO montada la imagen" >> /messages.txt
+fi

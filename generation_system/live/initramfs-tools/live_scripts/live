@@ -1,0 +1,45 @@
+# Live filesystem mounting			-*- shell-script -*-
+# 
+
+# Parameter: Where to mount the filesystem
+mountroot ()
+{
+	# checkings
+	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/live-top"
+	run_scripts /scripts/live-top
+	[ "$quiet" != "y" ] && log_end_msg
+
+	# Get the root filesystem type
+	if [ ! -e "${ROOT}" ]; then
+		panic "ALERT!  ${ROOT} does not exist.  Dropping to a shell!"
+	fi
+
+	# Find and mount the Image
+	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/live-premount"
+	run_scripts /scripts/live-premount
+	[ "$quiet" != "y" ] && log_end_msg
+
+	modprobe -q unionfs
+
+	# Mount root
+	unionfs=${rootmnt}
+	changes=/mnt/changes
+	image=/mnt/image
+	dirs=${unionfs}/.dirs
+	mkdir -p ${changes}
+
+	mount -t unionfs -o dirs=${changes}=rw:${image}=ro unionfs ${unionfs} 
+
+	mkdir -p ${dirs}
+	mount -o move /mnt ${dirs}
+	
+	if [ $? != 0 ]; then
+		panic "Somethingn wrong with the unionfs mounting"
+		# Just in case
+		FS1='(initramfs) ' exec /bin/sh </dev/console >/dev/console 2>&1
+	fi
+
+	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/live-bottom"
+	run_scripts /scripts/live-bottom
+	[ "$quiet" != "y" ] && log_end_msg
+}

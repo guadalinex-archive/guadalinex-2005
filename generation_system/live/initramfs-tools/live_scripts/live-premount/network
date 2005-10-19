@@ -1,0 +1,43 @@
+#!/bin/sh
+# Setup the network with dhcp
+PREREQ="tmpfs"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+echo "NETWORK: Antes de comprobar si existe [clone]" >> /messages.txt
+# FIXME: launch the clone's scripts
+for x in $(cat /proc/cmdline); do
+	case $x in
+		clone)
+			;;
+		*)
+			exit 0
+	esac
+done 
+
+echo "NETWORK: Antes de configurar la red" >> /messages.txt
+DEVS=$(grep [0-9]: /proc/net/dev | grep -v sit | tr -s '  ' ' ' | cut -d ' ' -f 2 | cut -d ':' -f 1)
+for DEV in $DEVS
+        do
+	ifconfig $DEV
+	udhcpc $DEV
+done
+
+SERVER=$(grep serverip /etc/config.cfg | cut -d '=' -f 2)
+
+echo "NETWORK: Antes de bajar la imagen" >> /messages.txt
+mkdir -p /mnt/dev/META/
+ftpget $SERVER /mnt/dev/META/META.squashfs /cdrom/META/META.squashfs
+
+
