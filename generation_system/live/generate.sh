@@ -29,7 +29,7 @@ debootstrap_start () {
 chroot_clean () {
   echo "[$(date +%Y%m%d%H%M)] Starting process..." >> $LOG_FILE
   echo "[$(date +%Y%m%d%H%M)] Cleaning  image..." >> $LOG_FILE
-
+# FIXME:/home/usuario ?
   chroot $SOURCES find /tmp /home/usuario /root -maxdepth 1 -exec rm -rf {} \;
   > $SOURCES/etc/resolv.conf
 }
