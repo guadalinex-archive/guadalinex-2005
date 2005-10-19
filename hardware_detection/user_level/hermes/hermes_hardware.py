@@ -53,7 +53,7 @@ import os
 
 from utils import DeviceList, ColdPlugListener
 from optparse import OptionParser
-from utils.notification import NotificationDaemon
+from utils.notification import NotificationDaemon, FileNotification
 
 
 #notification-daemon spec: -------------------------------------------
@@ -276,9 +276,11 @@ def main():
                     filemode='a')
 
     if options.hermes_notify:
-        bus = dbus.SessionBus()
-        object = bus.get_object("org.guadalinex.Hermes", "/org/guadalinex/HermesObject")
-        iface = dbus.Interface(object, "org.guadalinex.IHermesNotifier")
+        filepath = '/var/tmp/filenotification-' + \
+                os.environ['USER'] + str(os.getuid()) + \
+                '.log'
+
+        iface = FileNotification(filepath)
     else:
         iface = NotificationDaemon()
 

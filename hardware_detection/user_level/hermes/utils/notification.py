@@ -3,6 +3,7 @@
 
 import dbus
 import thread
+import logging
 
 if getattr(dbus, "version", (0, 0, 0)) >= (0, 41, 0):
     import dbus.glib
@@ -13,7 +14,7 @@ class NotificationDaemon(object):
     This class is a wrapper for notification-daemon program.
     """
 
-    def __init__(self):
+    def __init__(self): 
         bus = dbus.SessionBus()
         obj = bus.get_object('org.freedesktop.Notifications',
                 '/org/freedesktop/Notifications')
@@ -102,3 +103,39 @@ class NotificationDaemon(object):
             i += 1
 
         return notify_actions, action_handlers
+
+
+
+class FileNotification(object):
+
+    def __init__(self, filepath):
+        self.filepath = filepath
+
+
+    def show (self, summary, body, icon, actions = {}):
+        self.__write("show: %s, %s, %s" % (summary, body, icon))
+
+
+    def show_info(self, summary, body, actions = {}):
+        self.__write("show_info: %s, %s, %s" % (summary, body))
+
+
+    def show_warning(self, summary, body, actions = {}):
+        self.__write("show_warning: %s, %s, %s" % (summary, body))
+
+
+    def show_error(self, summary, body, actions = {}):
+        self.__write("show_error: %s, %s, %s" % (summary, body))
+
+
+    def __write(self, text):
+        try:
+            objfile = open(self.filepath, 'a')
+            objfile.write(text + '\n')
+            objfile.close()
+        except Exception, e:
+            logging.getLogger().error('FileNotification: ' + e)
+                
+            
+
+

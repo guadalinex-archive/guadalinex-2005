@@ -47,6 +47,7 @@ import os.path
 from deviceactor import DeviceActor
 
 USBICON = os.path.abspath('actors/img/usb.png')
+USBICONOFF = os.path.abspath('actors/img/usboff.png')
 
 class Actor(DeviceActor):
 
@@ -59,10 +60,16 @@ class Actor(DeviceActor):
             vendor = vendor and vendor + ', ' or ''
             self.msg_render.show("USB", "Dispositivo usb detectado:\n" +\
                     vendor + product, USBICON)
+            self.vendorproduct = vendor + product
 
         except:
             self.msg_render.show("USB", "Dispositivo usb detectado", USBICON)
 
 
     def on_removed(self):
-        self.msg_render.show("USB", "Dispositivo usb desconectado", USBICON)
+        try:
+            self.msg_render.show("USB", "Dispositivo usb desconectado:\n" + \
+                    self.vendorproduct, USBICONOFF)
+        except:
+            self.msg_render.show("USB", "Dispositivo usb desconectado",
+                    USBICONOFF)

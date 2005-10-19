@@ -51,6 +51,7 @@ from utils.synaptic import Synaptic
 from deviceactor import DeviceActor
 
 BLUEICON = os.path.abspath('actors/img/bluetooth.png')
+BLUEICONOFF = os.path.abspath('actors/img/bluetoothoff.png')
 
 class Actor(DeviceActor):
 
@@ -83,9 +84,7 @@ class Actor(DeviceActor):
              '.',
              BLUEICON, actions = actions)
 
+
     def on_removed(self):
         self.msg_render.show("BLUETOOTH", "Interfaz bluetooth desconectada",
-                BLUEICON)
-
-
-
+                BLUEICONOFF)
