@@ -5,7 +5,7 @@
 # (with Priority = 0 first) and defaults to 50.
 # The id provides a name that is unique within this file and passed to the
 # app as the client id which it must use to register with gnome-session.
-# The clients must be numbered from 0 to the value of num_clients - 1.  
+# The clients must be numbered from 0 to the value of num_clients - 1.
 
 [Default]
 num_clients=9
@@ -33,6 +33,8 @@ num_clients=9
 7,id=default7
 7,Priority=50
 7,RestartCommand=update-notifier --sm-client-id default7
-8,id=default8
-8,Priority=80
-8,RestartCommand=hermeshardware
+8,RestartStyleHint=3
+8,Priority=50
+8,RestartCommand=/usr/bin/hermeshardware
+8,Program=/usr/bin/hermeshardware
+
