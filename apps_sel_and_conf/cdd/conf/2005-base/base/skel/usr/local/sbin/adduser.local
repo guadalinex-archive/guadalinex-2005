@@ -1,0 +1,12 @@
+#!/bin/bash
+
+adduser --quiet $1 adm
+adduser --quiet $1 dialout
+adduser --quiet $1 cdrom
+adduser --quiet $1 floppy
+adduser --quiet $1 audio
+adduser --quiet $1 dip
+adduser --quiet $1 video
+adduser --quiet $1 plugdev
+adduser --quiet $1 lpadmin
+adduser --quiet $1 scanner
