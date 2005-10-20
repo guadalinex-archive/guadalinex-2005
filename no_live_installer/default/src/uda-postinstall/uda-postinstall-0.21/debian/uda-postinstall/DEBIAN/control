@@ -1,0 +1,12 @@
+Package: uda-postinstall
+Version: 0.21-1
+Section: uda
+Priority: optional
+Architecture: i386
+Depends: libatk1.0-0 (>= 1.9.0), libc6 (>= 2.3.2.ds1-4), libglade2-0 (>= 1:2.5.1), libglib2.0-0 (>= 2.6.0), libgtk2.0-0 (>= 2.6.0), libpango1.0-0 (>= 1.8.1), libxml2 (>= 2.6.17), zlib1g (>= 1:1.2.1), uda-postinstall-molinux-branding | uda-postinstall-guadalinex-branding
+Installed-Size: 180
+Maintainer: Roberto Majadas <roberto@molinux.info>
+Description: Graphical postinstallation system for Molinux Distro
+ This app startup once time when you enter in the stage2 of the
+ installation process. It install the rest of packages and config
+ the rest of your system
