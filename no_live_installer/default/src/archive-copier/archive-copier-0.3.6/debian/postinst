@@ -137,7 +137,7 @@ die () {
 #   never copy Base
 #   copy Desktop and Ship if there is anything to copy for them
 
-copybase=no
+copybase=yes
 if [ "$DESKTOPOPTS" ]; then
     copydesktop=yes
 else
