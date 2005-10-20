@@ -80,9 +80,9 @@ case $DIST in
     ;;
   breezy)
     export CODENAME=breezy
-    export CAPCODENAME='Breezy Badger'
-    export DEBVERSION=5.10
-    export OFFICIAL="Alpha"
+    export CAPCODENAME='Flamenco'
+    export DEBVERSION=2005
+    export OFFICIAL="Beta"
     ;;
 #  gx05)
 #  gx05-mini)
@@ -151,6 +151,8 @@ export LIVEIMAGES=$CDIMAGE_ROOT/scratch/$PROJECT/live
 # export EXTRANONFREE=1
 
 export RESTRICTED=1
+
+#export UNIVERSE=1
 
 # If you have a $MIRROR/dists/$CODENAME/local/binary-$ARCH dir with 
 # local packages that you want to put on the CD set then
