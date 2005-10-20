@@ -3,6 +3,6 @@
 
 
 
-Para instalar unicamente el sistema base, escriba 'server' y pulse INTRO.
-Para la instalación por defecto, pulse INTRO.
+
+Bienvenido, pulse INTRO para continuar.
 
