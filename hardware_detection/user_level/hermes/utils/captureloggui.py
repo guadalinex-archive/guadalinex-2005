@@ -23,18 +23,19 @@ class CaptureLogGui(object):
 
         self.mainwindow = xml.get_widget('mainwindow')
         self.mainwindow.show_all()
+        self.devnameentry = xml.get_widget('devname')
 
 
 
     # SIGNAL HANDLERS ##################
     def on_capturelog(self, *args):
-        #Close file an restore stdout
         self.logfile.close()
 
-        content = open(self.filepath).read()
+        devname = self.devnameentry.get_text() or 'nuevodispositivo'
 
+        content = open(self.logfilepath).read()
         newfile = open(os.path.expanduser('~') + \
-                '/Desktop/nuevodispositivo.log', 
+                '/Desktop/' + devname + '.log', 
                 'w')
 
         newfile.write(content)
@@ -57,9 +58,9 @@ class CaptureLogGui(object):
 
     # Private methods ####################
     def __set_logfile(self):
-        self.filepath = tempfile.mktemp()
+        self.logfilepath = tempfile.mktemp()
 
-        self.logfile = open(self.filepath, 'w')
+        self.logfile = open(self.logfilepath, 'w')
         sys.stdout = self.logfile
 
 
