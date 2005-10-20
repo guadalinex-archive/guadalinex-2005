@@ -325,5 +325,21 @@
     </druid_page_list>
   </operation>
 
+  <operation id='0019' bb_device='0005' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="en" name='Change password'/>
+      <opername lang="es_ES" name='Cambiar contraseña'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>chgPassNokiaM1112</initial_func>
+    <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidNewPasswd</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+    </druid_page_list>
+  </operation>
 
 </operation_list>

@@ -82,6 +82,9 @@ def func_parse(dom, child, func, default_timeout = -1, sdelay = 0):
     path_cmd = "cmd_func[@id='"+ func +"']/cmd"
     cmds = Evaluate(path_cmd, dom.documentElement)
     if (len(cmds) < 1):
+        if by_serial:
+            ser.close()
+        os.remove("/var/lock/LCK..ttyS" + tty_read)
         raise SyntaxError, _("en modulo de expect. Función call") + \
               " '" + func + "' " + _("desconocida")
     return (cmd_parse(dom, child, cmds, default_timeout, sdelay))

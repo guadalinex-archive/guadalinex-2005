@@ -20,8 +20,9 @@ bb-assist (0.4) unstable; urgency=low
   * Added partial support to Nokia 1112
   * Minor fixes
   * Added HOWTO-DEVEL documentation
+  * Full support of Efficient Speedstream 5660 device
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 20 Oct 2005 12:42:13 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 20 Oct 2005 20:06:53 +0200
 
 bb-assist (0.3) unstable; urgency=low
 

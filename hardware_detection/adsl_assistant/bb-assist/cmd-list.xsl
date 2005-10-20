@@ -47,6 +47,8 @@
   <xsl:variable name="dhcp_ip_gw" select="//dhcp_ip_gw"/>
   <xsl:variable name="dns1" select="//dns1"/>
   <xsl:variable name="dns2" select="//dns2"/>
+  <xsl:variable name="net_computer" select="//net_computer"/>
+  <xsl:variable name="mask_computer" select="//mask_computer"/>
 
   <!-- Common Vars -->
 
@@ -82,25 +84,25 @@
       <cmd send='' exp_ok='(CLI -|>)'>
         <expect_list>
           <expect out='Password:'>
-	    <cmd send='{$passwd1}' exp_ok='>'>
-	      <expect_list>
-		<expect out='Password:'>
-		  <cmd send='{$passwd1}' exp_ok='>'>
-		    <expect_list>
-		      <expect out='Password:'>
-			<cmd return='4'/> <!-- Wrong passwd -->
-		      </expect>
-		    </expect_list>
-		  </cmd>
-		</expect>
-	      </expect_list>
-	    </cmd>
-	  </expect>
-	  <expect out='Do you want to continue with OfficeConnect Quick Setup'>
-	    <cmd send='n' exp_ok='Starting line test ...'/>
-	    <cmd send='' exp_ok='>'/>
-	  </expect>
-	</expect_list>
+            <cmd send='{$passwd1}' exp_ok='>'>
+              <expect_list>
+                <expect out='Password:'>
+                  <cmd send='{$passwd1}' exp_ok='>'>
+                    <expect_list>
+                      <expect out='Password:'>
+                        <cmd return='4'/> <!-- Wrong passwd -->
+                      </expect>
+                    </expect_list>
+                  </cmd>
+                </expect>
+              </expect_list>
+            </cmd>
+          </expect>
+          <expect out='Do you want to continue with OfficeConnect Quick Setup'>
+            <cmd send='n' exp_ok='Starting line test ...'/>
+            <cmd send='' exp_ok='>'/>
+          </expect>
+        </expect_list>
       </cmd>
     </cmd_func>
 
@@ -155,7 +157,7 @@
 
     <cmd_func id='confFilter3com'>
       <!-- //Filtro para bloquear puerto 21, 23, 80 desde internet, 
-	   a todo el mundo excepto a una subred -->
+           a todo el mundo excepto a una subred -->
       <cmd send='capture text_file filtro' exp_ok=''/>
       <cmd send='#filter' exp_ok=''/>
       <cmd send='IP:' exp_ok=''/>
@@ -175,14 +177,14 @@
     </cmd_func>
 
     <cmd_func id='confNoBridge3com'>
-	<cmd send='Set vc internet ip enable ipx disable bridging disable' exp_ok='>' err='CLI - '/>
-	<xsl:if test = "$mod_conf='multidinamic'"><cmd call='confDinamic3com'/></xsl:if>
-	<xsl:if test = "$mod_conf='monodinamic'"><cmd call='confDinamic3com'/></xsl:if>
-	<xsl:if test = "$mod_conf='monostatic'"><cmd call='confStatic3com'/></xsl:if>
-	<xsl:if test = "$mod_conf='multistatic'"><cmd call='confStatic3com'/></xsl:if>
+        <cmd send='Set vc internet ip enable ipx disable bridging disable' exp_ok='>' err='CLI - '/>
+        <xsl:if test = "$mod_conf='multidinamic'"><cmd call='confDinamic3com'/></xsl:if>
+        <xsl:if test = "$mod_conf='monodinamic'"><cmd call='confDinamic3com'/></xsl:if>
+        <xsl:if test = "$mod_conf='monostatic'"><cmd call='confStatic3com'/></xsl:if>
+        <xsl:if test = "$mod_conf='multistatic'"><cmd call='confStatic3com'/></xsl:if>
 
-	<cmd send='Set vc internet atm vpi 8 vci 32 category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
-	<cmd send='Set vc internet default_route_option enable' exp_ok='>' err='CLI - '/>
+        <cmd send='Set vc internet atm vpi 8 vci 32 category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
+        <cmd send='Set vc internet default_route_option enable' exp_ok='>' err='CLI - '/>
     </cmd_func>
 
     <cmd_func id='conf3com'>
@@ -211,27 +213,27 @@
       </xsl:if>
 
       <xsl:if test = "$mod_conf!='monodinamic'">
-	<cmd send='enable ip forwarding' exp_ok='>' err='CLI - '/>
+        <cmd send='enable ip forwarding' exp_ok='>' err='CLI - '/>
       </xsl:if>
 
       <cmd send='Add ip network LAN interface eth:1 address {$int_ip_router}/{$int_mask_router} frame ethernet_ii enable yes' exp_ok='>' err='CLI - '/>
       <cmd send='add vc internet' exp_ok='>' err='CLI - '/>
 
       <xsl:if test = "$mod_conf='monodinamic'">
-	<cmd call='confBridge3com'/>
-	<cmd send='Set vc internet nat_option disable' exp_ok='>' err='CLI - '/>
+        <cmd call='confBridge3com'/>
+        <cmd send='Set vc internet nat_option disable' exp_ok='>' err='CLI - '/>
       </xsl:if>
       <xsl:if test = "$mod_conf='monostatic'">
-	<cmd send='Set vc internet nat_option disable' exp_ok='>' err='CLI - '/>
-	<cmd call='confNoBridge3com'/>
+        <cmd send='Set vc internet nat_option disable' exp_ok='>' err='CLI - '/>
+        <cmd call='confNoBridge3com'/>
       </xsl:if>
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd call='confNoBridge3com'/>
-	<cmd send='Set vc internet nat_option enable' exp_ok='>' err='CLI - '/>
+        <cmd call='confNoBridge3com'/>
+        <cmd send='Set vc internet nat_option enable' exp_ok='>' err='CLI - '/>
       </xsl:if>
       <xsl:if test = "$mod_conf='multistatic'">
-	<cmd call='confNoBridge3com'/>
-	<cmd send='Set vc internet nat_option enable' exp_ok='>' err='CLI - '/>
+        <cmd call='confNoBridge3com'/>
+        <cmd send='Set vc internet nat_option enable' exp_ok='>' err='CLI - '/>
       </xsl:if>
 
       <cmd send='Set vc internet mac_routing disable' exp_ok='>' err='CLI - '/>
@@ -281,7 +283,7 @@
 
     <cmd_func id='speedNegEff5660'>
       <!-- SpeedStream 5660 expects 5 CR/LF after Password
-	   for negociate the serial speed -->
+           for negociate the serial speed -->
       <cmd send='\r' exp_ok=''/>
       <cmd send='\r' exp_ok=''/>
       <cmd send='\r' exp_ok=''/>
@@ -291,51 +293,51 @@
    
     <cmd_func id='authEff5660'>
       <!-- The login of this device is very unrealiable,
-	   the we try it several times before return error -->
+           the we try it several times before return error -->
       <cmd call='speedNegEff5660'/>
       <cmd send='\r' exp_ok='Command->'>
         <expect_list>
-	  <expect out='Password'>
-	    <cmd send='{$passwd1}\r' exp_ok='Command->'>
-	      <expect_list>
-		<expect out='Password:'>
-		  <cmd send='{$passwd1}\r' exp_ok='Command->'>
-		    <expect_list>
-		      <expect out='Password:'>
-			<cmd send='{$passwd1}\r' exp_ok='Command->'>
-			  <expect_list>
-			    <expect out='Password:'>
-			      <cmd send='{$passwd1}\r' exp_ok='Command->'>
-				<expect_list>
-				  <expect out='Password:'>
-				    <cmd send='{$passwd1}\r' exp_ok='Command->'>
-				      <expect_list>
-					<expect out='Password:'>
-					  <cmd send='{$passwd1}\r' exp_ok='Command->'>
-					    <expect_list>
-					      <expect out='Password:'>
-						<!-- Wrong passwd -->
-						<cmd return='4'/> 
-					      </expect>
-					    </expect_list>
-					  </cmd>
-					</expect>
-				      </expect_list>
-				    </cmd>
-				  </expect>
-				</expect_list>
-			      </cmd>
-			    </expect>
-			  </expect_list>
-			</cmd>
-		      </expect>
-		    </expect_list>
-		  </cmd>
-		</expect>
-	      </expect_list>
-	    </cmd>
-	  </expect>
-	</expect_list>
+          <expect out='Password'>
+            <cmd send='{$passwd1}\r' exp_ok='Command->'>
+              <expect_list>
+                <expect out='Password:'>
+                  <cmd send='{$passwd1}\r' exp_ok='Command->'>
+                    <expect_list>
+                      <expect out='Password:'>
+                        <cmd send='{$passwd1}\r' exp_ok='Command->'>
+                          <expect_list>
+                            <expect out='Password:'>
+                              <cmd send='{$passwd1}\r' exp_ok='Command->'>
+                                <expect_list>
+                                  <expect out='Password:'>
+                                    <cmd send='{$passwd1}\r' exp_ok='Command->'>
+                                      <expect_list>
+                                        <expect out='Password:'>
+                                          <cmd send='{$passwd1}\r' exp_ok='Command->'>
+                                            <expect_list>
+                                              <expect out='Password:'>
+                                                <!-- Wrong passwd -->
+                                                <cmd return='4'/> 
+                                              </expect>
+                                            </expect_list>
+                                          </cmd>
+                                        </expect>
+                                      </expect_list>
+                                    </cmd>
+                                  </expect>
+                                </expect_list>
+                              </cmd>
+                            </expect>
+                          </expect_list>
+                        </cmd>
+                      </expect>
+                    </expect_list>
+                  </cmd>
+                </expect>
+              </expect_list>
+            </cmd>
+          </expect>
+        </expect_list>
       </cmd>
     </cmd_func>
     
@@ -371,13 +373,13 @@
       <cmd send='Set dns disable' exp_ok='Command->' err='(failed|for help)'/>
             
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='set vc ppp 8 32 max 0.0.0.0' exp_ok='Command->' err='(failed|for help)'/>
-	<cmd send='set pppauth {$PPPuser} {$PPPpasswd}' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set vc ppp 8 32 max 0.0.0.0' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set pppauth {$PPPuser} {$PPPpasswd}' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <xsl:if test = "$mod_conf!='multidinamic'">
-	<cmd send='set vc 1483r 8 32 llc max {$ext_ip_router} {$ext_mask_router}' exp_ok='Command->' err='(failed|for help)'/>
-	<cmd send='set ipgateway {$ext_ip_router}' exp_ok='Command->' err='for help'/>      
+        <cmd send='set vc 1483r 8 32 llc max {$ext_ip_router} {$ext_mask_router}' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set ipgateway {$ext_ip_router}' exp_ok='Command->' err='for help'/>      
       </xsl:if>
 
     </cmd_func>      
@@ -389,7 +391,7 @@
       <cmd send='\r' exp_ok='Command->'/>
 
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='set bridge disable' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set bridge disable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <!-- FIXME: Password must be at least 8 chars -->
@@ -400,29 +402,29 @@
 
       <cmd send='set ethip {$int_ip_router} {$int_mask_router}' exp_ok='Selected IP address is on same network as another interface' err='for help'>
         <expect_list>
-	  <expect out='y,n'>
-	    <cmd send='n' exp_ok='Command->'/>
-	  </expect>
-	</expect_list>
+          <expect out='y,n'>
+            <cmd send='n' exp_ok='Command->'/>
+          </expect>
+        </expect_list>
       </cmd>
       <cmd send='\r' exp_ok='Command->'/>
       <cmd send='set hostname telefonica' exp_ok='Command->' err='(failed|for help)'/>
       <cmd send='set ethcfg full' exp_ok='Command->' err='(failed|for help)'/>
 
       <xsl:if test = "$mod_conf!='monodinamic'">
-	<cmd send='set serverport HTTP 80 disable' exp_ok='Command->' err='(failed|for help)'/>
-	<cmd send='set serverport FTP 21 disable' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set serverport HTTP 80 disable' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set serverport FTP 21 disable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <xsl:if test = "$dhcp!='True'">
-	<xsl:if test = "$mod_conf!='monodinamic'">
-	  <cmd send='set dhcp disable' exp_ok='Command->' err='(failed|for help)'/>
-	</xsl:if>
+        <xsl:if test = "$mod_conf!='monodinamic'">
+          <cmd send='set dhcp disable' exp_ok='Command->' err='(failed|for help)'/>
+        </xsl:if>
       </xsl:if>
 
       <xsl:if test = "$dhcp='True'">
-	<cmd send='set dhcpcfg server {$dhcp_ip_start} {$dhcp_mask} {$dhcp_ip_end} {$dhcp_ip_gw} {$dns1} {$dns2} 0.0.0.0 0.0.0.0 megavia none server 120' exp_ok='Command->' err='(failed|for help)'/>
-	<cmd send='set dhcp enable' exp_ok='Command->'/>
+        <cmd send='set dhcpcfg server {$dhcp_ip_start} {$dhcp_mask} {$dhcp_ip_end} {$dhcp_ip_gw} {$dns1} {$dns2} 0.0.0.0 0.0.0.0 megavia none server 120' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set dhcp enable' exp_ok='Command->'/>
       </xsl:if>
 
       <xsl:if test = "$mod_conf='monodinamic'"><cmd call='confBridgeEff5660'/></xsl:if>
@@ -431,32 +433,32 @@
       <xsl:if test = "$mod_conf='multistatic'"><cmd call='confNoBridgeEff5660'/></xsl:if>
 
       <xsl:if test = "$mod_conf!='monodinamic'">
-	<cmd send='set ripcfg none' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set ripcfg none' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <xsl:if test = "$mod_conf='monostatic'">
-	<cmd send='set napt disable' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set napt disable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='set napt enable' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set napt enable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
       <xsl:if test = "$mod_conf='multistatic'">
-	<cmd send='set napt enable' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set napt enable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <xsl:if test = "$mod_conf!='monodinamic'">
-	<cmd send='set ipfiltercfg 1 in permit all 193.152.37.192 255.255.255.240 any any' exp_ok='Command->' err='for help'/>
-	<cmd send='set ipfiltercfg 2 in deny tcp any any any eq 80 yes' exp_ok='Command->' err='for help'/>
-	<cmd send='set ipfiltercfg 3 in deny tcp any any any eq 21 yes' exp_ok='Command->' err='for help'/>
-	<cmd send='set ipfiltercfg 4 in deny tcp any any any eq 23 yes' exp_ok='Command->' err='for help'/>
-	<cmd send='set ipfiltercfg 5 in permit all any any' exp_ok='Command->' err='for help'/>
-	<cmd send='set ipfilter enable' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set ipfiltercfg 1 in permit all 193.152.37.192 255.255.255.240 any any' exp_ok='Command->' err='for help'/>
+        <cmd send='set ipfiltercfg 2 in deny tcp any any any eq 80 yes' exp_ok='Command->' err='for help'/>
+        <cmd send='set ipfiltercfg 3 in deny tcp any any any eq 21 yes' exp_ok='Command->' err='for help'/>
+        <cmd send='set ipfiltercfg 4 in deny tcp any any any eq 23 yes' exp_ok='Command->' err='for help'/>
+        <cmd send='set ipfiltercfg 5 in permit all any any' exp_ok='Command->' err='for help'/>
+        <cmd send='set ipfilter enable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <!-- //Hacemos un mapeo -->
       <!--
-	  <cmd send='set naptserver tcp 
-	  [Puerto publico.Ej: 21] [IP PC. Ej:192.168.1.33]' exp_ok='Command->'/>
+          <cmd send='set naptserver tcp 
+          [Puerto publico.Ej: 21] [IP PC. Ej:192.168.1.33]' exp_ok='Command->'/>
       -->
 
       <cmd send='reboot' exp_ok='y,n'/>
@@ -475,12 +477,14 @@
 
   <xsl:if test = "$model='Nokia M1112 ADSL Router'">
 
+    <xsl:variable name="defNokM112err" select="'(invalid command|usage|fail on request)'"/>
+
     <!-- Nokia M1112 ADSL Router -->
 
     <!-- Nokia M1112 ADSL Router - Auth -->
     
     <cmd_func id='authNokiaM1112'>
-      <cmd send='\r' exp_ok='>'> <!-- we are already logged -->
+      <cmd send='\x17\x17\r' exp_ok='>'> <!-- we are already logged -->
         <expect_list>
 	  <expect out='(login-id:|password:)'>
 	    <cmd send='{$passwd1}\r' exp_ok='>'>
@@ -505,110 +509,134 @@
       </cmd>
     </cmd_func>
 
+
     <!-- Nokia M1112 ADSL Router - Test Access -->
 
     <cmd_func id='verifNokiaM1112'>
       <cmd call='authNokiaM1112'/>
-      <cmd send='logout\r' exp_ok='login-id:' err='invalid command'/>
+      <cmd send='logout\r' exp_ok='login-id:' err='{$defNokM112err}'/>
+    </cmd_func>
+
+    <!-- Nokia M1112 ADSL Router - Change Passwd -->
+
+    <cmd_func id='chgPassNokiaM1112'>
+      <cmd call='authNokiaM1112'/>
+      <cmd send='configure\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='password\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='admin {$passwd2}\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='quit\r' exp_ok='>' err='{$defNokM112err}'/>
+      <cmd send='save config startup\r' exp_ok='>' err='{$defNokM112err}'/>
+      <cmd send='logout\r' exp_ok='goodbye' err='{$defNokM112err}'/>
     </cmd_func>
 
     <!-- Nokia M1112 ADSL Router - Configuration -->
 
     <cmd_func id='confNokiaM1112'>
       <cmd call='authNokiaM1112'/>
-      <cmd send='restore config default\r' exp_ok='>' err='(invalid command|usage|fail on request)'/>
-      <cmd send='reload\r' exp_ok='login-id' err='(invalid command|usage|fail on request)'/>
+      <cmd send='restore config default\r' exp_ok='>' err='{$defNokM112err}'/>
+      <cmd send='reload\r' exp_ok='login-id' err='{$defNokM112err}'/>
       <cmd call='authNokiaM1112'/>
-      <cmd send='configure\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-      <cmd send='password\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-      <cmd send='admin {$passwd1}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='configure\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='password\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='admin {$passwd1}\r' exp_ok='#' err='{$defNokM112err}'/>
 
       <xsl:if test = "$dhcp='True'">      
-	<cmd send='common\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='dhcp mode server\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='dhcp address 1 {$dhcp_ip_start} {$dhcp_mask} {$dhcp_num_hosts}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='dhcp dns 1 primary 80.58.0.33\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='dhcp dns 1 secondary 80.58.32.97\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='dhcp lease-time 1 120\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='common\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='dhcp mode server\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='dhcp address 1 {$dhcp_ip_start} {$dhcp_mask} {$dhcp_num_hosts}\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='dhcp dns 1 primary 80.58.0.33\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='dhcp dns 1 secondary 80.58.32.97\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='dhcp lease-time 1 120\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
 
       <xsl:if test = "$dhcp!='True'">
-	<cmd send='common\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='no dhcp mode\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='common\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='no dhcp mode\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
 
-      <cmd send='eth\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='eth\r' exp_ok='#' err='{$defNokM112err}'/>
 
       <xsl:if test = "$mod_conf='monodinamic'">
-	<cmd send='bridging\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='bridging\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
       <xsl:if test = "$mod_conf!='monodinamic'">
-	<cmd send='no bridging\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='no bridging\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
 
-      <cmd send='no ip rip-send\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-      <cmd send='no ip rip-receive\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-      <cmd send='ip address {$int_ip_router} {$int_mask_router}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-      <cmd send='vcc1\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='no ip rip-send\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='no ip rip-receive\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='ip address {$int_ip_router} {$int_mask_router}\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='vcc1\r' exp_ok='#' err='{$defNokM112err}'/>
 
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='pvc 8 32 pppoe-llc\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='ip address 0.0.0.0 0.0.0.0\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='ppp username {$PPPuser}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='ppp password {$PPPpasswd}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	<cmd send='ppp authentication pap"\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='pvc 8 32 pppoe-llc\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='ip address 0.0.0.0 0.0.0.0\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='ppp username {$PPPuser}\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='ppp password {$PPPpasswd}\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='ppp authentication pap\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
 
       <xsl:if test = "$mod_conf!='multidinamic'">
-	<xsl:if test = "$mod_conf='monodinamic'">
-	  <cmd send='pvc 8 32 eth-llc\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	  <cmd send='bridging\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	</xsl:if>
-	<xsl:if test = "$mod_conf!='monodinamic'">
-	  <cmd send='pvc 8 32 ip-llc\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-      <cmd send='ip address {$ext_ip_router} {$ext_mask_router}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-	</xsl:if>
+        <xsl:if test = "$mod_conf='monodinamic'">
+          <cmd send='pvc 8 32 eth-llc\r' exp_ok='#' err='{$defNokM112err}'/>
+          <cmd send='bridging\r' exp_ok='#' err='{$defNokM112err}'/>
+        </xsl:if>
+        <xsl:if test = "$mod_conf!='monodinamic'">
+          <cmd send='pvc 8 32 ip-llc\r' exp_ok='#' err='{$defNokM112err}'/>
+      <cmd send='ip address {$ext_ip_router} {$ext_mask_router}\r' exp_ok='#' err='{$defNokM112err}'/>
+        </xsl:if>
       </xsl:if>
 
       <xsl:if test = "$mod_conf='monodinamic'">
-	<cmd send='no ip napt\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='no ip napt\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
       <xsl:if test = "$mod_conf='monostatic'">
-	<cmd send='no ip napt\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='no ip napt\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
       <xsl:if test = "$mod_conf='multistatic'">
-	<cmd send='ip napt\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='ip napt\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='ip napt\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='ip napt\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
 
-      <cmd send='no ip admin-disabled\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='no ip admin-disabled\r' exp_ok='#' err='{$defNokM112err}'/>
 
       <!-- FIXME: Port maps -->
 
-      <cmd send='common\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='common\r' exp_ok='#' err='{$defNokM112err}'/>
 
-      <cmd send='no ip route 0.0.0.0 vcc1\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>      
+      <cmd send='no ip route 0.0.0.0 vcc1\r' exp_ok='#' err='{$defNokM112err}'/>      
+
       <xsl:if test = "$mod_conf='monostatic'">
-	<cmd send='ip route 0.0.0.0 0.0.0.0 {$ext_ip_router} vcc1\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='ip route 0.0.0.0 0.0.0.0 {$ext_ip_router} vcc1\r' exp_ok='#' err='{$defNokM112err}'/>
+      </xsl:if>
+
+      <xsl:if test = "$mod_conf='multistatic'">
+        <cmd send='ip route 0.0.0.0 0.0.0.0 {$ext_ip_router} vcc1\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
 
       <xsl:if test = "$mod_conf='multidinamic'">
-	<cmd send='ip route 0.0.0.0 0.0.0.0 0.0.0.0 vcc1\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+        <cmd send='ip route 0.0.0.0 0.0.0.0 0.0.0.0 vcc1\r' exp_ok='#' err='{$defNokM112err}'/>
       </xsl:if>
 
-      <cmd send='ip host-acl 193.152.37.192 255.255.255.240\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
-      <xsl:if test = "$dhcp='True'">      
-	<cmd send='ip host-acl {$dhcp_ip_net} {$dhcp_mask}\r' exp_ok='#'/>
+      <cmd send='ip host-acl 193.152.37.192 255.255.255.240\r' exp_ok='#' err='{$defNokM112err}'/>
+      <xsl:if test = "$mod_conf='monostatic'">
+        <cmd send='ip host-acl {$dhcp_ip_net} {$dhcp_mask}\r' exp_ok='#'/>
       </xsl:if>
-      <xsl:if test = "$dhcp!='True'">      
-	<cmd send='ip host-acl 192.168.1.0 255.255.255.0\r' exp_ok='#'/>
+      <xsl:if test = "$mod_conf='multidinamic'">
+        <cmd send='ip host-acl {$net_computer} {$mask_computer}\r' exp_ok='#'/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf='multistatic'">
+        <cmd send='ip host-acl {$dhcp_ip_net} {$dhcp_mask}\r' exp_ok='#'/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf='monodinamic'">
+        <cmd send='ip host-acl 192.168.1.0 255.255.255.0\r' exp_ok='#'/>
       </xsl:if>
 
-      <cmd send='quit\r' exp_ok='>' err='(invalid command|usage|fail on request)'/>
-      <cmd send='save config startup\r' exp_ok='>' err='(invalid command|usage|fail on request)'/>
-      <cmd send='logout\r' exp_ok='goodbye' err='invalid command'/>
+      <cmd send='quit\r' exp_ok='>' err='{$defNokM112err}'/>
+      <cmd send='save config startup\r' exp_ok='>' err='{$defNokM112err}'/>
+      <cmd send='logout\r' exp_ok='goodbye' err='{$defNokM112err}'/>
     </cmd_func>
    
   </xsl:if>

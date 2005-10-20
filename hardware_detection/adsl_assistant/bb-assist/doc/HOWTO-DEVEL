@@ -32,23 +32,23 @@ HOWTO ADD SUPPORT FOR NEW DEVICE TO BB-ASSIST
     <cmd_func id='authNokiaM1112'>
       <cmd send='\r' exp_ok='>'> <!-- we are already logged -->
         <expect_list>
-	  <expect out='(login-id:|password:)'>
-	    <cmd send='{$passwd1}\r' exp_ok='>'>
-	      <expect_list>
-		<expect out='(login-id:|password:)'>
-		  <cmd send='{$passwd1}\r' exp_ok='>'>
-		    <expect_list>
-		      <expect out='(login-id:|password:)'> 
-			<!-- Wrong passwd (after three fails)-->
-			<cmd return='4'/> 
-		      </expect>
-		    </expect_list>
-		  </cmd>
-		</expect>
-	      </expect_list>
-	    </cmd>
-	  </expect>
-	</expect_list>
+          <expect out='(login-id:|password:)'>
+            <cmd send='{$passwd1}\r' exp_ok='>'>
+              <expect_list>
+                <expect out='(login-id:|password:)'>
+                  <cmd send='{$passwd1}\r' exp_ok='>'>
+                    <expect_list>
+                      <expect out='(login-id:|password:)'> 
+                        <!-- Wrong passwd (after three fails)-->
+                        <cmd return='4'/> 
+                      </expect>
+                    </expect_list>
+                  </cmd>
+                </expect>
+              </expect_list>
+            </cmd>
+          </expect>
+        </expect_list>
       </cmd>
     </cmd_func>
 

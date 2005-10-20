@@ -661,9 +661,9 @@ class Assist:
                 self.devcf.param['dhcp_ip_end'] = ipAddress_ltoa(dhcp_ip_end_l)
                 self.devcf.param['dhcp_mask'] = self.dhcpMaskEntry.get_text()
                 self.devcf.param['dhcp_ip_gw'] = self.ipGatewayEntry.get_text()
-                self.devcf.param['dhdp_ip_net'] = ipNet(self.devcf.param['dhcp_ip_start'],
+                self.devcf.param['dhcp_ip_net'] = ipNet(self.devcf.param['dhcp_ip_start'],
                                                         self.devcf.param['dhcp_mask'])
-                self.devcf.param['dhdp_num_hosts'] = dhcp_ip_end_l - dhcp_ip_start_l
+                self.devcf.param['dhcp_num_hosts'] = str(dhcp_ip_end_l - dhcp_ip_start_l)
                 self.devcf.param['dns1'] = self.provider.dns1
                 self.devcf.param['dns2'] = self.provider.dns2
                 # ip_computer = mask_computer = gw_computer = [configuredByDHCP]
@@ -672,9 +672,12 @@ class Assist:
                 self.devcf.param['ip_computer']   = self.IPaddressPcEntry.get_text()
                 self.devcf.param['mask_computer'] = self.maskAddressPcEntry.get_text()
                 self.devcf.param['gw_computer']   = self.ipGatewayEntry.get_text()
+                self.devcf.param['net_computer']  = ipNet(self.devcf.param['ip_computer'],
+                                                          self.devcf.param['mask_computer'])
                 # FIXME: configure Ethernet Computer (also with DNS)
      
-        if self.operation_sel.id == '0006' or self.operation_sel.id == '0012':
+        if self.operation_sel.id == '0006' or self.operation_sel.id == '0012' or \
+               self.operation_sel.id == '0019':
             self.devcf.param['passwd2'] = self.entryNewPasswd.get_text()
             # FIXME check sizes
         
