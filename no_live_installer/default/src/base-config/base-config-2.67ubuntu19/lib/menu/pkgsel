@@ -11,6 +11,10 @@ case "$1" in
 	# Make dpkg not background itself to get a shell.
 	export DPKG_NO_TSTP="yes"
 
+	if [ ! -f /sbin/dhclient ]; then
+		apt-get install dhcp3-client -y > /dev/null 2>&1
+	fi
+
 	# scrollkeeper takes forever, so we divert it for the duration.
 	dpkg-divert --package base-config --rename --quiet --add \
 		/usr/bin/scrollkeeper-update
@@ -36,6 +40,10 @@ case "$1" in
         sleep 5
         /usr/bin/metacity &
         sleep 9
+	echo "[OK]" >> $LOG
+
+	echo -n "Touching /etc/resolv.conf... " >> $LOG
+	touch /etc/resolv.conf	
 	echo "[OK]" >> $LOG
 
 	echo -n "Run dhclient ..." >> $LOG
