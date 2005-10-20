@@ -51,7 +51,7 @@ import gtk
 import os
 
 
-from utils import DeviceList, ColdPlugListener
+from utils import DeviceList, ColdPlugListener, CaptureLogGui
 from optparse import OptionParser
 from utils.notification import NotificationDaemon, FileNotification
 
@@ -245,22 +245,23 @@ def main():
     #Configure options
     parser = OptionParser(usage = 'usage: %prog [options]')
     parser.set_defaults(debug = False)
-    parser.set_defaults(hermes_notify = False)
+    parser.set_defaults(capture_log = False)
 
     parser.add_option('-d', '--debug', 
             action = 'store_true',
             dest = 'debug',
             help = 'start in debug mode')
 
-    parser.add_option('-n', '--hermes-notification',
+    parser.add_option('-c', '--capture-log',
             action = 'store_true',
-            dest = 'hermes_notify',
-            help = 'Use hermes_notify (it must be running) as notification tool')
+            dest = 'capture_log',
+            help = 'Capture device logs.')
 
     (options, args) = parser.parse_args()
     del args
 
     
+    #Option debug for logging
     if options.debug:
         level = logging.DEBUG
     else:
@@ -275,12 +276,13 @@ def main():
                     filename = logfilename,
                     filemode='a')
 
-    if options.hermes_notify:
+    #Set capture log
+    if options.capture_log:
         filepath = '/var/tmp/filenotification-' + \
                 os.environ['USER'] + str(os.getuid()) + \
                 '.log'
-
         iface = FileNotification(filepath)
+        clg = CaptureLogGui()
     else:
         iface = NotificationDaemon()
 
@@ -289,7 +291,12 @@ def main():
 
     DeviceListener(iface)
     gtk.threads_init()
-    gtk.main()
+    try:
+        gtk.main()
+    except:
+        if 'clg' in locals():
+            #Close file for write in hd.
+            clg.logfile.close()
 
 
 if __name__ == "__main__":

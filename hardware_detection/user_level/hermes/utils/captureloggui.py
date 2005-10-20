@@ -7,7 +7,6 @@ import sys
 import tempfile
 import logging
 import os.path
-import gnome
 
 class CaptureLogGui(object):
 
