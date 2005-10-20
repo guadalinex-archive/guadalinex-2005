@@ -1,9 +1,10 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
 
-# watermain 1.0
+# watermain 1.0.2
 # author: Alfonso E.M. alfonso@el-magnifico.org
 # date: 17/Aug/2005
+# last update: 19/Oct/2005
 
 import pygtk
 pygtk.require ('2.0')
@@ -151,9 +152,10 @@ class appgui:
 		In this init the main window is displayed
 		"""
 		dic = {
-			 "on_bt_quit_clicked" : (gtk.mainquit),
-		         "on_window1_destroy" : (gtk.mainquit), 
-		         "on_dialog1_response" : (gtk.mainquit), 
+			 "on_bt_quit_clicked" : (self.quit),
+		         "on_window1_destroy" : (self.quit), 
+		         "on_dialog1_response" : (self.quit), 
+			 "on_dialog2_response" : (self.error_dialog_response),
 		         "on_treeview1_cursor_changed" : self.treeview1_cursor_changed, 
 		         "on_bt_ok_clicked" : self.bt_ok_clicked, 
 		         "on_bt_update_clicked" : self.bt_update_clicked 
@@ -190,6 +192,17 @@ class appgui:
 
 		return
 
+	def error_dialog_response(self, dialog, response, *args):
+		dialog.hide()
+		return gtk.TRUE
+
+	def quit(self,widget):
+		if hasattr(gtk, 'main_quit'):
+	            gtk.main_quit()
+	        else:
+	            gtk.mainquit()
+
+
 #	def bt_ok_deactivate(self):
 #		widget=self.xml.get_widget('bt_ok')
 #		widget.set_sensitive(False)
@@ -212,12 +225,12 @@ class appgui:
 		status,output=commands.getstatusoutput("wget --quiet --tries=3 --user-agent=watermain --output-document="+tmpfilename +" "+mirrors.url)
 		if status == 0:
 			os.rename(tmpfilename,mirrors.filename)
+			mirrors.reload()
 		else:
 			print output
-			sys.exit("ERROR: No es posible descargar una nueva lista")
-
+			dialog = self.xml.get_widget('dialog2')
+			dialog.show()
 		widget.set_sensitive(True)
-		mirrors.reload()
 		return
 
 	def treeview1_cursor_changed(self,treeview):
@@ -227,7 +240,7 @@ class appgui:
 
 
 sourceslist=sourceslist("/etc/apt/sources.list")
-mirrors=mirrors("/etc/watermain.list","http://www.guadalinex.org/mirrors.list")
+mirrors=mirrors("/etc/apt/watermain.list","http://www.guadalinex.org/mirrors.list")
 app=appgui()
   
 gtk.main()
