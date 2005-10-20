@@ -4,8 +4,7 @@ Name=hermesdruid
 GenericName=Hermes druid
 Name[es]=Asistente para Hermes
 Comment=Druid for capture hardware information
-Comment[es]=Asistente para la captura de información sobre dispositivos de
-Hermes.
+Comment[es]=Asistente para la captura de información sobre dispositivos de Hermes.
 Exec=hermesdruid
 Icon=hwbrowser
 Terminal=false
