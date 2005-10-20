@@ -5,8 +5,11 @@ cpp
 cpp-4.0
 dhcp3-client
 dhcp3-common
+debconf
+debconf-i18n
 debianutils
 defoma
+discover1
 editres
 fontconfig
 freeglut3
@@ -18,6 +21,7 @@ imake
 laptop-detect
 libatk1.0-0
 libcairo2
+libcap1
 libdrm1
 libexpat1
 libfontconfig1
@@ -82,6 +86,8 @@ sgml-base
 smproxy
 ttf-bitstream-vera
 ucf
+uda-postinstall
+uda-postinstall-guadalinex-branding
 viewres
 x11perf
 xauth
@@ -205,4 +211,3 @@ xwd
 x-window-system-core
 xwininfo
 xwud
-uda-postinstall
