@@ -12,8 +12,16 @@ bb-assist (0.4) unstable; urgency=low
   * Icons and menu improved
   * Full support of 3Com OfficeConnect 812 device
   * Full support of Efficient Speedstream 5660 device
+  * Now bb-devices.xml indicates how can be configured the devices (by
+    ethernet or serial port), becaus some devices can't be configured using
+    the ethernet.
+  * Added second stage verification druid page
+  * Added ethernet in the computer to conf druid page
+  * Added partial support to Nokia 1112
+  * Minor fixes
+  * Added HOWTO-DEVEL documentation
 
- -- Vicente J. Ruiz Jurado <vjrj@gipsy.hi.inet>  Tue, 18 Oct 2005 18:51:22 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 20 Oct 2005 12:42:13 +0200
 
 bb-assist (0.3) unstable; urgency=low
 

@@ -41,6 +41,8 @@
   <xsl:variable name="dhcp" select="//dhcp"/>
   <xsl:variable name="dhcp_ip_start" select="//dhcp_ip_start"/>
   <xsl:variable name="dhcp_ip_end" select="//dhcp_ip_end"/>
+  <xsl:variable name="dhcp_ip_net" select="//dhcp_ip_net"/>
+  <xsl:variable name="dhcp_num_hosts" select="//dhcp_num_hosts"/>
   <xsl:variable name="dhcp_mask" select="//dhcp_mask"/>
   <xsl:variable name="dhcp_ip_gw" select="//dhcp_ip_gw"/>
   <xsl:variable name="dns1" select="//dns1"/>
@@ -470,8 +472,147 @@
       <cmd send='y' exp_ok='System rebooting as requested' err='(failed|for help)'/>
     </cmd_func>
   </xsl:if>
+
+  <xsl:if test = "$model='Nokia M1112 ADSL Router'">
+
+    <!-- Nokia M1112 ADSL Router -->
+
+    <!-- Nokia M1112 ADSL Router - Auth -->
+    
+    <cmd_func id='authNokiaM1112'>
+      <cmd send='\r' exp_ok='>'> <!-- we are already logged -->
+        <expect_list>
+	  <expect out='(login-id:|password:)'>
+	    <cmd send='{$passwd1}\r' exp_ok='>'>
+	      <expect_list>
+		<expect out='(login-id:|password:)'>
+		  <cmd send='{$passwd1}\r' exp_ok='>'>
+		    <expect_list>
+		      <expect out='(login-id:|password:)'> 
+			<!-- Wrong passwd (after three fails)-->
+			<cmd return='4'/> 
+		      </expect>
+		    </expect_list>
+		  </cmd>
+		</expect>
+	      </expect_list>
+	    </cmd>
+	  </expect>
+	  <expect out='\)#'>
+	    <cmd send='quit\r' exp_ok='>'/>
+	  </expect>
+	</expect_list>
+      </cmd>
+    </cmd_func>
+
+    <!-- Nokia M1112 ADSL Router - Test Access -->
+
+    <cmd_func id='verifNokiaM1112'>
+      <cmd call='authNokiaM1112'/>
+      <cmd send='logout\r' exp_ok='login-id:' err='invalid command'/>
+    </cmd_func>
+
+    <!-- Nokia M1112 ADSL Router - Configuration -->
+
+    <cmd_func id='confNokiaM1112'>
+      <cmd call='authNokiaM1112'/>
+      <cmd send='restore config default\r' exp_ok='>' err='(invalid command|usage|fail on request)'/>
+      <cmd send='reload\r' exp_ok='login-id' err='(invalid command|usage|fail on request)'/>
+      <cmd call='authNokiaM1112'/>
+      <cmd send='configure\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='password\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='admin {$passwd1}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+
+      <xsl:if test = "$dhcp='True'">      
+	<cmd send='common\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='dhcp mode server\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='dhcp address 1 {$dhcp_ip_start} {$dhcp_mask} {$dhcp_num_hosts}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='dhcp dns 1 primary 80.58.0.33\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='dhcp dns 1 secondary 80.58.32.97\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='dhcp lease-time 1 120\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+
+      <xsl:if test = "$dhcp!='True'">
+	<cmd send='common\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='no dhcp mode\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+
+      <cmd send='eth\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+
+      <xsl:if test = "$mod_conf='monodinamic'">
+	<cmd send='bridging\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf!='monodinamic'">
+	<cmd send='no bridging\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+
+      <cmd send='no ip rip-send\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='no ip rip-receive\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='ip address {$int_ip_router} {$int_mask_router}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='vcc1\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+
+      <xsl:if test = "$mod_conf='multidinamic'">
+	<cmd send='pvc 8 32 pppoe-llc\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='ip address 0.0.0.0 0.0.0.0\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='ppp username {$PPPuser}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='ppp password {$PPPpasswd}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	<cmd send='ppp authentication pap"\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+
+      <xsl:if test = "$mod_conf!='multidinamic'">
+	<xsl:if test = "$mod_conf='monodinamic'">
+	  <cmd send='pvc 8 32 eth-llc\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	  <cmd send='bridging\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	</xsl:if>
+	<xsl:if test = "$mod_conf!='monodinamic'">
+	  <cmd send='pvc 8 32 ip-llc\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <cmd send='ip address {$ext_ip_router} {$ext_mask_router}\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+	</xsl:if>
+      </xsl:if>
+
+      <xsl:if test = "$mod_conf='monodinamic'">
+	<cmd send='no ip napt\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf='monostatic'">
+	<cmd send='no ip napt\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf='multistatic'">
+	<cmd send='ip napt\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+      <xsl:if test = "$mod_conf='multidinamic'">
+	<cmd send='ip napt\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+
+      <cmd send='no ip admin-disabled\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+
+      <!-- FIXME: Port maps -->
+
+      <cmd send='common\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+
+      <cmd send='no ip route 0.0.0.0 vcc1\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>      
+      <xsl:if test = "$mod_conf='monostatic'">
+	<cmd send='ip route 0.0.0.0 0.0.0.0 {$ext_ip_router} vcc1\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+
+      <xsl:if test = "$mod_conf='multidinamic'">
+	<cmd send='ip route 0.0.0.0 0.0.0.0 0.0.0.0 vcc1\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      </xsl:if>
+
+      <cmd send='ip host-acl 193.152.37.192 255.255.255.240\r' exp_ok='#' err='(invalid command|usage|fail on request)'/>
+      <xsl:if test = "$dhcp='True'">      
+	<cmd send='ip host-acl {$dhcp_ip_net} {$dhcp_mask}\r' exp_ok='#'/>
+      </xsl:if>
+      <xsl:if test = "$dhcp!='True'">      
+	<cmd send='ip host-acl 192.168.1.0 255.255.255.0\r' exp_ok='#'/>
+      </xsl:if>
+
+      <cmd send='quit\r' exp_ok='>' err='(invalid command|usage|fail on request)'/>
+      <cmd send='save config startup\r' exp_ok='>' err='(invalid command|usage|fail on request)'/>
+      <cmd send='logout\r' exp_ok='goodbye' err='invalid command'/>
+    </cmd_func>
+   
+  </xsl:if>
+
 </cmd_list>
 </xsl:template>
 </xsl:stylesheet>
-
-

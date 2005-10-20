@@ -14,14 +14,11 @@
     <console>1</console>
     <tty_conf id='0001'/>
     <eth_conf_port>23</eth_conf_port>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>1</can_be_tty_conf>
     <list_firmware>
       <fw id='0001'/>
     </list_firmware>
-    <operation_list>
-      <operation id='0001'/>
-      <operation id='0002'/>
-      <operation id='0003'/>
-    </operation_list>
   </bb_device>
 
   <bb_device id='0002' name='Comtrend'>
@@ -32,6 +29,8 @@
       </provider>
     </provider_list>
     <console>0</console>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>0</can_be_tty_conf>
     <usb_conf>
       <linux_driver>eagle</linux_driver>
       <deviceid_list>
@@ -40,9 +39,6 @@
     </usb_conf>
     <list_firmware>
     </list_firmware>
-    <operation_list>
-      <!-- FIXME -->
-    </operation_list>
   </bb_device>
 
   <bb_device id='0003' name='Vitelcom Messenger'>
@@ -50,13 +46,11 @@
     <support>1</support>
     <provider_list>
       <provider id='0001'>
-        <confmode_list>
-          <mode id='0001'/>
-          <mode id='0002'/>
-        </confmode_list>
       </provider>
     </provider_list>
     <console>0</console>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>0</can_be_tty_conf>
     <usb_conf>
       <linux_driver>accessrunner</linux_driver>
       <deviceid_list>
@@ -76,9 +70,6 @@
     <list_firmware>
       <!-- FIXME -->
     </list_firmware>
-    <operation_list>
-      <!-- FIXME -->
-    </operation_list>
   </bb_device>
 
   <bb_device id='0004' name='Efficient SpeedStream 5660'>
@@ -86,12 +77,6 @@
     <support>1</support>
     <provider_list>
       <provider id='0001'>
-        <confmode_list>
-          <mode id='0001'/>
-          <mode id='0002'/>
-          <mode id='0003'/>
-          <mode id='0004'/>
-        </confmode_list>
         <default_passwd_list>
           <default_passwd id='0001' passwd='adminttd'/>
         </default_passwd_list>
@@ -100,12 +85,31 @@
     <console>1</console>
     <tty_conf id='0002'/>
     <eth_conf_port>23</eth_conf_port>
+    <can_be_eth_conf>1</can_be_eth_conf>
+    <can_be_tty_conf>1</can_be_tty_conf>
     <list_firmware>
       <fw id='0002'/>
     </list_firmware>
-    <operation_list>
-      <!-- FIXME -->
-    </operation_list>
+  </bb_device>
+
+  <bb_device id='0005' name='Nokia M1112 ADSL Router'>
+    <device_type id='0002'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+        <default_passwd_list>
+          <default_passwd id='0001' passwd='adminttd'/>
+        </default_passwd_list>
+      </provider>
+    </provider_list>
+    <console>1</console>
+    <tty_conf id='0001'/>
+    <eth_conf_port>23</eth_conf_port>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>1</can_be_tty_conf>
+    <list_firmware>
+      <fw id='0003'/>
+    </list_firmware>
   </bb_device>
 
 </bb_device_list>

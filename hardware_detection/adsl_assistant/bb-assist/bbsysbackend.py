@@ -132,7 +132,35 @@ def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='',
     
     return (sysret, xmlcfg, xmlcfgout)
 
+def pppoeConf(user, passwd, iface, provider):
+    """
+    Configures a pppoe in a simple way depending also on the provider selected in the GUI
+    """
+    # Notes from: /usr/share/doc/pppoe/README.Debian.gz
+    #
+    # 1) Edit the file /etc/ppp/pap-secrets file, adding a line to the outbound
+    # connections sections that has the following format:
+    # username@sympatico.ca   sympatico.ca      password
+
+    # 2) In the file /etc/ppp/peers/dsl-provider, uncomment and edit the "user" line.
+    # Using our example of "username@sympatico.ca" the line should then look like
+    #  this:
+    # user username@sympatico.ca$
+
+    # 3) If you have more than one Ethernet card in your computer, replace the
+    # "eth0" in the /etc/ppp/peers/dsl-provider file by the interface your DSL
+    # modem is plugged in.
+    # 3.1) usepeerdns keyword in /etc/ppp/peers/dsl-provider
+
+    # 4) Bring your connection up
+
+    # /usr/share/doc/ppp/examples/peers-pppoe
+
+    # Return plog
+
+
 if __name__ == "__main__":
+    # FIXME only for tests
     (sysret, xmlcfg, xmlcfgout) = bb_enable_iface_with_config('eth1', 'dhcp')
     print sysret
     print xmlcfgout

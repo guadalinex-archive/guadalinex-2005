@@ -13,6 +13,8 @@
   <druid_page id='druidGestIP' optional='1'/>
   <druid_page id='druidDinamConf' optional='1'/>
   <druid_page id='druidMultiConf' optional='1'/>
+  <druid_page id='druidSecondVerificationResults' optional='0'/>
+  <druid_page id='druidSelecEthernetToConf' optional='1'/>
   <druid_page id='druidSelecInterface' optional='1'/>
   <druid_page id='druidPasswdSel' optional='1'/>
   <druid_page id='druidVerifParamsConf' optional='1'/>

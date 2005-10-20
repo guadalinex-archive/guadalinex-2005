@@ -1,0 +1,68 @@
+HOWTO ADD SUPPORT FOR NEW DEVICE TO BB-ASSIST
+=============================================
+
+1) Edit providers.xml and add a new Broadband Provider if necessary
+2) Edit bb-device.sml, firmwares.xml and ttyconf.xml, with the basic info about this device. If you add elements (for example a new devide) to this xml files, check that the id of the element is unique (for instance <bb_device id='NNNN' ....> must be unique.
+3) Edit operations.xml and add a operation for the device (also with a new id). 
+
+  <operation id='0014' bb_device='0005' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="en" name='Verify device access'/>
+      <opername lang="es_ES" name='Verificar acceso al equipo'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>verifNokiaM1112</initial_func>  <!-- put here a new function -->
+    <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <!-- Put here the druid pages you need and you can reuse -->
+      <druid_page>druidVerifParamsConf</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+    </druid_page_list>
+  </operation>
+4) Edit cmd-list.xls and add the function (in the example 'verifNokiaM1112'):
+ <xsl:if test = "$model='Nokia M1112 ADSL Router'">
+    <!-- model is the same name as in bb-device.xml -->
+
+    <!-- Nokia M1112 ADSL Router -->
+
+    <!-- Nokia M1112 ADSL Router - Auth -->
+    
+    <cmd_func id='authNokiaM1112'>
+      <cmd send='\r' exp_ok='>'> <!-- we are already logged -->
+        <expect_list>
+	  <expect out='(login-id:|password:)'>
+	    <cmd send='{$passwd1}\r' exp_ok='>'>
+	      <expect_list>
+		<expect out='(login-id:|password:)'>
+		  <cmd send='{$passwd1}\r' exp_ok='>'>
+		    <expect_list>
+		      <expect out='(login-id:|password:)'> 
+			<!-- Wrong passwd (after three fails)-->
+			<cmd return='4'/> 
+		      </expect>
+		    </expect_list>
+		  </cmd>
+		</expect>
+	      </expect_list>
+	    </cmd>
+	  </expect>
+	</expect_list>
+      </cmd>
+    </cmd_func>
+
+    <!-- Nokia M1112 ADSL Router - Test Access -->
+
+    <cmd_func id='verifNokiaM1112'>
+      <cmd call='authNokiaM1112'/>
+      <cmd send='logout\r' exp_ok='login-id:' err='invalid command'/>
+    </cmd_func>
+
+  </xsl:if>
+
+ 5) Now you can test the druid with the new operation and druid
+ 6) Add more operations for this device
+
+TROUBLESHOOTING
+===============

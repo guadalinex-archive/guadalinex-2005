@@ -65,11 +65,6 @@ def searchPathXml(search_path, xmlfile):
     dom = reader.fromStream(xml_file)
     return Evaluate(search_path, dom.documentElement)
 
-def ipMasqIncrem(ipAddress, ipMask, increment):
-    return (socket.inet_ntoa((struct.pack('>L', (struct.unpack('>L',socket.inet_aton(ipAddress))[0] & 
-                                                 struct.unpack('>L',socket.inet_aton(ipMask))[0]) +
-                                          increment))))
-
 def boldme(string):
     return "<b>" + string + "</b>"
 
@@ -135,6 +130,8 @@ class bb_device:
             self.name = None
             self.id = None
             self.console = None
+            self.can_be_eth_conf = None
+            self.can_be_tty_conf = None
             self.support = None
             self.device_type = None
             self.tty_conf = None
@@ -146,7 +143,10 @@ class bb_device:
 
             self.console = Evaluate("console/text( )", devnode)[0].nodeValue
             self.support = Evaluate("support/text( )", devnode)[0].nodeValue
-
+            self.can_be_eth_conf = int(Evaluate("can_be_eth_conf/text( )",
+                                                devnode)[0].nodeValue)
+            self.can_be_tty_conf = int(Evaluate("can_be_tty_conf/text( )",
+                                                devnode)[0].nodeValue)
             self.device_type = devicetype(Evaluate("device_type",
                                                    devnode)[0].getAttribute("id"))
             if self.device_type.dt_id == '0001':
@@ -228,3 +228,46 @@ class operation:
         return "%s %s %s %s %s %s %s %s %s" % \
                (self.id, self.bb_device, self.supported, self.ui_public, self.opername,
                 self.firmware, self.initial_func, self.default_timeout, self.druid_page_list)
+
+# IP address functions
+
+def ipAddress_atol(ipAddress):
+    """
+    Obtains a address in long format, from a string
+    """
+    try: ret = struct.unpack('>L',socket.inet_aton(ipAddress))[0]
+    except:
+        raise socket.error, _("en modulo bbutils. Dirección IP incorrecta")
+    return ret
+
+def ipAddress_ltoa(ipAddress):
+    """
+    Obtains a address in string format, from a long
+    """
+    try: ret = socket.inet_ntoa(struct.pack('>L', ipAddress))
+    except:
+        raise socket.error, _("en modulo bbutils. Dirección IP incorrecta")
+    return ret
+
+def ipAddress_incr(ipAddress, increment):
+    """
+    Calculate: ipAddress + increment
+    """
+    return ipAddress_ltoa(ipAddress_atol(ipAddress) + increment)
+    
+def ipMasqIncrem(ipAddress, ipMask, increment):
+    """
+    Calculate: (ipAddress AND ipMask) + increment
+    """
+    return (socket.inet_ntoa((struct.pack('>L',
+                                          (struct.unpack('>L',socket.inet_aton(ipAddress))[0] & 
+                                           struct.unpack('>L',socket.inet_aton(ipMask))[0]) +
+                                          increment))))
+
+def ipNet(ipAddress, ipMask):
+    """
+    Calculate: (ipAddress AND ipMask) + increment
+    """
+    return (socket.inet_ntoa((struct.pack('>L',
+                                          (struct.unpack('>L',socket.inet_aton(ipAddress))[0] & 
+                                           struct.unpack('>L',socket.inet_aton(ipMask))[0])))))

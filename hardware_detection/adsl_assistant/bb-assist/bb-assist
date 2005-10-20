@@ -228,8 +228,6 @@ class Assist:
             interface = obj.GetPropertyString('net.interface')
             info_cat = obj.GetPropertyString('info.category')
             if info_cat == 'net.80203':
-                #msg = msg + '* ' + _('Interfaz Ethernet') + " " + \
-                #      interface + " " + _('encontrado') + '\n'
                 founded_eth = True
                 self.ethlist += [interface]
         if founded_eth:
@@ -241,8 +239,6 @@ class Assist:
             obj = self.bus.get_object('org.freedesktop.Hal', udi)
             obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
             serial = obj.GetPropertyString('linux.device_file')
-            #msg = msg + '* ' + _('Puerto serie') + " " + serial + " " + \
-            #      _('encontrado') + '\n'
             founded_serial = True
             self.ttylist += [serial]
         if founded_serial:
@@ -379,7 +375,7 @@ class Assist:
             
     def on_combooperationsel_changed(self, *args):
         if len(self.pub_operations) != 0:
-            self.devcf.param = {} # FIXME: check if it's correct
+            self.devcf.param = {}
             self.operation_sel = self.pub_operations[self.combooperationsel.get_active()]
             self.druid1.set_buttons_sensitive(True, True, True, True)
             druid_pages_to_act = self.operation_sel.druid_page_list
@@ -387,17 +383,34 @@ class Assist:
             for druid_page in druid_pages_to_act:
                 druid_page_to_act = gtk.glade.XML.get_widget(self.glade, druid_page)
                 druid_page_to_act.show()
+            # Activate console/ethernet configuration depending on the device
+            if self.devcf.can_be_eth_conf:
+                self.radiobuttonEthPort.set_sensitive(True)
+                self.frameEthConf.set_sensitive(True)
+            else:
+                self.radiobuttonEthPort.set_sensitive(False)
+                self.frameEthConf.set_sensitive(False)
+            if self.devcf.can_be_tty_conf:
+                self.radiobuttonSerialPort.set_sensitive(True)
+                self.frameSerialConf.set_sensitive(True)
+            else:
+                self.radiobuttonSerialPort.set_sensitive(False)
+                self.frameSerialConf.set_sensitive(False)
 
     def on_druidOperationSelect_next(self, *args):
         self.devcf.param['mod_conf'] = ""
-        if self.operation_sel.id == '0002' or self.operation_sel.id == '0008':
+        if self.operation_sel.id == '0002' or self.operation_sel.id == '0008' \
+               or self.operation_sel.id == '0015':
             self.devcf.param['mod_conf'] = "monostatic"
-        elif self.operation_sel.id == '0003' or self.operation_sel.id == '0009':
+        elif self.operation_sel.id == '0003' or self.operation_sel.id == '0009' \
+               or self.operation_sel.id == '0016':
             self.devcf.param['mod_conf'] = "monodinamic"
-        elif self.operation_sel.id == '0004' or self.operation_sel.id == '0010':
+        elif self.operation_sel.id == '0004' or self.operation_sel.id == '0010' \
+               or self.operation_sel.id == '0017':
             self.devcf.param['mod_conf'] = "multistatic"
             self.devcf.param['dhcp'] = 'True'
-        elif self.operation_sel.id == '0005' or self.operation_sel.id == '0011':
+        elif self.operation_sel.id == '0005' or self.operation_sel.id == '0011' \
+               or self.operation_sel.id == '0018':
             self.devcf.param['mod_conf'] = "multidinamic"
             self.devcf.param['dhcp'] = 'True'
         if self.portsGuiConf == False:
@@ -409,7 +422,10 @@ class Assist:
             for act_eth in self.ethlist:
                 self.comboboxetheport.append_text(act_eth)
                 self.comboboxetheport.set_active(0)
-                self.eth_to_use = self.comboboxetheport.get_active_text()
+                self.eth_to_use_conf = self.comboboxetheport.get_active_text()
+                self.comboboxEthToUse.append_text(act_eth)
+                self.comboboxEthToUse.set_active(0)
+                self.devcf.param['eth_to_use'] = self.comboboxEthToUse.get_active_text()
             self.portsGuiConf = True
             
     # Conf Params
@@ -522,20 +538,38 @@ class Assist:
             return True
     
     def on_comboboxSerialPort_changed(self, *args):
+        """
+        We use a serial port to configure the device
+        """
         self.tty_to_use = self.comboboxserialport.get_active_text()
-        self.eth_to_use = None
+        self.eth_to_use_conf = None
 
     def on_comboboxEthePort_changed(self, *args):
-        self.eth_to_use = self.comboboxetheport.get_active_text()
+        """
+        We select the ethernet to configure the device
+        """
+        self.eth_to_use_conf = self.comboboxetheport.get_active_text()
         self.tty_to_use = None
+
+    def on_comboboxEthToUse_changed(self, *args):
+        """
+        We select the ethernet to normal use
+        """
+        self.devcf.param['eth_to_use'] = self.comboboxEthToUse.get_active_text()
+
+    def on_druidSelecEthernetToConf_next(self, *args):
+        """
+        We select the ethernet to normal use
+        """
+        self.devcf.param['eth_to_use'] = self.comboboxEthToUse.get_active_text()
 
     def on_druidSelecInterface_next(self, *args):
         if self.radiobuttonSerialPort.get_active():
             self.tty_to_use = self.comboboxserialport.get_active_text()
-            self.eth_to_use = None
+            self.eth_to_use_conf = None
         else:
             self.tty_to_use = None
-            self.eth_to_use = self.comboboxetheport.get_active_text()
+            self.eth_to_use_conf = self.comboboxetheport.get_active_text()
             try: socket.inet_aton(self.entryIpDevToConf.get_text())
             except socket.error:
                 error_dialog(_("Error en") + ": " + \
@@ -549,7 +583,7 @@ class Assist:
             self.devcf.param['passwd1'] = self.entryOtherPasswd.get_text()
         else:  
             self.devcf.param['passwd1'] = self.devcf.default_passwd
-
+            
         if (self.devcf.param['mod_conf'] == "monostatic"):
             self.devcf.param['remote_ip']       = ipMasqIncrem(self.gestIP.get_text(),
                                                                self.gestMask.get_text(), 1)
@@ -568,6 +602,9 @@ class Assist:
             self.devcf.param['dhcp_ip_end']     = self.devcf.param['ip_computer']
             self.devcf.param['dhcp_mask']       = self.devcf.param['mask_computer']
             self.devcf.param['dhcp_ip_gw']      = self.devcf.param['int_ip_router']
+            self.devcf.param['dhcp_num_hosts']  = '1'
+            self.devcf.param['dhcp_ip_net']     = ipNet(self.devcf.param['dhcp_ip_start'],
+                                                        self.devcf.param['dhcp_mask'])
             self.devcf.param['dns1']            = self.provider.dns1
             self.devcf.param['dns2']            = self.provider.dns2
             # FIXME: configure Ethernet Computer (with dhcp)
@@ -612,13 +649,21 @@ class Assist:
                (self.devcf.param['mod_conf'] == "multistatic"):
             if self.devcf.param['dhcp'] == 'True':
                 self.devcf.param['dhcp_ip_start'] = self.dhcpIPaddressEntry.get_text()
-                # FIXME: Investigate what dhcp_ip_end we need to use
-                broad = struct.unpack('>L',socket.inet_aton(self.dhcpIPaddressEntry.get_text()))[0] | \
-                        (struct.unpack('>L',socket.inet_aton('255.255.255.255'))[0] - \
-                         struct.unpack('>L',socket.inet_aton('255.255.255.192'))[0])
-                self.devcf.param['dhcp_ip_end'] = socket.inet_ntoa(struct.pack('>L', broad - 2))
+                dhcp_ip_start_l = ipAddress_atol(self.devcf.param['dhcp_ip_start'])
+                broad_l = dhcp_ip_start_l | (ipAddress_atol('255.255.255.255') -
+                           ipAddress_atol(self.dhcpMaskEntry.get_text()))
+                dhcp_ip_end_l = broad_l - 2
+                if (self.devcf.id == '0001'):
+                    if ((dhcp_ip_start_l + 39) < dhcp_ip_end_l):
+                        # The range of the pool must be 40 addresses or less
+                        # on 3com OfficeConnect 812
+                        dhcp_ip_end_l = dhcp_ip_start_l + 39
+                self.devcf.param['dhcp_ip_end'] = ipAddress_ltoa(dhcp_ip_end_l)
                 self.devcf.param['dhcp_mask'] = self.dhcpMaskEntry.get_text()
                 self.devcf.param['dhcp_ip_gw'] = self.ipGatewayEntry.get_text()
+                self.devcf.param['dhdp_ip_net'] = ipNet(self.devcf.param['dhcp_ip_start'],
+                                                        self.devcf.param['dhcp_mask'])
+                self.devcf.param['dhdp_num_hosts'] = dhcp_ip_end_l - dhcp_ip_start_l
                 self.devcf.param['dns1'] = self.provider.dns1
                 self.devcf.param['dns2'] = self.provider.dns2
                 # ip_computer = mask_computer = gw_computer = [configuredByDHCP]
@@ -647,7 +692,7 @@ class Assist:
             msg += 'rtscts: ' + self.devcf.tty_conf.tty_rtscts + "\n"
         else:
             msg += boldme(_('Parámetros ethernet')) + ": "
-            msg += 'dev: ' + self.eth_to_use + ", "
+            msg += 'dev: ' + self.eth_to_use_conf + ", "
             msg += 'ip: ' + self.entryIpDevToConf.get_text() + ", "
             msg += 'port: ' + self.devcf.eth_conf_port + "\n"
 
@@ -696,7 +741,7 @@ class Assist:
             writer.endElement(u'serial_params')
         else:
             writer.startElement(u'eth_params')
-            writer.attribute(u'dev', unicode(self.eth_to_use))
+            writer.attribute(u'dev', unicode(self.eth_to_use_conf))
             writer.attribute(u'ip', unicode(self.entryIpDevToConf.get_text()))
             writer.attribute(u'port', unicode(self.devcf.eth_conf_port))
             writer.endElement(u'eth_params')
@@ -741,6 +786,7 @@ class Assist:
         except:
             self.hide_cursor_watch()
             msg += _("Error en la sintaxis de la operación")
+        self.hide_cursor_watch()
         exp_output_file.flush()        
         msg += "\n"
         msg += "********************************************\n"
@@ -779,11 +825,11 @@ class Assist:
                         _("y luego volviendo a <b>Aplicar</b>.")
         else:
             msgResult = boldme(msgResult)
+        msg = msg.replace('\000', '')
         self.labelOperDebug.set_text(msg)
         self.labelOperDebug.set_use_markup(False)
         self.labelOperResult.set_text(msgResult)
         self.labelOperResult.set_use_markup(True)
-        self.hide_cursor_watch()
 
     def on_druidRunOper_next(self, *args):
         self.druid1.next.set_label('gtk-go-forward')
@@ -814,3 +860,4 @@ if __name__ == "__main__":
         sys.exit(1)
     assist = Assist()
     assist.main()
+
