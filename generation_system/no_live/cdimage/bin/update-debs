@@ -12,11 +12,11 @@ cd $CDIMAGE_ROOT/scratch/$PROJECT/tmp
 [ ! -d fresh_debs ] && mkdir fresh_debs
 cd fresh_debs
 
-[ -f breezy-install-i386.list ] && rm breezy-install-i386.list
-wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
+[ -f ubuntu-5.10-install-i386.list ] && rm ubuntu-5.10-install-i386.list
+wget http://releases.ubuntu.com/breezy/ubuntu-5.10-install-i386.list
 [ "$?" != "0" ] && echo "Problems downloading breezy-install-i386.list." >> $LOG && exit
 
-cat breezy-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_list_breezy
+cat ubuntu-5.10-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_list_breezy
 
 PARAMS=""
 for x in $(cat $CDIMAGE_ROOT/uda/lists/exclude)
