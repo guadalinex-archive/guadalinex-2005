@@ -12,12 +12,6 @@ db_settitle uda-first-message/title
 db_input critical uda-first-message/first-message || [ $? -eq 30 ]
 db_go
 
-db_input critical uda-first-message/warning || [ $? -eq 30 ]
-db_go
-
-db_input critical uda-first-message/stages || [ $? -eq 30 ]
-db_go
-
 db_input critical uda-first-message/requirements || [ $? -eq 30 ]
 db_go
 

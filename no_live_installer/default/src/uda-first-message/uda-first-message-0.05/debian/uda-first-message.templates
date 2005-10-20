@@ -5,37 +5,10 @@ _Description: Bienvenido
 Template: uda-first-message/first-message
 Type: note
 _Description: Bienvenido a Guadalinex 2005
- Se va a iniciar la instalación de Guadalinex. Durante todo el 
- proceso existirá un sistema de ayuda donde se mostrarán mensajes que deberá
- leer atentamente.
- .
- Guadalinex es Software Libre. Cada uno de los programas y aplicaciones
- queintegran la distribución Guadalinex, salvo excepciones, puede
- ser redistribuido y usado sin ninguna restricción, excepto que se
- redistribuya eni las mismas condiciones.
-
-Template: uda-first-message/warning
-Type: note
-_Description: Advertencia: Copia de seguridad
- Aunque normalmente la instalación de este CD no presenta ningún problema,
- en algunos casos (por un particionado incorrecto, o una interrupción de
- la corriente eléctrica...) podría resultar en un sistema dañado o inestable.
+ A continuación dará comienzo la instalación de Guadalinex. 
  .
  Le recordamos la importancia de realizar una copia de seguridad de sus datos 
  y aplicaciones más importantes antes de continuar.
-
-Template: uda-first-message/stages
-Type: note
-_Description: Etapas de la instalación
- El proceso de instalación está dividido en varias etapas:
- .
- - Seleccionar dónde (en que parte del disco duro) quiere instalar Guadalinex
- - Instalar los programas básicos para que su ordenador pueda arrancar
- - Se reiniciará el ordenador
- - A continuación se instalarán el resto de programas con un instalador 
-   gráfico y usable (es el paso que tarda más).
- - Por último el CD será expulsado y su ordenador quedará listo para usar.
- - En su ordenador el tiempo estimado del proceso completo es de 30 minutos.
 
 Template: uda-first-message/requirements
 Type: note
@@ -44,7 +17,10 @@ _Description: Requisitos para la instalación
  ordenador necesitará al menos:
  .
  - 2.5 Gigabytes de espacio libre en el disco duro
+ .
  - 128 Megabytes de memoria RAM
+ .
  - Tarjeta gráfica SVGA
- - Procesador Intel o compatible a 200 Megaherzios (en la 
-   documentación adicional puede consultar el hardware recomendado)
+ .
+ - Procesador Intel o compatible a 200 Megaherzios (en la documentación
+ adicional puede consultar el hardware recomendado).
