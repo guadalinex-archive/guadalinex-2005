@@ -12,16 +12,16 @@ cd $CDIMAGE_ROOT/scratch/$PROJECT/tmp
 [ ! -d fresh_udebs ] && mkdir fresh_udebs
 cd fresh_udebs
 
-[ -f breezy-install-i386.list ] && rm breezy-install-i386.list
-wget http://cdimage.ubuntulinux.org/daily/current/breezy-install-i386.list
-[ "$?" != "0" ] && echo "Problems downloading breezy-install-i386.list." >> $LOG && exit
+[ -f ubuntu-5-10-install-i386.list ] && rm ubuntu-5.10-install-i386.list
+wget http://releases.ubuntu.com/breezy/ubuntu-5.10-install-i386.list 
+[ "$?" != "0" ] && echo "Problems downloading ubuntu-5.10-install-i386.list." >> $LOG && exit
 
-[ -f breezy-live-i386.list ] && rm breezy-live-i386.list
-wget http://cdimage.ubuntulinux.org/daily-live/current/breezy-live-i386.list
-[ "$?" != "0" ] && echo "Problems downloading breezy-live-i386.list." >> $LOG && exit
+#[ -f breezy-live-i386.list ] && rm breezy-live-i386.list
+#wget http://cdimage.ubuntulinux.org/daily-live/current/breezy-live-i386.list
+#[ "$?" != "0" ] && echo "Problems downloading breezy-live-i386.list." >> $LOG && exit
 
-cat breezy-install-i386.list | grep ^/pool/ | grep .udeb\$ > fresh_udebs_tmp_list
-cat breezy-live-i386.list | grep ^/pool/ | grep .udeb\$ >> fresh_udebs_tmp_list
+cat ubuntu-5.10-install-i386.list | grep ^/pool/ | grep .udeb\$ > fresh_udebs_tmp_list
+#cat breezy-live-i386.list | grep ^/pool/ | grep .udeb\$ >> fresh_udebs_tmp_list
 
 cat fresh_udebs_tmp_list | sort | uniq > fresh_udebs_list
 
