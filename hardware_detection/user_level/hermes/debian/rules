@@ -31,6 +31,7 @@ install: build
 #	$(MAKE) install DESTDIR=$(CURDIR)/debian/hermes
 	dh_install actors doc img utils hermes_hardware.py README /usr/share/hermes
 	dh_install hermeshardware hermesdruid /usr/bin
+	dh_install hermesdruid.desktop /usr/share/applications/
 	
 
 
