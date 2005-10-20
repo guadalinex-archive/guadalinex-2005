@@ -7,6 +7,7 @@ import sys
 import tempfile
 import logging
 import os.path
+import webbrowser
 
 class CaptureLogGui(object):
 
@@ -50,6 +51,11 @@ class CaptureLogGui(object):
         gtk.main_quit()
 
 
+    def on_help_clicked(self, *args):
+        webbrowser.open("http://www.juntadeandalucia.es/repositorio/webs/guadalinex2005/doku.php?id=recogida_de_informacion_para_hermes")
+
+
+    # Private methods ####################
     def __set_logfile(self):
         self.filepath = tempfile.mktemp()
 
