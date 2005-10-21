@@ -1,0 +1,10 @@
+PDgen software
+
+Pool Dist Generator
+
+TODO
+
+ - gen .disk dir
+ - improve heriarchy of pool
+	- add lib* directories instead of alwais a single char.
+ - check that apt-cdrom detect the repository
