@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo "Usage: $0 mount_point"
+	exit -1
+fi
+
+MOUNT_POINT=$1
+
+# Addind CDROM to sources.list
+apt-cdrom add
+
+
+# Calling the installer
+guadalinex-app-installer $MOUNT_POINT
