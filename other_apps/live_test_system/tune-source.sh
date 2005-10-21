@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 echo "pushd / ..."
@@ -8,13 +9,6 @@ echo "chown root:root etc/gksu.conf ..."
 chown root:root etc/gksu.conf
 echo "chown root:root var/run/sshd/ ..."
 chown root:root var/run/sshd/
-echo "Checking boot/grub/ ..."
-
-if [ ! -e boot/grub/ ]; then
-    mkdir boot/grub/
-    cp lib/grub/i386-pc/stage1 lib/grub/i386-pc/stage2 lib/grub/i386-pc/e2fs_stage1_5 boot/grub/
-fi
-
 echo "apt-get update ..."
 apt-get update
 echo "Reconfiguring locales (please select es_ES.utf8) ..."
