@@ -28,6 +28,9 @@ done
 cp $1/usr/bin/peez2 $1/usr/bin/peez2.BACKUP
 cp peez2 $1/usr/bin
 
+# Copying pkgs to system tmp
+cp *deb $1/tmp
+
 echo "Now you should execute /tmp/tune-source.sh"
 echo "NB: DON'T FORGET TO MOUNT AND UNMOUNT '/proc/'!"
 echo "chroot $1 ..."
@@ -35,6 +38,10 @@ chroot $1
 
 echo "rm $1/tmp/tune-source.sh ..."
 rm $1/tmp/tune-source.sh
+
+# Cleaning tmp
+rm $1/tmp/* 
+
 echo "chroot $1 ldconfig ..."
 chroot $1 ldconfig
 
