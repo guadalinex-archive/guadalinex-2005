@@ -24,6 +24,9 @@
         <Not>
           <Category>System</Category>
         </Not>
+        <Not>
+          <Category>KDE</Category>
+        </Not>
       </And>
     </Include>
   </Menu> <!-- End Accessories -->
@@ -35,6 +38,9 @@
     <Include>
       <And>
         <Category>Game</Category>
+        <Not>
+          <Category>KDE</Category>
+        </Not>
       </And>
     </Include>
   </Menu> <!-- End Games -->
