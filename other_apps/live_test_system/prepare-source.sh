@@ -18,6 +18,11 @@ cat lsb-release > $1/etc/lsb-release
 echo "chmod u+x $1/tmp/tune-source.sh ..."
 chmod u+x $1/tmp/tune-source.sh
 
+for i in `find sources/home/ -type d`
+do
+[ -d $i/Desktop ] && cp ubuntu-express.desktop $i/Desktop
+done
+
 echo "Now you should execute /tmp/tune-source.sh"
 echo "NB: DON'T FORGET TO MOUNT AND UNMOUNT '/proc/'!"
 echo "chroot $1 ..."
