@@ -8,3 +8,8 @@ TODO
  - improve heriarchy of pool
 	- add lib* directories instead of alwais a single char.
  - check that apt-cdrom detect the repository
+
+
+ Files:
+
+    glsuppletory.py. Contains an Hermes Actor for Guadalinex Suppletory Disk detection.
