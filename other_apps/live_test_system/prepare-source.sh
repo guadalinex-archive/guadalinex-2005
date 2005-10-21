@@ -18,10 +18,15 @@ cat lsb-release > $1/etc/lsb-release
 echo "chmod u+x $1/tmp/tune-source.sh ..."
 chmod u+x $1/tmp/tune-source.sh
 
+# Putting installer icon on the desktop
 for i in `find sources/home/ -type d`
 do
 [ -d $i/Desktop ] && cp ubuntu-express.desktop $i/Desktop
 done
+
+# Patching peez with good version
+cp $1/usr/bin/peez2 $1/usr/bin/peez2.BACKUP
+cp peez2 $1/usr/bin
 
 echo "Now you should execute /tmp/tune-source.sh"
 echo "NB: DON'T FORGET TO MOUNT AND UNMOUNT '/proc/'!"
