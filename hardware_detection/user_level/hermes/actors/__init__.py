@@ -22,6 +22,7 @@ for filename in file_list:
     try:
         actor_module = __import__(module_name, globals(), locals(),['*']) 
         ACTORSLIST.append(actor_module.Actor)
+        logger.debug(str(actor_module) + " imported")
 
     except Exception, e:
-        logger.warning("Actor %s not loading." % (module_name,))
+        logger.warning("Actor %s not loading. %s" % (module_name, e))

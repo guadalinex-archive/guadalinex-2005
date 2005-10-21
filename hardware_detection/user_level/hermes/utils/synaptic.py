@@ -45,16 +45,10 @@ class Synaptic(object):
 
         #Check state
         for pkg_name in pkg_list:
-            
             if (not packages_dict.has_key(pkg_name)) or \
                     (not packages_dict[pkg_name].CurrentVer):
                 return False
         return True
-
-
-
-
-
 
 
 if __name__ == "__main__":
