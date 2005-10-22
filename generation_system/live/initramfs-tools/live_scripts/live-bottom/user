@@ -78,7 +78,11 @@ else
 fi
 
 if [ -f /etc/sudoers ]; then
-    sed -i -e '/^%admin/s/ALL$/NOPASSWD: ALL/' /etc/sudoers
+    if grep -q \%admin /etc/sudoers; then 
+        sed -i -e '/^%admin/s/ALL$/NOPASSWD: ALL/' /etc/sudoers
+    else
+	echo "%admin  ALL=NOPASSWD: ALL" >> /etc/sudoers
+    fi 
 fi
 
 # Lock the user's password
