@@ -21,8 +21,22 @@ bb-assist (0.4) unstable; urgency=low
   * Minor fixes
   * Added HOWTO-DEVEL documentation
   * Full support of Efficient Speedstream 5660 device
+  * debian/rules: clean-up. Added CREDITS, README to package
+  * bbsysbackend: added resolv.conf update
+  * bbsysbackend: /etc/ppp/{chap,pap}-secrets update function
+  * bbsysbackend: New druidpage with PPP advanced options added /etc/ppp/peers/
+    configuration
+  * new peer device default values for UI params
+  * Added images to device selection druid page. Normal people don't now the
+    exact name of his broadband device. It's more easy the selection with a
+    image.
+  * device default ui values restore
+  * Add post verifications functions (eth, tty, and so on)
+  * Added Alcatel speedtouch support
+  * Added dinamic IP operation in Vitelcom, Comtrend (eagle)
+  * Added eagleconf call
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 20 Oct 2005 20:06:53 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 23 Oct 2005 17:22:25 +0200
 
 bb-assist (0.3) unstable; urgency=low
 

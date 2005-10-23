@@ -46,14 +46,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
 
 import os, sys, tempfile
+import socket
 from bbutils            import *
 from xml.dom.ext.reader import PyExpat  #   python-xml
 from xml.xpath          import Evaluate
 from Ft.Xml             import MarkupWriter
 
+PPPPEERCONF="/etc/ppp/peers/dsl-provider"
+
 def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='', netmask='', network=''):
     """
-    Example of static interface configuration via system-tools-backends
+    * Example of static interface configuration via system-tools-backends
+
+    Function call:
+    (sysret, xmlcfg, xmlcfgout) = bb_enable_iface_with_config('eth1', 'none', '10.0.0.6',
+                                                              '10.255.255.255', '10.0.0.1',
+                                                              '255.255.255.0', '10.0.0.0')
+    xml passed to system-tools-backends:
     
     <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
     <interface type='ethernet'>
@@ -72,8 +81,13 @@ def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='',
     </interface>
     <!-- GST: end of request -->
     
-    *** Example of dhcp interface configuration via system-tools-backend
+    * Example of dhcp interface configuration via system-tools-backend
 
+    Function call:
+    (sysret, xmlcfg, xmlcfgout) = bb_enable_iface_with_config('eth1', 'dhcp')
+
+    xml passed to system-tools-backends:
+    
     <interface type='ethernet'>
        <configuration>
          <auto>1</auto>
@@ -84,6 +98,7 @@ def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='',
        <enabled>1</enabled>
     </interface>
     <!-- GST: end of request -->
+    
     """
     
     netcfg_xmlfile = tempfile.NamedTemporaryFile()
@@ -132,42 +147,173 @@ def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='',
     
     return (sysret, xmlcfg, xmlcfgout)
 
-def pppoeConf(user, passwd, iface, provider):
+def bb_update_resolvconf(dns1, dns2):
     """
-    Configures a pppoe in a simple way depending also on the provider selected in the GUI
+    Update of dns configuration.
+    system-tools-backend don't have an option to only update de resolv.conf and
+    ubuntu I think is not using resolvconf package by default. Then I update
+    directly /etc/resolv.conf
     """
-    # Notes from: /usr/share/doc/pppoe/README.Debian.gz
-    #
-    # 1) Edit the file /etc/ppp/pap-secrets file, adding a line to the outbound
-    # connections sections that has the following format:
-    # username@sympatico.ca   sympatico.ca      password
 
-    # 2) In the file /etc/ppp/peers/dsl-provider, uncomment and edit the "user" line.
-    # Using our example of "username@sympatico.ca" the line should then look like
-    #  this:
-    # user username@sympatico.ca$
+    # Check first if dns1 and dns2 are IP address for security reasons
+    # if not exception
+    socket.inet_aton(dns1)
+    socket.inet_aton(dns2)
 
-    # 3) If you have more than one Ethernet card in your computer, replace the
-    # "eth0" in the /etc/ppp/peers/dsl-provider file by the interface your DSL
-    # modem is plugged in.
-    # 3.1) usepeerdns keyword in /etc/ppp/peers/dsl-provider
+    fileresolv = open("/etc/resolv.conf", "w")
+    fileresolv.write("nameserver " + dns1 + "\n")
+    fileresolv.write("nameserver " + dns2 + "\n")
+    fileresolv.close()
 
-    # 4) Bring your connection up
+def bb_papchap_conf(PPPuser, PPPpasswd, sys_output_file):
+    """
+    This configures PPPuser, PPPpasswd in /etc/ppp/{pap-secrets,chap-secrets}
+    if the user/passwd exists already updates it with the new info
+    """
+    # Check the vars
+    
+    filechap = open('/etc/ppp/pap-secrets', 'a+')
+    filepap  = open('/etc/ppp/chap-secrets', 'a+')
 
-    # /usr/share/doc/ppp/examples/peers-pppoe
+    # Erase PPPuser from {pap,chap}-secrets
 
-    # Return plog
+    usertofind = "\"" + PPPuser + "\""
+    
+    chapnewtmp = tempfile.NamedTemporaryFile()
+    papnewtmp  = tempfile.NamedTemporaryFile()
 
+    for line in filechap:
+        if (line.find(usertofind) == -1):
+            chapnewtmp.write(line)
+        
+    for line in filepap:
+        if (line.find(usertofind) == -1):
+            papnewtmp.write(line)
 
-if __name__ == "__main__":
-    # FIXME only for tests
-    (sysret, xmlcfg, xmlcfgout) = bb_enable_iface_with_config('eth1', 'dhcp')
-    print sysret
-    print xmlcfgout
-    print xmlcfg
-    (sysret, xmlcfg, xmlcfgout) = bb_enable_iface_with_config('eth1', 'none', '10.0.0.6',
-                                                              '10.255.255.255', '10.0.0.1',
-                                                              '255.255.255.0', '10.0.0.0')
-    print sysret
-    print xmlcfgout
-    print xmlcfg
+    # Add PPPuser to {pap,chap}-secrets
+
+    auth = "\"" + PPPuser + "\" * \"" + PPPpasswd + "\"\n"
+
+    chapnewtmp.write(auth)
+    papnewtmp.write(auth)
+    chapnewtmp.flush()
+    papnewtmp.flush()
+        
+    filechap = open("/etc/ppp/pap-secrets",  "w")
+    filepap  = open("/etc/ppp/chap-secrets", "w")
+    newchaps = open(chapnewtmp.name,  "r").read()
+    newpaps  = open(papnewtmp.name, "r").read()
+
+    for line in newchaps:
+        filechap.write(line)
+    for line in newpaps:
+        filepap.write(line)
+
+    filepap.close()
+    filechap.close()
+    
+    os.chmod("/etc/ppp/pap-secrets", 0600)
+    os.chmod("/etc/ppp/chap-secrets", 0600)
+    os.system("chown root:root /etc/ppp/pap-secrets")
+    os.system("chown root:root /etc/ppp/chap-secrets")
+    sys_output_file.write("* /etc/ppp/*-secrets: " +
+                          _("Configurados correctamente.") + "\n")
+
+def bb_create_ppp_peer_conf(devcf, sys_output_file):
+    """
+    conf ppp peer pppoe/pppoa configuration
+    """
+    
+    peerfile = open('/etc/ppp/peers/dsl-provider', 'w')
+    
+    if (devcf.param['ppp_noipdefault']):
+        peerfile.write('noipdefault\n')
+    if devcf.param['ppp_defaultroute']:
+        peerfile.write('defaultroute\n')
+    if devcf.param['ppp_replacedefaultroute']:
+        peerfile.write('replacedefaultroute\n')
+    if devcf.param['ppp_usepeerdns']:
+        peerfile.write('usepeerdns\n')
+    if devcf.param['ppp_noauth']:
+        peerfile.write('noauth\n')
+    if devcf.param['ppp_updetach']:
+        peerfile.write('updetach\n')
+    peerfile.write("user \'" + devcf.param['PPPuser'] + "'\n")
+    if devcf.param['ppp_proto'] == 'PPPoE':
+        peerfile.write('plugin rp-pppoe.so')
+        if devcf.device_type.dt_id == '0001': # modems
+            if (devcf.id == '0003') or (devcf.id == '0006'):
+                # Alcatel Speedtouch and Vitelcom
+                peerfile.write('\nnas0\n') # an extra newline
+        if devcf.device_type.dt_id == '0002': # routers
+            peerfile.write(" " + devcf.param['eth_to_use'] + '\n')
+    if devcf.param['ppp_proto'] == 'PPPoA':
+        peerfile.write('plugin pppoatm.so\n')
+        peerfile.write(devcf.param['ppp_vpi'] + "." +
+                       devcf.param['ppp_vci'] + '\n')
+    if devcf.param['ppp_persist']:
+        peerfile.write('persist\n')
+    if devcf.param['ppp_novjccomp']:
+        peerfile.write('novjccomp\n')
+    if devcf.param['ppp_noaccomp']:
+        peerfile.write('noaccomp\n')
+    if devcf.param['ppp_nobsdcomp']:
+        peerfile.write('nobsdcomp\n')
+    if devcf.param['ppp_nodeflate']:
+        peerfile.write('nodeflate\n')
+    if devcf.param['ppp_nopcomp']:
+        peerfile.write('nopcomp\n')
+    if devcf.param['ppp_noccp']:
+        peerfile.write('noccp\n')
+    if devcf.param['ppp_novj']:
+        peerfile.write('novj\n')
+    peerfile.write('maxfail ' + devcf.param['ppp_maxfail'] + '\n')
+    peerfile.write('mru ' + devcf.param['ppp_mru'] + '\n')
+    peerfile.write('mtu ' + devcf.param['ppp_mtu'] + '\n')
+    if (devcf.param['ppp_lcpechofailure'] != '0'):
+        peerfile.write('lcp-echo-failure ' +
+                       devcf.param['ppp_lcpechofailure'] + '\n')
+    if (devcf.param['ppp_lcpechointerval'] != '0'):
+        peerfile.write('lcp-echo-interval ' +
+                       devcf.param['ppp_lcpechointerval'] + '\n')
+    if devcf.param['ppp_debug']:
+        peerfile.write('debug\n')
+    peerfile.close()
+    os.chmod(PPPPEERCONF, 0640)
+    os.system("chown root:dip " + PPPPEERCONF)
+    sys_output_file.write("* " + PPPPEERCONF + ": " +
+                          _("Configurado correctamente.") + "\n")
+    return BBNOERR
+
+def bb_ppp_conf(devcf, sys_output_file):
+    """
+    Configures a pppoe/pppoa in a simple way depending also on the provider
+    selected in the GUI
+    Eagle modems use eagleconf.
+    """
+    
+    if (devcf.id == '0002'):
+        if (devcf.provider.prov_id == '0001'): # Telefonica de España
+            # FIXME: Better to put this in a xml file
+            if devcf.param['mod_conf'] == "monodinamic":
+                isp = 'ES01'
+                enc = 1
+            else:
+                isp = 'ES02'
+                enc = 3
+        pwd_enc = '1' # FIXME: test this
+        # FIXME: vpi/vci of table vs general vpi/vci
+        cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07d|VCI=%08d|ENC=%07d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=none|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['ppp_vpi']), int(devcf.param['ppp_vci']), enc, isp, devcf.param['PPPuser'], devcf.param['PPPpasswd'], pwd_enc, int(devcf.param['ppp_usepeerdns']), int(devcf.param['ppp_startonboot']))
+        sys_output_file.write("Command:\n")
+        sys_output_file.write(cmd)
+        sys_output_file.write("\n")
+        cmd += " >> " + sys_output_file.name + " 2>&1"
+        os.system(cmd)
+    else:
+        bb_papchap_conf(devcf.param['PPPuser'], devcf.param['PPPpasswd'], sys_output_file)
+        bb_create_ppp_peer_conf(devcf, sys_output_file)
+        # 3.1) Load  modules (modprobe -q pppoe)
+        # 4) Bring your connection up
+        # 5) Configure staronboot
+        # Return plog
+    return BBNOERR

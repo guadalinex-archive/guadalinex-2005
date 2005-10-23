@@ -638,6 +638,32 @@
       <cmd send='save config startup\r' exp_ok='>' err='{$defNokM112err}'/>
       <cmd send='logout\r' exp_ok='goodbye' err='{$defNokM112err}'/>
     </cmd_func>
+
+    <cmd_func id='authNokiaM1112test'>
+      <cmd send='\x17\x17\r' exp_ok='ddd>'> <!-- we are already logged -->
+        <expect_list>
+	  <expect out='(login-id:|password:)'>
+	    <cmd send='1\r' exp_ok='>'>
+	      <expect_list>
+		<expect out='(login-id:|password:)'>
+		  <cmd send='11\r' exp_ok='>'>
+		    <expect_list>
+		      <expect out='(login-id:|password:)'> 
+			<!-- Wrong passwd (after three fails)-->
+			<cmd return='4'/> 
+		      </expect>
+		    </expect_list>
+		  </cmd>
+		</expect>
+	      </expect_list>
+	    </cmd>
+	  </expect>
+	  <expect out='\)#'>
+	    <cmd send='quit\r' exp_ok='>'/>
+	  </expect>
+	</expect_list>
+      </cmd>
+    </cmd_func>
    
   </xsl:if>
 

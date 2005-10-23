@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 480.0 360.0"
+   id="svg2871"
+   sodipodi:version="0.32"
+   inkscape:version="0.42"
+   width="210mm"
+   height="297mm"
+   sodipodi:docname="speedtouch.svg"
+   sodipodi:docbase="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist">
+  <metadata
+     id="metadata3438">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3436" />
+  <sodipodi:namedview
+     inkscape:cy="507.84726"
+     inkscape:cx="372.04724"
+     inkscape:zoom="0.54543959"
+     inkscape:window-height="739"
+     inkscape:window-width="918"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:window-x="98"
+     inkscape:window-y="0"
+     inkscape:current-layer="svg2871" />
+  <path
+     stroke="none"
+     fill="#453e2d"
+     d="M227 91L227 92L268 83.3001L290.91 92.0926L304 98C280.979 73.7963 254.254 81.7802 227 91z"
+     id="path2989"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#1f1b1b"
+     d="M182 105L182 108L206 102L214 97.6667L242 92L242 93L216 98L216 99C226.389 100.714 240.522 90.9564 249 99L244 98L244 99C245.96 99.6534 246.554 100 244 100L244 101C250.645 104.03 249.517 108.366 247 114L231 118L241 112L241 111C234.186 110.55 231.397 113.66 226 108L223 111C231.508 115.759 229.221 127.121 219 125L220 131C227.659 129.451 246.22 119.485 250.736 112.907C257.368 103.245 252.362 91.5204 241 91C255.74 78.0057 286.826 87.0193 298.701 100.184C306.257 108.561 310.12 119.585 318 128L294 120C300.907 131.998 327.198 141.305 340 145C331.953 133.472 338.755 135.359 344 125C335.161 118.265 327.623 110.399 318 104.62C311.562 100.753 304.237 99.9231 298.039 96.4822C287.702 90.7433 278.44 83.5993 266 83.0394C251.92 82.4057 240.371 89.6977 227 92L227 91L253 83C246.632 80.4038 237.061 85.4705 231 87.8109C215.078 93.9588 198.799 101.731 182 105z"
+     id="path2991"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#6f5423"
+     d="M241 89L244 91z"
+     id="path3003"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#54523a"
+     d="M205 100L205 101L242 93C232.082 88.8382 214.735 96.8871 205 100z"
+     id="path3007"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#4d3f37"
+     d="M210 103L210 104L246 100L246 99L245 97L242 97L243 95z"
+     id="path3009"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#9d6b25"
+     d="M242 96L242 97L249 99z"
+     id="path3011"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#1c1515"
+     d="M182 108C181.284 103.182 174.804 104.267 173 108L179 112L124 115L124 116L130 117L130 118L122 120L122 121L139 122L139 120C150.742 124.396 167.941 119.239 180 117L168.004 120.429L147 128L148 131L144 132C148.236 137.874 157.137 133.491 163 132.424C182.751 128.832 202.989 136.526 222 132L222 131L183 123L183 121L187 121L187 120L183 115L187 115L187 114L183 114L186 112L186 111L181 112C189.952 103.577 208.747 105.112 220 106C221.043 97.9723 239.647 101.73 245 102L234 109L234 110L249 107L245 114C253.477 109.41 248.818 101.237 240.996 99.5185C230.106 97.1264 220.507 102.953 210 104L210 103L219 100C209.147 95.9041 192.329 106.48 182 108z"
+     id="path3017"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#835711"
+     d="M234 103L234 104L245 102z"
+     id="path3021"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#4b4633"
+     d="M309 103L311 107z"
+     id="path3023"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#3f3e30"
+     d="M181 112C195.21 107.997 207.517 107.88 222 108C214.249 102.477 186.761 103.812 181 112z"
+     id="path3029"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#14110e"
+     d="M183 114L187 114L187 115L183 115L183 119L217 121L217 122L188 121C192.17 123.018 198.35 124.514 203 125.685C206.655 126.606 210.275 126.077 214 125.995C216.915 125.931 222.288 127.228 224.866 126.292C231.06 124.041 229.039 114.332 225.051 111.236C216.912 104.918 188.655 104.211 183 114z"
+     id="path3037"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#af7932"
+     d="M238 116C243.288 114.742 246.311 111.614 249 107z"
+     id="path3039"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#2f2a1f"
+     d="M112 115L112 116L121 117L121 116L119 115C128.63 112.294 141.075 110.063 151 112L151 113L136 113L136 114L179 112C176.95 105.824 167.375 108 162 108C144.301 108 128.951 109.58 112 115z"
+     id="path3043"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#995d20"
+     d="M195 112L195 113L209 110z"
+     id="path3049"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#40200a"
+     d="M202 111L202 112L221 112L221 110z"
+     id="path3051"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#403f39"
+     d="M228 110C230.749 113.768 234.02 112.259 238 111z"
+     id="path3053"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#43423c"
+     d="M119 115L119 116L151 113C144.521 108.167 126.214 112.298 119 115z"
+     id="path3055"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#494137"
+     d="M212 113L212 114L224 112z"
+     id="path3057"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#4a280b"
+     d="M231 118L240 112C235.976 113.08 232.38 113.797 231 118z"
+     id="path3059"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#454237"
+     d="M130 118L130 119L178 116L158 116.715z"
+     id="path3063"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#060606"
+     d="M98 134L106 135C104.634 130.891 104.632 128.884 108 126C110.371 132.131 117.321 131.301 123 130.972C137.18 130.152 150.699 125.262 164.083 121.306C168.526 119.992 178.932 121.983 180 117C166.883 118.658 151.954 123.632 139 120L139 122L131 121L132 124L114 126L126 122L126 121L122 121L122 120L130 118C114.433 109.726 103.144 120.604 98 134z"
+     id="path3065"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#7a441f"
+     d="M209 118L209 119L217 118z"
+     id="path3067"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#504a3a"
+     d="M231 121L239 119z"
+     id="path3071"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#3c3026"
+     d="M185 119L185 120L187 120L187 121L183 121L183 123C195.816 123.273 208.246 133.768 221 130L220 126L188 122L188 121L217 122C210.238 116.877 193.407 119 185 119z"
+     id="path3073"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#4d2508"
+     d="M235 124L242 120z"
+     id="path3075"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#4e290c"
+     d="M120 122L120 123C123.764 124.112 129.187 125.219 132 122z"
+     id="path3077"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#8b531d"
+     d="M124 122L124 123L131 123z"
+     id="path3079"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#6a4121"
+     d="M114 126L121 126L121 123z"
+     id="path3083"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#0e0e0e"
+     d="M110 136L110 135L139 130L139 129C128.921 129.169 113.192 135.256 105 127L106 135C103.352 135.004 98.7066 133.002 96.3765 134.237C90.0932 137.567 103.324 140.004 105 139.999C114.441 139.973 123.696 137.253 133 136C126.562 146.844 127.503 157.443 134.598 168C136.325 170.569 143.351 181.325 147.338 177.338C150.878 173.798 139.708 164.097 137.826 161C130.168 148.392 135.19 137.539 148 131L147 128L159 124C151.71 121.161 143.92 127.886 137.91 131.056C130.021 135.216 118.753 138.078 110 136z"
+     id="path3085"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#925b28"
+     d="M106 126L109 130z"
+     id="path3089"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#926a2f"
+     d="M208 126L208 127L217 128L217 126z"
+     id="path3091"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#5a3619"
+     d="M189 127L189 129L197 129z"
+     id="path3095"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#543c1e"
+     d="M334 136L344 136C344.964 139.039 350.646 142.531 350.808 137.031C351.121 126.373 337.469 129.964 334 136z"
+     id="path3097"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#34312f"
+     d="M110 135L110 136C118.53 138.52 134.743 135.464 141 129z"
+     id="path3099"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#553416"
+     d="M176 130L176 131L185 131z"
+     id="path3103"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#7a4c14"
+     d="M168 131L168 132L176 132z"
+     id="path3105"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#4c2a18"
+     d="M196 131L196 132L200 132z"
+     id="path3109"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#8b7345"
+     d="M340 132L340 134L342 134L342 132z"
+     id="path3115"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#42240f"
+     d="M135 144L151 136L151 135L145 133C139.842 135.19 136.319 138.466 135 144z"
+     id="path3117"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#8c531f"
+     d="M333 136L341 147C344.765 144.494 342.44 142.267 339 141L340 139L336 135z"
+     id="path3119"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#503524"
+     d="M129 136L129 137L133 138z"
+     id="path3121"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#6a5630"
+     d="M337 137L337 138L340 139L339 141C342.661 142.582 344.877 143.896 348 141L344 136z"
+     id="path3123"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#593414"
+     d="M117 138L117 139L121 139z"
+     id="path3127"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#61391b"
+     d="M327 140L327 141L331 141z"
+     id="path3135"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#522e0b"
+     d="M339 146L342 146L341 144z"
+     id="path3141"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#653c20"
+     d="M133 146L133 152L134 152z"
+     id="path3145"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#433721"
+     d="M173 163L173 164L201 161L201 165L206 163L204 171L210 169L208 173L218 180L220 174L225 175C225.398 171.747 229.412 170.014 230 174L236 177L236 170L238 173L244 173L244 174L239 174L239 175L247 175L245 172L252 170C231.702 151.44 196.909 157.469 173 163z"
+     id="path3159"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#3c3120"
+     d="M159 170L159 171L162 171C163.228 180.013 171.133 181.868 179 180L172 184L170 187L172 188L172 189L166 188L165 192L177 200L177 196L173 195L173 194C176.854 193.325 177.289 191.752 177 188C180.17 187.346 182.827 185.174 186.039 184.878C193.449 184.196 200.684 187.031 207.956 184.467C214.54 182.145 213.002 175.92 208 173L210 169L204 171L206 163L201 165L201 161C186.008 163.669 172.942 162.666 159 170z"
+     id="path3163"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#4d3f28"
+     d="M240 163L240 164L252 169L252 170L245 172L247 175L239 175L239 174L244 174L244 173L236 170L236 177L230 174C229.465 169.764 225.381 171.505 225 175L220 174L218 180L214 177L213 177L212 183L215 184L216 181C218.954 181.933 221.525 183.92 222 180L223 180L224 185L227 187L227 183L232 181L236 183L237 180L244 186L245 186L246 186L248 182C251.59 182.929 258.126 182.705 260.968 185.062C266.855 189.946 262.158 199.325 258.561 203.816C249.393 215.261 233.285 220.882 219 221L219 222C234.411 226.555 263.821 217.552 267 200L276 200L295 212L296 211L265 182L274 182C283.374 192.727 295.107 200.345 301 214L306 214L306 209L300 204C299.147 198.174 293.439 194.013 289.541 189.87C277.091 176.635 258.342 165.381 240 163z"
+     id="path3165"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#302b1d"
+     d="M135 182L138 186L138 187C132.524 191.026 127.011 196.39 125 203C132.858 212.451 146.856 223.226 158 229C154.765 221.822 148.164 219.783 149 211L146 215L145 215L147 209L147 208L145 206L148 206L148 205L146 203L150 203L153 201L151 199L153 187C160.573 192.613 173.152 207.006 183 206L183 204L165 192L166 188L172 189L172 188L170 187L172 184L179 180C171.112 181.443 164.028 179.598 162 171z"
+     id="path3173"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#564c2c"
+     d="M222 180L221 183L216 181L215 184C211.28 183.416 209.656 184.658 208 188L204 187L207 190L202 193L202 194L205 194L203 198L207 198L207 199L199 199L199 200L207 201L207 202C199.676 202.584 195.268 205.303 192 212C196.116 213.448 197.844 212.799 200 209L207 210L207 209L205 208L210 207L207 203L216 203L215 206L222 199L222 203L225 200L224 197C227.236 197.069 227.866 196.221 228 193L244 185L244 184L237 180L236 183L232 181L227 183L227 187L224 185z"
+     id="path3181"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#645733"
+     d="M248 182L247 188L247 189L225 205L224 208L225 212L243 210L243 211L240 212L240 213L248 208L248 212C256.857 209.582 269.374 195.107 261.987 185.611C259.559 182.491 251.703 182.718 248 182z"
+     id="path3185"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#746941"
+     d="M265 182L284.7 199.336L305 221C299.484 204.853 286.944 192.434 274 182z"
+     id="path3187"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#524a2d"
+     d="M177 188C177.061 191.619 176.592 193.017 173 194L173 195L177 196C176.797 201.544 186.606 211.168 192.66 209.608C197.989 208.235 200.351 202.864 207 202L207 201L199 200L199 199L207 199L207 198L203 198C204.195 195.399 205.248 194.394 202 194L202 193L207 190L204 187L208 188L210 184z"
+     id="path3191"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#64532f"
+     d="M284 184L300 204L306 209L306 214L303 213L302 214L305 221L294 212L276 200L267 200C266.41 204.468 267.195 206.517 271 209L274 207C276.648 211.292 281.244 211.518 286 212L286 213L284 213L284 214L305 224L303 226L303 227C313.775 229.765 319.408 238.374 321 249L325 249L325 257L326 257C326 227.993 311.207 197.889 284 184z"
+     id="path3193"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#363e44"
+     d="M242 185L228 193C227.671 195.974 226.93 196.519 224 197L225 200L222 203L222 199C219.047 200.488 215.888 203.11 219 206L219 202L226 208L225 205L247 189z"
+     id="path3195"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#3c3221"
+     d="M153 187L153 201L150 203L146 203L148 206L145 206L147 208L147 209C143.533 209.758 144.688 211.919 145 215L146 215L149 211C146.579 220.809 159.396 231.182 166 237.17C185.812 255.132 202.516 277.438 228 288C225.868 281.76 215.268 277.967 210 274.279C197.738 265.695 187.237 255.277 176.999 244.451C173.445 240.694 162.961 234.677 165 229L165 228L158 224L161 226L162 226L164 223L163 220L167 219L165 214L172 212L172 211L167 211L167 210C171.043 209.595 174.515 209.143 176 205L175 205L168 206L168 205L173 206L174 202z"
+     id="path3197"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#18110e"
+     d="M186 282L183 283L186 279C180.832 279.54 177.83 277.311 178 272L184 274C174.214 253.466 147.996 237.089 128 228L128 227L142 227.589L162 244C156.719 225.187 117.779 220.76 127 199C95.997 214.697 140.493 245.559 153 258.001C156.894 261.874 160.922 265.498 165 269.169C168.552 272.366 181.81 287.463 186 282z"
+     id="path3209"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#73643c"
+     d="M219 202L219 206L215 206L216 203L207 203L210 207C208.321 207.044 203.577 207.512 207 209L207 210L200 209L197 215C203.42 219.367 209.811 226.542 218 224L217 222L250 213L250 212L248 208L240 213L240 212L243 211L243 210C235.449 209.655 231.859 207.69 225 212L226 209z"
+     id="path3213"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#69401b"
+     d="M125 203C125.002 217.182 137.107 219.734 147 228.134C164.239 242.772 181.051 260.399 194 279L201 276L199 273L202 272C187.34 253.819 167.295 236.187 149 221.664C142.927 216.844 128.284 210.887 127 203z"
+     id="path3215"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#513f29"
+     d="M173 206L168 205L168 206L175 205L176 205L167 210L167 211L172 211L172 212L165 214L167 219L163 220L164 223L162 226L161 226L158 224L165 228L165 229C160.504 231.679 170.638 240.989 173.972 242.167C176.554 243.079 176.856 240.613 174 240L174 239L177 239C176.675 234.887 176.501 231.829 172 231L171 221L175 220L174 217L177 221L194 227L191 222L187 224L192 221L188 215L214 230L213 228L214 228L219 231L184 205z"
+     id="path3217"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#716235"
+     d="M265 205L260 212L266 212C269.02 215.607 274.634 215.937 279 215L282 222L305 233L308 236L306 238L308 243C312.358 245.141 314.285 248.13 314 253L318 254L316 255L316 256C321.525 259.539 319.468 266.454 319 272L320 272L325 249L321 249L318 236L315 237L316 240C313.092 237.142 313.118 234.893 314 231L303 227L303 226L305 224L284 214L284 213L286 213L286 212L274 207L271 209L267 205z"
+     id="path3221"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#90794c"
+     d="M238 221L238 222L253 220L253 222L257 223L258 223L277 223C279.042 228.815 297.938 236.389 304 236L303 239L306 244L314 249L308 243L309 240L306 238L306 237L308 237L308 236L305 233C297.626 230.162 289.991 219.797 282 222L279 215L266 212z"
+     id="path3225"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#70633e"
+     d="M188 215L192 221L187 224L191 222L194 227L177 221L174 217L175 220L171 221L172 231C176.409 231 179.052 238.348 174 239L174 240L177 240C176.392 247.676 185.255 254.7 191 259C190.14 253.201 190.715 250.256 195 246L192 245L193 240L199 235C218.01 245.583 237.561 259.764 260 262L260 261C245.553 254.775 228.917 249.056 219 236L201 224L202 222z"
+     id="path3229"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#ab9662"
+     d="M217 222L214 225L214 227C221.24 231.379 227.269 237.326 236 238L233 234L233 233L236 229L239 230L244 229L244 227L259 226L258 229L260 226L263 228C277.418 227.06 289.285 235.409 300.74 243.035C305.021 245.885 305.629 250.833 311 252L311 253L309 254L317 263L319 270C320.369 265.712 321.814 257.246 316 256L316 255L318 254L314 253L315 250L306 244C305.936 241.007 306.054 239.654 303 239L304 236C297.472 236.054 280.254 228.583 277 223L258 223L257 223L253 222L253 220z"
+     id="path3231"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#99815a"
+     d="M201 223L201 224C206.016 228.37 211.858 236.262 219 236C224.518 246.782 242.669 255.876 254 259L254 258L229 242L259 259C252.416 250.912 239.266 241.232 229 239L230 241z"
+     id="path3233"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#d1b169"
+     d="M257 226L257 228L254 227L254 230L264 229L277 233L276 237L278 240L279 240C287.595 234.627 298.43 251.768 298 259L310 272L310 273L307 273L307 274L310 280L311 280C315.949 273.079 316.031 270.934 317 263C314.084 261.062 309.935 256.697 311 253L311 252C306.221 250.253 305.455 245.844 301.54 243.035C290.436 235.068 277.221 226.319 263 228C261.388 225.13 260.017 227.391 258 229L259 226z"
+     id="path3241"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#080808"
+     d="M128 227L128 228C149.147 241.477 169.292 252.801 184 274L178 272C177.06 277.656 180.574 280.241 186 279L183 283L186 282L185 286C193.635 292.184 204.104 301.818 215 303L215 302C194.027 286.01 183.877 257.421 162 242L162 244C150.018 233.002 144.802 227 128 227z"
+     id="path3243"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#c1b28c"
+     d="M244 227L244 229L239 230L236 229L233 233L233 234L241 235L242 235C244.616 231.058 248.186 234.007 252 235C258.616 229.542 272.834 238.968 277 233L264 229L254 230z"
+     id="path3245"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#5e5b3c"
+     d="M213 228L213 231L230 241L229 239L230 239L232 240L233 240L233 239z"
+     id="path3247"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#e3cc82"
+     d="M242 235L241 235L238 235C246.108 238.451 257.284 238.718 266 238C266.481 240.871 269.587 239.602 272 239C272.46 242.327 275.181 241.822 278 241L278 243C280.471 242.647 291.082 245.593 289 248L295 255C293.936 262.605 298.975 273.324 304 279L302 286C306.234 283.544 313.001 278.263 307 274L307 273L310 273L310 272L298 259C298.705 252.057 287.108 232.986 279 240L278 240C275.718 233.32 256.262 229.157 252 235C248.523 233.811 243.176 229.514 242 235z"
+     id="path3251"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#efede5"
+     d="M313 232L316 236L315 232z"
+     id="path3253"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#e5d5b4"
+     d="M237 234L236 238L231 237C234.728 241.55 240.062 244.32 246 244L243 239L253 242L253 244L258 243L256 240L259 239L259 238z"
+     id="path3259"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#907a58"
+     d="M199 235L193 240L192 245L195 246C186.712 252.08 190.554 260.287 198 265L196 249C203.468 246.954 207.761 238.51 199 235z"
+     id="path3263"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#b2966a"
+     d="M316 235L314 236L314 237z"
+     id="path3265"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#2d2a23"
+     d="M313 236L316 240z"
+     id="path3267"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#f5dd98"
+     d="M259 237L256 241L289 250L288 252C290.551 255.121 292.003 260.385 290 264L290 265C293.64 268.907 294.73 272.931 293 278L296 279L291 289L291 290C299.365 289.16 300.351 285.485 304 279C299.671 272.059 294.676 263.291 295 255L289 248C292.196 245.831 280.815 242.125 278 243L278 241C274.603 242.132 271.244 242.023 272 239C268.709 239.549 265.14 241.438 266 238z"
+     id="path3269"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#aa926f"
+     d="M205 239L196 249C194.785 260.677 198.562 269.158 210 274C204.114 265.186 203.217 262.947 203 252L213 244z"
+     id="path3271"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#fcecbd"
+     d="M243 239L246 244L238 242C240.388 245.369 247.552 250.791 249 244L255 248L272 252L276 251L288 266C291.977 269.791 290.505 273.983 290 279L292 279L288 291L282 293L282 294C291.507 291.397 293.026 287.532 296 279L293 278C295.264 273.379 294.348 268.09 290 265L290 264C292.871 261.263 290.888 254.317 288 252L289 250C279.932 245.135 262.887 240.325 253 244L253 242z"
+     id="path3273"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#aea37d"
+     d="M229 242C232.669 246.456 238.121 250.63 244 251z"
+     id="path3275"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#cab995"
+     d="M203 252C203.057 263.707 203.076 272.887 216 278L211 258L215 248L218 249C218 236.052 202.886 251.972 203 252z"
+     id="path3277"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#f9f6da"
+     d="M249 244L247 248L266 255L265 259L269 260L273 261L278 259L279 269L282 272L278 271L283 274L283 285L281 285L282 289L279 294L288 291L292 279L290 279C291.023 274.143 292.908 269.014 288 266C288.358 257.837 281.087 255.599 276 251L272 252C271.405 248.359 258.576 247.825 255 248z"
+     id="path3279"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#e4d4b7"
+     d="M218 249L215 248L211 258C213.05 266.969 212.29 277.788 222 282L216 268C220.217 267.096 218.861 263.933 217 261L226 251C223.65 249.063 220.557 246.635 218 249z"
+     id="path3283"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#fefefe"
+     d="M245 247L265 264L230 254L229 254L227 257L230 256L222 265L222 266L224 270L223 271L221 270L225 273C232.455 295.356 258.974 296.531 279 294L282 289L281 285L283 285L283 278C275.148 278.868 271.471 270.476 280 268L278 259L273 261L269 260L265 259L266 255z"
+     id="path3285"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#f2f1df"
+     d="M217 261C218.256 264.164 218.995 265.98 216 268C217.264 277.572 224.309 284.21 233 287L225 273L221 270L224 270L222 266L222 265L230 256L227 257L229 254L230 254L235 255C225.268 247.644 223.394 254.923 217 261z"
+     id="path3289"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#c5bba2"
+     d="M243 251L243 252L265 264C260.531 258.115 250.082 253.083 243 251z"
+     id="path3291"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#a1a088"
+     d="M240.667 256.333L241.333 256.667L240.667 256.333z"
+     id="path3297"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#aaa893"
+     d="M243.667 257.333L244.333 257.667L243.667 257.333z"
+     id="path3299"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#afa395"
+     d="M246.667 258.333L247.333 258.667L246.667 258.333z"
+     id="path3303"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#fefefe"
+     d="M239 260L247 261L247 264L257 266C256.671 271.628 257.019 277.592 264 277L269 277L269 281L270 281L270 275L271 275L271 290L269 291L266 292L259 292L258 292L251 290L252 288L243 288L243 287L245 287L245 286C232.989 285.342 233.316 274.342 233 265L234 265L235 267L236 262L237 264L238 264z"
+     id="path3309"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#c0b8ab"
+     d="M252.667 260.333L253.333 260.667L252.667 260.333z"
+     id="path3311"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#a57d45"
+     d="M323 264L320 272L318 270C307.506 285.353 290.176 294.065 272 295.917C265.518 296.577 254.91 293.756 249.333 295.417C247.18 296.058 248.953 297.036 250 297L249 305C271.91 305 291.264 301.348 309.91 287.045C315.738 282.574 325.229 272.129 323 264z"
+     id="path3313"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#9d865d"
+     d="M276 278L277 278L275 271L278 272L280 269C273.619 268.068 273.843 273.486 276 278z"
+     id="path3319"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#d4d0b4"
+     d="M278 270L278 271L282 272L281 269z"
+     id="path3321"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#74644f"
+     d="M275 271L279 278z"
+     id="path3327"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#7e5726"
+     d="M199 273L201 276L195 277C197.434 285.691 211.927 301.729 222 296L219 295L219 294L227 290L220 288L224 286C218.395 281.351 206.3 271.635 199 273z"
+     id="path3329"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#4b4037"
+     d="M279 274L279 278L282 277L282 275z"
+     id="path3331"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#d0b99b"
+     d="M280 274L280 275L282 277L283 277z"
+     id="path3333"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#a9a07d"
+     d="M281 277L282 278z"
+     id="path3335"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#b4aa8f"
+     d="M277 278L277 279L281 279z"
+     id="path3337"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#281d15"
+     d="M312 284C281.068 313.583 233.877 310.065 201 287L213 303L213 304C240.126 310.219 265.714 315.383 292 301.89C298.122 298.748 312.167 291.879 312 284z"
+     id="path3343"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#b99c7d"
+     d="M228 285L231 287z"
+     id="path3345"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#8f6434"
+     d="M220 288L227 290L224 290L219 294L219 295L222 296L219 298C227.879 302.462 240.216 305.892 250 303L250 297L248 295L262 297L262 296L228 286z"
+     id="path3347"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#d5b89b"
+     d="M232.667 287.333L233.333 287.667L232.667 287.333z"
+     id="path3349"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#d6b495"
+     d="M234.667 288.333L235.333 288.667L234.667 288.333z"
+     id="path3351"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#c69e7e"
+     d="M236.667 289.333L237.333 289.667L236.667 289.333z"
+     id="path3355"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#d8b4a0"
+     d="M239.667 290.333L240.333 290.667L239.667 290.333z"
+     id="path3359"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#d2af88"
+     d="M289 291L289 292L294 291z"
+     id="path3361"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#b69474"
+     d="M241.667 291.333L242.333 291.667L241.667 291.333z"
+     id="path3365"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#bb9478"
+     d="M244 292L244 293L247 293z"
+     id="path3367"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#bb9f76"
+     d="M284 293L284 294L289 293z"
+     id="path3369"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#d9baa1"
+     d="M248 293L248 294L256 295z"
+     id="path3371"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#eeddbf"
+     d="M275 294L275 295L279 295z"
+     id="path3373"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#ba937c"
+     d="M256 295L256 296L264 296z"
+     id="path3377"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#dcbea4"
+     d="M264 295L264 296L275 296z"
+     id="path3379"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <path
+     stroke="none"
+     fill="#5c4832"
+     d="M251 305L251 306L265 306z"
+     id="path3389"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+  <rect
+     style="fill:none;fill-opacity:0.75000000;fill-rule:evenodd;stroke:none;stroke-width:0.95103178pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000"
+     id="rect1740"
+     width="274.44250"
+     height="274.44250"
+     x="86.519852"
+     y="57.722839"
+     inkscape:export-filename="/home/vjrj/proyectos/tid/guadalinex2005/dev/adsl_assistant/bb-assist/speedtouch.png"
+     inkscape:export-xdpi="29.616405"
+     inkscape:export-ydpi="29.616405" />
+</svg>

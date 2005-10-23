@@ -2,9 +2,9 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/python-distutils.mk
 
+DEB_INSTALL_DOCS_ALL := README CREDITS doc/net-diagram.txt doc/HOWTO-DEVEL
+DEB_INSTALL_MANPAGES_bb-assist := debian/bb-assist.1
+DEB_INSTALL_EXAMPLES_bb-assist := examples/*
+
 build/bb-assist::
 	/usr/bin/docbook-to-man debian/bb-assist.sgml > debian/bb-assist.1
-
-install/bb-assist::
-	install -p -d -m 755 debian/$(cdbs_curpkg)/usr/share/man/man1/
-	install -m 644 debian/bb-assist.1 debian/$(cdbs_curpkg)/usr/share/man/man1/bb-assist.1

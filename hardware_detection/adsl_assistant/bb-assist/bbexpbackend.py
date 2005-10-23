@@ -82,9 +82,6 @@ def func_parse(dom, child, func, default_timeout = -1, sdelay = 0):
     path_cmd = "cmd_func[@id='"+ func +"']/cmd"
     cmds = Evaluate(path_cmd, dom.documentElement)
     if (len(cmds) < 1):
-        if by_serial:
-            ser.close()
-        os.remove("/var/lock/LCK..ttyS" + tty_read)
         raise SyntaxError, _("en modulo de expect. Función call") + \
               " '" + func + "' " + _("desconocida")
     return (cmd_parse(dom, child, cmds, default_timeout, sdelay))
@@ -129,6 +126,7 @@ def cmd_parse(dom, child, cmds, default_timeout = -1, sdelay = 0):
             for expectact in expects:
                 expect_list += [re.compile(expectact.getAttribute('out').encode(CMDENCODING))]
                 inner_cmds = Evaluate('cmd', expectact)
+                #print inner_cmds
                 cmdid_list += [inner_cmds]
 
             cmd_timeout = actcmd.getAttribute('timeout')
@@ -148,7 +146,7 @@ def cmd_parse(dom, child, cmds, default_timeout = -1, sdelay = 0):
             if cmdid_list[expopt] == '__plus1__':
                 sub_ret = 0
             elif cmdid_list[expopt] == act_except:
-                print "EXCEPTION" # FIXME only for fast debug
+                #print "EXCEPTION" # FIXME only for fast debug
                 sub_ret = func_parse(dom, child, act_except,
                                      default_timeout, sdelay)
             elif cmdid_list[expopt] == '__exit__':
@@ -240,11 +238,12 @@ def processOper(fin, fout):
         child = pexpect.spawn(telnet_cmd)
     child.setlog(fout)
     cmd_act = cmd_ini
-    ret_val = func_parse(dom, child, cmd_act, default_timeout, sdelay)
-    if by_serial:
-        ser.close()
-        os.remove("/var/lock/LCK..ttyS" + tty_read)
-    return ret_val
+    try: ret_val = func_parse(dom, child, cmd_act, default_timeout, sdelay)
+    finally:
+        if by_serial:
+            ser.close()
+            os.remove("/var/lock/LCK..ttyS" + tty_read)
+        return ret_val
 
 def main(fin, fout):
     ret = processOper(fin, fout)

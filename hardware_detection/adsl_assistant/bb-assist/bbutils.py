@@ -73,13 +73,23 @@ class provider:
         if xpath_devnode == None:
             self.prov_id = ""
             self.prov_name = ""
+            self.shortname = ""
             self.dns1 = ""
             self.dns2 = ""
+            self.vpi = ""
+            self.vci = ""
+            self.pppoe = ""
+            self.pppoa = ""
         else:
             self.prov_id   = xpath_devnode.getAttribute("id")
             self.prov_name = xpath_devnode.getAttribute("name")
+            self.shortname = xpath_devnode.getAttribute("shortname")
             self.dns1 = Evaluate("dns1/text( )", xpath_devnode)[0].nodeValue
             self.dns2 = Evaluate("dns2/text( )", xpath_devnode)[0].nodeValue
+            self.vpi = Evaluate("vpi/text( )", xpath_devnode)[0].nodeValue
+            self.vci = Evaluate("vci/text( )", xpath_devnode)[0].nodeValue
+            self.pppoe = Evaluate("pppoe/text( )", xpath_devnode)[0].nodeValue
+            self.pppoa = Evaluate("pppoa/text( )", xpath_devnode)[0].nodeValue
     def __str__(self):      
         return "%s %s" % (self.prov_id, self.prov_name)
 
@@ -140,7 +150,7 @@ class bb_device:
             self.devnode = devnode
             self.name = devnode.getAttribute("name")
             self.id = devnode.getAttribute("id")
-
+            self.image = devnode.getAttribute("image")
             self.console = Evaluate("console/text( )", devnode)[0].nodeValue
             self.support = Evaluate("support/text( )", devnode)[0].nodeValue
             self.can_be_eth_conf = int(Evaluate("can_be_eth_conf/text( )",
@@ -172,14 +182,11 @@ class bb_device:
             else:
                 self.provider = provider()
                 self.default_passwd = None
-
-        # FIXME: get operations
-        self.numoper = 0
-
+                            
     def __str__(self):
-        return "%s %s %s %s %s (%s) (%s) %s" % \
+        return "%s %s %s %s %s (%s) (%s)" % \
                 (self.name, self.id, self.console, self.support,
-                 self.device_type, self.tty_conf, self.provider, self.numoper)
+                 self.device_type, self.tty_conf, self.provider)
 
 class bb_device_conf(bb_device):
     __bb = bb_device

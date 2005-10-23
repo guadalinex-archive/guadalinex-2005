@@ -131,6 +131,10 @@ class Assist:
         self.oper_result = None
         self.finish_assist = False
         self.portsGuiConf = False
+        self.respect_vpi = False   # If we change the settings of PPP
+        self.respect_vci = False   # we respect them
+        self.respect_proto = False
+        self.defparamsrestore = {}
         
         # load the interface
         self.glade = gtk.glade.XML('%s/bb-assist.glade' % GLADEDIR)
@@ -215,8 +219,8 @@ class Assist:
         msg = ""
         if not self.dbusrunning:
             # We use dbus/hal to get interfaces and ports info
-            msg = msg + _("<b>ERROR:</b> Dbus/Hal no está funcionando correctamente" + ".\n"
-                          "No se puede continuar con el asistente.")
+            msg += _("<b>ERROR:</b> Dbus/Hal no está funcionando correctamente" + ".\n"
+                     "No se puede continuar con el asistente.")
             self.iniVerifResults.set_text(msg)
             self.iniVerifResults.set_use_markup(True)
             self.finish_assist = True
@@ -231,10 +235,10 @@ class Assist:
                 founded_eth = True
                 self.ethlist += [interface]
         if founded_eth:
-            msg = msg + _('<b>Se han encontrado</b> interfaces Ethernet') + '\n'
+            msg += _('<b>Se han encontrado</b> interfaces Ethernet') + '\n'
         else:
-            msg = msg + _('<b>No se han encontrado</b> interfaces Ethernet') + '\n'
-        msg = msg + "   " + _('Estos son necesarios para poder usar y/o configurar ciertos equipos tipo router') + '\n'
+            msg += _('<b>No se han encontrado</b> interfaces Ethernet') + '\n'
+        msg += "   " + _('Estos son necesarios para poder usar y/o configurar ciertos equipos tipo router') + '\n'
         for udi in self.hal_manager.FindDeviceByCapability ('serial'):
             obj = self.bus.get_object('org.freedesktop.Hal', udi)
             obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
@@ -242,17 +246,17 @@ class Assist:
             founded_serial = True
             self.ttylist += [serial]
         if founded_serial:
-             msg = msg + _('<b>Se han encontrado</b> puertos serie (COM)') + '\n'
+            msg += _('<b>Se han encontrado</b> puertos serie (COM)') + '\n'
         else:
-            msg = msg + _('<b>No se han encontrado</b> puertos serie (COM)') + '\n'
-        msg = msg + "   " + _('Estos son necesarios para poder configurar ciertos equipos tipo router') + '\n'           
+            msg += _('<b>No se han encontrado</b> puertos serie (COM)') + '\n'
+        msg += "   " + _('Estos son necesarios para poder configurar ciertos equipos tipo router') + '\n'           
         for udi in self.hal_manager.FindDeviceStringMatch('info.bus','usb'):
             founded_usb = True
         if founded_usb:
-             msg = msg + _('<b>Se han encontrado</b> puertos USB') + '\n'
+            msg += _('<b>Se han encontrado</b> puertos USB') + '\n'
         else:
-            msg = msg + _('<b>No se han encontrado</b> puertos USB') + '\n'
-        msg = msg + "   " +  _('Estos son necesarios para poder configurar equipos USB') + '\n'
+            msg += _('<b>No se han encontrado</b> puertos USB') + '\n'
+        msg += "   " +  _('Estos son necesarios para poder configurar equipos USB') + '\n'
         self.iniVerifResults.set_text(msg)
         self.iniVerifResults.set_use_markup(True)
         self.hide_cursor_watch()
@@ -353,6 +357,11 @@ class Assist:
     def on_combodevicesel_changed(self, *args):          
         if len(self.devs) != 0:
             self.devcf = bb_device_conf(self.devs[self.combodevicesel.get_active()])
+            if len(self.devcf.image) > 0 and \
+                   os.path.exists(os.path.join(PIXMAPSDIR, self.devcf.image)):
+                self.devimage.set_from_file(os.path.join(PIXMAPSDIR, self.devcf.image))
+            else:
+                self.devimage.set_from_file(os.path.join(PIXMAPSDIR, "none.png"))
             self.druid1.set_buttons_sensitive(True, True, True, True)
             self.remOperations()
             self.getOperations()
@@ -397,13 +406,45 @@ class Assist:
                 self.radiobuttonSerialPort.set_sensitive(False)
                 self.frameSerialConf.set_sensitive(False)
 
+    def restoredefvalues(self):
+        for restoreparam in self.defparamsrestore.keys():
+            name = restoreparam
+            value = self.defparamsrestore[name]
+            druid_uiparam_toset = gtk.glade.XML.get_widget(self.glade, name)
+            if type(druid_uiparam_toset) == gtk.CheckButton:
+                druid_uiparam_toset.set_active(int(value))
+            if type(druid_uiparam_toset) == gtk.SpinButton:
+                druid_uiparam_toset.set_value(int(value))
+        # Finally we have nothing more to restores
+        self.defparamsrestore = {}
+
+    def setdefvalues(self):
+        defuivaluenodes = Evaluate('defuivalue_list/defuivalue', self.devcf.devnode)
+        for defuivaluenode in defuivaluenodes:
+            name = defuivaluenode.getAttribute('name')
+            value = defuivaluenode.getAttribute('value')
+            druid_uiparam_toset = gtk.glade.XML.get_widget(self.glade, name)
+            if type(druid_uiparam_toset) == gtk.CheckButton:
+                druid_uiparam_toset.set_active(int(value))
+                self.defparamsrestore[name] = value
+            if type(druid_uiparam_toset) == gtk.SpinButton:
+                druid_uiparam_toset.set_value(int(value))
+                self.defparamsrestore[name] = value
+            # Other types ignore
+
     def on_druidOperationSelect_next(self, *args):
         self.devcf.param['mod_conf'] = ""
+        # Set per device default UI values
+        self.restoredefvalues() # Restore UI default values
+        self.setdefvalues()     # Set device default values
+        self.devcf.param['vpi'] = self.provider.vpi
+        self.devcf.param['vci'] = self.provider.vci
         if self.operation_sel.id == '0002' or self.operation_sel.id == '0008' \
                or self.operation_sel.id == '0015':
             self.devcf.param['mod_conf'] = "monostatic"
         elif self.operation_sel.id == '0003' or self.operation_sel.id == '0009' \
-               or self.operation_sel.id == '0016':
+               or self.operation_sel.id == '0016' or self.operation_sel.id == '0020' \
+               or self.operation_sel.id == '0021' or self.operation_sel.id == '0022':
             self.devcf.param['mod_conf'] = "monodinamic"
         elif self.operation_sel.id == '0004' or self.operation_sel.id == '0010' \
                or self.operation_sel.id == '0017':
@@ -425,7 +466,6 @@ class Assist:
                 self.eth_to_use_conf = self.comboboxetheport.get_active_text()
                 self.comboboxEthToUse.append_text(act_eth)
                 self.comboboxEthToUse.set_active(0)
-                self.devcf.param['eth_to_use'] = self.comboboxEthToUse.get_active_text()
             self.portsGuiConf = True
             
     # Conf Params
@@ -555,7 +595,7 @@ class Assist:
         """
         We select the ethernet to normal use
         """
-        self.devcf.param['eth_to_use'] = self.comboboxEthToUse.get_active_text()
+        pass
 
     def on_druidSelecEthernetToConf_next(self, *args):
         """
@@ -576,6 +616,85 @@ class Assist:
                              self.ipAddressDevActLabel.get_text(), self.windowIni)
                 self.druid1.set_page(self.druidSelecInterface)
                 return True
+
+    def on_spinbutton_vpi_changed(self, *args):
+        self.respect_vpi = True
+
+    def on_spinbutton_vci_changed(self, *args):
+        self.respect_vci = True
+
+    def on_comboboxProtocol_changed(self, *args):
+        self.respect_proto = True
+
+    def on_druidPPPadv_prepare(self, *args):
+        if not self.respect_vpi:
+            self.spinbutton_vpi.set_value(int(self.provider.vpi))
+        if not self.respect_vci:
+            self.spinbutton_vci.set_value(int(self.provider.vci))
+        if not self.respect_proto:
+            if self.provider.pppoe == "1":
+               self.comboboxProtocol.append_text("PPPoE")
+            if self.provider.pppoa == "1":
+               self.comboboxProtocol.append_text("PPPoA")
+            self.comboboxProtocol.set_active(0)
+            self.devcf.param['ppp_proto'] = self.comboboxProtocol.get_active_text()
+                
+    def on_druidPPPadv_next(self, *args):
+        self.devcf.param['ppp_proto'] = self.comboboxProtocol.get_active_text()
+        self.devcf.param['ppp_maxfail'] = str(int(self.spinbutton_maxfail.get_value()))
+        self.devcf.param['ppp_mru'] = str(int(self.spinbutton_mru.get_value()))
+        self.devcf.param['ppp_mtu'] = str(int(self.spinbutton_mtu.get_value()))
+        self.devcf.param['ppp_lcpechofailure'] = str(int(self.spinbutton_lcpechofailure.get_value()))
+        self.devcf.param['ppp_lcpechointerval'] = str(int(self.spinbutton_lcpechointerval.get_value()))
+        self.devcf.param['ppp_vpi'] = str(int(self.spinbutton_vpi.get_value()))
+        self.devcf.param['ppp_vci'] = str(int(self.spinbutton_vci.get_value()))
+        self.devcf.param['ppp_novjccomp'] = self.checkbutton_novjccomp.get_active()
+        self.devcf.param['ppp_defaultroute'] = self.checkbutton_defaultroute.get_active()
+        self.devcf.param['ppp_usepeerdns'] = self.checkbutton_usepeerdns.get_active()
+        self.devcf.param['ppp_persist'] = self.checkbutton_persist.get_active()
+        self.devcf.param['ppp_noipdefault'] = self.checkbutton_noipdefault.get_active()
+        self.devcf.param['ppp_replacedefaultroute'] = self.checkbutton_replacedefaultroute.get_active()
+        self.devcf.param['ppp_noaccomp'] = self.checkbutton_noaccomp.get_active()
+        self.devcf.param['ppp_nobsdcomp'] = self.checkbutton_nobsdcomp.get_active()
+        self.devcf.param['ppp_nodeflate'] = self.checkbutton_nodeflate.get_active()
+        self.devcf.param['ppp_nopcomp'] = self.checkbutton_nopcomp.get_active()
+        self.devcf.param['ppp_noccp'] = self.checkbutton_noccp.get_active()
+        self.devcf.param['ppp_novj'] = self.checkbutton_novj.get_active()
+        self.devcf.param['ppp_debug'] = self.checkbutton_debug.get_active()
+        self.devcf.param['ppp_noauth'] = self.checkbutton_noauth.get_active()
+        self.devcf.param['ppp_updetach'] = self.checkbutton_updetach.get_active()
+        self.devcf.param['ppp_startonboot'] = self.checkbutton_startonboot.get_active()
+
+    # Verifications
+    
+    def on_druidSecondVerificationResults_prepare(self, *args):
+        msg = ''
+        self.finish_assist = False
+        postverifnodes = Evaluate('postverif_list/postverif/text( )', self.devcf.devnode)
+        for postverifnode in postverifnodes:
+            verif_name = postverifnode.nodeValue
+            if verif_name == 'hasUSB':
+                pass
+            elif verif_name == 'hasEth':
+                if len(self.ethlist) == 0:
+                    msg += _("<b>ERROR:</b> Para usar este equipo se necesita al menos una interfaz Ethernet en el PC") + ".\n"
+                    self.finish_assist = True
+            elif verif_name == 'hasTTY':
+                if len(self.ttylist) == 0:
+                    msg += _("<b>ERROR:</b> Para usar este equipo se necesita al menos un puerto de serie en el PC") + ".\n"
+                    self.finish_assist = True
+
+        if self.finish_assist == True:
+            msg += "\n" + _("<b>No se puede continuar</b> con el asistente.")
+        else:
+            msg += _("Verificación de parámetros y equipos <b>correcta</b>.")
+        self.iniVerifResultsSecond.set_text(msg)
+        self.iniVerifResultsSecond.set_use_markup(True)
+
+    def on_druidSecondVerificationResults_next(self, *args):
+        if self.finish_assist:
+            self.oper_result="ExitSecondVerifErrors"
+            self.druid1.set_page(self.druidpagefinish)
 
     def on_druidVerifParamsConf_prepare(self, *args):
         # Commons vars
@@ -610,17 +729,17 @@ class Assist:
             # FIXME: configure Ethernet Computer (with dhcp)
 
         if (self.devcf.param['mod_conf'] == "monodinamic"):
-            self.devcf.param['remote_ip']       = '' # Bridged
-            self.devcf.param['remote_mask']     = '' # Bridged
-            self.devcf.param['ext_ip_router']   = '' # Bridged
-            self.devcf.param['ext_mask_router'] = '' # Bridged
-            self.devcf.param['int_ip_router']   = '192.168.1.1'   
-            self.devcf.param['int_mask_router'] = '255.255.255.0' 
-            self.devcf.param['ip_computer']     = '' # PPPOE
-            self.devcf.param['mask_computer']   = '' # PPPOE
-            self.devcf.param['gw_computer']     = '' # PPPOE
-            self.devcf.param['dhcp']            = 'False'
-            # FIXME: Configure pppoe
+            if self.devcf.device_type.dt_id == '0002': # routers
+                self.devcf.param['remote_ip']       = '' # Bridged
+                self.devcf.param['remote_mask']     = '' # Bridged
+                self.devcf.param['ext_ip_router']   = '' # Bridged
+                self.devcf.param['ext_mask_router'] = '' # Bridged
+                self.devcf.param['int_ip_router']   = '192.168.1.1'   
+                self.devcf.param['int_mask_router'] = '255.255.255.0' 
+                self.devcf.param['ip_computer']     = '' # PPPOE
+                self.devcf.param['mask_computer']   = '' # PPPOE
+                self.devcf.param['gw_computer']     = '' # PPPOE
+                self.devcf.param['dhcp']            = 'False'
 
         if (self.devcf.param['mod_conf'] == "multistatic"):
             self.devcf.param['remote_ip']       = ipMasqIncrem(self.usuIP.get_text(),
@@ -686,25 +805,22 @@ class Assist:
 
         if self.tty_to_use:
             msg += boldme(_('Parámetros serie')) + ": "
-            msg += 'tty: ' + self.tty_to_use + ", "
-            msg += 'baudrate: ' + self.devcf.tty_conf.tty_baudrate + ", "
-            msg += 'bits: ' + self.devcf.tty_conf.tty_bits + ", "
-            msg += 'parity: ' + self.devcf.tty_conf.tty_parity + ", "
-            msg += 'stopbits: ' + self.devcf.tty_conf.tty_stopbits + ", "
-            msg += 'xonxoff: ' + self.devcf.tty_conf.tty_xonxoff + ", "
-            msg += 'rtscts: ' + self.devcf.tty_conf.tty_rtscts + "\n"
-        else:
+            msg += 'tty: ' + self.tty_to_use + "\n"
+        if self.eth_to_use:
             msg += boldme(_('Parámetros ethernet')) + ": "
             msg += 'dev: ' + self.eth_to_use_conf + ", "
-            msg += 'ip: ' + self.entryIpDevToConf.get_text() + ", "
-            msg += 'port: ' + self.devcf.eth_conf_port + "\n"
-
+            msg += 'ip: ' + self.entryIpDevToConf.get_text() + "\n"
         msg += boldme(_('Otros Parámetros de la operación')) + ":\n"
         for actparam in self.devcf.param.keys():
-            if len(self.devcf.param[actparam]) > 0 and \
-               (actparam.find('passwd') == -1):
+            # Don't show passwords or advanced ppp options
+            if ((type(self.devcf.param[actparam]) == bool) and \
+                (actparam.find('ppp_') == -1)):
+                msg += "* " + actparam + ": " + str(self.devcf.param[actparam]) + "\n"
+            if (type(self.devcf.param[actparam]) == str) and \
+                (len(self.devcf.param[actparam]) > 0 and \
+                 (actparam.find('passwd') == -1) and \
+                 (actparam.find('ppp_') == -1)):
                 msg += "* " + actparam + ": " + self.devcf.param[actparam] + "\n"
-        
         self.verifParamConfLabel.set_text(msg)
         self.verifParamConfLabel.set_use_markup(True)
 
@@ -716,87 +832,104 @@ class Assist:
 
     def callBackEnd(self, *args):
         self.show_cursor_watch()
-        output_xmlfile = tempfile.NamedTemporaryFile()
-        writer = MarkupWriter(output_xmlfile, encoding='iso-8859-1', indent=u"yes")
-        writer.startDocument()
-        writer.startElement(u'operation')
-        writer.startElement(u'model')
-        writer.text(self.devcf.name)
-        writer.endElement(u'model')
-        writer.startElement(u'initial_func')
-        writer.text(self.operation_sel.initial_func)
-        writer.endElement(u'initial_func')
-        writer.startElement(u'default_timeout')
-        writer.text(self.operation_sel.default_timeout)
-        writer.endElement(u'default_timeout')
-        writer.startElement(u'send_delay')
-        writer.text(self.operation_sel.send_delay)
-        writer.endElement(u'send_delay')
-        if self.tty_to_use:
-            writer.startElement(u'serial_params')
-            writer.attribute(u'tty', unicode(self.tty_to_use.strip("/dev/ttyS")))
-            writer.attribute(u'baudrate', unicode(self.devcf.tty_conf.tty_baudrate))
-            writer.attribute(u'bits', unicode(self.devcf.tty_conf.tty_bits))
-            writer.attribute(u'parity', unicode(self.devcf.tty_conf.tty_parity))
-            writer.attribute(u'stopbits', unicode(self.devcf.tty_conf.tty_stopbits))
-            writer.attribute(u'xonxoff', unicode(self.devcf.tty_conf.tty_xonxoff))
-            writer.attribute(u'rtscts', unicode(self.devcf.tty_conf.tty_rtscts))
-            writer.endElement(u'serial_params')
-        else:
-            writer.startElement(u'eth_params')
-            writer.attribute(u'dev', unicode(self.eth_to_use_conf))
-            writer.attribute(u'ip', unicode(self.entryIpDevToConf.get_text()))
-            writer.attribute(u'port', unicode(self.devcf.eth_conf_port))
-            writer.endElement(u'eth_params')
-        for actparam in self.devcf.param.keys():
-            writer.startElement(unicode(actparam))
-            writer.text(unicode(self.devcf.param[actparam]))
-            writer.endElement(unicode(actparam))
-        writer.endElement(u'operation')
-        writer.endDocument()
-        output_xmlfile.flush()        
-
-        processor = Processor.Processor()
-        xsl_cmd_list  = InputSource.DefaultFactory.fromUri(OsPathToUri(os.path.join(PATH, "cmd-list.xsl")))
-        xml_operation = InputSource.DefaultFactory.fromUri(OsPathToUri(output_xmlfile.name))
-        processor.appendStylesheet(xsl_cmd_list)
-        cmd_lines_result = processor.run(xml_operation)
         msg =  "\n"
-        msg += "********************************************\n"
-        msg +=  _("XML operation") + "\n" # Debug msg
-        msg += "********************************************\n"
-        msg += open(output_xmlfile.name).read( )
-        msg += "\n"
-        msg += "\n"
-        msg += "********************************************\n"
-        msg += _("XSL/XML command lines") + "\n"
-        msg += "********************************************\n"
-        msg += cmd_lines_result
-        msg += "\n"
+        if self.devcf.device_type.dt_id == '0001': # modems
+            retOper = BBNOERR
+        if self.devcf.device_type.dt_id == '0002': # routers
+            # By default ERROR: The operation has to finish corretly to unset this
+            retOper = BBERRGEN
+            output_xmlfile = tempfile.NamedTemporaryFile()
+            writer = MarkupWriter(output_xmlfile, encoding='iso-8859-1', indent=u"yes")
+            writer.startDocument()
+            writer.startElement(u'operation')
+            writer.startElement(u'model')
+            writer.text(self.devcf.name)
+            writer.endElement(u'model')
+            writer.startElement(u'initial_func')
+            writer.text(self.operation_sel.initial_func)
+            writer.endElement(u'initial_func')
+            writer.startElement(u'default_timeout')
+            writer.text(self.operation_sel.default_timeout)
+            writer.endElement(u'default_timeout')
+            writer.startElement(u'send_delay')
+            writer.text(self.operation_sel.send_delay)
+            writer.endElement(u'send_delay')
+            if self.tty_to_use:
+                writer.startElement(u'serial_params')
+                writer.attribute(u'tty', unicode(self.tty_to_use.strip("/dev/ttyS")))
+                writer.attribute(u'baudrate', unicode(self.devcf.tty_conf.tty_baudrate))
+                writer.attribute(u'bits', unicode(self.devcf.tty_conf.tty_bits))
+                writer.attribute(u'parity', unicode(self.devcf.tty_conf.tty_parity))
+                writer.attribute(u'stopbits', unicode(self.devcf.tty_conf.tty_stopbits))
+                writer.attribute(u'xonxoff', unicode(self.devcf.tty_conf.tty_xonxoff))
+                writer.attribute(u'rtscts', unicode(self.devcf.tty_conf.tty_rtscts))
+                writer.endElement(u'serial_params')
+            if self.eth_to_use:
+                writer.startElement(u'eth_params')
+                writer.attribute(u'dev', unicode(self.eth_to_use_conf))
+                writer.attribute(u'ip', unicode(self.entryIpDevToConf.get_text()))
+                writer.attribute(u'port', unicode(self.devcf.eth_conf_port))
+                writer.endElement(u'eth_params')
+            for actparam in self.devcf.param.keys():
+                writer.startElement(unicode(actparam))
+                if type(self.devcf.param[actparam]) == bool:
+                    writer.text(unicode(str(self.devcf.param[actparam])))
+                else:
+                    writer.text(unicode(self.devcf.param[actparam]))
+                writer.endElement(unicode(actparam))
+            writer.endElement(u'operation')
+            writer.endDocument()
+            output_xmlfile.flush()        
 
-        # Show debug temporary output
-        self.labelOperDebug.set_text(msg)
-        self.labelOperDebug.set_use_markup(False)
+            processor = Processor.Processor()
+            xsl_cmd_list  = InputSource.DefaultFactory.fromUri(OsPathToUri(os.path.join(PATH, "cmd-list.xsl")))
+            xml_operation = InputSource.DefaultFactory.fromUri(OsPathToUri(output_xmlfile.name))
+            processor.appendStylesheet(xsl_cmd_list)
+            cmd_lines_result = processor.run(xml_operation)
+            msg +=  _("XML operation") + "\n" # Debug msg
+            msg += "********************************************\n"
+            msg += open(output_xmlfile.name).read( )
+            msg += "\n"
+            msg += "\n"
+            msg += _("XSL/XML command lines") + "\n"
+            msg += "********************************************\n"
+            msg += cmd_lines_result
+            msg += "\n"
+            
+            # Show debug temporary output
+            self.labelOperDebug.set_text(msg)
+            self.labelOperDebug.set_use_markup(False)
 
-        # Exec operation
-        exp_input_file  = tempfile.NamedTemporaryFile()
-        exp_output_file = tempfile.NamedTemporaryFile()
-        exp_input_file.writelines(cmd_lines_result)
-        exp_input_file.flush()
+            # Exec operation
+            exp_input_file  = tempfile.NamedTemporaryFile()
+            exp_output_file = tempfile.NamedTemporaryFile()
+            exp_input_file.writelines(cmd_lines_result)
+            exp_input_file.flush()
+            
+            try: retOper = bbexpbackend.processOper(exp_input_file, exp_output_file)
+            finally:
+                self.hide_cursor_watch()
+                exp_output_file.flush()        
+                msg += "\n"
+                msg += _("Operation output") + "\n" # Debug msg
+                msg += "********************************************\n"
+                msg += open(exp_output_file.name).read( )
+                exp_output_file.close()
+                msg += "\n"
 
-        retOper = BBERRGEN
-        try: retOper = bbexpbackend.processOper(exp_input_file, exp_output_file)
-        except:
-            self.hide_cursor_watch()
-            msg += _("Error en la sintaxis de la operación")
-        self.hide_cursor_watch()
-        exp_output_file.flush()        
-        msg += "\n"
-        msg += "********************************************\n"
-        msg += _("Operation output") + "\n" # Debug msg
-        msg += "********************************************\n"
-        msg += open(exp_output_file.name).read( )
-        msg += "\n"
+        # Common to USB and modems
+        if (retOper == BBNOERR and self.devcf.param['mod_conf'] == "monodinamic"):
+            # Configuration of pppoe/pppoa (modems and routers)
+            sys_output_file = tempfile.NamedTemporaryFile()
+            try: retOper = bbsysbackend.bb_ppp_conf(self.devcf, sys_output_file)
+            finally:
+                sys_output_file.flush()        
+                msg += "\n"
+                msg += _("PPP configuration output") + "\n" # Debug msg
+                msg += "********************************************\n"
+                msg += open(sys_output_file.name).read( )
+                sys_output_file.close()
+                msg += "\n"
 
         if retOper == BBNOERR:
             msgResult = _("Operación realizada con éxito")
@@ -828,6 +961,8 @@ class Assist:
                         _("y luego volviendo a <b>Aplicar</b>.")
         else:
             msgResult = boldme(msgResult)
+
+        self.hide_cursor_watch()           
         msg = msg.replace('\000', '')
         self.labelOperDebug.set_text(msg)
         self.labelOperDebug.set_use_markup(False)
@@ -836,7 +971,9 @@ class Assist:
 
     def on_druidRunOper_next(self, *args):
         self.druid1.next.set_label('gtk-go-forward')
-        self.callBackEnd()
+        try: self.callBackEnd()
+        finally:
+            self.hide_cursor_watch()           
         # self.druid1.back.hide() # With this we can't repeat operations
 
     # Finish
@@ -847,6 +984,9 @@ class Assist:
     def on_druidpagefinish_back(self, *args):
         if self.oper_result == "ExitVerifErrors":
             self.druid1.set_page(self.druidVerificationResults)
+            return True
+        if self.oper_result == "ExitSecondVerifErrors":
+            self.druid1.set_page(self.druidSecondVerificationResults)
             return True
         
     def main(self):

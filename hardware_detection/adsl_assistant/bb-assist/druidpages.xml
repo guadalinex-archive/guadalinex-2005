@@ -8,15 +8,17 @@
   <druid_page id='druidDeviceSel' optional='0'/>
   <druid_page id='druidOperationSelect' optional='0'/>
   <druid_page id='druidNewPasswd' optional='1'/>
-  <druid_page id='druidEffSpeedAdvice' optional='1'/>
   <druid_page id='druidUsuIP' optional='1'/>
   <druid_page id='druidGestIP' optional='1'/>
   <druid_page id='druidDinamConf' optional='1'/>
   <druid_page id='druidMultiConf' optional='1'/>
-  <druid_page id='druidSecondVerificationResults' optional='0'/>
+  <druid_page id='druidPortOpenning' optional='1'/>
+  <druid_page id='druidPPPadv' optional='1'/>
+  <druid_page id='druidEffSpeedAdvice' optional='1'/>
   <druid_page id='druidSelecEthernetToConf' optional='1'/>
   <druid_page id='druidSelecInterface' optional='1'/>
   <druid_page id='druidPasswdSel' optional='1'/>
+  <druid_page id='druidSecondVerificationResults' optional='0'/>
   <druid_page id='druidVerifParamsConf' optional='1'/>
   <druid_page id='druidRunOper' optional='0'/>
   <druid_page id='druidOperResult' optional='0'/>

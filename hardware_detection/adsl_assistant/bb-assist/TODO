@@ -3,3 +3,6 @@
 - mejorar delay bbexpbackend
 - Meter soporte redirección puertos
 - mejorar comprobación de redes/mascaras
+- chequear si esta el firmware y chequear si el USB esta conectado
+- Start on boot de los USB
+- Configurar ethernet
