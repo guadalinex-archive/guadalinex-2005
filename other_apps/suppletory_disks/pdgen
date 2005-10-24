@@ -2,6 +2,8 @@
 
 [ -z "$1" ] && echo "Usage: $0 path-to-debs" && exit 1
 
+OUTDIR="out"
+rm -rf $OUTDIR
 RET=""
 
 get_dir () {
@@ -34,19 +36,49 @@ do
 		for x in $PACKAGES
 		do
 			DESTDIR=$(get_dir $x)
-			[ ! -d $DESTDIR ] && mkdir -p $DESTDIR			
-			cp $x $DESTDIR	
+			[ ! -d $OUTDIR/$DESTDIR ] && mkdir -p $OUTDIR/$DESTDIR			
+			cp $x $OUTDIR/$DESTDIR	
 		done
+		
+		# Create indices
+		mkdir $OUTDIR/indices
+		touch $OUTDIR/indices/override.flamenco.main 
+	
+		# Create the dists/
+		[ -d $OUTDIR/dists/flamenco/main/binary-i386 ] || mkdir -p $OUTDIR/dists/flamenco/main/binary-i386 
+		[ -d $OUTDIR/dists/flamenco/main/source ] || mkdir $OUTDIR/dists/flamenco/main/source
+
+		apt-ftparchive -c apt_flamenco.conf generate flamenco.conf
+		apt-ftparchive -c apt_flamenco.conf release $OUTDIR/dists/flamenco/ > $OUTDIR/dists/flamenco/Release
+		gpg --output $OUTDIR/dists/flamenco/Release.gpg -ba $OUTDIR/dists/flamenco/Release
 
 
-		# Create the dist/
-		[ -d dists/flamenco/main/binary-i386 ] || mkdir -p dists/flamenco/main/binary-i386 
-		apt-ftparchive packages pool/ > dists/flamenco/main/binary-i386/Packages
+		# Create the .disk/
+		[ ! -d $OUTDIR/.disk ] && mkdir $OUTDIR/.disk
+		echo "main" > $OUTDIR/.disk/base_components
+		touch $OUTDIR/.disk/base_installable
+		echo "Guadalinex-2005-Flamenco" > $OUTDIR/.disk/info
 
-		cp dists/flamenco/main/binary-i386/Packages dists/flamenco/main/binary-i386/Packages2
-		gzip dists/flamenco/main/binary-i386/Packages2 
-		mv dists/flamenco/main/binary-i386/Packages2.gz dists/flamenco/main/binary-i386/Packages.gz
+		# Create the README.diskdefines
+		cat >> $OUTDIR/README.diskdefines <<EOF
+#define DISKNAME  Guadalinex 2005 "Flamenco" - Beta i386
+#define TYPE  binary"
+#define TYPEbinary  1"
+#define ARCH  i386"
+#define ARCHi386  1"
+#define DISKNUM  1"
+#define DISKNUM1  1"
+#define TOTALNUM  1"
+#define TOTALNUM1  1"
+EOF
+		# Create guadalinex-suplementos-apps
+		[ ! -d $OUTDIR/guadalinex-suplementos-apps ]  && mkdir $OUTDIR/guadalinex-suplementos-apps
+
+		# Create the iso image
+		mkisofs -o guadalinex-suplementos.iso -joliet-long -V Guadalinex.Suppletory.DiskA out/
 		;;
+
+
 	esac
 
 	VAR=$1
