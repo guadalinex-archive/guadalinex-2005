@@ -39,10 +39,6 @@
 
 #include "usbatm.h"
 
-#if defined(CONFIG_FW_LOADER) || defined(CONFIG_FW_LOADER_MODULE)
-#	define USE_FW_LOADER
-#endif
-
 #define DRIVER_AUTHOR	"Roman Kagan, David Woodhouse, Duncan Sands"
 #define DRIVER_VERSION	"0.2"
 #define DRIVER_DESC	"Conexant AccessRunner ADSL USB modem driver"
@@ -64,15 +60,10 @@ static const char cxacru_driver_name[] = "cxacru";
 #define BR_STACK_ADDR	0x00187f10
 
 /* Values */
-#define PLLFCLK_NEW	0x5
-#define PLLBCLK_NEW	0x3
-#define PLLFCLK_OLD	0x02d874df
-#define PLLBCLK_OLD	0x0196a51a
 #define SDRAM_ENA	0x1
 
-/* Timeout in jiffies */
-#define CMD_TIMEOUT	(2 * HZ)
-#define DATA_TIMEOUT	(2 * HZ)
+#define CMD_TIMEOUT	2000	/* msecs */
+#define POLL_INTERVAL	5000	/* msecs */
 
 /* commands for interaction with the modem through the control channel before
  * firmware is loaded  */
@@ -154,12 +145,19 @@ enum cxacru_info_idx {
 	CXINF_MAX = 0x1c,
 };
 
+struct cxacru_modem_type {
+	u32 pll_f_clk;
+	u32 pll_b_clk;
+	int boot_rom_patch;
+};
+
 struct cxacru_data {
 	struct usbatm_data *usbatm;
 
-	int line_status; 
+	const struct cxacru_modem_type *modem_type;
+
+	int line_status;
 	struct work_struct poll_work;
-	struct timer_list poll_timer;
 
 	/* contol handles */
 	struct semaphore cm_serialize;
@@ -184,12 +182,12 @@ static void cxacru_timeout_kill(unsigned long data)
 
 static int cxacru_start_wait_urb(struct urb *urb, struct completion *done,
 				 int* actual_length)
-{ 
+{
 	struct timer_list timer;
 	int status;
 
 	init_timer(&timer);
-	timer.expires = jiffies + CMD_TIMEOUT;
+	timer.expires = jiffies + msecs_to_jiffies(CMD_TIMEOUT);
 	timer.data = (unsigned long) urb;
 	timer.function = cxacru_timeout_kill;
 	add_timer(&timer);
@@ -284,7 +282,7 @@ static int cxacru_cm(struct cxacru_data *instance, enum cxacru_cm_request cm,
 		if (offd >= rsize)
 			break;
 		memcpy(rdata + offd, rbuf + offb + 4, min_t(int, stride, rsize - offd));
-		offd += stride; 
+		offd += stride;
 	}
 
 	ret = offd;
@@ -306,7 +304,7 @@ static int cxacru_cm_get_array(struct cxacru_data *instance, enum cxacru_cm_requ
 	buf = kmalloc(buflen, GFP_KERNEL);
 	if (!buf)
 		return -ENOMEM;
-	
+
 	ret = cxacru_cm(instance, cm, NULL, 0, (u8 *) buf, buflen);
 	if (ret < 0)
 		goto cleanup;
@@ -338,17 +336,6 @@ cleanup:
 	return ret;
 }
 
-static void cxacru_do_timer_poll(struct cxacru_data *instance)
-{
-	schedule_work(&instance->poll_work);
-	mod_timer(&instance->poll_timer, jiffies + (5 * HZ));
-}
-
-static void cxacru_timer_poll(unsigned long data)
-{
-	cxacru_do_timer_poll((struct cxacru_data *)data);
-}
-
 static int cxacru_card_status(struct cxacru_data *instance)
 {
 	int ret = cxacru_cm(instance, CM_REQUEST_CARD_GET_STATUS, NULL, 0, NULL, 0);
@@ -358,6 +345,8 @@ static int cxacru_card_status(struct cxacru_data *instance)
 	}
 	return 0;
 }
+
+static void cxacru_poll_status(struct cxacru_data *instance);
 
 static int cxacru_atm_start(struct usbatm_data *usbatm_instance,
 		struct atm_dev *atm_dev)
@@ -372,7 +361,7 @@ static int cxacru_atm_start(struct usbatm_data *usbatm_instance,
 	dbg("cxacru_atm_start");
 
 	/* Read MAC address */
-	ret = cxacru_cm(instance, CM_REQUEST_CARD_GET_MAC_ADDRESS, NULL, 0, 
+	ret = cxacru_cm(instance, CM_REQUEST_CARD_GET_MAC_ADDRESS, NULL, 0,
 			atm_dev->esi, sizeof(atm_dev->esi));
 	if (ret < 0) {
 		dev_err(dev, "cxacru_atm_start: CARD_GET_MAC_ADDRESS returned %d\n", ret);
@@ -387,7 +376,7 @@ static int cxacru_atm_start(struct usbatm_data *usbatm_instance,
 	}
 
 	/* Start status polling */
-	cxacru_do_timer_poll(instance);
+	cxacru_poll_status(instance);
 	return 0;
 }
 
@@ -401,11 +390,11 @@ static void cxacru_poll_status(struct cxacru_data *instance)
 	ret = cxacru_cm_get_array(instance, CM_REQUEST_CARD_INFO_GET, buf, CXINF_MAX);
 	if (ret < 0) {
 		dev_warn(dev, "poll status: error %d\n", ret);
-		return;
+		goto reschedule;
 	}
 
 	if (instance->line_status == buf[CXINF_LINE_STATUS])
-		return;
+		goto reschedule;
 
 	instance->line_status = buf[CXINF_LINE_STATUS];
 	switch (instance->line_status) {
@@ -438,7 +427,7 @@ static void cxacru_poll_status(struct cxacru_data *instance)
 		atm_dev->link_rate = buf[CXINF_DOWNSTREAM_RATE] * 1000 / 424;
 		atm_dev->signal = ATM_PHY_SIG_FOUND;
 
-		dev_info(dev, "ADSL line: up (%d Kib/s down | %d Kib/s up)\n",
+		dev_info(dev, "ADSL line: up (%d kb/s down | %d kb/s up)\n",
 		     buf[CXINF_DOWNSTREAM_RATE], buf[CXINF_UPSTREAM_RATE]);
 		break;
 
@@ -457,9 +446,10 @@ static void cxacru_poll_status(struct cxacru_data *instance)
 		dev_info(dev, "Unknown line state %02x\n", instance->line_status);
 		break;
 	}
+reschedule:
+	schedule_delayed_work(&instance->poll_work, msecs_to_jiffies(POLL_INTERVAL));
 }
 
-#ifdef USE_FW_LOADER
 static int cxacru_fw(struct usb_device *usb_dev, enum cxacru_fw_request fw,
 		     u8 code1, u8 code2, u32 addr, u8 *data, int size)
 {
@@ -471,7 +461,7 @@ static int cxacru_fw(struct usb_device *usb_dev, enum cxacru_fw_request fw,
 	buf = (u8 *) __get_free_page(GFP_KERNEL);
 	if (!buf)
 		return -ENOMEM;
-	
+
 	offb = offd = 0;
 	do {
 		int l = min_t(int, stride, size - offd);
@@ -499,7 +489,7 @@ static int cxacru_fw(struct usb_device *usb_dev, enum cxacru_fw_request fw,
 		}
 	} while(offd < size);
 	dbg("sent fw %#x", fw);
-	
+
 	ret = 0;
 
 cleanup:
@@ -516,14 +506,13 @@ static void cxacru_upload_firmware(struct cxacru_data *instance,
 	int off;
 	struct usb_device *usb_dev = instance->usbatm->usb_dev;
 	struct device *dev = &instance->usbatm->usb_intf->dev;
-	const u32 vid = usb_dev->descriptor.idVendor;
-	const u32 pid = usb_dev->descriptor.idProduct;
+	u16 signature[] = { usb_dev->descriptor.idVendor, usb_dev->descriptor.idProduct };
 	u32 val;
 
 	dbg("cxacru_upload_firmware");
 
 	/* FirmwarePllFClkValue */
-	val = bp ? PLLFCLK_OLD : PLLFCLK_NEW;
+	val = cpu_to_le32(instance->modem_type->pll_f_clk);
 	ret = cxacru_fw(usb_dev, FW_WRITE_MEM, 0x2, 0x0, PLLFCLK_ADDR, (u8 *) &val, 4);
 	if (ret) {
 		dev_err(dev, "FirmwarePllFClkValue failed: %d\n", ret);
@@ -531,7 +520,7 @@ static void cxacru_upload_firmware(struct cxacru_data *instance,
 	}
 
 	/* FirmwarePllBClkValue */
-	val = bp ? PLLBCLK_OLD : PLLBCLK_NEW;
+	val = cpu_to_le32(instance->modem_type->pll_b_clk);
 	ret = cxacru_fw(usb_dev, FW_WRITE_MEM, 0x2, 0x0, PLLBCLK_ADDR, (u8 *) &val, 4);
 	if (ret) {
 		dev_err(dev, "FirmwarePllBClkValue failed: %d\n", ret);
@@ -539,7 +528,7 @@ static void cxacru_upload_firmware(struct cxacru_data *instance,
 	}
 
 	/* Enable SDRAM */
-	val = SDRAM_ENA;
+	val = cpu_to_le32(SDRAM_ENA);
 	ret = cxacru_fw(usb_dev, FW_WRITE_MEM, 0x2, 0x0, SDRAMEN_ADDR, (u8 *) &val, 4);
 	if (ret) {
 		dev_err(dev, "Enable SDRAM failed: %d\n", ret);
@@ -554,7 +543,7 @@ static void cxacru_upload_firmware(struct cxacru_data *instance,
 	}
 
 	/* Boot ROM patch */
-	if (bp) {
+	if (instance->modem_type->boot_rom_patch) {
 		ret = cxacru_fw(usb_dev, FW_WRITE_MEM, 0x2, 0x0, BR_ADDR, bp->data, bp->size);
 		if (ret) {
 			dev_err(dev, "Boot ROM patching failed: %d\n", ret);
@@ -563,15 +552,14 @@ static void cxacru_upload_firmware(struct cxacru_data *instance,
 	}
 
 	/* Signature */
-	val = (pid << 16) | (vid & 0xffff);
-	ret = cxacru_fw(usb_dev, FW_WRITE_MEM, 0x2, 0x0, SIG_ADDR, (u8 *) &val, 4);
+	ret = cxacru_fw(usb_dev, FW_WRITE_MEM, 0x2, 0x0, SIG_ADDR, (u8 *) signature, 4);
 	if (ret) {
 		dev_err(dev, "Signature storing failed: %d\n", ret);
 		return;
 	}
 
-	if (bp) {
-		val = BR_ADDR;
+	if (instance->modem_type->boot_rom_patch) {
+		val = cpu_to_le32(BR_ADDR);
 		ret = cxacru_fw(usb_dev, FW_WRITE_MEM, 0x2, 0x0, BR_STACK_ADDR, (u8 *) &val, 4);
 	}
 	else {
@@ -595,7 +583,7 @@ static void cxacru_upload_firmware(struct cxacru_data *instance,
 		dev_err(dev, "modem failed to initialize: %d\n", ret);
 		return;
 	}
-	
+
 	/* Load config data (le32), doing one packet at a time */
 	if (cf)
 		for (off = 0; off < cf->size / 4; ) {
@@ -637,7 +625,7 @@ static int cxacru_find_firmware(struct cxacru_data *instance,
 }
 
 static int cxacru_heavy_init(struct usbatm_data *usbatm_instance,
-		struct usb_interface *usb_intf)
+			     struct usb_interface *usb_intf)
 {
 	struct device *dev = &usbatm_instance->usb_intf->dev;
 	const struct firmware *fw, *bp, *cf;
@@ -645,22 +633,28 @@ static int cxacru_heavy_init(struct usbatm_data *usbatm_instance,
 
 	int ret = cxacru_find_firmware(instance, "fw", &fw);
 	if (ret) {
-		dev_warn(dev, "firmware unavailable (hotplug configuration problem?)\n");
+		dev_warn(dev, "firmware (cxacru-fw.bin) unavailable (hotplug misconfiguration?)\n");
 		return ret;
+	}
+
+	if (instance->modem_type->boot_rom_patch) {
+		ret = cxacru_find_firmware(instance, "bp", &bp);
+		if (ret) {
+			dev_warn(dev, "boot ROM patch (cxacru-bp.bin) unavailable (hotplug misconfiguration?)\n");
+			release_firmware(fw);
+			return ret;
+		}
 	}
 
 	if (cxacru_find_firmware(instance, "cf", &cf))		/* optional */
 		cf = NULL;
 
-	if (cxacru_find_firmware(instance, "bp", &bp))		/* optional */
-		bp = NULL;
-
 	cxacru_upload_firmware(instance, fw, bp, cf);
 
-	if (bp)
-		release_firmware(bp);
 	if (cf)
 		release_firmware(cf);
+	if (instance->modem_type->boot_rom_patch)
+		release_firmware(bp);
 	release_firmware(fw);
 
 	ret = cxacru_card_status(instance);
@@ -671,10 +665,10 @@ static int cxacru_heavy_init(struct usbatm_data *usbatm_instance,
 
 	return ret;
 }
-#endif /* USE_FW_LOADER */
 
 static int cxacru_bind(struct usbatm_data *usbatm_instance,
-		struct usb_interface *intf, int *need_heavy_init)
+		       struct usb_interface *intf, const struct usb_device_id *id,
+		       int *need_heavy_init)
 {
 	struct cxacru_data *instance;
 	struct usb_device *usb_dev = interface_to_usbdev(intf);
@@ -690,6 +684,7 @@ static int cxacru_bind(struct usbatm_data *usbatm_instance,
 	memset(instance, 0, sizeof(*instance));
 
 	instance->usbatm = usbatm_instance;
+	instance->modem_type = (struct cxacru_modem_type *) id->driver_info;
 
 	instance->rcv_buf = (u8 *) __get_free_page(GFP_KERNEL);
 	if (!instance->rcv_buf) {
@@ -730,13 +725,8 @@ static int cxacru_bind(struct usbatm_data *usbatm_instance,
 
 	init_MUTEX(&instance->cm_serialize);
 
-	init_timer(&instance->poll_timer);
-	instance->poll_timer.function = cxacru_timer_poll;
-	instance->poll_timer.data = (unsigned long)instance;
-
 	INIT_WORK(&instance->poll_work, (void *)cxacru_poll_status, instance);
 
-	wmb();
 	usbatm_instance->driver_data = instance;
 
 	*need_heavy_init = cxacru_card_status(instance);
@@ -765,9 +755,8 @@ static void cxacru_unbind(struct usbatm_data *usbatm_instance,
 		return;
 	}
 
-	del_timer_sync(&instance->poll_timer);
-	wmb();
-	flush_scheduled_work();
+	while (!cancel_delayed_work(&instance->poll_work))
+	       flush_scheduled_work();
 
 	usb_kill_urb(instance->snd_urb);
 	usb_kill_urb(instance->rcv_urb);
@@ -781,49 +770,66 @@ static void cxacru_unbind(struct usbatm_data *usbatm_instance,
 	usbatm_instance->driver_data = NULL;
 }
 
+static const struct cxacru_modem_type cxacru_cafe = {
+	.pll_f_clk = 0x02d874df,
+	.pll_b_clk = 0x0196a51a,
+	.boot_rom_patch = 1,
+};
+
+static const struct cxacru_modem_type cxacru_cb00 = {
+	.pll_f_clk = 0x5,
+	.pll_b_clk = 0x3,
+	.boot_rom_patch = 0,
+};
+
 static const struct usb_device_id cxacru_usb_ids[] = {
-	{
-		/* V = Conexant				P = ADSL modem (Euphrates project)	*/
-		USB_DEVICE(0x0572, 0xcafe)
+	{ /* V = Conexant			P = ADSL modem (Euphrates project)	*/
+		USB_DEVICE(0x0572, 0xcafe),	.driver_info = (unsigned long) &cxacru_cafe
 	},
-	{
-		/* V = Conexant				P = ADSL modem (Hasbani project)	*/
-		USB_DEVICE(0x0572, 0xcb00)
+	{ /* V = Conexant			P = ADSL modem (Hasbani project)	*/
+		USB_DEVICE(0x0572, 0xcb00),	.driver_info = (unsigned long) &cxacru_cb00
 	},
-	{
-		/* V = Conexant				P = ADSL modem				*/
-		USB_DEVICE(0x0572, 0xcb01)
+	{ /* V = Conexant			P = ADSL modem				*/
+		USB_DEVICE(0x0572, 0xcb01),	.driver_info = (unsigned long) &cxacru_cb00
 	},
-	{
-		/* V = Conexant				P = ADSL modem				*/
-		USB_DEVICE(0x0572, 0xcb06)
+	{ /* V = Conexant			P = ADSL modem				*/
+		USB_DEVICE(0x0572, 0xcb06),	.driver_info = (unsigned long) &cxacru_cb00
 	},
-	{
-		/* V = Olitec				P = ADSL modem version 2		*/
-		USB_DEVICE(0x08e3, 0x0100)
+	{ /* V = Olitec				P = ADSL modem version 2		*/
+		USB_DEVICE(0x08e3, 0x0100),	.driver_info = (unsigned long) &cxacru_cafe
 	},
-	{
-		/* V = Olitec				P = ADSL modem version 3		*/
-		USB_DEVICE(0x08e3, 0x0102)
+	{ /* V = Olitec				P = ADSL modem version 3		*/
+		USB_DEVICE(0x08e3, 0x0102),	.driver_info = (unsigned long) &cxacru_cb00
 	},
-	{
-		/* V = Trust/Amigo Technology Co.	P = AMX-CA86U				*/
-		USB_DEVICE(0x0eb0, 0x3457)
+	{ /* V = Trust/Amigo Technology Co.	P = AMX-CA86U				*/
+		USB_DEVICE(0x0eb0, 0x3457),	.driver_info = (unsigned long) &cxacru_cafe
 	},
-	{
-		/* V = Zoom				P = 5510				*/
-		USB_DEVICE(0x1803, 0x5510)
+	{ /* V = Zoom				P = 5510				*/
+		USB_DEVICE(0x1803, 0x5510),	.driver_info = (unsigned long) &cxacru_cb00
 	},
-	{
-		/* V = Draytek				P = Vigor 318				*/
-		USB_DEVICE(0x0675, 0x0200)
+	{ /* V = Draytek			P = Vigor 318				*/
+		USB_DEVICE(0x0675, 0x0200),	.driver_info = (unsigned long) &cxacru_cb00
 	},
-	{
-		/* V = Zyxel				P = 630-C1 aka OMNI ADSL USB modem	*/
-		USB_DEVICE(0x0586, 0x330a)
+	{ /* V = Zyxel				P = 630-C1 aka OMNI ADSL USB (Annex A)	*/
+		USB_DEVICE(0x0586, 0x330a),	.driver_info = (unsigned long) &cxacru_cb00
 	},
-	{
-		USB_DEVICE(0x1242, 0x2003)
+	{ /* V = Zyxel				P = 630-C3 aka OMNI ADSL USB (Annex B)	*/
+		USB_DEVICE(0x0586, 0x330b),	.driver_info = (unsigned long) &cxacru_cb00
+	},
+	{ /* V = Aethra				P = Starmodem UM1020			*/
+		USB_DEVICE(0x0659, 0x0020),	.driver_info = (unsigned long) &cxacru_cb00
+	},
+	{ /* V = Aztech Systems			P = ? AKA Pirelli AUA-010		*/
+		USB_DEVICE(0x0509, 0x0812),	.driver_info = (unsigned long) &cxacru_cb00
+	},
+	{ /* V = Netopia			P = Cayman 3341(Annex A)/3351(Annex B)	*/
+		USB_DEVICE(0x100d, 0xcb01),	.driver_info = (unsigned long) &cxacru_cb00
+	},
+	{ /* V = Netopia			P = Cayman 3342(Annex A)/3352(Annex B)	*/
+		USB_DEVICE(0x100d, 0x3342),	.driver_info = (unsigned long) &cxacru_cb00
+	},
+	{ /* V = Vitelcom			P = Conexant ADSL USB Modem 	*/
+		USB_DEVICE(0x1242, 0x2003),	.driver_info = (unsigned long) &cxacru_cb00
 	},
 	{}
 };

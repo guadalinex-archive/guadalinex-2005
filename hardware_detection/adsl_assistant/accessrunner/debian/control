@@ -8,7 +8,7 @@ Standards-Version: 3.6.2
 Package: accessrunner-usb-utils
 Architecture: any
 Recommends: accessrunner-usb-source
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, br2684ctl
 Description: This package provide some tools for help in the configuration of 
  the accessrunner-usb driver. The accessrunner-usb driver provides support to 
  several USB DSL devices for the Linux kernel.

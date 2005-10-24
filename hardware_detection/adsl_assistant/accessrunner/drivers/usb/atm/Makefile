@@ -1,7 +1,8 @@
 ifneq ($(KERNELRELEASE),)
 # call from kernel build system
 
-obj-m := cxacru.o
+obj-m += cxacru.o
+obj-m += usbatm.o
 
 accessrunner-objs := cxacru.o usbatm.o
 
