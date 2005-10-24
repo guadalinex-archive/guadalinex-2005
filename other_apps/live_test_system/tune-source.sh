@@ -41,6 +41,8 @@ if [ ! -e sys/ ]; then mkdir sys/; fi
 if [ ! -e proc/ ]; then mkdir proc/; fi
 if [ ! -e dev/ ]; then mkdir dev/; fi
 if [ ! -e etc/sudoers ]; then echo "Warning: there is no etc/sudoers file!"; fi
+echo "Deleting not wanted hermes files..."
+rm /var/tmp/devicelist-file-guada*
 echo "popd ..."
 popd
 
