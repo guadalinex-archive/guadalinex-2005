@@ -8,7 +8,7 @@ fi
 MOUNT_POINT=$1
 
 # Addind CDROM to sources.list
-apt-cdrom add
+yes "\n" | apt-cdrom -m -d $MOUNT_POINT add
 
 
 # Calling the installer

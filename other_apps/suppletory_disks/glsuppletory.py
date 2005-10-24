@@ -10,6 +10,7 @@ from volume import Actor
 GLVALIDLABELS = [
     "Guadalinex.suppletory.disk",
     "Guadalinex.Suppletory.Disk",
+    "GSD-"
     ]
 #GAI (guadalinex-app-install) Packages
 
@@ -40,7 +41,7 @@ class GlSuppletory(object):
             self.show_supplement_info(volume_actor)
 
         def action_install_sup():
-            os.system('guadalinex-suppletory-summoner ' + mountpoint)
+            self.guadalinex_suppletory_summoner(mountpoint)
 
         #Check for label and  README.diskdefines
         volumelabel = volume_actor.properties['volume.label']
@@ -72,7 +73,11 @@ class GlSuppletory(object):
                             actions = actions)
 
 
-                
+    def guadalinex_suppletory_summoner(self, mountpoint):    
+        """
+        This method run suppletory instalation.
+        """
+        os.system('guadalinex-suppletory-summoner ' + mountpoint)
 
     def show_supplement_info(self, volume_actor):
         ddpath = volume_actor.properties['volume.mount_point']
@@ -122,6 +127,7 @@ class GlSuppletory(object):
         return False
 
 
+    
 
 
 gls = GlSuppletory()
