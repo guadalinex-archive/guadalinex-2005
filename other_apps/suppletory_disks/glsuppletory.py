@@ -16,7 +16,9 @@ GLVALIDLABELS = [
 
 GAIPACKAGES = []
 RELATIVEICONPATH = '.icon.png'
-
+APTCONFPATH='/usr/share/gsd/apt.conf'
+SOURCESFILE='/tmp/gsd/sources.list'
+DISTRONAME='flamenco'
 
 
 class GlSuppletory(object):
@@ -27,28 +29,31 @@ class GlSuppletory(object):
 
     def __init__(self):
         self.logger = logging.getLogger()
+        #Current volume.Actor hacked object
+        self.volume_actor = None
 
     def hack(self, volume_actor):
         """
         <volume_actor> must be a volume.Actor object
         """
 
+        self.volume_actor = volume_actor
         s = Synaptic()
-        mountpoint = volume_actor.properties['volume.mount_point']
+        mountpoint = self.volume_actor.properties['volume.mount_point']
 
         def action_install_gai():
             s.install(GAIPACKAGES)
-            self.show_supplement_info(volume_actor)
+            self.show_supplement_info()
 
         def action_install_sup():
             self.guadalinex_suppletory_summoner(mountpoint)
 
         #Check for label and  README.diskdefines
-        volumelabel = volume_actor.properties['volume.label']
+        volumelabel = self.volume_actor.properties['volume.label']
         if self.__is_valid(volumelabel):
             s = Synaptic()
             actions = {}
-            diskdefines = self.__get_diskdefines(volume_actor)
+            diskdefines = self.__get_diskdefines()
             if diskdefines:
                 #Check for required packages
                 if s.check(GAIPACKAGES):
@@ -65,22 +70,31 @@ class GlSuppletory(object):
                 summary = "Guadalinex Suplementos"
                 iconpath = mountpoint + '/' + RELATIVEICONPATH
                 if os.path.isfile(iconpath):
-                    volume_actor.msg_render.show(summary, message, 
+                    self.volume_actor.msg_render.show(summary, message, 
                             icon = iconpath, actions = actions)
 
                 else:
-                    volume_actor.msg_render.show_info(summary, message,
+                    self.volume_actor.msg_render.show_info(summary, message,
                             actions = actions)
 
 
     def guadalinex_suppletory_summoner(self, mountpoint):    
         """
-        This method run suppletory instalation.
+        This method install suppletory.
         """
-        os.system('guadalinex-suppletory-summoner ' + mountpoint)
 
-    def show_supplement_info(self, volume_actor):
-        ddpath = volume_actor.properties['volume.mount_point']
+        os.system('gksudo -m "Introduzca contraseña" /bin/true')
+        os.system('sudo cp -a /usr/share/gsd /tmp')
+
+        #Generate sources.list
+        self.__create_sources_list()
+
+        #Exec app-install
+        os.system('APT_CONFIG=%s sudo guadalinex-app-install %s' % \
+                (APTCONFPATH, mountpoint ))
+
+    def show_supplement_info(self):
+        ddpath = self.volume_actor.properties['volume.mount_point']
         #parser = DiskDefinesParser()
 
 
@@ -97,8 +111,31 @@ class GlSuppletory(object):
         Actor.on_modified = new_on_modified
 
 
-    def __get_diskdefines(self, volume_label):
-        filepath = volume_label.properties['volume.mount_point'] + \
+    def __create_sources_list(self):
+        self.logger.debug('Creating sources.list')
+        diskdefines = self.__get_diskdefines()
+        fileobj = open(SOURCESFILE, 'w')
+        for key in diskdefines.keys():
+            if key.startswith('URI'):
+                self.__process_uri(diskdefines[key], fileobj)
+        fileobj.close()
+
+
+    def __process_uri(self, value, fileobj):
+        
+        self.logger.debug('Processing uri: ' + value)
+        if value.startswith('http://') or \
+                value.startswith('fto://'):
+            fileobj.write('deb ' + str(value) + '\n')
+
+        else:
+            mountpoint = self.volume_actor.properties['volume.mount_point']
+            fileobj.write('deb file:' + mountpoint + value + \
+                    ' '+ DISTRONAME +' main \n')
+
+
+    def __get_diskdefines(self ):
+        filepath = self.volume_actor.properties['volume.mount_point'] + \
                 '/README.diskdefines'
 
         try:
@@ -110,7 +147,11 @@ class GlSuppletory(object):
         result = {}
         for line in fileobject.readlines():
             items = line.split(None, 2)
-            result[items[1]] = items[2]
+            try:
+                result[items[1]] = items[2]
+            except IndexError, e:
+                result[items[1]] = ''
+
 
         return result
 
