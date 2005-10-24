@@ -10,12 +10,8 @@ from volume import Actor
 GLVALIDLABELS = [
     "Guadalinex.suppletory.disk",
     "Guadalinex.Suppletory.Disk",
-    "Ubuntu 5.04 i386"
     ]
 #GAI (guadalinex-app-install) Packages
-#GAIPACKAGES = [
-#    "guadalinex-app-install"
-#    ]
 
 GAIPACKAGES = []
 RELATIVEICONPATH = '.icon.png'
@@ -48,12 +44,10 @@ class GlSuppletory(object):
 
         #Check for label and  README.diskdefines
         volumelabel = volume_actor.properties['volume.label']
-        print "volumelabel", volumelabel
         if self.__is_valid(volumelabel):
             s = Synaptic()
             actions = {}
             diskdefines = self.__get_diskdefines(volume_actor)
-            print diskdefines
             if diskdefines:
                 #Check for required packages
                 if s.check(GAIPACKAGES):
@@ -122,7 +116,6 @@ class GlSuppletory(object):
         """
 
         for valid_label in GLVALIDLABELS:
-            print "validating", label
             if label.startswith(valid_label):
                 return True
 
