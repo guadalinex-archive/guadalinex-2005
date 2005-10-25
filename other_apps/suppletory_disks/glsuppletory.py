@@ -90,15 +90,21 @@ class GlSuppletory(object):
         """
         
         #Try for password. Three times.
-        res = 1
+        res = 768 
         attemps = 0
-        while res == 1 and attemps < 3:
-            if attemps != 0:
-                message = 'Contraseña incorrecta. '
-            else:
-                message = ''
-            res = os.system('gksudo -m "%sIntroduzca contraseña" /bin/true' % message)
+
+        # Errno 768: Bad password
+        while res == 768 and attemps < 3:
+            res = os.system('gksudo -m "Introduzca contraseña" /bin/true')
+            # Errno 512: User press cancel
+            if res == 512:
+                self.logger.debug("User press cancel")
+                return
             attemps += 1
+
+        if res == 768:
+            self.logger.debug("Three attemps for password")
+            return
 
         #Prepare apt system
         os.system('cp -a /usr/share/gsd /tmp')
