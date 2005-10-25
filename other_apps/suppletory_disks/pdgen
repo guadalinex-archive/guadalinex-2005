@@ -2,9 +2,15 @@
 
 [ -z "$1" ] && echo "Usage: $0 path-to-debs" && exit 1
 
-OUTDIR="out"
+. pdgen_vars
+
+[ -z "$CDNAME" ] && CDNAME="Suplementos"
+[ -z "$OUTDIR" ] && OUTDIR="out"
+[ -z "$DISKNAME" ] && DISKNAME="Suplementos de Guadalinex"
+
 rm -rf $OUTDIR
 RET=""
+VAR=$1
 
 get_dir () {
 	DIRPOOL=""
@@ -13,8 +19,6 @@ get_dir () {
 	RET="pool/main/$(echo $DIRPOOL | cut -c 1)/$DIRPOOL"
 	echo $RET
 }
-
-VAR=$1
 
 while [ ! -z "$VAR" ]
 do
@@ -52,30 +56,25 @@ do
 		apt-ftparchive -c apt_flamenco.conf release $OUTDIR/dists/flamenco/ > $OUTDIR/dists/flamenco/Release
 		gpg --output $OUTDIR/dists/flamenco/Release.gpg -ba $OUTDIR/dists/flamenco/Release
 
-
 		# Create the .disk/
-		[ ! -d $OUTDIR/.disk ] && mkdir $OUTDIR/.disk
-		echo "main" > $OUTDIR/.disk/base_components
-		touch $OUTDIR/.disk/base_installable
-		echo "Guadalinex-2005-Flamenco" > $OUTDIR/.disk/info
+#		[ ! -d $OUTDIR/.disk ] && mkdir $OUTDIR/.disk
+#		echo "main" > $OUTDIR/.disk/base_components
+#		touch $OUTDIR/.disk/base_installable
+#		echo "Guadalinex-2005-Flamenco" > $OUTDIR/.disk/info
 
 		# Create the README.diskdefines
 		cat >> $OUTDIR/README.diskdefines <<EOF
-#define DISKNAME  Guadalinex 2005 "Flamenco" - Beta i386
-#define TYPE  binary"
-#define TYPEbinary  1"
-#define ARCH  i386"
-#define ARCHi386  1"
-#define DISKNUM  1"
-#define DISKNUM1  1"
-#define TOTALNUM  1"
-#define TOTALNUM1  1"
+#define DISKNAME  $DISKNAME
+#define URI1 $URI1
 EOF
 		# Create guadalinex-suplementos-apps
 		[ ! -d $OUTDIR/guadalinex-suplementos-apps ]  && mkdir $OUTDIR/guadalinex-suplementos-apps
 
+		# Remove the indices directory
+		rm -rf $OUTDIR/indices
+
 		# Create the iso image
-		mkisofs -o guadalinex-suplementos.iso -joliet-long -V Guadalinex.Suppletory.DiskA out/
+		mkisofs -o guadalinex-suplementos.iso -joliet-long -V Guadalinex.Suppletory.Disk.$CDNAME out/
 		;;
 
 
@@ -83,3 +82,4 @@ EOF
 
 	VAR=$1
 done
+
