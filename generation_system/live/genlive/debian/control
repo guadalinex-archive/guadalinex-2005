@@ -1,0 +1,14 @@
+Source: genlive
+Section: admin
+Priority: optional
+Maintainer: Juanje Ojeda <juanje@interactors.coop>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.2.1
+
+Package: genlive
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, syslinux, initramfs-tools, squashfs-tools, mkisofs, linux-image-2.6.12-9-386
+Recommends: 
+Description: Live generation system
+ This is a system for generating live systems using initramfs.
+
