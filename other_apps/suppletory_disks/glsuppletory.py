@@ -85,6 +85,7 @@ class GlSuppletory(object):
 
         os.system('gksudo -m "Introduzca contraseña" /bin/true')
         os.system('sudo cp -a /usr/share/gsd /tmp')
+        os.system('APT_CONFIG=%s sudo apt-get update' % APTCONFPATH)
 
         #Generate sources.list
         self.__create_sources_list()
