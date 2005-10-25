@@ -41,10 +41,14 @@ install: build
 	dh_testroot
 	dh_clean -k
 	dh_installdirs -i usr/src/modules/accessrunner-usb/debian
-	dh_installdirs -a usr/bin
+	dh_installdirs -a usr/bin /etc/default/ /etc/hotplug/usb/
+
+	install -m 755 extra/hotplug debian/accessrunner-usb-utils/etc/hotplug/usb/cxacru
+	install -m 644 extra/cxacru.default debian/accessrunner-usb-utils/etc/default/cxacru
+	dh_installexamples extra/interfaces extra/peers-pppoe
 
 	$(MAKE) installbins PREFIX=debian/accessrunner-usb-utils/usr
-	tar -v -c --exclude ".svn" --exclude "CVS" --exclude "debian" . | tar x -C debian/accessrunner-usb-source/usr/src/modules/accessrunner-usb
+	tar -v -c --exclude ".svn" --exclude "old" --exclude "CVS" --exclude "debian" . | tar x -C debian/accessrunner-usb-source/usr/src/modules/accessrunner-usb
 	cp -a debian/compat debian/*modules.in debian/rules debian/copyright debian/changelog debian/accessrunner-usb-source/usr/src/modules/accessrunner-usb/debian
 	cd debian/accessrunner-usb-source/usr/src && tar c modules | bzip2 -9 > accessrunner-usb.tar.bz2 && rm -rf modules
 

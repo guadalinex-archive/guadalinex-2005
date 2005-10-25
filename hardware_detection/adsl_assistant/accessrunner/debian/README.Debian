@@ -1,7 +1,12 @@
 accessrunner-usb for Debian
 ---------------------------
 
-o About a accessrunner-usb firmwares
+Configuration
+-------------
+Edit /etc/default/cxacru and /etc/network/interfaces. See /usr/share/doc/accessrunner-usb-utils/examples/interfaces for examples. With these configurations hotplug will ifup your connection when you connect your device.
+
+About a accessrunner-usb firmwares
+----------------------------------
 
 Due to the licensing restrictions this package can not redistribute the firmware produced by Conexant.
 
@@ -22,7 +27,8 @@ found firmware in `/tmp/CnxEtU.sys' at offset 0x41c0
 
 $ sudo cp cxacru-fw.bin /lib/hotplug/firmware/cxacru-fw.bin
 
-o How do i build this module the debian way?
+How do i build this module the debian way?
+------------------------------------------
 
 - Building with module-assistant
 

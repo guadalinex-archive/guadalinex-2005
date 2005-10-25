@@ -1,0 +1,51 @@
+#!/bin/sh -e
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export PATH
+
+# ignore device events
+[ "$PRODUCT" ] || exit 0
+
+# a PPP peer to call
+PPPD_PEER=""
+# an interface to start with ifup
+NET_IF=""
+
+# you can use this file to change the default configuration
+[ -f /etc/default/cxacru ] && . /etc/default/cxacru
+
+##############################################################################
+
+start_networking() {
+  if [ "$PPPD_PEER" ]; then
+    sleep 5
+    pppd call $PPPD_PEER
+  fi
+  if [ "$NET_IF" ]; then
+    sleep 5
+    ifup $NET_IF
+  fi
+  return 0
+}
+
+setup_remover() {
+  [ "$REMOVER" ] || return 0
+  {
+  echo "#!/bin/sh"
+  [ "$PPPD_PEER" ] && printf "poff $PPPD_PEER\nsleep 5\n"
+  [ "$NET_IF" ] && print "ifdown $NET_IF\nsleep 5\n"
+  } >> $REMOVER
+  chmod +x $REMOVER
+  return 0
+}
+
+##############################################################################
+case "$ACTION" in
+    add)
+	start_networking
+	setup_remover
+    ;;
+esac
+
+exit 0
+

@@ -1,0 +1,27 @@
+# RFC 1483 routed
+# (for some DSL conections with static IP address)
+
+auto atm0
+iface atm0 inet static
+  address 10.0.0.199
+  netmask 255.255.255.192
+  broadcast 10.0.0.255
+  gateway 10.0.0.194
+  pre-up route del default gw 10.0.0.194 atm0 || exit 0
+  pre-up pgrep atmarpd >/dev/null 2>&1; if [[ $? -eq 1 ]] ; then /etc/init.d/atm start ; fi
+  pre-up ifconfig atm0 >/dev/null 2>&1; if [[ $? -eq 1 ]] ; then atmarp -c atm0 ; fi
+  up atmarp -s 10.0.0.194 0.8.32
+  up echo Interface $IFACE going up | /usr/bin/logger -t ifup
+  down echo Interface $IFACE going down | /usr/bin/logger -t ifdown
+
+# PPPoE
+# You need to create an appropriate /etc/ppp/peers/pppoe-dsl file, look at
+# /usr/share/doc/accessrunner-usb-utils/examples/peers-pppoe for an example and
+# configure it to use the nas0 interface.
+
+auto pppoe
+iface pppoe inet ppp
+  pre-up br2684ctl -p /var/run/br2684-dsl.pid -b -c 0 -a 0.8.32
+  provider pppoe-dsl
+  post-down kill $(cat /var/run/br2684-dsl.pid)
+
