@@ -12,12 +12,18 @@ GLVALIDLABELS = [
     "Guadalinex.Suppletory.Disk",
     "GSD-"
     ]
-#GAI (guadalinex-app-install) Packages
 
+#GAI (guadalinex-app-install) Packages
 GAIPACKAGES = []
+
+#Supplement icon (relative to cdrom path)
 RELATIVEICONPATH = '.icon.png'
+
+#apt.conf for apt system
 APTCONFPATH='/usr/share/gsd/apt.conf'
 SOURCESFILE='/tmp/gsd/sources.list'
+
+#The name of the repository
 DISTRONAME='flamenco'
 
 
@@ -82,13 +88,28 @@ class GlSuppletory(object):
         """
         This method install suppletory.
         """
+        
+        #Try for password. Three times.
+        res = 1
+        attemps = 0
+        while res == 1 and attemps < 3:
+            if attemps != 0:
+                message = 'Contraseña incorrecta. '
+            else:
+                message = ''
+            res = os.system('gksudo -m "%sIntroduzca contraseña" /bin/true' % message)
+            attemps += 1
 
-        os.system('gksudo -m "Introduzca contraseña" /bin/true')
-        os.system('sudo cp -a /usr/share/gsd /tmp')
-        os.system('APT_CONFIG=%s sudo apt-get update' % APTCONFPATH)
+        #Prepare apt system
+        os.system('cp -a /usr/share/gsd /tmp')
 
         #Generate sources.list
         self.__create_sources_list()
+
+        #Update apt system
+        cmd = 'APT_CONFIG=' + APTCONFPATH + ' sudo synaptic --hide-main-window' 
+        cmd += ' --update-at-startup --non-interactive'
+        os.system(cmd)
 
         #Exec app-install
         os.system('APT_CONFIG=%s sudo guadalinex-app-install %s' % \
@@ -113,10 +134,15 @@ class GlSuppletory(object):
 
 
     def __create_sources_list(self):
+
         self.logger.debug('Creating sources.list')
         diskdefines = self.__get_diskdefines()
         fileobj = open(SOURCESFILE, 'w')
-        for key in diskdefines.keys():
+
+        #Create entries for the supplement's URIs
+        keys = diskdefines.keys()
+        keys.sort()
+        for key in keys:
             if key.startswith('URI'):
                 self.__process_uri(diskdefines[key], fileobj)
         fileobj.close()
