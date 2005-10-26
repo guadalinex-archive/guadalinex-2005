@@ -34,7 +34,7 @@ mountroot ()
 	mount -o move /mnt ${dirs}
 	
 	if [ $? != 0 ]; then
-		panic "Somethingn wrong with the unionfs mounting"
+		panic "Something wrong with the unionfs mounting"
 		# Just in case
 		FS1='(initramfs) ' exec /bin/sh </dev/console >/dev/console 2>&1
 	fi
