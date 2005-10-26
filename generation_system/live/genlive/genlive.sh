@@ -16,9 +16,9 @@ if [ ! -d ${MASTER}/META ]; then
 	mkdir -p ${MASTER}/META
 fi
 
-cp /usr/lib/syslinux/isolinux.bin ${MASTER}/isolinux/
-cp /usr/share/genlive/isolinux.cfg ${MASTER}/isolinux/
-cp /boot/vmlinuz-${KERNEL} ${MASTER}/isolinux/vmlinuz
+cp -a /usr/lib/syslinux/isolinux.bin ${MASTER}/isolinux/
+cp -a /usr/share/genlive/isolinux.cfg ${MASTER}/isolinux/
+cp -a /boot/vmlinuz-${KERNEL} ${MASTER}/isolinux/vmlinuz
 mkinitramfs -o ${MASTER}/isolinux/initramfs ${KERNEL}
 mksquashfs ${SOURCES} ${MASTER}/META/META.squashfs
 

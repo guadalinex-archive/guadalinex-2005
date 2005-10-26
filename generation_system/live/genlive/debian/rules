@@ -4,6 +4,7 @@
 #export DH_VERBOSE=1
 
 BUILDDIR=$(CURDIR)/debian/genlive
+KERNEL=2.6.12-9-386
 
 build: build-stamp
 
@@ -27,6 +28,7 @@ install:
 
 	install -m 755 $(CURDIR)/genlive.sh $(BUILDDIR)/usr/sbin/genlive
 	install -m 644 $(CURDIR)/isolinux.cfg $(BUILDDIR)/usr/share/isolinux.cfg
+	install -m 644 $(CURDIR)/unionfs.ko $(BUILDDIR)/lib/modules/$(KERNEL)/kernel/fs/unionfs/unionfs.ko
 
 # Build architecture-independent files here.
 binary-indep: install
