@@ -35,8 +35,11 @@ bb-assist (0.4) unstable; urgency=low
   * Added Alcatel speedtouch support
   * Added dinamic IP operation in Vitelcom, Comtrend (eagle)
   * Added eagleconf call
+  * Added new IP static configuration to accessrunner and speedtouch
+  * Configuration of accessrunner and vitelcom via ifupdown/hotplug
+  * Description in ethernet and tty (COM) combobox via dbus
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 23 Oct 2005 17:22:25 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Wed, 26 Oct 2005 14:47:20 +0200
 
 bb-assist (0.3) unstable; urgency=low
 

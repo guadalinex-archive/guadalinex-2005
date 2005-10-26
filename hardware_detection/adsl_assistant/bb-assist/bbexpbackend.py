@@ -2,7 +2,7 @@
 # -*- coding: UTF8 -*-
 
 """
-bb-assist - A DSL Assistant Configurator
+bb-assist - A Broadband Assistant Configurator
 
 Copyright (C) 2005 Junta de Andalucía
 

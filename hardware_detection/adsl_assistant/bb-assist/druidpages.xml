@@ -22,6 +22,6 @@
   <druid_page id='druidVerifParamsConf' optional='1'/>
   <druid_page id='druidRunOper' optional='0'/>
   <druid_page id='druidOperResult' optional='0'/>
-  <druid_page id='druidNotUsed1' optional='1'/>
+  <druid_page id='druidUnplugUSB' optional='1'/>
   <druid_page id='druidpagefinish' optional='0'/>
 </druid_page_list>

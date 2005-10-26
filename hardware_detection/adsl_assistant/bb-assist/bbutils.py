@@ -2,7 +2,7 @@
 # -*- coding: UTF8 -*-
 
 """
-bb-assist - A DSL Assistant Configurator
+bb-assist - A Broadband Assistant Configurator
 
 Copyright (C) 2005 Junta de Andalucía
 
@@ -273,8 +273,10 @@ def ipMasqIncrem(ipAddress, ipMask, increment):
 
 def ipNet(ipAddress, ipMask):
     """
-    Calculate: (ipAddress AND ipMask) + increment
+    Calculate: (ipAddress AND ipMask)
     """
     return (socket.inet_ntoa((struct.pack('>L',
                                           (struct.unpack('>L',socket.inet_aton(ipAddress))[0] & 
                                            struct.unpack('>L',socket.inet_aton(ipMask))[0])))))
+def ipBroadcast(ipAddress, ipMask):
+    return ipAddress_ltoa(ipAddress_atol(ipAddress) | (ipAddress_atol('255.255.255.255') - ipAddress_atol(ipMask)))

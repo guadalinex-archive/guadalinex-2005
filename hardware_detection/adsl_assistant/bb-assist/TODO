@@ -1,8 +1,12 @@
 - Bug, on_except
 - meter más doc en paquete, documentando backend
-- mejorar delay bbexpbackend
 - Meter soporte redirección puertos
 - mejorar comprobación de redes/mascaras
 - chequear si esta el firmware y chequear si el USB esta conectado
-- Start on boot de los USB
-- Configurar ethernet
+- Configurar ethernets
+- encoding de mensajes
+- Ayuda explicando monopuesto, etc...
+- Salvado de debug a fichero
+- Empaquetar /etc/hotplug/usb/speedtch
+- Ver que pasa con el startonboot en pppoe
+- pppoe/pppoa en interfaces

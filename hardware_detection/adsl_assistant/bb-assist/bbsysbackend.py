@@ -2,7 +2,7 @@
 # -*- coding: UTF8 -*-
 
 """
-bb-assist - A DSL Assistant Configurator
+bb-assist - A Broadband Assistant Configurator
 
 Copyright (C) 2005 Junta de Andalucía
 
@@ -52,7 +52,11 @@ from xml.dom.ext.reader import PyExpat  #   python-xml
 from xml.xpath          import Evaluate
 from Ft.Xml             import MarkupWriter
 
-PPPPEERCONF="/etc/ppp/peers/dsl-provider"
+PPPPEERCONF="/etc/ppp/peers/dsl-bbassist"
+PPPPEERCONFNAME="dsl-bbassist"
+
+STR_INI = "Begin: Maintained by bb-assist (please don't remove)"
+STR_END = "End: Maintained by bb-assist (please don't remove)"
 
 def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='', netmask='', network=''):
     """
@@ -147,7 +151,7 @@ def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='',
     
     return (sysret, xmlcfg, xmlcfgout)
 
-def bb_update_resolvconf(dns1, dns2):
+def bb_update_resolvconf(dns1, dns2, sys_output_file):
     """
     Update of dns configuration.
     system-tools-backend don't have an option to only update de resolv.conf and
@@ -164,6 +168,8 @@ def bb_update_resolvconf(dns1, dns2):
     fileresolv.write("nameserver " + dns1 + "\n")
     fileresolv.write("nameserver " + dns2 + "\n")
     fileresolv.close()
+    sys_output_file.write("* /etc/resolv.conf: " +
+                          _("Configurado correctamente.") + "\n")
 
 def bb_papchap_conf(PPPuser, PPPpasswd, sys_output_file):
     """
@@ -219,12 +225,51 @@ def bb_papchap_conf(PPPuser, PPPpasswd, sys_output_file):
     sys_output_file.write("* /etc/ppp/*-secrets: " +
                           _("Configurados correctamente.") + "\n")
 
+def bb_deb_conf_net_interfaces(str_to_add, sys_output_file):
+    """
+    clears and conf /etc/network/interfaces in debian/ubuntu system
+    from previous configurations of the assistant
+    """
+    
+    fileint = open('/etc/network/interfaces', 'r')
+
+    str_ini_tofind = "Begin: Maintained by bb-assist"
+    str_end_tofind = "End: Maintained by bb-assist"
+    
+    interfacestmp = tempfile.NamedTemporaryFile()
+
+    in_configuration = False
+    for line in fileint:
+        if (line.find(str_ini_tofind) == -1 and \
+            in_configuration == False):
+            interfacestmp.write(line)
+        elif (line.find(str_end_tofind) != -1):
+            in_configuration = False
+        else: # I found a configuration
+            in_configuration = True
+        
+    interfacestmp.flush()
+        
+    newinterfaces = open(interfacestmp.name, "r").read()
+
+    fileint = open('/etc/network/interfaces', 'w')
+    for line in newinterfaces:
+        fileint.write(line)
+    for line in str_to_add:
+        fileint.write(line + "\n")
+    fileint.close()
+        
+    os.chmod("/etc/network/interfaces", 0644)
+    os.system("chown root:root /etc/network/interfaces")
+    sys_output_file.write("* /etc/network/interfaces: " +
+                          _("Configurado correctamente.") + "\n")
+
 def bb_create_ppp_peer_conf(devcf, sys_output_file):
     """
     conf ppp peer pppoe/pppoa configuration
     """
     
-    peerfile = open('/etc/ppp/peers/dsl-provider', 'w')
+    peerfile = open(PPPPEERCONF, 'w')
     
     if (devcf.param['ppp_noipdefault']):
         peerfile.write('noipdefault\n')
@@ -266,7 +311,7 @@ def bb_create_ppp_peer_conf(devcf, sys_output_file):
     if devcf.param['ppp_noccp']:
         peerfile.write('noccp\n')
     if devcf.param['ppp_novj']:
-        peerfile.write('novj\n')
+        peerfile.write('novj\n)')
     peerfile.write('maxfail ' + devcf.param['ppp_maxfail'] + '\n')
     peerfile.write('mru ' + devcf.param['ppp_mru'] + '\n')
     peerfile.write('mtu ' + devcf.param['ppp_mtu'] + '\n')
@@ -285,6 +330,23 @@ def bb_create_ppp_peer_conf(devcf, sys_output_file):
                           _("Configurado correctamente.") + "\n")
     return BBNOERR
 
+def bb_ppp_modload(devcf, sys_output_file):
+    """
+    Load de kernel modules for the ppp conection
+    """
+    os.system("/sbin/modprobe ppp_generic" + " >> " + sys_output_file.name + " 2>&1")
+    if devcf.param['ppp_proto'] == 'PPPoA':
+        os.system("/sbin/modprobe pppoatm" + " >> " + sys_output_file.name + " 2>&1")
+    if devcf.param['ppp_proto'] == 'PPPoE':
+        os.system("/sbin/modprobe pppoe" + " >> " + sys_output_file.name + " 2>&1")
+        os.system("/sbin/modprobe br2684" + " >> " + sys_output_file.name + " 2>&1")
+    if (devcf.id == '0003'):
+        os.system("/sbin/modprobe cxacru" + " >> " + sys_output_file.name + " 2>&1")
+    if (devcf.id == '0006'):
+        os.system("/sbin/modprobe speedtch" + " >> " + sys_output_file.name + " 2>&1")
+    if (devcf.id == '0002'):
+        os.system("/sbin/modprobe eagle_usb" + " >> " + sys_output_file.name + " 2>&1")
+        
 def bb_ppp_conf(devcf, sys_output_file):
     """
     Configures a pppoe/pppoa in a simple way depending also on the provider
@@ -293,8 +355,8 @@ def bb_ppp_conf(devcf, sys_output_file):
     """
     
     if (devcf.id == '0002'):
-        if (devcf.provider.prov_id == '0001'): # Telefonica de España
-            # FIXME: Better to put this in a xml file
+        # FIXME: Better to put this in a xml file
+        if (devcf.provider.prov_id == '0001'):
             if devcf.param['mod_conf'] == "monodinamic":
                 isp = 'ES01'
                 enc = 1
@@ -303,7 +365,7 @@ def bb_ppp_conf(devcf, sys_output_file):
                 enc = 3
         pwd_enc = '1' # FIXME: test this
         # FIXME: vpi/vci of table vs general vpi/vci
-        cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07d|VCI=%08d|ENC=%07d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=none|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['ppp_vpi']), int(devcf.param['ppp_vci']), enc, isp, devcf.param['PPPuser'], devcf.param['PPPpasswd'], pwd_enc, int(devcf.param['ppp_usepeerdns']), int(devcf.param['ppp_startonboot']))
+        cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%07d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=none|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['ppp_vpi']), int(devcf.param['ppp_vci']), enc, isp, devcf.param['PPPuser'], devcf.param['PPPpasswd'], pwd_enc, int(devcf.param['ppp_usepeerdns']), int(devcf.param['ppp_startonboot']))
         sys_output_file.write("Command:\n")
         sys_output_file.write(cmd)
         sys_output_file.write("\n")
@@ -312,8 +374,116 @@ def bb_ppp_conf(devcf, sys_output_file):
     else:
         bb_papchap_conf(devcf.param['PPPuser'], devcf.param['PPPpasswd'], sys_output_file)
         bb_create_ppp_peer_conf(devcf, sys_output_file)
-        # 3.1) Load  modules (modprobe -q pppoe)
-        # 4) Bring your connection up
-        # 5) Configure staronboot
-        # Return plog
     return BBNOERR
+
+def ipOverAtmIntStr(devcf):
+    broad = ipBroadcast(devcf.param['ip_computer'],
+                        devcf.param['mask_computer'])
+    gw = devcf.param['ext_ip_router']
+
+    # FIXME: In the future is better to let the user choose in the UI between atm interfaces
+    # already configured
+    atmint = 'atm0'
+    iface  = [STR_INI]
+    iface += ['auto %s' % atmint] # Fixme: obtain a free atm interface
+    iface += ['iface %s inet static' % atmint]
+    iface += ['  address %s' % devcf.param['ip_computer']]
+    iface += ['  netmask %s' % devcf.param['mask_computer']]
+    iface += ['  broadcast %s' % broad]
+    iface += ['  gateway %s' % gw]
+    iface += ['  pre-up route del default gw %s %s || exit 0' % (gw, atmint)]
+    iface += ['  pre-up pgrep atmarpd >/dev/null 2>&1; if [[ $? -eq 1 ]] ; then /etc/init.d/atm start ; fi']
+    iface += ['  pre-up ifconfig %s >/dev/null 2>&1; if [[ $? -eq 1 ]] ; then atmarp -c %s ; fi' % (atmint, atmint)]
+    iface += ['  up atmarp -s %s 0.%s.%s' % (gw, devcf.provider.vpi, devcf.provider.vci)]
+    iface += ['  up echo Interface $IFACE going up | /usr/bin/logger -t ifup']
+    iface += ['  down echo Interface $IFACE going down | /usr/bin/logger -t ifdown']
+    iface += [STR_END]
+    return iface
+
+def pppIntStr(devcf):
+    iface  = [STR_INI]
+    if devcf.param['ppp_startonboot']:
+        iface += ['auto %s' % PPPPEERCONFNAME]
+    iface += ['iface %s inet ppp' % PPPPEERCONFNAME]
+    iface += ['  pre-up br2684ctl -p /var/run/br2684-dsl.pid -b -c 0 -a 0.%s.%s' % (devcf.provider.vpi, devcf.provider.vci)]
+    iface += ['  provider %s' % PPPPEERCONFNAME]
+    iface += ['  post-down kill $(cat /var/run/br2684-dsl.pid)']
+    iface += [STR_END]
+    return iface
+
+def create_default_hotplug_usb_conf(device, net_if, pppd_peer, sys_output_file):
+    file_to_conf = "/etc/default/%s" % device
+
+    conf  = ['# %s kernel module options with hotplug' % device]
+    conf += ['']
+    conf += ['# IP over ATM']
+    conf += ['#']
+    conf += ['# NET_IF="atm0"']
+    conf += ['# You also need a correct /etc/network/interfaces defining atm0']
+    conf += ['# See /usr/share/doc/cxacru/ for examples']
+    conf += ['']
+    conf += ['NET_IF="%s"' % net_if]
+    conf += ['']
+    conf += ['# PPPoA/PPPoE configuration']
+    conf += ['# PPPD_PEER="/etc/ppp/peer/dsl-example']
+    conf += ['']
+    conf += ['PPPD_PEER="%s"' % pppd_peer]
+
+    filedef = open(file_to_conf, "w")
+    for line in conf:
+        filedef.write(line + "\n")
+    filedef.close()
+        
+    os.chmod(file_to_conf, 0644)
+    os.system("chown root:root %s" % file_to_conf)
+    sys_output_file.write("* " + file_to_conf + ": " +
+                          _("Configurado correctamente.") + "\n")
+
+def conf_pc_lan(devcf, sys_output_file):
+    retOper = BBNOERR
+    if devcf.device_type.dt_id == '0001': # USB
+        if devcf.id == '0003':
+            device = 'cxacru'
+            # FIXME: get from linux_driver in xml
+        elif devcf.id == '0006':
+            device = 'speedtouch'
+        if devcf.param['mod_conf'] == "monostatic":
+            # IP over ATM (RFC 1483 routed)
+            bb_deb_conf_net_interfaces(ipOverAtmIntStr(devcf), sys_output_file)
+            create_default_hotplug_usb_conf(device, 'atm0', '',
+                                            sys_output_file)
+            bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
+        elif devcf.param['mod_conf'] == "monodinamic":
+            # PPPoE/PPPoA
+            bb_ppp_conf(devcf, sys_output_file)
+            if devcf.id == '0003' or devcf.id == '0006':
+                # eagle-usb uses eagleconfig
+                bb_deb_conf_net_interfaces(pppIntStr(devcf), sys_output_file)
+                create_default_hotplug_usb_conf(device, '', PPPPEERCONFNAME,
+                                                sys_output_file)
+    if devcf.device_type.dt_id == '0002': # routers    
+        if devcf.param['mod_conf'] == "monostatic":
+            # DHCP (the server in the router has a one address pool)
+            pass
+        elif devcf.param['mod_conf'] == "monodinamic":
+            # PPPoE/PPPoA
+            bb_deb_conf_net_interfaces(pppIntStr(devcf), sys_output_file)
+            bb_ppp_conf(devcf, sys_output_file)
+        elif devcf.param['mod_conf'] == "multistatic" or \
+                 devcf.param['mod_conf'] == "multidinamic":
+            if devcf.param['dhcp'] == 'True':
+                # Configure Ethernet with DHCP
+                pass
+            else:
+                # Configure Ethernet Computer (also the DNS)
+                bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
+            bb_ppp_modload(devcf, sys_output_file)
+    # 4) Bring your connection up
+    # Return plo
+    # hacer algo para que rule la primera vez
+    return retOper
+
+if __name__ == "__main__":
+    # FIXME only for tests
+    #bb_clear_deb_net_interfaces()
+    pass

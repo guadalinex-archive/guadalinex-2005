@@ -25,7 +25,7 @@
     </postverif_list>
   </bb_device>
 
-  <bb_device id='0002' name='Comtrend' image='comtrend.png'>
+  <bb_device id='0002' name='Comtrend / Eagle USB' image='comtrend.png'>
     <device_type id='0001'/>
     <support>1</support>
     <provider_list>
@@ -36,7 +36,7 @@
     <can_be_eth_conf>0</can_be_eth_conf>
     <can_be_tty_conf>0</can_be_tty_conf>
     <usb_conf>
-      <linux_driver>eagle</linux_driver>
+      <linux_driver>eagle_usb</linux_driver>
       <deviceid_list>
         <deviceid vendor='1110' model='900f'/>
       </deviceid_list>
@@ -45,7 +45,7 @@
     </list_firmware>
   </bb_device>
 
-  <bb_device id='0003' name='Vitelcom Messenger' image='vitelcom.png'>
+  <bb_device id='0003' name='Conexant / Vitelcom' image='vitelcom.png'>
     <device_type id='0001'/>
     <support>1</support>
     <provider_list>
@@ -56,7 +56,7 @@
     <can_be_eth_conf>0</can_be_eth_conf>
     <can_be_tty_conf>0</can_be_tty_conf>
     <usb_conf>
-      <linux_driver>accessrunner</linux_driver>
+      <linux_driver>cxacru</linux_driver>
       <deviceid_list>
         <deviceid vendor='0572' model='cafe'/>
         <deviceid vendor='0572' model='cb00'/>
