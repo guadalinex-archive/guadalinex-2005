@@ -89,6 +89,7 @@ def main():
     menuentry.DesktopEntry.set('X-AppInstall-Section', 'main')
     menuentry.DesktopEntry.set('X-AppInstall-Package', config['METAPACKAGE'])
 
+    menuentry.DesktopEntry.set('Categories', 'GNOME;Suplementos;')
     menuentry.DesktopEntry.write(DFOLDER + '/supplement.desktop')
 
     shutil.copy(APPMENU, DFOLDER)
