@@ -20,6 +20,11 @@ cp -a /usr/lib/syslinux/isolinux.bin ${MASTER}/isolinux/
 cp -a /usr/share/genlive/isolinux.cfg ${MASTER}/isolinux/
 cp -a /boot/vmlinuz-${KERNEL} ${MASTER}/isolinux/vmlinuz
 mkinitramfs -o ${MASTER}/isolinux/initramfs ${KERNEL}
-mksquashfs ${SOURCES} ${MASTER}/META/META.squashfs
+
+if [ "$1" == "-x" ] && [ -e ${MASTER}/META/META.squashfs ]; then
+        echo "${MASTER}/META/META.squashfs already exist. Skipping mksquashfs..."
+else        
+        mksquashfs ${SOURCES} ${MASTER}/META/META.squashfs
+fi
 
 mkisofs -l -r -J -V "Guadalinex Live System" -hide-rr-moved -v -b isolinux/isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o ${ISOS}/gl2005-$(date +%Y%m%d%H%M).iso ${MASTER}
