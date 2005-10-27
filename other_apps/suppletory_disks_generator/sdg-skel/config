@@ -1,0 +1,31 @@
+# Este es el fichero de configuración del suplemento. Aquí se indica todo lo
+# necesario para crear un suplemento.
+
+# El formato de cada línea es el siguiente:
+#
+# VARIABLE valor
+#
+# Para comentarios use #
+#
+#
+# DESCRIPCIÓN DE LAS VARIABLES DISPONIBLES:
+#
+# NAME    Nombre del suplemento
+#
+# DESC    Descripción del suplemento. 1 línea.
+#
+# METAPACKAGE   Nombre del paquete que instala el suplemento. Si se comenta o 
+#       no se indica, se generará un metapaquete que dependa de todos los paquetes 
+#       del directorio "debs".
+#
+# URI   Opcional. Dirección del repositorio + rama (main, universe, etc).
+#       Ejemplo:
+#
+#       URI   http://archive.ubuntu.com/hoary main universe
+#
+#       Se pueden añadir tantas URIs como se quiera. 
+#       Por defecto se utiliza como repositorio el raíz del cdrom del suplemento.
+
+NAME    Nombre del Suplemento
+DESC    Descripción del suplemento. 1 línea.
+METAPACKAGE nombre-del-metapaquete
