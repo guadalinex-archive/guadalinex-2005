@@ -17,6 +17,11 @@ mountroot ()
 	# Find and mount the Image
 	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/live-premount"
 	run_scripts /scripts/live-premount
+        if [ ! -e /mnt/image/etc ]; then
+                panic "Something wrong with the image mounting"
+                # Just in case
+                FS1='(initramfs) ' exec /bin/sh </dev/console >/dev/console 2>&1
+        fi
 	[ "$quiet" != "y" ] && log_end_msg
 
 	modprobe -q unionfs
