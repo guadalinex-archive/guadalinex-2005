@@ -1,0 +1,19 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+"""
+Este script genera el skel necesario para configurar un suplemento para
+Guadalinex 2005.
+"""
+
+SDGPATH =
+'/home/gcoronel/gx2005/guadalinex2005/other_apps/suppletory_disks_generator/sdg-skel'
+
+import os
+import os.path
+import shutil
+
+
+shutil.copy(GSDPATH + '/*', './')
+
+
