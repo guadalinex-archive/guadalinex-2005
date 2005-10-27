@@ -80,6 +80,7 @@ class provider:
             self.vci = ""
             self.pppoe = ""
             self.pppoa = ""
+            self.encap = ""
         else:
             self.prov_id   = xpath_devnode.getAttribute("id")
             self.prov_name = xpath_devnode.getAttribute("name")
@@ -90,6 +91,7 @@ class provider:
             self.vci = Evaluate("vci/text( )", xpath_devnode)[0].nodeValue
             self.pppoe = Evaluate("pppoe/text( )", xpath_devnode)[0].nodeValue
             self.pppoa = Evaluate("pppoa/text( )", xpath_devnode)[0].nodeValue
+            self.encap = Evaluate("encap/text( )", xpath_devnode)[0].nodeValue
     def __str__(self):      
         return "%s %s" % (self.prov_id, self.prov_name)
 
@@ -201,6 +203,7 @@ class bb_device_conf(bb_device):
 class operation:
     def __init__(self, opernode = None):
         if opernode == None:
+            self.opernode = None
             self.id = None
             self.bb_device = None
             self.supported = 0
@@ -212,6 +215,7 @@ class operation:
             self.send_delay = None
             self.druid_page_list = []
         else:
+            self.opernode = opernode
             self.id = opernode.getAttribute("id")
             self.bb_device = opernode.getAttribute("bb_device")
             self.supported = opernode.getAttribute("supported")

@@ -8,3 +8,7 @@ DEB_INSTALL_EXAMPLES_bb-assist := examples/*
 
 build/bb-assist::
 	/usr/bin/docbook-to-man debian/bb-assist.sgml > debian/bb-assist.1
+
+install::
+	dh_installdirs -a usr/bin /etc/default/ /etc/hotplug/usb/
+	install -m 755 extra/hotplug debian/accessrunner-usb-utils/etc/hotplug/usb/speedtouch	

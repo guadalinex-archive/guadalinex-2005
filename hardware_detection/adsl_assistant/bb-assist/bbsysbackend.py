@@ -55,8 +55,8 @@ from Ft.Xml             import MarkupWriter
 PPPPEERCONF="/etc/ppp/peers/dsl-bbassist"
 PPPPEERCONFNAME="dsl-bbassist"
 
-STR_INI = "Begin: Maintained by bb-assist (please don't remove)"
-STR_END = "End: Maintained by bb-assist (please don't remove)"
+BB_STR_INI = "# Begin: Maintained by bb-assist (please don't remove)"
+BB_STR_END = "# End: Maintained by bb-assist (please don't remove)"
 
 def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='', netmask='', network=''):
     """
@@ -225,7 +225,7 @@ def bb_papchap_conf(PPPuser, PPPpasswd, sys_output_file):
     sys_output_file.write("* /etc/ppp/*-secrets: " +
                           _("Configurados correctamente.") + "\n")
 
-def bb_deb_conf_net_interfaces(str_to_add, sys_output_file):
+def bb_deb_conf_net_interfaces(str_to_add, sys_output_file, hotplug_int_tomap = ''):
     """
     clears and conf /etc/network/interfaces in debian/ubuntu system
     from previous configurations of the assistant
@@ -250,10 +250,28 @@ def bb_deb_conf_net_interfaces(str_to_add, sys_output_file):
         
     interfacestmp.flush()
         
-    newinterfaces = open(interfacestmp.name, "r").read()
+    newinterfaces = open(interfacestmp.name, "r").readlines()
 
+    hotplug_section = False
     fileint = open('/etc/network/interfaces', 'w')
     for line in newinterfaces:
+        if len(hotplug_int_tomap) != 0:
+            # We are trying to do this:
+            # mapping hotplug
+            #    script grep
+            # # Mark of bb-assist
+            #    map $hotplug_int_tomap
+            # # Mark of bb-assist
+            #    map eth0
+            if line.find("mapping hotplug") != -1:
+                hotplug_section = True
+            if hotplug_section and line.find("script grep") != -1:
+                fileint.write(line)
+                hotplug_section = False
+                fileint.write(BB_STR_INI + "\n")
+                fileint.write("\tmap " + hotplug_int_tomap + "\n")
+                fileint.write(BB_STR_END + "\n")
+                continue
         fileint.write(line)
     for line in str_to_add:
         fileint.write(line + "\n")
@@ -294,8 +312,8 @@ def bb_create_ppp_peer_conf(devcf, sys_output_file):
             peerfile.write(" " + devcf.param['eth_to_use'] + '\n')
     if devcf.param['ppp_proto'] == 'PPPoA':
         peerfile.write('plugin pppoatm.so\n')
-        peerfile.write(devcf.param['ppp_vpi'] + "." +
-                       devcf.param['ppp_vci'] + '\n')
+        peerfile.write(devcf.param['vpi'] + "." +
+                       devcf.param['vci'] + '\n')
     if devcf.param['ppp_persist']:
         peerfile.write('persist\n')
     if devcf.param['ppp_novjccomp']:
@@ -311,7 +329,7 @@ def bb_create_ppp_peer_conf(devcf, sys_output_file):
     if devcf.param['ppp_noccp']:
         peerfile.write('noccp\n')
     if devcf.param['ppp_novj']:
-        peerfile.write('novj\n)')
+        peerfile.write('novj\n')
     peerfile.write('maxfail ' + devcf.param['ppp_maxfail'] + '\n')
     peerfile.write('mru ' + devcf.param['ppp_mru'] + '\n')
     peerfile.write('mtu ' + devcf.param['ppp_mtu'] + '\n')
@@ -365,7 +383,7 @@ def bb_ppp_conf(devcf, sys_output_file):
                 enc = 3
         pwd_enc = '1' # FIXME: test this
         # FIXME: vpi/vci of table vs general vpi/vci
-        cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%07d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=none|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['ppp_vpi']), int(devcf.param['ppp_vci']), enc, isp, devcf.param['PPPuser'], devcf.param['PPPpasswd'], pwd_enc, int(devcf.param['ppp_usepeerdns']), int(devcf.param['ppp_startonboot']))
+        cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%07d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=none|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['vpi']), int(devcf.param['vci']), enc, isp, devcf.param['PPPuser'], devcf.param['PPPpasswd'], pwd_enc, int(devcf.param['ppp_usepeerdns']), int(devcf.param['ppp_startonboot']))
         sys_output_file.write("Command:\n")
         sys_output_file.write(cmd)
         sys_output_file.write("\n")
@@ -384,7 +402,7 @@ def ipOverAtmIntStr(devcf):
     # FIXME: In the future is better to let the user choose in the UI between atm interfaces
     # already configured
     atmint = 'atm0'
-    iface  = [STR_INI]
+    iface  = [BB_STR_INI]
     iface += ['auto %s' % atmint] # Fixme: obtain a free atm interface
     iface += ['iface %s inet static' % atmint]
     iface += ['  address %s' % devcf.param['ip_computer']]
@@ -397,18 +415,21 @@ def ipOverAtmIntStr(devcf):
     iface += ['  up atmarp -s %s 0.%s.%s' % (gw, devcf.provider.vpi, devcf.provider.vci)]
     iface += ['  up echo Interface $IFACE going up | /usr/bin/logger -t ifup']
     iface += ['  down echo Interface $IFACE going down | /usr/bin/logger -t ifdown']
-    iface += [STR_END]
+    iface += [BB_STR_END]
     return iface
 
 def pppIntStr(devcf):
-    iface  = [STR_INI]
+    iface  = [BB_STR_INI]
     if devcf.param['ppp_startonboot']:
         iface += ['auto %s' % PPPPEERCONFNAME]
     iface += ['iface %s inet ppp' % PPPPEERCONFNAME]
-    iface += ['  pre-up br2684ctl -p /var/run/br2684-dsl.pid -b -c 0 -a 0.%s.%s' % (devcf.provider.vpi, devcf.provider.vci)]
+    if devcf.param['ppp_proto'] == 'PPPoE':
+        iface += ['  pre-up br2684ctl -p /var/run/br2684-dsl.pid -b -c 0 -a 0.%s.%s' %
+                  (devcf.provider.vpi, devcf.provider.vci)]
     iface += ['  provider %s' % PPPPEERCONFNAME]
-    iface += ['  post-down kill $(cat /var/run/br2684-dsl.pid)']
-    iface += [STR_END]
+    if devcf.param['ppp_proto'] == 'PPPoE':
+        iface += ['  post-down kill $(cat /var/run/br2684-dsl.pid)']
+    iface += [BB_STR_END]
     return iface
 
 def create_default_hotplug_usb_conf(device, net_if, pppd_peer, sys_output_file):
@@ -449,7 +470,7 @@ def conf_pc_lan(devcf, sys_output_file):
             device = 'speedtouch'
         if devcf.param['mod_conf'] == "monostatic":
             # IP over ATM (RFC 1483 routed)
-            bb_deb_conf_net_interfaces(ipOverAtmIntStr(devcf), sys_output_file)
+            bb_deb_conf_net_interfaces(ipOverAtmIntStr(devcf), sys_output_file, 'atm0')
             create_default_hotplug_usb_conf(device, 'atm0', '',
                                             sys_output_file)
             bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
@@ -458,7 +479,8 @@ def conf_pc_lan(devcf, sys_output_file):
             bb_ppp_conf(devcf, sys_output_file)
             if devcf.id == '0003' or devcf.id == '0006':
                 # eagle-usb uses eagleconfig
-                bb_deb_conf_net_interfaces(pppIntStr(devcf), sys_output_file)
+                bb_deb_conf_net_interfaces(pppIntStr(devcf), sys_output_file,
+                                           'dsl-bbassist')
                 create_default_hotplug_usb_conf(device, '', PPPPEERCONFNAME,
                                                 sys_output_file)
     if devcf.device_type.dt_id == '0002': # routers    
@@ -486,4 +508,5 @@ def conf_pc_lan(devcf, sys_output_file):
 if __name__ == "__main__":
     # FIXME only for tests
     #bb_clear_deb_net_interfaces()
+    bb_deb_conf_net_interfaces('mierda', open('/tmp/kk9', 'w'), 'atm0')
     pass

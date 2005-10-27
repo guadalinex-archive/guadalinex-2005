@@ -96,7 +96,7 @@
     </list_firmware>
     <postverif_list>
       <postverif>hasEth</postverif>
-      <postverif>hasTTY</postverif>
+      <!--<postverif>hasTTY</postverif> Not necessary -->
     </postverif_list>
   </bb_device>
 

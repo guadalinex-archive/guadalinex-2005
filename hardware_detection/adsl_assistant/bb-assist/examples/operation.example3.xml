@@ -2,10 +2,11 @@
 <operation>
   <model>Efficient SpeedStream 5660</model>
   <initial_func>verifEff5660</initial_func>
-  <default_timeout>8</default_timeout>
-  <send_delay>0</send_delay>
+  <default_timeout>15</default_timeout>
+  <send_delay>100</send_delay>
   <serial_params parity="N" tty="0" baudrate="38400" xonxoff="0" rtscts="0" stopbits="1" bits="8"/>
   <mod_conf></mod_conf>
   <passwd1>adminttd</passwd1>
+  <vpi>8</vpi>
+  <vci>32</vci>
 </operation>
-

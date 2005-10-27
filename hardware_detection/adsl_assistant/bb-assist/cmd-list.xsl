@@ -28,6 +28,9 @@
   <xsl:variable name="passwd1" select="//passwd1"/>
   <xsl:variable name="passwd2" select="//passwd2"/>
 
+  <xsl:variable name="vpi" select="//vpi"/>
+  <xsl:variable name="vci" select="//vci"/>
+
   <xsl:variable name="PPPuser" select="//PPPuser"/>
   <xsl:variable name="PPPpasswd" select="//PPPpasswd"/>
 
@@ -173,7 +176,7 @@
     <cmd_func id='confBridge3com'>
         <cmd send='Set vc internet ip disable ipx disable bridging enable' exp_ok='>' err='CLI - '/>
         <cmd send='Set vc internet network_service rfc_1483' exp_ok='>' err='CLI - '/>
-        <cmd send='Set vc internet atm vpi 8 vci 32 category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
+        <cmd send='Set vc internet atm vpi {$vpi} vci {$vci} category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
     </cmd_func>
 
     <cmd_func id='confNoBridge3com'>
@@ -183,7 +186,7 @@
         <xsl:if test = "$mod_conf='monostatic'"><cmd call='confStatic3com'/></xsl:if>
         <xsl:if test = "$mod_conf='multistatic'"><cmd call='confStatic3com'/></xsl:if>
 
-        <cmd send='Set vc internet atm vpi 8 vci 32 category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
+        <cmd send='Set vc internet atm vpi {$vpi} vci {$vci} category_of_service unspecified pcr 0' exp_ok='>' err='CLI - '/>
         <cmd send='Set vc internet default_route_option enable' exp_ok='>' err='CLI - '/>
     </cmd_func>
 
@@ -366,19 +369,19 @@
     <!-- Efficient SpeedStream 5660 - Configuration -->
 
     <cmd_func id='confBridgeEff5660'>
-      <cmd send='set vc 8 32 llc max' exp_ok='Command->'/>
+      <cmd send='set vc {$vpi} {$vci} llc max' exp_ok='Command->'/>
     </cmd_func>
 
     <cmd_func id='confNoBridgeEff5660'>
       <cmd send='Set dns disable' exp_ok='Command->' err='(failed|for help)'/>
             
       <xsl:if test = "$mod_conf='multidinamic'">
-        <cmd send='set vc ppp 8 32 max 0.0.0.0' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set vc ppp {$vpi} {$vci} max 0.0.0.0' exp_ok='Command->' err='(failed|for help)'/>
         <cmd send='set pppauth {$PPPuser} {$PPPpasswd}' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <xsl:if test = "$mod_conf!='multidinamic'">
-        <cmd send='set vc 1483r 8 32 llc max {$ext_ip_router} {$ext_mask_router}' exp_ok='Command->' err='(failed|for help)'/>
+        <cmd send='set vc 1483r {$vpi} {$vci} llc max {$ext_ip_router} {$ext_mask_router}' exp_ok='Command->' err='(failed|for help)'/>
         <cmd send='set ipgateway {$ext_ip_router}' exp_ok='Command->' err='for help'/>      
       </xsl:if>
 
@@ -569,7 +572,7 @@
       <cmd send='vcc1\r' exp_ok='#' err='{$defNokM112err}'/>
 
       <xsl:if test = "$mod_conf='multidinamic'">
-        <cmd send='pvc 8 32 pppoe-llc\r' exp_ok='#' err='{$defNokM112err}'/>
+        <cmd send='pvc {$vpi} {$vci} pppoe-llc\r' exp_ok='#' err='{$defNokM112err}'/>
         <cmd send='ip address 0.0.0.0 0.0.0.0\r' exp_ok='#' err='{$defNokM112err}'/>
         <cmd send='ppp username {$PPPuser}\r' exp_ok='#' err='{$defNokM112err}'/>
         <cmd send='ppp password {$PPPpasswd}\r' exp_ok='#' err='{$defNokM112err}'/>
@@ -578,11 +581,11 @@
 
       <xsl:if test = "$mod_conf!='multidinamic'">
         <xsl:if test = "$mod_conf='monodinamic'">
-          <cmd send='pvc 8 32 eth-llc\r' exp_ok='#' err='{$defNokM112err}'/>
+          <cmd send='pvc {$vpi} {$vci} eth-llc\r' exp_ok='#' err='{$defNokM112err}'/>
           <cmd send='bridging\r' exp_ok='#' err='{$defNokM112err}'/>
         </xsl:if>
         <xsl:if test = "$mod_conf!='monodinamic'">
-          <cmd send='pvc 8 32 ip-llc\r' exp_ok='#' err='{$defNokM112err}'/>
+          <cmd send='pvc {$vpi} {$vci} ip-llc\r' exp_ok='#' err='{$defNokM112err}'/>
       <cmd send='ip address {$ext_ip_router} {$ext_mask_router}\r' exp_ok='#' err='{$defNokM112err}'/>
         </xsl:if>
       </xsl:if>

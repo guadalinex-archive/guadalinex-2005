@@ -38,8 +38,15 @@ bb-assist (0.4) unstable; urgency=low
   * Added new IP static configuration to accessrunner and speedtouch
   * Configuration of accessrunner and vitelcom via ifupdown/hotplug
   * Description in ethernet and tty (COM) combobox via dbus
+  * Save logs to file button
+  * pppoa and ppp startonboot bug fix
+  * Password size checks
+  * hotplug mapping in interfaces
+  * Several bug fixes
+  * tty/eth configuration in Eff 5660
+  * Fixes when there is no tty or eth (USB can be configured others not)
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Wed, 26 Oct 2005 14:47:20 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 27 Oct 2005 14:30:21 +0200
 
 bb-assist (0.3) unstable; urgency=low
 

@@ -7,5 +7,6 @@
     <vci>32</vci>
     <pppoe>1</pppoe>
     <pppoa>0</pppoa>
+    <encap>llc</encap>
   </provider>
 </provider_list>

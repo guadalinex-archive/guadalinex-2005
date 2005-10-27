@@ -4,9 +4,13 @@
 - mejorar comprobación de redes/mascaras
 - chequear si esta el firmware y chequear si el USB esta conectado
 - Configurar ethernets
-- encoding de mensajes
 - Ayuda explicando monopuesto, etc...
-- Salvado de debug a fichero
 - Empaquetar /etc/hotplug/usb/speedtch
-- Ver que pasa con el startonboot en pppoe
-- pppoe/pppoa en interfaces
+- Terminar sysbackend
+- Bug, cuando se ejecuta como root:
+Traceback (most recent call last):
+  File "/usr/bin/bb-assist", line 1002, in on_buttonSaveLogs_clicked
+    os.setegid(int(os.environ['SUDO_GID']))
+  File "/usr/lib/python2.4/UserDict.py", line 17, in __getitem__
+    def __getitem__(self, key): return self.data[key]
+KeyError: 'SUDO_GID'
