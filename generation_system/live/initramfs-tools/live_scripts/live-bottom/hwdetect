@@ -81,12 +81,12 @@ env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
     dpkg-reconfigure -fnointeractive gnome-panel-data
 fi
 
-panel_version=$(dpkg-query -W --showformat='${Version}' gnome-panel-data 2>/dev/null) || panel_version=""
-if [ -n "$panel_version" ]; then
+panel_version=/$(dpkg-query -W --showformat='/${Version}' gnome-panel-data 2>/dev/null) || panel_version=""
+if [ -n "/$panel_version" ]; then
     gconftool-2 -t bool -s /apps/panel/global/disable_lock_screen true
 fi
-gnome_screensaver_version=$(dpkg-query -W --showformat='${Version}' gnome-screensaver 2>/dev/null) || gnome_screensaver_version=""
-if [ -n "$gnome_screensaver_version" ]; then
+gnome_screensaver_version=/$(dpkg-query -W --showformat='/${Version}' gnome-screensaver 2>/dev/null) || gnome_screensaver_version=""
+if [ -n "/$gnome_screensaver_version" ]; then
     gconftool-2 -t bool -s /apps/gnome-screensaver/lock false
 fi
 
@@ -114,14 +114,14 @@ TMPTIME=0
 log_begin_msg "Configuring network interfaces......"
 echo "Network setting..."  >> /var/log/initramfs.debug
 devs=\$(for i in /sys/class/net/*/device ; do dev=\${i#/sys/class/net/} ; echo \${dev%/device} ; done)
-echo $devs >> /var/log/initramfs.debug
+echo \$devs >> /var/log/initramfs.debug
 
 cat <<EOF > /etc/network/interfaces
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
 # The loopback network interface
-auto lo ${devs}
+auto lo \${devs}
 iface lo inet loopback
 
 EOF
