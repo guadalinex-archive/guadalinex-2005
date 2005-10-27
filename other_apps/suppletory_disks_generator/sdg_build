@@ -6,11 +6,16 @@ Este script genera una iso con un suplemento para Guadalinex 2005
 """
 
 import os
+import shutil
+import xdg.Menu
 
 DISTCODENAME = 'flamenco'
 MASTERDIR = './master' 
 
-os.system('mkdir ./master')
+DFOLDER = MASTERDIR + '/guadalinex-suplementos-apps' 
+APPMENU = 'applications.menu'
+
+os.system('mkdir -p ' + DFOLDER)
 
 
 class ConfigParser(dict):
@@ -33,6 +38,12 @@ class ConfigParser(dict):
                 except:
                     pass
         
+    def get_uris(self):
+        result = []
+        for key, value in self.items():
+            if key.startswith('URI'):
+                result.append(value)
+        return result
 
 
 def main():
@@ -46,6 +57,7 @@ def main():
     os.system('cp -a ./debs/* ' + MASTERDIR + '/pool')
     
     os.chdir(MASTERDIR)
+    os.system('rm ' + PACKAGESDIR + '/Packages.gz')
     os.system('dpkg-scanpackages ./pool /dev/null > ../' + PACKAGESDIR + '/Packages')
     os.chdir('..')
     os.system('yes | gzip '+ PACKAGESDIR + '/Packages')
@@ -62,10 +74,24 @@ def main():
     objfile.write ('#define URI     \n')
 
     for ele in config.get_uris():
-        objfile.write('#define URI ' + ele)
+        objfile.write('#define URI ' + ele + '\n')
 
     objfile.close()
 
+    
+    ############################################################################
+    # Step 3: Generate supplement.desktop and applications.menu
+    ############################################################################
+    menuentry = xdg.Menu.MenuEntry(DFOLDER + '/supplement.desktop')
+    menuentry.DesktopEntry.set('Name', config['NAME'])
+    menuentry.DesktopEntry.set('Comment', config['DESC'])
+
+    menuentry.DesktopEntry.set('X-AppInstall-Section', 'main')
+    menuentry.DesktopEntry.set('X-AppInstall-Package', config['METAPACKAGE'])
+
+    menuentry.DesktopEntry.write(DFOLDER + '/supplement.desktop')
+
+    shutil.copy(APPMENU, DFOLDER)
 
 
 if __name__ == "__main__":
