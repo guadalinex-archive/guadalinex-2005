@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE legalnotice PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+	"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY % xinclude SYSTEM "../libs/xinclude.mod">
+%xinclude;
+<!ENTITY % globalent SYSTEM "../libs/global.ent">
+%globalent;
+]>-->
+<legalnotice>
+    <title>License</title>
+    <para>This document is made available under a dual license strategy that includes the GNU Free
+        Documentation License (GFDL) and the Creative Commons ShareAlike 2.0 License (CC-BY-SA).</para>
+    <para>You are free to modify, extend, and improve the &distro-name; documentation source code under the
+        terms of these licenses. All derivative works must be release under both or either of these licenses.</para>
+    <para>This documentation is distributed in the hope that it will be useful, but WITHOUT ANY
+        WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+        PURPOSE AS DESCRIBED IN THE DISCLAIMER.</para>
+    <para>Copies of these licenses are available in the appendices section of this book. Online
+        versions can be found at the following URL's:</para>
+    <itemizedlist>
+        <listitem>
+            <para>&fdl-url;</para>
+        </listitem>
+        <listitem>
+            <para>&cc-attrib;</para>
+        </listitem>
+    </itemizedlist>
+</legalnotice>

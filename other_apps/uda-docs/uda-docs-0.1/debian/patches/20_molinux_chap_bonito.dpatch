@@ -1,0 +1,145 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_molinux_chap_bonito.dpatch by  <roberto@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/chap-bonito/bonito.xml /tmp/dpep-work.gzocrR/uda-docs-0.1/docs/recipes/chap-bonito/bonito.xml
+--- ./docs/recipes/chap-bonito/bonito.xml	1970-01-01 01:00:00.000000000 +0100
++++ /tmp/dpep-work.gzocrR/uda-docs-0.1/docs/recipes/chap-bonito/bonito.xml	2005-10-28 11:34:45.000000000 +0200
+@@ -0,0 +1,134 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
++<!ENTITY % xinclude SYSTEM "../../libs/xinclude.mod">
++%xinclude;
++<!ENTITY % globalent SYSTEM "../../libs/global.ent">
++%globalent;
++]>
++
++<chapter id="themes" lang="es">
++	<title>Ponga bonito su escritorio</title>
++	<para>Una de las cosas que más ha caracterizado a Linux a lo largo de estos años
++ha sido posibilidad de poner a su gusto el escritorio. En Gnome, el escritorio oficial de
++Molinux, es bastante fácil cambiar el aspecto. En la siguiente receta se explicará como 
++hacer que su escritorio esté a su gusto.
++	</para>
++	<sect>
++	<title>Cómo cambiar el tema de su escritorio</title>
++	<para>Cuando hablamos de temas del escritorio nos referimos a que se puede
++cambiar todo el aspecto de con una configuracion específica que llamamos tema.
++Para poder cambiar el tema del escritorio por otro tenemos que ir al menú 
++	<menuchoice>           
++	<guisubmenu>Sistema</guisubmenu>
++          <guisubmenu>Preferencias</guisubmenu>
++          <guimenuitem>Tema</guimenuitem>
++        </menuchoice>
++	</para>
++	<figure>
++		<title>Preferencias del tema del escritorio</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/bonito-dialogo-temas.png" format="png"/>
++                </imageobject>
++                </mediaobject>
++                </screenshot>
++        </figure>
++	<para>Dentro de este diálogo, se puede seleccionar el tema que nos guste más y
++automáticamente se aplicará por todo el escritorio para que podamos ver como queda.
++	</para>
++	<para>Si queremos ponerlo más a nuestro gusto, sólo tenemos que pulsar el boton «Detalles del tema» y aparecererá un diálogo con tres solapas. La solapa «Controles» se refiere a la forma de los botones, menús, barras de herramientas ... 
++	</para> 
++	<figure>
++		<title>Selección del tema de los controles</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/bonito-detalles-tema-controles.png" format="png"/>
++                </imageobject>
++                </mediaobject>
++                </screenshot>
++        </figure>
++	<para>La siguiente solapa, «Borde de ventanas» , se refiere al aspecto de los bordes de la ventana y la barra que hay encima de cada ventana con los botones maximizar, minimizar y cerrar.
++	</para>
++	<figure>
++		<title>Selección del tema del gestor de ventanas</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/bonito-detalles-tema-borde.png" format="png"/>
++                </imageobject>
++                </mediaobject>
++                </screenshot>
++        </figure>
++	<para>Y por último esta la solapa «Iconos». Esta solapa se refiere al tema
++que modificará el aspecto de los iconos de las aplicaciones.</para>
++	<figure>
++		<title>Seleccion del tema de iconos</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/bonito-detalles-tema-iconos.png" format="png"/>
++                </imageobject>
++                </mediaobject>
++                </screenshot>
++        </figure>
++	<para>Todos los cambios se aplicarán en el momento. Y en caso de que no le guste
++siempre podrá volver a señalar los que ya tenía seleccionados</para>
++	</sect>
++	<sect>
++	<title>Cómo cambiar el fondo del escritorio</title>
++	<para>Para cambiar el fondo del escritorio sólo tiene que acudir a 
++	<menuchoice>           
++	<guisubmenu>Sistema</guisubmenu>
++          <guisubmenu>Preferencias</guisubmenu>
++          <guimenuitem>Fondo de escritorio</guimenuitem>
++        </menuchoice>
++	</para>
++		<figure>
++		<title>Cambiar fondo de escritorio</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/bonito-menu-wallpaper.png" format="png"/>
++                </imageobject>
++                </mediaobject>
++                </screenshot>
++        </figure>
++	<para>Con esta aplicación usted puede seleccionar un fondo de pantalla ya existente o incluir uno nuevo. Para incluir uno nuevo, usted sólo tendrá que arrastrar una foto desde una
++carpeta sobre la ventana y automáticamente se añadirá</para>
++	<figure>
++		<title>Configuración del fondo de escritorio</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/bonito-dialogo-wallpaper.png" format="png"/>
++                </imageobject>
++                </mediaobject>
++                </screenshot>
++        </figure>
++	</sect>
++	<sect>
++	<title>Cambiar el tipo de letra del escritorio</title>
++	<para>En el caso de que deseemos cambiar la tipografía para que nuestro escritorio tenga un toque más personal, nos tendríamos que dirigir al siguiente menú: 
++	<menuchoice>           
++	<guisubmenu>Sistema</guisubmenu>
++          <guisubmenu>Preferencias</guisubmenu>
++          <guimenuitem>Tipografía</guimenuitem>
++        </menuchoice>
++	</para>
++		<figure>
++		<title>Configuración de la tipografía</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/bonito-menu-tipografia.png" format="png"/>
++                </imageobject>
++                </mediaobject>
++                </screenshot>
++        </figure>
++	
++	</sect>
++
++</chapter>
