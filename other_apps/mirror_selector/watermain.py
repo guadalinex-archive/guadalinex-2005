@@ -11,6 +11,7 @@ pygtk.require ('2.0')
 import gtk
 import gtk.glade
 import os,commands,sys
+import getopt
 
 class mirrors:
 	filename=""
@@ -190,6 +191,11 @@ class appgui:
        		self.column.set_attributes(self.cellicon, stock_id=0)
        		self.column.add_attribute(self.cell, 'markup',1)
 
+		# activate update button if url available in command line
+		if mirrors.url:
+			self.bt_update = self.xml.get_widget('bt_update')
+			self.bt_update.set_sensitive(True)
+
 		return
 
 	def error_dialog_response(self, dialog, response, *args):
@@ -228,6 +234,7 @@ class appgui:
 			mirrors.reload()
 		else:
 			print output
+			print mirrors.url
 			dialog = self.xml.get_widget('dialog2')
 			dialog.show()
 		widget.set_sensitive(True)
@@ -239,8 +246,30 @@ class appgui:
 		return
 
 
+def show_help():
+	print """
+Usage:
+   -h	--help		This simple help
+   -u	--url=xxx	Download mirror list from this url
+	"""
+
+url=""
+
+try:
+	opts, args = getopt.getopt(sys.argv[1:],"hu:",["help","url="])
+except getopt.GetoptError:
+	show_help()
+	sys.exit(2)
+for opt, arg in opts:     
+        if opt in ("-h", "--help"):
+		show_help()
+		sys.exit()                  
+        elif opt in ("-u", "--url"):
+		url = arg 
+
 sourceslist=sourceslist("/etc/apt/sources.list")
-mirrors=mirrors("/etc/apt/watermain.list","http://www.guadalinex.org/mirrors.list")
+mirrors=mirrors("/etc/apt/watermain.list",url)
 app=appgui()
   
 gtk.main()
+

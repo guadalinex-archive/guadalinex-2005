@@ -116,6 +116,7 @@ Seleccione su repositorio preferido para las actualizaciones y pulse &lt;b&gt;Ac
 
 	  <child>
 	    <widget class="GtkButton" id="bt_update">
+	      <property name="sensitive">False</property>
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Actualiza la lista de repositorios oficiales</property>
 	      <property name="can_default">True</property>
