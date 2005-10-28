@@ -1,0 +1,16 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Download sites
+Name[en_CA]=Download sites
+Name[en_GB]=Download sites
+Name[es]=Sitios de descarga
+Comment=Download site selector
+Comment[en_CA]=Download site selector
+Comment[en_GB]=Download site selector
+Comment[es]=Seleccionador de sitios de descarga de programas
+Exec=gksudo /usr/sbin/watermain
+Icon=/usr/share/icons/watermain/watermain.svg
+Terminal=false
+Type=Application
+Categories=GNOME;Application;System;Settings;
+StartupNotify=true

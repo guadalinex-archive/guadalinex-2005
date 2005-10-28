@@ -61,6 +61,8 @@ install: build
 
 	# Add here commands to install the package into debian/watermain.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/watermain
+	install -m 444 watermain.svg $(CURDIR)/debian/watermain/usr/share/icons/watermain
+	install -m 444 watermain.desktop $(CURDIR)/debian/watermain/usr/share/applications
 	# install logo.png DESTDIR=$(CURDIR)/debian/watermain/usr/share/watermain
 	# install watermain.glade DESTDIR=$(CURDIR)/debian/watermain/usr/share/watermain
 	# install watermain.py DESTDIR=$(CURDIR)/debian/watermain/usr/sbin
