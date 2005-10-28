@@ -15,6 +15,7 @@ prereqs)
 	;;
 esac
 
-mkdir /mnt
-mount -t tmpfs -o "size=80%" tmpfs /mnt
+mkdir /mnt >> /tmp/initramfs.debug 2>&1
+mount -t tmpfs -o "size=80%" tmpfs /mnt >> /tmp/initramfs.debug 2>&1
 
+exit 0
