@@ -48,8 +48,9 @@ bb-assist (0.4) unstable; urgency=low
   * sudo/notsudo problem with save log to file solved
   * Bug fixes after organization of code
   * PPPoE better conf in USB and Routers
+  * Build-depends fixes
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 28 Oct 2005 13:11:09 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 28 Oct 2005 19:25:40 +0200
 
 bb-assist (0.3) unstable; urgency=low
 

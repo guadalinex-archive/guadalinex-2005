@@ -10,3 +10,4 @@
 - ver /etc/ppp/pppoe_on_boot
 - No desconfigura nas0 y no mata ppp
 - /etc/default/speedtouch vs speedtch
+- La encapsulación (LLC) esta a fuego en muchos sitios (comando br268ctl, y cmd-list.xml), pero desconozco la configuración de otras operadoras.

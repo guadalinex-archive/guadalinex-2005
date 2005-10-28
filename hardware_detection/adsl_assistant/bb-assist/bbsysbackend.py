@@ -424,13 +424,21 @@ def pppIntStr(devcf):
     if devcf.param['ppp_startonboot']:
         iface += ['auto %s' % PPPPEERCONFNAME]
     iface += ['iface %s inet ppp' % PPPPEERCONFNAME]
+    if devcf.param['ppp_proto'] == 'PPPoE':
+        iface += ['  pre-up modprobe -q pppoe']
+    if devcf.param['ppp_proto'] == 'PPPoA':
+        iface += ['  pre-up modprobe -q pppoatm']
     if devcf.param['ppp_proto'] == 'PPPoE' and devcf.device_type.dt_id == '0001':
-        iface += ['  pre-up modprobe br2684'] # PPPoE - USB
-        iface += ['  pre-up br2684ctl -b -c 0 -a 0.%s.%s -e 1' %
+        iface += ['  pre-up modprobe -q br2684'] # PPPoE - USB
+        iface += ['  pre-up pgrep br2684ctl >/dev/null 2>&1 && pkill br2684ctl']
+        # FIXME Encap depends on provider
+        iface += ['  pre-up br2684ctl -b -c 0 -a 0.%s.%s -e 1' % 
                   (devcf.provider.vpi, devcf.provider.vci)]
+        iface += ['  pre-up /sbin/ifconfig nas0 up']
     iface += ['  provider %s' % PPPPEERCONFNAME]
     if devcf.param['ppp_proto'] == 'PPPoE' and devcf.device_type.dt_id == '0001':
-        iface += ['  post-down pkill br2684ctl'] # PPPoE - USB
+        iface += ['  post-down pgrep br2684ctl >/dev/null 2>&1 && pkill br2684ctl'] # PPPoE - USB
+        iface += ['  pre-down /sbin/ifconfig nas0 down']
     iface += [BB_STR_END]
     return iface
 
@@ -469,7 +477,7 @@ def conf_pc_lan(devcf, sys_output_file):
             device = 'cxacru'
             # FIXME: get from linux_driver in xml
         elif devcf.id == '0006':
-            device = 'speedtouch'
+            device = 'speedtch'
         if devcf.param['mod_conf'] == "monostatic":
             # IP over ATM (RFC 1483 routed)
             bb_deb_conf_net_interfaces(ipOverAtmIntStr(devcf), sys_output_file, 'atm0')
