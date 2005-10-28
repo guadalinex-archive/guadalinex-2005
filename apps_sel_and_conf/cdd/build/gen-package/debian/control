@@ -11,4 +11,3 @@ Depends:  ${cdd:Depends}
 Pre-Depends: ${dpsyco:Depends}, ${cdd:Pre-Depends}
 Conflicts: ${cdd:Conflicts}
 Description: ${cdd:Description}.
- Este paquete simplifica la administración de ${cdd:Package}.

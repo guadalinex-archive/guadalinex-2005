@@ -64,6 +64,7 @@ meta_setup () {
 	echo "cdd:Pre-Depends=$debdepends" >> $TMPDIR/debian/substvars
 	echo "cdd:Conflicts=$debconflicts" >> $TMPDIR/debian/substvars
 	echo "cdd:Maintainer=$debmaintainer" >> $TMPDIR/debian/substvars
+	echo "cdd:Description=$debdescription " >> $TMPDIR/debian/substvars
 	clean_skel
 	touch $TMPDIR/debian/skel
 }
@@ -115,7 +116,6 @@ gen_package () {
 	else
 		debmaintainer=$CDDMAINTAINER
 	fi
-
 	if ! $SETUP; then
 		return
 	fi
@@ -135,6 +135,13 @@ gen_package () {
 	sed -e "s/this-will-be-replaced-package-name/$pkgname/" \
 		$TMPDIR/debian/control > $TMPDIR/debian/control.new
 	mv $TMPDIR/debian/control.new $TMPDIR/debian/control
+
+	if [ -s $TMPDIR/DEBDESCRIPTION ]
+	then
+		pkgdesc=$(cat $TMPDIR/DEBDESCRIPTION || true)
+    else
+        pkgdes="Este paquete simplifica la administración de \${cdd:Package}"
+    fi
 	
 	echo "cdd:Package=$flavourservname" >> $TMPDIR/debian/substvars
 	echo "cdd:Description=$pkgdesc" >> $TMPDIR/debian/substvars
