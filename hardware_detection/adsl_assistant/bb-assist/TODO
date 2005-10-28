@@ -7,10 +7,6 @@
 - Ayuda explicando monopuesto, etc...
 - Empaquetar /etc/hotplug/usb/speedtch
 - Terminar sysbackend
-- Bug, cuando se ejecuta como root:
-Traceback (most recent call last):
-  File "/usr/bin/bb-assist", line 1002, in on_buttonSaveLogs_clicked
-    os.setegid(int(os.environ['SUDO_GID']))
-  File "/usr/lib/python2.4/UserDict.py", line 17, in __getitem__
-    def __getitem__(self, key): return self.data[key]
-KeyError: 'SUDO_GID'
+- ver /etc/ppp/pppoe_on_boot
+- No desconfigura nas0 y no mata ppp
+- /etc/default/speedtouch vs speedtch

@@ -3045,134 +3045,6 @@ Si dispone de un módem USB conéctelo igualmente a la ordenador mediante el cab
 
 
       <child>
-	<widget class="GnomeDruidPageStandard" id="druidSelecEthernetToConf">
-	  <property name="visible">True</property>
-	  <property name="title" translatable="yes">Seleccione el Interfaz Ethernet</property>
-	  <property name="background">#0807706f2121</property>
-	  <property name="logo_background">#0807706f2121</property>
-	  <signal name="next" handler="on_druidSelecEthernetToConf_next" last_modification_time="Wed, 19 Oct 2005 08:11:24 GMT"/>
-	  <signal name="back" handler="on_druidSelecEthernetToConf_back" last_modification_time="Wed, 19 Oct 2005 08:11:30 GMT"/>
-	  <signal name="prepare" handler="on_druidSelecEthernetToConf_prepare" after="yes" last_modification_time="Wed, 19 Oct 2005 08:11:38 GMT"/>
-
-	  <child internal-child="vbox">
-	    <widget class="GtkVBox" id="druid-vbox1192">
-	      <property name="border_width">16</property>
-	      <property name="visible">True</property>
-	      <property name="homogeneous">False</property>
-	      <property name="spacing">6</property>
-
-	      <child>
-		<widget class="GtkLabel" id="label66">
-		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Indique el interfaz ethernet de su ordenador con el que se conectará normalmente al equipo. 
-Este será el interfaz que configurará el asistente y que se usará normalmente para 
-su conexión a Internet. 
-Debe estar en la misma red que el dispositivo de Band Ancha</property>
-		  <property name="use_underline">False</property>
-		  <property name="use_markup">False</property>
-		  <property name="justify">GTK_JUSTIFY_LEFT</property>
-		  <property name="wrap">False</property>
-		  <property name="selectable">False</property>
-		  <property name="xalign">0.509999990463</property>
-		  <property name="yalign">0.5</property>
-		  <property name="xpad">0</property>
-		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkHBox" id="hbox6">
-		  <property name="visible">True</property>
-		  <property name="homogeneous">False</property>
-		  <property name="spacing">0</property>
-
-		  <child>
-		    <widget class="GtkHBox" id="hbox7">
-		      <property name="visible">True</property>
-		      <property name="homogeneous">False</property>
-		      <property name="spacing">0</property>
-
-		      <child>
-			<widget class="GtkVBox" id="vbox24">
-			  <property name="visible">True</property>
-			  <property name="homogeneous">False</property>
-			  <property name="spacing">0</property>
-
-			  <child>
-			    <widget class="GtkLabel" id="label72">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Interfaz Ethernet de su ordenador con la que se conectará al equipo</property>
-			      <property name="use_underline">False</property>
-			      <property name="use_markup">False</property>
-			      <property name="justify">GTK_JUSTIFY_LEFT</property>
-			      <property name="wrap">True</property>
-			      <property name="selectable">False</property>
-			      <property name="xalign">0</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">10</property>
-			      <property name="ypad">0</property>
-			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-			      <property name="width_chars">-1</property>
-			      <property name="single_line_mode">False</property>
-			      <property name="angle">0</property>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
-			  </child>
-
-			  <child>
-			    <widget class="GtkComboBox" id="comboboxEthToUse">
-			      <property name="visible">True</property>
-			      <property name="items"></property>
-			      <property name="add_tearoffs">False</property>
-			      <property name="focus_on_click">True</property>
-			      <signal name="changed" handler="on_comboboxEthToUse_changed" last_modification_time="Wed, 19 Oct 2005 08:08:01 GMT"/>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">True</property>
-			      <property name="fill">True</property>
-			    </packing>
-			  </child>
-			</widget>
-			<packing>
-			  <property name="padding">0</property>
-			  <property name="expand">True</property>
-			  <property name="fill">True</property>
-			</packing>
-		      </child>
-		    </widget>
-		    <packing>
-		      <property name="padding">0</property>
-		      <property name="expand">True</property>
-		      <property name="fill">False</property>
-		    </packing>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="padding">0</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-	    </widget>
-	  </child>
-	</widget>
-      </child>
-
-      <child>
 	<widget class="GnomeDruidPageStandard" id="druidPasswdSel">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Seleccione Contraseña Actual</property>
@@ -3562,7 +3434,6 @@ También es recomendable que durante su funcionamiento esté en posición vertic
 	</widget>
       </child>
 
-
       <child>
 	<widget class="GnomeDruidPageStandard" id="druidSelecInterface">
 	  <property name="visible">True</property>
@@ -3909,6 +3780,134 @@ dispositivo a configurar</property>
 		  <property name="padding">0</property>
 		  <property name="expand">True</property>
 		  <property name="fill">True</property>
+		</packing>
+	      </child>
+	    </widget>
+	  </child>
+	</widget>
+      </child>
+
+      <child>
+	<widget class="GnomeDruidPageStandard" id="druidSelecEthernetToConf">
+	  <property name="visible">True</property>
+	  <property name="title" translatable="yes">Seleccione el Interfaz Ethernet</property>
+	  <property name="background">#0807706f2121</property>
+	  <property name="logo_background">#0807706f2121</property>
+	  <signal name="next" handler="on_druidSelecEthernetToConf_next" last_modification_time="Wed, 19 Oct 2005 08:11:24 GMT"/>
+	  <signal name="back" handler="on_druidSelecEthernetToConf_back" last_modification_time="Wed, 19 Oct 2005 08:11:30 GMT"/>
+	  <signal name="prepare" handler="on_druidSelecEthernetToConf_prepare" after="yes" last_modification_time="Wed, 19 Oct 2005 08:11:38 GMT"/>
+
+	  <child internal-child="vbox">
+	    <widget class="GtkVBox" id="druid-vbox1192">
+	      <property name="border_width">16</property>
+	      <property name="visible">True</property>
+	      <property name="homogeneous">False</property>
+	      <property name="spacing">6</property>
+
+	      <child>
+		<widget class="GtkLabel" id="label66">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">Indique el interfaz ethernet de su ordenador con el que se conectará normalmente al equipo. 
+Este será el interfaz que configurará el asistente y que se usará normalmente para 
+su conexión a Internet. 
+Debe estar en la misma red que el dispositivo de Banda Ancha</property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">False</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">False</property>
+		  <property name="selectable">False</property>
+		  <property name="xalign">0.509999990463</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkHBox" id="hbox6">
+		  <property name="visible">True</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkHBox" id="hbox7">
+		      <property name="visible">True</property>
+		      <property name="homogeneous">False</property>
+		      <property name="spacing">0</property>
+
+		      <child>
+			<widget class="GtkVBox" id="vbox24">
+			  <property name="visible">True</property>
+			  <property name="homogeneous">False</property>
+			  <property name="spacing">0</property>
+
+			  <child>
+			    <widget class="GtkLabel" id="label72">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Interfaz Ethernet de su ordenador con la que se conectará al equipo</property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">True</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">10</property>
+			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+			      <property name="width_chars">-1</property>
+			      <property name="single_line_mode">False</property>
+			      <property name="angle">0</property>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkComboBox" id="comboboxEthToUse">
+			      <property name="visible">True</property>
+			      <property name="items"></property>
+			      <property name="add_tearoffs">False</property>
+			      <property name="focus_on_click">True</property>
+			      <signal name="changed" handler="on_comboboxEthToUse_changed" last_modification_time="Wed, 19 Oct 2005 08:08:01 GMT"/>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">True</property>
+			      <property name="fill">True</property>
+			    </packing>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">True</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">True</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="padding">0</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
 		</packing>
 	      </child>
 	    </widget>

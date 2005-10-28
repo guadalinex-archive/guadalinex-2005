@@ -309,7 +309,7 @@ def bb_create_ppp_peer_conf(devcf, sys_output_file):
                 # Alcatel Speedtouch and Vitelcom
                 peerfile.write('\nnas0\n') # an extra newline
         if devcf.device_type.dt_id == '0002': # routers
-            peerfile.write(" " + devcf.param['eth_to_use'] + '\n')
+            peerfile.write(" " + devcf.param['eth_to_conf'] + '\n')
     if devcf.param['ppp_proto'] == 'PPPoA':
         peerfile.write('plugin pppoatm.so\n')
         peerfile.write(devcf.param['vpi'] + "." +
@@ -348,22 +348,22 @@ def bb_create_ppp_peer_conf(devcf, sys_output_file):
                           _("Configurado correctamente.") + "\n")
     return BBNOERR
 
-def bb_ppp_modload(devcf, sys_output_file):
-    """
-    Load de kernel modules for the ppp conection
-    """
-    os.system("/sbin/modprobe ppp_generic" + " >> " + sys_output_file.name + " 2>&1")
-    if devcf.param['ppp_proto'] == 'PPPoA':
-        os.system("/sbin/modprobe pppoatm" + " >> " + sys_output_file.name + " 2>&1")
-    if devcf.param['ppp_proto'] == 'PPPoE':
-        os.system("/sbin/modprobe pppoe" + " >> " + sys_output_file.name + " 2>&1")
-        os.system("/sbin/modprobe br2684" + " >> " + sys_output_file.name + " 2>&1")
-    if (devcf.id == '0003'):
-        os.system("/sbin/modprobe cxacru" + " >> " + sys_output_file.name + " 2>&1")
-    if (devcf.id == '0006'):
-        os.system("/sbin/modprobe speedtch" + " >> " + sys_output_file.name + " 2>&1")
-    if (devcf.id == '0002'):
-        os.system("/sbin/modprobe eagle_usb" + " >> " + sys_output_file.name + " 2>&1")
+## def bb_ppp_modload(devcf, sys_output_file):
+##     """
+##     Load de kernel modules for the ppp conection
+##     """
+##     os.system("/sbin/modprobe ppp_generic" + " >> " + sys_output_file.name + " 2>&1")
+##     if devcf.param['ppp_proto'] == 'PPPoA':
+##         os.system("/sbin/modprobe pppoatm" + " >> " + sys_output_file.name + " 2>&1")
+##     if devcf.param['ppp_proto'] == 'PPPoE':
+##         os.system("/sbin/modprobe pppoe" + " >> " + sys_output_file.name + " 2>&1")
+##         os.system("/sbin/modprobe br2684" + " >> " + sys_output_file.name + " 2>&1")
+##     if (devcf.id == '0003'):
+##         os.system("/sbin/modprobe cxacru" + " >> " + sys_output_file.name + " 2>&1")
+##     if (devcf.id == '0006'):
+##         os.system("/sbin/modprobe speedtch" + " >> " + sys_output_file.name + " 2>&1")
+##     if (devcf.id == '0002'):
+##         os.system("/sbin/modprobe eagle_usb" + " >> " + sys_output_file.name + " 2>&1")
         
 def bb_ppp_conf(devcf, sys_output_file):
     """
@@ -419,16 +419,18 @@ def ipOverAtmIntStr(devcf):
     return iface
 
 def pppIntStr(devcf):
+    # Finxe, put the right encoding 
     iface  = [BB_STR_INI]
     if devcf.param['ppp_startonboot']:
         iface += ['auto %s' % PPPPEERCONFNAME]
     iface += ['iface %s inet ppp' % PPPPEERCONFNAME]
-    if devcf.param['ppp_proto'] == 'PPPoE':
-        iface += ['  pre-up br2684ctl -p /var/run/br2684-dsl.pid -b -c 0 -a 0.%s.%s' %
+    if devcf.param['ppp_proto'] == 'PPPoE' and devcf.device_type.dt_id == '0001':
+        iface += ['  pre-up modprobe br2684'] # PPPoE - USB
+        iface += ['  pre-up br2684ctl -b -c 0 -a 0.%s.%s -e 1' %
                   (devcf.provider.vpi, devcf.provider.vci)]
     iface += ['  provider %s' % PPPPEERCONFNAME]
-    if devcf.param['ppp_proto'] == 'PPPoE':
-        iface += ['  post-down kill $(cat /var/run/br2684-dsl.pid)']
+    if devcf.param['ppp_proto'] == 'PPPoE' and devcf.device_type.dt_id == '0001':
+        iface += ['  post-down pkill br2684ctl'] # PPPoE - USB
     iface += [BB_STR_END]
     return iface
 
@@ -499,7 +501,7 @@ def conf_pc_lan(devcf, sys_output_file):
             else:
                 # Configure Ethernet Computer (also the DNS)
                 bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
-            bb_ppp_modload(devcf, sys_output_file)
+    # bb_ppp_modload(devcf, sys_output_file)
     # 4) Bring your connection up
     # Return plo
     # hacer algo para que rule la primera vez
@@ -508,5 +510,5 @@ def conf_pc_lan(devcf, sys_output_file):
 if __name__ == "__main__":
     # FIXME only for tests
     #bb_clear_deb_net_interfaces()
-    bb_deb_conf_net_interfaces('mierda', open('/tmp/kk9', 'w'), 'atm0')
+    # bb_deb_conf_net_interfaces('mierda', open('/tmp/kk9', 'w'), 'atm0')
     pass

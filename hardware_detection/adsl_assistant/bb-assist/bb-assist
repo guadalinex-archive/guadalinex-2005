@@ -999,8 +999,11 @@ class Assist:
         # self.druid1.back.hide() # With this we can't repeat operations
 
     def on_buttonSaveLogs_clicked(self, *args):
-        os.setegid(int(os.environ['SUDO_GID']))
-        os.seteuid(int(os.environ['SUDO_UID']))
+        if os.environ.has_key('SUDO_UID'):
+            # If we are root and we are in a sudo enviroment we change the
+            # efective user to a unprivileged
+            os.setegid(int(os.environ['SUDO_GID']))
+            os.seteuid(int(os.environ['SUDO_UID']))
         self.filechooserSaveLogs.set_current_folder(pwd.getpwuid(os.geteuid())[5] + "/")
         self.filechooserSaveLogs.set_current_name(pwd.getpwuid(os.geteuid())[5]
                                                   + '/bb-assist.log')

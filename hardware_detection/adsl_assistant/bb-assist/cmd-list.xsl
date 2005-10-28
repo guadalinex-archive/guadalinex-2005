@@ -127,7 +127,7 @@
       <cmd send='exit cli' exp_ok='Password:' err='CLI - '/>
       <cmd return='0'/>
     </cmd_func>
-:
+
     <!-- 3Com OfficeConnect 812 - List Configuration -->
 
     <cmd_func id='listConf3com'>

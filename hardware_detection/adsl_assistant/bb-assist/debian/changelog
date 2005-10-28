@@ -45,8 +45,11 @@ bb-assist (0.4) unstable; urgency=low
   * Several bug fixes
   * tty/eth configuration in Eff 5660
   * Fixes when there is no tty or eth (USB can be configured others not)
+  * sudo/notsudo problem with save log to file solved
+  * Bug fixes after organization of code
+  * PPPoE better conf in USB and Routers
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Thu, 27 Oct 2005 14:30:21 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 28 Oct 2005 13:11:09 +0200
 
 bb-assist (0.3) unstable; urgency=low
 
