@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SDGPATH="/home/gcoronel/gx2005/guadalinex2005/other_apps/suppletory_disks_generator/sdg-skel"
+SDGPATH="/usr/share/sdg/sdg-skel"
 
 cp -a $SDGPATH/* .
 

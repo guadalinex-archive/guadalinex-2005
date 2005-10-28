@@ -1,0 +1,15 @@
+Source: guadalinex-suppletory-disk-generator
+Section: unknown
+Priority: optional
+Maintainer: Gumersindo Coronel Pérez <gcoronel@emergya.info>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.1
+
+Package: guadalinex-suppletory-disk-generator
+Architecture: any
+Depends: python, python2.4, mkisofs, ${shlibs:Depends}, ${misc:Depends}
+Description: Sistema generador de suplementos para Guadalinex 2005.
+ El sistema generador de suplementos para Guadalinex 2005 permite generar de
+ forma sencilla un suplemento, que no es más que un conjunto de paquetes
+ extra, con la particularidad de que su instalación resulta sumamente fácil para
+ el usuario final.
