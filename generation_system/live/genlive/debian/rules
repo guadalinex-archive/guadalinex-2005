@@ -27,7 +27,7 @@ install:
 	dh_installdirs -A
 
 	install -m 755 $(CURDIR)/genlive.sh $(BUILDDIR)/usr/sbin/genlive
-	install -m 644 $(CURDIR)/isolinux.cfg $(BUILDDIR)/usr/share/genlive/isolinux.cfg
+	install -m 644 $(CURDIR)/isolinux/* $(BUILDDIR)/usr/share/genlive/isolinux/
 	install -m 644 $(CURDIR)/unionfs.ko $(BUILDDIR)/lib/modules/$(KERNEL)/kernel/fs/unionfs/unionfs.ko
 
 # Build architecture-independent files here.

@@ -1,5 +1,6 @@
 usr/sbin
 usr/share/genlive
+usr/share/genlive/isolinux
 lib/modules/2.6.12-9-386/kernel/fs/unionfs
 media/distro/sources
 media/distro/master

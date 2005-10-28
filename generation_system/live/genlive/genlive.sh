@@ -17,7 +17,7 @@ if [ ! -d ${MASTER}/META ]; then
 fi
 
 cp -a /usr/lib/syslinux/isolinux.bin ${MASTER}/isolinux/
-cp -a /usr/share/genlive/isolinux.cfg ${MASTER}/isolinux/
+cp -a /usr/share/genlive/isolinux/* ${MASTER}/isolinux/
 cp -a /boot/vmlinuz-${KERNEL} ${MASTER}/isolinux/vmlinuz
 mkinitramfs -o ${MASTER}/isolinux/initramfs ${KERNEL}
 
