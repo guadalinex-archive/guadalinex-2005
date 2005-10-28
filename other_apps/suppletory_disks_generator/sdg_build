@@ -6,6 +6,7 @@ Este script genera una iso con un suplemento para Guadalinex 2005
 """
 
 import os
+import os.path
 import shutil
 import xdg.Menu
 
@@ -64,7 +65,7 @@ def main():
     
     
     ############################################################################
-    # Step 2: Generate README.diskdefines
+    # Step 2: Generate README.diskdefines and icon
     ############################################################################
 
     config = ConfigParser()
@@ -78,10 +79,14 @@ def main():
 
     objfile.close()
 
+    if os.path.isfile('./icon.png'):
+        shutil.copy('./icon.png', MASTERDIR + '/.icon.png')
+
     
     ############################################################################
     # Step 3: Generate supplement.desktop and applications.menu
     ############################################################################
+
     menuentry = xdg.Menu.MenuEntry(DFOLDER + '/supplement.desktop')
     menuentry.DesktopEntry.set('Name', config['NAME'])
     menuentry.DesktopEntry.set('Comment', config['DESC'])
@@ -90,10 +95,18 @@ def main():
     menuentry.DesktopEntry.set('X-AppInstall-Package', config['METAPACKAGE'])
 
     menuentry.DesktopEntry.set('Categories', 'GNOME;Suplementos;')
+    menuentry.DesktopEntry.set('Icon', '../.icon.png')
     menuentry.DesktopEntry.write(DFOLDER + '/supplement.desktop')
 
     shutil.copy(APPMENU, DFOLDER)
 
+    ########################################################################## 
+    # Step 4: Create the iso
+    ########################################################################## 
+
+    cmd = "mkisofs -o guadalinex-suplementos.iso -joliet-long -V"
+    cmd += "GSD-" + config['SHORTNAME'] + ' ' + MASTERDIR
+    os.system(cmd)
 
 if __name__ == "__main__":
     main()

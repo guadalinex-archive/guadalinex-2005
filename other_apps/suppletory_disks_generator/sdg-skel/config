@@ -12,6 +12,16 @@
 #
 # NAME    Nombre del suplemento
 #
+# SHORTNAME Nombre corto del suplemento. No debe tener más de 8 letras. Es el
+#           que aparece concatenado al nombre de la iso, Por ejemplo:
+#
+#
+#           Guadalinex.suplementos-Juegos1
+#                                  -------
+#                                       |
+#                                       \
+#                                        Valor de SHORTNAME
+#
 # DESC    Descripción del suplemento. 1 línea.
 #
 # METAPACKAGE   Nombre del paquete que instala el suplemento. Si se comenta o 
@@ -27,5 +37,6 @@
 #       Por defecto se utiliza como repositorio el raíz del cdrom del suplemento.
 
 NAME    Nombre del Suplemento
+SHORTNAME Supl1
 DESC    Descripción del suplemento. 1 línea.
 METAPACKAGE nombre-del-metapaquete

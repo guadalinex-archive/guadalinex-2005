@@ -64,7 +64,7 @@ class GlSuppletory(object):
                 #Check for required packages
                 if s.check(GAIPACKAGES):
                     actions = {
-                        "Instalar el suplemento": action_install_sup
+                        "Instalar": action_install_sup
                     }
                 else:
                     actions = {
