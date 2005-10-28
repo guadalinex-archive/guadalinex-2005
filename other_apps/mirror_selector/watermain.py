@@ -161,7 +161,7 @@ class appgui:
 		         "on_bt_update_clicked" : self.bt_update_clicked 
 		}
 
-		self.xml = gtk.glade.XML("watermain.glade")
+		self.xml = gtk.glade.XML("/usr/share/watermain/watermain.glade")
 		self.xml.signal_autoconnect (dic)
 		self.treeview = self.xml.get_widget('treeview1')
 		self.window = self.xml.get_widget('window1')
