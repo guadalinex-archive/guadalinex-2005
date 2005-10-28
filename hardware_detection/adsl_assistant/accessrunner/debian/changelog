@@ -4,9 +4,10 @@ accessrunner-usb (0.3) unstable; urgency=low
   * Added interfaces example
   * Added hotplug interface configuration
   * Added pppoe example
-  * Debia package fixes to new files and configuration
+  * Debian package fixes to new files and configuration
+  * Build depends fixes
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Tue, 25 Oct 2005 12:32:20 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 28 Oct 2005 19:25:59 +0200
 
 accessrunner-usb (0.2) unstable; urgency=low
 
