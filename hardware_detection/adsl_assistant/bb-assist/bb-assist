@@ -68,7 +68,7 @@ from Ft.Xml             import InputSource
 from Ft.Lib.Uri         import OsPathToUri;
 
 app_name = "bb-assist"
-app_version = "0.0.1"
+app_version = "0.4.0"
 diri18n = 'i18n'
 
 # i18n
@@ -812,14 +812,13 @@ class Assist:
                 self.devcf.param['dns1'] = self.provider.dns1
                 self.devcf.param['dns2'] = self.provider.dns2
                 # ip_computer = mask_computer = gw_computer = [configuredByDHCP]
-                # FIMXE: configure Ethernet with DHCP
             else:
                 self.devcf.param['ip_computer']   = self.IPaddressPcEntry.get_text()
                 self.devcf.param['mask_computer'] = self.maskAddressPcEntry.get_text()
                 self.devcf.param['gw_computer']   = self.ipGatewayEntry.get_text()
                 self.devcf.param['net_computer']  = ipNet(self.devcf.param['ip_computer'],
                                                           self.devcf.param['mask_computer'])
-                # FIXME: configure Ethernet Computer (also with DNS)
+                # bbsysbackend configure the ethernet of the PC (also the DNS)
      
         msg =  boldme(_("Operación")) + ": " + self.operation_sel.opername[msg_lang] + "\n"
         msg += boldme(_("Dispositivo")) + ": " + self.devcf.name + "\n"

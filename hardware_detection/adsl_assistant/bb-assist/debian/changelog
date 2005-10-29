@@ -49,8 +49,11 @@ bb-assist (0.4) unstable; urgency=low
   * Bug fixes after organization of code
   * PPPoE better conf in USB and Routers
   * Build-depends fixes
+  * Ethernet interfaces configuration
+  * Better nas configuration with ifupdown
+  * cxacru better support (accessrunner)
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 28 Oct 2005 19:25:40 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sat, 29 Oct 2005 17:53:04 +0200
 
 bb-assist (0.3) unstable; urgency=low
 

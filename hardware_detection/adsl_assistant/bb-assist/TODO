@@ -3,11 +3,11 @@
 - Meter soporte redirección puertos
 - mejorar comprobación de redes/mascaras
 - chequear si esta el firmware y chequear si el USB esta conectado
-- Configurar ethernets
 - Ayuda explicando monopuesto, etc...
 - Empaquetar /etc/hotplug/usb/speedtch
 - Terminar sysbackend
 - ver /etc/ppp/pppoe_on_boot
 - No desconfigura nas0 y no mata ppp
-- /etc/default/speedtouch vs speedtch
 - La encapsulación (LLC) esta a fuego en muchos sitios (comando br268ctl, y cmd-list.xml), pero desconozco la configuración de otras operadoras.
+- quitar modulos cxacru y usbatm cuando se desconecte
+- No sale en la barra de gnome
