@@ -27,7 +27,8 @@ GCONF="/usr/bin/gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gc
 case "$1" in
     configure)
     
-    sudo dpkg-reconfigure linux-image-`uname -r`
+    # To avoid this failing, added "true"
+    sudo dpkg-reconfigure linux-image-`uname -r` || true
     
     ;;
 
