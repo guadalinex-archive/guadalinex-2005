@@ -52,8 +52,10 @@ bb-assist (0.4) unstable; urgency=low
   * Ethernet interfaces configuration
   * Better nas configuration with ifupdown
   * cxacru better support (accessrunner)
+  * Better ifupdown configuration
+  * start on boot of USB fixed
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sat, 29 Oct 2005 17:53:04 +0200
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 30 Oct 2005 14:08:02 +0100
 
 bb-assist (0.3) unstable; urgency=low
 

@@ -734,6 +734,8 @@ class Assist:
             self.devcf.param['ext_ip_router']   = self.gestIP.get_text()
             self.devcf.param['ip_computer']     = self.usuIP.get_text()
             self.devcf.param['mask_computer']   = self.usuMask.get_text()
+            self.devcf.param['dns1']            = self.provider.dns1
+            self.devcf.param['dns2']            = self.provider.dns2
             if self.devcf.device_type.dt_id == '0002': # routers
                 self.devcf.param['remote_ip']       = ipMasqIncrem(self.gestIP.get_text(),
                                                                self.gestMask.get_text(), 1)
@@ -762,11 +764,13 @@ class Assist:
                 self.devcf.param['ext_mask_router'] = '' # Bridged
                 self.devcf.param['int_ip_router']   = '192.168.1.1'   
                 self.devcf.param['int_mask_router'] = '255.255.255.0' 
-                self.devcf.param['ip_computer']     = '' # PPPOE
-                self.devcf.param['mask_computer']   = '' # PPPOE
-                self.devcf.param['gw_computer']     = '' # PPPOE
+                self.devcf.param['ip_computer']     = '192.168.1.2'
+                self.devcf.param['mask_computer']   = '255.255.255.0'
+                self.devcf.param['gw_computer']     = '192.168.1.1'
                 self.devcf.param['dhcp']            = 'False'
-
+                self.devcf.param['net_computer']    = '192.168.1.0'
+                self.devcf.param['dns1']            = self.provider.dns1
+                self.devcf.param['dns2']            = self.provider.dns2
         if (self.devcf.param['mod_conf'] == "multistatic"):
             self.devcf.param['remote_ip']       = ipMasqIncrem(self.usuIP.get_text(),
                                                                self.usuMask.get_text(), 2)
@@ -818,6 +822,8 @@ class Assist:
                 self.devcf.param['gw_computer']   = self.ipGatewayEntry.get_text()
                 self.devcf.param['net_computer']  = ipNet(self.devcf.param['ip_computer'],
                                                           self.devcf.param['mask_computer'])
+                self.devcf.param['dns1']            = self.provider.dns1
+                self.devcf.param['dns2']            = self.provider.dns2
                 # bbsysbackend configure the ethernet of the PC (also the DNS)
      
         msg =  boldme(_("Operación")) + ": " + self.operation_sel.opername[msg_lang] + "\n"
@@ -985,7 +991,9 @@ class Assist:
 
         self.hide_cursor_watch()           
         msg = msg.replace('\000', '') # Some times there are null chars in dev output
-        self.labelOperDebug.set_text(unicode(msg))
+        try: self.labelOperDebug.set_text(msg)
+        except:
+            self.labelOperDebug.set_text(_("No se puede mostrar el resto de la salida: Caracteres con codificación errónea"))
         self.labelOperDebug.set_use_markup(False)
         self.labelOperResult.set_text(msgResult)
         self.labelOperResult.set_use_markup(True)

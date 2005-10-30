@@ -17,13 +17,12 @@ NET_IF=""
 ##############################################################################
 
 start_networking() {
+  runlevel=`runlevel | cut -d" " -f 2` 
   if [ "$PPPD_PEER" ]; then
-    sleep 10
-    ifup $PPPD_PEER
+    if [[ $runlevel -eq 2 ]] ; then sleep 5; ifup $PPPD_PEER | /usr/bin/logger -t speedtch; fi
   fi
   if [ "$NET_IF" ]; then
-    sleep 5
-    ifup $NET_IF
+    if [[ $runlevel -eq 2 ]] ; then sleep 5; ifup $NET_IF | /usr/bin/logger -t speedtch; fi
   fi
   return 0
 }
@@ -31,8 +30,8 @@ start_networking() {
 setup_remover() {
   [ "$REMOVER" ] || return 0
   {
-  [ "$PPPD_PEER" ] && printf "#!/bin/sh\npoff $PPPD_PEER\nifdown $PPPD_PEER\nsleep 5\n/usr/bin/logger -t bb-assist 'hotplug stopping speedtch'\n"
-  [ "$NET_IF" ] && printf "#!/bin/sh\nifdown $NET_IF\nsleep 5\n/usr/bin/logger -t bb-assist 'hotplug stopping speedtch'\n"
+  [ "$PPPD_PEER" ] && printf "#!/bin/sh\nifdown $PPPD_PEER\nsleep 5\n/usr/bin/logger -t speedtch 'hotplug stopping speedtch'\n"
+  [ "$NET_IF" ] && printf "#!/bin/sh\nifdown $NET_IF\nsleep 5\n/usr/bin/logger -t speedtch 'hotplug stopping speedtch'\n"
   } > $REMOVER
   chmod +x $REMOVER
   return 0
@@ -41,7 +40,7 @@ setup_remover() {
 ##############################################################################
 case "$ACTION" in
     add)
-	/usr/bin/logger -t bb-assist "hotplug starting iface ${NET_IF}${PPPD_PEER}"
+	/usr/bin/logger -t speedtch "hotplug starting iface ${NET_IF}${PPPD_PEER}"
 	start_networking
 	setup_remover
     ;;

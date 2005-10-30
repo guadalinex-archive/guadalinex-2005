@@ -58,12 +58,10 @@ PPPPEERCONFNAME="dsl-bb-assist"
 BB_STR_INI = "# Begin: Maintained by bb-assist (please don't remove)"
 BB_STR_END = "# End: Maintained by bb-assist (please don't remove)"
 
-def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='', netmask='', network=''):
+def bb_enable_iface_with_config(devcf):
     """
-    Configuration of eth interfaces via system-tools-backends. But because they
-    don't support other types of interfaces (atm, nas, ppp) we are not using this
-    function for the moment. We are using instead ifupdown (debian)
-    
+    Configuration of eth interfaces via system-tools-backends.
+        
     * Example of static interface configuration via system-tools-backends
 
     Function call:
@@ -114,22 +112,31 @@ def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='',
     writer = MarkupWriter(netcfg_xmlfile, encoding='UTF-8', indent=u"yes", 
                           standalone="yes")
     writer.startDocument()
-    #writer.startElement(u'!DOCTYPE network []')
     writer.startElement(u'interface')
     writer.attribute(u'type', u'ethernet')
     writer.startElement(u'configuration')
-    if bootproto == 'dhcp':
-        conf = { 'auto' : '1', 'bootproto' : bootproto, 'file': dev }
+    if devcf.param['dhcp'] == 'True':
+        conf = { 'auto' : '1', \
+               'bootproto' : 'dhcp', \
+               'file': devcf.param['eth_to_conf'] }
     else:
-        conf = { 'address' : ip, 'auto' : '1', 'bootproto' :'none', 'broadcast' : broadcast,
-                 'file': dev, 'gateway' : gateway, 'netmask' : netmask, 'network' : network }
+        broadcast = ipBroadcast(devcf.param['ip_computer'],
+                                devcf.param['mask_computer'])
+        conf = { 'address' : devcf.param['ip_computer'], \
+                 'auto' : '1', \
+                 'bootproto' :'none', \
+                 'broadcast' : broadcast, \
+                 'file': devcf.param['eth_to_conf'], \
+                 'gateway' : devcf.param['gw_computer'], \
+                 'netmask' : devcf.param['mask_computer'], \
+                 'network' : devcf.param['net_computer']}
     for confparam in conf.keys():
         writer.startElement(unicode(confparam))
         writer.text(unicode(conf[confparam]))
         writer.endElement(unicode(confparam))
     writer.endElement(u'configuration')
     writer.startElement(u'dev')
-    writer.text(unicode(dev))
+    writer.text(unicode(devcf.param['eth_to_conf']))
     writer.endElement(u'dev')
     writer.startElement(u'enabled')
     writer.text(u'1')
@@ -149,9 +156,9 @@ def bb_enable_iface_with_config(dev, bootproto, ip='', broadcast='', gateway='',
     successCfg = Evaluate("success/text( )",
                          dom.documentElement)[0].nodeValue
     if successCfg == '0':
-        sysret = bbutils.BBERRCFGDEV # Error configuration dev
+        sysret = BBERRCFGDEV # Error configuration dev
     else:
-        sysret = bbutils.BBNOERR # Ok
+        sysret = BBNOERR # Ok
     return (sysret, xmlcfg, xmlcfgout)
 
 def bb_update_resolvconf(dns1, dns2, sys_output_file):
@@ -369,13 +376,13 @@ def bb_ppp_conf(devcf, sys_output_file):
                 enc = 3
         pwd_enc = '1' # FIXME: test this
         # FIXME: vpi/vci of table vs general vpi/vci
-        cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%07d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=none|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['vpi']), int(devcf.param['vci']), enc, isp, devcf.param['PPPuser'], devcf.param['PPPpasswd'], pwd_enc, int(devcf.param['ppp_usepeerdns']), int(devcf.param['ppp_startonboot']))
+        cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%08d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=none|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['vpi']), int(devcf.param['vci']), enc, isp, devcf.param['PPPuser'], devcf.param['PPPpasswd'], pwd_enc, int(devcf.param['ppp_usepeerdns']), int(devcf.param['ppp_startonboot']))
         sys_output_file.write("Command:\n")
         sys_output_file.write(cmd)
         sys_output_file.write("\n")
         cmd += " >> " + sys_output_file.name + " 2>&1"
         os.system(cmd)
-        os.system("rm /etc/eagle-usb/eagle-usb_must_be_configured")
+        os.system("rm /etc/eagle-usb/eagle-usb_must_be_configured 2> /dev/null")
     else:
         bb_papchap_conf(devcf.param['PPPuser'], devcf.param['PPPpasswd'], sys_output_file)
         bb_create_ppp_peer_conf(devcf, sys_output_file)
@@ -439,14 +446,17 @@ def pppIntStr(devcf):
         iface += ['  pre-up modprobe -q pppoatm']
     if devcf.param['ppp_proto'] == 'PPPoE' and devcf.device_type.dt_id == '0001':
         iface += ['  pre-up modprobe -q br2684'] # PPPoE - USB
-        iface += ['  pre-up pgrep br2684ctl >/dev/null 2>&1 && pkill br2684ctl']
+        iface += ['  pre-up pgrep br2684ctl >/dev/null 2>&1 ; if [[ $? -eq 0 ]] ; then pkill br2684ctl; fi']
         # FIXME Encap depends on provider
         iface += ['  pre-up br2684ctl -b -c 0 -a 0.%s.%s -e 1 2>&1 | /usr/bin/logger -t bb-assist' % 
                   (devcf.provider.vpi, devcf.provider.vci)]
         iface += ['  pre-up /sbin/ifconfig nas0 up 2>&1 | /usr/bin/logger -t bb-assist']
+    if devcf.param['ppp_proto'] == 'PPPoE' and devcf.device_type.dt_id == '0002':
+        iface += ['  pre-up (/sbin/ifconfig %s up 2>&1 || exit 0) | /usr/bin/logger -t bb-assist' \
+                  % devcf.param['eth_to_conf']]
     iface += ['  provider %s' % PPPPEERCONFNAME]
     if devcf.param['ppp_proto'] == 'PPPoE' and devcf.device_type.dt_id == '0001':
-        iface += ['  post-down pgrep br2684ctl >/dev/null 2>&1 && pkill br2684ctl'] # PPPoE - USB
+        iface += ['  post-down pgrep br2684ctl >/dev/null 2>&1 ; if [[ $? -eq 0 ]] ; then pkill br2684ctl; fi'] # PPPoE - USB
         iface += ['  pre-down /sbin/ifconfig nas0 down 2>&1 | /usr/bin/logger -t bb-assist']
     iface += [BB_STR_END]
     return iface
@@ -479,6 +489,14 @@ def create_default_hotplug_usb_conf(device, net_if, pppd_peer, sys_output_file):
     sys_output_file.write("* " + file_to_conf + ": " +
                           _("Configurado correctamente.") + "\n")
 
+def bb_ifup(dev, sys_output_file):
+    cmd = "ifup " + dev + " > " + sys_output_file.name + " 2>&1"
+    return (os.system(cmd))
+
+def bb_ifdown(dev, sys_output_file):
+    cmd = "ifdown " + dev + " > " + sys_output_file.name + " 2>&1"
+    return (os.system(cmd))
+    
 def conf_pc_lan(devcf, sys_output_file):
     retOper = BBNOERR
     if devcf.device_type.dt_id == '0001': # USB
@@ -505,11 +523,18 @@ def conf_pc_lan(devcf, sys_output_file):
         if devcf.param['mod_conf'] == "monostatic":
             # DHCP (the server in the router has a one address pool)
             bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file)
-            pass
+            bb_ifdown(devcf.param['eth_to_conf'],  sys_output_file)
+            bb_ifup(devcf.param['eth_to_conf'],  sys_output_file)
         elif devcf.param['mod_conf'] == "monodinamic":
-            # PPPoE/PPPoA
-            bb_deb_conf_net_interfaces(pppIntStr(devcf), sys_output_file)
+            # Conf PPPoE/PPPoA interface and ppp/peer
+            bb_deb_conf_net_interfaces(ethIntStr(devcf) + pppIntStr(devcf),
+                                       sys_output_file)
             bb_ppp_conf(devcf, sys_output_file)
+            # The ethernet of the PC
+            bb_ifdown(devcf.param['eth_to_conf'],  sys_output_file)
+            bb_ifup(devcf.param['eth_to_conf'],  sys_output_file)
+            cmd = "ifup " + PPPPEERCONFNAME + " > " + sys_output_file.name + " 2>&1"
+            os.system(cmd)
         elif devcf.param['mod_conf'] == "multistatic" or \
                  devcf.param['mod_conf'] == "multidinamic":
             if devcf.param['dhcp'] == 'True':
@@ -519,6 +544,8 @@ def conf_pc_lan(devcf, sys_output_file):
                 # Configure Ethernet Computer (also the DNS)
                 bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file)
                 bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
+            bb_ifdown(devcf.param['eth_to_conf'],  sys_output_file)
+            bb_ifup(devcf.param['eth_to_conf'],  sys_output_file)
     return retOper
 
 if __name__ == "__main__":
