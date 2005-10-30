@@ -157,6 +157,6 @@ FEOF
 ${rootmnt}/bin/chmod +x ${rootmnt}/etc/rc2.d/S10adduser.sh ${rootmnt}/etc/rc2.d/S10autologin.sh
 
 # Copy the installer .desktop to the user desktop
-cp -a /conf/ubuntu-express.desktop ${rootmnt}/etc/skel/Desktop/ >> /tmp/initramfs.debug 2>&1
+cp -a /conf/install.desktop ${rootmnt}/etc/skel/Desktop/ >> /tmp/initramfs.debug 2>&1
 
 exit 0
