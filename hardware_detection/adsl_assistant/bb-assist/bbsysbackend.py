@@ -47,6 +47,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import os, sys, tempfile
 import socket
+import shutil
+import re
 from bbutils            import *
 from xml.dom.ext.reader import PyExpat  #   python-xml
 from xml.xpath          import Evaluate
@@ -235,14 +237,23 @@ def bb_papchap_conf(PPPuser, PPPpasswd, sys_output_file):
     sys_output_file.write("* /etc/ppp/*-secrets: " +
                           _("Configurados correctamente.") + "\n")
 
-def bb_deb_conf_net_interfaces(str_to_add, sys_output_file, hotplug_int_tomap = ''):
+def bb_deb_conf_net_interfaces(str_to_add, sys_output_file, hotplug_int_tomap = '', ifaceToConf = ''):
     """
     clears and conf /etc/network/interfaces in debian/ubuntu system
     from previous configurations of the assistant
+
+    Comments the iface 'ifaceToConf' and add to the map section the
+    interface 'hotplug_int_to_map'
     """
     
     fileint = open('/etc/network/interfaces', 'r')
-
+        
+    try: shutil.copyfile('/etc/network/interfaces.seg.2', '/etc/network/interfaces.seg.3')
+    except: pass
+    try: shutil.copyfile('/etc/network/interfaces.seg.1', '/etc/network/interfaces.seg.2')
+    except: pass
+    shutil.copyfile('/etc/network/interfaces', '/etc/network/interfaces.seg.1')
+    
     str_ini_tofind = "Begin: Maintained by bb-assist"
     str_end_tofind = "End: Maintained by bb-assist"
     
@@ -260,7 +271,24 @@ def bb_deb_conf_net_interfaces(str_to_add, sys_output_file, hotplug_int_tomap = 
         
     interfacestmp.flush()
         
-    newinterfaces = open(interfacestmp.name, "r").readlines()
+    newinterfaces_uncomment = open(interfacestmp.name, "r").readlines()
+
+    # Commment old ifaces of the ifaceToConf
+    newinterfaces = []
+    in_iface = False
+    for line in newinterfaces_uncomment:
+        if (re.search("^[\s]*auto[\s]+%s[^\d][\s]*" % ifaceToConf, line) != None):
+            newinterfaces += ["#" + line]
+            continue
+        if (re.search("^[\s]*iface[\s]+%s(:[\d]+)?[\s]+(inet|ipx|inet6)[\s]+" % ifaceToConf, line) != None):
+            newinterfaces += ["#" + line]
+            in_iface = True
+            continue
+        if (in_iface and re.search("^[\s]*(pre-up|up|post-up|down|pre-down|post-down)[\s]", line) != None):
+            newinterfaces += ["#" + line]
+            continue
+        newinterfaces += [line]
+        in_iface = False
 
     hotplug_section = False
     fileint = open('/etc/network/interfaces', 'w')
@@ -283,6 +311,8 @@ def bb_deb_conf_net_interfaces(str_to_add, sys_output_file, hotplug_int_tomap = 
                 fileint.write(BB_STR_END + "\n")
                 continue
         fileint.write(line)
+
+    # I add the new part (if exist)
     for line in str_to_add:
         fileint.write(line + "\n")
     fileint.close()
@@ -358,6 +388,33 @@ def bb_create_ppp_peer_conf(devcf, sys_output_file):
                           _("Configurado correctamente.") + "\n")
     return BBNOERR
 
+def bb_eagleconf(devcf, sys_output_file):
+    if devcf.param['mod_conf'] == "monodinamic":
+        isp = 'ES01'
+        enc = 1
+        login = devcf.param['PPPuser']
+        passwd = devcf.param['PPPpasswd']
+        staticIP = 'none'
+        updatedns = int(devcf.param['ppp_usepeerdns'])
+        startonboot = int(devcf.param['ppp_startonboot'])
+    else:
+        isp = 'ES02'
+        enc = 3
+        login = 'none'
+        passwd = 'none'
+        staticIP = devcf.param['ip_computer']
+        updatedns = 0
+        startonboot = 1
+    pwd_enc = '1' # FIXME: test this
+
+    cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%08d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=%s|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['vpi']), int(devcf.param['vci']), enc, isp, login, passwd, pwd_enc, staticIP, updatedns, startonboot)
+    cmd += " >> " + sys_output_file.name + " 2>&1"
+    sys_output_file.write("Command:\n")
+    sys_output_file.write(cmd)
+    sys_output_file.write("\n")
+    os.system(cmd)
+    os.system("rm /etc/eagle-usb/eagle-usb_must_be_configured 2> /dev/null")
+
 def bb_ppp_conf(devcf, sys_output_file):
     """
     Configures a pppoe/pppoa in a simple way depending also on the provider
@@ -366,23 +423,7 @@ def bb_ppp_conf(devcf, sys_output_file):
     """
     
     if (devcf.id == '0002'):
-        # FIXME: Better to put this in a xml file
-        if (devcf.provider.prov_id == '0001'):
-            if devcf.param['mod_conf'] == "monodinamic":
-                isp = 'ES01'
-                enc = 1
-            else:
-                isp = 'ES02'
-                enc = 3
-        pwd_enc = '1' # FIXME: test this
-        # FIXME: vpi/vci of table vs general vpi/vci
-        cmd = "/usr/sbin/eagleconfig \"--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%08d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=none|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['vpi']), int(devcf.param['vci']), enc, isp, devcf.param['PPPuser'], devcf.param['PPPpasswd'], pwd_enc, int(devcf.param['ppp_usepeerdns']), int(devcf.param['ppp_startonboot']))
-        sys_output_file.write("Command:\n")
-        sys_output_file.write(cmd)
-        sys_output_file.write("\n")
-        cmd += " >> " + sys_output_file.name + " 2>&1"
-        os.system(cmd)
-        os.system("rm /etc/eagle-usb/eagle-usb_must_be_configured 2> /dev/null")
+        bb_eagleconf(devcf, sys_output_file)
     else:
         bb_papchap_conf(devcf.param['PPPuser'], devcf.param['PPPpasswd'], sys_output_file)
         bb_create_ppp_peer_conf(devcf, sys_output_file)
@@ -507,28 +548,33 @@ def conf_pc_lan(devcf, sys_output_file):
             device = 'speedtch'
         if devcf.param['mod_conf'] == "monostatic":
             # IP over ATM (RFC 1483 routed)
-            bb_deb_conf_net_interfaces(ipOverAtmIntStr(devcf), sys_output_file, 'atm0')
-            create_default_hotplug_usb_conf(device, 'atm0', '', sys_output_file)
+            if devcf.id == '0003' or devcf.id == '0006':
+                bb_deb_conf_net_interfaces(ipOverAtmIntStr(devcf), sys_output_file, 'atm0', 'atm0')
+                create_default_hotplug_usb_conf(device, 'atm0', '', sys_output_file)
+            if devcf.id == '0002':
+                bb_eagleconf(devcf, sys_output_file)
             bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
+        
         elif devcf.param['mod_conf'] == "monodinamic":
             # PPPoE/PPPoA
             bb_ppp_conf(devcf, sys_output_file)
             if devcf.id == '0003' or devcf.id == '0006':
                 # eagle-usb uses eagleconfig
                 bb_deb_conf_net_interfaces(pppIntStr(devcf), sys_output_file,
-                                           PPPPEERCONFNAME)
+                                           PPPPEERCONFNAME, PPPPEERCONFNAME)
                 create_default_hotplug_usb_conf(device, '', PPPPEERCONFNAME,
                                                 sys_output_file)
     if devcf.device_type.dt_id == '0002': # routers    
         if devcf.param['mod_conf'] == "monostatic":
             # DHCP (the server in the router has a one address pool)
-            bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file)
+            bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file, '',
+                                       devcf.param['eth_to_conf'])
             bb_ifdown(devcf.param['eth_to_conf'],  sys_output_file)
             bb_ifup(devcf.param['eth_to_conf'],  sys_output_file)
         elif devcf.param['mod_conf'] == "monodinamic":
             # Conf PPPoE/PPPoA interface and ppp/peer
             bb_deb_conf_net_interfaces(ethIntStr(devcf) + pppIntStr(devcf),
-                                       sys_output_file)
+                                       sys_output_file, '', devcf.param['eth_to_conf'])
             bb_ppp_conf(devcf, sys_output_file)
             # The ethernet of the PC
             bb_ifdown(devcf.param['eth_to_conf'],  sys_output_file)
@@ -539,10 +585,12 @@ def conf_pc_lan(devcf, sys_output_file):
                  devcf.param['mod_conf'] == "multidinamic":
             if devcf.param['dhcp'] == 'True':
                 # Configure Ethernet with DHCP
-                bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file)
+                bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file, '',
+                                           devcf.param['eth_to_conf'])
             else:
                 # Configure Ethernet Computer (also the DNS)
-                bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file)
+                bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file, '',
+                                           devcf.param['eth_to_conf'])
                 bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
             bb_ifdown(devcf.param['eth_to_conf'],  sys_output_file)
             bb_ifup(devcf.param['eth_to_conf'],  sys_output_file)

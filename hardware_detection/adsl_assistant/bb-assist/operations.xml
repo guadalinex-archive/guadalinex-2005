@@ -406,19 +406,19 @@
 
   <operation id='0021' bb_device='0002' supported='1' ui_public='1'>
     <opername_list>
-      <opername lang="es_ES" name='Configurar en modo Monopuesto Dinámico'/>
+      <opername lang="es_ES" name='Configurar en modo Monopuesto Estatico'/>
     </opername_list>
     <firmware>*</firmware>
     <initial_func>None</initial_func>
     <default_timeout>0</default_timeout>
     <send_delay>0</send_delay>
     <druid_page_list>
-      <druid_page>druidDinamConf</druid_page>
-      <druid_page>druidPPPadv</druid_page>
+      <druid_page>druidUsuIP</druid_page>
+      <!--<druid_page>druidGestIP</druid_page>-->
       <druid_page>druidVerifParamsConf</druid_page>
     </druid_page_list>
     <defvalue_list>
-      <defvalue name='mod_conf' value='monodinamic'/>
+      <defvalue name='mod_conf' value='monostatic'/>
     </defvalue_list>
   </operation>
 
@@ -473,6 +473,24 @@
       <druid_page>druidPPPadv</druid_page>
       <druid_page>druidVerifParamsConf</druid_page>
       <druid_page>druidUnplugUSB</druid_page>
+    </druid_page_list>
+    <defvalue_list>
+      <defvalue name='mod_conf' value='monodinamic'/>
+    </defvalue_list>
+  </operation>
+
+  <operation id='0025' bb_device='0002' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Monopuesto Dinámico'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>None</initial_func>
+    <default_timeout>0</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <druid_page>druidDinamConf</druid_page>
+      <druid_page>druidPPPadv</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
     </druid_page_list>
     <defvalue_list>
       <defvalue name='mod_conf' value='monodinamic'/>

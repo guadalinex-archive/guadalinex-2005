@@ -54,8 +54,13 @@ bb-assist (0.4) unstable; urgency=low
   * cxacru better support (accessrunner)
   * Better ifupdown configuration
   * start on boot of USB fixed
+  * Cleanup of /etc/network/interfaces of old configurations of the interface
+    to configure
+  * Solved hangs with Alcatel Speedtouch when the phone line is not connected
+  * Added support to Comtrend/Eagle + static IP
+  * Solved problem with taskbar in Gnome
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 30 Oct 2005 14:08:02 +0100
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 31 Oct 2005 15:09:19 +0100
 
 bb-assist (0.3) unstable; urgency=low
 

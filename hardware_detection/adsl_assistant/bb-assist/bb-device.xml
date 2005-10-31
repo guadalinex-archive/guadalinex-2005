@@ -148,7 +148,6 @@
       <defuivalue name='checkbutton_nopcomp' value='1'/>
       <defuivalue name='checkbutton_noccp' value='1'/>
       <defuivalue name='checkbutton_novj' value='1'/>
-      <defuivalue name='checkbutton_updetach' value='1'/>
     </defuivalue_list>
     <postverif_list>
       <postverif>hasUSB</postverif>
