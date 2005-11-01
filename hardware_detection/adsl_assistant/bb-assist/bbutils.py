@@ -54,8 +54,8 @@ from xml.xpath          import Evaluate
 BBNOERR, BBERRGEN, BBERREOF, BBERRTOUT, BBERRPWD, BBERRDHCP, BBERRLOCK, BBERRCFGDEV, BBERREAGLE, BBERRPPPCONF, BBERRIFACES = (0,1,2,3,4,5,6,7,8,9,10)
 
 # Paths
-#PATH = '/usr/share/bb-assist/'
-PATH = './'
+PATH = '/usr/share/bb-assist/'
+#PATH = './'
 GLADEDIR = os.path.join(PATH, 'glade')
 PIXMAPSDIR = os.path.join(GLADEDIR, 'pixmaps')
 
