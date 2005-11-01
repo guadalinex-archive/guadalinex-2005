@@ -232,10 +232,16 @@ class Assist:
             info_cat = obj.GetPropertyString('info.category')
             if info_cat == 'net.80203':
                 founded_eth = True
-                udi_parent = obj.GetPropertyString('info.parent')
+                try: udi_parent = obj.GetPropertyString('info.parent')
+                except:
+                    udi_parent = None
                 obj_parent = self.bus.get_object('org.freedesktop.Hal', udi_parent)
                 obj_parent = dbus.Interface(obj_parent, 'org.freedesktop.Hal.Device')
-                eth_descr  = obj_parent.GetPropertyString('info.product')
+                try: eth_descr  = obj_parent.GetPropertyString('info.product')
+                except:
+                    eth_descr = ''
+                eth_descr = eth_descr.replace('_', ' ')
+                eth_descr = eth_descr[:30]
                 self.ethlist += [[interface, eth_descr]]
         if founded_eth:
             msg += _('<b>Se han encontrado</b> interfaces Ethernet') + '\n'
@@ -976,6 +982,15 @@ class Assist:
         elif retOper == BBERRLOCK:
             msgResult = _("Error en la operación") + ": " + \
                         _("Puerto serie bloqueado.")
+        elif retOper == BBERREAGLE:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Error configurando el modem (eagleconfig).")
+        elif retOper == BBERRPPPCONF:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Error configurando PPP.")
+        elif retOper == BBERRIFACES:
+            msgResult = _("Error en la operación") + ": " + \
+                        _("Error configurando interfaces.")
         else:
             msgResult = _("Error en la operación") + ": " + \
                         _("Resultado inexperado.")
@@ -1050,7 +1065,9 @@ class Assist:
         gtk.main()
        
 if __name__ == "__main__":
-    gnome.program_init(app_name, app_version)
+    props = { gnome.PARAM_APP_DATADIR : '/usr/share'}
+    prog = gnome.program_init(app_name, app_version, properties=props)
+    #gnome.help_display(app_name)    
     getParams()
     if os.geteuid() != 0:
         dialogNotRoot = gtk.MessageDialog(None, 0, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,

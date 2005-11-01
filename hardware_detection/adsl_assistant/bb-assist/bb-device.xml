@@ -135,7 +135,7 @@
     <can_be_eth_conf>0</can_be_eth_conf>
     <can_be_tty_conf>0</can_be_tty_conf>
     <usb_conf>
-      <linux_driver>speedtouch</linux_driver>
+      <linux_driver>speedtch</linux_driver>
       <deviceid_list>
         <deviceid vendor='06b9' model='4061'/>
       </deviceid_list>

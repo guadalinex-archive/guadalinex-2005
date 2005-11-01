@@ -59,8 +59,12 @@ bb-assist (0.4) unstable; urgency=low
   * Solved hangs with Alcatel Speedtouch when the phone line is not connected
   * Added support to Comtrend/Eagle + static IP
   * Solved problem with taskbar in Gnome
+  * eth description improves (try, trunc, replaces)
+  * return exit of sys operations
+  * better clean of /etc/network/interfaces
+  * use of subprocess.call instead of os.system
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 31 Oct 2005 15:09:19 +0100
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Tue,  1 Nov 2005 13:33:01 +0100
 
 bb-assist (0.3) unstable; urgency=low
 

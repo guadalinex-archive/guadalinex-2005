@@ -128,20 +128,6 @@
       <cmd return='0'/>
     </cmd_func>
 
-    <!-- 3Com OfficeConnect 812 - List Configuration -->
-
-    <cmd_func id='listConf3com'>
-      <cmd call='auth3com'/>
-      <cmd send='show ip network LAN settings' exp_ok='>' err='CLI - '/>
-      <cmd send='show vc internet settings' exp_ok='stop output:' err='CLI - '/>
-      <cmd send='' exp_ok='>' err='CLI - '/>
-      <cmd send='show dhcp server settings' exp_ok='>' err='CLI - '/>
-      <cmd send='show system' exp_ok='>' err='CLI - '/>
-      <cmd send='show ethernet settings' exp_ok='>' err='CLI - '/>
-      <cmd send='list vc' exp_ok='>' err='CLI - '/>
-      <cmd send='show adsl transceiver_status' exp_ok='>' err='CLI - '/>
-    </cmd_func>
-
     <!-- 3Com OfficeConnect 812 - Configuration -->
     
     <cmd_func id='confDinamic3com'>

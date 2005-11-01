@@ -51,11 +51,11 @@ from xml.dom.ext.reader import PyExpat
 from xml.xpath          import Evaluate
 
 # Errors
-BBNOERR, BBERRGEN, BBERREOF, BBERRTOUT, BBERRPWD, BBERRDHCP, BBERRLOCK, BBERRCFGDEV = (0,1,2,3,4,5,6,7)
+BBNOERR, BBERRGEN, BBERREOF, BBERRTOUT, BBERRPWD, BBERRDHCP, BBERRLOCK, BBERRCFGDEV, BBERREAGLE, BBERRPPPCONF, BBERRIFACES = (0,1,2,3,4,5,6,7,8,9,10)
 
 # Paths
-PATH = '/usr/share/bb-assist/'
-#PATH = './'
+#PATH = '/usr/share/bb-assist/'
+PATH = './'
 GLADEDIR = os.path.join(PATH, 'glade')
 PIXMAPSDIR = os.path.join(GLADEDIR, 'pixmaps')
 
@@ -164,7 +164,9 @@ class bb_device:
             if self.device_type.dt_id == '0001':
                 #DSL USB
                 self.tty_conf = None
-                # FIXME: get usb_conf
+                self.linux_driver = Evaluate("usb_conf/linux_driver/text( )",
+                                             devnode)[0].nodeValue
+                # FIXME: get more usb_conf
             else:
                 #DSL Router
                 self.tty_conf = tty_conf(Evaluate("tty_conf",
