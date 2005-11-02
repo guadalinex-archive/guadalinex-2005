@@ -737,11 +737,13 @@ class Assist:
         if not self.devcf.param.has_key('mod_conf'):
             self.devcf.param['mod_conf'] = ''
         if (self.devcf.param['mod_conf'] == "monostatic"):
-            self.devcf.param['ext_ip_router']   = self.gestIP.get_text()
             self.devcf.param['ip_computer']     = self.usuIP.get_text()
             self.devcf.param['mask_computer']   = self.usuMask.get_text()
             self.devcf.param['dns1']            = self.provider.dns1
             self.devcf.param['dns2']            = self.provider.dns2
+            if self.devcf.device_type.dt_id == '0001': # USB
+                self.devcf.param['gw_computer']     = ipMasqIncrem(self.usuIP.get_text(),
+                                                                   self.usuMask.get_text(), 2)
             if self.devcf.device_type.dt_id == '0002': # routers
                 self.devcf.param['remote_ip']       = ipMasqIncrem(self.gestIP.get_text(),
                                                                self.gestMask.get_text(), 1)
@@ -749,6 +751,7 @@ class Assist:
                 self.devcf.param['int_ip_router']   = ipMasqIncrem(self.usuIP.get_text(),
                                                                    self.usuMask.get_text(), 1)
                 self.devcf.param['int_mask_router'] = self.usuMask.get_text()
+                self.devcf.param['ext_ip_router']   = self.gestIP.get_text()
                 self.devcf.param['gw_computer']     = self.devcf.param['int_ip_router']
                 # We also use dhcp for configure the PC from the router
                 self.devcf.param['dhcp']            = 'True'

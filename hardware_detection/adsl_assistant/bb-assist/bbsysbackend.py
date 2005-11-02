@@ -448,7 +448,7 @@ def bb_ppp_conf(devcf, sys_output_file):
 def ipOverAtmIntStr(devcf):
     broad = ipBroadcast(devcf.param['ip_computer'],
                         devcf.param['mask_computer'])
-    gw = devcf.param['ext_ip_router']
+    gw = devcf.param['gw_computer']
 
     # FIXME: In the future is better to let the user choose in the UI between atm interfaces
     # already configured
@@ -573,9 +573,13 @@ def conf_pc_lan(devcf, sys_output_file):
             if devcf.id == '0003' or devcf.id == '0006':
                 create_default_hotplug_usb_conf(devcf.linux_driver, 'atm0', '', sys_output_file)
                 retsys = bb_deb_conf_net_interfaces(ipOverAtmIntStr(devcf), sys_output_file, 'atm0', 'atm0')
+                bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
+                if (retsys == BBNOERR):
+                    bb_ifdown('atm0',  sys_output_file)
+                    retsys = bb_ifup('atm0',  sys_output_file)
             if devcf.id == '0002':
                 retsys = bb_eagleconf(devcf, sys_output_file)
-            bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
+                bb_update_resolvconf(devcf.param['dns1'], devcf.param['dns2'], sys_output_file)
         elif devcf.param['mod_conf'] == "monodinamic":
             # PPPoE/PPPoA
             retsys = bb_ppp_conf(devcf, sys_output_file)
@@ -585,15 +589,18 @@ def conf_pc_lan(devcf, sys_output_file):
                                                 sys_output_file)
                 retsys = bb_deb_conf_net_interfaces(pppIntStr(devcf), sys_output_file,
                                                     PPPPEERCONFNAME, PPPPEERCONFNAME)
+                if (retsys == BBNOERR):
+                    bb_ifdown(PPPPEERCONFNAME, sys_output_file)
+                    retsys = bb_ifup(PPPPEERCONFNAME, sys_output_file)
     if devcf.device_type.dt_id == '0002': # routers    
         if devcf.param['mod_conf'] == "monostatic":
             # DHCP (the server in the router has a one address pool)
             retsys = bb_deb_conf_net_interfaces(ethIntStr(devcf), sys_output_file, '',
                                                 devcf.param['eth_to_conf'])
             if (retsys == BBNOERR):
-                retsys = bb_ifdown(devcf.param['eth_to_conf'],  sys_output_file)
+                retsys = bb_ifdown(devcf.param['eth_to_conf'], sys_output_file)
             if (retsys == BBNOERR):
-                retsys = bb_ifup(devcf.param['eth_to_conf'],  sys_output_file)
+                retsys = bb_ifup(devcf.param['eth_to_conf'], sys_output_file)
         elif devcf.param['mod_conf'] == "monodinamic":
             # Conf PPPoE/PPPoA interface and ppp/peer
             retsys = bb_deb_conf_net_interfaces(ethIntStr(devcf) + pppIntStr(devcf),

@@ -190,7 +190,7 @@
 
       <xsl:if test = "$dhcp='True'">
         <cmd send='set dhcp mode server' exp_ok='>'/>
-        <cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$dhcp_mask} router {$dhcp_ip_gw} dns1 {$dns1} dns2 {$dns2} lease 3600' exp_ok='>' err='CLI - ' on_except='errServDhcp3com' />
+        <cmd send='set dhcp server start_address {$dhcp_ip_start} end_address {$dhcp_ip_end} mask {$dhcp_mask} router {$dhcp_ip_gw} dns1 {$dns1} dns2 {$dns2} lease 120' exp_ok='>' err='CLI - ' on_except='errServDhcp3com' />
       </xsl:if>
       <xsl:if test = "$dhcp='False'">
         <cmd send='set dhcp mode disabled' exp_ok='>' err='CLI - '/>

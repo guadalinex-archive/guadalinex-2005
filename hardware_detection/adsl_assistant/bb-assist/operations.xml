@@ -395,9 +395,7 @@
     <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidUsuIP</druid_page>
-      <druid_page>druidGestIP</druid_page>
       <druid_page>druidVerifParamsConf</druid_page>
-      <druid_page>druidUnplugUSB</druid_page>
     </druid_page_list>
     <defvalue_list>
       <defvalue name='mod_conf' value='monostatic'/>
@@ -414,7 +412,6 @@
     <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidUsuIP</druid_page>
-      <!--<druid_page>druidGestIP</druid_page>-->
       <druid_page>druidVerifParamsConf</druid_page>
     </druid_page_list>
     <defvalue_list>
@@ -432,9 +429,7 @@
     <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidUsuIP</druid_page>
-      <druid_page>druidGestIP</druid_page>
       <druid_page>druidVerifParamsConf</druid_page>
-      <druid_page>druidUnplugUSB</druid_page>
     </druid_page_list>
     <defvalue_list>
       <defvalue name='mod_conf' value='monostatic'/>
@@ -453,7 +448,6 @@
       <druid_page>druidDinamConf</druid_page>
       <druid_page>druidPPPadv</druid_page>
       <druid_page>druidVerifParamsConf</druid_page>
-      <druid_page>druidUnplugUSB</druid_page>
     </druid_page_list>
     <defvalue_list>
       <defvalue name='mod_conf' value='monodinamic'/>
@@ -472,7 +466,6 @@
       <druid_page>druidDinamConf</druid_page>
       <druid_page>druidPPPadv</druid_page>
       <druid_page>druidVerifParamsConf</druid_page>
-      <druid_page>druidUnplugUSB</druid_page>
     </druid_page_list>
     <defvalue_list>
       <defvalue name='mod_conf' value='monodinamic'/>

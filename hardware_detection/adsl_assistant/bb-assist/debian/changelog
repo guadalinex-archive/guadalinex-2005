@@ -1,3 +1,10 @@
+bb-assist (0.5) unstable; urgency=low
+
+  * One less druidpage to USB with IP static
+  * ifup interface in USB
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Wed,  2 Nov 2005 10:49:25 +0100
+
 bb-assist (0.4) unstable; urgency=low
 
   * Serial lock support during operations
