@@ -97,9 +97,9 @@ get_cdroms ()
 create_fstab ()
 {
 	if \$(grep rw /proc/cmdline) ; then
-		defaults="    defaults        0       2"
+		defaults="    defaults,noauto        0       2"
 	else
-		defaults="    ro,users        0       2"
+		defaults="    ro,users,noauto        0       2"
 	fi
 	partitions=\$(get_partitions)
 	for part in \$partitions; do
@@ -134,7 +134,7 @@ get_device ()
 log_begin_msg "Searching local disks..."
 create_fstab
 rm -f /etc/mtab
-ln -s /proc/mounts /etc/mtab
+cat /proc/mounts > /etc/mtab
 mount -a  >> /var/log/initramfs.debug 2>&1
 swapon -a >> /var/log/initramfs.debug 2>&1
 device=\$(get_device)
