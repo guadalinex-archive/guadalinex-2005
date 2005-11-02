@@ -22,5 +22,5 @@ esac
 . /etc/mkinitramfs/initramfs.conf
 
 if [ "${BOOT}" == "live" ]; then
-	install -m 644 /etc/mknitramfs/install.desktop ${DESTDIR}/conf/install.desktop
+	install -m 644 /etc/mkinitramfs/install.desktop ${DESTDIR}/conf/install.desktop
 fi
