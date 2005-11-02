@@ -54,6 +54,7 @@ import os
 from utils import DeviceList, ColdPlugListener, CaptureLogGui
 from optparse import OptionParser
 from utils.notification import NotificationDaemon, FileNotification
+from actors.deviceactor import DeviceActor
 
 
 #notification-daemon spec: -------------------------------------------
@@ -124,14 +125,14 @@ class DeviceListener:
 
         if actor: 
             actor.on_added()
-        else: 
-            if properties.has_key('info.vendor') and \
-                    properties['info.vendor'] != '':
-                product = properties['info.vendor']
-                self.message_render.show_info("Información", "Dispositivo detectado: %s" %
-                        (product,))
-            else:
-                self.message_render.show_warning("Aviso", "Dispositivo detectado, pero no identificado") 
+            if actor.__class__ == DeviceActor:
+                if properties.has_key('info.product') and \
+                        properties['info.product'] != '':
+                    product = properties['info.product']
+                    self.message_render.show_info("Información",
+                            "Dispositivo CONECTADO:\n %s" % (product,))
+                else:
+                    self.message_render.show_warning("Aviso", "Dispositivo detectado, pero no identificado") 
 
 
     def on_device_removed(self, udi, *args): 
@@ -147,6 +148,15 @@ class DeviceListener:
             print "DESCONEXIÓN  ################################"
             print "#############################################"
             self.__print_properties(disp.properties)
+
+            if disp.__class__ == DeviceActor:
+                properties = disp.properties
+                if properties.has_key('info.product') and \
+                        properties['info.product'] != '':
+                    product = properties['info.product']
+                    self.message_render.show_info("Información", 
+                            "Dispositivo DESCONECTADO:\n %s" % product)
+
             del self.udi_dict[udi]
         else:
             self.message_render.show_warning("Aviso", "Dispositivo desconectado")
@@ -182,8 +192,8 @@ class DeviceListener:
                 max = count
 
         actor = None 
+        udi = prop['info.udi']
         if actor_klass:
-            udi = prop['info.udi']
             actor = actor_klass(self.message_render, prop)
             self.udi_dict[udi] = actor
             if not self.modify_handler_dict.has_key(udi):
@@ -192,6 +202,9 @@ class DeviceListener:
                     dbus_interface = 'org.freedesktop.Hal.Device',
                     signal_name = "PropertyModified",
                     path = udi)
+        else:
+            actor = DeviceActor(self.message_render, prop)
+            self.udi_dict[udi] = actor
 
         return actor
 
@@ -240,6 +253,10 @@ class DeviceListener:
             self.add_actor_from_properties(properties)
 
 
+def at_end():
+    print "Fin de la aplicación"
+
+
 
 def main():
     #Configure options
@@ -261,7 +278,7 @@ def main():
     del args
 
     
-    #Option debug for logging
+    # Option debug for logging
     if options.debug:
         level = logging.DEBUG
     else:
@@ -276,27 +293,34 @@ def main():
                     filename = logfilename,
                     filemode='a')
 
-    #Set capture log
+    # Set capture log
     if options.capture_log:
         filepath = '/var/tmp/filenotification-' + \
                 os.environ['USER'] + str(os.getuid()) + \
                 '.log'
         iface = FileNotification(filepath)
-        clg = CaptureLogGui()
+        capture_log_gui = CaptureLogGui()
     else:
         iface = NotificationDaemon()
 
     global ACTORSLIST
     from actors import ACTORSLIST
 
+    ##################################################################
+    # Init application.   #
+    #######################
+    logging.getLogger().info("----------------------------- Hermes init.")
+
     DeviceListener(iface)
     gtk.threads_init()
     try:
         gtk.main()
     except:
-        if 'clg' in locals():
+        if 'capture_log_gui' in locals():
             #Close file for write in hd.
-            clg.logfile.close()
+            capture_log_gui.logfile.close()
+
+        logging.getLogger().info("----------------------------- Hermes finish.")
 
 
 if __name__ == "__main__":
