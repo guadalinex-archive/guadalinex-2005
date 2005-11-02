@@ -43,7 +43,7 @@ class NotificationDaemon(object):
                     self.logger.debug("Trying to connect to ActionInvoked")
                     self.iface.connect_to_signal("ActionInvoked", action_invoked)
                     condition = True
-	            except:
+                except:
                     logmsg = "ActionInvoked handler not configured. "
                     logmsg += "Trying to run notification-daemon."
                     self.logger.warning(logmsg)
