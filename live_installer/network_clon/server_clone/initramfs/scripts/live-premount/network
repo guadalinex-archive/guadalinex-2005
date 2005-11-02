@@ -33,7 +33,7 @@ done
 
 SERVER=$(grep serverip /etc/config.cfg | cut -d '=' -f 2)
 
-mkdir -p /mnt/META/
-ftpget $SERVER /mnt/META/META.squashfs /cdrom/META/META.squashfs
+mkdir -p /mnt/dev/META/
+ftpget $SERVER /mnt/dev/META/META.squashfs /cdrom/META/META.squashfs
 
 

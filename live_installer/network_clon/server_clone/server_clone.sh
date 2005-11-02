@@ -4,7 +4,7 @@ BACKTITLE="Clonador en Red"
 
 alias dialog='dialog  --stdout --cr-wrap --backtitle "$BACKTITLE"'
 
-DEVS=$(grep [0-9]: /proc/net/dev | grep -v sit | tr -s '  ' ' ' | cut -d ' ' -f 2 | cut -d ':' -f 1)
+DEVS=$(for i in /sys/class/net/*/device ; do dev=${i#/sys/class/net/} ; echo ${dev%/device} ; done)
 NUMDEVS=0
 for i in $DEVS
         do
