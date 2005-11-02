@@ -368,7 +368,8 @@
 
       <xsl:if test = "$mod_conf!='multidinamic'">
         <cmd send='set vc 1483r {$vpi} {$vci} llc max {$ext_ip_router} {$ext_mask_router}' exp_ok='Command->' err='(failed|for help)'/>
-        <cmd send='set ipgateway {$ext_ip_router}' exp_ok='Command->' err='for help'/>      
+        <cmd send='set ipgateway {$ext_ip_router}' exp_ok='(failed|Command)'/>
+        <cmd send='' exp_ok='Command->'/>      
       </xsl:if>
 
     </cmd_func>      
@@ -377,18 +378,22 @@
       <cmd call='authEff5660'/>
 
       <cmd send='default all' exp_ok='Setting VC configuration to factory defaults, reboot required'/>
-      <cmd send='\r' exp_ok='Command->'/>
+      <cmd send='' exp_ok='Command->'/>
 
       <xsl:if test = "$mod_conf='multidinamic'">
         <cmd send='set bridge disable' exp_ok='Command->' err='(failed|for help)'/>
       </xsl:if>
 
       <!-- FIXME: Password must be at least 8 chars -->
-      <cmd send='set password' exp_ok='Old password :' err='(failed|for help)'/>
+      <cmd send='set password' exp_ok='(Old password :|New password :)' err='(failed|for help)'/>
       <cmd send='{$passwd1}\r' exp_ok='New password :'/>
-      <cmd send='{$passwd1}\r' exp_ok='New password :'/>
-      <cmd send='{$passwd1}\r' exp_ok='Password updated'/>
-
+      <cmd send='{$passwd1}\r' exp_ok='Password updated'>
+        <expect_list>
+          <expect out='New password :'>
+            <cmd send='{$passwd1}\r' exp_ok='Password updated'/>
+          </expect>
+        </expect_list>
+      </cmd>
       <cmd send='set ethip {$int_ip_router} {$int_mask_router}' exp_ok='Selected IP address is on same network as another interface' err='for help'>
         <expect_list>
           <expect out='y,n'>
@@ -398,6 +403,7 @@
       </cmd>
       <cmd send='\r' exp_ok='Command->'/>
       <cmd send='set hostname telefonica' exp_ok='Command->' err='(failed|for help)'/>
+      <cmd send='\r' exp_ok='Command->'/>
       <cmd send='set ethcfg full' exp_ok='Command->' err='(failed|for help)'/>
 
       <xsl:if test = "$mod_conf!='monodinamic'">
@@ -475,26 +481,26 @@
     <cmd_func id='authNokiaM1112'>
       <cmd send='\x17\x17\r' exp_ok='>'> <!-- we are already logged -->
         <expect_list>
-	  <expect out='(login-id:|password:)'>
-	    <cmd send='{$passwd1}\r' exp_ok='>'>
-	      <expect_list>
-		<expect out='(login-id:|password:)'>
-		  <cmd send='{$passwd1}\r' exp_ok='>'>
-		    <expect_list>
-		      <expect out='(login-id:|password:)'> 
-			<!-- Wrong passwd (after three fails)-->
-			<cmd return='4'/> 
-		      </expect>
-		    </expect_list>
-		  </cmd>
-		</expect>
-	      </expect_list>
-	    </cmd>
-	  </expect>
-	  <expect out='\)#'>
-	    <cmd send='quit\r' exp_ok='>'/>
-	  </expect>
-	</expect_list>
+          <expect out='(login-id:|password:)'>
+            <cmd send='{$passwd1}\r' exp_ok='>'>
+              <expect_list>
+                <expect out='(login-id:|password:)'>
+                  <cmd send='{$passwd1}\r' exp_ok='>'>
+                    <expect_list>
+                      <expect out='(login-id:|password:)'> 
+                        <!-- Wrong passwd (after three fails)-->
+                        <cmd return='4'/> 
+                      </expect>
+                    </expect_list>
+                  </cmd>
+                </expect>
+              </expect_list>
+            </cmd>
+          </expect>
+          <expect out='\)#'>
+            <cmd send='quit\r' exp_ok='>'/>
+          </expect>
+        </expect_list>
       </cmd>
     </cmd_func>
 
@@ -631,26 +637,26 @@
     <cmd_func id='authNokiaM1112test'>
       <cmd send='\x17\x17\r' exp_ok='ddd>'> <!-- we are already logged -->
         <expect_list>
-	  <expect out='(login-id:|password:)'>
-	    <cmd send='1\r' exp_ok='>'>
-	      <expect_list>
-		<expect out='(login-id:|password:)'>
-		  <cmd send='11\r' exp_ok='>'>
-		    <expect_list>
-		      <expect out='(login-id:|password:)'> 
-			<!-- Wrong passwd (after three fails)-->
-			<cmd return='4'/> 
-		      </expect>
-		    </expect_list>
-		  </cmd>
-		</expect>
-	      </expect_list>
-	    </cmd>
-	  </expect>
-	  <expect out='\)#'>
-	    <cmd send='quit\r' exp_ok='>'/>
-	  </expect>
-	</expect_list>
+          <expect out='(login-id:|password:)'>
+            <cmd send='1\r' exp_ok='>'>
+              <expect_list>
+                <expect out='(login-id:|password:)'>
+                  <cmd send='11\r' exp_ok='>'>
+                    <expect_list>
+                      <expect out='(login-id:|password:)'> 
+                        <!-- Wrong passwd (after three fails)-->
+                        <cmd return='4'/> 
+                      </expect>
+                    </expect_list>
+                  </cmd>
+                </expect>
+              </expect_list>
+            </cmd>
+          </expect>
+          <expect out='\)#'>
+            <cmd send='quit\r' exp_ok='>'/>
+          </expect>
+        </expect_list>
       </cmd>
     </cmd_func>
    

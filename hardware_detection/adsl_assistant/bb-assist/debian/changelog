@@ -63,8 +63,10 @@ bb-assist (0.4) unstable; urgency=low
   * return exit of sys operations
   * better clean of /etc/network/interfaces
   * use of subprocess.call instead of os.system
+  * Fixed eagle with subprocess call bug
+  * fixed efficient 'set passwd' when no has password
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Tue,  1 Nov 2005 13:33:01 +0100
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Wed,  2 Nov 2005 09:56:18 +0100
 
 bb-assist (0.3) unstable; urgency=low
 

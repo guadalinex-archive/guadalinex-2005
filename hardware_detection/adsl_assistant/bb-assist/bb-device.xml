@@ -98,6 +98,9 @@
       <postverif>hasEth</postverif>
       <!--<postverif>hasTTY</postverif> Not necessary -->
     </postverif_list>
+    <defuivalue_list>
+      <defuivalue name='entryIpDevToConf' value='10.0.0.1'/>
+    </defuivalue_list>
   </bb_device>
 
   <bb_device id='0005' name='Nokia M1112 ADSL Router' image='nokia1112.png'>

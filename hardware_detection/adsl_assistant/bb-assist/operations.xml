@@ -130,7 +130,7 @@
     <firmware>*</firmware>
     <initial_func>verifEff5660</initial_func>
     <default_timeout>15</default_timeout>
-    <send_delay>100</send_delay>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidEffSpeedAdvice</druid_page>
       <druid_page>druidVerifParamsConf</druid_page>
@@ -146,7 +146,7 @@
     <firmware>*</firmware>
     <initial_func>confEff5660</initial_func>
     <default_timeout>15</default_timeout>
-    <send_delay>100</send_delay>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidEffSpeedAdvice</druid_page>
       <druid_page>druidUsuIP</druid_page>
@@ -168,7 +168,7 @@
     <firmware>*</firmware>
     <initial_func>confEff5660</initial_func>
     <default_timeout>15</default_timeout>
-    <send_delay>100</send_delay>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidEffSpeedAdvice</druid_page>
       <druid_page>druidDinamConf</druid_page>
@@ -190,7 +190,7 @@
     <firmware>*</firmware>
     <initial_func>confEff5660</initial_func>
     <default_timeout>15</default_timeout>
-    <send_delay>100</send_delay>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidEffSpeedAdvice</druid_page>
       <druid_page>druidUsuIP</druid_page>
@@ -214,7 +214,7 @@
     <firmware>*</firmware>
     <initial_func>confEff5660</initial_func>
     <default_timeout>15</default_timeout>
-    <send_delay>100</send_delay>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidEffSpeedAdvice</druid_page>
       <druid_page>druidDinamConf</druid_page>
@@ -238,7 +238,7 @@
     <firmware>*</firmware>
     <initial_func>chgPassEff5660</initial_func>
     <default_timeout>15</default_timeout>
-    <send_delay>100</send_delay>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidEffSpeedAdvice</druid_page>
       <druid_page>druidPasswdSel</druid_page>
@@ -256,7 +256,7 @@
     <firmware>*</firmware>
     <initial_func>resetEff5660</initial_func>
     <default_timeout>15</default_timeout>
-    <send_delay>100</send_delay>
+    <send_delay>0</send_delay>
     <druid_page_list>
       <druid_page>druidEffSpeedAdvice</druid_page>
       <druid_page>druidPasswdSel</druid_page>

@@ -421,12 +421,12 @@ def bb_eagleconf(devcf, sys_output_file):
         updatedns = 0
         startonboot = 1
     pwd_enc = '1' # FIXME: test this
-    retsys = subprocess.call(["/usr/sbin/eagleconfig", "\"--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%08d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=%s|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO\"" % (int(devcf.param['vpi']), int(devcf.param['vci']), enc, isp, login, passwd, pwd_enc, staticIP, updatedns, startonboot)],
+    param = " '--params=LINETYPE=00000001|VPI=%07x|VCI=%08x|ENC=%08d|ISP=%s|ISP_LOGIN=%s|ISP_PWD=%s|PWD_ENCRYPT=%s|STATIC_IP=%s|UPDATE_DNS=%d|START_ON_BOOT=%d|USE_TESTCONNEC=0|EU_LANG=|FORCE_IF=auto|CMVEI=WO|CMVEP=WO'" % (int(devcf.param['vpi']), int(devcf.param['vci']), enc, isp, login, passwd, pwd_enc, staticIP, updatedns, startonboot)
+    retsys = subprocess.call("/usr/sbin/eagleconfig" + param, shell=True,
                              stdout=sys_output_file, stderr=sys_output_file)
     if (retsys == 0):
-        retsys = subprocess.call(["rm", "/etc/eagle-usb/eagle-usb_must_be_configured 2>/dev/null"], 
-                                 stdout=sys_output_file, stderr=sys_output_file)
-    if (retsys == 0):
+        if os.path.exists("/etc/eagle-usb/eagle-usb_must_be_configured"):
+            os.remove("/etc/eagle-usb/eagle-usb_must_be_configured")
         return BBNOERR
     else:
         return BBERREAGLE
