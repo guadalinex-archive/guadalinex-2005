@@ -4,6 +4,8 @@
 import dbus
 import thread
 import logging
+import os
+import time
 
 if getattr(dbus, "version", (0, 0, 0)) >= (0, 41, 0):
     import dbus.glib
@@ -15,9 +17,11 @@ class NotificationDaemon(object):
     """
 
     def __init__(self): 
+        self.logger = logging.getLogger()
         bus = dbus.SessionBus()
         obj = bus.get_object('org.freedesktop.Notifications',
                 '/org/freedesktop/Notifications')
+
         self.iface = dbus.Interface(obj, 'org.freedesktop.Notifications')
 
     # Main Message #######################################################
@@ -33,7 +37,18 @@ class NotificationDaemon(object):
 
                 self.iface.CloseNotification(dbus.UInt32(nid))
 
-            self.iface.connect_to_signal("ActionInvoked", action_invoked)
+            condition = False
+            while not condition:
+                try:
+                    self.logger.debug("Trying to connect to ActionInvoked")
+                    self.iface.connect_to_signal("ActionInvoked", action_invoked)
+                    condition = True
+	            except:
+                    logmsg = "ActionInvoked handler not configured. "
+                    logmsg += "Trying to run notification-daemon."
+                    self.logger.warning(logmsg)
+                    os.system('/usr/lib/notification-daemon/notification-daemon &')                
+                    time.sleep(0.2)
 
         else:
             #Fixing no actions messages
@@ -51,7 +66,6 @@ class NotificationDaemon(object):
                 [(1,2)], 
                 dbus.Boolean(1),
                 dbus.UInt32(7))
-
         return res
 
 
