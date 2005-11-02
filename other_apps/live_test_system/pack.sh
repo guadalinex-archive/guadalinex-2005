@@ -43,6 +43,6 @@ if [ ! -e lab/gparted/ ]; then
 fi
 
 if [ -e live_test/sources/tmp/ ]; then
-    cp peez2*.deb lab/gparted*.deb lab/ubuntu-express*.deb live_test/sources/tmp/
+    cp lab/gparted*.deb lab/ubuntu-express*.deb live_test/sources/tmp/
 fi
 

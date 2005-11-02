@@ -18,11 +18,10 @@ echo "Deleting doc ..."
 rm -rf usr/doc/* usr/share/doc/*
 echo "Resetting language ..."
 export LANGUAGE="es_ES.UTF-8"
-echo "Removing old peez2, ubuntu-express and gparted packages ..."
-dpkg --remove `dpkg -l | grep peez2 | cut -d' ' -f 3`
+echo "Removing old ubuntu-express and gparted packages ..."
 dpkg --remove `dpkg -l | grep ubuntu-express | cut -d' ' -f 3`
 dpkg --remove `dpkg -l | grep gparted | cut -d' ' -f 3`
-echo "Installing new peez2, ubuntu-express and gparted packages in tmp/ ..."
+echo "Installing new ubuntu-express and gparted packages in tmp/ ..."
 pushd tmp/
 dpkg --install *.deb
 apt-get -y install -f

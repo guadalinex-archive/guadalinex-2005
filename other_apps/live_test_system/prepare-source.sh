@@ -24,10 +24,6 @@ do
 [ -d $i/Desktop ] && cp ubuntu-express.desktop $i/Desktop
 done
 
-# Patching peez with good version
-cp $1/usr/bin/peez2 $1/usr/bin/peez2.BACKUP
-cp peez2 $1/usr/bin
-
 # Copying pkgs to system tmp
 cp *deb $1/tmp
 
