@@ -27,7 +27,7 @@ install:
 
 	install -m 755 $(CURDIR)/server_clone.sh $(BUILDDIR)/usr/sbin/server-clone
 	install -m 755 $(CURDIR)/server-clone-start.sh $(BUILDDIR)/usr/sbin/server-clone-start
-	install -m 644 $(CURDIR)/udhcpd.conf $(BUILDDIR)/usr/share/server-clone/udhcpd.conf
+	install -m 644 $(CURDIR)/conf/udhcpd.conf $(BUILDDIR)/usr/share/server-clone/udhcpd.conf
 	install -m 755 $(CURDIR)/isolinux/* $(BUILDDIR)/usr/share/server-clone/isolinux/
 
 # Build architecture-independent files here.
