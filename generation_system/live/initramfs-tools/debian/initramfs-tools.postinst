@@ -39,9 +39,6 @@ if [ ! -e /etc/mkinitramfs/modules ]; then
 	cp /usr/share/doc/initramfs-tools/examples/modules /etc/mkinitramfs/
 fi
 
-if [ -e /usr/share/initramfs-tools/live-scripts/.svn ]; then
-	find /usr/share/initramfs-tools/ -name .svn | xargs rm -fr 
-fi
 
 #DEBHELPER#
 
