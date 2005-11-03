@@ -7,7 +7,7 @@ Standards-Version: 3.6.2.1
 
 Package: genlive
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, syslinux, initramfs-tools (>= 0.32uda1), squashfs-tools, mkisofs, linux-image-2.6.12-9-386 (>= 2.6.12-9.23)
+Depends: ${shlibs:Depends}, ${misc:Depends}, syslinux, initramfs-tools (>= 0.32uda2), squashfs-tools, mkisofs, linux-image-2.6.12-9-386 (>= 2.6.12-9.23)
 Recommends: 
 Description: Live generation system
  This is a system for generating live systems using initramfs.
