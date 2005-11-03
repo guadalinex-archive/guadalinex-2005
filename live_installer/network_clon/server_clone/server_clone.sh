@@ -13,8 +13,7 @@ done
 
 # Create temp directories
 ISOLINUXDIR=$(mktemp -d /tmp/client-image.XXXXXX)
-INITRAMFSPARENT="/tmp/"
-INITRAMFSDIR="${INITRAMFSPARENT}initramfs"
+CONFDIR="/usr/share/clone-server/conf"
 
 # Default options (by now)
 NET=192.168.10.1
@@ -78,11 +77,7 @@ Gracias." \
     10 50
 
 
-# untarting the initramfs template
-
-tar -C ${INITRAMFSPARENT} -zxf /usr/share/server-clone/initramfs.tgz >> /tmp/server-clone.log 2>&1
-
-cat > ${INITRAMFSDIR}/etc/config.cfg  <<EOF
+cat > ${CONFDIR}/config.cfg  <<EOF
 serverip=$NET
 mountpoints=$MOUNTPOINTS
 username=$USER
@@ -102,10 +97,9 @@ IP=$NET
 EOF
 
 # Creating the initramfs file
-(cd ${INITRAMFSDIR} && find . | cpio --quiet --dereference -o -H newc | gzip -9 >${ISOLINUXDIR}/initramfs)
+mkinitramfs -d ${CONFDIR} -o ${ISOLINUXDIR}/initramfs >> /tmp/server-clone.log 2>&1
 
 # Placeing the rest of the stuff
-
 cp -a /usr/share/server-clone/isolinux/* ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
 
 # Create the cd image
