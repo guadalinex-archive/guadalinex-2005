@@ -104,14 +104,9 @@ ISOS="/tmp"
 ISO="${ISOS}/client-image-$(date +%Y%m%d%H%M).iso"
 LOG_FILE="/var/log/installer.log"
 
-if [ ! -d ${MASTER}/isolinux ]; then
-        mkdir -p ${MASTER}/isolinux >> /tmp/server-clone.log 2>&1
+if [ ! -d ${ISOLINUXDIR} ]; then
+        mkdir -p ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
 fi
-
-if [ ! -d ${MASTER}/META ]; then
-        mkdir -p ${MASTER}/META >> /tmp/server-clone.log 2>&1
-fi
-
 
 cp -a /usr/lib/syslinux/isolinux.bin ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
 cp -a /usr/share/server-clone/conf/isolinux.cfg ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1

@@ -26,8 +26,8 @@ else
 fi
 
 if [ "${BOOT}" == "clone" ]; then
-	if [ -e /usr/share/server-clone/config.cfg ]; then
-		cp -a /usr/share/server-clone/config.cfg ${DESTDIR}/conf/
+	if [ -e /usr/share/server-clone/conf/config.cfg ]; then
+		cp -a /usr/share/server-clone/conf/config.cfg ${DESTDIR}/etc/
 	else
 		exit 1
 	fi
