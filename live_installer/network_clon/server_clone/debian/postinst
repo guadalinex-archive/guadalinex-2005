@@ -1,7 +1,0 @@
-#!/bin/sh
-set -e
-
-if [ -e /usr/share/server-clone/clone-scripts/.svn ]; then
-        find /usr/share/server-clone/ -name .svn | xargs rm -fr
-fi
-
