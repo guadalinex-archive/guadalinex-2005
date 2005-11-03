@@ -1,3 +1,9 @@
+server-clone (0.4-3) unstable; urgency=low
+
+  * Integred the system with the initramfs-tools one.
+
+ -- Juanje Ojeda <juanje@interactors.coop>  Thu, 03 Nov 2005 14:25:51 +0100
+
 server-clone (0.4-2) unstable; urgency=low
 
   * Added initramfs template, the kernel and finished some scripts.
