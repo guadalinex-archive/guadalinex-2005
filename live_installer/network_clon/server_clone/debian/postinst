@@ -1,4 +1,7 @@
 #!/bin/sh
 set -e
 
-install -m 755 /usr/lib/syslinux/isolinux.bin /usr/share/server-clone/isolinux/
+if [ -e /usr/share/server-clone/clone-scripts/.svn ]; then
+        find /usr/share/server-clone/ -name .svn | xargs rm -fr
+fi
+
