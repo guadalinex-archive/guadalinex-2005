@@ -12,7 +12,7 @@ for i in $DEVS
 done
 
 # Create temp directories
-CONFDIR="/usr/share/clone-server/conf"
+CONFDIR="/usr/share/server-clone/conf"
 
 # Default options (by now)
 NET=192.168.10.1
@@ -113,8 +113,8 @@ fi
 
 
 cp -a /usr/lib/syslinux/isolinux.bin ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
-cp -a /usr/share/clone-server/conf/isolinux.cfg ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
-cp -a /usr/share/clone-server/conf/splash.rle ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
+cp -a /usr/share/server-clone/conf/isolinux.cfg ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
+cp -a /usr/share/server-clone/conf/splash.rle ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
 cp -a /boot/vmlinuz-${KERNEL} ${ISOLINUXDIR}/vmlinuz >> /tmp/server-clone.log 2>&1
 mkinitramfs -d ${CONFDIR} -o ${ISOLINUXDIR}/initramfs  ${KERNEL} >> /tmp/server-clone.log 2>&1
 
