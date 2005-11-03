@@ -1,4 +1,79 @@
-Guadalinex 2005 v.1.0a (05-10-06)
+Guadalinex 2005 v.10b (04-11-05)
+---------------------
+
+Major changes:
+
+- No-live-installer:
+  - Partitioning system made easier and more automatic
+  - Generation of a "/", "/home" and swap automatic partitioning scheme
+  - Greatly improved network configuration at the end of the installer
+  - Modifications in gnome-network-conf to detect Guadalinex
+  - Improved GRUB artwork
+  - No live installer generation system
+
+- Live installer:
+  - Integrated partition assistant:
+    - Added recycle option to partition system (easier for begginers)
+    - Added free space option (easier for begginers)
+  - Improved partitions and mount points association algorithm
+  - Improved mount points validation to check size and types
+  - Improved Grub detection system
+  
+  
+- Distribution:
+  - Added hardware management and notification system (hermes)
+  - Added hermes assistant so that users can send logs
+  - Added ADSL autoconfiguration utility (bb-assist)
+  - Included suppletory disk installer (as a part of hermes)
+  - Suppletory disk generator finished
+  - Completely rewritten live system based on initramfs and unionfs
+  - Added desktop icons
+  - Added icon to _all_ apps in the menu (many didn't have)
+  - Added background image for grub (no live installer)
+  - Added new apps: gxine, grip, beep-media-player
+  - Automatic graphical login in live
+  
+
+Minor changes:
+
+- No-live-installer:
+  - Improved X autoconfiguration (included discover pkg)
+  - Changed Ubuntu -> Guadalinex
+  - Updated isolinux images
+  
+- Live-installer:
+  - Fixed gparted Alt+Tab bug
+  - Corrected quick guide images
+  - Improved GUI
+  - Translated some English messages to Spanish
+  - Added menu entry
+  - Fixed mounted partitions bug, which made an fsck during first boot of the
+  installed system
+  - Fixed Help button on first window
+  - Added "Next" & "Cancel" buttons
+  - Fixed user creation error
+  - Changed gparted save & exit button
+  - Improved user name validation
+  - Improved gparted integration
+  - Swap file (not in a partition)
+  - Improved warning messages for critical operations
+  - Fixed too large images during installation
+  - Umounting partitions before installation
+  
+- Distribution:
+  - Fixed OOo2 data base icon bug
+  - Changed trash icon
+  - Added tango icons set
+  - Translated english entries in menu
+  - Java added
+  - K3b removed
+  - Changed GNOME splash image
+  - Changed GNOME Ubunt applications icon
+  - Added help in spanish in isolinux
+  - Updated image for background and gdm
+  - Uda-docs integrated
+
+Guadalinex 2005 v.1.0a (05-10-05)
 ----------------------
 
 - No-live-installer:
