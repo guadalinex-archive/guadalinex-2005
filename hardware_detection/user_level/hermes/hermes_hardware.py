@@ -166,13 +166,21 @@ class DeviceListener:
         for ele in values:
             key = ele[0]
 
-            if udi in self.udi_dict.keys():
+            if self.udi_dict.has_key(udi):
                 #Actualizamos las propiedades del objeto actor
                 actor = self.udi_dict[udi]
                 obj = self.bus.get_object('org.freedesktop.Hal', udi)
                 obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
 
                 actor.properties = obj.GetAllProperties()
+
+                print
+                print
+                print "#############################################"
+                print "PROPIEDAD MODIFICADA:"
+                print "udi:", udi
+                print key, ':', actor.properties[key]
+                print "#############################################"
                 actor.on_modified(key)
 
 
