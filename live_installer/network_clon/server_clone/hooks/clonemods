@@ -1,0 +1,32 @@
+#!/bin/sh
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# Hooks for loading modules necessaries for the live system into the initramfs
+
+. /usr/share/initramfs-tools/hook-functions
+
+if [ -e /usr/share/server-clone/initramfs.conf ]; then
+	. /usr/share/server-clone/initramfs.conf
+else
+	exit 0
+fi
+
+if [ "${BOOT}" == "clone" ]; then
+	for x in squashfs unionfs loop vfat ntfs isofs ; do
+		manual_add_modules ${x}
+	done
+fi

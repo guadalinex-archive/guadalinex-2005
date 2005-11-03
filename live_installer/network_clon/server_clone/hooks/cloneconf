@@ -1,0 +1,34 @@
+#!/bin/sh
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# Hooks for loading modules necessaries for the live system into the initramfs
+
+. /usr/share/initramfs-tools/hook-functions
+
+if [ -e /usr/share/server-clone/initramfs.conf ]; then
+	. /usr/share/server-clone/initramfs.conf
+else
+	exit 0
+fi
+
+if [ "${BOOT}" == "clone" ]; then
+	if [ -e /usr/share/server-clone/config.cfg ]; then
+		cp -a /usr/share/server-clone/config.cfg ${DESTDIR}/conf/
+	else
+		exit 1
+	fi
+fi

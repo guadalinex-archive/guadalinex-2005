@@ -1,0 +1,38 @@
+#!/bin/sh
+
+PREREQ="parted"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+
+# Finding the first disk
+DISK=$(grep '[sh]d[a-g]' /proc/partitions | while read a b c d ; do echo $d | cut -c 0-3 ; done | sort -u | head -1)
+DISK='/dev/${DISK}'
+
+# We alrady now there is just 2 partitions and
+# which one is each
+ROOT_PARTITION='$DISK1'
+SWAP_PARTITION='$DISK2'
+
+# Format the partitions
+mkfs.ext3 $ROOT_PARTITION >> /tmp/initramfs.debug 2>&1
+mkswap $SWAP_PARTITION >> /tmp/initramfs.debug 2>&1
+
+# Activate the swap
+swapon $SWAP_PARTITION >> /tmp/initramfs.debug 2>&1
+
+# Mounting main partition
+mkdir -p /mnt/dev/ >> /tmp/initramfs.debug 2>&1
+mount -t ext3 $ROOT_PARTITION /mnt/dev/ >> /tmp/initramfs.debug 2>&1
+
