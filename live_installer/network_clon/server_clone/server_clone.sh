@@ -12,7 +12,6 @@ for i in $DEVS
 done
 
 # Create temp directories
-ISOLINUXDIR=$(mktemp -d /tmp/client-image.XXXXXX)
 CONFDIR="/usr/share/clone-server/conf"
 
 # Default options (by now)
@@ -97,16 +96,33 @@ IP=$NET
 EOF
 
 # Creating the initramfs file
-mkinitramfs -d ${CONFDIR} -o ${ISOLINUXDIR}/initramfs >> /tmp/server-clone.log 2>&1
 
 # Placeing the rest of the stuff
-cp -a /usr/share/server-clone/isolinux/* ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
+KERNEL="2.6.12-9-386"
+ISOLINUXDIR="/tmp/isolinux"
+ISOS="/tmp"
+LOG_FILE="/var/log/installer.log"
+
+if [ ! -d ${MASTER}/isolinux ]; then
+        mkdir -p ${MASTER}/isolinux >> /tmp/server-clone.log 2>&1
+fi
+
+if [ ! -d ${MASTER}/META ]; then
+        mkdir -p ${MASTER}/META >> /tmp/server-clone.log 2>&1
+fi
+
+
+cp -a /usr/lib/syslinux/isolinux.bin ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
+cp -a /usr/share/clone-server/conf/isolinux.cfg ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
+cp -a /usr/share/clone-server/conf/splash.rle ${ISOLINUXDIR}/ >> /tmp/server-clone.log 2>&1
+cp -a /boot/vmlinuz-${KERNEL} ${ISOLINUXDIR}/vmlinuz >> /tmp/server-clone.log 2>&1
+mkinitramfs -d ${CONFDIR} -o ${ISOLINUXDIR}/initramfs  ${KERNEL} >> /tmp/server-clone.log 2>&1
 
 # Create the cd image
 
 mkisofs -l -r -J -V "Guadalinex Clone System" -hide-rr-moved -v -b isolinux.bin \
 -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table \
--o /tmp/client-image.iso ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
+-o ${ISOS}/client-image-$(date +%Y%m%d%H%M).iso ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
 
 dialog --title "Generando la imagen de los clientes" \
     --msgbox "\nSe ha generando la imagen de los clientes.\n
@@ -117,6 +133,6 @@ Si lo desea puede encontrar los logs del proceso\n
 realizado en: /tmp/server-clone.log" \
     10 50
 
-rm -fr ${INITRAMFSDIR} ${ISOLINUXDIR}
+rm -fr ${ISOLINUXDIR}/*
 
 
