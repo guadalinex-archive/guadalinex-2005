@@ -1,0 +1,246 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+#
+# Modified to make a template file for a multi-binary package with separated
+# build-arch and build-indep targets  by Bill Allombert 2001
+
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+# DebHelper control
+export DH_ALWAYS_EXCLUDE=CVS
+
+
+# Name of packages
+package	= eagle-usb
+pdata	= $(package)-data
+putils	= $(package)-utils
+psource	= $(package)-modules-source
+
+
+# FLAGS
+CFLAGS = -Wall
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -g
+endif
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+
+# FOR AUTOCONF 2.52 AND NEWER ONLY
+export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+  confflags += --build $(DEB_HOST_GNU_TYPE)
+else
+  confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
+endif
+
+
+.PHONY: configure
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	# Add here commands to configure the package.
+	./autogen.sh
+	CONFIG_FILES=Makefile.common ./configure $(confflags) \
+		--prefix=/ \
+		--exec-prefix=/usr \
+		--sysconfdir=/etc \
+		--libdir=/usr/lib \
+		--libexecdir=/usr/lib \
+		--datadir=/usr/share \
+		--includedir=/usr/include \
+		--infodir=/usr/share/info \
+		--mandir=/usr/share/man \
+		--with-dsp-dir=/usr/share/$(package)/dsp \
+		--disable-module
+	touch configure-stamp
+
+#Architecture 
+.PHONY: build
+build: build-indep build-arch
+
+.PHONY: build-indep
+build-indep: build-indep-stamp
+build-indep-stamp: configure-stamp 
+
+	# Add here commands to compile the $(pdata) package.
+	$(MAKE) -C driver/firmware
+
+	# No compile for the $(psource) package.
+
+	touch build-indep-stamp
+
+.PHONY: build-arch
+build-arch: build-arch-stamp
+
+build-arch-stamp: configure-stamp 
+
+	# Add here commands to compile the $(putils) package.
+	$(MAKE) -C utils/scripts
+	$(MAKE) -C driver/user
+	$(MAKE) -C pppoa
+	$(MAKE) -C doc man
+
+	touch build-arch-stamp
+
+.PHONY: clean
+clean: 
+	dh_testdir
+	dh_testroot
+
+	# Add here commands to clean up after the build process.
+	$(MAKE) maintainer-clean 
+
+	rm -f build-arch-stamp build-indep-stamp configure-stamp
+	dh_clean 
+
+.PHONY: install
+install: install-indep install-arch
+
+.PHONY: install-indep
+install-indep: build-indep
+	dh_testdir
+	dh_testroot
+	dh_clean -k -i 
+	dh_installdirs -i
+
+	# Add here commands to install the $(pdata) package into 
+	# debian/$(pdata).
+	$(MAKE) DESTDIR=$(CURDIR)/debian/$(pdata) -C driver/firmware install
+
+	# Add here commands to install the $(psource) package into 
+	# debian/$(psource).
+
+	# Create the directories to install the source into
+	dh_installdirs -p$(psource)	usr/src/modules/$(package) \
+					usr/src/modules/$(package)/debian \
+					usr/src/modules/$(package)/driver
+
+	# Copy only the driver source to the proper location
+	cp README VERSION configure Makefile.common.in install-sh \
+		debian/$(psource)/usr/src/modules/$(package)/
+	find driver/ -type f -maxdepth 1 -exec \
+		cp "{}" debian/$(psource)/usr/src/modules/$(package)/driver/ \;
+
+	# Copy the needed debian/ pieces to the proper location
+	cd debian && for f in `ls *.modules`; do \
+		cp $$f $(psource)/usr/src/modules/$(package)/debian/`basename $$f .modules`; done
+	cd debian && cp README.Debian changelog copyright compat \
+		$(psource)/usr/src/modules/$(package)/debian/
+
+	find debian/$(psource)/usr/src/modules/$(package) \
+		-type d -exec chmod 755 {} \;
+	find debian/$(psource)/usr/src/modules/$(package) \
+		-type f -exec chmod 644 {} \;
+	chmod 754 debian/$(psource)/usr/src/modules/$(package)/configure \
+		debian/$(psource)/usr/src/modules/$(package)/debian/rules
+	chgrp -R src debian/$(psource)/usr/src/modules
+	tar czCf debian/$(psource)/usr/src/ \
+		debian/$(psource)/usr/src/$(package).tar.gz modules/
+	rm -rf debian/$(psource)/usr/src/modules/
+
+	dh_install -i
+
+.PHONY: install-arch
+install-arch: build-arch
+	dh_testdir
+	dh_testroot
+	dh_clean -k -s 
+	dh_installdirs -s
+
+	# Add here commands to install the $(putils) package into 
+	# debian/$(putils).
+	$(MAKE) DESTDIR=$(CURDIR)/debian/$(putils) -C utils/scripts	install
+	$(MAKE) DESTDIR=$(CURDIR)/debian/$(putils) -C driver/user	install
+	$(MAKE) DESTDIR=$(CURDIR)/debian/$(putils) -C pppoa		install
+
+	# To mute lintian due to the use of eagleconfig
+	dh_installdirs -p$(putils) /usr/share/lintian/overrides/
+	install -o root -g root -m 644 debian/$(putils).lintian \
+		debian/$(putils)/usr/share/lintian/overrides/$(putils)
+
+	dh_install -s
+
+# Build architecture independant packages using the common target.
+# Build $(pdata).deb and $(psource).deb
+.PHONY: binary-indep
+binary-indep: build-indep install-indep
+	dh_testdir -i
+	dh_testroot -i
+	dh_installchangelogs -i
+	dh_installdocs -i
+#	dh_installexamples -i
+#	dh_installmenu -i
+	dh_installdebconf -i
+#	dh_installlogrotate -i
+#	dh_installemacsen -i
+#	dh_installpam -i
+#	dh_installmime -i
+#	dh_installinit -i
+#	dh_installcron -i
+#	dh_undocumented -i
+#	dh_installinfo -i
+	dh_installman -i
+	dh_link -i
+	dh_strip -i
+	dh_compress -i 
+	dh_fixperms -i
+#	dh_perl -i
+#	dh_python -i
+	dh_makeshlibs -i
+	dh_installdeb -i
+	dh_shlibdeps -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture dependant packages using the common target.
+# Build $(putils).deb
+.PHONY: binary-arch
+binary-arch: build-arch install-arch
+	dh_testdir -a
+	dh_testroot -a
+	dh_installchangelogs -a
+	dh_installdocs -a
+#	dh_installexamples -a
+#	dh_installmenu -a
+	dh_installdebconf -a
+#	dh_installlogrotate -a
+#	dh_installemacsen -a
+#	dh_installpam -a
+#	dh_installmime -a
+#	dh_installinit -a
+#	dh_installcron -a
+#	dh_installppp -a
+#	dh_undocumented -a
+#	dh_installinfo -a
+	dh_installman -a
+	dh_link -a
+	dh_strip -a
+	dh_compress -a 
+#	dh_fixperms -a
+#	dh_perl -a
+#	dh_python -a
+	dh_makeshlibs -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+.PHONY: binary
+binary: binary-indep binary-arch

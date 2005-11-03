@@ -1,0 +1,225 @@
+# $Id: p2,v 1.18 2005/01/04 21:05:32 Tux Exp $
+# Name: p2 (without polish characters)
+# Goal: polish localization
+# Author: Lubek
+# Encoding: UTF-8
+
+########################################  eagleconfig  ############################################
+SEP_MSG=\
+"=============================================================================="
+
+GREETING_MSG=\
+"=================== PL: Konfiguracja polaczenia ADSL ===================="
+
+INFO_MSG=\
+"Info: Modem musi byc podlaczony zanim zaczniesz \n"\
+"Mozesz zatrzymac skrypt naciskajac [Ctrl][c]"\
+"\n"
+
+LOGIN_MSG=\
+"\n"\
+"Podaj nazwe uzytkownika do polaczenia z ISP :"
+
+PWD_MSG=\
+"\n"\
+"Podaj haslo (dostarczone przez ISP):"
+
+KEEP_OLD_PWD_MSG=\
+"\n"\
+"Login i haslo zostalo znalezione w pliku konfiguracyjnym ppp.\n"\
+"Czy zachowac login/haslo ?"
+
+PWD_ENCRYPT_MSG=\
+"\n"\
+"Czy twoj ISP obsluguje szyfrowanie hasel ?"
+
+UPDATE_DNS_MSG=\
+"\n"\
+"Czy chcesz autoatycznie aktualizowac liste serwerow DNS?"
+
+START_ON_BOOT_MSG=\
+"\n"\
+"Czy chcesz aby polaczenie startowalo wraz ze startem systemu ?"
+
+USE_TESTCONNEC_MSG=\
+"\n"\
+"Czy chcesz aby 'cron' testowal polaczenie co dwie minuty\n"\
+"i wznawial je, jezeli zostanie zerwane"
+
+FORCE_INTERFACE_MSG=\
+"\n"\
+"Mozesz teraz podac nazwe wirtualnego interfejsu modemu.\n"\
+"Jezeli chcesz aby kernel automatyczne przydzielal nazwe wpisz \"auto\" :"
+
+GENER_MSG=\
+"\n"\
+"Konfiguracja zakonczona z powodzeniem."
+
+MODULE_MSG=\
+"Ladowanie modulu...                 "
+
+DSP_MSG=\
+"Ladowanie DSP & opcji modemu...     "
+
+WAIT_OPER_MSG=\
+"Oczekiwanie na gotowosc modemu...   "
+
+OK_MSG=\
+"[ OK ]"
+
+ERR_MSG=\
+"[ Error ]"
+
+EAGLECONFIG_USAGE_MSG=\
+"\n"\
+"Opcje: eagleconfig [-h] [-l] [-e]\n"\
+" -h|--help\t\t: wypisuje te informacje\n"\
+" -l|--lang\t\t: wybiera jezyk dla skryptow (zapisany)\n"\
+"\t\t\t\t--lang=keep : wybiera aktualny jezyk (domyslnie)\n"\
+"\t\t\t\t--lang=auto : wykrywa jezyk (uzywa \$LANG)\n"\
+"\t\t\t\t--lang=LL : uzywa jezyka LL (en, fr...)\n"\
+" -e|--expert\t\t: ekspert (dodatkowe opcje)\n"\
+"\n"
+
+PPPOE_CANT_LAUNCH_MSG=\
+"\n"\
+"Error: pppoe nie moze zostac uruchomione. Przerywam..."\
+"\n"
+
+ISP_LIST_MSG=\
+"Wybierz konfiguracje sieci :\n"\
+"_______________________________________________________________________\n"\
+" . . . Kraj . . . . Siec. . . . . . . . . . .VPI VCI ENC"
+
+WRONG_CHOICE_MSG=\
+"\n"\
+"Error: To nie jest wlasciwy wybor. Przerywam..."\
+"\n"
+
+STATIC_IP_MSG=\
+"\n"\
+"Jezeli chcesz uzywac stalego IP, wpisz je teraz; \n"\
+"aby uzyskac IP od operatora nacisnij enter:"\
+"\n"
+
+EAGLECONFIG_END_MSG=\
+"\n"\
+"Mozesz teraz wydac komende \"startadsl\" aby nawiazac polaczenie."\
+"\n"
+
+YES_DEFAULT_MSG=\
+"[t]/n"
+
+NO_DEFAULT_MSG=\
+"t/[n]"
+
+
+#########################################  startadsl  #############################################
+ALREADY_MSG=\
+"\n"\
+"Polaczenie jest juz aktywne!"\
+"\n"
+
+CANT_SYNC_MSG=\
+"Nie mozna zsynchronizowac modemu!"
+
+NOT_OPER_MSG=\
+"\n"\
+"\n"\
+"Modem nie dziala!\n"\
+"Sprawdz rezultaty eaglestat aby sprawdzic jego stan!"\
+"\n"
+
+PPPD_ERR_MSG=\
+"Demon pppd nie uzyskal polaczenia!"
+
+IFUP_ERR_MSG=\
+"Nie udalo sie nawiazac polaczenia!"
+
+LOCK_MSG=\
+"\n"\
+"\n"\
+"Nie skonfigurowales jeszcze polaczenia!\n"\
+"Mozesz :\n"\
+"- uruchomic eagleconfig\n"\
+"- skonfigurowac recznie i skasowac ${EU_DIR}/eagle-usb_must_be_configured"\
+"\n"
+
+MIRE_DEG_MSG=\
+"Tylko uzytkownicy uzywajacy ppp moga polaczyc sie do mire!"\
+"\n"
+
+
+########################################  fctStartAdsl  ###########################################
+FCTSTART_USAGE_MSG=\
+"\n"\
+"Opcje: fctStartAdsl [-h] [-m] [-s] [-tN] [-a] [-d]\n"\
+" -h|--help\t\t: wypisuje te informacje\n"\
+" -m|--mire\t\t: polaczenie do mire\n"\
+" -s|--simple\t\t: uzywa ifconfig zamiast ifup/ifdown\n"\
+" -t|--timeout=[sec]\t: okresla czas oczekiwania na gotowosc modemu"\
+" -a|--ip=xx.xx.xx.xx\t: uzywa adresu ip, pociaga za soba uzycie trybu 'simple'\n"\
+" -d|--debug\t\t: uruchamia pppd w trybie debugowania\n"\
+"\n"
+
+
+########################################  fctStopAdsl  ############################################
+FCTSTOP_USAGE_MSG=\
+"\n"\
+"Opcje: fctStopAdsl [-h] [-f] [-s]\n"\
+" -h|--help\t\t: wypisuje te informacje\n"\
+" -f|--force\t\t: zmusza pppd do zamkniecia polaczenia (nawet gdy nie uzywa ppp)\n"\
+" -s|--simple\t\t: uzywa ifconfig zamiast ifup/ifdown"\
+"\n"
+
+
+###########################################  eu_dsp  ##############################################
+NO_PARAM_MSG=\
+"Nie mozna recznie uruchomic tego skryptu!"
+
+PPPD_OK_MSG=\
+"Polaczenie zostalo nawiazane"
+
+PPPD_ERROR_MSG=\
+"Error: nie mozna ustanowic polaczenia"
+
+
+###########################################  eu_init  #############################################
+START_SERVICE_MSG=\
+"Nawiazywanie polaczenia : "
+
+STOP_SERVICE_MSG=\
+"Konczenie uslugi eagle-usb : "
+
+RELOAD_SERVICE_MSG=\
+"Wprowadzanie nowych ustawien : "
+
+USAGE_SERVICE_MSG=\
+"Opcje: eagle-usb {start|stop|restart|reload|status}"\
+"\n"
+
+
+##########################################  testconnec  ###########################################
+TESTCONNEC_USAGE_MSG=\
+"\n"\
+"Opcje: testconnec [-h]\n"\
+" -h|--help\t\t: wypisuje te informacje"\
+"\n"
+
+TESTCONNEC_INSTALL_LOCK_MSG=\
+"Nie skonfigurowales jeszcze polaczenia! => testconnec nie moze zostac uruchomiony!"
+
+TESTCONNEC_ALREADY_LAUNCHED_MSG=\
+"testconnec jest juz uruchomiony (nie powinno sie to zdazac) => przerywam"
+
+TESTCONNEC_REBOOT_MSG=\
+"Modem padl! uruchamiam ponownie..."
+
+TESTCONNEC_NO_MODEM_MSG=\
+"Modem nie jest podlaczony..."
+
+TESTCONNEC_CONNECTION_LOST_MSG=\
+"Polaczenie zostalo utracone, restartuje je!"
+
+TESTCONNEC_CONNECTION_OK_MSG=\
+"Polaczenie jest OK"

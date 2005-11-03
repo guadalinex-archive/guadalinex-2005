@@ -1,0 +1,751 @@
+# $Id: configure.in,v 1.54 2005/01/16 21:55:16 Tux Exp $
+
+# Copyright (C) 2003      Jerome Marant
+#				2003-2005 Olivier Borowski
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+# Goal :
+#	configure script for the Eagle USB driver
+#                                               -*- Autoconf -*-
+#	Process this file with autoconf to produce a configure script.
+
+AC_PREREQ(2.50)
+AC_INIT(eagle-usb, 2.0.1)
+AC_CONFIG_SRCDIR([driver/eu_main.c])
+AC_CONFIG_FILES([Makefile.common])
+AC_CONFIG_COMMANDS([default], [[rm -f config.cache]]) # try to remove cache
+#AC_CONFIG_SUBDIRS(utils/eagleconnec)
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#                       Definition of global variables                        #
+# ___________________________________________________________________________ #
+
+PATH="/sbin:/usr/sbin:/usr/local/sbin:/bin:/usr/bin:/usr/local/bin"
+
+# Use in `display a summary' section.
+DEBUG=0
+
+# Current kernel version
+CUR_KERNELVER="`uname -r`"
+
+# Warning or error messages.
+KERNEL_SRC_MISSING_MSG="error: kernel-sources cannot be found!\n"
+KERNEL_SRC_MISSING_SUSE_MSG="error:\tkernel-sources cannot be found!\n\tYou should try to launch ./configure in root.\n"
+TCPIP_MISSING_MSG="error: some of TCP/IP utils are missing!\n"
+PIDOF_MISSING_MSG="error: pidof is missing!\n"
+PATH_WITH_SPACE_MSG="error:\tthe build path should not contain spaces!\n\tCurrent path is `pwd`"
+LANG_UNKN_MSG="\nerror: this language does not exist!"
+OLD_EAGLE_MSG="warning: a previous eagle-usb driver was found on your system.\n\t You should run 'make uninstall' now.\n"
+SERVICE_MISSING_MSG="warning: the \"internet\" service is missing on your distrib.\n\t You won't be able to start connexion on boot.\n"
+KERNEL_SRC_DIFF_MSG="warning: kernel-sources version is different from the current kernel.\n"
+GCC_VERSION_MSG="warning: current gcc version is not the same as the one used to\n\t compile the running kernel.\n"
+GCC_VERSION_MSG1="\t - current gcc version:          "
+GCC_VERSION_MSG2="\t - gcc version used for kernel:  "
+#DEBIAN_MSG="note: current gcc should be the same version as the one used to compile kernel.\n"
+NO_BOOT_METHOD_MSG="warning: unable to find a suitable method to start connection on boot.\n\t Please report this on the forum with additionnal details about\n\t your distribution!\n"
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#                       Definition of global functions                        #
+# ___________________________________________________________________________ #
+
+extract_release() {
+# $1 is the name of the file which contain the release number
+	#cat "$1" | sed -rne "s/.*release ([^ ]*).*/\1/p"
+	# TODO : ensure that "head" is available on each distrib!
+	head -n1 "$1" | sed "s/.*$2 //i" | cut -d" " -f1
+}
+
+
+# !!! This is not a comparison between floats !!!
+# examples: test_version 1.1 -eq 1.10 => false ; test_version 1.1 -eq 1.01 => true
+test_version() {
+# $1 is a version number
+# $2 is an arithmetic operator ( -eq, -ne, -lt, -le, -gt, or -ge )
+# $3 is a version number
+	local head1 tail1 head2 tail2
+
+	head1=`echo $1 | cut -d'.' -f1`
+	tail1=`echo $1 | sed -nre 's/[^.]*\.//p'`
+	head2=`echo $3 | cut -d'.' -f1`
+	tail2=`echo $3 | sed -nre 's/[^.]*\.//p'`
+
+	if test $head1 -eq $head2 -a -n "$tail1" -a -n "$tail2"; then
+		test_version $tail1 $2 $tail2
+	elif test $head1 $2 $head2; then
+		true
+	else
+		false
+	fi
+}
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#                           Options of command line                           #
+# ___________________________________________________________________________ #
+
+# ===== set default paths =====
+if echo "x${sysconfdir}" | grep -q 'x${prefix}' ; then
+	sysconfdir=/etc
+fi
+if test "x${prefix}" = "xNONE" ; then
+	prefix=/usr
+fi
+
+# ===== arg: kernel-source =====
+AC_ARG_WITH(kernel-src,
+[  --with-kernel-src=path     Path to kernel source (default=/lib/modules/{version}/build) ],
+KERNELSRC=${withval},
+KERNELSRC=/lib/modules/${CUR_KERNELVER}/build
+)
+if ! test -d "${KERNELSRC}" ; then
+	KERNELSRC=/usr/src/linux
+fi
+
+# ===== arg: dsp-dir =====
+AC_ARG_WITH(dsp-dir,
+[  --with-dsp-dir             Path to DSP files (default=/usr/share/eagle-usb/dsp) ],
+DSPDIR=${withval},
+DSPDIR="${datadir}/eagle-usb/dsp"
+)
+
+# ===== arg: use cmvs =====
+USE_CMVS=0
+AC_ARG_ENABLE(cmvs,
+[  --enable-cmvs              Use CMVs files])
+if test "${enable_cmvs}" = "yes" ; then
+	USE_CMVS=1
+fi
+
+# ===== arg: peers-dir =====
+AC_ARG_WITH(peers-dir,
+[  --with-peers-dir           Path to pppd option files (default=/etc/ppp/peers)],
+PPP_OPTIONS_DIR=${withval},
+PPP_OPTIONS_DIR=/etc/ppp/peers
+)
+PPP_OPTIONS_ADSL=${PPP_OPTIONS_DIR}/adsl
+PPP_OPTIONS_MIRE=${PPP_OPTIONS_DIR}/mire
+
+# ===== arg: language =====
+AC_ARG_WITH(lang,
+[  --with-lang=LL             Language (en/de/es/fr/gr/it/pl)],
+EU_LANG=${withval},
+EU_LANG="auto"
+)
+if test -z "${EU_LANG}" ; then
+	EU_LANG="auto"
+fi
+if test "${EU_LANG}" != "auto" -a ! -f ./utils/scripts/lang/${EU_LANG} ; then
+	echo -e "${LANG_UNKN_MSG} (${EU_LANG})"
+	exit 1
+fi
+
+# ===== arg: use hotplug? =====
+AC_ARG_ENABLE(hotplug,
+[  --disable-hotplug          Disable hotplugging (default enabled)])
+
+# ===== arg: use ifup/ifdown? =====
+AC_ARG_ENABLE(ifupdown,
+[  --disable-ifupdown         Use ifconfig instead of ifup/ifdown (default autodetect)])
+
+# ===== arg: generate module? =====
+BUILD_MODULE=1
+AC_ARG_ENABLE(module,
+[  --disable-module           Do not build kernel module (default enabled)])
+if test "${enable_module}" = "no" ; then
+	BUILD_MODULE=0
+fi
+
+# ===== arg: generate eagleconnect (tcl/tk) =====
+USE_EAGLECONNECT=1
+AC_ARG_ENABLE(eagleconnect,
+[  --disable-eagleconnect     Disable eagleconnect tcl/tk frontend (default enabled)])
+if test "${enable_eagleconnect}" = "no" ; then
+	USE_EAGLECONNECT=0
+fi
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#                          Performs standard checks.                          #
+# ___________________________________________________________________________ #
+
+# ===== check for programs =====
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_PROG_LN_S
+
+# ===== check for C libraries =====
+
+# ===== check for C header files =====
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_CHECK_HEADERS([fcntl.h limits.h netinet/in.h stdint.h stdlib.h string.h sys/ioctl.h sys/socket.h sys/time.h syslog.h unistd.h])
+
+# ===== check for C typedefs, structures, and compiler characteristics =====
+AC_C_CONST
+AC_TYPE_OFF_T
+AC_TYPE_SIZE_T
+AC_HEADER_TIME
+AC_STRUCT_TM
+AC_C_VOLATILE
+
+# ===== check for C library functions =====
+AC_FUNC_CLOSEDIR_VOID
+AC_PROG_GCC_TRADITIONAL
+AC_FUNC_MALLOC
+AC_FUNC_MEMCMP
+AC_FUNC_REALLOC
+AC_FUNC_SELECT_ARGTYPES
+AC_TYPE_SIGNAL
+AC_FUNC_STAT
+AC_FUNC_STRFTIME
+AC_CHECK_FUNCS([alarm gettimeofday memset select socket strcspn strdup strerror strncasecmp strspn strtol])
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#                  Check programs needed during the runtime.                  #
+# ___________________________________________________________________________ #
+
+# ===== check for tcp/ip utils =====
+AC_CHECK_PROG(TCPIP1, ifconfig, "yes", "no", "/sbin:/usr/sbin:/usr/local/sbin")
+AC_CHECK_PROG(TCPIP2, route, "yes", "no", "/sbin:/usr/sbin:/usr/local/sbin")
+if test "${TCPIP1}" = "no" -o "${TCPIP2}" = "no" ; then
+	echo -e "${TCPIP_MISSING_MSG}"
+	exit 1
+fi
+
+# ===== check for pidof =====
+AC_CHECK_PROG(PIDOF, pidof, "yes", "no", "/bin:/sbin:/usr/sbin:/usr/local/sbin")
+if test "${PIDOF}" = "no" ; then
+	echo -e "${PIDOF_MISSING_MSG}"
+	exit 1
+fi
+
+# ===== check for dhclient =====
+AC_CHECK_PROGS(DHCP, dhclient dhcpcd, "no", "/sbin:/usr/sbin:/usr/local/sbin")
+
+# ===== check for pppd =====
+AC_CHECK_PROG(PPPD, pppd, "yes", "no", "/sbin:/usr/sbin:/usr/local/sbin")
+
+# ===== check for pppoe =====
+AC_CHECK_PROG(PPPOE, pppoe, "yes", "no", "/sbin:/usr/sbin:/usr/local/sbin")
+
+# ===== check for dialog programs =====
+#AC_CHECK_PROGS(DIALOG, gdialog Xdialog dialog whiptail)
+
+# ===== check for eagleconnect dependancies =====
+#USE_EXPECT=0
+if test ${USE_EAGLECONNECT} -eq 1 ; then
+	# ===== check for tcl/tk =====
+	AC_CHECK_PROG(TCL, tclsh, "yes", "no", "/bin:/usr/bin:/usr/local/bin")
+	AC_CHECK_PROG(TK, wish, "yes", "no", "/bin:/usr/bin:/usr/local/bin")
+	if test x${TCL} = xno -o x${TK} = xno ; then
+		USE_EAGLECONNECT=0
+	fi
+#	# ===== check for expect =====
+#	AC_CHECK_PROG(USE_EXPECT, expect, 1, 0, "/bin:/usr/bin:/usr/local/bin")
+fi
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#                         Performs customized checks.                         #
+# ___________________________________________________________________________ #
+
+# ===== check whether build patch contains a space (not supported) =====
+BUILD_PATH=`pwd`
+if echo "${BUILD_PATH}" | grep -q " " ; then
+	echo -e "${PATH_WITH_SPACE_MSG}"
+	exit 1
+fi
+
+# ===== check for xsltproc (used to generate docs) =====
+AC_CHECK_PROG(XSLTPROC, xsltproc, "yes", "no", "/bin:/usr/bin:/usr/local/bin")
+
+# ===== check for docbook (used to generate docs) =====
+if test -d /usr/share/xml/docbook/stylesheet/nwalsh; then
+	DOCBOOK_STYLESHEETS=/usr/share/xml/docbook/stylesheet/nwalsh
+elif test -d /usr/share/sgml/docbook/xsl-stylesheets; then
+	DOCBOOK_STYLESHEETS=/usr/share/sgml/docbook/xsl-stylesheets
+else
+	DOCBOOK_STYLESHEETS=no
+fi
+
+GEN_DOC=yes
+if test ${XSLTPROC} = no -o ${DOCBOOK_STYLESHEETS} = no ; then
+	GEN_DOC=no
+	if test -f doc/man/eagleconfig.8; then
+		echo -e "   *** libxslt-proc package is missing, keeping prebuild version ***"
+	else
+		echo -e "   *** libxslt-proc package is missing, documentation won't be build! ***"
+	fi
+fi
+
+# ===== check whether kernel-source & kernel-version is ok =====
+if test ${BUILD_MODULE} -eq 1 ; then
+	AC_CHECK_KERNEL_VERSION(KERNELVER)
+else
+	KERNELVER="module_disabled"
+fi
+
+# ===== check for gcc version =====
+GCC_VERSION="`gcc -dumpversion`"
+GCC_VERSION_KERNEL=`extract_release /proc/version "gcc version"`
+#GCC_VERSION_MODULE="`/usr/sbin/eaglectrl -v | sed -n -e 's/Compiled with gcc //p;T;Q' | cut -d' ' -f1`"
+
+# ===== check for hotplug =====
+if test "x${enable_hotplug}" = "xno" ; then
+	USE_HOTPLUG=0
+else
+	USE_HOTPLUG=1
+#	AC_CHECK_PROG(USE_HOTPLUG, hotplug, 1, 0, "/sbin:/usr/sbin:/usr/local/sbin")
+fi
+
+# ===== check for ifup/ifdown =====
+if test "x${enable_ifupdown}" = "xno" ; then
+	USE_IFUPDOWN=0
+else
+	AC_CHECK_PROG(USE_IFUPDOWN, ifup, 1, 0, "/sbin:/usr/sbin:/usr/local/sbin")
+	if test $USE_IFUPDOWN -eq 1 ; then
+		if ! test -d /etc/sysconfig/network-scripts ; then
+			USE_IFUPDOWN=0
+		fi
+	fi
+fi
+
+# ===== determine where to put lock file =====
+if test -f /etc/rc.d/init.d/functions -a -d /var/lock/subsys ; then
+	SYSCONF_FILE=/var/lock/subsys/eagle-usb
+else
+	SYSCONF_FILE=/var/lock/eagle-usb
+fi
+
+# ===== check distribution =====
+# examples :
+# Mandrakelinux release 10.2 (Cooker) for i586
+# Fedora Core release 2
+# Red Hat Linux release 9 (Shrike)
+# Slackware 10.0.0
+# SuSE Linux 9.1
+DISTRIB="generic"
+DISTVER=0
+SIMPLE=0
+if test -f /etc/mandrakelinux-release ; then
+	DISTRIB="Mandrake"
+	DISTVER=`extract_release /etc/mandrakelinux-release release`
+elif test -f /etc/mandrake-release ; then
+	DISTRIB="Mandrake"
+	DISTVER_TEMP=`extract_release /etc/mandrake-release release`
+elif test -f /etc/fedora-release ; then
+	DISTRIB="Fedora"
+	DISTVER=`extract_release /etc/fedora-release release`
+elif test -f /etc/redhat-release ; then
+	DISTRIB="Redhat"
+	DISTVER=`extract_release /etc/redhat-release release`
+elif test -f /etc/slackware-version ; then
+	DISTRIB="Slackware"
+	DISTVER=`extract_release /etc/slackware-version Slackware`
+elif test -f /etc/SuSE-release ; then
+	DISTRIB="Suse"
+	DISTVER=`extract_release /etc/SuSE-release Linux`
+elif test -f /etc/debian_version ; then
+	DISTRIB="Debian"
+	DISTVER=`cat /etc/debian_version`
+fi
+
+# === Minimum version ===
+if test "$DISTRIB" = "Mandrake" ; then
+	if test_version $DISTVER -lt 9.1 ; then
+		DISTRIB="generic"
+		DISTVER=0
+	fi
+elif test "$DISTRIB" = "Redhat" ; then
+	if test_version $DISTVER -lt 9 ; then
+		DISTRIB="generic"
+		DISTVER=0
+	fi
+elif test "$DISTRIB" = "Slackware" ; then
+	if test_version $DISTVER -lt 9.1 ; then
+		DISTRIB="generic"
+		DISTVER=0
+	fi
+elif test "$DISTRIB" = "Suse" ; then
+	if test_version $DISTVER -lt 9 ; then
+		DISTRIB="generic"
+		DISTVER=0
+	fi
+fi
+# ===== Method used to start connection on boot =====
+BOOT_METHOD="none"
+if test "$BOOT_METHOD" = "none" -a "$DISTRIB" = "Mandrake" && test_version $DISTVER -le 10.0 && test -f /etc/init.d/internet ; then
+	# Mdk<=10 use the "internet" service
+	BOOT_METHOD="internet_service"
+fi
+if test "$BOOT_METHOD" = "none" -a "$DISTRIB" = "Slackware" ; then
+	# Slackware
+	BOOT_METHOD="slackware"
+fi
+if test "$BOOT_METHOD" = "none" ; then
+	# Fedora, Redhat, Suse, Mdk>10 (network service on Mdk10.1 may be too restrictive)
+	# as "-v" param is not always recognized (eg: SuSE), "--list" is more suitable
+	chkconfig --list &>/dev/null && BOOT_METHOD="chkconfig"
+fi
+if test "$BOOT_METHOD" = "none" ; then
+	# Debian
+	update-rc.d -n eagle-usb defaults 99 01 &>/dev/null
+	test $? != 127 && BOOT_METHOD="update-rc.d"
+fi
+
+
+# ===== MandrakeLinux specific =====
+SERVICE_MISSING=0
+if test "${DISTRIB}" = "Mandrake" ; then
+	# on Mdk<=10, check for internet service
+	if test_version ${DISTVER} -le 10.0 ; then
+		if test -f /etc/init.d/internet ; then
+			# use internet service lock
+			SYSCONF_FILE=/var/lock/subsys/internet
+		else
+			# warn user that autostart won't work
+			SERVICE_MISSING=1
+		fi
+	fi
+	# Mdk10.1 use /etc/ppp/peers/ppp0 instead of /etc/ppp/peers/adsl
+	if test_version ${DISTVER} -gt 10.1 ; then
+		PPP_OPTIONS_ADSL=${PPP_OPTIONS_DIR}/ppp0
+	fi
+fi
+if test "${DISTRIB}" = "Debian" ; then
+	USE_IFUPDOWN=0
+fi
+
+# ===== check for old eagle-usb driver =====
+AC_CHECK_PROGS(OLD_EAGLE, adictrl eaglectrl showstat eaglestat startadsl stopadsl, "no", "/sbin:/usr/sbin:/usr/local/sbin")
+if test "${OLD_EAGLE}" = "no" ; then
+	# /etc/eagle-usb may contains old config, so it is not considered as a previous installation
+	#|| test -d "/etc/eagle-usb"
+	if test -d "/etc/analog" ; then
+		OLD_EAGLE="yes"
+	fi
+	# specific Mandrake 10
+	if test -f /lib/modules/${CUR_KERNELVER}/kernel/3rdparty/adiusbadsl/adiusbadsl.ko ; then
+		OLD_EAGLE="yes"
+	fi
+	# specific Mandrake 10.x
+	if test -f /lib/modules/${CUR_KERNELVER}/kernel/3rdparty/eagle-usb/eagle-usb.ko ; then
+		OLD_EAGLE="yes"
+	fi
+fi
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#                           Write outputting files.                           #
+# ___________________________________________________________________________ #
+
+# This means that AC_OUTPUT will replace instances of `@variable@' 
+# in input files with the value that the shell variable variable has 
+# when AC_OUTPUT is called.
+# This value of variable should not contain literal newlines.
+AC_SUBST(BOOT_METHOD)
+AC_SUBST(BUILD_MODULE)
+AC_SUBST(DHCP)
+AC_SUBST(DISTRIB)
+AC_SUBST(DISTVER)
+AC_SUBST(DOCBOOK_STYLESHEETS)
+AC_SUBST(DSPDIR)
+AC_SUBST(USE_CMVS)
+AC_SUBST(EU_LANG)
+AC_SUBST(GEN_DOC)
+AC_SUBST(KERNELSRC)
+AC_SUBST(KERNELVER)
+AC_SUBST(PPP_OPTIONS_ADSL)
+AC_SUBST(PPP_OPTIONS_DIR)
+AC_SUBST(PPP_OPTIONS_MIRE)
+AC_SUBST(SIMPLE)
+AC_SUBST(SYSCONF_FILE)
+AC_SUBST(USE_EAGLECONNECT)
+AC_SUBST(USE_HOTPLUG)
+AC_SUBST(USE_IFUPDOWN)
+#AC_SUBST(DIALOG)
+AC_OUTPUT()
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+#                              Display a summary                              #
+# ___________________________________________________________________________ #
+
+echo
+echo "========================================================================"
+echo -en "distribution detected\t\t\t\t"
+echo ${DISTRIB}
+
+echo -en "\ndhcp support\t\t\t\t\t"
+#if test "${DHCP}" = "yes" ; then echo "yes" ; else echo "no " ; fi
+echo "${DHCP}"
+
+echo -en "\npppd support\t\t\t\t\t"
+if test "${PPPD}" = "yes" ; then
+	echo "yes"
+	echo -e  "  pppoa support\t\t\t\t\tyes"
+	echo -en "  pppoe support\t\t\t\t\t"
+	if test "${PPPOE}" = "yes" ; then echo "yes" ; else echo "no  (runtime detection)" ; fi
+else
+	echo -n "no  (runtime detection)"
+fi
+
+echo -en "\ninstall eagleconnect (tcl/tk frontend)\t\t"
+if test ${USE_EAGLECONNECT} -eq 1 ; then
+	echo "yes"
+	#echo -en "  allow users to start/stop adsl connection\t"
+	#if test ${USE_EXPECT} -eq 1 ; then echo "yes" ; else echo "no " ; fi
+else
+	echo "no "
+fi
+
+echo -en "\ngenerate documentation\t\t\t\t${GEN_DOC}\n"
+echo "========================================================================"
+
+# ===== display warning(s) =====
+echo
+if test ${BUILD_MODULE} -eq 1 ; then
+	if test "${KERNELVER}" = "none" ; then
+		if test "${DISTRIB}" = "Suse" -a `id -u` -ne 0 ; then
+			echo -e ${KERNEL_SRC_MISSING_SUSE_MSG}
+		else
+			echo -e ${KERNEL_SRC_MISSING_MSG}
+		fi
+		exit 1
+	fi
+	if test "${KERNELVER}" != "${CUR_KERNELVER}" ; then
+		echo -e ${KERNEL_SRC_DIFF_MSG}
+	fi
+fi
+if test "x${GCC_VERSION}" != "x${GCC_VERSION_KERNEL}" ; then
+	echo -en "${GCC_VERSION_MSG}"
+	echo -e "${GCC_VERSION_MSG1}${GCC_VERSION}"
+	echo -e "${GCC_VERSION_MSG2}${GCC_VERSION_KERNEL}"
+	echo
+fi
+
+#if test "${DHCP}" = "no" ; then
+#	echo -e ${DHCP_MISSING_MSG}
+#fi
+#if test "${PPPD}" = "no" ; then
+#	echo -e ${PPPD_MISSING_MSG}
+#fi
+#if test "${PPPOE}" = "no" ; then
+#	echo -e ${PPPOE_MISSING_MSG}
+#fi
+if test ${SERVICE_MISSING} -eq 1 ; then
+	echo -e ${SERVICE_MISSING_MSG}
+fi
+if test "${BOOT_METHOD}" = "none" ; then
+	echo -e ${NO_BOOT_METHOD_MSG}
+fi
+if test "${OLD_EAGLE}" != "no" ; then
+	echo -e ${OLD_EAGLE_MSG}
+fi
+#if test "${DISTRIB}" = "Debian" ; then
+#	echo -e ${DEBIAN_MSG}
+#fi
+
+if test ${DEBUG} -eq 1 ; then
+	echo -e "KERNEL=${KERNELVER} - ${CUR_KERNELVER}"
+	echo -e "GCC_VERSION=${GCC_VERSION}"
+	echo -e "GCC_VERSION_KERNEL=${GCC_VERSION_KERNEL}"
+	echo -e "DISTRIB=${DISTRIB} ${DISTVER}"
+	echo -e "SIMPLE=${SIMPLE}"
+	echo -e "BOOT_METHOD=${BOOT_METHOD}"
+	echo -e "USE_HOTPLUG=${USE_HOTPLUG}"
+	echo -e "USE_IFUPDOWN=${USE_IFUPDOWN}"
+	echo -e "EU_LANG=${EU_LANG}"
+	echo -e "prefix=${prefix}"
+	echo -e "sysconfdir=${sysconfdir}"
+	echo -e "datadir=${datadir}"
+	echo -e "BUILD_MODULE=${BUILD_MODULE}"
+	echo -e "PPP_OPTIONS_DIR=${PPP_OPTIONS_DIR}"
+	echo -e "PPP_OPTIONS_ADSL=${PPP_OPTIONS_ADSL}"
+	echo -e "PPP_OPTIONS_MIRE=${PPP_OPTIONS_MIRE}"
+	echo -e "SYSCONF_FILE=${SYSCONF_FILE}"
+	echo -e "DOCBOOK_STYLESHEETS=${DOCBOOK_STYLESHEETS}"
+fi
+
+
+#***************************************************************************
+# $Log: configure.in,v $
+# Revision 1.54  2005/01/16 21:55:16  Tux
+# - add license header
+#
+# Revision 1.53  2005/01/12 21:46:11  Tux
+# - fix extract_release (didn't work in configure.in)
+# - GCC_VERSION_KERNEL didn't contain the desired value
+# - use extract_release for all distribs
+# - fix a bug with chkconfig on SuSE
+# - Mdk > 10.1 are now recognized as "Mandrake" too (instead of "generic")
+#
+# Revision 1.52  2004/12/12 20:38:45  Tux
+# - add check for gcc version
+# - "==" => "-eq"
+#
+# Revision 1.51  2004/12/01 20:36:13  Tux
+# - latest Mandrakelinux distribs use /etc/mandrakelinux-release
+#
+# Revision 1.50  2004/12/01 15:25:29  mcoolive
+# - improve test_version (reindent, simpler)
+# - add extract_release function
+#
+# Revision 1.49  2004/12/01 00:03:19  mcoolive
+# - replace flt_to_str function by "test_version" function.
+#
+# Revision 1.48  2004/11/30 19:28:29  mcoolive
+# - don't check anymore whether PATH contains $prefix/sbin
+#
+# Revision 1.47  2004/11/30 18:46:50  mcoolive
+# - About documentation generation: don't use xmlto,
+#   use xlstproc (as before but it is simpler).
+#
+# Revision 1.46  2004/11/28 00:54:14  mcoolive
+# - replace CONFDIR by sysconfdir
+# - cosmetic changes
+#
+# Revision 1.45  2004/11/27 18:41:24  mcoolive
+# - impose autoconf>=2.50
+# - use AC_CONFIG_COMMANDS instead of the manual weaving of rm -f config.cache
+# - replace "&&" by "-a" and "||" by "-o" in test
+#
+# Revision 1.44  2004/11/27 14:32:30  mcoolive
+# - remove unused HTML_STYLESHEET and MAN_STYLESHEET
+# - replace the test on xsltproc by a test on xmlto
+#
+# Revision 1.43  2004/11/22 06:53:27  mcoolive
+# - remove @DESTDIR@ from ./configure, it is not relevant.
+#
+# Revision 1.42  2004/11/17 20:56:02  Tux
+# - wrong path in --help
+#
+# Revision 1.41  2004/11/15 22:35:21  mcoolive
+# - move dsp codes in /usr/share/... by default (FHS compliance)
+#
+# Revision 1.40  2004/11/04 21:42:26  Tux
+# - reactivate check for tck and tk binaries
+#
+# Revision 1.39  2004/10/18 21:29:26  Tux
+# - return an error when build path contains a space
+#
+# Revision 1.38  2004/10/10 13:44:23  Tux
+# - with_cmvs => enable_cmvs
+# - use /usr as default path for all distribs
+#
+# Revision 1.37  2004/10/09 11:59:55  sleeper
+# Added eagle III support + preliminary CMVs support
+#
+# Revision 1.36  2004/10/04 20:43:22  Tux
+# - force predefined $PATH
+#
+# Revision 1.35  2004/09/26 22:21:25  mcoolive
+# - fix a PATH problem (we can be not root to construct packet)
+#
+# Revision 1.34  2004/09/26 18:35:54  mcoolive
+# - cosmetic changes (attempt to divide and regroup code)
+#
+# Revision 1.33  2004/09/23 20:35:10  Tux
+# - use generic boot method detection
+#
+# Revision 1.32  2004/09/20 13:19:40  mcoolive
+# - rewrite the tests to fit to the new sources of the driver and pppoa
+#
+# Revision 1.31  2004/09/20 12:00:42  mcoolive
+# - Some simplifications : go up "rm -f config.cache", rename variables
+#
+# Revision 1.30  2004/09/19 21:55:55  mcoolive
+# - add comments
+# - use obsolet macros (for the moment). The news are commented.
+#
+# Revision 1.29  2004/09/16 21:28:21  mcoolive
+# - removed useless $SYSCONF_DIR variable
+#
+# Revision 1.28  2004/09/16 20:48:24  Tux
+# - removed obsolet macros
+#
+# Revision 1.27  2004/09/15 19:25:03  Tux
+# - make sure that parent folders of the lock file exist
+#
+# Revision 1.26  2004/09/03 23:13:08  mcoolive
+# Disable autodetection of hotplug (for cross-compiling),
+# maybe an option enable-hotplug is better.
+#
+# Revision 1.25  2004/08/29 22:04:21  Tux
+# - removed bc dependancy
+#
+# Revision 1.24  2004/08/27 18:02:07  mcoolive
+# - support ifupdown is not written for Debian
+#
+# Revision 1.23  2004/08/26 21:35:41  Tux
+# - detect whether manpages are already generated (prebuilt)
+#
+# Revision 1.22  2004/08/15 11:48:03  mcoolive
+# - pidof is in /bin with Debian System
+#
+# Revision 1.21  2004/08/15 10:22:08  Tux
+# - add check for pidof
+#
+# Revision 1.20  2004/08/07 12:30:15  Tux
+# - add check for xsltproc & stylesheets to generate docs
+# - remove unused dialog check
+#
+# Revision 1.19  2004/08/06 19:32:22  Tux
+# - bug : dhclient detection on summary
+# - disable expect as it is not used yet
+#
+# Revision 1.18  2004/08/01 20:08:04  Tux
+# - eagleconnect support (tcl/tk)
+# - add summary after ./configure
+#
+# Revision 1.17  2004/07/25 20:15:43  Tux
+# - use "/usr" as defaut prefix on Mandrake & SuSE
+#
+# Revision 1.16  2004/07/16 20:56:02  Tux
+# - added "--with-peers-dir" option
+# - lock file is now given by the $SYSCONF_FILE variable
+# - Mandrakelinux 10.1 support
+#
+# Revision 1.15  2004/07/02 19:08:36  Tux
+# - slackware 10 support
+# - check whether "ifconfig" and "route" are present
+#
+# Revision 1.14  2004/05/23 19:57:36  Tux
+# - added support for Fedora Core 2 and SuSE 9.1
+#
+# Revision 1.13  2004/05/11 19:39:04  Tux
+# - use $sysconfir instead of $CONFDIR
+# - use /lib/modules/{version}/build as default kernel source path
+#
+# Revision 1.12  2004/04/20 19:53:36  Tux
+# - update messages about non ppp users (dégroupés)
+# - fix Mandrakelinux 10.x detection
+# - fix "make uninstall" crash on unknown distribs
+#
+# Revision 1.11  2004/04/18 13:54:42  Tux
+# *** empty log message ***
+#
+# Revision 1.10  2004/04/18 09:45:23  Tux
+# - added Mandrake cooker support
+#
+# Revision 1.9  2004/04/03 16:04:45  Tux
+# - removed $USE_UPD_USB_USERMAP
+#
+# Revision 1.8  2004/03/22 21:04:07  Tux
+# added $DSPDIR param
+#
+#***************************************************************************/

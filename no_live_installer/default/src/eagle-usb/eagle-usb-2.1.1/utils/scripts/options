@@ -1,0 +1,16 @@
+mru 1492
+mtu 1492
+noipdefault
+defaultroute
+usepeerdns
+noauth
+#ipcp-accept-remote
+#ipcp-accept-local
+nobsdcomp
+nodeflate
+nopcomp
+novj
+novjccomp
+noaccomp -am
+persist
+updetach

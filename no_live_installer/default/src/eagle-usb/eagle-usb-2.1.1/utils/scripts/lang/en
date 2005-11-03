@@ -1,0 +1,243 @@
+# $Id: en,v 1.17 2005/01/27 20:25:00 Tux Exp $
+
+# Copyright (C) 2004-2005 Olivier Borowski
+#						  Gri77oN
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+# Description :
+#	english localization
+# Encoding :
+#	UTF-8
+
+########################################  eagleconfig  ############################################
+SEP_MSG=\
+"=============================================================================="
+
+GREETING_MSG=\
+"============================= ADSL Configuration ============================="
+
+INFO_MSG=\
+"Your modem has to be plugged before proceeding.\n"\
+"You can stop this script anytime with [Ctrl][c]"\
+"\n"
+
+LOGIN_MSG=\
+"\n"\
+"Enter your login for connecting to the ISP (given by your ISP):"
+
+PWD_MSG=\
+"\n"\
+"Enter your password (given by your ISP):"
+
+KEEP_OLD_PWD_MSG=\
+"\n"\
+"A login and password have been found in ppp configuration file.\n"\
+"Do you want to keep this login/password?"
+
+PWD_ENCRYPT_MSG=\
+"\n"\
+"Does your ISP support password encryption?"
+
+UPDATE_DNS_MSG=\
+"\n"\
+"Do you want then DNS list to be automaticaly updated ?"
+
+START_ON_BOOT_MSG=\
+"\n"\
+"Do you want the connection to automaticaly be started at boot?"
+
+USE_TESTCONNEC_MSG=\
+"\n"\
+"Do you want to enable a 'cron' task to control connection every 2 minutes\n"\
+"and restart it when it is lost ?"
+
+FORCE_INTERFACE_MSG=\
+"\n"\
+"You may enter a virtual interface name for the modem. To let the\n"\
+"kernel determine automatically the name, enter \"auto\" :"
+
+GENER_MSG=\
+"\n"\
+"Configuration successful."
+
+MODULE_MSG=\
+"Loading module...                      "
+
+DSP_MSG=\
+"Loading DSP & options...               "
+
+WAIT_OPER_MSG=\
+"Waiting for modem to be operational... "
+
+OK_MSG=\
+"[ OK ]"
+
+ERR_MSG=\
+"[ Error ]"
+
+EAGLECONFIG_USAGE_MSG=\
+"\n"\
+"Usage: eagleconfig [-h] [-l] [-e]\n"\
+" -h|--help\t\t: display this help\n"\
+" -l|--lang\t\t: choose language for scripts (saved)\n"\
+"\t\t\t\t--lang=keep : keep previous language (default)\n"\
+"\t\t\t\t--lang=auto : detect current language (use \$LANG)\n"\
+"\t\t\t\t--lang=LL : use LL language (en, fr...)\n"\
+" -e|--expert\t\t: expert mode (additional choices)\n"\
+"\n"
+
+PPPOE_CANT_LAUNCH_MSG=\
+"\n"\
+"Error: pppoe cannot be launch. Exiting..."\
+"\n"
+
+ISP_LIST_MSG=\
+"Choose a network configuration :\n"\
+"_______________________________________________________________________\n"\
+" . . . Country. . . Network. . . . . . . . . VPI VCI ENC"
+
+WRONG_CHOICE_MSG=\
+"\n"\
+"Error: this is not a correct choice. Exiting..."\
+"\n"
+
+STATIC_IP_MSG=\
+"\n"\
+"If you want to use a static IP, you can type it in now; to\n"\
+"obtain the IP from your ISP, simply press enter:"\
+"\n"
+
+EAGLECONFIG_END_MSG=\
+"\n"\
+"You can now type \"startadsl\" to launch the connection."\
+"\n"
+
+YES_DEFAULT_MSG=\
+"[y]/n"
+
+NO_DEFAULT_MSG=\
+"y/[n]"
+
+
+#########################################  startadsl  #############################################
+ALREADY_MSG=\
+"\n"\
+"Connection seems to be already started!"\
+"\n"
+
+CANT_SYNC_MSG=\
+"Can't get synchronized!"
+
+NOT_OPER_MSG=\
+"\n"\
+"\n"\
+"Modem is not operational!\n"\
+"Check eaglestat result to know its state!"\
+"\n"
+
+PPPD_ERR_MSG=\
+"pppd does not succeed to launch connection!"
+
+IFUP_ERR_MSG=\
+"Failed to launch connection!"
+
+LOCK_MSG=\
+"\n"\
+"\n"\
+"You have not yet configured the connection!\n"\
+"You can either:\n"\
+"- launch eagleconfig\n"\
+"- configure manually and then delete ${EU_DIR}/eagle-usb_must_be_configured"\
+"\n"
+
+MIRE_DEG_MSG=\
+"Only users using ppp can connect to the mire!"\
+"\n"
+
+
+########################################  fctStartAdsl  ###########################################
+FCTSTART_USAGE_MSG=\
+"\n"\
+"Usage: fctStartAdsl [-h] [-m] [-s] [-tN] [-a] [-d]\n"\
+" -h|--help\t\t: display this help\n"\
+" -m|--mire\t\t: connect to the mire\n"\
+" -s|--simple\t\t: use ifconfig instead of ifup/ifdown\n"\
+" -t|--timeout=[sec]\t: define delay for the modem to become operational\n"\
+" -a|--ip=xx.xx.xx.xx\t: use ip address, imply simple mode\n"\
+" -d|--debug\t\t: launch pppd in debug mode\n"\
+"\n"
+
+
+########################################  fctStopAdsl  ############################################
+FCTSTOP_USAGE_MSG=\
+"\n"\
+"Usage: fctStopAdsl [-h] [-f] [-s]\n"\
+" -h|--help\t\t: display this help\n"\
+" -f|--force\t\t: force pppd to close (even when not using ppp)\n"\
+" -s|--simple\t\t: use ifconfig instead of ifup/ifdown"\
+"\n"
+
+
+###########################################  eu_dsp  ##############################################
+NO_PARAM_MSG=\
+"This script can't be run manually!"
+
+PPPD_OK_MSG=\
+"The connection has been established"
+
+PPPD_ERROR_MSG=\
+"Error: the connection was not established"
+
+
+###########################################  eu_init  #############################################
+START_SERVICE_MSG=\
+"Starting connection : "
+
+STOP_SERVICE_MSG=\
+"Stopping eagle-usb service : "
+
+RELOAD_SERVICE_MSG=\
+"Apply new params : "
+
+USAGE_SERVICE_MSG=\
+"Usage: eagle-usb {start|stop|restart|reload|status}"\
+"\n"
+
+
+##########################################  testconnec  ###########################################
+TESTCONNEC_USAGE_MSG=\
+"\n"\
+"Usage: testconnec [-h]\n"\
+" -h|--help\t\t: dispay this help"\
+"\n"
+
+TESTCONNEC_INSTALL_LOCK_MSG=\
+"You have not yet configured the connection! => testconnec is unable to start!"
+
+TESTCONNEC_ALREADY_LAUNCHED_MSG=\
+"testconnec is already launched (it should never happend) => quit"
+
+TESTCONNEC_REBOOT_MSG=\
+"Modem crashed! rebooting..."
+
+TESTCONNEC_NO_MODEM_MSG=\
+"Modem is not plugged..."
+
+TESTCONNEC_CONNECTION_LOST_MSG=\
+"Connection seems to be lost, restarting it!"
+
+TESTCONNEC_CONNECTION_OK_MSG=\
+"Connection is still valid"

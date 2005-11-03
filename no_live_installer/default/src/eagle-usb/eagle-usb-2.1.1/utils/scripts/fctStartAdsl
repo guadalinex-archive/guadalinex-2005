@@ -1,0 +1,262 @@
+#!/bin/bash
+# $Id: fctStartAdsl,v 1.25 2005/01/16 22:04:34 Tux Exp $
+
+# Copyright (C) 2003-2005 Olivier Borowski
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+# Goal :
+#	start ADSL connexion (do not display anything)
+# Params :
+#	h = display help
+#	m = start mire
+#	s = simple mode (don't use ifup & ifdown scripts => do not requiere ifcfg-ethX)
+#	t = set timeout delay (default=60s)
+#	a = use ip address (use -a xx.xx.xx.xx), imply simple mode
+#	d = launch pppd in debug mode
+#	i = for launch with pty option of pppd
+#		// old usage : only put modem interface up (ifup ethX)
+#	k = keep: garder la main Ns (ou jusqu'à ce que connexion ok)
+# Error codes :
+#	1 = pppd already lauched (non degroupé)
+#	2 = modem can't be synchronized
+#	3 = can't launch pppd
+#	4 = can't set modem interface "up"
+#	5 = eagle-usb must be configured once time
+#	6 = non pppd users can't use startadsl -m
+
+# the following line will be replaced by the absolute path of setvars
+exit 123
+
+set -- "${@//#--help/-h}"
+set -- "${@//#--mire/-m}"
+set -- "${@//#--simple/-s}"
+set -- "${@//#--timeout=/-t}"
+set -- "${@//#--ifup/-i}"
+set -- "${@//#--ip=/-a}"
+set -- "${@//#--ip/-a}"
+set -- "${@//#--keep=/-k}"
+set -- "${@//#--debug/-d}"
+evalParams() {
+	while getopts "hmst:a:dik:" opt; do
+		case $opt in
+			h  ) doInUtf8 echo -e $FCTSTART_USAGE_MSG ; exit 0 ;;
+			m  ) MIRE=1 ;;
+			s  ) SIMPLE=1 ;;
+			t  ) TIMEOUT=$OPTARG ;;
+			a  ) STATIC_IP=$OPTARG ; SIMPLE=1 ;;
+			d  ) PPPD_DEBUG=1 ;;
+			i  ) DONT_START=1 ;;
+			k  ) KEEP=$OPTARG ;;
+			\? ) doInUtf8 echo -e $FCTSTART_USAGE_MSG ; exit 1 ;;
+		esac
+	done
+}
+ping_test_mt() {
+	touch /tmp/setvars_ping_mt
+	PING_MT_RES=1
+	while [ $PING_MT_RES -ne 0 ]
+	do
+		sleep 2
+		ping_w $1 $2
+		PING_MT_RES=$?
+	done
+	rm -f /tmp/setvars_ping_mt
+}
+ping_w_maxtimeout() {
+	ping_test_mt $1 $2 &
+	PID_PING_MT=$!
+	kill_ping $PID_PING_MT $2 &
+	wait ${PID_PING_MT} 2>/dev/null
+	if [ -e /tmp/setvars_ping_mt ] ; then
+		rm -f /tmp/setvars_ping_mt
+		return 1
+	fi
+	return 0
+}
+#STATIC_IP="none"
+MIRE=0
+TIMEOUT=60
+DONT_START=0
+PPPD_DEBUG=0
+KEEP=0
+evalParams "$@"
+
+
+# eagleconfig has never been run => quit
+if [ -f $EU_DIR/eagle-usb_must_be_configured ] ; then
+	exit 5
+fi
+
+if [ "$PPPOX" != "none" ] ; then
+
+	# startadsl or startmire?
+	if [ $MIRE -eq 1 ] ; then
+		OPTIONS=$PPP_OPTIONS_MIRE
+	else
+		OPTIONS=$PPP_OPTIONS_ADSL
+	fi
+
+	# pppd already lanched?
+	if [ $DONT_START -eq 0  -a  ! -z "`pidof pppd`" ] ; then
+		exit 1
+	fi
+
+else
+	# mire can only be used by pppd users
+	if [ $MIRE -eq 1 ] ; then
+		exit 6
+	fi
+fi
+
+# waiting Nsec for synchro (default: N=60)
+$EAGLECTRL -s$TIMEOUT &>/dev/null
+
+if [ $? -ne 0 ] ; then
+	exit 2
+fi
+
+if [ ! -z "`route | grep default`" ] ; then
+	route del default
+fi
+
+INTERFACE="`$EAGLECTRL -i`"
+
+if [ "$PPPOX" = "none" ] ; then
+	# ===== non pppd => only ifup =====
+	if [ "$STATIC_IP" != "none" ] ; then
+			GATEWAY="`echo $STATIC_IP | cut -d '.' -f1-3`.254"
+			ifconfig $INTERFACE $STATIC_IP netmask 255.255.255.0
+			if [ $? -ne 0 ] ; then exit 4 ; fi
+			route add default gw $GATEWAY
+	else
+		if [ $USE_IFUPDOWN -eq 1  -a  $SIMPLE -eq 0 ] ; then
+			ifup $INTERFACE &>/dev/null
+		else
+			dhclient $INTERFACE &>/dev/null
+		fi
+		if [ $? -ne 0 ] ; then exit 4 ; fi
+	fi
+else
+	# ===== pppd => ifup & pppd =====
+	if [ $DONT_START -eq 1 ] ; then
+		RES="`ifconfig | grep $INTERFACE`"
+		if [ -z "$RES" ] ; then
+			# - pppd call adsl => interface is not up yet
+			# - startadsl => interface is already up, skip this step
+			if [ $USE_IFUPDOWN -eq 1  -a  $SIMPLE -eq 0 ] ; then
+				ifup $INTERFACE &>/dev/null
+			else
+				ifconfig $INTERFACE 0.0.0.0 up
+			fi
+		fi
+		exec $PPPOX -I $INTERFACE 2>/dev/null
+	fi
+	if [ $USE_IFUPDOWN -eq 1  -a  $SIMPLE -eq 0 ] ; then
+		ifup $INTERFACE &>/dev/null
+	else
+		ifconfig $INTERFACE 0.0.0.0 up
+	fi
+	if [ "$DISTRIB" != "Suse" ] ; then
+		if [ $PPPD_DEBUG -eq 0 ] ; then
+			pppd file $OPTIONS &>/dev/null
+		else
+			pppd debug file $OPTIONS 2>&1 | logger
+		fi
+		if [ $? -ne 0 ] ; then exit 4 ; fi
+	else
+		if [ $PPPD_DEBUG -eq 0 ] ; then
+			pppd file $OPTIONS &>/dev/null &
+		else
+			pppd debug file $OPTIONS 2>&1 | logger &
+		fi
+	fi
+fi
+
+if [ $KEEP != 0 ] ; then
+	ping_w_maxtimeout 213.228.0.42 $KEEP
+	exit $?
+else
+	exit 0
+fi
+
+#***************************************************************************
+# $Log: fctStartAdsl,v $
+# Revision 1.25  2005/01/16 22:04:34  Tux
+# - add license header
+#
+# Revision 1.24  2005/01/04 21:14:05  Tux
+# - switch strings to utf-8
+#
+# Revision 1.23  2004/11/21 15:29:41  Tux
+# - replaced == with -eq
+#
+# Revision 1.22  2004/11/11 16:21:26  mcoolive
+# - renaming $EU_SCRIPT_DIR/lock in $EU_DIR/eagle-usb_must_be_configured
+#
+# Revision 1.21  2004/11/11 15:29:10  mcoolive
+# - improve comments
+#
+# Revision 1.20  2004/11/11 10:56:04  mcoolive
+# - tests are simplified ( && -> -a ; || -> -o )
+#
+# Revision 1.19  2004/11/04 23:54:18  mcoolive
+# - shift error>=7 (exit and comments) for the "6 = modem not operational"
+#
+# Revision 1.18  2004/11/04 20:03:42  Tux
+# - only allow users using pppd to connect to the mire
+#
+# Revision 1.17  2004/09/28 10:06:43  mcoolive
+# - to respect POSIX: commands are typed "int main..."
+#   => replace "$? !="  by  "$? -ne"
+#
+# Revision 1.16  2004/09/14 21:00:31  Tux
+# - redirect debug mode (-d) output to syslog instead of /dev/null !
+#
+# Revision 1.15  2004/08/26 21:40:48  Tux
+# - add exec to avoid an unuseful process
+#
+# Revision 1.14  2004/08/10 16:51:13  Tux
+# - removed an unuseful condition
+#
+# Revision 1.13  2004/08/09 21:26:31  Tux
+# - add pppoe support for "fctStartAdsl -i"
+#
+# Revision 1.12  2004/08/01 20:12:07  Tux
+# - hide messages when launching startadsl within a terminal
+#
+# Revision 1.11  2004/07/19 20:43:21  Tux
+# - "fctStartAdsl -i" now start pppoa itself (no more use of  pty "...pppoa -I $IF" )
+#
+# Revision 1.10  2004/07/16 21:08:58  Tux
+# - simplify parameters processing
+#
+# Revision 1.9  2004/06/08 19:47:05  Tux
+# - 1.9.8
+#
+# Revision 1.8  2004/04/24 10:57:14  Tux
+# - network mask changed from 255.255.255.255 to 255.255.255.0
+#   for non-pppd users
+#
+# Revision 1.7  2004/04/21 20:07:52  Tux
+# *** empty log message ***
+#
+# Revision 1.6  2004/04/21 19:59:37  Tux
+# - virtual interface does not use an IP anymore
+#
+# Revision 1.5  2004/04/21 18:19:21  Tux
+# - some changes with ">/dev/null"
+#
+#***************************************************************************/

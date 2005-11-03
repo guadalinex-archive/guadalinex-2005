@@ -1,0 +1,2875 @@
+2005-02-27 19:35  baud123
+
+	* VERSION: change to 2.1.1
+
+2005-02-26 17:57  mcoolive
+
+	* debian/po/de.po: Deutch translation
+
+2005-02-26 17:36  mcoolive
+
+	* debian/rules: [no log message]
+
+2005-02-26 17:35  mcoolive
+
+	* debian/po/cs.po: - the Czech translation of debconf questions
+
+2005-02-26 16:32  baud123
+
+	* driver/user/Makefile: install CMV*WO.txt files as well
+
+2005-02-26 16:28  baud123
+
+	* utils/eagleconnect/: eagleconnect.tcl, reseau.tcl: correct
+	  eagleconnect lang dir + 10 seconds instead of 1 for refresh
+
+2005-02-24 01:09  baud123
+
+	* driver/user/: CMVei.txt, CMVeiWO.txt: remove CRLF from CMVei*.txt
+	  files
+
+2005-02-14 00:32  baud123
+
+	* utils/scripts/Makefile: s/0ld/Old/ to avoid w4r10rd words
+
+2005-02-14 00:06  baud123
+
+	* utils/scripts/Makefile: put back uninst0ld to avoid existing
+	  driver
+
+2005-02-13 23:55  baud123
+
+	* utils/scripts/: adsl_consts.pm, isp_adsl_db.pl: correct TU01 +
+	  format of print-config with leading 0
+
+2005-02-06 22:21  baud123
+
+	* utils/scripts/: adsl_consts.pm, common.pm: add ISP for Egypt +
+	  use common instead Common
+
+2005-02-03 02:08  baud123
+
+	* VERSION, ChangeLog: release candidate 2.1.0rc1
+
+2005-02-03 02:04  baud123
+
+	* driver/user/CMVepES.txt: fix typo s/cx/cw/
+
+2005-01-30 02:01  Tux
+
+	* utils/scripts/eagleconfig: [no log message]
+
+2005-01-30 02:01  Tux
+
+	* utils/scripts/uninstOld: - run "depmod" when neccessary
+
+2005-01-30 01:58  Tux
+
+	* Makefile, driver/Makefile-2.4, driver/Makefile-2.6: - moved
+	  "depmod"
+
+2005-01-29 22:08  baud123
+
+	* utils/scripts/adsl_consts.pm: add ISP Mauritius Wanadoo
+
+2005-01-28 01:32  baud123
+
+	* driver/firmware/sagem/pots/: rtbldep0.bnm, rtbldep1.bnm,
+	  rtbldep2.bnm, rtbldep3.bnm, rtbldep4.bnm: upgrade to
+	  RTBLD_44e2ea17 BNM files (sagem20041025)
+
+2005-01-28 01:01  baud123
+
+	* utils/scripts/: eagleconfig, eu_config_bash: add CMV config
+	  (misses Linetype + keep)
+
+2005-01-27 21:25  Tux
+
+	* utils/scripts/lang/: cz, en, pl: [no log message]
+
+2005-01-23 23:43  Tux
+
+	* utils/scripts/lang/gr: - initial revision
+
+2005-01-23 23:41  Tux
+
+	* utils/scripts/lang/pl: - fix missing antislash
+
+2005-01-22 12:42  mcoolive
+
+	* utils/scripts/lang/pl: - update headers
+
+2005-01-18 01:46  baud123
+
+	* utils/scripts/adsl_consts.pm: add ISP for switzerland, tunisia,
+	  Czech Republic
+
+2005-01-17 21:54  sleeper
+
+	* driver/: Pipes.c, eu_eth.c, eu_main.c, eu_utils.c, macros.h:
+	  usb_unlink_urb for synchronous unlinking is deprecated on kernel
+	  >= 2.6.10
+
+2005-01-16 23:08  Tux
+
+	* utils/scripts/: startadsl, stopadsl, testconnec, uninstOld,
+	  lang/br, lang/de, lang/en, lang/es, lang/fr, lang/it, lang/mk,
+	  lang/cz: - add license header
+
+2005-01-16 23:06  Tux
+
+	* utils/scripts/setvars: - add license header - remove some hacks
+	  with language files
+
+2005-01-16 23:00  Tux
+
+	* Makefile.common.in, utils/scripts/eaglediag,
+	  utils/scripts/eagleconfig, utils/scripts/Makefile,
+	  utils/scripts/eu_config_bash, utils/scripts/eu_dsp,
+	  utils/scripts/eu_init, utils/scripts/fctStartAdsl,
+	  utils/scripts/fctStopAdsl: - add license header
+
+2005-01-16 22:54  Tux
+
+	* autogen.sh, configure.in, makedist, Makefile: - add license
+	  header
+
+2005-01-12 22:49  Tux
+
+	* Makefile: - previous tests "@[ condition ] && result" were buggy
+	  => use "if [] ; then ; fi" structure instead - don't try to
+	  install documentation if it doesn't exist - add "depmod"
+
+2005-01-12 22:46  Tux
+
+	* configure.in: - fix extract_release (didn't work in configure.in)
+	  - GCC_VERSION_KERNEL didn't contain the desired value - use
+	  extract_release for all distribs - fix a bug with chkconfig on
+	  SuSE - Mdk > 10.1 are now recognized as "Mandrake" too (instead
+	  of "generic")
+
+2005-01-09 21:18  baud123
+
+	* utils/scripts/adsl_consts.pm: correct comment + duplicate method
+
+2005-01-08 22:33  baud123
+
+	* utils/scripts/eu_config_bash: vci in hex instead of decimal for
+	  eu_config
+
+2005-01-08 22:01  baud123
+
+	* utils/scripts/isp_adsl_db.pl: vci in hex instead of decimal for
+	  eu_config
+
+2005-01-08 21:59  baud123
+
+	* utils/scripts/eu_config_bash: correct duplicate AE01
+
+2005-01-08 21:43  baud123
+
+	* utils/scripts/eu_config_bash: apply changes of configuration
+	  coming from isp_adsl_db
+
+2005-01-08 21:42  baud123
+
+	* utils/scripts/isp_adsl_db.pl: options are --print-spip
+	  --print-config to display formats of database
+
+2005-01-08 20:42  baud123
+
+	* utils/scripts/isp_adsl_db.pl: options are --print-spip
+	  --print-config to display formats of database
+
+2005-01-06 01:28  mcoolive
+
+	* utils/scripts/setvars: - fix a little bug ("$@" for args of
+	  doInUtf8 with space...)
+
+2005-01-04 22:14  Tux
+
+	* Makefile: - "hash -r" doesn't work in Makefile
+
+2005-01-04 22:14  Tux
+
+	* utils/scripts/: eagleconfig, eu_dsp, eu_init, fctStartAdsl,
+	  fctStopAdsl, setvars, startadsl, uninstOld: - switch strings to
+	  utf-8
+
+2005-01-04 22:05  Tux
+
+	* utils/scripts/lang/: br, cz, de, en, es, f2, fr, it, mk, p2, pl:
+	  - switch strings to utf-8
+
+2005-01-04 22:04  Tux
+
+	* utils/scripts/eu_config_bash: - switch messages to utf-8
+
+2005-01-04 21:49  Tux
+
+	* utils/scripts/setvars: - added doInUtf8 function
+
+2005-01-03 00:09  mcoolive
+
+	* Makefile: - improve the deb rule
+
+2005-01-02 23:47  baud123
+
+	* utils/scripts/isp_adsl_db.pl: correct utf-8 pb
+
+2005-01-02 13:41  mcoolive
+
+	* utils/scripts/eagleconfig: - fix a bug: PPPD_BIN must be
+	  initialized before be used
+
+2004-12-30 18:02  mcoolive
+
+	* debian/: changelog, rules.modules: - Fix the generation of
+	  postinst of eagle-usb-modules
+
+2004-12-30 17:39  mcoolive
+
+	* driver/firmware/Makefile, driver/user/Makefile, pppoa/Makefile: -
+	  replace gcc by $(CC)
+
+2004-12-29 17:32  Tux
+
+	* utils/scripts/eagleconfig: - /etc/resolv.conf => $RESOLV_conf -
+	  only create a link "/etc/resolv.conf => /var/run/ppp/resolv.conf"
+	  when "/etc/ppp/ip-up" doesn't update the "/etc/resolv.conf" file
+	  itself
+
+2004-12-18 01:14  baud123
+
+	* utils/scripts/adsl_consts.pm: correct some ISP + name of
+	  variables
+
+2004-12-18 01:13  baud123
+
+	* utils/scripts/isp_adsl_db.pl: spip content generation
+
+2004-12-17 22:37  baud123
+
+	* utils/scripts/lang/cz: add czech localisation
+
+2004-12-15 23:17  baud123
+
+	* utils/scripts/eaglediag: add copyright line + yoper distribution
+
+2004-12-15 01:35  baud123
+
+	* utils/scripts/: common.pm, isp_adsl_consts.pm: [no log message]
+
+2004-12-15 01:32  baud123
+
+	* utils/scripts/: Common.pm, isp_adsl_db.pl: some corrections to
+	  make adsl_db work
+
+2004-12-14 23:31  baud123
+
+	* utils/scripts/: Common.pm, adsl_consts.pm: first version of
+	  adsl_consts : content of an ISP db
+
+2004-12-12 21:38  Tux
+
+	* configure.in: - add check for gcc version - "==" => "-eq"
+
+2004-12-06 01:52  baud123
+
+	* utils/scripts/: common.pm, isp_adsl_consts.pm, isp_adsl_db.pl:
+	  first version of isp_adsl_db to display the content of an ISP db
+
+2004-12-05 02:27  mcoolive
+
+	* utils/scripts/: eagleconfig, setvars: - replace flt_to_float
+	  function by test_version anywhere
+
+2004-12-01 21:36  Tux
+
+	* configure.in: - latest Mandrakelinux distribs use
+	  /etc/mandrakelinux-release
+
+2004-12-01 16:25  mcoolive
+
+	* configure.in: - improve test_version (reindent, simpler) - add
+	  extract_release function
+
+2004-12-01 01:03  mcoolive
+
+	* configure.in: - replace flt_to_str function by "test_version"
+	  function.
+
+2004-11-30 20:32  mcoolive
+
+	* eagle-usb.spec, debian/control: - remove build dependency on
+	  xmlto - (debian only) add build dependency on xlstproc and
+	  docbook
+
+2004-11-30 20:28  mcoolive
+
+	* configure.in: - don't check anymore whether PATH contains
+	  $prefix/sbin
+
+2004-11-30 20:27  mcoolive
+
+	* Makefile: - check whether PATH contains $prefix/sbin at the end
+	  of install - cosmetic changes
+
+2004-11-30 19:46  mcoolive
+
+	* Makefile.common.in, configure.in, doc/Makefile: - About
+	  documentation generation: don't use xmlto,   use xlstproc (as
+	  before but it is simpler).
+
+2004-11-28 23:26  mcoolive
+
+	* utils/scripts/eaglediag: - improve eaglediag executed by the
+	  simple user.
+
+2004-11-28 02:46  Tux
+
+	* eagle-usb.spec: - disable autostart service only if the last rpm
+	  is removed
+
+2004-11-28 02:16  mcoolive
+
+	* eagle-usb.spec: - to fit to the last changes (add manpages, add
+	  buildrequires,   and cosmetic changes).
+
+2004-11-28 01:54  mcoolive
+
+	* Makefile.common.in, configure.in: - replace CONFDIR by sysconfdir
+	  - cosmetic changes
+
+2004-11-27 19:49  mcoolive
+
+	* debian/README.Debian: [no log message]
+
+2004-11-27 19:41  mcoolive
+
+	* configure.in: - impose autoconf>=2.50 - use AC_CONFIG_COMMANDS
+	  instead of the manual weaving of rm -f config.cache - replace
+	  "&&" by "-a" and "||" by "-o" in test
+
+2004-11-27 19:14  mcoolive
+
+	* Makefile: - remove useless ``&&''
+
+2004-11-27 15:32  mcoolive
+
+	* Makefile.common.in, configure.in: - remove unused HTML_STYLESHEET
+	  and MAN_STYLESHEET - replace the test on xsltproc by a test on
+	  xmlto
+
+2004-11-27 15:27  mcoolive
+
+	* Makefile: - test the value of GEN_DOC here - remove useless
+	  ``&&'' ( ``make -n'' works only if make is the first command)
+
+2004-11-27 15:24  mcoolive
+
+	* debian/control, doc/Makefile: - use xmlto instead of xsltproc. It
+	  is simpler.
+
+2004-11-25 22:16  mcoolive
+
+	* debian/eagle-usb-utils.manpages: - add eagleconfig_front.bash
+	  manpage in debian packages
+
+2004-11-25 16:16  mcoolive
+
+	* doc/sources/: eagleconfig.xml, eagleconfig_front.bash.xml,
+	  eagletestconnec.xml: - fix eagleconfig manpage - add
+	  eagleconfig_front.bash manpage - complete eagletestconnec manpage
+
+2004-11-23 22:12  Tux
+
+	* utils/scripts/testconnec: - counter was never reinitialized
+
+2004-11-23 03:10  mcoolive
+
+	* debian/eagle-usb-utils.manpages, doc/sources/eagletestconnec.xml:
+	  - add eagletestconnec manpage
+
+2004-11-23 03:08  mcoolive
+
+	* doc/sources/: eaglediag.xml, pppoa.xml, startadsl.xml,
+	  stopadsl.xml: - improve man pages:   - remove startmire reference
+	  in startadsl and stopadsl manpages   - fix eaglediag and pppoa
+
+2004-11-22 07:53  mcoolive
+
+	* Makefile.common.in, configure.in: - remove @DESTDIR@ from
+	  ./configure, it is not relevant.
+
+2004-11-21 18:01  mcoolive
+
+	* utils/scripts/testconnec: - simplification ( use break in for i
+	  in $IP )
+
+2004-11-21 17:35  mcoolive
+
+	* utils/scripts/eu_config_bash: - fix the last modification ("keep"
+	  is not an integer)
+
+2004-11-21 16:32  Tux
+
+	* utils/scripts/testconnec: - replaced == with -eq - modem is now
+	  rebooted when fctStartAdsl fail 4 times
+
+2004-11-21 16:30  Tux
+
+	* utils/scripts/setvars: - replaced == with -eq - removed
+	  #!/bin/bash
+
+2004-11-21 16:29  Tux
+
+	* utils/scripts/: eu_config_bash, eu_init, fctStartAdsl,
+	  fctStopAdsl, net_cnx_up, uninstOld, Makefile: - replaced == with
+	  -eq
+
+2004-11-21 16:28  Tux
+
+	* utils/scripts/eagleconfig: - replaced == with -eq - testconnec =>
+	  eagletestconnec
+
+2004-11-21 15:38  mcoolive
+
+	* debian/eagle-usb-utils.postinst: - fix post-installation script:
+	  eagletestconnec and eagleconfig_front.bash are renamed.
+
+2004-11-21 15:37  mcoolive
+
+	* debian/changelog: - enter the good date
+
+2004-11-20 18:04  mcoolive
+
+	* debian/: changelog, control, po/fr.po, po/nl.po: - change the
+	  number version
+
+2004-11-20 18:00  mcoolive
+
+	* debian/po/ja.po: - added japan translation for debian package
+
+2004-11-19 00:34  mcoolive
+
+	* debian/eagle-usb-utils.preinst: - clean new obsolet files, remove
+	  old old obsolet files
+
+2004-11-17 22:02  Tux
+
+	* VERSION: 2.0.1
+
+2004-11-17 22:02  Tux
+
+	* driver/user/Makefile: - change paths
+
+2004-11-17 22:01  Tux
+
+	* doc/Makefile: - MAN_PAGE and HTML_PAGE should always be declared
+	  because there are used by the "make clean" rule
+
+2004-11-17 21:58  Tux
+
+	* utils/eagleconnect/Makefile: - "make uninstall" should remove
+	  eagleconnect.tcl
+
+2004-11-17 21:58  Tux
+
+	* utils/scripts/uninstOld: - uninstOld should not require
+	  Makefile.common
+
+2004-11-17 21:56  Tux
+
+	* configure.in: - wrong path in --help
+
+2004-11-17 21:55  Tux
+
+	* eagle-usb.spec, utils/scripts/Makefile,
+	  utils/scripts/eagleconfig, utils/scripts/setvars: - change paths
+
+2004-11-17 21:54  Tux
+
+	* Makefile.common.in: - removed EU_SCRIPT_DIR
+
+2004-11-17 21:54  Tux
+
+	* Makefile: - don't move *.rpm to eagle-usb.dist
+
+2004-11-17 17:41  mcoolive
+
+	* debian/eagle-usb-utils.config, debian/eagle-usb-utils.postinst,
+	  utils/scripts/Makefile: - (FHS compliance) move setvars in
+	  /etc/eagle-usb and change its permissions
+
+2004-11-15 23:44  mcoolive
+
+	* utils/scripts/eagleconfig: - one simplification (eval)
+
+2004-11-15 23:35  mcoolive
+
+	* configure.in: - move dsp codes in /usr/share/... by default (FHS
+	  compliance)
+
+2004-11-15 23:20  mcoolive
+
+	* Makefile.common.in: - move translation files in /usr/share/...
+	  (FHS compliance)
+
+2004-11-11 17:21  mcoolive
+
+	* utils/scripts/: Makefile, eagleconfig, fctStartAdsl, testconnec:
+	  - renaming $EU_SCRIPT_DIR/lock in
+	  $EU_DIR/eagle-usb_must_be_configured
+
+2004-11-11 17:18  mcoolive
+
+	* utils/scripts/lang/: br, de, en, es, f2, fr, it, mk, p2, pl: -
+	  adapt translation files to the renaming:     lock ->
+	  eagle-usb_must_be_configured
+
+2004-11-11 16:29  mcoolive
+
+	* utils/scripts/: fctStartAdsl, startadsl: - improve comments
+
+2004-11-11 16:22  mcoolive
+
+	* utils/scripts/lang/: it, p2, pl: - fix traduction files
+	  (EAGLESCRIPT_DIR -> EU_SCRIPT_DIR)
+
+2004-11-11 11:56  mcoolive
+
+	* utils/scripts/: fctStartAdsl, setvars: - tests are simplified (
+	  && -> -a ; || -> -o )
+
+2004-11-09 22:09  baud123
+
+	* utils/scripts/eu_config_bash: add ISP Libero.it
+
+2004-11-09 15:31  mcoolive
+
+	* Makefile: - add VERSION variable, modify semantic of DEBVERSION
+	  variable - improve calculation of ARCHNAME - in deb rule: replace
+	  DEBVERSION by VERSION and pversion by DEBVERSION
+
+2004-11-09 14:54  mcoolive
+
+	* makedist: - simplifications and add comments
+
+2004-11-08 20:57  baud123
+
+	* utils/scripts/eu_config_bash: add ISP Etisalat (UAE)
+
+2004-11-07 22:10  baud123
+
+	* ChangeLog: version 2.0.0 official
+
+2004-11-07 22:07  Tux
+
+	* eagle-usb.spec: - wrong release date
+
+2004-11-07 22:06  Tux
+
+	* eagle-usb.spec: - DSP were moved - add mk language
+
+2004-11-07 21:49  Tux
+
+	* utils/scripts/eagleconfig: - eagle-usb => $MODULE_STR
+
+2004-11-07 21:48  Tux
+
+	* utils/scripts/setvars: - add $FCTSTARTADSL and $FCTSTOPADSL -
+	  polish language temporary use p2 (without special characters)
+
+2004-11-07 21:40  baud123
+
+	* utils/scripts/eagleconfig: cp -f for eagle-usb.conf
+
+2004-11-07 21:39  mcoolive
+
+	* utils/scripts/setvars: - fix bug (when user add alias or other
+	  options in modprobe.conf)
+
+2004-11-07 21:32  mcoolive
+
+	* utils/scripts/eagleconfig: - improve FORCE_IF section
+
+2004-11-07 21:03  baud123
+
+	* utils/scripts/Makefile: add install for mk language
+
+2004-11-07 21:01  mcoolive
+
+	* debian/po/: fr.po, nl.po, templates.pot: - (Debian conf) fit
+	  traductions and add Dutch traduction.
+
+2004-11-07 20:58  mcoolive
+
+	* debian/: eagle-usb-utils.config, eagle-usb-utils.templates: -
+	  (Debian configuration) Add some ISPs.
+
+2004-11-07 17:18  baud123
+
+	* driver/user/CMVepWO.txt: rename CMVep.txt to CMVepWO.txt
+
+2004-11-07 17:17  baud123
+
+	* driver/user/CMVeiWO.txt: rename CMVei.txt to CMVeiWO.txt
+
+2004-11-07 16:18  baud123
+
+	* utils/scripts/eagleconfig: always recreate eagle-usb.conf
+
+2004-11-07 16:04  baud123
+
+	* utils/scripts/eu_config_bash: correction on list of ISP (again2)
+
+2004-11-07 10:06  sleeper
+
+	* driver/: eu_main.c, eu_types.h, eu_utils.c, eu_utils.h: Fix
+	  chipset version reporting
+
+2004-11-07 09:45  sleeper
+
+	* driver/: eu_main.c, user/eaglectrl.c: Fix typos + add revision
+
+2004-11-06 21:44  baud123
+
+	* driver/user/CMVei.txt: update with CMVei 2.0.31 version
+
+2004-11-06 21:13  sleeper
+
+	* driver/: eu_main.c, eu_types.h, eu_utils.c: Cosmetic changes for
+	  eaglestat + Add VID/PID + Chipset version (1,2 or 3)
+
+2004-11-06 20:49  sleeper
+
+	* driver/user/eaglectrl.c: Cosmetic changes
+
+2004-11-06 05:25  baud123
+
+	* utils/scripts/eu_config_bash: correction on list of ISP
+
+2004-11-05 00:59  baud123
+
+	* utils/scripts/eu_config_bash: add some ISP
+
+2004-11-05 00:54  mcoolive
+
+	* utils/scripts/: fctStartAdsl, startadsl: - shift error>=7 (exit
+	  and comments) for the "6 = modem not operational"
+
+2004-11-05 00:22  mcoolive
+
+	* utils/scripts/eaglediag: - fix a typo, simplify some calculations
+
+2004-11-04 23:15  baud123
+
+	* utils/scripts/eaglediag: permit log for normal user (using sudo)
+	  & correct some comments for newbies
+
+2004-11-04 22:42  Tux
+
+	* configure.in: - reactivate check for tck and tk binaries
+
+2004-11-04 21:06  Tux
+
+	* utils/scripts/startadsl: - moved error message here (prevent non
+	  pppd users to use startadsl -m)
+
+2004-11-04 21:03  Tux
+
+	* utils/scripts/fctStartAdsl: - only allow users using pppd to
+	  connect to the mire
+
+2004-11-04 18:07  mcoolive
+
+	* Makefile: - fix "deb" target
+
+2004-11-04 15:25  mcoolive
+
+	* utils/scripts/startmire: - remove obsolet and unused script
+
+2004-11-03 22:14  sleeper
+
+	* driver/user/eaglectrl.c: Fix a bug that prevent to have the max.
+	  nb of CMVs
+
+2004-11-03 15:39  mcoolive
+
+	* debian/: changelog, control: - replace ppp by pppoe in Recommends
+	  section
+
+2004-11-02 23:32  baud123
+
+	* driver/user/Makefile: correct directory for CMV files
+
+2004-11-02 22:46  Tux
+
+	* utils/scripts/eagleconfig: - remove modem mac address from
+	  /etc/iftab
+
+2004-11-02 22:39  baud123
+
+	* driver/user/Makefile: add make uninstall CMV...txt
+
+2004-11-01 11:33  sleeper
+
+	* driver/eu_msg.c: Remove useless array
+
+2004-11-01 00:59  mcoolive
+
+	* Makefile: - fix the last modifications (rename orig.tar.gz file
+	  and clean the build)
+
+2004-10-31 23:35  sleeper
+
+	* driver/user/eaglectrl.c: Fix a buffer overflow when reading CMVs
+
+2004-10-31 21:04  mcoolive
+
+	* Makefile: - improve the debian targets
+
+2004-10-31 18:15  mcoolive
+
+	* makedist: - some simplifications
+
+2004-10-31 18:11  mcoolive
+
+	* utils/scripts/eu_dsp: [no log message]
+
+2004-10-29 19:29  sleeper
+
+	* driver/: macros.h, eu_eth.c, eu_main.c: Make it compile again on
+	  2.4
+
+2004-10-29 03:43  baud123
+
+	* driver/user/Makefile: add install for CMV.txt files
+
+2004-10-29 03:39  baud123
+
+	* driver/user/: CMVepES.txt, CMVepFR.txt, CMVepIT.txt: add CMV.txt
+	  files
+
+2004-10-27 19:16  sleeper
+
+	* driver/eu_boot_sm.c: No need to continue booting if modem is no
+	  more there
+
+2004-10-26 19:16  mcoolive
+
+	* driver/user/eaglectrl.c: - fix a typo
+
+2004-10-25 21:48  Tux
+
+	* utils/scripts/eagleconfig: - "x" char was missing, autostart
+	  should now works on slack
+
+2004-10-25 00:44  baud123
+
+	* driver/user/: CMVei.txt, CMVep.txt: update latest files versions
+	  CMV from ADI
+
+2004-10-25 00:17  mcoolive
+
+	* debian/eagle-usb-utils.postinst: - fix: eu_config_bash is renamed
+	  eagleconfig_bash
+
+2004-10-24 23:58  mcoolive
+
+	* utils/scripts/eaglediag: - remove key word "function" (remove
+	  bashisme -> more sh) - fix one typo - don't use colors if
+	  eaglediag is used in a pipeline
+
+2004-10-24 19:41  sleeper
+
+	* driver/: eu_boot_sm.c, eu_utils.c: Fix more "no device" case ...
+
+2004-10-24 02:42  baud123
+
+	* utils/scripts/eaglediag: add color to eaglediag OK/KO
+
+2004-10-23 16:50  mcoolive
+
+	* debian/: control.modules, postinst.modules: - files are renamed
+	  (suffix ".in" is added)
+
+2004-10-23 16:36  mcoolive
+
+	* debian/: control.in.modules, postinst.in.modules, rules.modules:
+	  - clean and simplify the build of the module package
+
+2004-10-23 16:33  mcoolive
+
+	* debian/rules: - clean and simplify Makefile
+
+2004-10-23 15:55  mcoolive
+
+	* debian/: control, control.modules: - improve the short
+	  description of module package eagle-usb
+
+2004-10-23 12:59  mcoolive
+
+	* doc/sources/eaglectrl.xml: - supplement description - fix a typo
+
+2004-10-23 12:57  mcoolive
+
+	* driver/user/eaglectrl.c: - fix the option conversion - verify
+	  option overflow
+
+2004-10-23 12:54  mcoolive
+
+	* driver/user/eaglectrl.c: - cosmetic changes - enhance the help
+	  message
+
+2004-10-22 07:34  sleeper
+
+	* driver/eu_msg.c: Fix a warning
+
+2004-10-22 01:14  sleeper
+
+	* driver/eu_msg.c: Fix a bug that prevent ADDMSG_FROM_TEXTFILE from
+	  working (src == dst case in eu_build_msg) / remove check on
+	  symbolic address to reflect ADI philosophie ;)
+
+2004-10-20 00:45  sleeper
+
+	* driver/user/eaglectrl.c: Fix a minor discrepency
+
+2004-10-19 23:01  sleeper
+
+	* driver/: eu_eth.c, eu_main.c: Fix a bug in the release of the
+	  netdevice .. Thanks to Laurent Riffard <laurent.riffard at
+	  free.fr>
+
+2004-10-19 22:36  mcoolive
+
+	* debian/control: [no log message]
+
+2004-10-18 23:31  Tux
+
+	* Makefile: - as /usr is the default path, simplify rpmbuild
+	  command
+
+2004-10-18 23:30  Tux
+
+	* eagle-usb.spec: - use absolute path - force %preun to return 0
+
+2004-10-18 23:29  Tux
+
+	* configure.in: - return an error when build path contains a space
+
+2004-10-17 22:37  sleeper
+
+	* driver/user/eaglectrl.c: remove hex_to_digit / use CONF_DIR to
+	  find CMVep.txt file
+
+2004-10-17 22:37  sleeper
+
+	* driver/eu_utils.c: Do not reschedule ctrl urb in case of missing
+	  device
+
+2004-10-17 22:36  sleeper
+
+	* driver/eu_types.h: Fix packed attribute for last versions of gcc
+
+2004-10-17 22:35  sleeper
+
+	* driver/: Pipes.c, eu_main.c: Try to handle late coming disconnect
+
+2004-10-17 22:34  sleeper
+
+	* driver/: Makefile, Makefile-2.6: Allow compilation of driver with
+	  CMVS support without having to explicity compiles it with
+	  USE_CMVS=1 set
+
+2004-10-17 21:13  mcoolive
+
+	* utils/scripts/setvars: - simplifications (factorize code with
+	  readConfFile function)
+
+2004-10-17 02:13  mcoolive
+
+	* utils/scripts/setvars: - remove unused variables - "en" is the
+	  default language
+
+2004-10-17 02:08  mcoolive
+
+	* utils/scripts/eagleconfig: - eu_config_bash => eagleconfig_bash
+	  (in comments)
+
+2004-10-15 00:11  mcoolive
+
+	* debian/: changelog, eagle-usb-utils.lintian,
+	  eagle-usb-utils.postinst, rules: - use overrides to mute lintian
+	  (it's the clean solution)
+
+2004-10-12 23:51  sleeper
+
+	* driver/eu_msg.c: Do not cry on unhandled message
+
+2004-10-12 22:31  sleeper
+
+	* driver/user/eaglectrl.c: Fix a bug that lead to error if user
+	  specified a 0x before the hexa value of LineType
+
+2004-10-12 22:14  sleeper
+
+	* driver/eu_main.c: Add #ifdef's to allow compilation on 2.4.X
+
+2004-10-10 22:33  Tux
+
+	* eagle-usb.spec: - hotplug and init.d scripts are now removed by
+	  Makefile
+
+2004-10-10 19:31  emmanuel
+
+	* utils/eagleconnect/parameagleconnect.tcl: Parameagleconnect.tcl
+	  updated : bug corrected, and eagleconnect.conf file path modified
+
+2004-10-10 17:03  baud123
+
+	* ChangeLog: Changelog for 2.0.0
+
+2004-10-10 16:53  baud123
+
+	* ChangeLog: Changelog for 2.0.0
+
+2004-10-10 16:51  Tux
+
+	* eagle-usb.spec: - removed usb.usermap - eu_config_bash =>
+	  eagleconfig_bash
+
+2004-10-10 16:50  mcoolive
+
+	* debian/eagle-usb-utils.postinst: delete ref to startmire
+
+2004-10-10 16:47  mcoolive
+
+	* debian/eagle-usb-utils.manpages: Delete manpage of startmire
+
+2004-10-10 16:39  Tux
+
+	* utils/scripts/Makefile: [no log message]
+
+2004-10-10 16:01  Tux
+
+	* utils/scripts/Makefile: - removed unused usb.usermap
+
+2004-10-10 15:54  Tux
+
+	* utils/scripts/uninstOld: - remove startmire
+
+2004-10-10 15:53  Tux
+
+	* utils/scripts/Makefile: - removed startmire - eu_config_bash =>
+	  eagleconfig_bash
+
+2004-10-10 15:52  Tux
+
+	* utils/scripts/eagleconfig: - eu_config_bash => eagleconfig_bash -
+	  when changing ISP, DSP is not sent anymore
+
+2004-10-10 15:48  Tux
+
+	* VERSION: - version 2.0.0
+
+2004-10-10 15:48  Tux
+
+	* Makefile.common.in: [no log message]
+
+2004-10-10 15:48  Tux
+
+	* Makefile: - removed unused string
+
+2004-10-10 15:47  Tux
+
+	* eagle-usb.spec: - removed startmire and its manpage
+
+2004-10-10 15:44  Tux
+
+	* configure.in: - with_cmvs => enable_cmvs - use /usr as default
+	  path for all distribs
+
+2004-10-10 15:35  baud123
+
+	* driver/user/eagle-usb.conf: include OPTNxx values from CMVep.txt
+	  of 2.0.31 sagem driver
+
+2004-10-10 14:54  Tux
+
+	* utils/scripts/rc.eagle-usb: - rc.eagle-usb (slackware) is
+	  replaced by eu_init (common script for all distribs)
+
+2004-10-10 14:51  Tux
+
+	* doc/sources/startmire.xml: - startmire was useless (same as
+	  startadsl -m), removed
+
+2004-10-10 10:24  sleeper
+
+	* driver/: Makefile, Makefile-2.6, eu_main.c: Fix compil bug for
+	  CMVs support / allow compilation with CMVS by issuing USE_CMV=1
+	  make
+
+2004-10-10 03:10  mcoolive
+
+	* driver/user/eaglectrl.c: [no log message]
+
+2004-10-09 13:59  sleeper
+
+	* Makefile.common.in, configure.in, driver/Makefile-2.4,
+	  driver/Makefile-2.6, driver/eagle-usb.h, driver/eu_firmware.h,
+	  driver/eu_main.c, driver/eu_msg.c, driver/eu_types.h,
+	  driver/eu_utils.c, driver/user/Makefile, driver/user/eaglectrl.c:
+	  Added eagle III support + preliminary CMVs support
+
+2004-10-07 22:35  Tux
+
+	* utils/scripts/lang/p2: [no log message]
+
+2004-10-05 20:22  Tux
+
+	* eagle-usb.spec: - Fedora doesn't use bzipped manpages - forgot
+	  /etc => ${sysconfdir}
+
+2004-10-04 22:46  Tux
+
+	* VERSION: - update needed to build rpm
+
+2004-10-04 22:45  Tux
+
+	* Makefile: - "make rpm" now check if .rpmrc and .rpmmacros are
+	  present
+
+2004-10-04 22:44  Tux
+
+	* eagle-usb.spec: - update with last changes (paths updated, images
+	  added)
+
+2004-10-04 22:43  Tux
+
+	* configure.in: - force predefined $PATH
+
+2004-09-29 13:54  mcoolive
+
+	* utils/scripts/setvars: - (POSIX) commands are typed "int main..."
+	  => replace "$? ==" by "$? -eq"...  - fix typo - cosmetic changes
+
+2004-09-29 13:44  mcoolive
+
+	* debian/: eagle-usb-utils.config, eagle-usb-utils.templates,
+	  po/fr.po, po/templates.pot: - fix names of ISP and the french
+	  traduction
+
+2004-09-28 22:26  emmanuel
+
+	* utils/eagleconnect/Makefile: Images directory and pictures
+	  associated added
+
+2004-09-28 22:20  emmanuel
+
+	* utils/eagleconnect/eagleconnect.tcl: Font of connection state
+	  field modified, some corrections added
+
+2004-09-28 21:45  Tux
+
+	* utils/scripts/: Makefile, setvars: - add $BOOT_METHOD
+
+2004-09-28 21:43  Tux
+
+	* utils/scripts/eu_init: - prevent PATH from being modified by
+	  "/etc/rc.d/init.d/functions" on Aurox
+
+2004-09-28 12:45  mcoolive
+
+	* utils/scripts/eu_dsp: - cosmetic changes
+
+2004-09-28 12:27  mcoolive
+
+	* utils/scripts/testconnec: - (POSIX) commands are typed "int
+	  main..." => replace "$? ==" by "$? -eq"
+
+2004-09-28 12:11  mcoolive
+
+	* utils/scripts/fctStopAdsl: - (POSIX) commands are typed "int
+	  main..." => replace "$? ==" by "$? -eq"
+
+2004-09-28 12:06  mcoolive
+
+	* utils/scripts/fctStartAdsl: - to respect POSIX: commands are
+	  typed "int main..."	=> replace "$? !="  by	"$? -ne"
+
+2004-09-28 11:55  mcoolive
+
+	* utils/scripts/eagleconfig: - to respect POSIX: command are typed
+	  "int main..."   => replacer "$? =="  by  "$? -eq" - to decrease
+	  the number of pipes (`cat fic | sed` => `sed <fic`) - cosmetic
+	  changes
+
+2004-09-27 23:59  mcoolive
+
+	* driver/Sm.c: - fix typo
+
+2004-09-27 00:21  mcoolive
+
+	* configure.in: - fix a PATH problem (we can be not root to
+	  construct packet)
+
+2004-09-26 23:41  mcoolive
+
+	* debian/changelog: [no log message]
+
+2004-09-26 23:26  mcoolive
+
+	* utils/scripts/eagleconfig: - i ensure myself of the access
+	  permissions of /etc/eagle-usb/eagle-usb.conf
+
+2004-09-26 22:37  mcoolive
+
+	* debian/: eagle-usb-utils.config, eagle-usb-utils.templates,
+	  po/fr.po, po/templates.pot: - add new ISP.
+
+2004-09-26 21:43  Tux
+
+	* utils/scripts/lang/: br, de, en, es, f2, fr, it, p2, pl: - added
+	  localization for testconnec
+
+2004-09-26 21:39  Tux
+
+	* utils/scripts/testconnec: - improved lock file management -
+	  better log messages - localization
+
+2004-09-26 21:36  Tux
+
+	* utils/scripts/setvars: - add comments
+
+2004-09-26 21:36  Tux
+
+	* utils/scripts/eu_config_bash: - only ask "update DNS?" in expert
+	  mode
+
+2004-09-26 21:30  Tux
+
+	* utils/eagleconnect/Makefile: - add $EU_DIR path - install
+	  eagleconnect documentation
+
+2004-09-26 21:29  Tux
+
+	* utils/eagleconnect/lang/doc_fr.txt: - Initial revision
+
+2004-09-26 21:29  Tux
+
+	* utils/eagleconnect/eagleconnect.tcl: - changed config file path
+
+2004-09-26 20:51  mcoolive
+
+	* utils/scripts/eagleconfig: - little simplifications
+
+2004-09-26 20:35  mcoolive
+
+	* configure.in: - cosmetic changes (attempt to divide and regroup
+	  code)
+
+2004-09-26 01:00  mcoolive
+
+	* utils/scripts/eu_config_bash: [no log message]
+
+2004-09-25 17:27  baud123
+
+	* utils/scripts/eu_config_bash: add argentina, belgium, lithuania,
+	  morocco, thailand ISP (41 in DB now !)
+
+2004-09-23 22:39  Tux
+
+	* utils/scripts/Makefile: - use generic boot method detection -
+	  remove slackware specific init script (use generic one)
+
+2004-09-23 22:37  Tux
+
+	* utils/scripts/eu_init: - add support for slackware (we do not use
+	  rc.eagle-usb anymore)
+
+2004-09-23 22:35  Tux
+
+	* configure.in, Makefile.common.in, utils/scripts/eagleconfig: -
+	  use generic boot method detection
+
+2004-09-23 20:50  baud123
+
+	* utils/scripts/eaglediag: replace == with = for string comparison
+
+2004-09-22 21:30  mcoolive
+
+	* debian/: rules, rules.modules: Change directory of DSP codes.
+
+2004-09-20 15:19  mcoolive
+
+	* configure.in: - rewrite the tests to fit to the new sources of
+	  the driver and pppoa
+
+2004-09-20 14:00  mcoolive
+
+	* configure.in: - Some simplifications : go up "rm -f
+	  config.cache", rename variables
+
+2004-09-19 23:55  mcoolive
+
+	* configure.in: - add comments - use obsolet macros (for the
+	  moment). The news are commented.
+
+2004-09-19 23:35  mcoolive
+
+	* debian/po/: fr.po, templates.pot: Update traduction : add
+	  update_dns question and small changes
+
+2004-09-19 23:28  mcoolive
+
+	* debian/: eagle-usb-utils.config, eagle-usb-utils.postinst,
+	  eagle-usb-utils.templates: Add option update_dns in debconf
+	  questionnaire.
+
+2004-09-19 18:34  sleeper
+
+	* utils/eagleconnect/images/: fichierssysteme.ppm, fonts.ppm: First
+	  version
+
+2004-09-19 16:35  emmanuel
+
+	* utils/eagleconnect/parameagleconnect.tcl: Parameagleconnect.tcl
+	  rewriten : icons added, many bugs corrected (frame resizing whith
+	  new fonts size)
+
+2004-09-16 23:28  mcoolive
+
+	* configure.in: removed useless $SYSCONF_DIR variable (bis)
+
+2004-09-16 22:48  Tux
+
+	* configure.in, utils/scripts/Makefile, utils/scripts/eu_init,
+	  utils/scripts/setvars, utils/scripts/startadsl,
+	  Makefile.common.in: - removed useless $SYSCONF_DIR variable
+
+2004-09-16 22:13  Tux
+
+	* utils/scripts/: eagleconfig, eu_config_bash, setvars, lang/de,
+	  lang/en, lang/es, lang/f2, lang/fr, lang/it, lang/p2, lang/pl: -
+	  "eagleconfig -e" now ask whether resolv.conf should be
+	  automatically updated
+
+2004-09-15 21:25  Tux
+
+	* Makefile.common.in, configure.in, utils/scripts/Makefile,
+	  utils/scripts/eu_init, utils/scripts/setvars,
+	  utils/scripts/startadsl: - make sure that parent folders of the
+	  lock file exist
+
+2004-09-14 23:00  Tux
+
+	* utils/scripts/fctStartAdsl: - redirect debug mode (-d) output to
+	  syslog instead of /dev/null !
+
+2004-09-14 22:59  Tux
+
+	* utils/scripts/eu_init: [no log message]
+
+2004-09-14 22:44  Tux
+
+	* utils/scripts/Makefile: - Mandrakelinux >=10.1 now uses eagle-usb
+	  service too
+
+2004-09-14 22:44  Tux
+
+	* utils/scripts/fctStopAdsl: - hide ifdown errors (prevent messages
+	  such as "RTNETLINK answers...")
+
+2004-09-14 22:42  Tux
+
+	* utils/scripts/eu_init: - useless to create lock file's parents
+	  folders (should be done before) - echo_success/echo_failure sould
+	  not be called asynchronously
+
+2004-09-14 22:38  Tux
+
+	* utils/scripts/eagleconfig: - on Mdk10.1, give up "network"
+	  service => use "eagle-usb" service instead
+
+2004-09-12 22:00  sleeper
+
+	* driver/: Me.c, Oam.c, eu_msg.c, eu_utils.c, macros.h,
+	  firmware/builddsp.c, user/eaglectrl.c: Fix jiffies computation
+	  plus error/dbg string for AMD64 portation
+
+2004-09-12 21:52  sleeper
+
+	* pppoa/pppoa.c: Fix display of MAC address (sent by Gilles
+	  Espinasse <g.esp@free.fr>)
+
+2004-09-08 22:39  sleeper
+
+	* driver/Pipes.c: Fix a bug that prevent compilation in BULK mode
+
+2004-09-08 21:16  mcoolive
+
+	* debian/control: The version of autoconf must be >= 2.52 to
+	  construct Debian package.
+
+2004-09-06 12:00  mcoolive
+
+	* debian/: eagle-usb-utils.preinst, eagle-usb-utils.postrm,
+	  eagle-usb-utils.postinst: - remove unused /etc/modutils/eagle-usb
+	  configuration file (thk J-P Pourrez)
+
+2004-09-05 23:12  mcoolive
+
+	* debian/changelog: [no log message]
+
+2004-09-05 23:02  mcoolive
+
+	* debian/: eagle-usb-utils.templates, po/fr.po, po/templates.pot:
+	  [no log message]
+
+2004-09-05 22:34  mcoolive
+
+	* Makefile: Improve the deb rule
+
+2004-09-05 01:07  mcoolive
+
+	* debian/po/fr.po: Fix two grammatical mistakes
+
+2004-09-04 15:45  mcoolive
+
+	* debian/eagle-usb-utils.postinst: Always keep dsl password in
+	  debconf database
+
+2004-09-04 15:43  mcoolive
+
+	* debian/eagle-usb-utils.config: Don't get anymore "eagle-usb/ISP"
+	  template from setvars (pb with space)
+
+2004-09-04 15:41  mcoolive
+
+	* debian/eagle-usb-utils.templates: Fix last modifications
+
+2004-09-04 15:40  mcoolive
+
+	* debian/po/fr.po: Fix last modifications in debconf templates
+
+2004-09-04 15:39  mcoolive
+
+	* debian/po/templates.pot: Fix last modifications in templates
+
+2004-09-04 11:35  mcoolive
+
+	* debian/eagle-usb-utils.postinst: [no log message]
+
+2004-09-04 01:13  mcoolive
+
+	* configure.in: Disable autodetection of hotplug (for
+	  cross-compiling), maybe an option enable-hotplug is better.
+
+2004-09-03 00:50  mcoolive
+
+	* debian/po/fr.po: adapt fr.pot with improvements of
+	  eagle-usb-utils.templates
+
+2004-09-03 00:49  mcoolive
+
+	* debian/po/templates.pot: adapt templates.pot with improvements of
+	  eagle-usb-utils.templates
+
+2004-09-03 00:45  mcoolive
+
+	* debian/eagle-usb-utils.templates: Questionnaire corrected by
+	  Christian Perrier <bubulle@debian.org> Remove "remember_password"
+	  template
+
+2004-09-03 00:39  mcoolive
+
+	* debian/eagle-usb-utils.postinst: The password is always remove
+	  from debconf database.  We can find it dynamically in ppp
+	  configuration files.
+
+2004-09-03 00:37  mcoolive
+
+	* debian/eagle-usb-utils.config: Don't ask anymore if Debconf must
+	  remember the password.  The password is always remove because we
+	  can find it dynamically in ppp configuration files.
+
+2004-09-02 21:11  baud123
+
+	* utils/scripts/rc.eagle-usb: 2nd correctinon for asynchronous
+	  start
+
+2004-09-02 21:10  baud123
+
+	* utils/scripts/rc.eagle-usb: correct asynchronous start
+
+2004-08-30 01:59  mcoolive
+
+	* debian/rules: - remove null and void lines about init.d/eagle-usb
+
+2004-08-30 01:54  Tux
+
+	* utils/scripts/Makefile: - create directory /etc/init.d
+
+2004-08-30 01:51  mcoolive
+
+	* debian/changelog: [no log message]
+
+2004-08-30 00:35  baud123
+
+	* README: installation notes
+
+2004-08-30 00:21  baud123
+
+	* ChangeLog: version 1.9.9
+
+2004-08-30 00:04  Tux
+
+	* configure.in: - removed bc dependancy
+
+2004-08-29 23:49  Tux
+
+	* driver/user/eaglectrl.c: [no log message]
+
+2004-08-29 23:41  baud123
+
+	* utils/scripts/eaglediag: add CR at end of dpkg-query
+
+2004-08-29 23:36  Tux
+
+	* utils/scripts/eu_dsp: - add a small delay to prevent a bug with
+	  "eaglectrl -d"
+
+2004-08-29 23:33  mcoolive
+
+	* debian/control: eagle-usb-utils debian packet does not depend any
+	  more of gawk
+
+2004-08-29 23:29  Tux
+
+	* utils/scripts/eagleconfig: [no log message]
+
+2004-08-29 23:29  baud123
+
+	* utils/scripts/lang/it: backslash must be near double quote, no
+	  space...
+
+2004-08-29 23:29  baud123
+
+	* utils/scripts/lang/it: backslash must be near double quote, no
+	  space...
+
+2004-08-29 23:25  baud123
+
+	* utils/scripts/lang/it: missing double quote
+
+2004-08-29 23:20  Tux
+
+	* utils/scripts/setvars: - add function flt_to_str (used to compare
+	  floats)
+
+2004-08-29 23:19  Tux
+
+	* utils/scripts/rc.eagle-usb: - add asynchronous start
+
+2004-08-29 23:18  Tux
+
+	* utils/scripts/Makefile: - install eu_init itself (instead of
+	  eagleconfig)
+
+2004-08-29 23:16  Tux
+
+	* utils/scripts/eagleconfig: - removed bc dependancy - let Makefile
+	  install eu_init script
+
+2004-08-29 22:59  baud123
+
+	* utils/scripts/eaglediag: many improvements, removal of gawk use,
+	  more generic test than free degroupe
+
+2004-08-29 22:51  sleeper
+
+	* driver/user/eaglectrl.c: Add an error message in case we can't
+	  open DEVICE path
+
+2004-08-29 21:29  sleeper
+
+	* driver/user/eaglectrl.c: EXIT_SUCCESS is the only real way.
+
+2004-08-29 21:28  sleeper
+
+	* driver/eu_msg.c: code beautification
+
+2004-08-28 22:25  mcoolive
+
+	* debian/eagle-usb-utils.config: - Delete wrong lines (reading of
+	  old parameters).    Some parameters need to be converted.
+
+2004-08-28 21:44  mcoolive
+
+	* debian/rules: - change permissions of /etc/init.d/eagle-usb
+
+2004-08-28 18:53  baud123
+
+	* README: minimal documentation
+
+2004-08-28 17:47  baud123
+
+	* ChangeLog: update for coming 1.9.9rc2
+
+2004-08-28 14:35  mcoolive
+
+	* debian/po/fr.po: - corrected by the language team
+	  <debian-l10n-french@lists@debian.org>
+
+2004-08-28 02:06  baud123
+
+	* utils/scripts/lang/it: missing backslash causing errors
+
+2004-08-28 00:50  mcoolive
+
+	* debian/changelog: [no log message]
+
+2004-08-28 00:49  mcoolive
+
+	* debian/control: Fix the version of automake in  Build-Depends
+
+2004-08-27 23:44  mcoolive
+
+	* debian/eagle-usb-utils.postrm: - fix the last modification
+
+2004-08-27 20:02  mcoolive
+
+	* configure.in: - support ifupdown is not written for Debian
+
+2004-08-27 19:51  mcoolive
+
+	* debian/control.modules: Add Depends on module-init-tools |
+	  modutils
+
+2004-08-27 19:36  mcoolive
+
+	* debian/eagle-usb-utils.postinst: - add peers/provider -> adsl
+	  link to permit a simple ``pon'' (ppp config) - fix the written of
+	  config files used by modutils
+
+2004-08-27 19:25  mcoolive
+
+	* debian/eagle-usb-utils.postrm: - maybe remove peers/provider
+
+2004-08-27 19:23  mcoolive
+
+	* debian/control: - add Depends on modutils | module-init-tools
+
+2004-08-27 16:29  mcoolive
+
+	* utils/scripts/eagleconfig: - fix last modifications
+
+2004-08-27 11:34  mcoolive
+
+	* debian/rules: - eu_dsp isn't copied in good place, the normal
+	  installation make this now.
+
+2004-08-27 11:31  mcoolive
+
+	* utils/scripts/setvars: - remove substring expansion (setvars is
+	  executed with source,   so it can be executed  by another shel
+	  than bash)
+
+2004-08-27 11:16  mcoolive
+
+	* utils/scripts/Makefile: - create hotplug/usb directory if it is
+	  needed
+
+2004-08-26 23:43  Tux
+
+	* utils/scripts/testconnec: [no log message]
+
+2004-08-26 23:42  Tux
+
+	* utils/scripts/Makefile: - install eu_dsp script (previously
+	  eagleconfig did that)
+
+2004-08-26 23:40  Tux
+
+	* utils/scripts/fctStartAdsl: - add exec to avoid an unuseful
+	  process
+
+2004-08-26 23:39  Tux
+
+	* utils/scripts/eagleconfig: - removed generation of the link to
+	  eu_dsp - moved ifcfg-ppp0 generation (Mdk10.1)
+
+2004-08-26 23:36  Tux
+
+	* Makefile: - "make clean" does not remove manpages anymore
+
+2004-08-26 23:35  Tux
+
+	* configure.in: - detect whether manpages are already generated
+	  (prebuilt)
+
+2004-08-26 22:47  sleeper
+
+	* driver/Mpoa.c, driver/eu_eth.c, pppoa/if.c, pppoa/ppp.c,
+	  pppoa/pppoa.c, pppoa/pppoa.h: Add patch from Robert Siemer
+	  <Robert.Siemer@backsla.sh> to remove artificial limit on PPPoA
+
+2004-08-26 22:06  sleeper
+
+	* driver/eu_main.c: Fix a typo in a comment
+
+2004-08-26 17:56  mcoolive
+
+	* utils/scripts/eagleconfig: - if the symbolic link
+	  /etc/resolv.conf is erased   then one tries to restore his old
+	  contents - don't filter and don't add the new login if it is the
+	  empty word
+
+2004-08-26 17:01  mcoolive
+
+	* debian/control: add Build-Depends on net-tools
+
+2004-08-26 16:59  mcoolive
+
+	* debian/eagle-usb-utils.postinst: Fix: startadsl doesn't wait
+	  synchro
+
+2004-08-26 16:57  mcoolive
+
+	* debian/changelog: [no log message]
+
+2004-08-26 16:50  mcoolive
+
+	* debian/eagle-usb-utils.postrm: - bug: postrm failed when
+	  pap-secret (or chap-secret) is empty	 or contains only the line
+	  "adsl@adsl".
+
+2004-08-25 23:10  Tux
+
+	* utils/eagleconnect/Makefile: - changed eagleconnect.conf path
+
+2004-08-25 23:08  Tux
+
+	* eagle-usb.spec: - update description
+
+2004-08-25 15:55  mcoolive
+
+	* Makefile: - fix deb rule: there was a bug when the name of the
+	  directory was   "eagle-usb-version" instead of "eagleusb"
+	  (tarball versus cvs)
+
+2004-08-25 14:46  mcoolive
+
+	* debian/changelog: [no log message]
+
+2004-08-25 14:44  mcoolive
+
+	* debian/eagle-usb-utils.config: - look setvars to take manual
+	  modifications (or modifications performed   by eagleconfig)
+	  during debconf configuration.
+
+2004-08-25 14:41  mcoolive
+
+	* debian/eagle-usb-utils.postinst: - look error code of eagleconfig
+	  to decide if install fail - cosmetic changes
+
+2004-08-25 14:37  mcoolive
+
+	* debian/rules: - don't failed if hotplug is not installed
+
+2004-08-23 11:07  mcoolive
+
+	* debian/control: - docbook is needed to build the package
+	  (xsltproc).
+
+2004-08-23 11:01  mcoolive
+
+	* doc/Makefile: - --nonet option to force the use of local entities
+
+2004-08-23 00:00  baud123
+
+	* ChangeLog: - 1.9.9rc1
+
+2004-08-22 16:10  mcoolive
+
+	* debian/changelog: [no log message]
+
+2004-08-22 13:37  mcoolive
+
+	* debian/rules.modules: - use $confflags parameters (debian policy)
+	  in the call of ./configure
+
+2004-08-22 12:46  mcoolive
+
+	* debian/eagle-usb-utils.postrm: - remove duplicated call to
+	  `update-rc.d'   (`postrm remove' is always called before `postrm
+	  purge')
+
+2004-08-22 11:03  mcoolive
+
+	* debian/rules: - use confflags in parameters of `./configure'
+	  (Debian Policy)
+
+2004-08-21 23:43  mcoolive
+
+	* utils/scripts/setvars: - Fix to read ISP_PWD between simple quote
+	  (and not only double quote)
+
+2004-08-21 01:36  mcoolive
+
+	* debian/eagle-usb-utils.postinst: - if postinst isn't called with
+	  the `configure' parameter,   we do nothing (debian policy).
+
+2004-08-21 01:27  mcoolive
+
+	* debian/eagle-usb-utils.preinst: In case of `abort-upgrade', do
+	  nothing (Debian policy).
+
+2004-08-21 00:46  mcoolive
+
+	* debian/eagle-usb-utils.postrm: If package disappear, the package
+	  is purged.
+
+2004-08-21 00:42  mcoolive
+
+	* debian/postinst.modules: - add #DEBHELPER comment (code is
+	  inserted by debconf)
+
+2004-08-20 20:46  mcoolive
+
+	* debian/eagle-usb-utils.postrm: - changes to respect the Debian
+	  policy
+
+2004-08-20 15:06  mcoolive
+
+	* debian/eagle-usb-utils.postinst: - we don't want the installation
+	  of the package fail because bad parameters
+
+2004-08-20 01:00  mcoolive
+
+	* utils/scripts/testconnec: - use $SYSCONF_FILE instead of its
+	  potential values
+
+2004-08-19 01:50  mcoolive
+
+	* utils/scripts/setvars: - move the `source' of french messages so
+	  that it is made only once.
+
+2004-08-18 13:54  mcoolive
+
+	* utils/scripts/eaglediag: - fix last modifications (delete a
+	  forget `}' and add a space after one cmd)
+
+2004-08-18 00:10  baud123
+
+	* utils/scripts/eaglediag: remove TMP_FILE + CMDECHO (not used any
+	  more)
+
+2004-08-16 23:42  Tux
+
+	* Makefile: - rpm generation : use /usr as default prefix (instead
+	  of /usr/local)
+
+2004-08-16 23:41  Tux
+
+	* eagle-usb.spec: - add eagleconnect & man pages
+
+2004-08-16 22:56  mcoolive
+
+	* utils/scripts/eu_config_bash: - call to `setStrings' only when
+	  necessary
+
+2004-08-15 13:48  mcoolive
+
+	* configure.in: - pidof is in /bin with Debian System
+
+2004-08-15 13:27  mcoolive
+
+	* debian/rules: - remove useless command - add commands here to
+	  mute lintian (more close to the good solution)
+
+2004-08-15 13:20  mcoolive
+
+	* debian/eagle-usb-utils.postinst: - fix the calculation of
+	  autostart
+
+2004-08-15 12:44  mcoolive
+
+	* debian/eagle-usb-utils.postrm: - remove the trick that mute
+	  lintian (and add code in rules ?temporarily?)
+
+2004-08-15 12:22  Tux
+
+	* configure.in: - add check for pidof
+
+2004-08-15 03:32  mcoolive
+
+	* utils/scripts/eagleconfig: - cancel the "add protections around
+	  ISP_LOGIN" (badly made)
+
+2004-08-15 03:21  mcoolive
+
+	* utils/scripts/eagleconfig: - add protection around ISP_LOGIN and
+	  mend a bad grep
+
+2004-08-15 01:41  mcoolive
+
+	* utils/scripts/Makefile: - to ensure of the access permissions of
+	  lock file
+
+2004-08-15 01:22  Tux
+
+	* utils/scripts/Makefile: - removed unuseful&dangerous umask
+
+2004-08-14 20:00  mcoolive
+
+	* utils/scripts/fctStopAdsl: - mend the parameters processing
+
+2004-08-13 00:27  mcoolive
+
+	* Makefile: - fix deb rule : fix the generation of the files
+	  `changes'
+
+2004-08-12 00:44  mcoolive
+
+	* utils/scripts/setvars: - simplify the calculation of ISP_LOGIN
+	  ans ISP_PWD  and prevent an error in case where ISP_LOGIN is
+	  between double quotes
+
+2004-08-12 00:21  mcoolive
+
+	* debian/eagle-usb-utils.postrm:
+	  - adapt the code which remove login and password in
+	  (pap|chap)-secret files
+
+	  Initial revision - this script is called after the
+	  eagle-usb-utils package is removed - erase the dynamically
+	  generated configuration files
+
+2004-08-12 00:16  mcoolive
+
+	* debian/eagle-usb-utils.preinst: - we delete the OLD sections
+	  'DEBCONF SECTION: EAGLE'   (used in chap-secret and pap-secret
+	  files).
+
+	  Initial revision - this script is called before the installation
+	  of eagle-usb package - old links are removed
+
+2004-08-10 23:01  Tux
+
+	* utils/scripts/eagleconfig: - do a mix between old & new methods
+	  to parse pppd config files
+
+2004-08-10 18:51  Tux
+
+	* utils/scripts/fctStartAdsl: - removed an unuseful condition
+
+2004-08-10 00:46  baud123
+
+	* utils/scripts/eaglediag: many cosmetic fixes from mcoolive +
+	  echoLog/Newbie
+
+2004-08-10 00:08  mcoolive
+
+	* doc/Makefile: - add definitions of install and uninstall rules -
+	  if (GEN_DOC != yes) we do anything
+
+2004-08-09 23:29  Tux
+
+	* utils/scripts/options: - add "updetach"
+
+2004-08-09 23:28  mcoolive
+
+	* Makefile: - correct the generation of *.orig.tar.gz (by default
+	  tar dump symlinks)
+
+2004-08-09 23:28  Tux
+
+	* doc/Makefile: - remove "html" rule in "all"
+
+2004-08-09 23:26  Tux
+
+	* utils/scripts/fctStartAdsl: - add pppoe support for "fctStartAdsl
+	  -i"
+
+2004-08-09 23:25  Tux
+
+	* utils/scripts/eagleconfig: - use pty "...fctStartAdsl -i" for all
+	  distributions
+
+2004-08-09 21:27  sleeper
+
+	* driver/user/eaglectrl.c: eaglectrl -v now outputs gcc version it
+	  has been compiled with
+
+2004-08-09 18:38  mcoolive
+
+	* debian/control: - eagle-usb-utils depends on gawk (because
+	  eaglediag) - eagle-usb-utils depands on net-tools (route,
+	  ifconfig, etc)
+
+2004-08-08 22:59  Tux
+
+	* utils/scripts/eagleconfig: [no log message]
+
+2004-08-08 18:05  emmanuel
+
+	* utils/eagleconnect/diagnostic.tcl: Diagnostic.tcl rewriten : now,
+	  you can resize it without any problem, fonts are smaller and
+	  saveas procedure has been corrected so that cancel button doesn't
+	  make appear a mistake message
+
+2004-08-07 14:33  Tux
+
+	* doc/Makefile: - removed stylesheets paths (moved to
+	  Makefile.common)
+
+2004-08-07 14:32  Tux
+
+	* Makefile.common.in: - add vars to generate docs (boolean +
+	  stylesheets paths)
+
+2004-08-07 14:31  Tux
+
+	* Makefile: - add rules to generate docs
+
+2004-08-07 14:30  Tux
+
+	* configure.in: - add check for xsltproc & stylesheets to generate
+	  docs - remove unused dialog check
+
+2004-08-07 11:26  mcoolive
+
+	* utils/scripts/eagleconfig: - i ensure myself of the  access
+	  permissions of /etc/resolv.conf - fix the writing of pap-secret
+	  and chap-secret, marks are posed   to delimit what is written for
+	  the configuration of eagle-usb
+
+2004-08-07 11:21  mcoolive
+
+	* debian/eagle-usb-utils.postinst: - I ensure myself of the  access
+	  permissions of /etc/modprobe.d/eagle-usb - remove the attempt to
+	  short circuit eagleconfig in configuration of ppp,	    and
+	  remove the writing of ppp configuration files
+
+	  Initial revision This script is executed after the installation
+	  of the package eagle-usb-utils.
+
+2004-08-06 21:32  Tux
+
+	* configure.in: - bug : dhclient detection on summary - disable
+	  expect as it is not used yet
+
+2004-08-06 18:32  emmanuel
+
+	* utils/eagleconnect/reseau.tcl: mise à jour (mineure) de
+	  reseau.tcl
+
+2004-08-06 18:32  emmanuel
+
+	* utils/eagleconnect/diagnostic.tcl: mise à jour (mineure) de
+	  diagnostic.tcl
+
+2004-08-06 18:30  emmanuel
+
+	* utils/eagleconnect/eagleconnect.tcl: mise à jour
+	  d'eagleconnect.tcl
+
+2004-08-06 11:59  mcoolive
+
+	* Makefile: - edit "deb" rule to remove warnings
+
+2004-08-06 00:54  mcoolive
+
+	* debian/: postinst.modules, rules.modules, control.modules: - fix
+	  the substitution of kernel version
+
+2004-08-06 00:52  mcoolive
+
+	* utils/scripts/eagleconfig: - replace forgotten ${MODULE} by
+	  ${MODULE_STR}
+
+2004-08-05 18:08  mcoolive
+
+	* debian/changelog: - remove a wrong comment - rechange the version
+	  number: "cvs" and the date appear in the version number
+
+2004-08-05 17:44  mcoolive
+
+	* doc/Makefile: - addition of a filter in the calculation of
+	  SOURCES   to be unaware of sub-directory "CVS".
+
+2004-08-05 17:36  mcoolive
+
+	* Makefile: The "clean" rule is propagated in "doc" subdirectory.
+	  Add rule "deb" to construct debian packages.
+
+2004-08-05 00:42  mcoolive
+
+	* debian/rules.modules: Delete one useless line.
+
+	  Initial revision Files match *.modules are copied in
+	  eagle-usb-modules-source package.  `rules.modules' is the
+	  Makefile to construct eagle-usb-modules package.
+
+2004-08-04 23:55  mcoolive
+
+	* debian/changelog: Change the version of the packages, 1.9.9-1 to
+	  1.9.8-4 to distribute them now.
+
+2004-08-04 23:46  mcoolive
+
+	* utils/scripts/eagleconfig: change file access permissions of
+	  /etc/cron.d/eagle-usb (755 => 644)
+
+2004-08-04 21:58  Tux
+
+	* utils/eagleconnect/lang/fr.msg: - initial revision
+
+2004-08-04 21:58  Tux
+
+	* utils/eagleconnect/: diagnostic.tcl, eagleconnect.tcl,
+	  reseau.tcl: [no log message]
+
+2004-08-04 21:57  Tux
+
+	* utils/eagleconnect/Makefile: - paths have been moved directly
+	  into .tcl scripts - (temporary?) removed expect script
+
+2004-08-04 21:56  Tux
+
+	* utils/eagleconnect/eagleconnect.conf: - paths have been moved
+	  directly into .tcl scripts
+
+2004-08-04 21:54  Tux
+
+	* utils/scripts/setvars: - SEND_DSP => SEND_DSP_STR, $MODULE =>
+	  $MODULE_STR
+
+2004-08-04 21:53  Tux
+
+	* utils/scripts/eu_dsp: - fix conflict between two vars named
+	  $SEND_DSP - use $MODULE_STR instead of "eagle-usb"
+
+2004-08-04 21:51  Tux
+
+	* utils/scripts/eagleconfig: - $MODULE => $MODULE_STR
+
+2004-08-04 19:52  mcoolive
+
+	* doc/sources/startadsl.xml: Initial revision This document
+	  describes the startadsl command.  Used to generate the man page
+	  of startadsl.
+
+2004-08-04 19:51  mcoolive
+
+	* doc/sources/startmire.xml: Initial revision This document
+	  describes startmire command.	Used to generate the man page of
+	  startmire.
+
+2004-08-04 19:50  mcoolive
+
+	* doc/sources/stopadsl.xml: Initial revision This document
+	  describes the stopadsl command.
+
+2004-08-04 13:28  mcoolive
+
+	* Makefile.common.in: $INFODIR, $MANDIR are added. They will be
+	  used by doc/Makefile.
+
+	  In the definition of HOTPLUG_SCRIPT_DIR, $(DESTDIR) is added.
+
+2004-08-04 02:02  mcoolive
+
+	* utils/scripts/eagleconfig: Removed intermediate $OLDNAME
+	  variable.
+
+2004-08-04 01:33  mcoolive
+
+	* doc/sources/eaglediag.xml: Initial revision.	A document which
+	  describes the eaglediag command.
+
+2004-08-04 00:28  mcoolive
+
+	* driver/user/eaglectrl.c: Correct a typing error: "will chose" =>
+	  "will choose"
+
+2004-08-04 00:26  mcoolive
+
+	* doc/sources/fctStopAdsl.xml: Initial revision.  A document which
+	  describes very briefly the fctStopAdsl command.
+
+2004-08-04 00:25  mcoolive
+
+	* doc/sources/fctStartAdsl.xml: Initial revision.  A document which
+	  describes very briefly the fctStartAdsl command.
+
+2004-08-04 00:04  mcoolive
+
+	* doc/sources/eaglectrl.xml: Initial revision.	A document which
+	  describes the eaglectrl command.
+
+2004-08-03 23:26  mcoolive
+
+	* doc/sources/pppoa.xml: Initial revision.  A very incomplete
+	  document which describes the pppoa command.
+
+2004-08-03 23:13  mcoolive
+
+	* doc/sources/eaglestat.xml: Initial revision.	A document which
+	  describes the eaglestat command.
+
+2004-08-03 23:12  mcoolive
+
+	* doc/sources/eagleconfig.xml: Initial revision.  A document which
+	  describes the eagleconfig command.
+
+2004-08-03 23:09  mcoolive
+
+	* doc/Makefile: Fix a mistake : replace all `source' by `sources'
+
+2004-08-03 21:45  mcoolive
+
+	* doc/Makefile: Initial release All the documents are centralized
+	  in the `doc' directory.  Some documents are generated dynamically
+	  starting from XML documents.	This Makefile defines rules to
+	  generate them.
+
+2004-08-03 19:51  Tux
+
+	* utils/scripts/eagleconfig: - support for spaces in options
+
+2004-08-03 19:47  mcoolive
+
+	* debian/rules:
+	  Delete lines about the man pages, and replace them by a call to
+	  the new eagleusb/doc/Makefile.
+
+	  All files in debian directory is used to contruct the Debian
+	  packages.  rules is the main file, it is a Makefile.
+
+2004-08-03 19:46  Tux
+
+	* driver/firmware/Makefile: - remove a warning when uninstalling
+
+2004-08-03 19:42  Tux
+
+	* utils/eagleconnect/parameagleconnect.tcl: - initial revision
+
+2004-08-03 19:40  mcoolive
+
+	* debian/eagle-usb-utils.manpages: Initial revision.
+
+	  This file list man pages to be installed.  It is used by
+	  dh_installman called in rules.
+
+2004-08-03 19:34  Tux
+
+	* utils/eagleconnect/: diagnostic.tcl, eagleconnect.tcl,
+	  reseau.tcl, eagleconnect.conf: - initial revision
+
+2004-08-03 19:33  Tux
+
+	* utils/eagleconnect/Makefile: - now do something
+
+2004-08-02 23:09  mcoolive
+
+	* debian/: po/templates.pot, rules, eagle-usb-utils.postinst,
+	  eagle-usb-utils.postrm, eagle-usb-utils.preinst: [no log message]
+
+2004-08-02 23:00  mcoolive
+
+	* debian/po/: POTFILES.in, fr.po: [no log message]
+
+2004-08-02 22:52  mcoolive
+
+	* debian/: eagle-usb-utils.config, eagle-usb-utils.templates,
+	  rules.modules, postinst.modules: [no log message]
+
+2004-08-02 22:43  mcoolive
+
+	* debian/: copyright, eagle-usb-data.docs,
+	  eagle-usb-modules-source.docs, eagle-usb-utils.docs,
+	  control.modules: [no log message]
+
+2004-08-02 22:30  mcoolive
+
+	* debian/: README.Debian, compat, changelog, control: [no log
+	  message]
+
+2004-08-01 22:35  Tux
+
+	* utils/eagleconnect/Makefile: [no log message]
+
+2004-08-01 22:31  Tux
+
+	* utils/eagleconnect/Makefile: - Initial revision
+
+2004-08-01 22:13  Tux
+
+	* utils/scripts/: Makefile, setvars: - removed some unused hotplug
+	  related vars
+
+2004-08-01 22:12  Tux
+
+	* utils/scripts/fctStartAdsl: - hide messages when launching
+	  startadsl within a terminal
+
+2004-08-01 22:10  Tux
+
+	* utils/scripts/eu_config_bash: - cosmetic changes
+
+2004-08-01 22:10  Tux
+
+	* utils/scripts/eaglediag: - distrib detection : changed "other" by
+	  "generic"
+
+2004-08-01 22:09  Tux
+
+	* Makefile.common.in: - eagleconnect support - removed some unused
+	  hotplug vars
+
+2004-08-01 22:08  Tux
+
+	* Makefile: - eagleconnect support
+
+2004-08-01 22:08  Tux
+
+	* configure.in: - eagleconnect support (tcl/tk) - add summary after
+	  ./configure
+
+2004-08-01 17:59  sleeper
+
+	* pppoa/Makefile: Removed pppoa from PHONY target/ensure SBINDIR
+	  exists/change perm from 0755 to 0755
+
+2004-07-30 22:18  sleeper
+
+	* driver/eu_main.c: Needed to compile on  2.4.18
+
+2004-07-27 01:36  baud123
+
+	* utils/scripts/lang/it: update italian 1.9.8
+
+2004-07-26 21:34  Tux
+
+	* utils/scripts/: eagleconfig, eu_config_bash: - removed unused
+	  $EXPERT variable
+
+2004-07-25 22:19  Tux
+
+	* utils/scripts/uninstOld: - now remove files in /usr and
+	  /usr/local
+
+2004-07-25 22:18  Tux
+
+	* utils/scripts/startadsl: - return error code - cosmetic changes
+
+2004-07-25 22:17  Tux
+
+	* utils/scripts/eagleconfig: - new method to update pppd's options
+	  files
+
+2004-07-25 22:15  Tux
+
+	* configure.in: - use "/usr" as defaut prefix on Mandrake & SuSE
+
+2004-07-25 18:46  baud123
+
+	* utils/scripts/lang/mk: macedonian based on en_1.11
+
+2004-07-25 18:43  baud123
+
+	* utils/scripts/lang/br: brazilian (portuguese) based on en_1.11
+
+2004-07-25 18:38  baud123
+
+	* utils/scripts/eaglediag: add option output file + display ISP
+
+2004-07-19 22:45  Tux
+
+	* utils/scripts/stopadsl: - stopadsl now remove lock file (prevent
+	  testconnec to restart connection)
+
+2004-07-19 22:44  Tux
+
+	* utils/scripts/startadsl: - startadsl now put lock file (used
+	  later by testconnec)
+
+2004-07-19 22:43  Tux
+
+	* utils/scripts/rc.eagle-usb: [no log message]
+
+2004-07-19 22:43  Tux
+
+	* utils/scripts/fctStartAdsl: - "fctStartAdsl -i" now start pppoa
+	  itself (no more use of  pty "...pppoa -I $IF" )
+
+2004-07-19 22:41  Tux
+
+	* utils/scripts/eagleconfig: - change pty call in
+	  /etc/ppp/pears/adsl - add "updetach" to pppd options on Mandrake
+
+2004-07-17 17:41  Tux
+
+	* utils/scripts/testconnec: - forgot to update parameters - removed
+	  chmod on the lock file
+
+2004-07-17 17:40  Tux
+
+	* utils/scripts/eagleconfig: [no log message]
+
+2004-07-16 23:52  Tux
+
+	* utils/scripts/eu_init: - use $SYSCONF_FILE - asynchronous start
+	  should display [OK] / [Error] too
+
+2004-07-16 23:40  Tux
+
+	* utils/scripts/eu_config_bash: - wrong parameters for the ISP
+	  "Sonera"
+
+2004-07-16 23:27  Tux
+
+	* utils/scripts/lang/p2: [no log message]
+
+2004-07-16 23:15  Tux
+
+	* utils/scripts/lang/pl: [no log message]
+
+2004-07-16 23:14  Tux
+
+	* utils/scripts/Makefile: - added $PPP_OPTIONS_ADSL,
+	  $PPP_OPTIONS_MIRE, $SYSCONF_FILE
+
+2004-07-16 23:14  Tux
+
+	* utils/scripts/setvars: - added $PPP_OPTIONS_ADSL,
+	  $PPP_OPTIONS_DIR, $PPP_OPTIONS_MIRE, $SYSCONF_FILE - fixed bug
+	  with start_on_boot detection and add Mdk10.1 support - remove
+	  unused lines : i=1; PARAMS=""
+
+2004-07-16 23:11  Tux
+
+	* utils/scripts/rc.eagle-usb: - add lock (used later by testconnec)
+
+2004-07-16 23:08  Tux
+
+	* utils/scripts/: eu_config_bash, fctStartAdsl, fctStopAdsl,
+	  startadsl, startmire, stopadsl, testconnec: - simplify parameters
+	  processing
+
+2004-07-16 23:07  Tux
+
+	* utils/scripts/eagleconfig: - simplify parameters processing -
+	  support for Mdk10.1 autostart (using ifcfg-ppp0)
+
+2004-07-16 22:58  Tux
+
+	* Makefile.common.in: - added $PPP_OPTIONS_ADSL, $PPP_OPTIONS_MIRE,
+	  $SYSCONF_FILE
+
+2004-07-16 22:57  Tux
+
+	* VERSION: - version 1.9.9
+
+2004-07-16 22:56  Tux
+
+	* eagle-usb.spec: - version 1.9.9 r0.1
+
+2004-07-16 22:56  Tux
+
+	* configure.in: - added "--with-peers-dir" option - lock file is
+	  now given by the $SYSCONF_FILE variable - Mandrakelinux 10.1
+	  support
+
+2004-07-15 22:26  Tux
+
+	* utils/scripts/testconnec: - check for /var/lock/eagle-usb too
+
+2004-07-15 22:25  Tux
+
+	* utils/scripts/Makefile: - uninstall did't remove
+	  /etc/cron.d/eagle-usb
+
+2004-07-13 21:01  sleeper
+
+	* driver/: eu_boot_sm.c, eu_main.c, eu_types.h, macros.h: Attempt
+	  to fix atomicity problem for DSP loading
+
+2004-07-13 21:01  sleeper
+
+	* driver/Mpoa.c: Set PPPoE MRU to 1524
+
+2004-07-12 23:21  Tux
+
+	* utils/scripts/uninstOld: - some distribs require underscore
+	  instead of minus in "rmmod eagle-usb"
+
+2004-07-12 23:06  Tux
+
+	* utils/scripts/eagleconfig: - modules.usbmap should already
+	  contains device IDs => remove /etc/hotplug/usb/eagle-usb
+
+2004-07-12 23:04  Tux
+
+	* utils/scripts/eu_dsp: - don't send DSP for pre-firmware device
+
+2004-07-03 16:24  sleeper
+
+	* driver/Mpoa.c: Change size on incoming PDU to 1520 for PPPoE
+
+2004-07-03 01:18  Tux
+
+	* utils/scripts/eu_dsp: - slackware 10 support
+
+2004-07-02 21:11  Tux
+
+	* utils/scripts/uninstOld: - uninstall now remove Slackware
+	  autostart service too
+
+2004-07-02 21:09  Tux
+
+	* utils/scripts/: eagleconfig, setvars: - slackware 10 support -
+	  fixed bug with custom interface name on 2.4 kernels
+
+2004-07-02 21:08  Tux
+
+	* configure.in: - slackware 10 support - check whether "ifconfig"
+	  and "route" are present
+
+2004-06-30 22:32  sleeper
+
+	* driver/: Boot.c, Boot.h, Mpoa.c, Sm.c, Uni.c, eu_boot_sm.c,
+	  eu_boot_sm.h, eu_main.c, eu_types.h, macros.h, Makefile:
+	  Implemented new boot state machine
+
+2004-06-24 22:13  Tux
+
+	* utils/scripts/lang/: en, p2: [no log message]
+
+2004-06-23 22:48  Tux
+
+	* utils/scripts/lang/fr: [no log message]
+
+2004-06-23 22:47  Tux
+
+	* utils/scripts/eagleconfig: - fix bug: if_name is always eagle_usb
+	  - reload module when interface named change
+
+2004-06-23 22:46  Tux
+
+	* utils/scripts/eu_config_bash: - remove redundancy with ISP list -
+	  isp_to_no has been removed (now we use a single identifier)
+
+2004-06-23 22:40  Tux
+
+	* utils/scripts/setvars: - removed unused "isp_to_no" function
+
+2004-06-23 22:39  Tux
+
+	* utils/scripts/eu_dsp: - add support for distribs which do not
+	  provide $REMOVER param (eg: SuSE9.1)
+
+2004-06-23 22:36  Tux
+
+	* README: - fixed website address
+
+2004-06-21 20:51  Tux
+
+	* utils/scripts/setvars: - disable french chars (accents) on SuSE
+
+2004-06-20 18:05  baud123
+
+	* utils/scripts/: eu_config_bash, setvars: addition of new ISP
+
+2004-06-08 23:02  baud123
+
+	* ChangeLog: 1.9.8
+
+2004-06-08 21:50  Tux
+
+	* VERSION: - 1.9.8
+
+2004-06-06 23:09  Tux
+
+	* utils/scripts/lang/: de, en, es, f2, it, p2, pl: - translated
+	  "ask_for_interface_name" message in english
+	* utils/scripts/setvars: - display a warning when interface name
+	  contains quotation marks
+	* utils/scripts/eagleconfig: - added custom interface name
+
+2004-06-04 20:56  sleeper
+
+	* driver/: Boot.c, Dsp.c, Me.c, Oam.c, Pipes.c, Sm.c, eu_eth.c,
+	  eu_main.c, eu_msg.c, eu_utils.c, eu_utils.h: Cosmetics
+	* driver/Macros.h: Now named macros.h
+	* driver/macros.h: Renamed from Macros.h + definition of wait_ms
+	  for kernel above 2.6.6
+
+2004-05-30 03:56  Tux
+
+	* utils/scripts/uninstOld: - added update-usb.usermap
+	* utils/scripts/eu_init: - "splash_late" service does not exist on
+	  SuSE9.1, using "syslog" instead
+	* utils/scripts/: eu_config_bash, setvars: - vars name "FAI..." =>
+	  "ISP..."
+	* utils/scripts/eagleconfig: - fixed bug with parameters - vars
+	  name "FAI..." => "ISP..."
+	* Makefile: - "rpm -ba" => "rpmbuild"
+	* eagle-usb.spec: - removed _prefix
+
+2004-05-27 07:31  sleeper
+
+	* driver/Macros.h: Fix compilation on kernel > 2.6.6 : wait-ms is
+	  replaced by msleep
+	* driver/Makefile-2.6: revert to "old" compilation style
+	* driver/: Makefile-2.4, Makefile-2.6: Add installdriver as a phony
+	  target
+
+2004-05-24 23:26  Tux
+
+	* utils/scripts/eu_config_bash: - wrong variable name (LT =>
+	  LINETYPE)
+	* kernel.m4: - "AC_DEFUN(AC_CHECK_KERNEL_VERSION," =>
+	  "AC_DEFUN([AC_CHECK_KERNEL_VERSION]"
+	* utils/scripts/lang/: de, en, es, f2, fr, it, p2, pl: - added
+	  "ask_for_interface_name" message
+	* utils/scripts/eagleconfig: - improved $LSTOPTIONS loop (Cyril
+	  Olivier Martin) - do not ask questions anymore
+	* utils/scripts/eu_config_bash: - ask for virtual interface name
+	  (expert mode only) - use "exec" to call eagleconfig
+	* utils/scripts/setvars: - get virtual interface name ($FORCE_IF)
+	* utils/scripts/eu_init: - "force-reload" now acts as "restart"
+	* configure.in: - added support for Fedora Core 2 and SuSE 9.1
+	* eagle-usb.spec: - removed _sbindir - ./configure => %configure
+
+2004-05-23 09:18  sleeper
+
+	* driver/: Makefile-2.4, Makefile-2.6: Add installdriver
+	  indirection
+	* driver/eu_main.c: Fix shutdown handling of URBs + do not release
+	  explicitely interfaces as they will be by USb stack
+	* driver/: Pipes.c, eu_utils.c: Fix shutdown handling of URBs
+
+2004-05-16 21:27  Tux
+
+	* utils/scripts/Makefile: - language files permissions: 0755 =>
+	  0644
+	* utils/scripts/setvars: - fixed 2 bugs with grep calls
+	* eagle-usb.spec: - changed build_root - added smp_mflags -
+	  cosmetic changes
+	* driver/Makefile-2.6: - changed module build command
+	* driver/: firmware/Makefile, user/Makefile: - removed some .PHONY
+	* utils/scripts/lang/: de, en, es, f2, fr, it, p2, pl: - removed
+	  #!/bin/bash
+	* eagle.spec: - eagle.spec => eagle-usb.spec
+	* utils/scripts/uninstOld: - support for Mandrake cooker
+	* utils/scripts/eagleconfig: - netmask for pppd users =
+	  255.255.255.255
+	* Makefile: - eagle.spec => eagle-usb.spec - add "hash -r" after
+	  "make install"
+	* makedist: - security fix
+	* eagle-usb.spec: - name changed: eagle.spec => eagle-usb.spec
+	* configure.in: - use $sysconfir instead of $CONFDIR - use
+	  /lib/modules/{version}/build as default kernel source path
+
+2004-05-09 23:04  baud123
+
+	* utils/scripts/eaglediag: add hdparm test + correction for gcc
+	  version + add GPL license and newbie mode
+
+2004-04-28 19:15  Tux
+
+	* utils/scripts/setvars: - remove unuseful data :-D
+	* utils/scripts/: eagleconfig, fctStartAdsl: - network mask changed
+	  from 255.255.255.255 to 255.255.255.0 for non-pppd users
+
+2004-04-22 23:44  sleeper
+
+	* driver/eu_utils.c: Fix an unneeded (and therefore dangerous ;)
+	  call to memcpy
+
+2004-04-21 22:07  Tux
+
+	* eagle.spec, utils/scripts/Makefile, utils/scripts/eagleconfig,
+	  utils/scripts/fctStartAdsl: [no log message]
+	* utils/scripts/: eu_init, fctStopAdsl, rc.eagle-usb, startadsl,
+	  stopadsl: [no log message]
+	* utils/scripts/setvars: - added $FAI_LOGIN, $FAI_PWD, $ENCRYPT -
+	  bug with separators ("cut" command is not very powerful!)
+	* utils/scripts/fctStartAdsl: - virtual interface does not use an
+	  IP anymore
+	* utils/scripts/eagleconfig: - virtual interface does not use an IP
+	  anymore - bug fix: wrong variable names
+	* utils/scripts/setvars: - prevent unitialized vars from crashing
+	  the script
+	* utils/scripts/: eagleconfig, Makefile, fctStartAdsl: - some
+	  changes with ">/dev/null"
+	* utils/scripts/eagleconfig: - prevent empty values from crashing
+	  the script - fix bug: $INTERFACE is not initialized when
+	  $SEND_DSP=0
+	* utils/scripts/setvars: - ensure that $PWD_ENCRYPT always exists
+	* Makefile: - cosmetic changes
+	* configure.in: - update messages about non ppp users (dégroupés) -
+	  fix Mandrakelinux 10.x detection - fix "make uninstall" crash on
+	  unknown distribs
+
+2004-04-19 22:53  sleeper
+
+	* driver/eu_main.c: Make it compile on kernel > 2.6.5
+
+2004-04-18 21:46  Tux
+
+	* Makefile: - a string was badly displayed
+	* utils/scripts/eu_config_bash: - added expert param
+	* utils/scripts/eagleconfig: - bugfix (lot of crashes)
+	* configure.in: - added Mandrake cooker support
+
+2004-04-16 23:19  sleeper
+
+	* driver/user/: Makefile, eaglectrl.c: Make eaglectrl version more
+	  coherent
+	* driver/: Makefile-2.4, Makefile-2.6: fix module right at
+	  installation
+	* pppoa/ppp.c: Fix a bug when packet is optimaly filled
+
+2004-04-09 01:34  baud123
+
+	* utils/scripts/eaglediag: correction bug init PB_DISK
+
+2004-04-05 23:45  sleeper
+
+	* driver/Oam.c: Fix typo
+
+2004-04-05 23:45  sleeper
+
+	* driver/: Sm.c, eu_eth.c, eu_types.h: Fix race condition on eth
+	  device creation
+
+2004-04-04 20:48  Tux
+
+	* utils/scripts/eu_config_bash: Initial revision
+	* utils/scripts/uninstOld: - eagle-usb rpm uninstall (including
+	  Mdk10 packages)
+	* utils/scripts/setvars: - removed $USE_UPD_USB_USERMAP - better
+	  language management - now detect the whole modem parameters
+	* utils/scripts/Makefile: - added eu_config_bash
+	* utils/scripts/eagleconfig: - cut eagleconfig into 2 parts:
+	  eagleconfig & eu_config_bash - removed $USE_UPD_USB_USERMAP -
+	  only stopadsl & send DSP when it's necessary
+	* Makefile.common.in: - removed $USE_UPD_USB_USERMAP
+	* Makefile: - ask the user to unplug&replug modem
+	* eagle.spec: - added eu_config_bash
+	* configure.in: - removed $USE_UPD_USB_USERMAP
+
+2004-03-28 21:51  sleeper
+
+	* driver/: Macros.h, eu_main.c: Make it compile on 2.4 too ;)
+	* driver/eu_main.c: Fix a typo
+
+2004-03-23 23:58  sleeper
+
+	* driver/eu_main.c: Check return code from
+	  usb_driver_claim_interface
+
+2004-03-23 21:16  Tux
+
+	* utils/scripts/testconnec: slackware support
+	* utils/scripts/eagleconfig: - fixed bug "This language (C) is not
+	  supported!" - autostart on slackware - expert mode allow
+	  eagleconfig to finish even if modem is not plugged
+
+2004-03-22 22:37  Tux
+
+	* eagle.spec: 1.9.7
+	* driver/firmware/Makefile: uninstall remove dsp_dir if it is empty
+	* utils/scripts/lang/: de, en, es, f2, fr, it, p2, pl: [no log
+	  message]
+	* utils/scripts/usb.usermap: eu_dsp => eagle-usb
+	* utils/scripts/uninstOld: - remove DSP found on old locations (ex:
+	  /etc/eagle-usb/) - ask to unplug modem when necessary
+	* utils/scripts/testconnec: removed old $START_ON_BOOT check
+	* utils/scripts/testconnec: testconnec now exit if internet service
+	  is not started
+	* utils/scripts/startmire: bug fixed: startmire didn't pass options
+	  to startadsl
+	* utils/scripts/setvars: bug "Language C not found" fixed?
+	* utils/scripts/Makefile: do not ask anymore the user to unplug the
+	  modem unless it is necessary
+	* utils/scripts/eu_dsp: $UNPLUGSCRIPT => $REMOVER
+	* utils/scripts/eagleconfig: new usb.usermap location
+	  (/etc/hotplug/usb/)
+	* VERSION: 1.9.7
+	* Makefile.common.in: added $EU_DSP param
+	* eagle.spec: - Change "/usr/local/sbin" to "%{prefix}" - Use
+	  default rpm "./configure" values - replace "/etc" by
+	  "%{sysconfdir} - improved uninstall method
+	* configure.in: added $DSPDIR param
+
+2004-03-18 23:46  baud123
+
+	* utils/scripts/eaglediag: add hdparm test + correction for gcc
+	  version (incorrectly triggered for SuSE/RedHat)
+
+2004-03-10 22:20  sleeper
+
+	* driver/Sm.c: Fix a bug that lead to incorrect rates on PPC arch
+	  (Witold Krecicki <adasi@culm.net>)
+
+2004-03-01 20:51  Tux
+
+	* utils/scripts/Makefile: added slackware service
+	* utils/scripts/rc.eagle-usb: Initial revision
+
+2004-03-01 20:51  Tux
+
+	* utils/scripts/eaglediag: fixed "ping -w" bug with Debian
+	* utils/scripts/eagleconfig: Create /etc/ppp/peers folder which
+	  doesn't exist on Slackware 9.1
+	* Makefile: Allow user to build rpm on "~/rpm/"
+
+2004-02-20 17:25  Tux
+
+	* utils/scripts/fctStopAdsl: [no log message]
+	* utils/scripts/eu_dsp: eu_dsp didn't send dsp on 2.4 kernel
+	* utils/scripts/fctStartAdsl: 1.9.6
+	* VERSION: 1.9.6
+	* eagle.spec: Added "hash -r"
+
+2004-02-19 23:04  sleeper
+
+	* utils/eagleconfig.pl/network.pl: Ad a warning when choosing or
+	  not to use peer dns
+	* driver/eu_main.c: Fix MAC string in /proc output to be less ugly
+	  ;)
+	* driver/eu_main.c: Added MAC addr when reading /proc eagle entry
+	* driver/Makefile-2.6: Added a variable to facilitate compilation
+	  to a user given directory
+	* driver/Pipes.c: Cosmetics
+
+2004-02-16 21:43  Tux
+
+	* utils/scripts/fctStartAdsl: "--keep=Ns" force fctStartAdsl to be
+	  kept alive until connection is established or timeout occurs
+	* eagle.spec: added preun/post rules for eagle-usb-module.rpm
+	* configure.in: dhcpd => dhcpcd
+	* utils/eagleconfig.pl/contrib/dialog/po/: POTFILES.in, cs.po,
+	  da.po, de.po, dialog.pot, el.po, es.po, et.po, fr.po, hu.po,
+	  it.po, ja.po, makefile.inn, pl.po, pt.po, pt_BR.po, ru.po:
+	  Initial revision
+	* utils/eagleconfig.pl/contrib/dialog/: CHANGES, COPYING, README,
+	  VERSION, aclocal.m4, arrows.c, buttons.c, calendar.c,
+	  checklist.c, colors.h, config.guess, config.hin, config.sub,
+	  configure, configure.in, dialog.1, dialog.c, dialog.h,
+	  dialog.lsm, dialog.pl, formbox.c, fselect.c, guage.c, inputbox.c,
+	  inputstr.c, install-sh, makefile.in, menubox.c, mkdirs.sh,
+	  mouse.c, mousewget.c, msgbox.c, rc.c, tailbox.c, textbox.c,
+	  timebox.c, ui_getc.c, util.c, yesno.c: Initial revision
+	* utils/eagleconfig.pl/contrib/Config/IniFiles.pm: Initial revision
+	* utils/eagleconfig.pl/profiles/: free, free-degroupe: Initial
+	  revision
+	* utils/eagleconfig.pl/: Makefile.in, eagleconfig.pl, mandrake.pl,
+	  modem.pl, network.pl, redhat.pl, ui.pl: Initial revision
+	* configure.in: remove unused eagleconfig.pl (dialog version)
+	* utils/scripts/eu_dsp: prevent dsp from being send 3 times
+	* utils/scripts/lang/: de, en, es, f2, fr, it, p2, pl: changed some
+	  old style variable names
+	* utils/scripts/eagleconfig: eagleconfig can update Mandrake10
+	  /etc/ppp/peers/adsl
+	* eagle.spec: added "eagle" packages as obsolete (new
+	  name=eagle-usb)
+	* configure.in: [no log message]
+	* driver/Makefile-2.6: "make clean" didn't remove some temporary
+	  files
+	* driver/: firmware/Makefile, user/Makefile: allow simple user to
+	  build rpm
+	* driver/: Makefile-2.6, Makefile-2.4: - allow simple user to build
+	  rpm - added .phony
+	* driver/Makefile-module_disabled: Initial revision
+	* driver/Makefile: added Makefile-module_disabled
+	* Makefile.common.in: moved more installed files to $DESTDIR
+	* Makefile, utils/scripts/Makefile, pppoa/Makefile: allow simple
+	  user to build rpm
+	* eagle.spec: Added network-scripts to package
+	* configure.in: [no log message]
+
+2004-02-10 22:05  sleeper
+
+	* driver/user/eaglectrl.c: Fix a bug that prevent eaglectrl from
+	  parsing options
+	* driver/eu_main.c: Fix a bug in interface release / No need to
+	  claim/release intf 0
+	* driver/eu_eth.c: Attempt to wake up queue when tx timeouts
+	* driver/eu_main.c: Aim to fix the 'interface release' bug on 2.6
+	  in a more elegant maner
+	* driver/: debug.h, Pipes.c: Cosmetic changes
+	* driver/user/: eagle-usb.conf, eaglectrl.c: Fix 'Unknown option'
+	  warning
+
+2004-02-08 02:01  Tux
+
+	* utils/scripts/eagleconfig: cron job was not executable
+	* utils/scripts/lang/pl: added polish fonts
+	* eagle.spec: - force autogen - works with 2.4&2.6 kernels
+	* utils/scripts/lang/: de, en, es, f2, fr, it, p2, pl: [no log
+	  message]
+	* utils/scripts/: setvars, uninstOld: added support for testconnec
+	* utils/scripts/eagleconfig: added "expert" mode
+	* driver/user/Makefile: wrong absolute paths: "eaglectrl -d"
+	  couldn't find eagle-usb.conf
+	* driver/Makefile-2.4: wrong rule name
+	* LICENSE: Initial revision
+	* Makefile.common.in: added EU_DSP_DIR
+	* Makefile: Renamed eagle to eagle-usb
+	* eagle.spec: Temporary changed website
+	* utils/scripts/: setvars, startmire, testconnec: [no log message]
+	* utils/scripts/Makefile: "make" is now necessary before "make
+	  install"
+	* utils/scripts/eagleconfig: fixed a crash when "mire" file was
+	  missing
+	* driver/: Makefile-2.4, Makefile-2.6: cosmetic changes
+	* driver/: firmware/Makefile, user/Makefile: paths+rules modified
+	* README, gpl.txt: Initial revision
+	* Makefile, Makefile.common.in, VERSION, autogen.sh, configure.in,
+	  eagle.spec, install-sh, kernel.m4, makedist: Initial revision
+
+2004-02-06 23:26  sleeper
+
+	* pppoa/: COPYING, Makefile, common.c, config.h, debug.c, if.c,
+	  ppp.c, pppoa.c, pppoa.h: Initial creation
+
+2004-02-06 23:16  sleeper
+
+	* driver/firmware/usr/pots/: rtbldep0.bnm, rtbldep1.bnm,
+	  rtbldep2.bnm, rtbldep3.bnm, rtbldep4.bnm: Initial creation
+	* driver/firmware/usr/isdn/: rtbldei0.bnm, rtbldei1.bnm,
+	  rtbldei2.bnm, rtbldei3.bnm, rtbldei4.bnm: Initial creation
+	* driver/firmware/sagem/pots/: rtbldep0.bnm, rtbldep1.bnm,
+	  rtbldep2.bnm, rtbldep3.bnm, rtbldep4.bnm: Initial creation
+	* driver/firmware/: HexRecord.h, Makefile, bnm-format.txt,
+	  builddsp.c, sagem/isdn/rtbldei0.bnm, sagem/isdn/rtbldei1.bnm,
+	  sagem/isdn/rtbldei2.bnm, sagem/isdn/rtbldei3.bnm,
+	  sagem/isdn/rtbldei4.bnm: Initial creation
+	* driver/: Adiutil.h, Boot.c, Boot.h, COPYING, Cmv.h, Dsp.c, Dsp.h,
+	  Macros.h, Makefile, Makefile-2.4, Makefile-2.6, Me.c, Me.h,
+	  Mpoa.c, Mpoa.h, Oam.c, Oam.h, Pipes.c, Pipes.h, Sar.c, Sar.h,
+	  Sm.c, Uni.c, Uni.h, debug.h, eagle-usb.h, eu_eth.c, eu_eth.h,
+	  eu_firmware.h, eu_main.c, eu_msg.c, eu_msg.h, eu_sm.h,
+	  eu_types.h, eu_utils.c, eu_utils.h, user/CMVei.txt,
+	  user/CMVep.txt, user/Makefile, user/eagle-usb.conf,
+	  user/eaglectrl.c, user/eaglestat, user/usrisdn.conf,
+	  user/usrpots.conf: Initial creation
+
+2004-02-06 21:25  Tux
+
+	* utils/scripts/: Makefile, eagleconfig, eaglediag, eu_dsp,
+	  eu_init, fctStartAdsl, fctStopAdsl, net_cnx_down, net_cnx_pg,
+	  net_cnx_up, options, setvars, startadsl, startmire, stopadsl,
+	  testconnec, uninstOld, usb.usermap, lang/de, lang/en, lang/es,
+	  lang/f2, lang/fr, lang/it, lang/p2, lang/pl: Initial revision
+

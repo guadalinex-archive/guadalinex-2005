@@ -1,0 +1,35 @@
+# $Id: README,v 1.5 2004/08/29 22:35:31 baud123 Exp $
+
+===Documentation===
+For eagle-usb driver everything is available mostly online
+http://www.eagle-usb.org documentation (mostly in French :-( )
+http://faq.eagle-usb.org more documentation (French / English / Spanish)
+
+see ChangeLog file for latest additions, see LICENSE file too
+
+===In case of problem, see our user support forums===
+Be sure to read as much documentation before ;-)
+and provide the result of the command eaglediag which gives a brief summary of
+your configuration
+
+http://forum.eagle-usb.org English & French (main)
+http://foro.eagle-usb.org Spanish
+http://foren.eagle-usb.org German
+
+===To contact the developers===
+http://wiki.eagle-usb.org/wakka.php?wiki=EagleUsbTeam
+
+===Installation===
+latest versions are available here :
+http://dev.eagle-usb.org/wakka.php?wiki=TestEagleUs
+
+[./autogen.sh] # only if you use a CVS version and 1.9.8
+./configure
+make uninstall # if you've got a previous version installed
+make clean
+make
+make install
+eagleconfig
+startadsl
+
+You may give a try to eagleconnect (still experimental)

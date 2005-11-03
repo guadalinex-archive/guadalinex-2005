@@ -1,0 +1,415 @@
+#!/bin/bash
+# $Id: eu_config_bash,v 1.29 2005/01/28 00:01:32 baud123 Exp $
+
+# Copyright (C) 2003-2005 Olivier Borowski
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+# Goal :
+#	apply configuration to the system
+# Params :
+#	none
+
+# the following line will be replaced by the absolute path of setvars
+exit 123
+
+set -- "${@//#--help/-h}"
+set -- "${@//#--lang=/-l}"
+set -- "${@//#--expert/-e}"
+evalParams() {
+	while getopts "hl:e" opt; do
+		case $opt in
+			h  )	doInUtf8 echo -e $EAGLECONFIG_USAGE_MSG ; exit 0 ;;
+			l  )	EU_LANG="$OPTARG" ;;
+			e  )	EXPERT=1 ;;
+			\? )	doInUtf8 echo -e $EAGLECONFIG_USAGE_MSG ; exit 1 ;;
+		esac
+	done
+}
+#FORCE_LANG="$EU_LANG"
+EXPERT=0
+evalParams "$@"
+
+# necessary to take in account $LANG parameter
+[ $EU_LANG = "keep" ] || setStrings
+
+echo -e "\n\n${SEP_MSG}"
+doInUtf8 echo -e "${GREETING_MSG}"
+echo -e "${SEP_MSG}"
+doInUtf8 echo -e "${INFO_MSG}"
+
+# Connection details, use TLD for country + number to keep a sorted list
+# see http://www.iana.org/cctld/cctld-whois.htm
+# VCI is in hexadecimal !!!
+doInUtf8 echo -e $ISP_LIST_MSG
+echo -en \
+"-----------------------------------------------------------------------\n"\
+
+get_gata_from_isp() {
+	LINETYPE="00000001"
+	case "x$1" in
+		"xAE01" )  VPI="0" ; VCI="32" ; ENC="5" ; COUNTRY="United Arab Emirates" ; ISP_NAME="Etisalat" ; CMVep=WO ; CMVei=WO ;;
+		"xAR01" )  VPI="1" ; VCI="23" ; ENC="1" ; COUNTRY="Argentina" ; ISP_NAME="Speedy" ; CMVep=WO ; CMVei=WO ;;
+		"xAT00" )  VPI="8" ; VCI="30" ; ENC="6" ; COUNTRY="Austria" ; ISP_NAME="Any" ; CMVep=WO ; CMVei=WO ;;
+		"xAT01" )  VPI="1" ; VCI="20" ; ENC="6" ; COUNTRY="Austria" ; ISP_NAME="AON" ; CMVep=WO ; CMVei=WO ;;
+		"xAT02" )  VPI="8" ; VCI="23" ; ENC="1" ; COUNTRY="Austria" ; ISP_NAME="Telstra" ; CMVep=WO ; CMVei=WO ;;
+		"xBE01" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="Belgium" ; ISP_NAME="Tiscali BE" ; CMVep=WO ; CMVei=WO ;;
+		"xBE02" )  VPI="8" ; VCI="23" ; ENC="5" ; COUNTRY="Belgium" ; ISP_NAME="Turboline" ; CMVep=WO ; CMVei=WO ;;
+		"xBE03" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="Belgium" ; ISP_NAME="Belgacom" ; CMVep=WO ; CMVei=WO ;;
+		"xBE04" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="Belgium" ; ISP_NAME="ADSL Office" ; CMVep=WO ; CMVei=WO ;;
+		"xBG01" )  VPI="0" ; VCI="23" ; ENC="1" ; COUNTRY="Bulgaria" ; ISP_NAME="BTK POTS" ; CMVep=WO ; CMVei=WO ;;
+		"xBG02" )  VPI="1" ; VCI="20" ; ENC="1" ; COUNTRY="Bulgaria" ; ISP_NAME="BTK ISDN" ; CMVep=WO ; CMVei=WO ;;
+		"xBR01" )  VPI="8" ; VCI="23" ; ENC="1" ; COUNTRY="Brazil" ; ISP_NAME="Speedy/Telefonica" ; CMVep=WO ; CMVei=WO ;;
+		"xBR02" )  VPI="0" ; VCI="21" ; ENC="1" ; COUNTRY="Brazil" ; ISP_NAME="Velox/Telemar" ; CMVep=WO ; CMVei=WO ;;
+		"xBR03" )  VPI="0" ; VCI="23" ; ENC="1" ; COUNTRY="Brazil" ; ISP_NAME="Turbo/Brasil Telecom" ; CMVep=WO ; CMVei=WO ;;
+		"xBR04" )  VPI="1" ; VCI="20" ; ENC="1" ; COUNTRY="Brazil" ; ISP_NAME="Rio Grande do Sul (RS)" ; CMVep=WO ; CMVei=WO ;;
+		"xCH01" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="Switzerland" ; ISP_NAME="Any" ; CMVep=WO ; CMVei=WO ;;
+		"xCH02" )  VPI="8" ; VCI="23" ; ENC="5" ; COUNTRY="Switzerland" ; ISP_NAME="BlueWin / Swisscom" ; CMVep=WO ; CMVei=WO ;;
+		"xCN01" )  VPI="0" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Netcom Beijing" ; CMVep=WO ; CMVei=WO ;;
+		"xCN02" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Netcom Changchun" ; CMVep=WO ; CMVei=WO ;;
+		"xCN03" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Netcom Harbin" ; CMVep=WO ; CMVei=WO ;;
+		"xCN04" )  VPI="0" ; VCI="27" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Netcom Jilin" ; CMVep=WO ; CMVei=WO ;;
+		"xCN05" )  VPI="0" ; VCI="20" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Netcom Lanzhou" ; CMVep=WO ; CMVei=WO ;;
+		"xCN06" )  VPI="0" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Netcom Tianjin" ; CMVep=WO ; CMVei=WO ;;
+		"xCN07" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Netcom Xi'an" ; CMVep=WO ; CMVei=WO ;;
+		"xCN08" )  VPI="0" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Chongqing" ; CMVep=WO ; CMVei=WO ;;
+		"xCN09" )  VPI="0" ; VCI="200" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Fujian" ; CMVep=WO ; CMVei=WO ;;
+		"xCN10" )  VPI="0" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Guangxi" ; CMVep=WO ; CMVei=WO ;;
+		"xCN11" )  VPI="8" ; VCI="20" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Guangzhou" ; CMVep=WO ; CMVei=WO ;;
+		"xCN12" )  VPI="0" ; VCI="20" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Hangzhou" ; CMVep=WO ; CMVei=WO ;;
+		"xCN13" )  VPI="0" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Netcom Hunan" ; CMVep=WO ; CMVei=WO ;;
+		"xCN14" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Nanjing" ; CMVep=WO ; CMVei=WO ;;
+		"xCN15" )  VPI="8" ; VCI="51" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Shanghai" ; CMVep=WO ; CMVei=WO ;;
+		"xCN16" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Shenzhen" ; CMVep=WO ; CMVei=WO ;;
+		"xCN17" )  VPI="0" ; VCI="20" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Urumqi" ; CMVep=WO ; CMVei=WO ;;
+		"xCN18" )  VPI="0" ; VCI="20" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Wuhan" ; CMVep=WO ; CMVei=WO ;;
+		"xCN19" )  VPI="0" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Yunnan" ; CMVep=WO ; CMVei=WO ;;
+		"xCN20" )  VPI="0" ; VCI="23" ; ENC="3" ; COUNTRY="China" ; ISP_NAME="China Telecom Zhuhai" ; CMVep=WO ; CMVei=WO ;;
+		"xDE01" )  VPI="1" ; VCI="20" ; ENC="1" ; COUNTRY="Germany" ; ISP_NAME="Deutsche Telekom (DT)" ; CMVep=WO ; CMVei=WO ;;
+		"xDE02" )  VPI="1" ; VCI="20" ; ENC="1" ; COUNTRY="Germany" ; ISP_NAME="1&1" ; CMVep=WO ; CMVei=WO ;;
+		"xDK01" )  VPI="0" ; VCI="65" ; ENC="3" ; COUNTRY="Denmark" ; ISP_NAME="Any" ; CMVep=WO ; CMVei=WO ;;
+		"xDZ01" )  VPI="0" ; VCI="23" ; ENC="1" ; COUNTRY="Algeria" ; ISP_NAME="Wanadoo" ; CMVep=WO ; CMVei=WO ;;
+		"xES01" )  VPI="8" ; VCI="20" ; ENC="1" ; COUNTRY="Spain" ; ISP_NAME="Telefónica IP dinámica" ; CMVep=WO ; CMVei=WO ;;
+		"xES02" )  VPI="8" ; VCI="20" ; ENC="3" ; COUNTRY="Spain" ; ISP_NAME="Telefónica ip fija" ; CMVep=WO ; CMVei=WO ;;
+		"xES03" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="Spain" ; ISP_NAME="Wanadoo/Eresmas Retevision" ; CMVep=WO ; CMVei=WO ;;
+		"xES04" )  VPI="8" ; VCI="20" ; ENC="1" ; COUNTRY="Spain" ; ISP_NAME="Wanadoo PPPoE" ; CMVep=WO ; CMVei=WO ;;
+		"xES05" )  VPI="8" ; VCI="20" ; ENC="3" ; COUNTRY="Spain" ; ISP_NAME="Wanadoo ip fija" ; CMVep=WO ; CMVei=WO ;;
+		"xES06" )  VPI="1" ; VCI="20" ; ENC="6" ; COUNTRY="Spain" ; ISP_NAME="Tiscali" ; CMVep=WO ; CMVei=WO ;;
+		"xES07" )  VPI="0" ; VCI="23" ; ENC="6" ; COUNTRY="Spain" ; ISP_NAME="Arrakis" ; CMVep=WO ; CMVei=WO ;;
+		"xES08" )  VPI="0" ; VCI="23" ; ENC="6" ; COUNTRY="Spain" ; ISP_NAME="Auna" ; CMVep=WO ; CMVei=WO ;;
+		"xES09" )  VPI="0" ; VCI="21" ; ENC="6" ; COUNTRY="Spain" ; ISP_NAME="Communitel" ; CMVep=WO ; CMVei=WO ;;
+		"xES10" )  VPI="8" ; VCI="20" ; ENC="1" ; COUNTRY="Spain" ; ISP_NAME="Euskatel" ; CMVep=WO ; CMVei=WO ;;
+		"xES11" )  VPI="1" ; VCI="21" ; ENC="6" ; COUNTRY="Spain" ; ISP_NAME="Uni2" ; CMVep=WO ; CMVei=WO ;;
+		"xES12" )  VPI="8" ; VCI="20" ; ENC="1" ; COUNTRY="Spain" ; ISP_NAME="Ya.com PPPoE" ; CMVep=WO ; CMVei=WO ;;
+		"xES13" )  VPI="8" ; VCI="20" ; ENC="3" ; COUNTRY="Spain" ; ISP_NAME="Ya.com static" ; CMVep=WO ; CMVei=WO ;;
+		"xFI01" )  VPI="0" ; VCI="64" ; ENC="3" ; COUNTRY="Finland" ; ISP_NAME="Sonera" ; CMVep=WO ; CMVei=WO ;;
+		"xFR01" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="France" ; ISP_NAME="Free non dégroupé 512/128 & 1024/128" ; CMVep=WO ; CMVei=WO ;;
+		"xFR02" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="France" ; ISP_NAME="Télé2" ; CMVep=WO ; CMVei=WO ;;
+		"xFR03" )  VPI="8" ; VCI="23" ; ENC="5" ; COUNTRY="France" ; ISP_NAME="Tiscali.fr 128k" ; CMVep=WO ; CMVei=WO ;;
+		"xFR04" )  VPI="8" ; VCI="24" ; ENC="4" ; COUNTRY="France" ; ISP_NAME="Free dégroupé 1024/256 (mini)" ; CMVep=WO ; CMVei=WO ;;
+		"xFR05" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="France" ; ISP_NAME="n9uf tel9com 512 & dégroupé 1024" ; CMVep=WO ; CMVei=WO ;;
+		"xFR06" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="France" ; ISP_NAME="Club-Internet" ; CMVep=WO ; CMVei=WO ;;
+		"xFR07" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="France" ; ISP_NAME="Tiscali.fr 512k" ; CMVep=WO ; CMVei=WO ;;
+		"xFR08" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="France" ; ISP_NAME="Cegetel non dégroupé 512 IP/ADSL et dégroupé" ; CMVep=WO ; CMVei=WO ;;
+		"xFR09" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="France" ; ISP_NAME="Wanadoo" ; CMVep=WO ; CMVei=WO ;;
+		"xGR01" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="Greece" ; ISP_NAME="Any" ; CMVep=WO ; CMVei=WO ;;
+		"xHU01" )  VPI="1" ; VCI="20" ; ENC="1" ; COUNTRY="Hungary" ; ISP_NAME="Matav" ; CMVep=WO ; CMVei=WO ;;
+		"xIE01" )  VPI="8" ; VCI="23" ; ENC="1" ; COUNTRY="Ireland" ; ISP_NAME="Any" ; CMVep=WO ; CMVei=WO ;;
+		"xIL01" )  VPI="8" ; VCI="30" ; ENC="6" ; COUNTRY="Israel" ; ISP_NAME="Bezeq" ; CMVep=WO ; CMVei=WO ;;
+		"xIT01" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="Italy" ; ISP_NAME="Telecom Italia" ; CMVep=WO ; CMVei=WO ;;
+		"xIT02" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="Italy" ; ISP_NAME="Telecom Italia/Office Users (ADSL Smart X)" ; CMVep=WO ; CMVei=WO ;;
+		"xIT03" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="Italy" ; ISP_NAME="Tiscali.it, Alice" ; CMVep=WO ; CMVei=WO ;;
+		"xIT04" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="Italy" ; ISP_NAME="Libero.it" ; CMVep=WO ; CMVei=WO ;;
+		"xLT01" )  VPI="8" ; VCI="23" ; ENC="1" ; COUNTRY="Lithuania" ; ISP_NAME="Lietuvos Telekomas" ; CMVep=WO ; CMVei=WO ;;
+		"xMA01" )  VPI="8" ; VCI="23" ; ENC="6" ; COUNTRY="Morocco" ; ISP_NAME="Maroc Telecom" ; CMVep=WO ; CMVei=WO ;;
+		"xNL01" )  VPI="8" ; VCI="30" ; ENC="6" ; COUNTRY="Netherlands" ; ISP_NAME="KPN" ; CMVep=WO ; CMVei=WO ;;
+		"xNL02" )  VPI="0" ; VCI="21" ; ENC="3" ; COUNTRY="Netherlands" ; ISP_NAME="Eager Telecom" ; CMVep=WO ; CMVei=WO ;;
+		"xNL03" )  VPI="0" ; VCI="22" ; ENC="3" ; COUNTRY="Netherlands" ; ISP_NAME="Tiscali" ; CMVep=WO ; CMVei=WO ;;
+		"xNL04" )  VPI="0" ; VCI="20" ; ENC="3" ; COUNTRY="Netherlands" ; ISP_NAME="Versatel" ; CMVep=WO ; CMVei=WO ;;
+		"xPL01" )  VPI="0" ; VCI="23" ; ENC="6" ; COUNTRY="Poland" ; ISP_NAME="Telekomunikacja Polska (TPSA/neostrada)" ; CMVep=WO ; CMVei=WO ;;
+		"xPL02" )  VPI="8" ; VCI="23" ; ENC="1" ; COUNTRY="Poland" ; ISP_NAME="Netia neostrada" ; CMVep=WO ; CMVei=WO ;;
+		"xPT01" )  VPI="0" ; VCI="23" ; ENC="1" ; COUNTRY="Portugal" ; ISP_NAME="PT" ; CMVep=WO ; CMVei=WO ;;
+		"xRU01" )  VPI="1" ; VCI="50" ; ENC="1" ; COUNTRY="Russia" ; ISP_NAME="MTU-Intel" ; CMVep=WO ; CMVei=WO ;;
+		"xSE01" )  VPI="8" ; VCI="23" ; ENC="3" ; COUNTRY="Sweden" ; ISP_NAME="Telia" ; CMVep=WO ; CMVei=WO ;;
+		"xSL01" )  VPI="1" ; VCI="20" ; ENC="1" ; COUNTRY="Slovenia" ; ISP_NAME="SiOL" ; CMVep=WO ; CMVei=WO ;;
+		"xTH01" )  VPI="0" ; VCI="64" ; ENC="1" ; COUNTRY="Thailand" ; ISP_NAME="Asianet" ; CMVep=WO ; CMVei=WO ;;
+		"xUK01" )  VPI="0" ; VCI="26" ; ENC="6" ; COUNTRY="United Kingdom" ; ISP_NAME="Tiscali UK " ; CMVep=WO ; CMVei=WO ;;
+		"xUK02" )  VPI="0" ; VCI="26" ; ENC="6" ; COUNTRY="United Kingdom" ; ISP_NAME="British Telecom " ; CMVep=WO ; CMVei=WO ;;
+		* )			VPI="" ; VCI="" ; ENC="" ; COUNTRY="" ; ISP_NAME="" ;;
+	esac
+	case "x$ENC" in
+		"x1" )	PROTOC="PPPoE LLC" ;;
+		"x2" )	PROTOC="PPPoE VC" ;;
+		"x3" )	PROTOC="Routed IP LLC" ;;
+		"x4" )	PROTOC="Routed IP VC" ;;
+		"x5" )	PROTOC="PPPoA LLC" ;;
+		"x6" )	PROTOC="PPPoA VC" ;;
+		* )		PROTOC="????" ;;
+	esac
+}
+
+for ISP_TMP in DZ01 AR01 AT01 AT00 AT02 BE04 BE03 BE01 BE02 BR04 BR01 BR03 BR02 BG02 BG01 CN01 CN02 CN03 CN13 CN04 CN05 CN06 CN07 CN08 CN09 CN10 CN11 CN12 CN14 CN15 CN16 CN17 CN18 CN19 CN20 DK01 FI01 FR08 FR06 FR04 FR01 FR03 FR07 FR02 FR09 FR05 DE02 DE01 GR01 HU01 IE01 IL01 IT04 IT01 IT02 IT03 LT01 MA01 NL02 NL01 NL03 NL04 PL02 PL01 PT01 RU01 SL01 ES07 ES08 ES09 ES10 ES01 ES02 ES06 ES11 ES04 ES05 ES03 ES12 ES13 SE01 CH01 CH02 TH01 AE01 UK02 UK01  ; do
+	get_gata_from_isp $ISP_TMP
+	# reformat with trailing spaces for good looking columns
+	COUNTRY="$COUNTRY                         " ; COUNTRY=${COUNTRY:0:11}
+	ISP_NAME="$ISP_NAME                       " ; ISP_NAME=${ISP_NAME:0:23}
+	echo "$ISP_TMP : $COUNTRY  $ISP_NAME  $VPI  $VCI  $ENC  $PROTOC"
+done
+
+echo -en "-----------------------------------------------------------------------\n"\
+"?"
+
+if [ ! -z "$ISP" ] ; then
+	get_gata_from_isp $ISP
+	if [ ! -z "$VPI" ] ; then
+		echo -n "[$ISP]"
+	else
+		ISP=""
+	fi
+fi
+read NEW_ISP
+if [ ! -z "$NEW_ISP" ] ; then
+	ISP="$NEW_ISP"
+fi
+
+get_gata_from_isp $ISP
+# ISP is not in the list?
+if [ -z "$VPI" ] ; then
+	doInUtf8 echo -e $WRONG_CHOICE_MSG
+	exit 1
+fi
+# some data are missing for this ISP? :(
+if [ "$VPI" = "??" ] || [ "$VCI" = "??" ] || [ "$ENC" = "??" ] ; then
+	echo -e "\nThere are missing data for your ISP.\nPlease notify this on http://forum.eagle-usb.org\n"
+	exit 1
+fi
+# translate params to 8 chars hex values
+VPI="000000$VPI"
+VCI="000000$VCI"
+ENC="000000$ENC"
+# $ENC => $PPPOX
+encapsToPppox "$ENC"
+
+if [ "$PPPOX" = "none" ] ; then
+# ================== WITHOUT PPPD =====================
+	doInUtf8 echo -en $STATIC_IP_MSG
+	read STATIC_IP
+	if [ -z "$STATIC_IP" ] ; then STATIC_IP="none" ; fi
+	if [ "$STATIC_IP" != "none" ] ; then
+		if [ -e /etc/resolv.conf ] ; then
+			echo -e "\nYour /etc/resolv.conf contains the following lines:"
+			echo $SEP_MSG
+			cat -s /etc/resolv.conf
+			echo $SEP_MSG
+			echo -e "You can modify this file manually if it contains wrong DNS."
+		else
+			echo -e "\nwarning: /etc/resolv.conf doesn't exist!"
+		fi
+	fi
+else
+# =================== WITH PPPD =======================
+	#STATIC_IP="none"
+	# Search for existing User&Password
+	OLD_PWD_FOUND=0
+	if [ -e $PPP_OPTIONS_ADSL ] ; then
+		# the user name has to be in /etc/ppp/peers/adsl and (pap-secrets or chap-secrets)
+		NAME_IN_OPTIONS=`grep user $PPP_OPTIONS_ADSL | cut -d ' ' -f2 | sed 's_"__g'`
+		if [ ! -z $NAME_IN_OPTIONS ] ; then
+			if [ -e $PPP_DIR/pap-secrets ] && grep -q "$NAME_IN_OPTIONS" $PPP_DIR/pap-secrets ; then
+				OLD_PWD_FOUND=1
+			fi
+			if [ -e $PPP_DIR/chap-secrets ] && grep -q "$NAME_IN_OPTIONS" $PPP_DIR/chap-secrets ; then
+				OLD_PWD_FOUND=1
+			fi
+		fi
+	fi
+	# Old password found?
+	if [ $OLD_PWD_FOUND -eq 1 ] ; then
+		if ! confirm "$KEEP_OLD_PWD_MSG" 1 ; then
+			OLD_PWD_FOUND=0
+		fi
+	fi
+	# No User/Password or don't want to keep existing
+	if [ $OLD_PWD_FOUND -eq 0 ] ; then
+		# Ask for user and password:
+
+		doInUtf8 echo -e $LOGIN_MSG
+		read ISP_LOGIN
+		doInUtf8 echo -e $PWD_MSG
+		read -s ISP_PWD
+		# Ask for data encryption or not
+		if confirm "$PWD_ENCRYPT_MSG" 1 ; then
+			PWD_ENCRYPT=1
+		else
+			PWD_ENCRYPT=0
+		fi
+	else
+		ISP_LOGIN="keep"
+		ISP_PWD="keep"
+		PWD_ENCRYPT="keep"
+	fi
+fi
+
+# === let pppd or dhclient update DNS list? ===
+if [ "$PPPOX" = "none" ] ; then
+	UPDATE_DNS=1
+else
+	if [ $EXPERT -eq 1 ] ; then
+		if confirm "$UPDATE_DNS_MSG" $UPDATE_DNS ; then
+			UPDATE_DNS=1
+		else
+			UPDATE_DNS=0
+		fi
+	else
+		# NOTE :
+		# - always considering "UPDATE_DNS=1" is a bad solution
+		# (if the user launch eagleconfig a second time in normal mode,
+		# UPDATE_DNS would always switch to 1)
+		# - use a test like "grep -q usepeerdns $PPP_OPTIONS_ADSL" may
+		# be buggy because this script doesn't exist or is not
+		# up to date when eu_config_bash is lauched
+		UPDATE_DNS=0
+		if [ ! -f $PPP_OPTIONS_ADSL ] || grep -q "usepeerdns" $PPP_OPTIONS_ADSL ; then
+			UPDATE_DNS=1
+		fi
+	fi
+fi
+
+# === init.d ===
+if confirm "$START_ON_BOOT_MSG" $START_ON_BOOT ; then
+	START_ON_BOOT=1
+else
+	START_ON_BOOT=0
+fi
+
+if [ $EXPERT -eq 1 ] ; then
+	# === testconnec ===
+	if confirm "$USE_TESTCONNEC_MSG" $USE_TESTCONNEC ; then
+		USE_TESTCONNEC=1
+	else
+		USE_TESTCONNEC=0
+	fi
+	# === virtual interface name ===
+	doInUtf8 echo -e $FORCE_INTERFACE_MSG
+	echo -n "[$FORCE_IF]"
+	read REP
+	if [ "x$REP" = "xauto" ] ; then
+		FORCE_IF="auto"
+	elif [ ! -z "$REP" ] ; then
+		FORCE_IF="$REP"
+	fi
+fi
+# --------------------------------------------------------
+
+LSTOPTIONS="LINETYPE=$LINETYPE|VPI=$VPI|VCI=$VCI|ENC=$ENC|ISP=$ISP|ISP_LOGIN=$ISP_LOGIN|ISP_PWD=$ISP_PWD"
+LSTOPTIONS="$LSTOPTIONS|PWD_ENCRYPT=$PWD_ENCRYPT|STATIC_IP=$STATIC_IP"
+LSTOPTIONS="$LSTOPTIONS|UPDATE_DNS=$UPDATE_DNS|START_ON_BOOT=$START_ON_BOOT"
+LSTOPTIONS="$LSTOPTIONS|USE_TESTCONNEC=$USE_TESTCONNEC|EU_LANG=$EU_LANG|FORCE_IF=$FORCE_IF"
+LSTOPTIONS="$LSTOPTIONS|CMVEI=$CMVei|CMVEP=$CMVep"
+exec eagleconfig "$@" --params="$LSTOPTIONS"
+
+
+#***************************************************************************
+# $Log: eu_config_bash,v $
+# Revision 1.29  2005/01/28 00:01:32  baud123
+# add CMV config (misses Linetype + keep)
+#
+# Revision 1.28  2005/01/16 22:04:34  Tux
+# - add license header
+#
+# Revision 1.27  2005/01/08 21:33:04  baud123
+# vci in hex instead of decimal for eu_config
+#
+# Revision 1.26  2005/01/08 20:59:37  baud123
+# correct duplicate AE01
+#
+# Revision 1.25  2005/01/08 20:43:50  baud123
+# apply changes of configuration coming from isp_adsl_db
+#
+# Revision 1.24  2005/01/04 21:04:41  Tux
+# - switch messages to utf-8
+#
+# Revision 1.23  2004/11/21 16:35:14  mcoolive
+# - fix the last modification ("keep" is not an integer)
+#
+# Revision 1.22  2004/11/21 15:29:41  Tux
+# - replaced == with -eq
+#
+# Revision 1.21  2004/11/09 21:09:33  baud123
+# add ISP Libero.it
+#
+# Revision 1.20  2004/11/08 19:57:40  baud123
+# add ISP Etisalat (UAE)
+#
+# Revision 1.19  2004/11/07 15:04:37  baud123
+# correction on list of ISP (again2)
+#
+# Revision 1.18  2004/11/06 04:25:02  baud123
+# correction on list of ISP
+#
+# Revision 1.17  2004/11/04 23:59:33  baud123
+# add some ISP
+#
+# Revision 1.16  2004/09/26 19:36:10  Tux
+# - only ask "update DNS?" in expert mode
+#
+# Revision 1.15  2004/09/25 23:00:33  mcoolive
+# *** empty log message ***
+#
+# Revision 1.14  2004/09/25 15:27:54  baud123
+# add argentina, belgium, lithuania, morocco, thailand ISP (41 in DB now !)
+#
+# Revision 1.13  2004/09/16 20:13:51  Tux
+# - "eagleconfig -e" now ask whether resolv.conf should be automatically updated
+#
+# Revision 1.12  2004/08/16 20:56:32  mcoolive
+# - call to `setStrings' only when necessary
+#
+# Revision 1.11  2004/08/01 20:10:58  Tux
+# - cosmetic changes
+#
+# Revision 1.10  2004/07/26 19:35:09  Tux
+# - removed unused $EXPERT variable
+#
+# Revision 1.9  2004/07/16 21:40:19  Tux
+# - wrong parameters for the ISP "Sonera"
+#
+# Revision 1.8  2004/07/16 21:08:16  Tux
+# - simplify parameters processing
+#
+# Revision 1.7  2004/06/23 20:46:10  Tux
+# - remove redundancy with ISP list
+# - isp_to_no has been removed (now we use a single identifier)
+#
+# Revision 1.6  2004/06/20 16:05:18  baud123
+# addition of new ISP
+#
+# Revision 1.5  2004/05/30 01:54:30  Tux
+# - vars name "FAI..." => "ISP..."
+#
+# Revision 1.4  2004/05/24 21:26:35  Tux
+# - wrong variable name (LT => LINETYPE)
+#
+# Revision 1.3  2004/05/23 20:02:28  Tux
+# - ask for virtual interface name (expert mode only)
+# - use "exec" to call eagleconfig
+#
+# Revision 1.2  2004/04/18 09:47:27  Tux
+# - added expert param
+#
+# Revision 1.1  2004/04/04 18:48:51  Tux
+# Initial revision
+#
+#***************************************************************************/

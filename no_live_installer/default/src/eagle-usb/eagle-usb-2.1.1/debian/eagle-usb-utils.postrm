@@ -1,0 +1,70 @@
+#!/bin/sh
+set -e
+
+package=eagle-usb
+
+#DEBHELPER#
+
+# Paranoïa, paranoïa, au pays de la paranoïa...
+umask 0077
+
+# Summary of ways postrm script is called
+#    * postrm remove
+#    * postrm purge
+#    * old-postrm upgrade new-version
+#    * new-postrm failed-upgrade old-version
+#    * new-postrm abort-install
+#    * new-postrm abort-install old-version
+#    * new-postrm abort-upgrade old-version
+#    * disappearer's-postrm disappear overwriter overwriter-version
+case $1 in
+    remove)
+	### remove the eagle-usb service
+	update-rc.d -f eagle-usb remove >/dev/null 2>&1
+	;;
+    purge | disappear)
+
+	### Erase login and password in chap-secret and pap-secret files.
+	ISP_LOGIN=""
+	if [ -e /etc/ppp/peers/adsl ]; then
+		ISP_LOGIN=`grep '^user' /etc/ppp/peers/adsl | sed -r 's/( |")+/\t/g' | cut -f2`
+	fi
+	TMP=`mktemp /tmp/debconf.${package}.$$.XXXXXX`
+	rm -f $TMP; touch $TMP
+	for f in "/etc/ppp/pap-secrets" "/etc/ppp/chap-secrets" ; do
+	    if [ -f $f ]; then
+		if [ -z "$ISP_LOGIN" ]
+		then grep -v -e "adsl@adsl" $f >$TMP || true
+		else grep -v -e "adsl@adsl" -e "$ISP_LOGIN" $f >$TMP || true
+		fi
+		cat $TMP > $f
+	    fi
+	done
+	rm -f $TMP
+
+	### Erase the dynamically generated configuration files.
+	rm -rf /etc/${package}
+	rm -f /etc/init.d/${package}
+	rm -f /etc/hotplug/usb/${package}
+	rm -f /etc/cron.d/${package}
+	rm -f /etc/modprobe.d/${package}
+
+	rm -f /etc/ppp/peers/adsl /etc/ppp/peers/mire
+	if [ ! -e /etc/ppp/peers/providers -a -L /etc/ppp/peers/providers ]
+	then rm -f /etc/ppp/peers/providers
+	fi
+
+	;;
+    upgrade)
+	newversion=$2
+	;;
+    failed-upgrade)
+	oldversion=$2
+	;;
+    abort-install)
+	oldversion=$2
+	;;
+    abort-upgrade)
+	oldversion=$2
+	;;
+esac

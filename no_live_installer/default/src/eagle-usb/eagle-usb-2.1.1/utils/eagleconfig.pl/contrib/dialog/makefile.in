@@ -1,0 +1,147 @@
+# $Id: makefile.in,v 1.1 2004/02/15 13:21:43 Tux Exp $
+# template makefile for DIALOG
+#
+SHELL		= /bin/sh
+
+srcdir		= @srcdir@
+VPATH		= @srcdir@
+
+VERSION		= `cat $(srcdir)/VERSION`
+
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+
+top_builddir	= .
+
+x		= @PROG_EXT@
+
+DESTDIR		=
+bindir		= $(DESTDIR)@bindir@
+includedir	= $(DESTDIR)@includedir@
+libdir		= $(DESTDIR)@libdir@
+mandir		= $(DESTDIR)@mandir@
+MANDIR		= $(mandir)/man1
+
+# see po/makefile
+localedir       = $(prefix)/@DATADIRNAME@/locale
+
+CFLAGS		= @CFLAGS@
+CPPFLAGS	= @CPPFLAGS@ @DEFS@ -I. -I$(srcdir) -DLOCALEDIR=\"$(localedir)\" -DVERSION=\"$(VERSION)\"
+EXTRA_CFLAGS	= @EXTRA_CFLAGS@
+CC		= @CC@
+LDFLAGS		= @LDFLAGS@
+LIBS		= @LIBS@ @INTLDIR_MAKE@ @INTLLIBS@
+RANLIB		= @RANLIB@
+
+RM		= rm -f
+LINT		= lint
+
+INSTALL		= @INSTALL@
+INSTALL_PROGRAM	= @INSTALL_PROGRAM@
+INSTALL_DATA	= @INSTALL_DATA@
+
+#
+# Standard .c to .o compile line.
+#
+.c.o :
+@RULE_CC@
+	@ECHO_CC@$(CC) $(CFLAGS) $(EXTRA_CFLAGS) $(CPPFLAGS) -c $<
+
+EXTRAOBJS = @EXTRAOBJS@
+OBJS = $(EXTRAOBJS) \
+	arrows.o \
+	buttons.o \
+	checklist.o \
+	inputbox.o \
+	inputstr.o \
+	menubox.o \
+	mouse.o \
+	mousewget.o \
+	msgbox.o \
+	textbox.o \
+	ui_getc.o \
+	util.o \
+	yesno.o
+
+SRCS = $(OBJS:.o=.c)
+HDRS = \
+	colors.h \
+	config.h \
+	dialog.h
+
+LIB	= @LIB_PREFIX@dialog.a
+PROG	= dialog$x
+ALL	= $(LIB) $(PROG)
+
+BIN_DIRS	= $(bindir) $(MANDIR)
+LIB_DIRS	= $(libdir) $(includedir)
+
+all	:: $(ALL)
+
+@INTLDIR_MAKE@@INTLLIBS@ :
+@INTLDIR_MAKE@	@echo "Building GNU gettext library..."
+@INTLDIR_MAKE@	@cd intl && $(MAKE) @cf_cv_makeflags@
+
+dialog.o \
+$(OBJS) : $(srcdir)/dialog.h config.h VERSION
+
+$(LIB) : $(OBJS)
+	ar crv $(LIB) $(OBJS)
+	$(RANLIB) $@
+
+dialog$x : $(LIB) dialog.o @INTLDIR_MAKE@ @INTLLIBS@
+	$(CC) -o $@ dialog.o -L. -ldialog $(LDFLAGS) $(LIBS)
+
+clean	\
+distclean \
+install \
+install-strip \
+uninstall ::
+	@echo making $@
+@INTLDIR_MAKE@	@-test -f intl/makefile && cd intl && $(MAKE) @cf_cv_makeflags@ $@
+@MSG_DIR_MAKE@	@-test -f po/makefile && cd po && $(MAKE) @cf_cv_makeflags@ $@
+
+clean	::
+	@- rm -rf autom4te.cache
+	rm -f core *.o *~ tags TAGS $(ALL)
+
+distclean :: clean
+	rm -f intl/libintl.h intl/po2tbl.sed
+	rm -f makefile config.h config.cache config.log config.status
+
+install :: $(PROG) $(bindir)
+	$(INSTALL_PROGRAM) $(PROG) $(bindir)
+
+install-strip :: $(PROG) $(bindir)
+	$(INSTALL_PROGRAM) -s $(PROG) $(bindir)
+
+install-strip \
+install :: $(MANDIR)
+	$(INSTALL_DATA) dialog.1 $(MANDIR)
+
+uninstall ::
+	rm -f $(bindir)/$(PROG)
+	rm -f $(MANDIR)/dialog.1
+
+# most users do not want/need the library, so the install rules are distinct.
+install-lib :: $(LIB_DIRS)
+	$(INSTALL_DATA) $(LIB) $(libdir)
+	$(INSTALL_DATA) dialog.h $(includedir)
+
+uninstall-lib :: $(LIB_DIRS)
+	rm -f $(libdir)/$(LIB)
+	rm -f $(includedir)/dialog.h
+
+$(MANDIR) \
+$(bindir) \
+$(includedir) \
+$(libdir) : ; $(srcdir)/mkdirs.sh $@
+
+@MAKE_LOWER_TAGS@tags :
+@MAKE_LOWER_TAGS@	ctags $(SRCS) $(HDRS)
+
+@MAKE_LOWER_TAGS@TAGS :
+@MAKE_LOWER_TAGS@	etags $(SRCS) $(HDRS)
+
+lint:
+	$(LINT) $(CPPFLAGS) *.c

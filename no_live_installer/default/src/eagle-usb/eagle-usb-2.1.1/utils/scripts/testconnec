@@ -1,0 +1,192 @@
+#!/bin/bash
+# $Id: testconnec,v 1.18 2005/01/16 22:08:17 Tux Exp $
+
+# Copyright (C) 2003-2005 Olivier Borowski
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+# Goal :
+#	use ping to ensure that the connection is valid
+# Params :
+#	h = display help
+#	d = debug level (0=none, 1=syslog, 2=stdout)
+#	l = list of tested ip (ex: "213.228.0.42 216.239.37.99")
+
+# the following line will be replaced by the absolute path of setvars
+exit 123
+
+set -- "${@//#--help/-h}"
+set -- "${@//#--iplist=/-l}"
+set -- "${@//#--debug=/-d}"
+evalParams() {
+	while getopts "hl:d:" opt; do
+		case $opt in
+			h  )	echo -e $TESTCONNEC_USAGE_MSG ; exit 0 ;;
+			l  )	TESTIP="$OPTARG" ;;
+			d  )	DEBUG=$OPTARG ;;
+			\? )	echo -e $TESTCONNEC_USAGE_MSG ; exit 1 ;;
+		esac
+	done
+}
+DEBUG=0
+TESTIP="213.228.0.42 216.239.37.99"
+evalParams "$@"
+TESTCONNEC_LOCK=/var/run/LCK.eagletestconnec
+TESTCONNEC_CPT=/var/tmp/eagletestconnec.cpt
+
+# testconnec is only enabled when $SYSCONF_FILE exists
+if [ ! -e $SYSCONF_FILE ] ; then
+	echo_log "====== testconnec : off, nothing to do... ======"
+	exit 0
+fi
+
+# eagleconfig has never been run => quit
+if [ -f $EU_DIR/eagle-usb_must_be_configured ] ; then
+	echo_log "$TESTCONNEC_INSTALL_LOCK_MSG" 1
+	exit 1
+fi
+
+# testconnec already launched => quit
+if [ -e $TESTCONNEC_LOCK ] ; then
+	echo_log "$TESTCONNEC_ALREADY_LAUNCHED_MSG" 1
+	exit 1
+fi
+
+# prevent this script from being launch 2 times simultaneously
+echo_log "====== testconnec : begin ======"
+touch $TESTCONNEC_LOCK
+trap 'echo_log "====== testconnec : end ======" ; rm -f $TESTCONNEC_LOCK' EXIT
+
+# modem crashed when booting?
+SEND_DSP=0
+if $EAGLESTAT | grep -q "${BOOTING_STR}" ; then
+	sleep 5s
+	# still booting after 5s => crashed
+	if $EAGLESTAT | grep -q "${BOOTING_STR}" ; then
+		SEND_DSP=1
+	fi
+fi
+
+# fctStartAdsl already failed 5 times? => launch eaglectrl -w
+# $CPT_FAILED is only incremented when the modem is plugged
+if [ -f $TESTCONNEC_CPT ] ; then
+	CPT_FAILED=`cat $TESTCONNEC_CPT`
+else
+	CPT_FAILED=0
+fi
+[ $CPT_FAILED -ge 5 ] && SEND_DSP=1
+
+# run eaglectrl -w ?
+if [ $SEND_DSP -eq 1 ] ; then
+	
+	echo_log "$TESTCONNEC_REBOOT_MSG"
+	fctStopAdsl
+	$EAGLECTRL -w 1>/dev/null 2>/dev/null
+	if [ $? -ne 0 ] ; then
+		echo_log "Impossible de réinitialiser le modem!"
+		exit 1
+	fi
+	# modem has been rebooted, reset counter
+	CPT_FAILED=0
+	# now the modem should be operationnal but we need to launch startadsl
+	OK="no"
+
+else
+	
+	# quit if the modem is not operational
+	RES="`$EAGLESTAT | grep "$OPER_STR"`"
+	if [ -z "$RES" ] ; then
+		echo_log "$TESTCONNEC_NO_MODEM_MSG"
+		exit 0
+	fi
+	
+	declare -i CPT
+	CPT=0
+	OK="no"
+	for i in $TESTIP; do
+		ping_w $i 5
+		if [ $? -eq 0 ]; then
+			OK="$i"
+			break 1
+		fi
+		CPT=$(($CPT+1))
+	done
+fi
+
+if [ "$OK" = "no" ] ; then
+	echo_log "$TESTCONNEC_CONNECTION_LOST_MSG ($CPT_FAILED)"
+	fctStopAdsl
+	sleep 2
+	fctStartAdsl &
+	CPT_FAILED=`expr $CPT_FAILED + 1`
+else
+	echo_log "$TESTCONNEC_CONNECTION_OK_MSG ($CPT)"
+	CPT_FAILED=0
+fi
+echo $CPT_FAILED > $TESTCONNEC_CPT
+exit 0
+
+#***************************************************************************
+# $Log: testconnec,v $
+# Revision 1.18  2005/01/16 22:08:17  Tux
+# - add license header
+#
+# Revision 1.17  2004/11/23 21:12:46  Tux
+# - counter was never reinitialized
+#
+# Revision 1.16  2004/11/21 17:01:07  mcoolive
+# - simplification ( use break in for i in $IP )
+#
+# Revision 1.15  2004/11/21 15:32:18  Tux
+# - replaced == with -eq
+# - modem is now rebooted when fctStartAdsl fail 4 times
+#
+# Revision 1.14  2004/11/11 16:21:26  mcoolive
+# - renaming $EU_SCRIPT_DIR/lock in $EU_DIR/eagle-usb_must_be_configured
+#
+# Revision 1.13  2004/09/28 10:27:19  mcoolive
+# - (POSIX) commands are typed "int main..." => replace "$? ==" by "$? -eq"
+#
+# Revision 1.12  2004/09/26 19:39:34  Tux
+# - improved lock file management
+# - better log messages
+# - localization
+#
+# Revision 1.11  2004/08/26 21:43:11  Tux
+# *** empty log message ***
+#
+# Revision 1.10  2004/08/19 23:00:48  mcoolive
+# - use $SYSCONF_FILE instead of its potential values
+#
+# Revision 1.9  2004/07/17 15:41:48  Tux
+# - forgot to update parameters
+# - removed chmod on the lock file
+#
+# Revision 1.8  2004/07/16 21:14:21  Tux
+# - simplify parameters processing
+#
+# Revision 1.7  2004/07/15 20:26:55  Tux
+# - check for /var/lock/eagle-usb too
+#
+# Revision 1.6  2004/03/23 20:16:44  Tux
+# - slackware support
+#
+# Revision 1.5  2004/03/22 21:25:00  Tux
+# - removed old $START_ON_BOOT check
+#
+# Revision 1.4  2004/03/22 21:23:20  Tux
+# - testconnec now exit if internet service is not started
+#
+#***************************************************************************/

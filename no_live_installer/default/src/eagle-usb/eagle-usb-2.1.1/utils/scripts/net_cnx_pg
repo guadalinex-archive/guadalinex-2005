@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -n "$DISPLAY" ]; then
+	/usr/sbin/net_monitor --connect
+else
+	/etc/sysconfig/network-scripts/net_cnx_up
+fi
