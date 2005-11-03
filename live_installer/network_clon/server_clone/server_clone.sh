@@ -101,6 +101,7 @@ EOF
 KERNEL="2.6.12-9-386"
 ISOLINUXDIR="/tmp/isolinux"
 ISOS="/tmp"
+ISO="${ISOS}/client-image-$(date +%Y%m%d%H%M).iso"
 LOG_FILE="/var/log/installer.log"
 
 if [ ! -d ${MASTER}/isolinux ]; then
@@ -122,15 +123,15 @@ mkinitramfs -d ${CONFDIR} -o ${ISOLINUXDIR}/initramfs  ${KERNEL} >> /tmp/server-
 
 mkisofs -l -r -J -V "Guadalinex Clone System" -hide-rr-moved -v -b isolinux.bin \
 -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table \
--o ${ISOS}/client-image-$(date +%Y%m%d%H%M).iso ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
+-o ${ISO} ${ISOLINUXDIR} >> /tmp/server-clone.log 2>&1
 
 dialog --title "Generando la imagen de los clientes" \
     --msgbox "\nSe ha generando la imagen de los clientes.\n
-Dicha imagen se encuentra en /tmp/client-image.iso\n\n
+Dicha imagen se encuentra en ${ISO}\n\n
 Puede grabar la imagen en un CD-Rom con su programa favorito\n
 tipo cdrecord, nautilus-cd-burner, etc.\n\n
 Si lo desea puede encontrar los logs del proceso\n
-realizado en: /tmp/server-clone.log" \
+realizado en: ${LOG_FILE}" \
     10 50
 
 rm -fr ${ISOLINUXDIR}/*
