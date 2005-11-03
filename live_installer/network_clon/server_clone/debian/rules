@@ -3,53 +3,12 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-BUILDDIR=$(CURDIR)/debian/server-clone
+include /usr/share/cdbs/1/rules/debhelper.mk
 
-build: build-stamp
+pre-build::
+	chmod +x server_clone.sh  server-clone-start.sh
+	chmod +x hooks/*
+	for x in `find clone-scripts/ -maxdepth 1 -type d | tail -n+2`; do \
+		chmod -R +x $$x; \
+	done
 
-build-stamp:
-	dh_testdir
-
-	touch build-stamp
-
-clean:
-	dh_testdir
-	dh_testroot
-	rm -fr build-stamp $(BUILDDIR)
-
-	dh_clean 
-
-install:
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	dh_installdirs -A
-
-	install -m 755 $(CURDIR)/server_clone.sh $(BUILDDIR)/usr/sbin/server-clone
-	install -m 755 $(CURDIR)/server-clone-start.sh $(BUILDDIR)/usr/sbin/server-clone-start
-
-# Build architecture-independent files here.
-binary-indep: install
-
-# Build architecture-dependent files here.
-binary-arch: install
-	dh_testdir -A
-	dh_testroot -A
-	dh_installchangelogs
-	dh_installdocs -A
-#	dh_installexamples -A
-#	dh_install -A
-#	dh_installdebconf -A
-#	dh_installman -A
-	dh_strip -A
-	dh_compress -A
-	dh_fixperms -A
-#	dh_python -A
-	dh_installdeb -A
-	dh_shlibdeps -A
-	dh_gencontrol -A
-	dh_md5sums -A
-	dh_builddeb -A
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install
