@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-#Módulo bluetooth - Módulo que implementa el "actor hardware" para los
-#dispositivos bluetooth
+#Módulo scaner- Módulo que implementa el "actor hardware" para los dispositivos
+#escáner.
 #
 #Copyright (C) 2005 Junta de Andalucía
 #
@@ -50,43 +50,8 @@ import os.path
 from utils.synaptic import Synaptic
 from deviceactor import DeviceActor
 
-BLUEICON = os.path.abspath('actors/img/bluetooth.png')
-BLUEICONOFF = os.path.abspath('actors/img/bluetoothoff.png')
+SCANERICON = os.path.abspath('actors/img/scaner.png')
+SCANERICONOFF = os.path.abspath('actors/img/scaneroff.png')
 
-class Actor(DeviceActor):
-
-    __required__ = {'info.category':'bluetooth_hci'}
-
-    def on_added(self):
-        s = Synaptic()
-        packages = ['gnome-bluetooth', 'obexserver', 'bluez-utils']
-
-        def install_packages():
-            s.install(packages)
-            os.system('gnome-obex-server &')
-            open_scan()
-
-        def open_scan():
-            os.system('gnome-bluetooth-manager &')
-
-        if s.check(packages):
-            os.system('gnome-obex-server &')
-            actions = {"Abrir el administrador bluetooth": open_scan}
-        else:
-            actions = {"Instalar los paquetes necesarios": install_packages}
-
-        if self.properties.has_key('bluetooth_hci.interface_name'):
-            interface = ': ' + self.properties['bluetooth_hci.interface_name']
-        else:
-            interface = ''
-
-        self.msg_render.show("BLUETOOTH", 
-             "Nueva interfaz bluetooth configurada " + str(interface) +
-             '.',
-             BLUEICON, actions = actions)
-
-
-    def on_removed(self):
-        self.msg_render.show("BLUETOOTH", "Interfaz bluetooth desconectada",
-                BLUEICONOFF)
-        os.system('killall gnome-obex-server')
+class Actor (DeviceActor):
+    pass

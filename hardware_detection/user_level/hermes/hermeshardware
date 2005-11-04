@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd /usr/share/hermes
-./hermes_hardware.py &
+./hermes_hardware.py -d &
 exit 0

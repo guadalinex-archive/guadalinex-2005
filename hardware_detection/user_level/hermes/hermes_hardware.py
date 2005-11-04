@@ -54,7 +54,6 @@ import os
 from utils import DeviceList, ColdPlugListener, CaptureLogGui
 from optparse import OptionParser
 from utils.notification import NotificationDaemon, FileNotification
-from actors.deviceactor import DeviceActor
 
 
 #notification-daemon spec: -------------------------------------------
@@ -211,6 +210,8 @@ class DeviceListener:
                     signal_name = "PropertyModified",
                     path = udi)
         else:
+            # Shorting logger setup (in module actors, logging.getLogger must be
+            # invoked _after_ than in main function).
             actor = DeviceActor(self.message_render, prop)
             self.udi_dict[udi] = actor
 
@@ -313,6 +314,8 @@ def main():
 
     global ACTORSLIST
     from actors import ACTORSLIST
+    global DeviceActor
+    from actors.deviceactor import DeviceActor
 
     ##################################################################
     # Init application.   #
