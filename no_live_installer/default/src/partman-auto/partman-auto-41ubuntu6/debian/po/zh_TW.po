@@ -66,12 +66,12 @@ msgstr "磁碟分割方式："
 #. Description
 #: ../partman-auto.templates:24
 msgid ""
-"This installer can guide you through partitioning a disk for use by Ubuntu, "
+"This installer can guide you through partitioning a disk for use by Guadalinex, "
 "or if you prefer, you can do it manually. If you do choose to use the guided "
 "partitioning tool, you will still have a chance later to see the results, "
 "customise it, and even undo the partitioning if you do not like it."
 msgstr ""
-"安裝程式會在分割 Ubuntu 所使用的磁碟的過程中進行引導﹔或者依您喜好，您也可以"
+"安裝程式會在分割 Guadalinex 所使用的磁碟的過程中進行引導﹔或者依您喜好，您也可以"
 "選擇手動進行。如果您選擇了使用磁碟分割的引導程式，在稍後您將可以看到分割結"
 "果。如果您不喜歡的話，您可以加以修改，或甚至取消這些分割動作。"
 

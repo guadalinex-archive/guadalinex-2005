@@ -68,13 +68,13 @@ msgstr "Naèin particioniranja:"
 #. Description
 #: ../partman-auto.templates:24
 msgid ""
-"This installer can guide you through partitioning a disk for use by Ubuntu, "
+"This installer can guide you through partitioning a disk for use by Guadalinex, "
 "or if you prefer, you can do it manually. If you do choose to use the guided "
 "partitioning tool, you will still have a chance later to see the results, "
 "customise it, and even undo the partitioning if you do not like it."
 msgstr ""
 "Program za instalaciju vas mo¾e automatski provesti kroz particioniranje "
-"diskova za Ubuntu, ili to mo¾ete uèiniti ruèno. Ako uporabite automatski "
+"diskova za Guadalinex, ili to mo¾ete uèiniti ruèno. Ako uporabite automatski "
 "alat, ipak æete kasnije moæi vidjeti rezultate, popraviti ih, pa èak i "
 "poni¹titi ako vam ne odgovaraju."
 

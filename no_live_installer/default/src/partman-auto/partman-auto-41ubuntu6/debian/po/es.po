@@ -94,13 +94,13 @@ msgstr "Método de particionado:"
 #. Description
 #: ../partman-auto.templates:24
 msgid ""
-"This installer can guide you through partitioning a disk for use by Ubuntu, "
+"This installer can guide you through partitioning a disk for use by Guadalinex, "
 "or if you prefer, you can do it manually. If you do choose to use the guided "
 "partitioning tool, you will still have a chance later to see the results, "
 "customise it, and even undo the partitioning if you do not like it."
 msgstr ""
 "Este instalador puede guiarle en el particionado del disco para que la "
-"utilice Ubuntu o, si lo desea, puede hacerlo de forma manual. Si escoge el "
+"utilice Guadalinex o, si lo desea, puede hacerlo de forma manual. Si escoge el "
 "sistema de particionado guiado tendrá la oportunidad de ver los resultados, "
 "adaptarlos e incluso deshacer el particionado si no le gusta."
 

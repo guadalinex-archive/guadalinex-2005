@@ -68,13 +68,13 @@ msgstr "Mënyra e ndarjes:"
 #. Description
 #: ../partman-auto.templates:24
 msgid ""
-"This installer can guide you through partitioning a disk for use by Ubuntu, "
+"This installer can guide you through partitioning a disk for use by Guadalinex, "
 "or if you prefer, you can do it manually. If you do choose to use the guided "
 "partitioning tool, you will still have a chance later to see the results, "
 "customise it, and even undo the partitioning if you do not like it."
 msgstr ""
 "Instaluesi mund të të udhëzojë në ndarjen e një disku për tu përdorur nga "
-"Ubuntu, ose nëse dëshiron, mund ta ndash manualisht. Nëse zgjedh ndarjen e "
+"Guadalinex, ose nëse dëshiron, mund ta ndash manualisht. Nëse zgjedh ndarjen e "
 "ndihmësit, do kesh mundësinë të shikosh rezultatet më vonë, ti rregullosh, "
 "ose edhe ti zhbësh ndarjet nëse nuk të pëlqejnë."
 

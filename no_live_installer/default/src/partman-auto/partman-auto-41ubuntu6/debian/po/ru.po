@@ -74,13 +74,13 @@ msgstr "Принцип разбивки:"
 #. Description
 #: ../partman-auto.templates:24
 msgid ""
-"This installer can guide you through partitioning a disk for use by Ubuntu, "
+"This installer can guide you through partitioning a disk for use by Guadalinex, "
 "or if you prefer, you can do it manually. If you do choose to use the guided "
 "partitioning tool, you will still have a chance later to see the results, "
 "customise it, and even undo the partitioning if you do not like it."
 msgstr ""
 "Программа установки может показать вам, как разбить диск на разделы для "
-"Ubuntu, либо это можно сделать вручную. Даже если вы выберете разбивку из "
+"Guadalinex, либо это можно сделать вручную. Даже если вы выберете разбивку из "
 "программы установки, то у вас все равно будет возможность посмотреть её "
 "результаты, подправить или отказаться от неё, если вас что-то не устроит."
 
