@@ -20,6 +20,7 @@ if __name__ == '__main__' :
     data_files=[
       (os.path.join(PATH, 'glade'), glob.glob('glade/*.glade')),
       (os.path.join(PATH, 'glade/pixmaps'), glob.glob('glade/pixmaps/*')),
+      ('/usr/share/gnome/help/bb-assist/es/', glob.glob('help/es/*')),
       ('/usr/share/applications', ['bb-assist.desktop']),
       ('/etc/hotplug/usb', ['extra/speedtch']),
       (PATH, glob.glob('*.xml')),

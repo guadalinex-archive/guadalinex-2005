@@ -390,9 +390,6 @@ class Assist:
             self.remOperations()
             self.getOperations()
 
-    def on_druidOperationSelect_back(self, *args):
-        self.druid1.help.hide()
-        
     # Operation Select
 
     def hideDruidPagesOptional(self, *args):
@@ -403,7 +400,6 @@ class Assist:
             druid_page_to_act.hide()
             
     def on_druidOperationSelect_prepare(self, *args):
-        self.druid1.help.show()        
         if self.operation_sel:
             self.druid1.set_buttons_sensitive(True, True, True, True)
         else:
@@ -472,7 +468,6 @@ class Assist:
             # Other types ignore
 
     def on_druidOperationSelect_next(self, *args):
-        self.druid1.help.hide()
         # Set per device default UI values
         self.restoredefuivalues() # Restore UI default values
         self.setdefuivalues()     # Set device UI default values
@@ -1063,6 +1058,9 @@ class Assist:
         if self.oper_result == "ExitSecondVerifErrors":
             self.druid1.set_page(self.druidSecondVerificationResults)
             return True
+
+    def on_druid1_help(self, *args):
+        gnome.help_display(app_name)    
         
     def main(self):
         gtk.main()
@@ -1070,7 +1068,6 @@ class Assist:
 if __name__ == "__main__":
     props = { gnome.PARAM_APP_DATADIR : '/usr/share'}
     prog = gnome.program_init(app_name, app_version, properties=props)
-    #gnome.help_display(app_name)    
     getParams()
     if os.geteuid() != 0:
         dialogNotRoot = gtk.MessageDialog(None, 0, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,

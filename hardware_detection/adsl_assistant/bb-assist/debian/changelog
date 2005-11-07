@@ -3,8 +3,9 @@ bb-assist (0.5) unstable; urgency=low
   * One less druidpage to USB with IP static
   * ifup interface in USB
   * changes in dependencies
+  * added gnome help (only in Spanish)
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Wed,  2 Nov 2005 12:10:27 +0100
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon,  7 Nov 2005 19:35:51 +0100
 
 bb-assist (0.4) unstable; urgency=low
 

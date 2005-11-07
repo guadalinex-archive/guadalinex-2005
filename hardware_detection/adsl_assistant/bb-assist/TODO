@@ -6,8 +6,5 @@
 - Ayuda explicando monopuesto, etc...
 - Terminar sysbackend
 - La encapsulación (LLC) esta a fuego en muchos sitios (comando br268ctl, y cmd-list.xml), pero desconozco la configuración de otras operadoras.
-- eagleconfig con subcommmand falla (escapado)
 - ver sleep speedtch
-- enviar bug eagle-usb
-- ver serie efficient
-- En routers calcular yo el gw
+- separar más backend y frontend (demasiados privilegios el UI)
