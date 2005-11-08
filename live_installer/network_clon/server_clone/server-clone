@@ -22,9 +22,9 @@ MOUNTPOINTS="/:/dev/@@@da1;swap:/dev/@@@da2"
 #    --inputbox "¿Cuál es la dirección del servidor?" \
 #    10 50 "192.168.0.1")
 
-dialog --title "Configuración de la red" \
-    --msgbox "\nLa dirección del servidor será $NET" \
-    10 50
+NET=$(dialog --title "Configuración de la red" \
+    --inputbox "\n¿Cuál será la dirección del servidor?" \
+    10 50 $NET )
 
 DEV=$(dialog --title "Configuración de la red" \
     --menu "¿Qué interfaz de red desea usar?" 10 50 $NUMDEVS \
