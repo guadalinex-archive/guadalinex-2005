@@ -2,8 +2,7 @@
 - meter más doc en paquete, documentando backend
 - Meter soporte redirección puertos
 - mejorar comprobación de redes/mascaras
-- chequear si esta el firmware y chequear si el USB esta conectado
-- Ayuda explicando monopuesto, etc...
+- chequear si esta el firmware
 - Terminar sysbackend
 - La encapsulación (LLC) esta a fuego en muchos sitios (comando br268ctl, y cmd-list.xml), pero desconozco la configuración de otras operadoras.
 - ver sleep speedtch

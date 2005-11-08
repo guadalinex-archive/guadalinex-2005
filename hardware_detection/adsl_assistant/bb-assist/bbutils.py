@@ -166,7 +166,13 @@ class bb_device:
                 self.tty_conf = None
                 self.linux_driver = Evaluate("usb_conf/linux_driver/text( )",
                                              devnode)[0].nodeValue
-                # FIXME: get more usb_conf
+                devidnodes = Evaluate("usb_conf/deviceid_list/deviceid",
+                                       devnode)
+                self.devids = []
+                for devidnode in devidnodes:
+                    vendor = devidnode.getAttribute("vendor")
+                    model = devidnode.getAttribute("model")
+                    self.devids += [(vendor, model)]
             else:
                 #DSL Router
                 self.tty_conf = tty_conf(Evaluate("tty_conf",

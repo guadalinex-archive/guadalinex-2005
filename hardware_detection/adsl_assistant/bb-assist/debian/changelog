@@ -4,8 +4,10 @@ bb-assist (0.5) unstable; urgency=low
   * ifup interface in USB
   * changes in dependencies
   * added gnome help (only in Spanish)
+  * added better clean of old configurations in /etc/network/interfaces
+  * check if correct USB vendor/product is connected
 
- -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon,  7 Nov 2005 19:35:51 +0100
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Tue,  8 Nov 2005 17:28:02 +0100
 
 bb-assist (0.4) unstable; urgency=low
 

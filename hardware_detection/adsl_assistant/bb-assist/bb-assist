@@ -705,8 +705,20 @@ class Assist:
         postverifnodes = Evaluate('postverif_list/postverif/text( )', self.devcf.devnode)
         for postverifnode in postverifnodes:
             verif_name = postverifnode.nodeValue
-            if verif_name == 'hasUSB':
-                pass
+            if verif_name == 'USBconnected':
+                usbconected = False
+                for udi in self.hal_manager.FindDeviceStringMatch('info.bus','usb_device'):
+                    obj = self.bus.get_object('org.freedesktop.Hal', udi)
+                    obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
+                    try: vendor = u"%04x" % obj.GetPropertyString('usb_device.vendor_id')
+                    except: pass
+                    try: model = u"%04x" % obj.GetPropertyString('usb_device.product_id')
+                    except: pass
+                    if (vendor, model) in self.devcf.devids:
+                        usbconected = True
+                if not usbconected:
+                    msg += _("<b>ERROR:</b> Dispositivo USB no conectado o no soportado") + ".\n"
+                    self.finish_assist = True
             elif verif_name == 'hasEth':
                 if len(self.ethlist) == 0:
                     msg += _("<b>ERROR:</b> Para usar este equipo se necesita al menos una interfaz Ethernet en el PC") + ".\n"

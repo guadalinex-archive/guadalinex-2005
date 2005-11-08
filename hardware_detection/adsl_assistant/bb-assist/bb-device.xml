@@ -39,10 +39,19 @@
       <linux_driver>eagle_usb</linux_driver>
       <deviceid_list>
         <deviceid vendor='1110' model='900f'/>
+        <deviceid vendor='1110' model='9021'/>
+        <deviceid vendor='1110' model='9023'/>
+        <deviceid vendor='0baf' model='00f1'/>
+        <deviceid vendor='0baf' model='00f9'/>
+        <deviceid vendor='0baf' model='00f5'/>
+        <deviceid vendor='0baf' model='00f7'/>
       </deviceid_list>
     </usb_conf>
     <list_firmware>
     </list_firmware>
+    <postverif_list>
+      <postverif>USBconnected</postverif>
+    </postverif_list>
   </bb_device>
 
   <bb_device id='0003' name='Conexant / Vitelcom' image='vitelcom.png'>
@@ -71,6 +80,9 @@
         <deviceid vendor='1242' model='2003'/>
       </deviceid_list>
     </usb_conf>
+    <postverif_list>
+      <postverif>USBconnected</postverif>
+    </postverif_list>
     <list_firmware>
       <!-- FIXME -->
     </list_firmware>
@@ -153,7 +165,7 @@
       <defuivalue name='checkbutton_novj' value='1'/>
     </defuivalue_list>
     <postverif_list>
-      <postverif>hasUSB</postverif>
+      <postverif>USBconnected</postverif>
     </postverif_list>
   </bb_device>
 

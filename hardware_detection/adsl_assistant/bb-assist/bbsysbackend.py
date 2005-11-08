@@ -280,8 +280,19 @@ def bb_deb_conf_net_interfaces(str_to_add, sys_output_file, hotplug_int_tomap = 
     newinterfaces = []
     in_iface = False
     for line in newinterfaces_uncomment:
-        if (re.search("^[\s]*auto[\s]+%s[^\d][\s]*" % ifaceToConf, line) != None):
+        if (re.search("^[\s]*auto[\s]+%s[\s]*$" % ifaceToConf, line) != None):
             newinterfaces += ["#" + line]
+            continue
+        # Match "auto lo ethToConf" for example
+        auto_re = "^[\s]*auto[\s]+([a-z0-9:]+[\s]+)*%s[\s]*$" % ifaceToConf
+        if (re.search(auto_re, line) != None):
+            newinterfaces += re.sub("[\s]%s$" % ifaceToConf, "", line)
+            continue
+        # Match "auto lo ethToConf eth1" for example
+        auto_re = "^[\s]*auto[\s]+([a-z0-9:]+[\s]+)*%s[^\d][\s]*" % ifaceToConf
+        if (re.search(auto_re, line) != None):
+            # remove auto of the interface to conf
+            newinterfaces += re.sub("[\s]%s[\s]+" % ifaceToConf, " ", line)
             continue
         if (re.search("^[\s]*iface[\s]+%s(:[\d]+)?[\s]+(inet|ipx|inet6)[\s]+" % ifaceToConf, line) != None):
             newinterfaces += ["#" + line]
