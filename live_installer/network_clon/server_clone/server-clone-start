@@ -33,7 +33,7 @@ ifconfig $DEV down
 ifconfig $DEV $IP up
 
 # Start the servers
-oftpd -i ${DEV} -N root /cdrom/META/ &
+oftpd -i ${IP} -N root /cdrom/META/ &
 sed "s|@@DEV@@|${DEV}|g" /usr/share/server-clone/conf/udhcpd.conf > /etc/udhcpd.conf
 /etc/init.d/udhcpd start
 
