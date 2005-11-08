@@ -90,10 +90,9 @@ build-arch-initramfs-stamp: config.status
 	$(MAKE) dep
 	$(MAKE)
 
-#	install -d \
-#		install-$(PACKAGE_PREFIX)-initramfs/usr/lib/initramfs-tools/bin
-	$(MAKE) PREFIX=install-$(PACKAGE_PREFIX)-initramfs/usr/lib/initramfs-tools/ install
-#	install busybox install-$(PACKAGE_PREFIX)-initramfs/usr/lib/initramfs-tools/bin/busybox
+	install -d \
+		install-$(PACKAGE_PREFIX)-initramfs/bin
+	install busybox install-$(PACKAGE_PREFIX)-initramfs/bin/busybox
 
 	touch $@
 
