@@ -32,7 +32,8 @@ echo "Se va a reconfigurar su interfaz de red $DEV, para que de los servicios qu
 ifconfig $DEV down
 ifconfig $DEV $IP up
 
-# Start the servers
+# Start the servers (first kill them)
+killall oftpd udhcpd
 oftpd -i ${IP} -N root /cdrom/META/ &
 sed "s|@@DEV@@|${DEV}|g" /usr/share/server-clone/conf/udhcpd.conf > /etc/udhcpd.conf
 /etc/init.d/udhcpd start
