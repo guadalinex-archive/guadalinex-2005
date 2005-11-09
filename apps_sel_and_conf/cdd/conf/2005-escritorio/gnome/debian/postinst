@@ -31,6 +31,8 @@ case "$1" in
     fi
 
     $GCONF --load /usr/share/gnome/panel.entries
+
+    adduser hal disk
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
