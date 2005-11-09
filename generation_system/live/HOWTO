@@ -4,7 +4,6 @@ Pasos:
 - Descargar rama "live generation system" de svn
 - Generar paquetes de "genlive" y "initramfs-tools", en instalarlos en el
   sistema "generador".
-- Instalar módulo "unionfs" tal y como se explica en el dir correspondiente.
 - Instalar en la distro base:
   - Última versión de "peez" y "peez-i18n" [1]
   - Última versión de "ubuntu-express" generada a partir de la última versión

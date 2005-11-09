@@ -1,8 +1,0 @@
-This is the unionfs kernel module for the 2.6.12-9-386 kernel of Ubuntu Breezy.
-
-The way to install it is just doing this as root:
-(kernel 2.6.12-9-386 is supposed to be installed)
-# cp -a unionfs /lib/modules/2.6.12-9-386/kernel/fs/
-# depmod -ea 2.6.12-9-386
-
-That's it ;-)
