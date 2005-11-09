@@ -41,4 +41,6 @@ if [ "${BOOT}" == "clone" ]; then
 	        mkdir --parents ${DESTDIR}/scripts/$(dirname ${f})
 		cp -p ${CLONE_SCRIPTS}/${f} ${DESTDIR}/scripts/$(dirname ${f})
 	done
+	CLONE_BINS="/usr/share/server-clone/bin"
+	cp -p ${CLONE_BINS}/* ${DESTDIR}/bin/
 fi
