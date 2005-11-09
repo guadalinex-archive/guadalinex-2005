@@ -5,4 +5,4 @@ hooks/clonemods         usr/share/initramfs-tools/hooks
 hooks/clonescripts      usr/share/initramfs-tools/hooks
 server-clone		usr/sbin
 server-clone-start	usr/sbin
-bin/sfdisk		usr/share/initramfs-tools/bin
+bin/sfdisk		usr/share/server-clone/bin

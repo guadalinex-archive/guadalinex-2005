@@ -1,3 +1,9 @@
+server-clone (0.4-4) unstable; urgency=low
+
+  * Fixed some bugs and included busybox dependency.
+
+ -- Juanje Ojeda <juanje@interactors.coop>  Wed, 09 Nov 2005 19:47:51 +0100
+
 server-clone (0.4-3) unstable; urgency=low
 
   * Integred the system with the initramfs-tools one.
