@@ -3,7 +3,7 @@ base-config	tzconfig/gmt				boolean true
 base-config	base-config/install-language-support	boolean true
 base-config     base-config/get-hostname        	string  uda
 base-config	base-config/late_command		string dpkg-reconfigure xserver-xorg -pcritical
-d-i		cdrom-checker/start			boolean false
+d-i		cdrom-checker/start			boolean true
 d-i		netcfg/get_hostname			string uda
 d-i		ethdetect/use_firewire_ethernet		boolean false
 d-i		hw-detect/load_floppy			boolean false
