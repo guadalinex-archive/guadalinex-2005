@@ -1,0 +1,64 @@
+Template: cdrom-checker/start
+Type: boolean
+Default: false
+_Description: Check CD-ROM integrity?
+ Warning: this check depends on your hardware and may take some time.
+
+Template: cdrom-checker/askmount
+Type: note
+_Description: Insert an Ubuntu CD-ROM
+ Please insert the Ubuntu CD-ROM into the drive before continuing.
+
+Template: cdrom-checker/mntfailed
+Type: error
+_Description: Failed to mount CD-ROM
+ The CD-ROM ${CDROM} could not be mounted correctly. Please check the media
+ and cables, and try it again.
+
+Template: cdrom-checker/wrongcd
+Type: error
+_Description: No valid Ubuntu CD-ROM
+ The CD-ROM you have inserted is not a valid Ubuntu CD-ROM.
+ Please change the disk.
+
+Template: cdrom-checker/md5file_failed
+Type: error
+_Description: Failed to open checksum file
+ Opening the MD5 file on the CD-ROM failed. This file contains the checksums
+ of the files located on the CD-ROM.
+
+Template: cdrom-checker/passed
+Type: note
+_Description: Integrity test successful
+ The CD-ROM integrity test was successful. The CD-ROM is valid.
+
+Template: cdrom-checker/mismatch
+Type: error
+_Description: Integrity test failed
+ The ${FILE} file failed the MD5 checksum verification. Your CD-ROM or
+ this file may have been corrupted.
+
+Template: cdrom-checker/nextcd
+Type: boolean
+Default: false
+_Description: Check the integrity of another CD-ROM?
+
+Template: cdrom-checker/firstcd
+Type: note
+_Description: Insert Ubuntu CD-ROM
+ Please make sure you have inserted the Ubuntu CD-ROM
+ to continue with the installation.
+
+Template: cdrom-checker/progress_title
+Type: text
+_Description: Checking CD-ROM integrity
+
+Template: cdrom-checker/progress_step
+Type: text
+_Description: Checking file: ${FILE}
+
+Template: debian-installer/cdrom-checker/title
+Type: text
+#  Main menu item
+_Description: Check the CD-ROM(s) integrity
+
