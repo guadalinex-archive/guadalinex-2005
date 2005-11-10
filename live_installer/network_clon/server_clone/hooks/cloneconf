@@ -28,6 +28,9 @@ fi
 if [ "${BOOT}" == "clone" ]; then
 	if [ -e /usr/share/server-clone/conf/config.cfg ]; then
 		cp -a /usr/share/server-clone/conf/config.cfg ${DESTDIR}/etc/
+		UDHCPC_FILES="/usr/share/server-clone/conf/udhcpc/"
+		mkdir -p ${DESTDIR}/etc/udhcpc 
+		cp -p ${UDHCPC_FILES}/* ${DESTDIR}/etc/udhcpc/
 	else
 		exit 1
 	fi

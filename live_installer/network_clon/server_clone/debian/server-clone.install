@@ -7,10 +7,4 @@ server-clone		usr/sbin
 server-clone-start	usr/sbin
 bin/sfdisk		usr/share/server-clone/bin
 bin/mkfs.ext3		usr/share/server-clone/sbin
-files/udhcpc/default.bound     	/usr/share/server-clone/files/udhcpc 
-files/udhcpc/default.deconfig	/usr/share/server-clone/files/udhcpc     
-files/udhcpc/default.leasefail	/usr/share/server-clone/files/udhcpc
-files/udhcpc/default.nak	/usr/share/server-clone/files/udhcpc
-files/udhcpc/default.renew	/usr/share/server-clone/files/udhcpc
-files/udhcpc/default.script	/usr/share/server-clone/files/udhcpc
 
