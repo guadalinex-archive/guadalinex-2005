@@ -285,6 +285,7 @@ CONFIG_FEATURE_IP_ROUTE=y
 # CONFIG_PING is not set
 # CONFIG_PING6 is not set
 # CONFIG_ROUTE is not set
+CONFIG_ROUTE=y
 # CONFIG_TELNET is not set
 # CONFIG_TELNETD is not set
 # CONFIG_TFTP is not set
@@ -297,6 +298,7 @@ CONFIG_FEATURE_IP_ROUTE=y
 #
 # CONFIG_UDHCPD is not set
 CONFIG_UDHCPC=y
+CONFIG_UDHCPC_SCRIPT_PATH=/etc/udhcpc/default.script
 # CONFIG_FEATURE_UDHCP_SYSLOG is not set
 # CONFIG_FEATURE_UDHCP_DEBUG is not set
 
