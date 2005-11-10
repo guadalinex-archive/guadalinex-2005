@@ -22,8 +22,8 @@ DISK='/dev/${DISK}'
 
 # We alrady now there is just 2 partitions and
 # which one is each
-ROOT_PARTITION='$DISK1'
-SWAP_PARTITION='$DISK2'
+ROOT_PARTITION="${DISK}1"
+SWAP_PARTITION="${DISK}2"
 
 # Format the partitions
 mkfs.ext3 $ROOT_PARTITION >> /tmp/initramfs.debug 2>&1
