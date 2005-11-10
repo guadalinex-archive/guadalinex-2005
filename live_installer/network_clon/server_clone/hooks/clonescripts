@@ -43,4 +43,8 @@ if [ "${BOOT}" == "clone" ]; then
 	done
 	CLONE_BINS="/usr/share/server-clone/bin"
 	cp -p ${CLONE_BINS}/* ${DESTDIR}/bin/
+	CLONE_UDHCPC_FILES="/usr/share/server-clone/files/udhcpc/"
+	mkdir -p ${DESTDIR}/etc/udhcpc 
+	cp -p ${CLONE_UDHCPC_FILES}/* ${DESTDIR}/etc/udhcpc/
+	ln -s ${DESTDIR}/bin/busybox ${DESTDIR}/sbin/ifconfig
 fi

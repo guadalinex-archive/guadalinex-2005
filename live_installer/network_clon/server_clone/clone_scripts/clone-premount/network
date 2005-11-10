@@ -19,7 +19,7 @@ DEVS=$(grep [0-9]: /proc/net/dev | grep -v sit | tr -s '  ' ' ' | cut -d ' ' -f 
 for DEV in $DEVS
         do
 	ifconfig $DEV
-	udhcpc $DEV
+	udhcpc -s /etc/udhcpc/default.script $DEV
 done
 
 SERVER=$(grep serverip /etc/config.cfg | cut -d '=' -f 2)
