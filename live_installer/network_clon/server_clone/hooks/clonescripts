@@ -49,7 +49,7 @@ if [ "${BOOT}" == "clone" ]; then
 	ln -s ${DESTDIR}/bin/busybox ${DESTDIR}/sbin/ifconfig
 	MKFS_EXT3_FILES="/usr/share/server-clone/files/mkfs.ext3/"
 	cp -p ${MKFS_EXT3_FILES}/sbin/* ${DESTDIR}/sbin/
-	cp -p ${MKFS.EXT3_FILES}/lib/* ${DESTDIR}/lib/
+	cp -p ${MKFS_EXT3_FILES}/lib/* ${DESTDIR}/lib/
 	
 	
 fi
