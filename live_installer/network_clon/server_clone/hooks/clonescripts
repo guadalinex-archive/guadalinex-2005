@@ -47,8 +47,8 @@ if [ "${BOOT}" == "clone" ]; then
 	mkdir -p ${DESTDIR}/etc/udhcpc 
 	cp -p ${CLONE_UDHCPC_FILES}/* ${DESTDIR}/etc/udhcpc/
 	ln -s ${DESTDIR}/bin/busybox ${DESTDIR}/sbin/ifconfig
-	MKFS.EXT3_FILES="/usr/share/server-clone/files/mkfs.ext3/"
-	cp -p ${MKFS.EXT3_FILES}/sbin/* ${DESTDIR}/sbin/
+	MKFS_EXT3_FILES="/usr/share/server-clone/files/mkfs.ext3/"
+	cp -p ${MKFS_EXT3_FILES}/sbin/* ${DESTDIR}/sbin/
 	cp -p ${MKFS.EXT3_FILES}/lib/* ${DESTDIR}/lib/
 	
 	
