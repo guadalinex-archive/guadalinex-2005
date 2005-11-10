@@ -6,3 +6,9 @@ hooks/clonescripts      usr/share/initramfs-tools/hooks
 server-clone		usr/sbin
 server-clone-start	usr/sbin
 bin/sfdisk		usr/share/server-clone/bin
+files/udhcpc/default.bound     	/usr/share/server-clone/files     
+files/udhcpc/default.deconfig	/usr/share/server-clone/files     
+files/udhcpc/default.leasefail	/usr/share/server-clone/files
+files/udhcpc/default.nak	/usr/share/server-clone/files
+files/udhcpc/default.renew	/usr/share/server-clone/files
+files/udhcpc/default.script	/usr/share/server-clone/files
