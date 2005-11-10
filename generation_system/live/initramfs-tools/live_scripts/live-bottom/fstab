@@ -111,6 +111,9 @@ create_fstab ()
 		else
 			mntpoint="/media/\${dev#/dev/}"
 			mkdir -p \$mntpoint
+			if [ "\$fs" == "ntfs" ];
+				defaults=\$(echo \${defaults} | sed 's|users|user|g')
+			fi
 			entry="\${dev}	\${mntpoint}	\${fs}\${defaults}"
 		fi
 		echo \$entry >> /etc/fstab
@@ -119,6 +122,7 @@ create_fstab ()
 	cdroms=\$(get_cdroms)
 	for cd in \$cdroms; do
 		entry="/dev/\${cd}        /media/cdrom\${num}   udf,iso9660 ro,user,noauto  0       0"
+		mkdir -p /media/cdrom\${num} >> /var/log/initramfs.debug 2>&1
 		let num=num+1
 		echo \$entry >> /etc/fstab
 	done
