@@ -41,8 +41,9 @@ if [ "${BOOT}" == "clone" ]; then
 	        mkdir --parents ${DESTDIR}/scripts/$(dirname ${f})
 		cp -p ${CLONE_SCRIPTS}/${f} ${DESTDIR}/scripts/$(dirname ${f})
 	done
-	CLONE_BINS="/usr/share/server-clone/bin"
-	cp -p ${CLONE_BINS}/* ${DESTDIR}/bin/
+	CLONE_DIR="/usr/share/server-clone"
+	cp -p ${CLONE_DIR}/bin/* ${DESTDIR}/bin/
+	cp -p ${CLONE_DIR}/sbin/* ${DESTDIR}/sbin/
 	# Line below is _necessary_ because ifconfig is called directly by /sbin/ifconfig
 	# and it must exist
         ln -s ${DESTDIR}/bin/busybox ${DESTDIR}/sbin/ifconfig
