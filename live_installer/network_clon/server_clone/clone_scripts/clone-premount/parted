@@ -21,7 +21,7 @@ esac
 # Cheching if there is any activated swap and deactivating it. Just in case
 while [ "$(grep -q dev /proc/swaps ; echo $?)" == "0" ]; do
         sync
-        echo swapoff -a >> /tmp/install.log 2>&1
+        echo swapoff -a >> /tmp/initramfs.debug 2>&1
 done
 
 # Calculating the optimus swap partition size
@@ -54,7 +54,7 @@ DISK_SIZE=$(sfdisk -uM -s ${DISK})
 let ROOT_SIZE=$DISK_SIZE-$SWAP_SIZE
 
 # Let's break the disk ;-)
-sfdisk -uM $DISK << EOF
+sfdisk -uM $DISK << EOF  2>> /tmp/initramfs.debug
 ,$ROOT_SIZE,L
 ,,S
 EOF
