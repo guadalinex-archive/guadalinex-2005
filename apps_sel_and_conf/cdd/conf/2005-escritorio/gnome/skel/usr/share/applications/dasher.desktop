@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Sistema predictivo de entrada de texto (Dasher)
+GenericName=Dasher
+Exec=dasher
+Icon=dasher.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Application;Accessibility
+Encoding=UTF-8

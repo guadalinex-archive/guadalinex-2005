@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+
+Name=Magnificador (XZoom)
+GenericName=Magnificador
+Comment=Magnifique una parte del escritorio
+Icon=/usr/share/pixmaps/xzoom.png
+
+Type=Application
+Categories=Application;Acessibility;
+
+Exec=xzoom
+Terminal=false
