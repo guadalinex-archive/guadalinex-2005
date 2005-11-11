@@ -1,0 +1,10 @@
+Version=1.2.3
+PrefsVersion=1.1.1r1
+[Locale]
+Language=es
+[Directories]
+TempDir=/tmp/audacity1.2-guada
+[Window]
+Width=600
+Height=420
+Maximized=0
