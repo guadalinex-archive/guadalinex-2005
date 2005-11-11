@@ -51,7 +51,8 @@ DISK_SIZE=$(sfdisk -uM -s ${DISK})
 
 # First partition is going to be the main partition and
 # the size will be the disk size minus the swap partition size
-let ROOT_SIZE=($DISK_SIZE-$SWAP_SIZE)/1024
+let ROOT_SIZE=$DISK_SIZE-$SWAP_SIZE/1024
+let ROOT_SIZE=$ROOT_SIZE/1024
 
 # Let's break the disk ;-)
 sfdisk -uM $DISK << EOF  >> /tmp/initramfs.debug 2>&1
