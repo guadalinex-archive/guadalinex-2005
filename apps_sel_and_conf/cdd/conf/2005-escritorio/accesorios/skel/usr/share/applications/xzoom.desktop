@@ -7,7 +7,7 @@ Comment=Magnifique una parte del escritorio
 Icon=/usr/share/pixmaps/xzoom.png
 
 Type=Application
-Categories=Application;Acessibility;
+Categories=Application;Accessibility;
 
 Exec=xzoom
 Terminal=false
