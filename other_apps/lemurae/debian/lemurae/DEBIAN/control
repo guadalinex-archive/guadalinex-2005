@@ -1,0 +1,10 @@
+Package: lemurae
+Version: 0.1-1
+Section: gnome
+Priority: optional
+Architecture: i386
+Depends: mono, libgecko-cil, libgtk2.0-cil, libgnome-cil
+Installed-Size: 120
+Maintainer: Gumersindo Coronel Pérez <goomerko@gmail.com>
+Description: Graphical frontend for DRAE
+ Graphical frontend for DRAE written in C-Sharp.
