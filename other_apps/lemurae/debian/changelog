@@ -1,3 +1,9 @@
+lemurae (0.1-2) unstable; urgency=low
+
+  * Fixed LD_LIBRARY_PATH error (gtkembedmoz.so not found) 
+
+ -- Gumersindo Coronel Pérez <goomerko@gmail.com>  Mon, 14 Nov 2005 20:07:38 +0100
+
 lemurae (0.1-1) unstable; urgency=low
 
   * Initial release.

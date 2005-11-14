@@ -57,6 +57,7 @@ install: build
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/lemurae
 
 	dh_install lemurae.exe /usr/bin/
+	dh_install lemurae /usr/bin/
 	dh_install lemurae.svg /usr/share/pixmaps/
 	dh_install lemurae.desktop /usr/share/applications/
 
