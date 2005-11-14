@@ -1,9 +1,7 @@
-- Bug, on_except
-- meter más doc en paquete, documentando backend
-- Meter soporte redirección puertos
-- mejorar comprobación de redes/mascaras
-- chequear si esta el firmware
-- Terminar sysbackend
-- La encapsulación (LLC) esta a fuego en muchos sitios (comando br268ctl, y cmd-list.xml), pero desconozco la configuración de otras operadoras.
-- ver sleep speedtch
-- separar más backend y frontend (demasiados privilegios el UI)
+- Port redirection GUI on routers
+- Better IP address and mask checks
+- Check if the firmware of USB devices is present
+- Encapsulation LLC is hard code in several places (br268ctl command, cmd-list.xml, etc).
+- Better backend/frontend separation (with less privilegies for the UI)
+- on_except in cmd-list.xsl is buggy. Maybe need a redefinition because it's not very used.
+- and of course support more devices/providers.

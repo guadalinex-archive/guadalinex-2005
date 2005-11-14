@@ -4,7 +4,7 @@
   <initial_func>confEff5660</initial_func>
   <default_timeout>15</default_timeout>
   <send_delay>0</send_delay>
-  <serial_params parity="N" tty="0" baudrate="38400" xonxoff="0" rtscts="0" stopbits="1" bits="8"/>
+  <eth_params ip="10.0.0.1" port="23" dev="eth1"/>
   <dhcp_ip_net>10.0.0.0</dhcp_ip_net>
   <remote_mask>255.255.255.0</remote_mask>
   <ext_mask_router>255.255.255.0</ext_mask_router>
