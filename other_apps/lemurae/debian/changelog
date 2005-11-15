@@ -1,3 +1,9 @@
+lemurae (0.1-3) unstable; urgency=low
+
+  * Added usability features. 
+
+ -- root <root@localhost.localdomain>  Tue, 15 Nov 2005 14:23:22 +0100
+
 lemurae (0.1-2) unstable; urgency=low
 
   * Fixed LD_LIBRARY_PATH error (gtkembedmoz.so not found) 
