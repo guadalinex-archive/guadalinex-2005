@@ -94,7 +94,7 @@ public class DicRae
         private void on_bAyuda_clicked (object o, EventArgs args)
         {         
         	string[] authors = {"GoomerkO <goomerko@gmail.com>"};        	
-        	Gnome.About ab = new Gnome.About ("LemuRae", "0.1","Gumer Coronel Prez (c) 2005",null,authors,null,null, new Pixbuf("/usr/share/pixmaps/lemurae.svg"));
+        	Gnome.About ab = new Gnome.About ("LemuRae", "0.1","Gumer Coronel Pérez (c) 2005",null,authors,null,null, new Pixbuf("/usr/share/pixmaps/lemurae.svg"));
         	ab.Run();         
         }
         
