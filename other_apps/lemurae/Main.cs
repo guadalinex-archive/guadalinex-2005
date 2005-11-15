@@ -35,7 +35,9 @@ public class DicRae: Gnome.Program
                 gxml.Autoconnect (this);
                 
                 web=new WebControl();
-                web.Show();                
+                web.Show();      
+                web.NetStop += on_net_stop;
+                          
                 Marco.Add(web);
                 Pixbuf image = new Pixbuf("/usr/share/pixmaps/lemurae.svg");
                 appw.Icon = image;                
@@ -43,6 +45,10 @@ public class DicRae: Gnome.Program
 				    
 		}
         /* Connect the Signals defined in Glade */
+        public void on_net_stop(object o, EventArgs args)
+        {          
+          appw.Focus = Palabra;
+        }
         public void on_appw_delete_event (object o, DeleteEventArgs args) 
         {
                 Application.Quit ();
@@ -53,8 +59,8 @@ public class DicRae: Gnome.Program
         {
         	web.LoadUrl("http://buscon.rae.es/draeI/SrvltGUIBusUsual?LEMA=" 
         			+ Palabra.Text.ToLower());
-        	Palabra.SelectRegion(0,Palabra.Text.Length); 
-        	appw.Focus=Palabra;
+        	Palabra.SelectRegion(0,Palabra.Text.Length);
+        	appw.Focus = Palabra;
         	
         }
         
@@ -71,7 +77,7 @@ public class DicRae: Gnome.Program
         private void on_bAyuda_clicked (object o, EventArgs args)
         {         
         	string[] authors = {"GoomerkO <goomerko@gmail.com>"};        	
-        	Gnome.About ab = new Gnome.About ("LemuRae", "0.1","Gumer Coronel Pérez (c) 2005",null,authors,null,null, new Pixbuf("/usr/share/pixmaps/lemurae.svg"));
+        	Gnome.About ab = new Gnome.About ("LemuRae", "0.1","Gumer Coronel Prez (c) 2005",null,authors,null,null, new Pixbuf("/usr/share/pixmaps/lemurae.svg"));
         	ab.Run();         
         }
         
