@@ -49,6 +49,8 @@ if getattr(dbus, "version", (0, 0, 0)) >= (0, 41, 0):
 import logging
 import gtk
 import os
+import sys
+import traceback
 
 
 from utils import DeviceList, ColdPlugListener, CaptureLogGui
@@ -123,7 +125,11 @@ class DeviceListener:
         actor = self.add_actor_from_properties(properties)
 
         if actor: 
-            actor.on_added()
+            try:
+                actor.on_added()
+            except:
+                self.logger.warning(str(traceback.format_exc()))
+
             if actor.__class__ == DeviceActor:
                 if properties.has_key('info.product') and \
                         properties['info.product'] != '':
@@ -140,7 +146,11 @@ class DeviceListener:
 
         if self.udi_dict.has_key(udi):
             disp = self.udi_dict[udi]
-            disp.on_removed()
+            try:
+                disp.on_removed()
+            except:
+                self.logger.warning(str(traceback.format_exc()))
+                
             print
             print
             print "#############################################"
@@ -180,7 +190,11 @@ class DeviceListener:
                 print "udi:", udi
                 print key, ':', actor.properties[key]
                 print "#############################################"
-                actor.on_modified(key)
+                try:
+                    actor.on_modified(key)
+                except Exception, e:
+                    self.logger.warning(str(traceback.format_exc()))
+
 
 
     def add_actor_from_properties(self, prop):
@@ -260,11 +274,6 @@ class DeviceListener:
 
             properties = obj.GetAllProperties()
             self.add_actor_from_properties(properties)
-
-
-def at_end():
-    print "Fin de la aplicación"
-
 
 
 def main():
