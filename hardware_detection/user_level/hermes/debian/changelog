@@ -1,3 +1,9 @@
+hermeshardware (0.1-3) unstable; urgency=low
+
+  * Added support for net devices and printers. 
+
+ -- Gumersindo Coronel Pérez <gcoronel@localhost.localdomain>  Wed, 16 Nov 2005 17:03:36 +0100
+
 hermeshardware (0.1-2) unstable; urgency=low
 
   * Added support for more devices. 

@@ -5,6 +5,8 @@ import apt_pkg
 import subprocess
 import os
 
+from utils.sudo import get_sudo
+
 
 class Synaptic(object):
 
@@ -12,9 +14,9 @@ class Synaptic(object):
         apt_pkg.init()
 
     def install(self, pkg_list):
-        if os.geteuid() != 0:
-            os.system("gksudo  /bin/true -m \"Introduzca su contraseña\"") 
-        
+        if not get_sudo():
+            return False
+
         cmd = ["/usr/bin/sudo", "/usr/sbin/synaptic", "--hide-main-window",  "--non-interactive"]
 
         cmd.append("--set-selections")
@@ -30,6 +32,7 @@ class Synaptic(object):
             f.write("%s\tinstall\n" % pkg)
         f.close()
         proc.wait()
+        return True
 
 
     def check(self, pkg_list):
