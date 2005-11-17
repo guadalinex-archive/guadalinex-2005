@@ -28,7 +28,8 @@ case "$1" in
     configure)
     
     # To avoid this failing, added "true"
-    sudo dpkg-reconfigure linux-image-`uname -r` || true
+    dpkg-reconfigure linux-image-`uname -r` || true
+    depmod -a
     
     ;;
 
