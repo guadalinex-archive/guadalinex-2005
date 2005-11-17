@@ -5,9 +5,9 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-work.ktby7U/uda-docs-0.1/docs/recipes/recipes.xml
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-work.abM2Ef/uda-docs-0.1/docs/recipes/recipes.xml
 --- ./docs/recipes/recipes.xml	1970-01-01 01:00:00.000000000 +0100
-+++ /tmp/dpep-work.ktby7U/uda-docs-0.1/docs/recipes/recipes.xml	2005-11-17 12:50:11.000000000 +0100
++++ /tmp/dpep-work.abM2Ef/uda-docs-0.1/docs/recipes/recipes.xml	2005-11-17 13:06:22.000000000 +0100
 @@ -0,0 +1,162 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
@@ -131,7 +131,7 @@ diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-wo
 +	<menuchoice>
 +	  <guisubmenu>Aplicaciones</guisubmenu>
 +	  <guisubmenu>Accesorios</guisubmenu>
-+	  <guimenuitem>Gestor de archivos comprimidos</guimenuitem>
++	  <guimenuitem>Gestor de archivos comprimidos (FileRoller)</guimenuitem>
 +	</menuchoice>
 +        </para>
 +              <figure><title>Pantalla principal de FileRoller</title>
