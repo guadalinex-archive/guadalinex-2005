@@ -5,10 +5,10 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-work.abM2Ef/uda-docs-0.1/docs/recipes/recipes.xml
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-work.VJRyjq/uda-docs-0.1/docs/recipes/recipes.xml
 --- ./docs/recipes/recipes.xml	1970-01-01 01:00:00.000000000 +0100
-+++ /tmp/dpep-work.abM2Ef/uda-docs-0.1/docs/recipes/recipes.xml	2005-11-17 13:06:22.000000000 +0100
-@@ -0,0 +1,162 @@
++++ /tmp/dpep-work.VJRyjq/uda-docs-0.1/docs/recipes/recipes.xml	2005-11-17 13:22:11.000000000 +0100
+@@ -0,0 +1,157 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
 +	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
@@ -50,11 +50,6 @@ diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-wo
 +       <xi:include xml:base="chap-migration" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-migration/migration.xml">
 +       <xi:fallback> <para><emphasis>Fallo en chap-migration</emphasis></para></xi:fallback>
 +       </xi:include>
-+    
-+     <xi:include xml:base="chap-music"  xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-music/music.xml">
-+       <xi:fallback> <para><emphasis>Fallo en chap-music</emphasis></para></xi:fallback>
-+       </xi:include>
-+    
 +    
 +    <xi:include xml:base="chap-security" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-security/security.xml">
 +       <xi:fallback> <para><emphasis>Error en chap-security</emphasis></para></xi:fallback>
