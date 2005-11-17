@@ -5,10 +5,10 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-work.xDBDD9/uda-docs-0.1/docs/recipes/recipes.xml
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-work.ktby7U/uda-docs-0.1/docs/recipes/recipes.xml
 --- ./docs/recipes/recipes.xml	1970-01-01 01:00:00.000000000 +0100
-+++ /tmp/dpep-work.xDBDD9/uda-docs-0.1/docs/recipes/recipes.xml	2005-10-28 11:30:25.000000000 +0200
-@@ -0,0 +1,216 @@
++++ /tmp/dpep-work.ktby7U/uda-docs-0.1/docs/recipes/recipes.xml	2005-11-17 12:50:11.000000000 +0100
+@@ -0,0 +1,162 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
 +	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
@@ -58,10 +58,6 @@ diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-wo
 +    
 +    <xi:include xml:base="chap-security" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-security/security.xml">
 +       <xi:fallback> <para><emphasis>Error en chap-security</emphasis></para></xi:fallback>
-+       </xi:include>
-+
-+       <xi:include xml:base="chap-cdwriting" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-cdwriting/cdwriting.xml">
-+       <xi:fallback> <para><emphasis>Error en chap-cdwriting</emphasis></para></xi:fallback>
 +       </xi:include>
 +
 +      <xi:include xml:base="chap-evolution" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-evolution/evolution.xml">
@@ -151,63 +147,12 @@ diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-wo
 +	 que está limitado por ellos. </para>
 +       	</sect>
 +     </chapter>
-+    
 +     
-+
-+     <chapter id="java-install">
-+      <title>Instalar Java</title>
-+        <sect><title>Descarga de JRE</title>
-+	<para>Para instalar Java, debe descargar el software desde la página de Sun pulsando en este
-+	<ulink url="&sunjava-download;">enlace</ulink></para>
-+	<para>En la página que aparecerá en el navegador web, busque las siglas JRE y pulse en el 
-+	      enlace apropiado para descargar. A continuación se le presentará un acuerdo de licencia 
-+	      con Sun Microsystems. Léalo y si está de acuerdo marque «accept» y pulse en «continue».
-+              </para>
-+        <para>En la página siguiente, debe pulsar donde ponga «Linux self extracting file». Señale 
-+	«Guardar en disco» en el diálogo que aparecerá después. La descarga debería comenzar en este
-+	momento. </para>
-+        </sect>
-+
-+	<sect>
-+	  <title>Instalación de JRE en su cuenta de usuario</title>	
-+	<para>Abra un terminal y vaya al directorio donde ha descargado el paquete. Déle permisos de ejecución con el comando: 
-+	<programlisting>chmod u+x jre-1_5_0_03-linux-i586.bin</programlisting>
-+	(El nombre del paquete puede diferir). A continuación ejecutelo: <programlisting>./jre-1_5_0_03-linux-i586.bin</programlisting>
-+	Se le volverá a pedir su conformidad con el acuerdo de licencia. Debe tecleear yes si está de acuerdo.
-+       A continuación, se descomprimirá el paquete en el directorio recien creado jre1.5.0_03.
-+	Recuerde que debe modificar la variable PATH de su entorno para que busque ejecutables en este
-+	nuevo directorio. Esto puede hacerse poniendo 
-+ 	<programlisting>
-+	export PATH=$PATH:$HOME/jre-1_5_0_03/bin
-+	</programlisting>
-+	en su ~/.bashrc
-+	</para>
-+	<para><note>Iremos actualizando esta documentación a medida
-+		 que cambie el proceso de instalación de Java</note>
-+	</para>
-+	</sect>
-+        <sect><title>Empaquetar Java e instalarlo en el sistema</title>
-+	<para>Si desea que java esté integrado en su sistema para todos los usuarios, el método correcto
-+	ES EMPAQUETARLO. Puede obtener un programa que le ayudará en esta tarea en el siguiente 
-+	<ulink url="&java-debian;">enlace</ulink>:</para>
-+	<para>
-+	Básicamente el proceso consiste en descargar este programa, instalarlo y hacer que él automáticamente
-+	cree el .deb necesario para integrar Java en &distro-name;. Los siguientes pasos que hay que hacer son:
-+	<programlisting>
-+
-+        sudo apt-get install java-package
-+	make-jpkg jre-1_5_0_03-linux-i586.bin
-+       	sudo dpkg -i sun-j2jre.5.0_i386.deb
-+	</programlisting>
-+	</para>
-+ 	</sect>
-+     </chapter>
 +
 +     <chapter id="flash-install">
 +	<title>Instalar Flash</title>
 +	<para>Normalmente cuando no tenga instalado el complemento de Flash, se mostrará la siguiente imagen bajo la 
-+	barra de direcciones indicando que puede instalar el complemento directamente. No necesita hacer ninguna
-+	otra operación.</para>
++	barra de direcciones indicando que puede instalar el complemento directamente.</para>
 +	<para><figure>
 +                <screenshot>
 +                <mediaobject>
@@ -219,9 +164,10 @@ diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-wo
 +	</figure>
 + 	</para>
 +	
-+	<para>Para descargar el complemento de Macromedia Flash puede ir a la siguiente <ulink 
-+	url="&flash-download;">dirección</ulink>. Siga las instrucciones de la página para instalar el reproductor
-+	de Flash en el navegador.
++	<para>Para instalar el plugin de Macromedia Flash para Mozilla Firefox, puede ir al menú 
++    <guimenuchoice><guimenu>Aplicaciones</guimenu></guimenuchoice>, luego
++    <guimenuchoice><guimenu>Herramientas del sistema</guimenu></guimenuchoice> y luego
++    <guimenuchoice><guimenu>Descargar el plugin de Macromedia Flash</guimenu></guimenuchoice>. Necesita estar conectado a Internet.
 +        </para>
 +     </chapter>
 +</book>
