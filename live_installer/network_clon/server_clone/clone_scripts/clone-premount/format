@@ -17,9 +17,9 @@ esac
 
 
 . /etc/config.cfg
-ROOT_PARTITION=$(echo $mountpoints | cut -d';' -f 1)
+ROOT_PARTITION=$(echo $mountpoints | cut -d'-' -f 1)
 ROOT_PARTITION=${ROOT_PARTITION#/:}
-SWAP_PARTITION=$(echo $mountpoints | cut -d';' -f 2)
+SWAP_PARTITION=$(echo $mountpoints | cut -d'-' -f 2)
 SWAP_PARTITION=${SWAP_PARTITION#swap:}
 
 ## In order to avoid very weird bug with the mkfs.ext3

@@ -16,7 +16,7 @@ CONFDIR="/usr/share/server-clone/conf"
 
 # Default options (by now)
 NET=192.168.10.1
-MOUNTPOINTS="/:/dev/@@@da1;swap:/dev/@@@da2"
+MOUNTPOINTS="/:/dev/@@@da1-swap:/dev/@@@da2"
 
 #NET=$(dialog --title "Configuración de la red" \
 #    --inputbox "¿Cuál es la dirección del servidor?" \
