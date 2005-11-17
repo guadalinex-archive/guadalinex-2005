@@ -6,7 +6,7 @@ if [[ `dpkg --get-selections flashplugin-nonfree|awk '{ print $2 }'` != "install
 
 zenity --question --title "Instalación de Macromedia Flash" --text "Se va a proceder a instalar los plugins para Mozilla Firefox de Macromedia Flash. Es necesario que esté conectado a Internet.
 
-¿Desea continuar?" && gnome-terminal --hide-menubar -x gksudo 'DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get --yes install flashplugin-nonfree'
+¿Desea continuar?" && sudo sh -c 'echo "flashplugin-nonfree install" | synaptic --hide-main-window --non-interactive --set-selections --progress-str "Instalando Macromedia Flash" --finish-str "Paquete instalado"'
 
 else
 
