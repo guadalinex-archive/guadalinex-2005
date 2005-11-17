@@ -121,12 +121,13 @@ cat <<EOF > /etc/network/interfaces
 # and how to activate them. For more information, see interfaces(5).
 
 # The loopback network interface
-auto lo \${devs}
+auto lo
 iface lo inet loopback
 
 EOF
 
 for device in \$devs ; do
+	echo "auto \$device" >> /etc/network/interfaces	
 	echo "iface \$device inet dhcp" >> /etc/network/interfaces	
 done
 
