@@ -3,7 +3,7 @@
 #/dev/hda1  -> /
 #/dev/hda2  -> swap
 
-PREREQ=""
+PREREQ="tmpfs"
 
 prereqs()
 {
