@@ -28,7 +28,7 @@ fi
 if [ "${BOOT}" == "clone" ]; then
 	LIVE_SCRIPTS="/usr/share/initramfs-tools/live_scripts"
 	for f in $(cd ${LIVE_SCRIPTS} && \
-	        find . \( -name '*.dpkg*' -prune -o -name '*~' -prune -o -name '.svn' -prune -o name 'local' -prune \) \
+	        find . \( -name '*.dpkg*' -prune -o -name '*~' -prune -o -name '.svn' -prune -o name 'local' -prune -o name 'tmpfs' -prune \) \
 	                -o -type f -print); do
 		dir=$(dirname ${f}  | sed 's|live|clone|g')
 	        mkdir --parents ${DESTDIR}/scripts/${dir}
