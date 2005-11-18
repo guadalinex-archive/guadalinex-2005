@@ -46,10 +46,16 @@ LIVE_INSTALLER
 - ubuntu-express-ubuntu-artwork_0.98ubuntu1_all.deb
 - ubuntu-express-ubuntu-doc_0.98ubuntu1_all.deb
 
+HARDWARE_DETECTION
+
+- hermeshardware_0.1-3_i386.deb
+
+
 OTHER_APPS
 
-uda-docs_0.1-9_i386.deb
-uda-docs-guadalinex-branding_0.1-9_i386.deb
-uda-docs-molinux-branding_0.1-9_i386.deb
-
+- uda-docs_0.1-9_i386.deb
+- uda-docs-guadalinex-branding_0.1-9_i386.deb
+- uda-docs-molinux-branding_0.1-9_i386.deb
+- guadalinex-suppletory-system_0.1_i386.deb
+- guadalinex-suppletory-disk-generator_0.1-1_i386.deb
 
