@@ -5,7 +5,7 @@ set -e
 case "$1" in
     configure)
         /usr/sbin/update-dpsyco-skel
-	ln -s /usr/X11R6/lib/xdm /etc/X11/xdm
+	ln -s /etc/X11/xdm /usr/X11R6/lib/X11/xdm
 	#update-rc.d fetchmail-gouda defaults 99
     ;;
 
