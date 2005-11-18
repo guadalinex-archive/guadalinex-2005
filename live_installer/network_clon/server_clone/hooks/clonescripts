@@ -26,17 +26,6 @@ else
 fi
 
 if [ "${BOOT}" == "clone" ]; then
-	LIVE_SCRIPTS="/usr/share/initramfs-tools/live_scripts"
-	for f in $(cd ${LIVE_SCRIPTS} && \
-	        find . \( -name '*.dpkg*' -prune -o -name '*~' -prune -o -name '.svn' -prune \) \
-	                -o -type f -print | grep -v local); do
-		dir=$(dirname ${f}  | sed 's|live|clone|g')
-	        mkdir --parents ${DESTDIR}/scripts/${dir}
-		cp -p ${LIVE_SCRIPTS}/${f} ${DESTDIR}/scripts/${dir}
-		if [ ${f} == 'setup_image' ]; then
-			sed -i 's|PREREQ=\"local|PREREQ=\"network|g' ${DESTDIR}/scripts/${dir}/${f}
-		fi
-	done
 	CLONE_SCRIPTS="/usr/share/server-clone/clone_scripts"
 	for f in $(cd ${CLONE_SCRIPTS} && \
 	        find . \( -name '*.dpkg*' -prune -o -name '*~' -prune -o -name '.svn' -prune \) \
