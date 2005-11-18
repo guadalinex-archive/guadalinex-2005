@@ -1,0 +1,87 @@
+# Welsh translations for base-config.
+# This file is distributed under the same license as the base-config package.
+# Dafydd Harries <daf@muse.19inch.net>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-13 11:05+0200\n"
+"PO-Revision-Date: 2004-05-29 21:45-0300\n"
+"Last-Translator: Dafydd Harries <daf@muse.19inch.net>\n"
+"Language-Team: Welsh <cy@pengwyn.linux.org.uk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n == 2) 1 : 0;\n"
+
+#: ../base-config:42
+msgid "Configuring the base system..."
+msgstr "Yn cyflunio'r system sail..."
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Teipiwch 'exit' er mwyn dychwelyd i'r cyflunydd sail."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:140
+msgid "enter information manually, "
+msgstr "rhoi gwybodaeth â llaw, "
+
+#: ../apt-setup:297
+msgid "Scanning CD, this will take a minute."
+msgstr "Yn sganio CD, fe fydd hyn yn cymryd munud."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:381
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Mae'r offeryn rheoli pecynnau, apt, wedi ei gyflunio nawr, a gall sefydlu "
+"${PACKAGE_COUNT} pecyn"
+msgstr[1] ""
+"Mae'r offeryn rheoli pecynnau, apt, wedi ei gyflunio nawr, a gall sefydlu "
+"${PACKAGE_COUNT} becyn"
+
+#: ../apt-setup:478
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Mwy na thebyg, defnyddioch CD er mwyn sefydlu system sail Debian, ond nid yw "
+"yn y gyrriant ar hyn o bryd. Mae'n debyg mai'r peth gorau yw i'w rhoi e i "
+"fewn a dewis \"cdrom\"."
+
+#: ../apt-setup:730 ../apt-setup:813 ../apt-setup:938 ../apt-setup:951
+#: ../apt-setup:1098 ../apt-setup:1128
+msgid "Testing apt sources..."
+msgstr "Yn profi ffynhonellau apt..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "Yn diweddaru'r ffeil \"available\"..."
+
+#~ msgid "dselect - old package selector (experts only)"
+#~ msgstr "dselect - hen ddewiswr pecynnau (arbennigwyr yn unig)"
+
+#~ msgid "aptitude - pick tasks or drill down to individual packages"
+#~ msgstr "aptitude - dewis tasgau a phecynnau unigol"
+
+#~ msgid "tasksel - quickly choose from predefined collections of software"
+#~ msgstr "tasksel - dewis yn gyflym o gasgliadau parod o feddalwedd"
+
+#~ msgid "nothing - you may manually run apt-get or any of the above later"
+#~ msgstr "dim - cewch rhedeg apt-get neu unrhyw un o'r uchod yn hwyrach"
+
+#~ msgid "Testing apt sources ..."
+#~ msgstr "Yn profi ffynhonellai APT ..."

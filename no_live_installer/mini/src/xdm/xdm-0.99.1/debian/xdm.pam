@@ -1,0 +1,10 @@
+# $Id: xdm.pam 1266 2004-04-17 02:33:33Z branden $
+
+@include common-auth
+@include common-account
+@include common-session
+@include common-password
+
+auth		requisite	pam_nologin.so
+auth		required	pam_env.so
+session		required	pam_limits.so

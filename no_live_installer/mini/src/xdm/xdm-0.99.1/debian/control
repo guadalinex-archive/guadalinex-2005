@@ -1,0 +1,20 @@
+Source: xdm
+Section: x11
+Priority: optional
+Maintainer: Fabio M. Di Nitto <fabbione@ubuntu.com>
+Build-Depends: debhelper (>= 4.0.0), pkg-config, libpam0g-dev, libxaw7-dev, libxdmcp-dev, cpp, libxinerama-dev
+Standards-Version: 3.6.1.0
+
+Package: xdm
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: xbase-clients (<< 6.8.2-38)
+Description: X client - xdm
+ xdm is a small tool that was part of xbase-clients.
+ .
+ More information about X.Org can be found at:
+ <URL:http://xorg.freedesktop.org>
+ <URL:http://lists.freedesktop.org/mailman/listinfo/xorg>
+ .
+ This module can be found as the module 'app/xdm' at
+ :pserver:anoncvs@cvs.freedesktop.org:/cvs/xorg

@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+. /usr/share/debconf/confmodule
+
+# If usplash is installed and we're running on the Linux console, make the
+# splash screen go away.
+if type usplash_write >/dev/null 2>&1 && [ "$TERM" = linux ]; then
+	clear >/dev/tty1
+	chvt 1
+	usplash_write QUIT || true
+fi
+
+db_capb backup
+
+db_input medium base-config/intro || true
+if ! db_go; then
+	db_fset base-config/intro seen false
+	exit 30 # back to menu
+fi
+db_fset base-config/intro seen false
+	
+if which setterm >/dev/null 2>&1; then
+	setterm -blank 0 >/dev/tty </dev/tty
+fi

@@ -1,0 +1,76 @@
+#! /bin/sh -e
+
+. /usr/share/debconf/confmodule
+
+db_get debian-installer/locale
+if [ "$RET" ]; then
+	TARGETLANG="$RET"
+else
+	TARGETLANG=C
+fi
+
+db_get debconf/priority
+TARGETPRIO="$RET"
+
+target_debconf () {
+	env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
+		-u DEBCONF_REDIR -u DEBCONF_OLD_FD_BASE \
+		DEBCONF_READFD=0 DEBCONF_WRITEFD=3 \
+		LANG="$TARGETLANG" DEBIAN_PRIORITY="$TARGETPRIO" \
+		chroot /target debconf -o base-config "$@"
+}
+
+db_progress START 0 2 apt-setup-udeb/progress/title
+db_progress INFO apt-setup-udeb/progress/copydb
+
+debconf-copydb \
+	-p '^(mirror/http/proxy|mirror/suite|debian-installer/country|apt-setup/.*)$' \
+	configdb target_configdb
+
+db_progress STEP 1
+
+if [ -f /cdrom/.disk/base_installable ]; then
+	db_progress INFO apt-setup-udeb/progress/cdrom
+
+	# Run apt-cdrom first, to stop apt-setup unmounting /cdrom.
+	LANG="$TARGETLANG" chroot /target apt-cdrom \
+		-o Acquire::gpgv::Options::=--ignore-time-conflict \
+		add --no-mount | \
+		logger -t apt-setup-udeb
+	# Deliberately overwrite apt-cdrom's backup, since we're erasing
+	# that entry anyway.
+	grep -v '^deb file:///cdrom/ ' /target/etc/apt/sources.list \
+		> /target/etc/apt/sources.list~
+	mv /target/etc/apt/sources.list~ /target/etc/apt/sources.list
+
+	# If we're doing a standard desktop installation from CD, back up
+	# sources.list generated during base system installation and restore
+	# it after running apt-setup, so that the rest of the installation
+	# won't require the network.
+	if [ -d /target/var/cache/archive-copier ]; then
+		cp -a /target/etc/apt/sources.list \
+			/target/etc/apt/sources.list.base
+	fi
+
+	db_progress STEP 1
+fi
+
+db_progress STOP
+
+CODE=0
+target_debconf -f passthrough /usr/lib/base-config/menu/apt-setup new || \
+	CODE="$?"
+
+# This acts as a note to the second stage that apt has already been
+# configured.
+cp -a /target/etc/apt/sources.list /target/etc/apt/sources.list.apt-setup
+
+if [ -f /target/etc/apt/sources.list.base ]; then
+	mv -f /target/etc/apt/sources.list.base /target/etc/apt/sources.list
+fi
+
+if [ "$CODE" -eq 30 ]; then
+	exit 10 # back up to main-menu
+else
+	exit "$CODE"
+fi

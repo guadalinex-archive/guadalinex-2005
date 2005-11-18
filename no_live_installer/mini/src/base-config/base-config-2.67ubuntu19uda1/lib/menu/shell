@@ -1,0 +1,6 @@
+#!/bin/sh
+clear
+gettext "Type 'exit' to return to base-config."
+echo
+cd
+sh -l
