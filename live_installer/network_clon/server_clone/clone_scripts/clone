@@ -47,4 +47,7 @@ mountroot ()
 	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/clone-bottom"
 	run_scripts /scripts/clone-bottom
 	[ "$quiet" != "y" ] && log_end_msg
+
+	init="/usr/sbin/netcloner"	
+
 }
