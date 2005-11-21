@@ -33,12 +33,7 @@ class ActorTest(unittest.TestCase):
 
     def setUp(self):
         if not ActorTest.devicelistener:
-            ActorTest.devicelistener = hermes_hardware.DeviceListener(NotificationDaemon())
+            iface =  NotificationDaemon()
+            ActorTest.devicelistener = hermes_hardware.DeviceListener(iface)
             ActorTest.devicelistener.bus = dbus.SessionBus()
-            ActorTest.virtualhal = VirtualHal()
-
-    
-    
-if __name__ == '__main__':
-    vh = VirtualHal()
-    gtk.main()
+            VirtualHal.get_instance()
