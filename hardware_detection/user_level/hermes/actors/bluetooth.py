@@ -79,7 +79,7 @@ class Actor(DeviceActor):
             interface = ': ' + self.properties['bluetooth_hci.interface_name']
         else:
             interface = ''
-
+        print self.msg_render
         self.msg_render.show("BLUETOOTH", 
              "Nueva interfaz bluetooth configurada " + str(interface) +
              '.',

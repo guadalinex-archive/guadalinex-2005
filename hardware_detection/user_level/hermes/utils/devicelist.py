@@ -86,7 +86,7 @@ class DeviceList:
             self.__data_to_compare = pickle.load(file)
             file.close()
         except EOFError, e:
-            self.__data_to_compare = {}
+            self.__data_to_compare = {0:Set([])}
             self.logger.warning("Error reading from: " + filename)
 
 

@@ -115,6 +115,7 @@ class DeviceListener:
     def on_device_added(self, udi, *args):
         self.logger.debug("DeviceAdded: " + str(udi))
         self.devicelist.save()
+        self.logger.debug("Ping")
 
         obj = self.bus.get_object('org.freedesktop.Hal', udi)
         obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')
@@ -130,6 +131,7 @@ class DeviceListener:
             except:
                 self.logger.warning(str(traceback.format_exc()))
 
+            from actors.deviceactor import DeviceActor
             if actor.__class__ == DeviceActor:
                 if properties.has_key('info.product') and \
                         properties['info.product'] != '':
@@ -158,6 +160,7 @@ class DeviceListener:
             print "#############################################"
             self.__print_properties(disp.properties)
 
+            from actors.deviceactor import DeviceActor
             if disp.__class__ == DeviceActor:
                 properties = disp.properties
                 if properties.has_key('info.product') and \
@@ -205,8 +208,8 @@ class DeviceListener:
         max = 0
         klass = None
         actor_klass = None
-
-        for klass in ACTORSLIST:
+        import actors
+        for klass in actors.ACTORSLIST:
             count = self.__count_equals(prop, klass.__required__)
             if count > max:
                 actor_klass = klass
@@ -226,6 +229,7 @@ class DeviceListener:
         else:
             # Shorting logger setup (in module actors, logging.getLogger must be
             # invoked _after_ than in main function).
+            from actors.deviceactor import DeviceActor
             actor = DeviceActor(self.message_render, prop)
             self.udi_dict[udi] = actor
 
@@ -321,8 +325,6 @@ def main():
     else:
         iface = NotificationDaemon()
 
-    global ACTORSLIST
-    from actors import ACTORSLIST
     global DeviceActor
     from actors.deviceactor import DeviceActor
 
