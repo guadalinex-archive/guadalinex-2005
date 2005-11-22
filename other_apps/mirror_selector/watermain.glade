@@ -264,7 +264,7 @@ Seleccione su repositorio preferido para las actualizaciones y pulse &lt;b&gt;Ac
       <child>
 	<widget class="GtkLabel" id="label2">
 	  <property name="visible">True</property>
-	  <property name="label" translatable="yes">lNo es posible descargar una nueva lista.
+	  <property name="label" translatable="yes">No es posible descargar una nueva lista.
 
 Compruebe que tiene conexión a Internet 
 y que tiene permiso para esta tarea.</property>
