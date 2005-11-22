@@ -78,10 +78,10 @@ class VirtualHal(object):
 
         return modules
 
-#if __name__ == '__main__':
-session_bus = dbus.SessionBus()
-name = dbus.service.BusName("org.freedesktop.Hal", 
-       bus = session_bus)
-object = HalDevice(name, '/org/freedesktop/Hal/devices/test_0', {}) 
-gtk.main()
+if __name__ == '__main__':
+    session_bus = dbus.SessionBus()
+    name = dbus.service.BusName("org.freedesktop.Hal", 
+           bus = session_bus)
+    object = HalDevice(name, '/org/freedesktop/Hal/devices/test_0', {}) 
+    gtk.main()
 
