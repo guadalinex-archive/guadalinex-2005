@@ -1,14 +1,20 @@
+hermeshardware (0.1-4) unstable; urgency=low
+
+  * Added support for usb scanners and usb printers. 
+
+ -- Gumersindo Coronel Pérez <gcoronel@emergya.info>  Tue, 22 Nov 2005 13:44:46 +0100
+
 hermeshardware (0.1-3) unstable; urgency=low
 
-  * Added support for net devices and printers. 
+  * Added support for net devices and printers.
 
- -- Gumersindo Coronel Pérez <gcoronel@localhost.localdomain>  Wed, 16 Nov 2005 17:03:36 +0100
+ -- Gumersindo Coronel Pérez <gcoronel@emergya.info>  Tue, 22 Nov 2005 13:44:11 +0100
 
 hermeshardware (0.1-2) unstable; urgency=low
 
   * Added support for more devices. 
 
- -- Gumersindo Coronel Pérez <gcoronel@localhost.localdomain>  Thu,  3 Nov 2005 09:04:04 +0100
+ -- Gumersindo Coronel Pérez <gcoronel@emergya.info>  Thu,  3 Nov 2005 09:04:04 +0100
 
 hermeshardware (0.1-1) unstable; urgency=low
 
