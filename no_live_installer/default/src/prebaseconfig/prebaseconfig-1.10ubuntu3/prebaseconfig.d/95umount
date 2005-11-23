@@ -1,0 +1,10 @@
+#! /bin/sh
+#
+# Umount all mounted file systems
+
+set -e
+
+# umount -a will miss /target/proc, so make sure it's unmounted
+umount /target/proc || true
+
+umount -a || true
