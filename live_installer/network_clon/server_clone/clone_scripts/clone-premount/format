@@ -30,7 +30,7 @@ mkfs.ext3 $ROOT_PARTITION >> /tmp/initramfs.debug 2>&1
 mkswap $SWAP_PARTITION >> /tmp/initramfs.debug 2>&1
 
 # Activate the swap
-swapon $SWAP_PARTITION >> /tmp/initramfs.debug 2>&1
+#swapon $SWAP_PARTITION >> /tmp/initramfs.debug 2>&1
 
 # Mounting main partition
 mkdir -p /mnt/dev/ >> /tmp/initramfs.debug 2>&1
