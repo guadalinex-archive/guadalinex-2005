@@ -111,7 +111,7 @@ create_fstab ()
 		else
 			mntpoint="/media/\${dev#/dev/}"
 			mkdir -p \$mntpoint
-			if [ "\$fs" == "ntfs" ];
+			if [ "\$fs" == "ntfs" ]; then
 				defaults=\$(echo \${defaults} | sed 's|users|user,umask=022|g')
 			fi
 			entry="\${dev}	\${mntpoint}	\${fs}\${defaults}"
