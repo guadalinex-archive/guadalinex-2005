@@ -53,8 +53,8 @@ from utils.grepmap import UsbGrepMap
 
 from usbactor import Actor
 
-WEBCAMICON = os.path.abspath('actors/img/scanner.png')
-WEBCAMICONOFF = os.path.abspath('actors/img/scanneroff.png')
+WEBCAMICON = os.path.abspath('actors/img/webcam.png')
+WEBCAMICONOFF = os.path.abspath('actors/img/webcamoff.png')
 
 
 class UsbWebcamActorHack(object):
