@@ -1,23 +1,23 @@
-0fSPECIAL BOOT PARAMETERS - INSTALLATION SYSTEM07                                 09F707
+0fINSTALACION DEL SISTEMA07                                                       09F707
 
-You can use the following boot parameters at the 0fboot:07 prompt, 
-in combination with the boot method (see <09F307>). These parameters
-control how the installer works.
+Puede usar los siguientes argumentos de arranque en el terminal de
+0fboot:07 combinandolo con el sistema de arranque (vea <09F307>). Estos
+argumentos de arranque controlan como funciona el instalador.
 0f
 RESULT                                  PARAMETER07
-Verbose debugging                       0fDEBCONF_DEBUG=507
+Modo debug                              0fDEBCONF_DEBUG=507
 Debug boot sequence                     0fBOOT_DEBUG=107
-Disable framebuffer                     0fdebian-installer/framebuffer=false07
-Don't probe for USB                     0fdebian-installer/probe/usb=false07
-Don't start PCMCIA                      0fhw-detect/start_pcmcia=false07
-Force static network config             0fnetcfg/disable_dhcp=true07
-Set keyboard map                        0fbootkbd=es07
-Disable ACPI for PCI maps (handy for    0fpci=noacpi07
-some HP servers and Via-based machines)
+Deshabilitar framebuffer                0fdebian-installer/framebuffer=false07
+No usar USB                             0fdebian-installer/probe/usb=false07
+No lanzar PCMCIA                        0fhw-detect/start_pcmcia=false07
+Deshabilitar ACPI para mapas PCI maps   0fpci=noacpi07
 
-For example:
+Por ejemplo:
 
   boot: linux debian-installer/framebuffer=false
 
 
-Press F1control and F then 1 for the help index, or ENTER to 
+
+
+
+Presione INTRO para iniciar el instalador

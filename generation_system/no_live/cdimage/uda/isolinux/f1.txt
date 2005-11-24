@@ -1,25 +1,23 @@
-                  0fBienvenido a Guadalinex!07                                          09F107
-
-This is an installation CD-ROM for Ubuntu 5.10, built on 20050317ubuntu13.
+                  0fBienvenido a Guadalinex!07                                    09F107
 
 0fINDICE DE AYUDA07
 
-0fKEY    TOPIC07
+0fTECLA      TEMA07
+<09F107>   INDICE DE AYUDA 
+<09F207>   PREREQUISITOS PARA INSTALAR GUADALINEX
+<09F307>   METODOS DE ARRANQUE 
+<09F407>   ARGUMENTOS ESPECIALES DE ARRANQUE 
+<09F507>   ARGUMENTOS DE ARRANQUE PARA ORDENADORES ESPECIALES 
+<09F607>   VARIOS DRIVERS DE DISPOSITIVOS 
+<09F707>   INSTALACION DEL SISTEMA 
 
-<09F107>   This page, the help index.
-<09F207>   Prerequisites for installing Ubuntu.
-<09F307>   Boot methods for special ways of using this CD-ROM
-<09F407>   Special boot parameters, overview.
-<09F507>   Special boot parameters for special machines.
-<09F607>   Special boot parameters for selected disk controllers.
-<09F707>   Special boot parameters for the install system.
-<09F807>   How to get help.
-<09F907>   About the Ubuntu project.
-<09F1007>  Copyrights and warranties.
-
-For F1-F9 type control and F then the digit 1-9
-For F10 type control and F then the digit 0
 
-
 
-Press F2 through F10 for details, or ENTER to 
+
+
+
+
+
+
+
+Presione INTRO para iniciar el instalador

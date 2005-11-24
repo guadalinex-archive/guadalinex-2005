@@ -1,23 +1,23 @@
-0fBOOT METHODS07                                                                  09F307
+0fMETODOS DE ARRANQUE07                                                           09F307
 
-0fAvailable boot methods:07
+0fOrdenes de arranque disponibles:07
 
 0flinux07
-  Start the installation -- this is the default CD-ROM install.
-0fexpert07
-  Start the installation in expert mode, for maximum control.
-0fserver07, 0fserver-expert07
-  Minimal system install. Recommended for servers, where a complete
-  graphical desktop environment is not desired.
-0fmemtest07
-  Perform a memory test.
+  Comenzar a instalar Guadalinex.
+0ftestcd07
+  Comenzar a instalar Guadalinex comprobando la integridad de
+los ficheros.
 
-To use one of these boot methods, type it at the prompt, optionally
-followed by any boot parameters. For example:
+Para usar estas ordenes de arranque, escribalas en el terminal y
+opcionalmente escriba cualquier argumento de arranque. Por ejemplo:
 
   boot: linux acpi=off
 
-If unsure, you should use the default boot method, with no special
-parameters, by simply pressing enter at the boot prompt.
+Si no tiene claro que orden usar, probablemente tenga que usar la 
+orden por defecto sin argumentos. Para ello, simplemente pulse INTRO
+en el terminal.
 
-Press F1control and F then 1 for the help index, or ENTER to 
+
+
+
+Presione INTRO para iniciar el instalador
