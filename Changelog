@@ -1,4 +1,88 @@
-Guadalinex 2005 v.10b (04-11-05)
+Guadalinex 2005 v.1.0rc1 (24-11-05)
+------------------------
+
+Major changes:
+
+- No-live-installer:
+  - Added F1, F2,... in isolinux
+  - Added testcd option to check MD5
+  - Added definitive texts
+  - Fixed some "Ubuntu" chains
+  - Optimized space in CD removing innecessary pkgs (more work needs to be done)
+  - Fixed some "Ubuntu" in Grub texts
+  
+
+- Live installer:
+  - Added definitive texts
+  - Fixed more than once network card detection bug (BTS 0052)
+  - Improved Grub menu creation (BTS 0009)
+  - Fixed installation error with more than one CD device
+  - Improved installer look 'n feel
+  
+
+- Distribution:
+
+  - Added most common devices support for Hermes: printers, webcams,
+  escanners,...
+  - Developed and added DRAE client: lemurae
+  - Added podcast software: "ipodder"
+  - Added nautilus-open-terminal (BTS 0003)
+  - Added program to automagically install Macromedia Flash plugins
+  - Added more accessibility apps (dasher)
+  - Changed BMP skin
+  - Added xmms (necessary for "ippoder")
+  - Translated streamtuner (BTS 0002)
+  - Trasnlated serpentine
+  - Added audacity
+  - Optimized apps launching speed (including OOo)
+  - Added web browser pdf plugins
+  - Evince: default pdf viewer
+  - Added rar support to file-roller
+  - Removed wordtrans
+  - Mounted drives not in desktop
+  - Integrated uda-docs in yelp
+  - Added mono support 
+  - Added tomboy
+  - Gnome-system-tools now supports Guadalinex
+  - Translated launchpad-integration
+  - Added bash_completion
+
+- Mini-distribution:
+
+  - Created its own generation system
+  - Added first list of applications
+  - Functional but not yet stable enough; some bugfixing needs to be done to
+  have it ready for release
+  
+
+- Network-clon:
+
+  - Fixed most bugs
+  - It is _almost_ functional; some bugfixing needs to be done in the final
+  stage of the installation process.
+
+
+Minor changes:
+
+- Distribution:
+  - Added some modules for bb-assist
+  - Activated DMA support (BTS 0025)
+  - Added necessary SAMBA software (BTS 0048)
+  - Default jpg app: GIMP (BTS 0027)
+  - Added auto NTFS partition suppor in live (BTS 0010)
+  - Selected correct dictionaries for gnome-dictionary (BTS 0051)
+  - Gnome calendar in Spanish format (BTS 0050)
+  - Bluefish in Internet category
+  - Changed Acroread icon
+  - Improved video software (totem-xine)
+  - Added support for swf files
+  - Added mp3 support
+  - Changed evolution description in menu
+  - Changed firefox icon
+  - More stable Hermes
+
+
+Guadalinex 2005 v.1.0b (04-11-05)
 ---------------------
 
 Major changes:
