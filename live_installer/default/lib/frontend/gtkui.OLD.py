@@ -163,7 +163,8 @@ class Wizard:
     for widget in self.glade.get_widget_prefix(""):
       if widget.__class__ == gtk.Label and widget.get_name()[-6:-1] == 'label':
         msg = self.resize_text(widget, widget.get_name()[-1:])
-        widget.set_markup(msg)
+        if ( msg != "" ):
+          widget.set_markup(msg)
     self.on_help_clicked(self.warning_info)
 
     # Declare SignalHandler
@@ -214,7 +215,7 @@ class Wizard:
     elif isinstance (widget, list):
       msg = '\n'.join (widget)
     else:
-      msg = widget.get_label()
+      msg = widget.get_text()
 
     if ( gtk.gdk.get_default_root_window().get_screen().get_width() > 1024 ):
       if ( type in  ['1', '4'] ):
@@ -223,7 +224,12 @@ class Wizard:
         msg = '<big><b>' + msg + '</b></big>'
       elif ( type == '3' ):
         msg = '<span font_desc="22">' + msg + '</span>'
-    return msg
+    else:
+      if ( type == '4' ):
+        return msg
+      else:
+        return ''
+
 
   # Methods
 
@@ -685,7 +691,7 @@ class Wizard:
 
     # showing warning message is error is set
     if ( len(error_msg) > 1 ):
-      self.show_error(self.resize_text(''.join(error_msg), '4'))
+      self.show_error(self.resize_text(''.join(error_msg, '4')))
     else:
       # showing next step and destroying mozembed widget to release memory
       self.browser_vbox.destroy()
@@ -885,7 +891,7 @@ class Wizard:
 
     # showing warning messages
     if ( len(error_msg) > 1 ):
-      self.msg_error2.set_text(self.resize_text(''.join(error_msg), '4'))
+      self.msg_error2.set_text(self.resize_text(''.join(error_msg, '4')))
       self.msg_error2.show()
       self.img_error2.show()
     else:
