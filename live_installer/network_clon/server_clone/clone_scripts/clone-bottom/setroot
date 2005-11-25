@@ -15,7 +15,6 @@ prereqs)
 	;;
 esac
 
-cp -a /etc/config.cfg ${rootmnt}/etc/config.cfg 
-ln /tmp/initramfs.debug ${rootmnt}/var/log/initramfs.debug
+echo "0x100" > /proc/sys/kernel/real-root-dev
 
 exit 0
