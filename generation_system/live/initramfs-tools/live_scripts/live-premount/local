@@ -32,7 +32,9 @@ for device in /sys/block/* ; do
 done
 
 
-modprobe -q isofs >> /tmp/initramfs.debug 2>&1
+for fs in isofs ext3 vfat ; do
+	modprobe -q $fs >> /tmp/initramfs.debug 2>&1
+done
 mkdir -p /mnt/dev >> /tmp/initramfs.debug 2>&1
 found=n
 for disk in $disks; do

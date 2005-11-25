@@ -22,7 +22,7 @@ esac
 . /etc/mkinitramfs/initramfs.conf
 
 if [ "${BOOT}" == "live" ]; then
-	for x in squashfs unionfs loop vfat ntfs isofs ; do
+	for x in squashfs unionfs loop vfat ntfs isofs ext2 nls_cp437 ; do
 		manual_add_modules ${x}
 	done
 fi
