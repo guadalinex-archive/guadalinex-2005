@@ -163,7 +163,8 @@ class Wizard:
     for widget in self.glade.get_widget_prefix(""):
       if widget.__class__ == gtk.Label and widget.get_name()[-6:-1] == 'label':
         msg = self.resize_text(widget, widget.get_name()[-1:])
-        widget.set_markup(msg)
+        if msg != '':
+          widget.set_markup(msg)
     self.on_help_clicked(self.warning_info)
 
     # Declare SignalHandler
@@ -214,15 +215,19 @@ class Wizard:
     elif isinstance (widget, list):
       msg = '\n'.join (widget)
     else:
-      msg = widget.get_label()
+      msg = widget.get_text()
 
     if ( gtk.gdk.get_default_root_window().get_screen().get_width() > 1024 ):
+##     if ( gtk.gdk.get_default_root_window().get_screen().get_width() > 1280 ):
       if ( type in  ['1', '4'] ):
         msg = '<big>' + msg + '</big>'
       elif ( type == '2' ):
         msg = '<big><b>' + msg + '</b></big>'
       elif ( type == '3' ):
         msg = '<span font_desc="22">' + msg + '</span>'
+    else:
+      if type != '4':
+        msg = ''
     return msg
 
   # Methods
@@ -602,7 +607,7 @@ class Wizard:
     self.install_image+=1
     step = self.install_image % len(self.total_images) -1
     self.installing_image.set_from_file(self.total_images[step])
-    self.installing_text.set_markup(self.resize_text('<span foreground="#087021"><b>%s</b></span>' % self.total_messages[step], '4'))
+    self.installing_text.set_markup(self.resize_text('<span foreground="#087021"><b>%s</b></span>' % self.total_messages[step], '1'))
     return True
 
 
