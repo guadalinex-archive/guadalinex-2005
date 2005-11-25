@@ -28,7 +28,7 @@ sed -i -e 's|\(^l2:2:wait:\)\(/etc/init.d/rc.*\)|\1/usr/sbin/netcloner|' ${rootm
 sed -i -e "s|^\([^:]*:[^:]*:[^:]*\):.*getty.*\<\(tty[0-9]*\).*$|\1:/bin/login -f root </dev/\2 >/dev/\2 2>\&1|" ${rootmnt}/etc/inittab
 
 # Ceaning up the start runlevel to avoid messing with the local hw
-for file in anacron postfix hwclock.sh hwclockfirst.sh checkfs.sh checkroot.sh hdparm ntpdate mountall.sh ; do
+for file in anacron postfix hwclock.sh hwclockfirst.sh checkfs.sh checkroot.sh hdparm ntpdate mountall.sh networking ; do
         echo "deleting ${rootmnt}/etc/init.d/${file}..." >> /tmp/initramfs.debug
         : > ${rootmnt}/etc/init.d/${file}
 done
