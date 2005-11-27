@@ -38,7 +38,7 @@ done
 mkdir -p /mnt/dev >> /tmp/initramfs.debug 2>&1
 found=n
 for disk in $disks; do
-	mount -t auto -o ro /dev/$disk /mnt/dev >> /tmp/initramfs.debug 2>&1
+	mount -t auto /dev/$disk /mnt/dev >> /tmp/initramfs.debug 2>&1
 	if [ -e /mnt/dev/META/META.squashfs ]; then
 		found=y
 		break
