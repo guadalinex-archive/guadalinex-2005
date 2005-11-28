@@ -1,7 +1,7 @@
 Source: bb-assist
 Section: net
 Priority: optional
-Maintainer: Vicente J. Ruiz Jurado <vjrj@tid.es>
+Maintainer: packmaster@guadalinex.org
 Build-Depends: debhelper (>= 4.1.0), docbook-to-man, cdbs, python2.4-dev
 Standards-Version: 3.6.2
 
