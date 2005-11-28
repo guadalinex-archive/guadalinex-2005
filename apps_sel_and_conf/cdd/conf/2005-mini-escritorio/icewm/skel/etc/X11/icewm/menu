@@ -11,7 +11,6 @@ menu "Accesorios" "folder" {
     prog "Portapapeles" "xclip" xclipboard
     prog "Reloj" "xclock" xclock
     prog "Xeyes (Ojos)" "xeyes" xeyes
-    prog "Xman (Manual)" "xman" xman
     prog "Terminal" "xterm" xterm
     prog "Terminar Programa" "bomb" xkill
 }
