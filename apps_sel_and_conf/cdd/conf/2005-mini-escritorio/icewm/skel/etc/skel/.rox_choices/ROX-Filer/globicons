@@ -3,7 +3,7 @@
   <rule match="/usr/bin/mad">
     <icon>/usr/share/pixmaps/equipo.xpm</icon>
   </rule>
-  <rule match="/usr/bin/synaptic">
+  <rule match="/usr/bin/gksudo-synaptic">
     <icon>/usr/share/pixmaps/synaptic.png</icon>
   </rule>
   <rule match="/usr/bin/xmms">
