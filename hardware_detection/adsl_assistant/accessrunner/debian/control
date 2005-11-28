@@ -1,7 +1,7 @@
 Source: accessrunner-usb
 Section: misc
 Priority: optional
-Maintainer: Vicente J. Ruiz Jurado <vjrj@tid.es>
+Maintainer: packmaster@guadalinex.org
 Build-Depends: debhelper (>> 4.1.16), autoconf(>= 2.52), linux-kernel-headers (>= 2.5.999-test7-bk-15), bzip2, docbook-to-man, libc6-dev (>= 2.3)
 Standards-Version: 3.6.2
 
