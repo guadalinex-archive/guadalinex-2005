@@ -15,8 +15,8 @@ DisplayManager.willing:		su nobody -c /usr/X11R6/lib/X11/xdm/Xwilling
 ! All displays should use authorization, but we cannot be sure X terminals
 ! will be configured to support it, so those that do not will require
 ! individual resource settings.
-! DisplayManager*authorize:	true
-DisplayManager*authorize:	false
+DisplayManager*authorize:	true
+!DisplayManager*authorize:	false
 ! Scripts to start the server, start the user session, and reset the server
 DisplayManager*setup:		/usr/X11R6/lib/X11/xdm/Xsetup
 DisplayManager*startup:		/usr/X11R6/lib/X11/xdm/Xstartup
