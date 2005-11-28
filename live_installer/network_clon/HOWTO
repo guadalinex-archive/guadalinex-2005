@@ -1,0 +1,64 @@
+UTILIZACIÓN DEL "CLONADOR DE RED"
+=================================
+
+REQUISITOS:
+
+- Equipo "generador": es el equipo donde se va a realizar la generación de los
+  CDs para clonar equipos
+- Equipo "servidor": es el equipo que va a actuar de servidor de red sirviendo las
+  imágenes a los clientes.
+- Distro "base": es la distribución que se va a instalar (clonar) en los equipos
+  cliente (actualmente funciona con Guadalinex v3 aunque podría extenderse su
+  fucnionamiento a Ubuntu u otras distros derivadas).
+  
+PASOS:
+
+1) Descargar la rama "live_installer/network_clon" del svn de GL v3.
+
+2) Generar los paquetes:
+  - busybox-cvs-20040623
+  - server-clone
+  
+3) Instalar en el equipo "generador" los paquetes (de los generados antes):
+  - busybox-cvs-initramfs_20040623-1ubuntu22uda1_i386.deb
+  - server-clone_0.4-4_all.deb
+  
+4) Generación de la distro "live": para ello hay que seguir los pasos indicados
+en "generation_system/live/HOWTO". Previamente, es necesario disponer de una
+versión instalada de la distro base, a partir de la cual se va a obtener la
+versión "live". Lo más sencillo es realizar la instalación de la versión "no
+live" de Guadalinex v3.
+
+5) Una vez se dispone de la imagen (.iso) de la distro base "live" hay que
+montarla en /cdrom. Es decir, habría que ejecutar algo así como:
+
+# mount -o loop /media/distro/isos/gl_2005-XXXXXX.iso /cdrom
+
+6) El siguiente paso es generar el CD para los equipos clientes:
+
+# server-clone
+
+(hay que rellenar la información que se solicita; es importante poner la IP
+correcta del equipo "servidor", que será de donde se descargue la imagen).
+
+Esto generará un fichero similar a:
+
+/tmp/client-image-XXXXX.iso
+
+7) Hay que grabar la imagen anterior en un CD, que será el que se utilice para
+arrancar los clientes que se van a clonar.
+
+8) Hay que arrancar en el equipo "servidor" los servicios para servir
+correctamente la imagen que se va a clonar:
+
+# server-clone-start
+
+(Es importante asegurarse de que están instalados los paquetes necesarios:
+oftpd, udhcpd)
+
+9) Arrancar un cliente con el CD que se ha generado.
+  
+NOTA: Este proceso es destructivo en los clientes y borra por completo el primer
+disco duro que haya. Hay que asegurarse de que estos clientes no disponen de
+información valiosa en los mismos.
+
