@@ -1,7 +1,7 @@
 Source: server-clone
 Section: admin
 Priority: optional
-Maintainer: Juanje Ojeda <juanje@interactors.coop>
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
 Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.6.2.1
 
