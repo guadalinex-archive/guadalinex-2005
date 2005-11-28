@@ -115,7 +115,6 @@ class DeviceListener:
     def on_device_added(self, udi, *args):
         self.logger.debug("DeviceAdded: " + str(udi))
         self.devicelist.save()
-        self.logger.debug("Ping")
 
         obj = self.bus.get_object('org.freedesktop.Hal', udi)
         obj = dbus.Interface(obj, 'org.freedesktop.Hal.Device')

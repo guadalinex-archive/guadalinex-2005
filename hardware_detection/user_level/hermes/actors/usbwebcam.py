@@ -68,11 +68,13 @@ class UsbWebcamActorHack(object):
         # Hacking usb.Actor class
         Actor.on_added = self.decor(Actor.on_added, self.hack_on_added)
         Actor.on_removed = self.decor(Actor.on_removed, self.hack_on_removed)
+        Actor.on_modified = self.decor(Actor.on_modified, self.hack_on_modified)
 
 
     def is_webcam(self, usb_actor):
-        ldrv = usb_actor.properties['info.linux.driver']
-        return ldrv in UsbWebcamActorHack.DRIVERS
+        if usb_actor.properties.has_key('info.linux.driver'):
+            ldrv = usb_actor.properties['info.linux.driver']
+            return ldrv in UsbWebcamActorHack.DRIVERS
         
 
     def decor(self, oldf, hack_function):
@@ -86,8 +88,16 @@ class UsbWebcamActorHack(object):
         return new_method
 
 
+    def hack_on_modified(self, usb_actor, prop_name):
+        usb_actor.logger.debug("UsbWebcamActorHack: hack_on_modified")
+        if prop_name == 'info.linux.driver' and \
+            self.is_webcam(usb_actor):
+            self.hack_on_added(usb_actor)
+
+
     def hack_on_added(self, usb_actor):
         "usbdevice.Actor.on_added hack"
+        usb_actor.logger.debug("UsbWebcamActorHack: hack_on_added")
         assert(isinstance(usb_actor, Actor))
 
         def run_camorama():
@@ -111,6 +121,7 @@ class UsbWebcamActorHack(object):
 
     def hack_on_removed(self, usb_actor):
         "usbdevice.Actor.on_removed hack"
+        usb_actor.logger.debug("UsbWebcamActorHack: hack_on_removed")
         assert(isinstance(usb_actor, Actor))
 
         usb_actor.msg_render.show("WEBCAM", "Webcam desconectada",

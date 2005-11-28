@@ -1,3 +1,9 @@
+hermeshardware (0.1-5) unstable; urgency=low
+
+  * Added support for usb webcam devices.
+
+ -- Gumersindo Coronel Pérez <gumerco@emergya.info>  Wed, 23 Nov 2005 13:08:48 +0100
+
 hermeshardware (0.1-4) unstable; urgency=low
 
   * Added support for usb scanners and usb printers. 
