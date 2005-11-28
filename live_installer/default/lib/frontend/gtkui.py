@@ -108,12 +108,6 @@ class Wizard:
                     'verified_password' : 0
                     }
 
-    # images stuff
-    self.install_image = 0
-    PIXMAPSDIR = os.path.join(GLADEDIR, 'pixmaps', distro)
-    self.total_images   = glob.glob("%s/snapshot*.png" % PIXMAPSDIR)
-    self.total_messages = open("%s/messages.txt" % PIXMAPSDIR).readlines()
-
     # Start a timer to see how long the user runs this program
     self.start = time.time()
 
@@ -130,27 +124,7 @@ class Wizard:
     for widget in self.glade.get_widget_prefix(""):
       setattr(self, widget.get_name(), widget)
 
-    # set initial bottom bar status
-    self.back.hide()
-    self.help.hide()
-    self.next.set_label('gtk-go-forward')
-
-    # set pixmaps
-    self.logo_image.set_from_file(os.path.join(PIXMAPSDIR, "logo.png"))
-    self.logo_image1.set_from_file(os.path.join(PIXMAPSDIR, "logo.png"))
-    self.logo_image2.set_from_file(os.path.join(PIXMAPSDIR, "logo.png"))
-    self.logo_image3.set_from_file(os.path.join(PIXMAPSDIR, "logo.png"))
-    self.logo_image4.set_from_file(os.path.join(PIXMAPSDIR, "logo.png"))
-    self.user_image.set_from_file(os.path.join(PIXMAPSDIR, "users.png"))
-    self.lock_image.set_from_file(os.path.join(PIXMAPSDIR, "lockscreen_icon.png"))
-    self.host_image.set_from_file(os.path.join(PIXMAPSDIR, "nameresolution_id.png"))
-    self.installing_image.set_from_file(os.path.join(PIXMAPSDIR, "snapshot1.png"))
-
-    # set fullscreen mode
-    self.live_installer.fullscreen()
-    self.live_installer.set_keep_above(True)
-    self.live_installer.show()
-    self.live_installer.window.set_cursor(self.watch)
+    self.customize_installer()
 
 
   def run(self):
@@ -172,6 +146,44 @@ class Wizard:
 
     # Start the interface
     gtk.main()
+
+
+  def customize_installer(self):
+    """Customizing logo and images."""
+    # images stuff
+    self.install_image = 0
+    PIXMAPSDIR = os.path.join(GLADEDIR, 'pixmaps', self.distro)
+    self.total_images   = glob.glob("%s/snapshot*.png" % PIXMAPSDIR)
+    self.total_messages = open("%s/messages.txt" % PIXMAPSDIR).readlines()
+
+    # set pixmaps
+    if ( gtk.gdk.get_default_root_window().get_screen().get_width() > 1024 ):
+      self.logo_image.set_from_file(os.path.join(PIXMAPSDIR, "logo_1280.jpg"))
+      self.photo1.set_from_file(os.path.join(PIXMAPSDIR, "photo_1280.jpg"))
+      self.logo_image1.set_from_file(os.path.join(PIXMAPSDIR, "logo_1280.jpg"))
+      self.logo_image2.set_from_file(os.path.join(PIXMAPSDIR, "logo_1280.jpg"))
+      self.logo_image3.set_from_file(os.path.join(PIXMAPSDIR, "logo_1280.jpg"))
+      self.logo_image4.set_from_file(os.path.join(PIXMAPSDIR, "logo_1280.jpg"))
+    else:
+      self.logo_image.set_from_file(os.path.join(PIXMAPSDIR, "logo_1024.jpg"))
+      self.photo1.set_from_file(os.path.join(PIXMAPSDIR, "photo_1024.jpg"))
+      self.logo_image1.set_from_file(os.path.join(PIXMAPSDIR, "logo_1024.jpg"))
+      self.logo_image2.set_from_file(os.path.join(PIXMAPSDIR, "logo_1024.jpg"))
+      self.logo_image3.set_from_file(os.path.join(PIXMAPSDIR, "logo_1024.jpg"))
+      self.logo_image4.set_from_file(os.path.join(PIXMAPSDIR, "logo_1024.jpg"))
+
+    self.installing_image.set_from_file(os.path.join(PIXMAPSDIR, "snapshot1.png"))
+
+    # set fullscreen mode
+    self.live_installer.fullscreen()
+    self.live_installer.set_keep_above(True)
+    self.live_installer.show()
+    self.live_installer.window.set_cursor(self.watch)
+
+    # set initial bottom bar status
+    self.back.hide()
+    self.help.hide()
+    self.next.set_label('gtk-go-forward')
 
 
   def set_locales(self):
@@ -218,7 +230,6 @@ class Wizard:
       msg = widget.get_text()
 
     if ( gtk.gdk.get_default_root_window().get_screen().get_width() > 1024 ):
-##     if ( gtk.gdk.get_default_root_window().get_screen().get_width() > 1280 ):
       if ( type in  ['1', '4'] ):
         msg = '<big>' + msg + '</big>'
       elif ( type == '2' ):
@@ -489,7 +500,6 @@ class Wizard:
     doesn't work properly."""
 
     self.warning_info.set_markup(msg)
-    self.warning_image.set_from_icon_name('gtk-dialog-warning', gtk.ICON_SIZE_DIALOG)
     self.help.show()
 
 
@@ -617,7 +627,6 @@ class Wizard:
     if ( self.steps.get_current_page() in [0, 1] ):
       text = "<span>Es necesario que introduzca su <b>nombre de usuario</b> para el sistema, su <b>nombre completo</b> para generar una ficha de usuario, así como el <b>nombre de máquina</b> con el que quiera bautizar su equipo. Deberá teclear la contraseña de usuario en dos ocasiones.</span>"
       self.warning_info.set_markup(self.resize_text(text, '4'))
-      self.warning_image.set_from_icon_name('gtk-dialog-info', gtk.ICON_SIZE_DIALOG)
       self.help.hide()
 
 
