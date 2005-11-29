@@ -10,23 +10,23 @@ fi
 
 cd $DEBIANSRC
 
-echo "Source: meta-guadalinex-2005-mini
+echo "Source: meta-guadalinex-v3-mini
 Section: misc
 Priority: optional
 Maintainer: Gumersindo Coronel Pérez <gcoronel@emergya.info>
 Standards-Version: 3.6.0
 
-Package: meta-guadalinex-2005-mini
+Package: meta-guadalinex-v3-mini
 Architecture: all" > debian/control
 
 depends=$(echo $@ | sed -e 's/ /, /g')
 echo "Depends: $depends" >> debian/control
 
-echo "Description: Guadalinex 2005 Mini metapackage
- This metapackage installs a whole Guadalinex 2005 Mini distribution." >> debian/control
+echo "Description: Guadalinex v3 Mini metapackage
+ This metapackage installs a whole Guadalinex v3 Mini distribution." >> debian/control
 
 
 fakeroot debian/rules binary
 fakeroot debian/rules clean
 cd ..
-mv meta-guadalinex-2005*.deb $CDDPACKAGESDIR
+mv meta-guadalinex-v3*.deb $CDDPACKAGESDIR

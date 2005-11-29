@@ -1,4 +1,4 @@
-meta-guadalinex-2005 for DEBIAN
+meta-guadalinex-v3 for DEBIAN
 
 
 This is a dummy package that makes Debian's package management
@@ -7,7 +7,7 @@ packages do depend on are actually installed.
 
 The special dependencies used in this package are:
 
-Depends: meta-guadalinex-2005-escritorio
+Depends: meta-guadalinex-v3-escritorio
 
 
 Please note that this is a crude hack and if thoughtlessly used
