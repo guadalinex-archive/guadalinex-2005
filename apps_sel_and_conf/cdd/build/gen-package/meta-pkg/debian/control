@@ -1,11 +1,11 @@
-Source: meta-guadalinex-2005
+Source: meta-guadalinex-v3
 Section: misc
 Priority: optional
-Maintainer: Gabriel Rodríguez Alberich <grodriguez@yaco.es>
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
 Standards-Version: 3.6.0
 
-Package: meta-guadalinex-2005
+Package: meta-guadalinex-v3
 Architecture: all
-Depends: meta-guadalinex-2005-base, meta-guadalinex-2005-escritorio, meta-guadalinex-2005-noescritorio
-Description: Guadalinex 2005 metapackage
- This metapackage installs a whole Guadalinex 2005 distribution.
+Depends: meta-guadalinex-v3-base, meta-guadalinex-v3-escritorio, meta-guadalinex-v3-noescritorio
+Description: Guadalinex v3 metapackage
+ This metapackage installs a whole Guadalinex v3 distribution.
