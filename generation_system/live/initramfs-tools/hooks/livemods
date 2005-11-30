@@ -22,6 +22,9 @@ esac
 . /etc/mkinitramfs/initramfs.conf
 
 if [ "${BOOT}" == "live" ]; then
+	# Necessary for SCSI CD-ROMs not automatically detected
+        force_load sr_mod
+
 	for x in squashfs unionfs loop vfat ntfs isofs ext2 nls_cp437 nls_iso8859-1 ; do
 		manual_add_modules ${x}
 	done
