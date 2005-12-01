@@ -1,0 +1,9 @@
+CC = gcc -Wall
+MT_VERSION=mtPaint 2.10
+MT_DATE=2005-11-20
+MT_LANG_DEST="/home/carlospc/guadalinex2005/other_apps/mtpaint/mtpaint-2.10/debian/mtpaint//usr/share/locale"
+MT_MAN_DEST="/home/carlospc/guadalinex2005/other_apps/mtpaint/mtpaint-2.10/debian/mtpaint//usr/share/man/man1/"
+LDFLAG =  -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangocairo-1.0 -lfontconfig -lXinerama -lXi -lXrandr -lXext -lXcursor -lXfixes -lpango-1.0 -lcairo -lXrender -lX11 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0   -s
+CFLAG = -O2 -march=i386 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include    -DU_GUADALINEX -DU_NLS -DMT_LANG_DEST="\"/usr/share/locale"\" -DVERSION="\"mtPaint 2.10"\"
+subdirs = src po doc
+BIN_INSTALL="/home/carlospc/guadalinex2005/other_apps/mtpaint/mtpaint-2.10/debian/mtpaint//usr/bin"
