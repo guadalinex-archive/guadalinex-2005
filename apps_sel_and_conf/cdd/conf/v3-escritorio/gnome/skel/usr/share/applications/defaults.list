@@ -20,6 +20,7 @@ application/vnd.sun.xml.math=ooo2-math.desktop
 application/vnd.sun.xml.writer=ooo2-writer.desktop
 application/vnd.sun.xml.writer.template=ooo2-writer.desktop
 application/vnd.sun.xml.writer.global=ooo2-writer.desktop
+application/vnd.ms-tnef=browsetnef.desktop
 application/vnd.oasis.opendocument.formula=ooo2-math.desktop
 application/vnd.oasis.opendocument.graphics=ooo2-draw.desktop
 application/vnd.oasis.opendocument.graphics-template=ooo2-draw.desktop

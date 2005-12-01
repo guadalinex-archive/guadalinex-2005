@@ -19,6 +19,7 @@ video/dv=totem.desktop
 application/x-lzop=file-roller.desktop
 application/x-bittorrent=gnome-btdownload.desktop
 application/vnd.sun.xml.writer=ooo2-writer.desktop
+application/vnd.ms-tnef=browsetnef.desktop
 audio/x-ms-asf=totem.desktop
 application/x-ogg=totem.desktop;bmp.desktop;
 application/x-dvi=evince.desktop
