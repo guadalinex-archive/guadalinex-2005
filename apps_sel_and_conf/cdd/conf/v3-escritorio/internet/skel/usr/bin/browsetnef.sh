@@ -14,5 +14,3 @@ fi
 $TNEF --file=$FILE --directory=$UNPACKTO --number-backups
 
 $FILEBROWSER file:$UNPACKTO 
-
-rm -rf $UNPACKTO/*
