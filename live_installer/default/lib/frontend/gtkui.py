@@ -369,6 +369,8 @@ class Wizard:
 
     pre_log('info', 'progress_loop()')
 
+    self.next.set_sensitive(False)
+
     # saving UI input data to vars file
     self.set_vars_file()
 
@@ -543,7 +545,7 @@ class Wizard:
 
     list_partitions, list_mountpoints, list_sizes, list_partitions_labels, list_mountpoints_labels, list_sizes_labels = [], [], [], [], [], []
 
-    # building widget and name_widget lists to query and modifying original widget status
+    # building widget and name_widget lists to query and modify the original widget status
     for widget_it in self.glade.get_widget('vbox_partitions').get_children()[1:]:
       list_partitions.append(widget_it)
       list_partitions_labels.append(widget_it.get_name())
@@ -555,7 +557,7 @@ class Wizard:
       list_sizes_labels.append(widget_it.get_name())
 
     # showing new partition and mountpoint widgets if they are needed. Assigning
-    #   new value to size gtklabel.
+    #   a new value to gtklabel size.
     if ( widget.get_active_text() not in ['', None] ):
       if ( widget.__class__ == gtk.ComboBox ):
         index = list_partitions_labels.index(widget.get_name())
