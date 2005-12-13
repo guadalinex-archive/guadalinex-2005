@@ -26,3 +26,9 @@ pref("network.protocol-handler.warn-external.ed2k", false);
 pref("security.warn_entering_secure", false);
 pref("security.warn_leaving_secure", false);
 pref("security.warn_submit_insecure", false);
+
+// Download dir
+pref("browser.download.useDownloadDir", false);
+pref("browser.download.folderList", 1);
+pref("browser.download.dir", "~/Descargas");
+pref("browser.download.downloadDir", "~/Descargas");
