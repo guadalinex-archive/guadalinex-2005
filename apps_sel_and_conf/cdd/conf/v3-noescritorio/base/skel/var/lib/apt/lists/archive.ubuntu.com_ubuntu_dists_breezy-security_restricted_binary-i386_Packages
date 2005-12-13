@@ -1,0 +1,3233 @@
+Package: aide
+Priority: optional
+Section: admin
+Installed-Size: 1124
+Maintainer: Mike Markley <mike@markley.org>
+Architecture: i386
+Version: 0.10-6.1ubuntu0.1
+Depends: libc6 (>= 2.3.4-1), debconf (>= 1.2.0), mailx
+Recommends: cron
+Filename: pool/main/a/aide/aide_0.10-6.1ubuntu0.1_i386.deb
+Size: 451422
+MD5sum: 41c84d68e6e4e69fe919109e00576051
+Description: Advanced Intrusion Detection Environment
+ AIDE is an intrusion detection system that detects changes to files on
+ the local system. It creates a database from the regular expression rules
+ that it finds from the config file. Once this database is initialized
+ it can be used to verify the integrity of the files. It has several
+ message digest algorithms (md5,sha1,rmd160,tiger,haval,etc.) that are
+ used to check the integrity of the file. More algorithms can be added
+ with relative ease. All of the usual file attributes can also be checked
+ for inconsistencies.
+ .
+ You will almost certainly want to tweak the configuration file in
+ /etc/aide/aide.conf. See manual.html for information on this file.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2
+Priority: optional
+Section: web
+Installed-Size: 80
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Version: 2.0.54-5ubuntu3
+Depends: apache2-mpm-worker (= 2.0.54-5ubuntu3) | apache2-mpm-prefork (= 2.0.54-5ubuntu3) | apache2-mpm-perchild (= 2.0.54-5ubuntu3)
+Filename: pool/main/a/apache2/apache2_2.0.54-5ubuntu3_i386.deb
+Size: 34800
+MD5sum: 94e994aeda8e1ff14366e5ba465f0da5
+Description: next generation, scalable, extendable web server
+ Apache v2 is the next generation of the omnipresent Apache web server. This
+ version - a total rewrite - introduces many new improvements, such as
+ threading, a new API, IPv6 support, request/response filtering, and more.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-common
+Priority: optional
+Section: net
+Installed-Size: 3032
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Depends: libc6 (>= 2.3.4-1), libdb4.2, libexpat1 (>= 1.95.8), debconf, debianutils (>= 1.6), mime-support, openssl, net-tools, ssl-cert (>= 1.0-7), libmagic1, libgcc1 (>= 1:3.3.5), apache2-utils (= 2.0.54-5ubuntu3), lsb-base (>= 1.3-9ubuntu2)
+Suggests: apache2-doc, lynx | www-browser
+Filename: pool/main/a/apache2/apache2-common_2.0.54-5ubuntu3_i386.deb
+Size: 780532
+MD5sum: 6c73755ddb0f212d931885c52efccdb9
+Description: next generation, scalable, extendable web server
+ Apache v2 is the next generation of the omnipresent Apache web server. This
+ version - a total rewrite - introduces many new improvements, such as
+ threading, a new API, IPv6 support, request/response filtering, and more.
+ .
+ It is also considerably faster, and can be easily extended to provide services
+ other than http.
+ .
+ This package contains all the standard apache2 modules, including SSL support.
+ However, it does *not* include the server itself; for this you need to
+ install one of the apache2-mpm-* packages; such as worker or prefork.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-doc
+Priority: optional
+Section: doc
+Installed-Size: 14260
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: all
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Filename: pool/main/a/apache2/apache2-doc_2.0.54-5ubuntu3_all.deb
+Size: 3862734
+MD5sum: 7d065212e1e4d62b58a2a6f392a5d301
+Description: documentation for apache2
+ This is the documentation for apache2, see the apache2 package description
+ for more details.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-mpm-perchild
+Priority: optional
+Section: net
+Installed-Size: 488
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Provides: apache2-modules, apache2, httpd, httpd-cgi
+Depends: libapr0 (>= 2.0.54), libc6 (>= 2.3.4-1), libdb4.2, libexpat1 (>= 1.95.8), libldap2 (>= 2.1.17-1), libpcre3 (>= 4.5), libssl0.9.7, zlib1g (>= 1:1.2.1), apache2-common (= 2.0.54-5ubuntu3)
+Conflicts: apache2-mpm-worker, apache2-mpm-prefork, apache2-mpm-threadpool
+Filename: pool/main/a/apache2/apache2-mpm-perchild_2.0.54-5ubuntu3_i386.deb
+Size: 201058
+MD5sum: a7fb62144aab4355a35def4535faefc5
+Description: experimental high speed perchild threaded model for Apache2
+ Perchild is the grown up, mac daddy version of suexec for apache2. Rather than
+ execute a cgi script as a given user, perchild forks a process for each vhost,
+ then su's to the correct user/group for that vhost.
+ .
+ Each process then uses a thread model similar to that of the worker mpm.
+ .
+ THIS MPM IS NOT CURRENTLY EXPECTED TO WORK CORRECTLY, IF AT ALL. IT IS UNDER
+ VERY HEAVY DEVELOPMENT.
+ This mpm is still highly experimental, and should be used with care.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-mpm-prefork
+Priority: optional
+Section: net
+Installed-Size: 468
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Provides: apache2-modules, apache2, httpd, httpd-cgi
+Depends: libapr0 (>= 2.0.54), libc6 (>= 2.3.4-1), libdb4.2, libexpat1 (>= 1.95.8), libldap2 (>= 2.1.17-1), libpcre3 (>= 4.5), libssl0.9.7, zlib1g (>= 1:1.2.1), apache2-common (= 2.0.54-5ubuntu3)
+Conflicts: apache2-mpm-worker, apache2-mpm-threadpool, apache2-mpm-perchild
+Filename: pool/main/a/apache2/apache2-mpm-prefork_2.0.54-5ubuntu3_i386.deb
+Size: 196888
+MD5sum: 51dff105e376abe915078ebada32740f
+Description: traditional model for Apache2
+ This Multi-Processing Module (MPM) implements a non-threaded,
+ pre-forking web server that handles requests in a manner similar to
+ Apache 1.3. It is appropriate for sites that need to avoid threading for
+ compatibility with non-thread-safe libraries. It is also the best MPM
+ for isolating each request, so that a problem with a single request will
+ not affect any other.
+ .
+ It is not as fast, but is considered to be more stable.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-mpm-threadpool
+Priority: optional
+Section: net
+Installed-Size: 80
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: all
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Depends: apache2-mpm-worker (= 2.0.54-5ubuntu3)
+Filename: pool/main/a/apache2/apache2-mpm-threadpool_2.0.54-5ubuntu3_all.deb
+Size: 34878
+MD5sum: 1e19536ca819876d8274fc373c645790
+Description: experimental high speed model for Apache2 (transitional package)
+ This package exists for the sole purpose of easing upgrades for threadpool
+ users of Ubuntu 4.10 (warty) or Debian testing who are upgrading to the newer
+ Debian 3.1 (sarge) or Ubuntu 5.04 (hoary).  Once this package has successfully
+ pulled in apache2-mpm-worker and configured it as a replacement, it can be
+ safely removed.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-mpm-worker
+Priority: optional
+Section: net
+Installed-Size: 480
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Replaces: apache2-mpm-threadpool (<< 2.0.53)
+Provides: apache2-modules, apache2, httpd, httpd-cgi
+Depends: libapr0 (>= 2.0.54), libc6 (>= 2.3.4-1), libdb4.2, libexpat1 (>= 1.95.8), libldap2 (>= 2.1.17-1), libpcre3 (>= 4.5), libssl0.9.7, zlib1g (>= 1:1.2.1), apache2-common (= 2.0.54-5ubuntu3)
+Conflicts: apache2-mpm-prefork, apache2-mpm-perchild
+Filename: pool/main/a/apache2/apache2-mpm-worker_2.0.54-5ubuntu3_i386.deb
+Size: 200478
+MD5sum: e5e18a8ac5b1461d1dbf3d1805b5e88b
+Description: high speed threaded model for Apache2
+ The worker MPM provides a threaded implementation for Apache2. It is
+ considerably faster than the traditional model, and is the recommended MPM.
+ .
+ Worker generally is a good choice for high-traffic servers because it
+ has a smaller memory footprint than the prefork MPM.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-prefork-dev
+Priority: optional
+Section: devel
+Installed-Size: 760
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Depends: apache2-common (= 2.0.54-5ubuntu3), libapr0-dev (= 2.0.54-5ubuntu3), libssl-dev, openssl, bzip2, autoconf, autotools-dev, libtool, libdb4.2-dev, zlib1g-dev, libpcre3-dev
+Conflicts: apache2-mpm-worker (<< 2.0.42-1), apache2-mpm-prefork (<< 2.0.42-1), apache2-mpm-perchild (<< 2.0.42-1), apache2-mpm-threadpool (<< 2.0.42-1), apache2-dev
+Filename: pool/main/a/apache2/apache2-prefork-dev_2.0.54-5ubuntu3_i386.deb
+Size: 169094
+MD5sum: b1d9b6ef81af9a281b1843d6cbd8eccb
+Description: development headers for apache2
+ This package provides the development headers for non-threaded apache2,
+ see the apache2 package description for more details.
+ .
+ This should only be used when you absolutely *have* to have a non-threaded
+ environment, ie for PHP4.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-threaded-dev
+Priority: optional
+Section: devel
+Installed-Size: 768
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Provides: apache2-dev
+Depends: apache2-common (= 2.0.54-5ubuntu3), libapr0-dev (= 2.0.54-5ubuntu3), libssl-dev, openssl, bzip2, autoconf, autotools-dev, libtool, libdb4.2-dev, zlib1g-dev, libpcre3-dev
+Conflicts: apache2-mpm-worker (<< 2.0.42-1), apache2-mpm-prefork (<< 2.0.42-1), apache2-mpm-perchild (<< 2.0.42-1), apache2-mpm-threadpool (<< 2.0.42-1), apache2-prefork-dev
+Filename: pool/main/a/apache2/apache2-threaded-dev_2.0.54-5ubuntu3_i386.deb
+Size: 169826
+MD5sum: d66de885e97d211afb0f2ea53979d01d
+Description: development headers for apache2
+ This package provides the development headers for threaded versions of
+ apache2, see the apache2 package description for more details.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: apache2-utils
+Priority: optional
+Section: net
+Installed-Size: 260
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Replaces: apache2-common (<< 2.0.53), apache-utils (<< 1.3.33-4)
+Provides: apache-utils
+Depends: libapr0 (>= 2.0.54), libc6 (>= 2.3.4-1), libdb4.2, libexpat1 (>= 1.95.8), libldap2 (>= 2.1.17-1), libpcre3 (>= 4.5), libssl0.9.7, zlib1g (>= 1:1.2.1)
+Conflicts: apache-common (<< 1.3.28.0.1-1)
+Filename: pool/main/a/apache2/apache2-utils_2.0.54-5ubuntu3_i386.deb
+Size: 91114
+MD5sum: 4406f75ddd1011bce97b30e13e0a061c
+Description: utility programs for webservers
+ Provides some add-on programs useful for any webserver.  These include:
+  - ab (Apache benchmark tool)
+  - logresolve (Resolve IP addresses to hostname in logfiles)
+  - htpasswd (Manipulate basic authentication files)
+  - htdigest (Manipulate digest authentication files)
+  - dbmmanage (Manipulate basic authentication files in DBM format, using perl)
+  - htdbm (Manipulate basic authentication files in DBM format, using APR)
+  - rotatelogs (Periodically stop writing to a logfile and open a new one)
+  - split-logfile (Split a single log including multiple vhosts)
+  - checkgid (Checks whether the caller can setgid to the specified group)
+  - check_forensic (Extract mod_log_forensic output from apache log files)
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: courier-authdaemon
+Priority: optional
+Section: mail
+Installed-Size: 192
+Maintainer: Stefan Hornburg (Racke) <racke@linuxia.de>
+Architecture: i386
+Source: courier
+Version: 0.47-3ubuntu7.1
+Depends: libc6 (>= 2.3.4-1), libgdbm3, libpam0g (>= 0.76), courier-base (>= 0.47), lsb-base (>= 1.3-9ubuntu3)
+Filename: pool/main/c/courier/courier-authdaemon_0.47-3ubuntu7.1_i386.deb
+Size: 54924
+MD5sum: b754b83c141201e35279c5161f195873
+Description: Courier Mail Server - Authentication daemon
+ This package contains the authentication daemon for the
+ Courier Mail Server.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: courier-base
+Priority: optional
+Section: mail
+Installed-Size: 596
+Maintainer: Stefan Hornburg (Racke) <racke@linuxia.de>
+Architecture: i386
+Source: courier
+Version: 0.47-3ubuntu7.1
+Replaces: courier-debug (<< 0.44.2)
+Depends: libc6 (>= 2.3.4-1), libgamin0, libgdbm3, perl, debconf (>= 0.5.00)
+Conflicts: courier-imap (<= 1.3.3), courier-debug (<< 0.44.2), sqwebmail (<< 0.45.6)
+Filename: pool/main/c/courier/courier-base_0.47-3ubuntu7.1_i386.deb
+Size: 230578
+MD5sum: 83673f739385f9dd3f5528f3ae187cc9
+Description: Courier Mail Server - Base system
+ The Courier mail transfer agent (MTA) is an integrated mail/groupware
+ server based on open commodity protocols, such as ESMTP, IMAP, POP3, LDAP,
+ SSL, and HTTP. Courier provides ESMTP, IMAP, POP3, webmail, and mailing list
+ services within a single, consistent, framework.
+ .
+ This package provides the functionality needed by all Debian courier packages
+ like some configuration files, helper programs and the Courier TCP server
+ daemon.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: courier-doc
+Priority: optional
+Section: doc
+Installed-Size: 1536
+Maintainer: Stefan Hornburg (Racke) <racke@linuxia.de>
+Architecture: all
+Source: courier
+Version: 0.47-3ubuntu7.1
+Filename: pool/main/c/courier/courier-doc_0.47-3ubuntu7.1_all.deb
+Size: 370784
+MD5sum: 6df98ae4d4453ccf39a1cc3a0f2cb053
+Description: Courier Mail Server - Additional documentation
+ This package contains additional documentation for the Courier
+ Mail Server.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: courier-imap
+Priority: extra
+Section: mail
+Installed-Size: 2512
+Maintainer: Stefan Hornburg (Racke) <racke@linuxia.de>
+Architecture: i386
+Source: courier (0.47-3ubuntu7.1)
+Version: 3.0.8-3ubuntu7.1
+Replaces: imap-server
+Provides: imap-server
+Depends: libc6 (>= 2.3.4-1), libgamin0, libgdbm3, postfix | mail-transport-agent, courier-base (>= 0.47), courier-authdaemon (>= 0.47), lsb-base (>= 1.3-9ubuntu3)
+Suggests: courier-doc, imap-client, courier-imap-ssl
+Conflicts: imap-server
+Filename: pool/main/c/courier/courier-imap_3.0.8-3ubuntu7.1_i386.deb
+Size: 930448
+MD5sum: 799cf92b9d5322db6ffaf805b0e46e71
+Description: Courier Mail Server - IMAP server
+ The Courier IMAP server provides access to email stored in Maildirs.
+ This server has an extremely small footprint, provides shared and
+ virtual shared folders.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: courier-imap-ssl
+Priority: extra
+Section: mail
+Installed-Size: 136
+Maintainer: Stefan Hornburg (Racke) <racke@linuxia.de>
+Architecture: i386
+Source: courier (0.47-3ubuntu7.1)
+Version: 3.0.8-3ubuntu7.1
+Depends: courier-imap (>= 1.3.7-3), courier-ssl (>= 0.47), openssl, lsb-base (>= 1.3-9ubuntu3)
+Suggests: imap-client
+Filename: pool/main/c/courier/courier-imap-ssl_3.0.8-3ubuntu7.1_i386.deb
+Size: 21360
+MD5sum: d240a1970d9a0d2a2058ad1b96f6f5f7
+Description: Courier Mail Server - IMAP over SSL
+ IMAP over SSL is handled by the regular IMAP daemon from courier-imap
+ in conjunction with the SSL/TLS wrapper supplied by courier-ssl.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: courier-pop
+Priority: extra
+Section: mail
+Installed-Size: 1228
+Maintainer: Stefan Hornburg (Racke) <racke@linuxia.de>
+Architecture: i386
+Source: courier
+Version: 0.47-3ubuntu7.1
+Replaces: pop3-server
+Provides: pop3-server
+Depends: libc6 (>= 2.3.4-1), postfix | mail-transport-agent, courier-base (>= 0.47), courier-authdaemon (>= 0.47)
+Suggests: courier-doc, mail-reader, courier-pop-ssl
+Conflicts: pop3-server
+Filename: pool/main/c/courier/courier-pop_0.47-3ubuntu7.1_i386.deb
+Size: 416188
+MD5sum: c60939530c285c6f69f5f15b881f8ca8
+Description: Courier Mail Server - POP3 server
+ The POP3 daemon from the Courier Mail Server supports only email
+ stored in the maildir format.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: courier-pop-ssl
+Priority: optional
+Section: mail
+Installed-Size: 136
+Maintainer: Stefan Hornburg (Racke) <racke@linuxia.de>
+Architecture: i386
+Source: courier
+Version: 0.47-3ubuntu7.1
+Depends: courier-pop, courier-ssl (>= 0.47), lsb-base (>= 1.3-9ubuntu3), openssl
+Suggests: courier-doc
+Filename: pool/main/c/courier/courier-pop-ssl_0.47-3ubuntu7.1_i386.deb
+Size: 21158
+MD5sum: f32c199633939bd8a63882c5241606be
+Description: Courier Mail Server - POP3 over SSL
+ POP3 over SSL is handled by the regular POP3 daemon from courier-pop
+ in conjunction with the SSL/TLS wrapper supplied by courier-ssl.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: courier-ssl
+Priority: optional
+Section: mail
+Installed-Size: 680
+Maintainer: Stefan Hornburg (Racke) <racke@linuxia.de>
+Architecture: i386
+Source: courier
+Version: 0.47-3ubuntu7.1
+Depends: libc6 (>= 2.3.4-1), libssl0.9.7, courier-base (>= 0.47), openssl
+Filename: pool/main/c/courier/courier-ssl_0.47-3ubuntu7.1_i386.deb
+Size: 191662
+MD5sum: c2fbbc08ed920b2b674e275e3dcf2c5f
+Description: Courier Mail Server - SSL/TLS Support
+ The Courier Mail Server employs the SSL/TLS wrapper application
+ couriertls instead of equipping the different applications with
+ SSL/TLS support. Additionally, this package contains a default set
+ of trusted X.509 root CA certs.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: curl
+Priority: optional
+Section: web
+Installed-Size: 244
+Maintainer: Domenico Andreoli <cavok@debian.org>
+Architecture: i386
+Version: 7.14.0-2ubuntu1.2
+Replaces: curl-ssl
+Provides: curl-ssl
+Depends: libc6 (>= 2.3.4-1), libcurl3 (>= 7.13.1-1), libidn11 (>= 0.5.13), libssl0.9.7, zlib1g (>= 1:1.2.1)
+Filename: pool/main/c/curl/curl_7.14.0-2ubuntu1.2_i386.deb
+Size: 152870
+MD5sum: 98413ae7977e6055c872aabe39e79394
+Description: Get a file from an HTTP, HTTPS, FTP or GOPHER server
+ curl is a client to get files from servers using any of the supported
+ protocols. The command is designed to work without user interaction
+ or any kind of interactivity.
+ .
+ curl offers a busload of useful tricks like proxy support, user
+ authentication, ftp upload, HTTP post, file transfer resume and more.
+ .
+  Homepage: http://curl.haxx.se
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: fetchmail
+Priority: optional
+Section: mail
+Installed-Size: 1592
+Maintainer: Fetchmail Maintainers <pkg-fetchmail@lists.alioth.debian.org>
+Architecture: i386
+Version: 6.2.5-13ubuntu3.1
+Replaces: fetchmail-common
+Depends: libc6 (>= 2.3.4-1), libssl0.9.7, debianutils (>= 1.7), adduser (>= 3.34), base-files (>= 2.2.0), lsb-base (>= 1.3-9ubuntu3)
+Recommends: ca-certificates
+Suggests: fetchmailconf, postfix | mail-transport-agent, resolvconf
+Conflicts: popclient, fetchmail-common, logcheck (<< 1.1.1-9)
+Filename: pool/main/f/fetchmail/fetchmail_6.2.5-13ubuntu3.1_i386.deb
+Size: 286168
+MD5sum: a9dc5d11bd82299bf2ed67698bf54ca3
+Description: SSL enabled POP3, APOP, IMAP mail gatherer/forwarder
+ fetchmail is a free, full-featured, robust, and well-documented remote mail
+ retrieval and forwarding utility intended to be used over on-demand TCP/IP
+ links (such as SLIP or PPP connections).  It retrieves mail from remote mail
+ servers and forwards it to your local (client) machine's delivery system, so
+ it can then be read by normal mail user agents such as mutt, elm, pine,
+ (x)emacs/gnus, or mailx.  The fetchmailconf package includes an interactive
+ GUI configurator suitable for end-users. Kerberos IV & V, RPA, OPIE and
+ GSSAPI support are available if the package is recompiled.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: gtk2-engines-pixbuf
+Priority: optional
+Section: graphics
+Installed-Size: 136
+Maintainer: Sebastien Bacher <seb128@debian.org>
+Architecture: i386
+Source: gtk+2.0
+Version: 2.8.6-0ubuntu2.1
+Replaces: gtk2.0-engines-pixbuf
+Depends: libatk1.0-0 (>= 1.9.0), libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libglib2.0-0 (>= 2.8.0), libgtk2.0-0 (>= 2.8.0), libpango1.0-0 (>= 1.10.1), libx11-6
+Suggests: gtk-engines-pixmap
+Conflicts: gtk2.0-engines-pixbuf
+Filename: pool/main/g/gtk+2.0/gtk2-engines-pixbuf_2.8.6-0ubuntu2.1_i386.deb
+Size: 46732
+MD5sum: 3e7aeb058b2d5f4baedd535c6b321d14
+Description: Pixbuf-based theme for GTK+ 2.x
+ The GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package contains the pixbuf theme engine.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, ubuntu-desktop
+
+Package: inkscape
+Priority: optional
+Section: graphics
+Installed-Size: 24168
+Maintainer: Wolfram Quester <wolfi@mittelerde.physik.uni-konstanz.de>
+Architecture: i386
+Version: 0.42-1build1ubuntu0.1
+Depends: libatk1.0-0 (>= 1.9.0), libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgc1c2, libgcc1 (>= 1:4.0.1), libglib2.0-0 (>= 2.8.0), libglibmm-2.4-1c2 (>= 2.8.0), libgtk2.0-0 (>= 2.8.0), libgtkmm-2.4-1c2 (>= 2.8.0), libpango1.0-0 (>= 1.10.1), libpng12-0 (>= 1.2.8rel), libpopt0 (>= 1.7), libsigc++-2.0-0c2 (>= 2.0.2), libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxfixes3, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxml2 (>= 2.6.20), libxrandr2, libxrender1, libxslt1.1 (>= 1.1.15), zlib1g (>= 1:1.2.1)
+Recommends: dia, libwmf-bin, pstoedit, sketch, imagemagick, perlmagick
+Suggests: libxml-xql-perl, python, python-xml
+Filename: pool/main/i/inkscape/inkscape_0.42-1build1ubuntu0.1_i386.deb
+Size: 5934122
+MD5sum: b1aff8ba5a839cf845b8e6dafe075a5c
+Description: vector-based drawing program
+ Inkscape loads and saves a subset of the SVG (Scalable Vector Graphics)
+ format, a standard maintained by the WWW consortium.
+ .
+ Inkscape user interface should be familiar from CorelDraw and similar
+ drawing programs. There are rectangles, ellipses, text items, bitmap
+ images and freehand curves.
+ As an added bonus, both vector and bitmap objects can have alpha
+ transparency and can be arbitrarily transformed.
+ .
+ Inkscape supports multiple opened files and multiple views per file.
+ Graphics can be printed and exported to png bitmaps.
+ .
+ Some of the import and export features are provided using the packages
+ dia, libwmf-bin, pstoedit, sketch, imagemagick, and perlmagick.
+ .
+ Other Extensions use libxml-xql-perl and python-xml.
+ .
+ Homepage: http://www.inkscape.org/
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: ipsec-tools
+Priority: extra
+Section: net
+Installed-Size: 216
+Maintainer: Ganesan Rajagopal <rganesan@debian.org>
+Architecture: i386
+Version: 1:0.6-1ubuntu1.1
+Depends: libc6 (>= 2.3.4-1), libssl0.9.7, lsb-base (>= 1.3-9ubuntu3)
+Filename: pool/main/i/ipsec-tools/ipsec-tools_0.6-1ubuntu1.1_i386.deb
+Size: 78912
+MD5sum: b46dd5373458dd5500b2513edc6ceec8
+Description: IPsec tools for Linux
+ IPsec-Tools is a port of the KAME IPsec utilities for Linux. It can be
+ used with the ipsec implementation in 2.6 and later kernels or with
+ the 2.4 backport of the ipsec changes.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: kamera
+Priority: optional
+Section: graphics
+Installed-Size: 360
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Architecture: i386
+Source: kdegraphics
+Version: 4:3.4.3-0ubuntu2.1
+Depends: kdelibs4c2 (>= 4:3.4.3), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libgphoto2-2 (>= 2.1.6-1ubuntu6), libstdc++6 (>= 4.0.1)
+Suggests: khelpcenter
+Filename: pool/main/k/kdegraphics/kamera_3.4.3-0ubuntu2.1_i386.deb
+Size: 84836
+MD5sum: 5b43457d6e37b427d9317088cc615840
+Description: digital camera io_slave for Konquerer
+ This is a digital camera io_slave for KDE which uses gphoto2 and libgpio
+ to allow access to your camera's pictures with the URL camera:/
+ .
+ This package is part of KDE, as a component of the KDE graphics module.
+ See the 'kde' and 'kdegraphics' packages for more information.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: karbon
+Priority: optional
+Section: graphics
+Installed-Size: 1612
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.2.90-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libbz2-1.0, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjasper-1.701-1 (>= 1.701.0), libjpeg62, liblcms1 (>= 1.08-1), libltdl3 (>= 1.5.2-2), libmagick6, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libtiff4, libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxml2 (>= 2.6.20), libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1)
+Filename: pool/main/k/koffice/karbon_1.4.1-0ubuntu7.1_i386.deb
+Size: 376854
+MD5sum: af2e2321de5a59769484f4003f4b7058
+Description: a vector graphics application for the KDE Office Suite
+ Karbon is a vector graphics application.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: kchart
+Priority: optional
+Section: kde
+Installed-Size: 1768
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.1-20010404-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjpeg62, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1)
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/kchart_1.4.1-0ubuntu7.1_i386.deb
+Size: 954296
+MD5sum: 650212c7212b32a7a9d82dc34e616b95
+Description: a chart drawing program for the KDE Office Suite
+ KChart is a chart drawing application.  It can be used to embed charts
+ into KOffice documents.  KChart is easy to use and highly configurable.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: kdegraphics-kfile-plugins
+Priority: optional
+Section: kde
+Installed-Size: 840
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Architecture: i386
+Source: kdegraphics
+Version: 4:3.4.3-0ubuntu2.1
+Replaces: kdebase-kio-plugins (<< 4:3.3.0), konqueror (<< 4:3.0.0)
+Depends: kdelibs4c2 (>= 4:3.4.3), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libice6, libjpeg62, libopenexr2c2 (>= 1.2.2), libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libtiff4, libx11-6, libxext6, zlib1g (>= 1:1.2.1)
+Suggests: xpdf-utils
+Filename: pool/main/k/kdegraphics/kdegraphics-kfile-plugins_3.4.3-0ubuntu2.1_i386.deb
+Size: 223910
+MD5sum: b6b6401fc2c6e1d614a21ae8f933f73a
+Description: KDE metainfo plugins for graphic files
+ This packages provides meta information for graphic files (file sizes,
+ tags, etc. all from within the file manager).
+ .
+ This package is part of KDE, as a component of the KDE graphics module.
+ See the 'kde' and 'kdegraphics' packages for more information.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: kformula
+Priority: optional
+Section: kde
+Installed-Size: 1212
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.1-20010404-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjpeg62, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1), latex-xft-fonts
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/kformula_1.4.1-0ubuntu7.1_i386.deb
+Size: 700844
+MD5sum: 7dbe4ce0c833b9dad894db11cf574c08
+Description: a formula editor for the KDE Office Suite
+ KFormula is a formula editor that provides the basic input facilities
+ and the support functionality expected of a KOffice application.
+ .
+ Features include easy Greek letter insertion, intelligent cursor
+ movement, advanced syntax highlighting, multi-level undo support and
+ LaTeX export.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: kghostview
+Priority: optional
+Section: graphics
+Installed-Size: 736
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Architecture: i386
+Source: kdegraphics
+Version: 4:3.4.3-0ubuntu2.1
+Provides: postscript-viewer, pdf-viewer
+Depends: kdelibs4c2 (>= 4:3.4.3), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libice6, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libx11-6, libxext6, zlib1g (>= 1:1.2.1), gs
+Suggests: khelpcenter
+Filename: pool/main/k/kdegraphics/kghostview_3.4.3-0ubuntu2.1_i386.deb
+Size: 225806
+MD5sum: b8b100b2168a2a6e5b2b7111119dc49a
+Description: PostScript viewer for KDE
+ KGhostview is the PostScript viewer for KDE. It is a port of Tim Theisen's
+ Ghostview program which is used to view documents prepared in Adobe's
+ PostScript page description language. PostScript is the major page
+ description language for printing on UNIX systems, and this application is
+ useful to preview material intended for printing, or for reading documents
+ online.
+ .
+ This package is part of KDE, as a component of the KDE graphics module.
+ See the 'kde' and 'kdegraphics' packages for more information.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: kivio
+Priority: optional
+Section: graphics
+Installed-Size: 624
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.1-20010404-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjpeg62, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxrandr2, libxrender1, libxt6, python2.4 (>= 2.3.90), zlib1g (>= 1:1.2.1), kivio-data (= 1:1.4.1-0ubuntu7.1)
+Filename: pool/main/k/koffice/kivio_1.4.1-0ubuntu7.1_i386.deb
+Size: 152774
+MD5sum: 74b67381ab3ba8e6b9cb56d54c329d27
+Description: a flowcharting program for the KDE Office Suite
+ Kivio is a flowcharting program that offers basic flowcharting abilities,
+ but with a twist.  Objects are scriptable, and a backend plugin system
+ offers the ability to make objects do just about anything.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: kivio-data
+Priority: optional
+Section: graphics
+Installed-Size: 7456
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: all
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: kivio (<< 1:1.3.2)
+Recommends: kivio (= 1:1.4.1-0ubuntu7.1)
+Filename: pool/main/k/koffice/kivio-data_1.4.1-0ubuntu7.1_all.deb
+Size: 634210
+MD5sum: c4567ae408f5540b7d058142244e6584
+Description: data files for Kivio flowcharting program
+ This package contains architecture-independent data files for Kivio,
+ the flowcharting program shipped with the KDE Office Suite.
+ .
+ See the kivio package for further information.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: koffice
+Priority: optional
+Section: kde
+Installed-Size: 76
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: all
+Version: 1:1.4.1-0ubuntu7.1
+Depends: karbon (>= 1:1.4.1-0ubuntu7.1), kchart (>= 1:1.4.1-0ubuntu7.1), kformula (>= 1:1.4.1-0ubuntu7.1), kivio (>= 1:1.4.1-0ubuntu7.1), koshell (>= 1:1.4.1-0ubuntu7.1), kpresenter (>= 1:1.4.1-0ubuntu7.1), kspread (>= 1:1.4.1-0ubuntu7.1), kugar (>= 1:1.4.1-0ubuntu7.1), kword (>= 1:1.4.1-0ubuntu7.1), krita (>= 1:1.4.1-0ubuntu7.1)
+Suggests: koffice-i18n, koffice-dev, koffice-doc-html
+Filename: pool/main/k/koffice/koffice_1.4.1-0ubuntu7.1_all.deb
+Size: 22362
+MD5sum: b24228954d0aa2e6de4bd571bf3f8ac5
+Description: KDE Office Suite
+ KOffice is an integrated office suite for KDE, the K Desktop
+ Environment.  It offers a word processor, spreadsheet, presentation
+ program, graphics tools and more.
+ .
+ This package provides all the components of KOffice.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: koffice-data
+Priority: optional
+Section: libs
+Installed-Size: 2540
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: all
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.2.90-0), kugar (<< 1:1.2.90-0)
+Depends: koffice-libs (= 1:1.4.1-0ubuntu7.1)
+Recommends: openoffice.org-mimelnk
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/koffice-data_1.4.1-0ubuntu7.1_all.deb
+Size: 687884
+MD5sum: 7649e985baa4bc065f70019698ad2fc2
+Description: common shared data for the KDE Office Suite
+ This package provides the architecture-independent data that is shared
+ amongst the various components of KOffice.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: koffice-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 1140
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.2.0-2), kword (<< 1:1.2.0-2), kchart (<< 1:1.4.0)
+Depends: koffice-libs (= 1:1.4.1-0ubuntu7.1), kdelibs4-dev
+Filename: pool/main/k/koffice/koffice-dev_1.4.1-0ubuntu7.1_i386.deb
+Size: 177950
+MD5sum: c788d4939ff7b7e26ab63564a6dbb1d2
+Description: common libraries for KOffice (development files)
+ This package provides the development files for the libraries that are
+ shared amongst the various components of KOffice.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: koffice-doc-html
+Priority: optional
+Section: doc
+Installed-Size: 2992
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: all
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.1.0-0), koshell (<< 1:1.1.0-0), kpresenter (<< 1:1.1.0-0), kspread (<< 1:1.1.0-0), kugar (<< 1:1.1.0-0), kword (<< 1:1.1.0-0)
+Suggests: konqueror | www-browser, koffice
+Filename: pool/main/k/koffice/koffice-doc-html_1.4.1-0ubuntu7.1_all.deb
+Size: 325758
+MD5sum: d8b3b72dd27b77310f9bc0bb599bcf35
+Description: KDE Office Suite documentation in HTML format
+ KOffice is an integrated office suite for KDE, the K Desktop
+ Environment.  It offers a word processor, spreadsheet, presentation
+ program, graphics tools and more.
+ .
+ By default the KOffice applications only provide their documentation in
+ KDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the KOffice documentation converted to HTML
+ format so it can be read with any web browser.
+ .
+ The documentation will be installed into the usual directories
+ /usr/share/doc/kde/HTML/<language>/<app>/, for instance
+ /usr/share/doc/kde/HTML/en/kword/.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: koffice-libs
+Priority: optional
+Section: libs
+Installed-Size: 14736
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice (<< 2.1-beta2-1), kword (<< 1:1.2.90-0), kchart (<< 1:1.4.0)
+Depends: kdelibs4c2 (>= 4:3.4.3), libart-2.0-2 (>= 2.3.16), libaudio2, libbz2-1.0, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjasper-1.701-1 (>= 1.701.0), libjpeg62, liblcms1 (>= 1.08-1), libltdl3 (>= 1.5.2-2), libmagick6, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libtiff4, libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxml2 (>= 2.6.20), libxrandr2, libxrender1, libxslt1.1 (>= 1.1.15), libxt6, python2.4 (>= 2.3.90), zlib1g (>= 1:1.2.1), koffice-data (= 1:1.4.1-0ubuntu7.1)
+Recommends: kghostview (>= 4:3.0.1-0), latex-xft-fonts
+Suggests: wordnet, tetex-extra
+Filename: pool/main/k/koffice/koffice-libs_1.4.1-0ubuntu7.1_i386.deb
+Size: 4948746
+MD5sum: 1f477b0ad1965294e4bf2ce1bc537d38
+Description: common libraries and binaries for the KDE Office Suite
+ This package provides the libraries and binaries that are shared amongst
+ the various components of KOffice.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: kooka
+Priority: optional
+Section: graphics
+Installed-Size: 1192
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Architecture: i386
+Source: kdegraphics
+Version: 4:3.4.3-0ubuntu2.1
+Depends: kdelibs4c2 (>= 4:3.4.3), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libjpeg62, libkscan1 (>= 4:3.4.3), libqt3-mt (>= 3:3.3.4), libstdc++6 (>= 4.0.1), libtiff4, zlib1g (>= 1:1.2.1)
+Recommends: gocr
+Suggests: khelpcenter
+Filename: pool/main/k/kdegraphics/kooka_3.4.3-0ubuntu2.1_i386.deb
+Size: 748192
+MD5sum: 67ab7dc8e5b907f8ec1d7290381e0545
+Description: scanner program for KDE
+ Kooka is an open source GNU/Linux scan program based on SANE and
+ KScan library.
+ .
+ Kooka helps you to handle the most important scan parameters, find the
+ correct image file format to save and manage your scanned images. It
+ offers support for different OCR modules. Libkscan, a autonomous part
+ of Kooka, provides a scan service for easy and consistent use to all
+ KDE applications.
+ .
+ Install gocr if you wish to enable optical character recognition
+ in kooka.
+ .
+ This package is part of KDE, as a component of the KDE graphics module.
+ See the 'kde' and 'kdegraphics' packages for more information.
+ .
+ Homepage: http://www.kde.org/apps/kooka
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: koshell
+Priority: optional
+Section: kde
+Installed-Size: 432
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.1-20010404-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjpeg62, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1)
+Recommends: koffice
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/koshell_1.4.1-0ubuntu7.1_i386.deb
+Size: 100688
+MD5sum: a67b8ac4518fbf1d2c0ef391d4be3570
+Description: the KDE Office Suite workspace
+ The KOffice workspace is a desktop with easy one-click launchers for
+ KOffice applications.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: kpdf
+Priority: optional
+Section: graphics
+Installed-Size: 1828
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Architecture: i386
+Source: kdegraphics
+Version: 4:3.4.3-0ubuntu2.1
+Provides: pdf-viewer
+Depends: kdelibs4c2 (>= 4:3.4.3), libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgcc1 (>= 1:4.0.1), libjpeg62, libpaper1, libqt3-mt (>= 3:3.3.4), libstdc++6 (>= 4.0.1), libx11-6, libxft2 (>> 2.1.1), libxrender1, zlib1g (>= 1:1.2.1)
+Recommends: kghostview
+Suggests: khelpcenter
+Filename: pool/main/k/kdegraphics/kpdf_3.4.3-0ubuntu2.1_i386.deb
+Size: 615408
+MD5sum: 6f0cab3af6a07b516d76b1f02aeab2f1
+Description: PDF viewer for KDE
+ KPDF allows you view PDF (Portable Document Format) files. This package
+ includes kpart so you can embed it in konqueror and a standalone
+ application.
+ .
+ This package is part of KDE, as a component of the KDE graphics module.
+ See the 'kde' and 'kdegraphics' packages for more information.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: kpresenter
+Priority: optional
+Section: kde
+Installed-Size: 6416
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.1-20010404-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libarts1c2 (>= 1.3.2), libasound2 (>> 1.0.9), libaudio2, libaudiofile0 (>= 0.2.3-4), libc6 (>= 2.3.4-1), libesd0 (>= 0.2.35) | libesd-alsa0 (>= 0.2.35), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libglib2.0-0 (>= 2.8.0), libice6, libidn11 (>= 0.5.13), libjpeg62, libogg0 (>= 1.1.2), libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libvorbis0a (>= 1.1.0), libvorbisenc2 (>= 1.1.0), libvorbisfile3 (>= 1.1.0), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1), perl
+Recommends: libkscan1
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/kpresenter_1.4.1-0ubuntu7.1_i386.deb
+Size: 2785526
+MD5sum: 1266b09e5d90295a440c6af0028a30e7
+Description: a presentation program for the KDE Office Suite
+ KPresenter is a fully-featured presentation program.  Presentations can
+ be edited directly within KPresenter, and many advanced features for
+ screen presentations are available.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: krita
+Priority: optional
+Section: graphics
+Installed-Size: 7316
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.2.90-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libbz2-1.0, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjasper-1.701-1 (>= 1.701.0), libjpeg62, liblcms1 (>= 1.08-1), libltdl3 (>= 1.5.2-2), libmagick6, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libtiff4, libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxml2 (>= 2.6.20), libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1)
+Filename: pool/main/k/koffice/krita_1.4.1-0ubuntu7.1_i386.deb
+Size: 2494892
+MD5sum: 05fb08b7a28fa4e0cc00eb1e7cee5349
+Description: a painting and image editing application for the KDE Office Suite
+ Krita is a painting application with image processing capabilities.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: ksnapshot
+Priority: optional
+Section: graphics
+Installed-Size: 384
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Architecture: i386
+Source: kdegraphics
+Version: 4:3.4.3-0ubuntu2.1
+Replaces: kdebase-data (<< 4:3.3.91)
+Depends: kdelibs4c2 (>= 4:3.4.3), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libqt3-mt (>= 3:3.3.4), libstdc++6 (>= 4.0.1), libx11-6, libxext6
+Suggests: khelpcenter
+Filename: pool/main/k/kdegraphics/ksnapshot_3.4.3-0ubuntu2.1_i386.deb
+Size: 141582
+MD5sum: cf963b24885d2a59332da85537e7e3be
+Description: screenshot utility for KDE
+ KSnapshot is a simple applet for taking screenshots. It is capable of
+ capturing images of either the whole desktop or just a single window.
+ The images can then be saved in a variety of formats.
+ .
+ This package is part of KDE, as a component of the KDE graphics module.
+ See the 'kde' and 'kdegraphics' packages for more information.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: kspread
+Priority: optional
+Section: kde
+Installed-Size: 3744
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.2.90-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjpeg62, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1)
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/kspread_1.4.1-0ubuntu7.1_i386.deb
+Size: 966478
+MD5sum: b3ab6c33996b8cf9f1ada86ef7499511
+Description: a spreadsheet for the KDE Office Suite
+ KSpread is a powerful spreadsheet application.  It is scriptable and
+ provides both table-oriented sheets and support for complex mathematical
+ formulae and statistics.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: ksvg
+Priority: optional
+Section: graphics
+Installed-Size: 4164
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Architecture: i386
+Source: kdegraphics
+Version: 4:3.4.3-0ubuntu2.1
+Depends: kdelibs4c2 (>= 4:3.4.3), libart-2.0-2 (>= 2.3.16), libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libfribidi0 (>= 0.10.4-5), libgcc1 (>= 1:4.0.1), liblcms1 (>= 1.08-1), libqt3-mt (>= 3:3.3.4), libstdc++6 (>= 4.0.1), zlib1g (>= 1:1.2.1)
+Filename: pool/main/k/kdegraphics/ksvg_3.4.3-0ubuntu2.1_i386.deb
+Size: 1198882
+MD5sum: 68998b1bf9a6f86c885ae5c62f61252e
+Description: SVG viewer for KDE
+ KSVG allows you view SVG (scalable vector graphics) files. This package
+ includes kpart so you can embed it in konqueror and a standalone
+ application.
+ .
+ This package is part of KDE, as a component of the KDE graphics module.
+ See the 'kde' and 'kdegraphics' packages for more information.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: kthesaurus
+Priority: optional
+Section: kde
+Installed-Size: 1144
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.4.1-0ubuntu5)
+Depends: kdelibs4c2 (>= 4:3.4.3), libart-2.0-2 (>= 2.3.16), libaudio2, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjpeg62, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1)
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/kthesaurus_1.4.1-0ubuntu7.1_i386.deb
+Size: 321838
+MD5sum: ce9c7d5982bfea6c59aa44fc2fcfd8d6
+Description: a thesaurus for the KDE Office Suite
+ KThesaurus is an English language thesaurus that can be used
+ with KWord or as a standalone application.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: kugar
+Priority: optional
+Section: kde
+Installed-Size: 1800
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.1-20010404-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libice6, libidn11 (>= 0.5.13), libjpeg62, libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1)
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/kugar_1.4.1-0ubuntu7.1_i386.deb
+Size: 449126
+MD5sum: 040dd5347aa10aab5ebbf28588f82728
+Description: a business report maker for the KDE Office Suite
+ Kugar is a tool for generating business quality reports that can
+ be viewed and printed.  It includes a standalone report viewer and a
+ KPart report viewer.  The latter means that any KDE application can
+ embed the report viewing functionality and that reports can be viewed
+ using the Konqueror browser.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: kword
+Priority: optional
+Section: kde
+Installed-Size: 11408
+Maintainer: Ben Burton <bab@debian.org>
+Architecture: i386
+Source: koffice
+Version: 1:1.4.1-0ubuntu7.1
+Replaces: koffice-libs (<< 1:1.2.90-0)
+Depends: kdelibs4c2 (>= 4:3.4.3), koffice-libs (>= 1:1.4.1), libart-2.0-2 (>= 2.3.16), libaudio2, libbz2-1.0, libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgamin0, libgcc1 (>= 1:4.0.1), libglib2.0-0 (>= 2.8.0), libgsf-1 (>= 1.12.3), libice6, libidn11 (>= 0.5.13), libjasper-1.701-1 (>= 1.701.0), libjpeg62, liblcms1 (>= 1.08-1), libltdl3 (>= 1.5.2-2), libmagick6, libpaper1, libpcre3 (>= 4.5), libpng12-0 (>= 1.2.8rel), libqt3-mt (>= 3:3.3.4), libsm6, libstdc++6 (>= 4.0.1), libtiff4, libwpd8c2, libwv2-1c2 (>= 0.1.9-0), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxft2 (>> 2.1.1), libxi6, libxinerama1, libxml2 (>= 2.6.20), libxrandr2, libxrender1, libxt6, zlib1g (>= 1:1.2.1), kthesaurus
+Recommends: libkscan1
+Suggests: khelpcenter, koffice-doc-html
+Filename: pool/main/k/koffice/kword_1.4.1-0ubuntu7.1_i386.deb
+Size: 5461970
+MD5sum: d69973626ef70f7d4f5578698f99c5b0
+Description: a word processor for the KDE Office Suite
+ KWord is a FrameMaker-like word processing and desktop publishing
+ application.  KWord is capable of creating demanding and professional
+ looking documents.  It can be used for desktop publishing, but also for
+ "normal" word processing, like writing letters, reports and so on.
+ .
+ This package is part of the KDE Office Suite.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libapr0
+Priority: optional
+Section: net
+Installed-Size: 316
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Replaces: libapr
+Provides: libapr
+Depends: libc6 (>= 2.3.4-1), libdb4.2, libexpat1 (>= 1.95.8), libpcre3, libdb4.2, libexpat1
+Conflicts: libapr
+Filename: pool/main/a/apache2/libapr0_2.0.54-5ubuntu3_i386.deb
+Size: 130896
+MD5sum: b1a770ce8394240c5ca9f56d42a6ab34
+Description: the Apache Portable Runtime
+ APR is Apache's Portable Runtime Library, designed to be a support library to
+ enable programmers to easily write platform independent programs and know that
+ they'll work.
+ .
+ It is currently used by Apache2, Subversion, and Samba-TNG, among others.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libapr0-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 1112
+Maintainer: Debian Apache Maintainers <debian-apache@lists.debian.org>
+Architecture: i386
+Source: apache2
+Version: 2.0.54-5ubuntu3
+Provides: libapr-dev
+Depends: libapr0 (= 2.0.54-5ubuntu3), libdb4.2-dev, libpcre3-dev, libldap2-dev, libexpat1-dev, libtool
+Conflicts: libapr-dev, apache2-dev (<= 2.0.39+cvs.1028741220-1)
+Filename: pool/main/a/apache2/libapr0-dev_2.0.54-5ubuntu3_i386.deb
+Size: 259416
+MD5sum: 292003cf8c7e673740f18fa146aaa273
+Description: development headers for libapr
+ This package provides the development headers for the Apache Runtime Library,
+ libapr.
+ .
+ You only need these if you are planning on compiling software that depends
+ on software that requires libapr.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libcurl3
+Priority: optional
+Section: libs
+Installed-Size: 568
+Maintainer: Domenico Andreoli <cavok@debian.org>
+Architecture: i386
+Source: curl
+Version: 7.14.0-2ubuntu1.2
+Replaces: libcurl2 (<< 1:7.11.2-2)
+Depends: libc6 (>= 2.3.4-1), libidn11 (>= 0.5.13), libssl0.9.7, zlib1g (>= 1:1.2.1)
+Suggests: libcurl3-gssapi (= 7.14.0-2ubuntu1.2), ca-certificates, libldap2-dev
+Filename: pool/main/c/curl/libcurl3_7.14.0-2ubuntu1.2_i386.deb
+Size: 241034
+MD5sum: ace721841e231ce9422b7fd347b14959
+Description: Multi-protocol file transfer library, now with SSL support!
+ libcurl is designed to be a solid, usable, reliable and portable
+ multi-protocol file transfer library.
+ .
+ To enable LDAP support package libldap2-dev is required.
+ .
+ This is the shared version of libcurl.
+ .
+  Homepage: http://curl.haxx.se
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: libcurl3-dbg
+Priority: extra
+Section: libdevel
+Installed-Size: 1100
+Maintainer: Domenico Andreoli <cavok@debian.org>
+Architecture: i386
+Source: curl
+Version: 7.14.0-2ubuntu1.2
+Depends: libcurl3 (= 7.14.0-2ubuntu1.2)
+Suggests: libc-dbg
+Filename: pool/main/c/curl/libcurl3-dbg_7.14.0-2ubuntu1.2_i386.deb
+Size: 427436
+MD5sum: c6dc2f4eac30256103ee59f24be7e737
+Description: libcurl compiled with debug symbols
+ This is the shared version of libcurl compiled with debug symbols.
+ It might be useful in debug sessions of software which uses libcurl.
+ .
+  Homepage: http://curl.haxx.se
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libcurl3-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 2236
+Maintainer: Domenico Andreoli <cavok@debian.org>
+Architecture: i386
+Source: curl
+Version: 7.14.0-2ubuntu1.2
+Replaces: libcurl-ssl-dev, libcurl-dev
+Provides: libcurl-ssl-dev, libcurl-dev
+Depends: libcurl3 (= 7.14.0-2ubuntu1.2), libc6-dev | libc-dev, libssl-dev, zlib1g-dev, libidn11-dev
+Suggests: libcurl3-dbg
+Conflicts: libcurl2-dev
+Filename: pool/main/c/curl/libcurl3-dev_7.14.0-2ubuntu1.2_i386.deb
+Size: 1236180
+MD5sum: a47e57854f1a6e06bfd5b387ce075699
+Description: Development files and documentation for libcurl
+ These files (ie. includes, static library, manual pages) allow to
+ build software which uses libcurl.
+ .
+ HTML and PDF versions of all the manual pages are also provided.
+ .
+  Homepage: http://curl.haxx.se
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgda2-3
+Priority: optional
+Section: libs
+Installed-Size: 580
+Maintainer: Gustavo R. Montesino <grmontesino@ig.com.br>
+Architecture: i386
+Source: libgda2
+Version: 1.2.1-2ubuntu3.1
+Replaces: libgda2-1
+Depends: libgda2-common (>= 1.2.1-2ubuntu3.1), libc6 (>= 2.3.4-1), libglib2.0-0 (>= 2.8.0), libxml2 (>= 2.6.20), libxslt1.1 (>= 1.1.15), zlib1g (>= 1:1.2.1)
+Suggests: gda2-mysql (= 1.2.1-2ubuntu3.1), gda2-postgres (= 1.2.1-2ubuntu3.1), gda2-odbc (= 1.2.1-2ubuntu3.1), gda2-sqlite (= 1.2.1-2ubuntu3.1), gda2-freetds (= 1.2.1-2ubuntu3.1)
+Conflicts: libgda2-1
+Filename: pool/main/libg/libgda2/libgda2-3_1.2.1-2ubuntu3.1_i386.deb
+Size: 214874
+MD5sum: 4df22945859ddd132641d9ae8e774f44
+Description: GNOME Data Access library for GNOME2
+ GNOME Data Access is an attempt to provide uniform access to
+ different kinds of data sources (databases, information servers,
+ mail spools, etc).
+ It is a complete architecture that provides all you need to
+ access your data.
+ .
+ This library is made for GNOME2, but it doesn't require GNOME2 libraries.
+ .
+ This package contains the shared libraries.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, ubuntu-desktop
+
+Package: libgda2-common
+Priority: optional
+Section: misc
+Installed-Size: 1448
+Maintainer: Gustavo R. Montesino <grmontesino@ig.com.br>
+Architecture: i386
+Source: libgda2
+Version: 1.2.1-2ubuntu3.1
+Replaces: libgda-common (<< 0.2.96-6.2)
+Depends: libc6 (>= 2.3.4-1), libgda2-3, libglib2.0-0 (>= 2.8.0), libncurses5 (>= 5.4-5), libpopt0 (>= 1.7), libreadline5, libxml2 (>= 2.6.20), libxslt1.1 (>= 1.1.15), zlib1g (>= 1:1.2.1)
+Conflicts: libgda-common (<< 0.2.96-6.2)
+Filename: pool/main/libg/libgda2/libgda2-common_1.2.1-2ubuntu3.1_i386.deb
+Size: 304172
+MD5sum: f11c6831a48fa5f2a80737b62aff20b5
+Description: Common files for GNOME Data Access library for GNOME2
+ GNOME Data Access is an attempt to provide uniform access to
+ different kinds of data sources (databases, information servers,
+ mail spools, etc).
+ It is a complete architecture that provides all you need to
+ access your data.
+ .
+ This library is made for GNOME2, but it doesn't require GNOME2 libraries.
+ .
+ This package contains common files for libgda2-3.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, ubuntu-desktop
+
+Package: libgda2-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 1400
+Maintainer: Gustavo R. Montesino <grmontesino@ig.com.br>
+Architecture: i386
+Source: libgda2
+Version: 1.2.1-2ubuntu3.1
+Depends: libgda2-3 (= 1.2.1-2ubuntu3.1), libglib2.0-dev (>= 2.2.0), libxslt1-dev, pkg-config
+Suggests: libgda2-doc
+Filename: pool/main/libg/libgda2/libgda2-dev_1.2.1-2ubuntu3.1_i386.deb
+Size: 264982
+MD5sum: 9ebcbc5d33d6a9bbb1a8b898950ce832
+Description: Development files for GNOME Data Access library for GNOME2
+ GNOME Data Access is an attempt to provide uniform access to
+ different kinds of data sources (databases, information servers,
+ mail spools, etc).
+ It is a complete architecture that provides all you need to
+ access your data.
+ .
+ This library is made for GNOME2, but it doesn't require GNOME2 libraries.
+ .
+ This package contains the header files and libraries which
+ you need for development.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgda2-doc
+Priority: optional
+Section: doc
+Installed-Size: 2060
+Maintainer: Gustavo R. Montesino <grmontesino@ig.com.br>
+Architecture: all
+Source: libgda2
+Version: 1.2.1-2ubuntu3.1
+Depends: lynx | www-browser
+Conflicts: libgda-doc
+Filename: pool/main/libg/libgda2/libgda2-doc_1.2.1-2ubuntu3.1_all.deb
+Size: 246388
+MD5sum: 7142c393d12e3146fae1a15de535b10f
+Description: Documentation files for GNOME Data Access library for GNOME2
+ GNOME Data Access is an attempt to provide uniform access to
+ different kinds of data sources (databases, information servers,
+ mail spools, etc).
+ It is a complete architecture that provides all you need to
+ access your data.
+ .
+ This library is made for GNOME2, but it doesn't require GNOME2 libraries.
+ .
+ This package contains some document files about libgda2.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgdk-pixbuf-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 728
+Maintainer: Ryan Murray <rmurray@debian.org>
+Architecture: i386
+Source: gdk-pixbuf
+Version: 0.22.0-8ubuntu0.1
+Depends: libgdk-pixbuf2 (= 0.22.0-8ubuntu0.1), libgtk1.2-dev (>= 1.2.9-1)
+Filename: pool/main/g/gdk-pixbuf/libgdk-pixbuf-dev_0.22.0-8ubuntu0.1_i386.deb
+Size: 147898
+MD5sum: 2bb1722dbbf96ed9dbd477e19ca172fe
+Description: The GdkPixBuf library - development files
+ The GdkPixBuf library provides a number of features:
+   - Reference counting for libart's ArtPixBuf structure.
+   - Image loading facilities.
+   - Rendering of a GdkPixBuf into various formats:
+      drawables (windows, pixmaps), GdkRGB buffers.
+   - Fast scaling and compositing of pixbufs.
+   - Simple animation loading (ie. animated GIFs)
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgdk-pixbuf-gnome-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 60
+Maintainer: Ryan Murray <rmurray@debian.org>
+Architecture: i386
+Source: gdk-pixbuf
+Version: 0.22.0-8ubuntu0.1
+Depends: libgdk-pixbuf-gnome2 (= 0.22.0-8ubuntu0.1), libgdk-pixbuf-dev (= 0.22.0-8ubuntu0.1), libgnome-dev (>= 1.4.2-3)
+Filename: pool/main/g/gdk-pixbuf/libgdk-pixbuf-gnome-dev_0.22.0-8ubuntu0.1_i386.deb
+Size: 7556
+MD5sum: e3282c4044ea415cb3aa2532fd90a344
+Description: The GNOME1 GdkPixBuf library - development files
+ The GdkPixBuf library provides a number of features:
+   - Reference counting for libart's ArtPixBuf structure.
+   - Image loading facilities.
+   - Rendering of a GdkPixBuf into various formats:
+      drawables (windows, pixmaps), GdkRGB buffers.
+   - Fast scaling and compositing of pixbufs.
+   - Simple animation loading (ie. animated GIFs)
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgdk-pixbuf-gnome2
+Priority: optional
+Section: libs
+Installed-Size: 40
+Maintainer: Ryan Murray <rmurray@debian.org>
+Architecture: i386
+Source: gdk-pixbuf
+Version: 0.22.0-8ubuntu0.1
+Depends: libgdk-pixbuf2 (= 0.22.0-8ubuntu0.1), gdk-imlib1, libart2 (>= 1.2.13-5), libaudiofile0 (>= 0.2.3-4), libc6 (>= 2.3.4-1), libdb3 (>= 3.2.9-22ubuntu1), libesd0 (>= 0.2.35) | libesd-alsa0 (>= 0.2.35), libgdk-pixbuf2 (>= 0.22.0-8ubuntu0.1), libglib1.2 (>= 1.2.0), libgnome32 (>= 1.2.13-5), libgnomesupport0 (>= 1.2.13-5), libgnomeui32 (>= 1.4.2-3), libgtk1.2 (>= 1.2.10-4), libice6, libsm6, libx11-6, libxext6, libxi6
+Filename: pool/main/g/gdk-pixbuf/libgdk-pixbuf-gnome2_0.22.0-8ubuntu0.1_i386.deb
+Size: 6952
+MD5sum: 4a0d002c7fbe8cadef13849879ffa2da
+Description: The GNOME1 Canvas pixbuf library
+ The GnomeCanvasPixbuf library provides a number of features:
+   - Reference counting for libart's ArtPixBuf structure.
+   - Image loading facilities.
+   - Rendering of a GdkPixBuf into various formats:
+      drawables (windows, pixmaps), GdkRGB buffers.
+   - Fast scaling and compositing of pixbufs.
+   - Simple animation loading (ie. animated GIFs)
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgdk-pixbuf2
+Priority: optional
+Section: libs
+Installed-Size: 424
+Maintainer: Ryan Murray <rmurray@debian.org>
+Architecture: i386
+Source: gdk-pixbuf
+Version: 0.22.0-8ubuntu0.1
+Depends: libc6 (>= 2.3.4-1), libglib1.2 (>= 1.2.0), libgtk1.2 (>= 1.2.10-4), libjpeg62, libpng10-0 (>= 1.0.18), libtiff4, libx11-6, libxext6, libxi6, zlib1g (>= 1:1.2.1)
+Filename: pool/main/g/gdk-pixbuf/libgdk-pixbuf2_0.22.0-8ubuntu0.1_i386.deb
+Size: 166196
+MD5sum: d1395b65ef93c7993d8e180d08d662dd
+Description: The GdkPixBuf image library, gtk+ 1.2 version
+ The GdkPixBuf library provides a number of features:
+   - Reference counting for libart's ArtPixBuf structure.
+   - Image loading facilities.
+   - Rendering of a GdkPixBuf into various formats:
+      drawables (windows, pixmaps), GdkRGB buffers.
+   - Fast scaling and compositing of pixbufs.
+   - Simple animation loading (ie. animated GIFs)
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgtk2.0-0
+Priority: optional
+Section: libs
+Installed-Size: 4476
+Maintainer: Sebastien Bacher <seb128@debian.org>
+Architecture: i386
+Source: gtk+2.0
+Version: 2.8.6-0ubuntu2.1
+Replaces: libgtk2.0-0png3
+Depends: libgtk2.0-common (>= 2.8.6-0ubuntu2.1), libgtk2.0-bin (>= 2.8.6-0ubuntu2.1), libatk1.0-0 (>= 1.9.0), libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libfontconfig1 (>= 2.3.0), libglib2.0-0 (>= 2.8.0), libgtk2.0-0 (>= 2.8.0), libjpeg62, libpango1.0-0 (>= 1.10.1), libpng12-0 (>= 1.2.8rel), libtiff4, libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxfixes3, libxi6, libxinerama1, libxrandr2, libxrender1
+Recommends: hicolor-icon-theme
+Conflicts: libgtk2.0-0png3, eog2 (<< 1.0.1-4), gnome-panel2 (<< 2.0.4-1), celestia (<< 1.2.4-4), gimp1.3 (<< 1.3.7-1.1), metatheme (<< 0.9.7-3), libgnomeui-0 (<< 2.0.6-2), gtk2.0-examples (<< 2.2.0), libgdkxft0, gtk2-engines-wonderland (<= 1.0-2), gtk2-engines-cleanice (<= 1.2.8-1), gtk2-engines-thinice (<< 2.6), gtk2-engines-crux (<< 2.6), gtk2-engines-mist (<< 2.6), gtk2-engines-highcontrast (<< 2.6), gtk2-engines-lighthouseblue (<< 2.6), gnome-themes (<< 2.6), gtk2-engines-industrial (<< 0.2.32-5), gtk2-engines-pixbuf (<< 2.2.0-2.1), gtk2-engines-redmond95 (<< 2.2.0-2.1), gtk2-engines-metal (<< 2.2.0-2.1), gtk2-engines-magicchicken (<= 1.1.1-4), gtk2-engines-qtpixmap (<= 0.28-1), gtk2-engines-smooth (<< 0.5.6-3), gtk2-engines-xfce (<= 2.1.8-1), tamil-gtk2im (<= 2.2-4), imhangul (<< 0.9.9-3), librsvg2-common (<< 2.6.3-1)
+Filename: pool/main/g/gtk+2.0/libgtk2.0-0_2.8.6-0ubuntu2.1_i386.deb
+Size: 2052512
+MD5sum: 1d6149e8e9de36547ad5844976d132df
+Description: The GTK+ graphical user interface library
+ The GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package contains the shared libraries.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: libgtk2.0-0-dbg
+Priority: extra
+Section: libdevel
+Installed-Size: 8692
+Maintainer: Sebastien Bacher <seb128@debian.org>
+Architecture: i386
+Source: gtk+2.0
+Version: 2.8.6-0ubuntu2.1
+Replaces: libgtk2.0-dbg
+Depends: libgtk2.0-0 (= 2.8.6-0ubuntu2.1)
+Conflicts: libgtk2.0-dbg
+Filename: pool/main/g/gtk+2.0/libgtk2.0-0-dbg_2.8.6-0ubuntu2.1_i386.deb
+Size: 3564260
+MD5sum: 3cfeb8ddc04a85495c694633e44cede0
+Description: The GTK+ libraries and debugging symbols
+ The GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package contains unstripped shared libraries. it is provided
+ primarily to provide a backtrace with names in a debugger, this makes
+ it somewhat easier to interpret core dumps. The libraries are installed
+ in /usr/lib/debug and can be used by placing that directory in
+ LD_LIBRARY_PATH.
+ Most people will not need this package.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgtk2.0-bin
+Priority: optional
+Section: misc
+Installed-Size: 132
+Maintainer: Sebastien Bacher <seb128@debian.org>
+Architecture: i386
+Source: gtk+2.0
+Version: 2.8.6-0ubuntu2.1
+Replaces: libgtk2.0-common (<= 2.4.0-3), libgtk2.0-dev (<= 2.4.3-1)
+Depends: libatk1.0-0 (>= 1.9.0), libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libglib2.0-0 (>= 2.8.0), libgtk2.0-0 (>= 2.8.0), libpango1.0-0 (>= 1.10.1), libpng12-0 (>= 1.2.8rel), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxfixes3, libxi6, libxinerama1, libxrandr2, libxrender1, zlib1g (>= 1:1.2.1)
+Conflicts: libgtk2.0-dev (<= 2.4.3-1)
+Filename: pool/main/g/gtk+2.0/libgtk2.0-bin_2.8.6-0ubuntu2.1_i386.deb
+Size: 21322
+MD5sum: 04bce721f7836af237cced77095c5211
+Description: The programs for the GTK+ graphical user interface library
+ The GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package contains the program files which is used for the libraries
+ and others.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: libgtk2.0-common
+Priority: optional
+Section: misc
+Installed-Size: 11256
+Maintainer: Sebastien Bacher <seb128@debian.org>
+Architecture: all
+Source: gtk+2.0
+Version: 2.8.6-0ubuntu2.1
+Replaces: libgtk1.3-common, libgtk2.0-data
+Depends: libgtk2.0-0
+Conflicts: libgtk1.3-common, libgtk2.0-data
+Filename: pool/main/g/gtk+2.0/libgtk2.0-common_2.8.6-0ubuntu2.1_all.deb
+Size: 3413588
+MD5sum: f7299b417104b77813160e70f0240db0
+Description: Common files for the GTK+ graphical user interface library
+ The GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package contains the common files which the libraries need.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: libgtk2.0-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 8008
+Maintainer: Sebastien Bacher <seb128@debian.org>
+Architecture: i386
+Source: gtk+2.0
+Version: 2.8.6-0ubuntu2.1
+Replaces: libgtk1.3-dev
+Depends: libgtk2.0-0 (= 2.8.6-0ubuntu2.1), libglib2.0-dev (>= 2.7.1), libpango1.0-dev (>= 1.10.0-2), libatk1.0-dev (>= 1.6.1-2), libcairo2-dev, libx11-dev | xlibs-dev, libxext-dev | xlibs-dev, libxinerama-dev, libxi-dev, libxrandr-dev, libxcursor-dev, libxfixes-dev, pkg-config
+Suggests: libgtk2.0-doc
+Conflicts: libgtk1.3-dev
+Filename: pool/main/g/gtk+2.0/libgtk2.0-dev_2.8.6-0ubuntu2.1_i386.deb
+Size: 2215654
+MD5sum: c20c7f62665f69b20c77013b755957f8
+Description: Development files for the GTK+ library
+ The GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package contains the header files and static libraries which is
+ needed for developing the GTK+ applications.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libgtk2.0-doc
+Priority: optional
+Section: doc
+Installed-Size: 14912
+Maintainer: Sebastien Bacher <seb128@debian.org>
+Architecture: all
+Source: gtk+2.0
+Version: 2.8.6-0ubuntu2.1
+Replaces: libgtk1.3-doc
+Depends: lynx | www-browser
+Suggests: libglib2.0-doc, libatk1.0-doc, libpango1.0-doc
+Conflicts: libgtk1.3-doc
+Filename: pool/main/g/gtk+2.0/libgtk2.0-doc_2.8.6-0ubuntu2.1_all.deb
+Size: 2378168
+MD5sum: 98b9ce5688e70cfff876505dfea8bebe
+Description: Documentation for the GTK+ graphical user interface library
+ The GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package contains the HTML documentation for the GTK+ library
+ in /usr/share/doc/libgtk2.0-doc/ .
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libkpathsea-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 396
+Maintainer: teTeX maintainers <debian-tetex-maint@lists.debian.org>
+Architecture: i386
+Source: tetex-bin
+Version: 2.0.2-30ubuntu3.3
+Replaces: kpathsea-dev, tetex-dev
+Depends: libkpathsea3 (= 2.0.2-30ubuntu3.3)
+Conflicts: kpathsea-dev, tetex-dev
+Filename: pool/main/t/tetex-bin/libkpathsea-dev_2.0.2-30ubuntu3.3_i386.deb
+Size: 66000
+MD5sum: daa3e42b9a6839e4f421ed57094b2f53
+Description: path search library for teTeX (devel part)
+ This package contains the static library and header files for the
+ libkpathsea[rch] library.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libkpathsea3
+Priority: optional
+Section: libs
+Installed-Size: 136
+Maintainer: teTeX maintainers <debian-tetex-maint@lists.debian.org>
+Architecture: i386
+Source: tetex-bin
+Version: 2.0.2-30ubuntu3.3
+Replaces: tetex-lib
+Provides: tetex-lib
+Depends: libc6 (>= 2.3.4-1)
+Conflicts: tetex-lib, tetex-bin (<< 2.0), jtex-bin (<< 1.9), multex-bin (<< 0.8), ptex-bin (<< 3.0.5), dvi2ps (<< 3.2j)
+Filename: pool/main/t/tetex-bin/libkpathsea3_2.0.2-30ubuntu3.3_i386.deb
+Size: 58840
+MD5sum: 5657e4ebeb8ba2b905739fb88ff6a478
+Description: path search library for teTeX (runtime part)
+ This package contains the runtime part of the Kpathsea[rch] library,
+ which implements generic path searching, configuration, and
+ TeX-specific file searching.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, ubuntu-desktop
+
+Package: libkscan1
+Priority: optional
+Section: libs
+Installed-Size: 432
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Architecture: i386
+Source: kdegraphics
+Version: 4:3.4.3-0ubuntu2.1
+Depends: kdelibs4c2 (>= 4:3.4.3), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libieee1284-3, libjpeg62, libsane (>= 1.0.11-3), libstdc++6 (>= 4.0.1), libusb-0.1-4 (>= 2:0.1.10a)
+Filename: pool/main/k/kdegraphics/libkscan1_3.4.3-0ubuntu2.1_i386.deb
+Size: 128534
+MD5sum: 9723a4d0e64a60cb7badfc92cba68368
+Description: scanner library for KDE
+ KScan is KDE's scanner library. It's used by kooka and by koffice currently.
+ It provides an easy-to-use library, which allows you to access your scanner
+ (as long as it's sane compatible).
+ .
+ This package is part of KDE, as a component of the KDE graphics module.
+ See the 'kde' and 'kdegraphics' packages for more information.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: libmysqlclient14
+Priority: optional
+Section: libs
+Installed-Size: 3024
+Maintainer: Christian Hammers <ch@debian.org>
+Architecture: i386
+Source: mysql-dfsg-4.1
+Version: 4.1.12-1ubuntu3.1
+Replaces: mysql-client, mysql-gpl-client, mysql-devel
+Depends: mysql-common-4.1 (>= 4.1.12-1ubuntu3.1) | mysql-common, libc6 (>= 2.3.4-1), zlib1g (>= 1:1.2.1)
+Recommends: libmysqlclient14-dev
+Conflicts: libmysqlclient14-dev (<< 4.1.12-1ubuntu3.1), libmysqlclient6-dev, mysql-dev, mysql, mysql-base
+Filename: pool/main/m/mysql-dfsg-4.1/libmysqlclient14_4.1.12-1ubuntu3.1_i386.deb
+Size: 1474316
+MD5sum: d23d2f2af47577fbda0f754547a44fae
+Description: mysql database client library
+ MySQL is a fast, stable and true multi-user, multi-threaded SQL database
+ server. SQL (Structured Query Language) is the most popular database query
+ language in the world. The main goals of MySQL are speed, robustness and
+ ease of use.
+ .
+ This package includes the client library.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: libmysqlclient14-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 14616
+Maintainer: Christian Hammers <ch@debian.org>
+Architecture: i386
+Source: mysql-dfsg-4.1
+Version: 4.1.12-1ubuntu3.1
+Replaces: libmysqlclient9-dev, libmysqlclient6, libmysqlclient6-dev, mysql-gpl-dev, mysql-dev, mysql-devel
+Depends: libmysqlclient14 (>= 4.1.12-1ubuntu3.1), zlib1g-dev
+Conflicts: libmysqlclient-dev, libmysqlclient12-dev, libmysqlclient10-dev, libmysqlclient9-dev, libmysqlclient6-dev, mysql-gpl-dev, mysql-dev, mysql-devel
+Filename: pool/main/m/mysql-dfsg-4.1/libmysqlclient14-dev_4.1.12-1ubuntu3.1_i386.deb
+Size: 5347118
+MD5sum: 2944f5066bed041df004c51cd7e511e1
+Description: mysql database development files
+ MySQL is a fast, stable and true multi-user, multi-threaded SQL database
+ server. SQL (Structured Query Language) is the most popular database query
+ language in the world. The main goals of MySQL are speed, robustness and
+ ease of use.
+ .
+ This package includes development libraries and header files.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libnetpbm10
+Priority: optional
+Section: libs
+Installed-Size: 184
+Maintainer: Andreas Barth <aba@not.so.argh.org>
+Architecture: i386
+Source: netpbm-free
+Version: 2:10.0-8ubuntu1.2
+Depends: libc6 (>= 2.3.4-1)
+Filename: pool/main/n/netpbm-free/libnetpbm10_10.0-8ubuntu1.2_i386.deb
+Size: 61650
+MD5sum: e8d8a63ed3b0ccbe6a56fee32fa90f64
+Description: Shared libraries for netpbm
+ This package contains the shared libraries used by netpbm.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop
+
+Package: libnetpbm10-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 336
+Maintainer: Andreas Barth <aba@not.so.argh.org>
+Architecture: i386
+Source: netpbm-free
+Version: 2:10.0-8ubuntu1.2
+Replaces: netpbm-dev
+Provides: netpbm-dev
+Depends: libnetpbm10
+Conflicts: netpbm-dev, libnetpbm9-dev
+Filename: pool/main/n/netpbm-free/libnetpbm10-dev_10.0-8ubuntu1.2_i386.deb
+Size: 107438
+MD5sum: 1306c512e533beb7d6db7cc898b3734e
+Description: Development libraries and header files
+ This development package contains the library and header
+ files for the pbm, pgm, pnm, and ppm graphics formats.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libnetpbm9
+Priority: optional
+Section: libs
+Installed-Size: 200
+Maintainer: Andreas Barth <aba@not.so.argh.org>
+Architecture: i386
+Source: netpbm-free
+Version: 2:10.0-8ubuntu1.2
+Depends: libc6 (>= 2.3.4-1)
+Filename: pool/main/n/netpbm-free/libnetpbm9_10.0-8ubuntu1.2_i386.deb
+Size: 68324
+MD5sum: 497f417f9e38a6939b8692dc63d25f5c
+Description: Shared libraries for netpbm
+ This package contains shared libraries used to be used by netpbm.
+ Now we've switched to a single shared library, look out for libnetpbm10.
+ This package is provided for backward compatibility.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libnetpbm9-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 340
+Maintainer: Andreas Barth <aba@not.so.argh.org>
+Architecture: i386
+Source: netpbm-free
+Version: 2:10.0-8ubuntu1.2
+Replaces: netpbm-dev
+Provides: netpbm-dev
+Depends: libnetpbm9
+Conflicts: netpbm-dev
+Filename: pool/main/n/netpbm-free/libnetpbm9-dev_10.0-8ubuntu1.2_i386.deb
+Size: 107638
+MD5sum: 350bfd8c14c2b1fa81dc6b8d2e9b96e1
+Description: Development libraries and header files
+ This development package contains the library and header
+ files for the pbm, pgm, pnm, and ppm graphics formats, if the split
+ and now deprecated libraries are used.
+ .
+ This package is provided for backward compatibility.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libperl-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 1404
+Maintainer: Brendan O'Dea <bod@debian.org>
+Architecture: i386
+Source: perl
+Version: 5.8.7-5ubuntu1.2
+Depends: perl (= 5.8.7-5ubuntu1.2), libperl5.8 (= 5.8.7-5ubuntu1.2)
+Filename: pool/main/p/perl/libperl-dev_5.8.7-5ubuntu1.2_i386.deb
+Size: 560316
+MD5sum: eb964f53d00d5e16f0d074460a6d7315
+Description: Perl library: development files
+ Files for developing applications which embed a Perl interpreter and for
+ programs compiled with perlcc.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libperl5.8
+Priority: optional
+Section: libs
+Installed-Size: 1172
+Maintainer: Brendan O'Dea <bod@debian.org>
+Architecture: i386
+Source: perl
+Version: 5.8.7-5ubuntu1.2
+Replaces: perl-base (<= 5.8.7-4)
+Depends: libc6 (>= 2.3.4-1), perl-base (= 5.8.7-5ubuntu1.2)
+Conflicts: libapache-mod-perl (<< 1.29.0.1-3)
+Filename: pool/main/p/perl/libperl5.8_5.8.7-5ubuntu1.2_i386.deb
+Size: 505994
+MD5sum: d88e73bf59e859a0efecca42c6524157
+Description: Shared Perl library
+ This package is required by programs which embed a Perl interpreter to
+ ensure that the correct version of `perl-base' is installed.  It
+ additionally contains the shared Perl library on architectures where the
+ perl binary is linked to libperl.a (currently only i386, for performance
+ reasons).  In other cases the actual library is in the `perl-base' package.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: libpoppler-dev
+Priority: optional
+Section: text
+Installed-Size: 2044
+Maintainer: Changwoo Ryu <cwryu@debian.org>
+Architecture: i386
+Source: poppler
+Version: 0.4.2-0ubuntu6.4
+Depends: libfontconfig1-dev, libjpeg62-dev, libpoppler0c2 (= 0.4.2-0ubuntu6.4)
+Filename: pool/main/p/poppler/libpoppler-dev_0.4.2-0ubuntu6.4_i386.deb
+Size: 548442
+MD5sum: 09b6828c13b4161b639dd4810aaab0f2
+Description: PDF rendering library -- development files
+ Poppler is a PDF rendering library based on xpdf PDF viewer.
+ .
+ This package contains the headers and development libraries needed to
+ build applications using Poppler.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libpoppler-glib-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 176
+Maintainer: Changwoo Ryu <cwryu@debian.org>
+Architecture: i386
+Source: poppler
+Version: 0.4.2-0ubuntu6.4
+Depends: libpoppler0c2-glib (= 0.4.2-0ubuntu6.4), libpoppler-dev (= 0.4.2-0ubuntu6.4), libglib2.0-dev
+Filename: pool/main/p/poppler/libpoppler-glib-dev_0.4.2-0ubuntu6.4_i386.deb
+Size: 41044
+MD5sum: 87e4cdabba51975b6433e2dfb0fd3e7e
+Description: PDF rendering library -- development files (GLib interface)
+ Poppler is a PDF rendering library based on xpdf PDF viewer.
+ .
+ This package provides a GLib-style interface to Poppler.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libpoppler0c2
+Priority: optional
+Section: libs
+Installed-Size: 1140
+Maintainer: Changwoo Ryu <cwryu@debian.org>
+Architecture: i386
+Source: poppler
+Version: 0.4.2-0ubuntu6.4
+Replaces: libpoppler0
+Depends: libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libgcc1 (>= 1:4.0.1), libjpeg62, libstdc++6 (>= 4.0.1)
+Conflicts: libpoppler0
+Filename: pool/main/p/poppler/libpoppler0c2_0.4.2-0ubuntu6.4_i386.deb
+Size: 415464
+MD5sum: 690d47e097f5b3c57150ad4f5cbbb4bb
+Description: PDF rendering library
+ Poppler is a PDF rendering library based on xpdf PDF viewer.
+ .
+ This package contains the shared library.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: libpoppler0c2-glib
+Priority: optional
+Section: libs
+Installed-Size: 120
+Maintainer: Changwoo Ryu <cwryu@debian.org>
+Architecture: i386
+Source: poppler
+Version: 0.4.2-0ubuntu6.4
+Replaces: libpoppler0-glib
+Depends: libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libfontconfig1 (>= 2.3.0), libfreetype6 (>= 2.1.5-1), libgcc1 (>= 1:4.0.1), libglib2.0-0 (>= 2.8.0), libgtk2.0-0 (>= 2.8.0), libjpeg62, libpango1.0-0 (>= 1.10.1), libpoppler0c2 (>= 0.4.0), libstdc++6 (>= 4.0.1), libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxfixes3, libxi6, libxinerama1, libxrandr2, libxrender1, zlib1g (>= 1:1.2.1), libpoppler0c2 (= 0.4.2-0ubuntu6.4)
+Conflicts: libpoppler0-glib
+Filename: pool/main/p/poppler/libpoppler0c2-glib_0.4.2-0ubuntu6.4_i386.deb
+Size: 37952
+MD5sum: d85bb78903ab64f765c86a399abc1321
+Description: PDF rendering library (GLib-based shared library)
+ Poppler is a PDF rendering library based on xpdf PDF viewer.
+ .
+ This package provides the GLib-based shared library for applications
+ using the GLib interface to Poppler.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, ubuntu-desktop
+
+Package: librpm-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 1200
+Maintainer: Anibal Monsalve Salazar <anibal@debian.org>
+Architecture: i386
+Source: rpm
+Version: 4.0.4-31ubuntu1.1
+Replaces: rpm (<< 2.5), librpm1-dev (<< 4.0), librpm0-dev
+Provides: librpm0-dev
+Depends: librpm4, libc6-dev, libpopt-dev (>= 1.6.4), libdb3-dev, libbz2-dev, libz-dev
+Conflicts: librpm1-dev (<< 4.0), librpm0-dev
+Filename: pool/main/r/rpm/librpm-dev_4.0.4-31ubuntu1.1_i386.deb
+Size: 437468
+MD5sum: 303a7fcf82954da89bd2cee396ce6ba6
+Description: RPM shared library, development kit
+ This library allows programs to make use of a rpm database or rpm packages
+ without going through the rpm program.
+ .
+ This is the development kit, containing static libraries and header files
+ necessary to build programs that use librpm.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: librpm4
+Priority: optional
+Section: libs
+Installed-Size: 764
+Maintainer: Anibal Monsalve Salazar <anibal@debian.org>
+Architecture: i386
+Source: rpm
+Version: 4.0.4-31ubuntu1.1
+Replaces: rpm (<< 2.5), librpm1 (<< 4.0), librpm0
+Depends: libbz2-1.0, libc6 (>= 2.3.4-1), libdb3 (>= 3.2.9-22ubuntu1), zlib1g (>= 1:1.2.1)
+Conflicts: rpm (<< 4.0.2), librpm1 (<< 4.0), librpm0, kpackage (<< 4:2.2.2-8), rpm2html (<< 1.7-3), kleandisk (<< 2.1-beta2-2)
+Filename: pool/main/r/rpm/librpm4_4.0.4-31ubuntu1.1_i386.deb
+Size: 362410
+MD5sum: 35532ce8b4cdcdce6ae2408bda1384fa
+Description: RPM shared library
+ This library allows programs to make use of a rpm database or rpm packages
+ without going through the rpm program.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libsnmp4.2
+Priority: optional
+Section: libs
+Installed-Size: 1208
+Maintainer: Jochen Friedrich <jochen@scram.de>
+Architecture: i386
+Source: ucd-snmp
+Version: 4.2.5-5ubuntu0.1
+Replaces: snmp (<= 3.6.2-3), snmpd (<= 4.1.2-1)
+Depends: libsnmp-base (>= 5), libc6 (>= 2.3.4-1), libssl0.9.7, libwrap0
+Filename: pool/main/u/ucd-snmp/libsnmp4.2_4.2.5-5ubuntu0.1_i386.deb
+Size: 619630
+MD5sum: bddb573c1ffb88c5d722b91f27102a07
+Description: NET SNMP (Simple Network Management Protocol) Library
+ The NET SNMP shared library is used by many apps to provide SNMP
+ (simple network management protocol) services.
+ .
+ New apps should use net-snmp instead of this older version.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libsnmp4.2-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 1616
+Maintainer: Jochen Friedrich <jochen@scram.de>
+Architecture: i386
+Source: ucd-snmp
+Version: 4.2.5-5ubuntu0.1
+Replaces: libsnmp-dev, libsnmp-perl (<< 4.2.5-5ubuntu0.1)
+Provides: libsnmp-dev
+Depends: libc6-dev, libsnmp4.2 (= 4.2.5-5ubuntu0.1)
+Conflicts: libsnmp-dev
+Filename: pool/main/u/ucd-snmp/libsnmp4.2-dev_4.2.5-5ubuntu0.1_i386.deb
+Size: 465532
+MD5sum: 2669a212a3b23706f725e5d95167e143
+Description: NET SNMP (Simple Network Management Protocol) Development Files
+ The NET SNMP shared library is used by many apps to provide SNMP
+ (simple network management protocol) services.
+ .
+ New apps should use net-snmp instead of this older version.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libssl-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 7116
+Maintainer: Christoph Martin <christoph.martin@uni-mainz.de>
+Architecture: i386
+Source: openssl
+Version: 0.9.7g-1ubuntu1.1
+Depends: libssl0.9.7 (= 0.9.7g-1ubuntu1.1)
+Conflicts: ssleay (<< 0.9.2b), libssl08-dev, libssl09-dev, libssl095a-dev, libssl096-dev
+Filename: pool/main/o/openssl/libssl-dev_0.9.7g-1ubuntu1.1_i386.deb
+Size: 2479668
+MD5sum: 6296835c4d246c67fc7c8cd38c2ef00c
+Description: SSL development libraries, header files and documentation
+ libssl and libcrypt development libraries, header files and manpages
+ .
+ It is part of the OpenSSL implementation of SSL.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libssl0.9.7
+Priority: important
+Section: libs
+Installed-Size: 5204
+Maintainer: Christoph Martin <christoph.martin@uni-mainz.de>
+Architecture: i386
+Source: openssl
+Version: 0.9.7g-1ubuntu1.1
+Depends: libc6 (>= 2.3.4-1), debconf (>= 0.5) | debconf-2.0
+Conflicts: ssleay (<< 0.9.2b), libssl, openssl (<< 0.9.6-2), libssl096-dev (<< 0.9.6-2)
+Filename: pool/main/o/openssl/libssl0.9.7_0.9.7g-1ubuntu1.1_i386.deb
+Size: 2202870
+MD5sum: 9d1c03f452c3964ab9bd4054879d48f7
+Description: SSL shared libraries
+ libssl and libcrypto shared libraries needed by programs like
+ apache-ssl, telnet-ssl and openssh.
+ .
+ It is part of the OpenSSL implementation of SSL.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libungif4-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 132
+Maintainer: Michael Fedrowitz <michaelf@debian.org>
+Architecture: i386
+Source: libungif4
+Version: 4.1.3-2ubuntu0.1
+Replaces: giflib4-dev
+Provides: giflib4-dev, giflib-dev
+Depends: libungif4g (= 4.1.3-2ubuntu0.1), libc6-dev | libc-dev
+Conflicts: giflib-dev, giflib4-dev, giflib3g-dev, libungif3g-dev
+Filename: pool/main/libu/libungif4/libungif4-dev_4.1.3-2ubuntu0.1_i386.deb
+Size: 38672
+MD5sum: 4f6a453cf554c8a246de612385b699a6
+Description: shared library for GIF images (development files)
+ This package contains header files needed to compile programs that use
+ libungif.
+ .
+ The libungif library is a specially modified version of giflib which
+ is free of the Unisys LZW patent.  It can read all GIFs, but only
+ write uncompressed GIFs.  If you need to be able to write compressed
+ GIFs, you can install the non-free giflib packages instead (which may
+ not be available on CD).
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libungif4g
+Priority: optional
+Section: libs
+Installed-Size: 120
+Maintainer: Michael Fedrowitz <michaelf@debian.org>
+Architecture: i386
+Source: libungif4
+Version: 4.1.3-2ubuntu0.1
+Replaces: giflib4g, libungif-bin (<< 4.1.0b1-1)
+Provides: giflib4g
+Depends: libc6 (>= 2.3.4-1)
+Conflicts: giflib4g
+Filename: pool/main/libu/libungif4/libungif4g_4.1.3-2ubuntu0.1_i386.deb
+Size: 55668
+MD5sum: dad0b983eda12741dc18ac6898d55559
+Description: shared library for GIF images (runtime lib)
+ This is a shared library for working with GIF images.
+ .
+ The libungif library is a specially modified version of giflib which
+ is free of the Unisys LZW patent.  It can read all GIFs, but only
+ write uncompressed GIFs.  If you need to be able to write compressed
+ GIFs, you can install the non-free giflib packages instead (which may
+ not be available on CD).
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop
+
+Package: libwww-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 2588
+Maintainer: Richard Atterer <atterer@debian.org>
+Architecture: i386
+Source: w3c-libwww
+Version: 5.4.0-9ubuntu0.5.10
+Depends: libwww-ssl0 (= 5.4.0-9ubuntu0.5.10) | libwww0 (= 5.4.0-9ubuntu0.5.10), zlib1g-dev, libexpat1-dev
+Suggests: expat, libwww-doc
+Conflicts: libwww-ssl-dev, libxmltok1-dev
+Filename: pool/main/w/w3c-libwww/libwww-dev_5.4.0-9ubuntu0.5.10_i386.deb
+Size: 608218
+MD5sum: 6702f91d61eb03f7aa76ddecc68e0723
+Description: The W3C WWW library - development files
+ libwww is a highly modular, general-purpose client side Web API
+ written in C for Unix and Windows (Win32). It's well suited for
+ both small and large applications, like browser/editors, robots,
+ batch tools, etc. Pluggable modules provided with libwww include
+ complete HTTP/1.1 (with caching, pipelining, PUT, POST, Digest
+ Authentication, deflate, etc), MySQL logging, FTP, HTML/4,
+ XML (expat), RDF (SiRPAC), and much more.
+ .
+ Unlike other libraries for web access, libwww can use a single
+ select() loop to wait for multiple simultaneous connections. With
+ glibwww, the libwww event loop can be integrated into the glib event
+ loop, making it very easy to develop cross-platform GTK+ web
+ applications.
+ .
+ It is quite difficult to write programs that use libwww, due to its
+ complexity. If you do not need its advanced features, have a look at
+ libcurl.
+ .
+ libwww homepage: <http://www.w3.org/Library/>
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libwww-ssl-dev
+Priority: optional
+Section: libdevel
+Installed-Size: 2612
+Maintainer: Richard Atterer <atterer@debian.org>
+Architecture: i386
+Source: w3c-libwww
+Version: 5.4.0-9ubuntu0.5.10
+Provides: libwww-dev
+Depends: libwww-ssl0 (= 5.4.0-9ubuntu0.5.10), libssl-dev, zlib1g-dev, libexpat1-dev
+Suggests: expat, libwww-doc
+Conflicts: libwww-dev, libxmltok1-dev
+Filename: pool/main/w/w3c-libwww/libwww-ssl-dev_5.4.0-9ubuntu0.5.10_i386.deb
+Size: 614374
+MD5sum: f057682a4109808438162afe09ca5376
+Description: The W3C WWW library - development files (SSL support)
+ libwww is a highly modular, general-purpose client side Web API
+ written in C for Unix and Windows (Win32). It's well suited for
+ both small and large applications, like browser/editors, robots,
+ batch tools, etc. Pluggable modules provided with libwww include
+ complete HTTP/1.1 (with caching, pipelining, PUT, POST, Digest
+ Authentication, deflate, etc), MySQL logging, FTP, HTML/4,
+ XML (expat), RDF (SiRPAC), and much more.
+ .
+ Unlike other libraries for web access, libwww can use a single
+ select() loop to wait for multiple simultaneous connections. With
+ glibwww, the libwww event loop can be integrated into the glib event
+ loop, making it very easy to develop cross-platform GTK+ web
+ applications.
+ .
+ It is quite difficult to write programs that use libwww, due to its
+ complexity. If you do not need its advanced features, have a look at
+ libcurl.
+ .
+ This package supports SSL.
+ .
+ libwww homepage: <http://www.w3.org/Library/>
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: libwww-ssl0
+Priority: optional
+Section: libs
+Installed-Size: 1396
+Maintainer: Richard Atterer <atterer@debian.org>
+Architecture: i386
+Source: w3c-libwww
+Version: 5.4.0-9ubuntu0.5.10
+Provides: libwww0
+Depends: libc6 (>= 2.3.4-1), libssl0.9.7, zlib1g (>= 1:1.2.1)
+Conflicts: libwww0
+Filename: pool/main/w/w3c-libwww/libwww-ssl0_5.4.0-9ubuntu0.5.10_i386.deb
+Size: 448164
+MD5sum: 4e09a8140ee0519a6b4512a442effff7
+Description: The W3C-WWW library (SSL support)
+ libwww is a highly modular, general-purpose client side Web API
+ written in C for Unix and Windows. It is well suited for both small
+ and large applications, like browsers/editors, robots, batch tools,
+ etc. Pluggable modules provided with libwww include complete HTTP/1.1
+ (with caching, pipelining, PUT, POST, Digest Authentication, deflate,
+ etc), MySQL logging, FTP, HTML/4, XML (expat), RDF (SiRPAC), and much
+ more.
+ .
+ This package supports SSL.
+ .
+ libwww homepage: <http://www.w3.org/Library/>
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-doc
+Priority: optional
+Section: doc
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: all
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-doc-2.6.12
+Filename: pool/main/l/linux-meta/linux-doc_2.6.12.16.1_all.deb
+Size: 22448
+MD5sum: bbc73b288d3f2185064bcff81db133e9
+Description: Linux kernel documentation
+ This package will always depend on the latest Linux kernel documentation
+ available.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-doc-2.6.12
+Priority: optional
+Section: doc
+Installed-Size: 20224
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: all
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-doc-2.6
+Depends: coreutils | fileutils (>= 4.0)
+Filename: pool/main/l/linux-source-2.6.12/linux-doc-2.6.12_2.6.12-10.24_all.deb
+Size: 4554224
+MD5sum: 0e4d0986758493a3d37b116698fbef0c
+Description: Linux kernel specific documentation for version 2.6.12
+ This package provides the various readme's in the 2.6.12 kernel
+ Documentation/ subdirectory: these typically contain kernel-specific
+ installation notes for some drivers for example. See
+ /usr/share/doc/linux-doc-2.6.12/Documentation/00-INDEX for a list of what
+ is contained in each file.  Please read the Changes file, as it
+ contains information about the problems, which may result by
+ upgrading your kernel.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-2.6.12-10
+Priority: optional
+Section: devel
+Installed-Size: 47328
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-headers, linux-headers-2.6
+Depends: coreutils | fileutils (>= 4.0)
+Filename: pool/main/l/linux-source-2.6.12/linux-headers-2.6.12-10_2.6.12-10.24_i386.deb
+Size: 5925538
+MD5sum: 1b15f67919379e1c9b36dbf6e3977648
+Description: Header files related to Linux kernel version 2.6.12
+ This package provides kernel header files for version 2.6.12, for sites
+ that want the latest kernel headers. Please read
+ /usr/share/doc/linux-headers-2.6.12-10/debian.README.gz for details
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-2.6.12-10-386
+Priority: optional
+Section: devel
+Installed-Size: 21260
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-headers, linux-headers-2.6
+Depends: coreutils | fileutils (>= 4.0), linux-headers-2.6.12-10, libc6 (>= 2.3.4-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-headers-2.6.12-10-386_2.6.12-10.24_i386.deb
+Size: 800564
+MD5sum: 6d17dc689ac2a16fd0ef7c71e7e43154
+Description: Linux kernel headers 2.6.12 on 386
+ This package provides kernel header files for version 2.6.12 on
+ 386,
+ for sites that want the latest kernel headers.
+ Please read /usr/share/doc/linux-headers-2.6.12-10/debian.README.gz for
+ details
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-2.6.12-10-686
+Priority: optional
+Section: devel
+Installed-Size: 21032
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-headers, linux-headers-2.6
+Depends: coreutils | fileutils (>= 4.0), linux-headers-2.6.12-10, libc6 (>= 2.3.4-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-headers-2.6.12-10-686_2.6.12-10.24_i386.deb
+Size: 798232
+MD5sum: 9aa9f5d7cd0dd867867de7b477772ba9
+Description: Linux kernel headers 2.6.12 on PPro/Celeron/PII/PIII/PIV
+ This package provides kernel header files for version 2.6.12 on
+ Pentium Pro/Celeron/Pentium II/Pentium III/Pentium IV,
+ for sites that want the latest kernel headers.
+ Please read /usr/share/doc/linux-headers-2.6.12-10/debian.README.gz for
+ details
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-2.6.12-10-686-smp
+Priority: optional
+Section: devel
+Installed-Size: 20796
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-headers, linux-headers-2.6
+Depends: coreutils | fileutils (>= 4.0), linux-headers-2.6.12-10, libc6 (>= 2.3.4-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-headers-2.6.12-10-686-smp_2.6.12-10.24_i386.deb
+Size: 795752
+MD5sum: b762742d4e83889d4794eb3c20a06c38
+Description: Linux kernel headers 2.6.12 on PPro/Celeron/PII/PIII/PIV SMP
+ This package provides kernel header files for version 2.6.12 on
+ Pentium Pro/Celeron/Pentium II/Pentium III/Pentium IV with SMP support,
+ for sites that want the latest kernel headers.
+ SMP (symmetric multi-processing) is needed if you have multiple processors.
+ Please read /usr/share/doc/linux-headers-2.6.12-10/debian.README.gz for
+ details
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-2.6.12-10-k7
+Priority: optional
+Section: devel
+Installed-Size: 21032
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-headers, linux-headers-2.6
+Depends: coreutils | fileutils (>= 4.0), linux-headers-2.6.12-10, libc6 (>= 2.3.4-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-headers-2.6.12-10-k7_2.6.12-10.24_i386.deb
+Size: 798334
+MD5sum: 646130390ba26b5ac84bd03bfba3ac76
+Description: Linux kernel headers 2.6.12 on AMD K7
+ This package provides kernel header files for version 2.6.12 on
+ AMD Duron/Athlon,
+ for sites that want the latest kernel headers.
+ Please read /usr/share/doc/linux-headers-2.6.12-10/debian.README.gz for
+ details
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-2.6.12-10-k7-smp
+Priority: optional
+Section: devel
+Installed-Size: 20804
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-headers, linux-headers-2.6
+Depends: coreutils | fileutils (>= 4.0), linux-headers-2.6.12-10, libc6 (>= 2.3.4-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-headers-2.6.12-10-k7-smp_2.6.12-10.24_i386.deb
+Size: 796412
+MD5sum: 43c6dfb406e6a8ee554817fcc9d7015b
+Description: Linux kernel headers 2.6.12 on AMD K7 SMP
+ This package provides kernel header files for version 2.6.12 on
+ AMD Duron/Athlon with SMP support,
+ for sites that want the latest kernel headers.
+ SMP (symmetric multi-processing) is needed if you have multiple processors.
+ Please read /usr/share/doc/linux-headers-2.6.12-10/debian.README.gz for
+ details
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-386
+Priority: optional
+Section: devel
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-headers-2.6.12-10-386
+Filename: pool/main/l/linux-meta/linux-headers-386_2.6.12.16.1_i386.deb
+Size: 22478
+MD5sum: 8200b5be8470c78346db87e4be9a0ccf
+Description: Linux kernel headers on 386
+ This package will always depend on the latest kernel headers available
+ for 386.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-686
+Priority: optional
+Section: devel
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-headers-2.6.12-10-686
+Filename: pool/main/l/linux-meta/linux-headers-686_2.6.12.16.1_i386.deb
+Size: 22508
+MD5sum: fc5ff6ec62e2a1fa58647eeae9ccf883
+Description: Linux kernel headers on PPro/Celeron/PII/PIII/PIV
+ This package will always depend on the latest kernel headers available
+ for Pentium Pro/Celeron/Pentium II/Pentium III/Pentium IV.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-686-smp
+Priority: optional
+Section: devel
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-headers-2.6.12-10-686-smp
+Filename: pool/main/l/linux-meta/linux-headers-686-smp_2.6.12.16.1_i386.deb
+Size: 22578
+MD5sum: b412db73cf2d163c42041cf1d8525ee8
+Description: Linux kernel headers on PPro/Celeron/PII/PIII/PIV SMP
+ This package will always depend on the latest kernel headers available
+ for Pentium Pro/Celeron/Pentium II/Pentium III/Pentium IV with SMP support.
+ SMP (symmetric multi-processing) is needed if you have multiple processors.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-k7
+Priority: optional
+Section: devel
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-headers-2.6.12-10-k7
+Filename: pool/main/l/linux-meta/linux-headers-k7_2.6.12.16.1_i386.deb
+Size: 22488
+MD5sum: 183d46b4f84d91937fc587ffc58fdfb2
+Description: Linux kernel headers on AMD K7
+ This package will always depend on the latest kernel headers available
+ for AMD Duron/Athlon.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-headers-k7-smp
+Priority: optional
+Section: devel
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-headers-2.6.12-10-k7-smp
+Filename: pool/main/l/linux-meta/linux-headers-k7-smp_2.6.12.16.1_i386.deb
+Size: 22556
+MD5sum: 06e2051cf51bca9861a808172fda512c
+Description: Linux kernel headers on AMD K7 SMP
+ This package will always depend on the latest kernel headers available
+ for AMD Duron/Athlon with SMP support.
+ SMP (symmetric multi-processing) is needed if you have multiple processors.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-2.6.12-10-386
+Priority: optional
+Section: base
+Installed-Size: 51352
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-image, linux-image-2.6, fuse-module, rhcs-modules-1, ndiswrapper-modules-1.1
+Depends: initramfs-tools (>= 0.17), coreutils | fileutils (>= 4.0), module-init-tools (>= 0.9.13)
+Suggests: lilo (>= 19.1) | grub, fdutils, linux-doc-2.6.12 | linux-source-2.6.12
+Conflicts: hotplug (<< 0.0.20040105-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-image-2.6.12-10-386_2.6.12-10.24_i386.deb
+Size: 18025624
+MD5sum: f7aff38c78632028ccdfd64b1cc81e4b
+Description: Linux kernel image for version 2.6.12 on 386.
+ This package contains the Linux kernel image for version 2.6.12 on
+ 386,
+ the corresponding System.map file, and the modules built by the packager.
+ It also contains scripts that try to ensure that the system is not left in
+ a unbootable state after an update.
+ .
+ If you wish to update a bootdisk, or to use a bootloader to make
+ installing and using the image easier, we suggest you install the latest
+ fdutils (for formatting a floppy to be used as boot disk), and LILO, for a
+ powerful bootloader. Of course, both these are optional.
+ .
+ Kernel image packages are generally produced using kernel-package,
+ and it is suggested that you install that package if you wish to
+ create a custom kernel from the sources.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-2.6.12-10-686
+Priority: optional
+Section: base
+Installed-Size: 54908
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-image, linux-image-2.6, fuse-module, rhcs-modules-1, ndiswrapper-modules-1.1
+Depends: initramfs-tools (>= 0.17), coreutils | fileutils (>= 4.0), module-init-tools (>= 0.9.13)
+Suggests: lilo (>= 19.1) | grub, fdutils, linux-doc-2.6.12 | linux-source-2.6.12
+Conflicts: hotplug (<< 0.0.20040105-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-image-2.6.12-10-686_2.6.12-10.24_i386.deb
+Size: 19459820
+MD5sum: ba12af1cee8004f6778bf1e36c9aec3d
+Description: Linux kernel image for version 2.6.12 on PPro/Celeron/PII/PIII/PIV.
+ This package contains the Linux kernel image for version 2.6.12 on
+ Pentium Pro/Celeron/Pentium II/Pentium III/Pentium IV,
+ the corresponding System.map file, and the modules built by the packager.
+ It also contains scripts that try to ensure that the system is not left in
+ a unbootable state after an update.
+ .
+ If you wish to update a bootdisk, or to use a bootloader to make
+ installing and using the image easier, we suggest you install the latest
+ fdutils (for formatting a floppy to be used as boot disk), and LILO, for a
+ powerful bootloader. Of course, both these are optional.
+ .
+ Kernel image packages are generally produced using kernel-package,
+ and it is suggested that you install that package if you wish to
+ create a custom kernel from the sources.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-2.6.12-10-686-smp
+Priority: optional
+Section: base
+Installed-Size: 54960
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-image, linux-image-2.6, fuse-module, rhcs-modules-1, ndiswrapper-modules-1.1
+Depends: initramfs-tools (>= 0.17), coreutils | fileutils (>= 4.0), module-init-tools (>= 0.9.13)
+Suggests: lilo (>= 19.1) | grub, fdutils, linux-doc-2.6.12 | linux-source-2.6.12
+Conflicts: hotplug (<< 0.0.20040105-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-image-2.6.12-10-686-smp_2.6.12-10.24_i386.deb
+Size: 19366540
+MD5sum: 9efdd88a76a474d6412f54bc78584d24
+Description: Linux kernel image for version 2.6.12 on PPro/Celeron/PII/PIII/PIV SMP.
+ This package contains the Linux kernel image for version 2.6.12 on
+ Pentium Pro/Celeron/Pentium II/Pentium III/Pentium IV with SMP support,
+ the corresponding System.map file, and the modules built by the packager.
+ SMP (symmetric multi-processing) is needed if you have multiple processors.
+ It also contains scripts that try to ensure that the system is not left in
+ a unbootable state after an update.
+ .
+ If you wish to update a bootdisk, or to use a bootloader to make
+ installing and using the image easier, we suggest you install the latest
+ fdutils (for formatting a floppy to be used as boot disk), and LILO, for a
+ powerful bootloader. Of course, both these are optional.
+ .
+ Kernel image packages are generally produced using kernel-package,
+ and it is suggested that you install that package if you wish to
+ create a custom kernel from the sources.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-2.6.12-10-k7
+Priority: optional
+Section: base
+Installed-Size: 55228
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-image, linux-image-2.6, fuse-module, rhcs-modules-1, ndiswrapper-modules-1.1
+Depends: initramfs-tools (>= 0.17), coreutils | fileutils (>= 4.0), module-init-tools (>= 0.9.13)
+Suggests: lilo (>= 19.1) | grub, fdutils, linux-doc-2.6.12 | linux-source-2.6.12
+Conflicts: hotplug (<< 0.0.20040105-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-image-2.6.12-10-k7_2.6.12-10.24_i386.deb
+Size: 19544826
+MD5sum: db1f2560a3c0cd61b5fad417286f060d
+Description: Linux kernel image for version 2.6.12 on AMD K7.
+ This package contains the Linux kernel image for version 2.6.12 on
+ AMD Duron/Athlon,
+ the corresponding System.map file, and the modules built by the packager.
+ It also contains scripts that try to ensure that the system is not left in
+ a unbootable state after an update.
+ .
+ If you wish to update a bootdisk, or to use a bootloader to make
+ installing and using the image easier, we suggest you install the latest
+ fdutils (for formatting a floppy to be used as boot disk), and LILO, for a
+ powerful bootloader. Of course, both these are optional.
+ .
+ Kernel image packages are generally produced using kernel-package,
+ and it is suggested that you install that package if you wish to
+ create a custom kernel from the sources.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-2.6.12-10-k7-smp
+Priority: optional
+Section: base
+Installed-Size: 55852
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-image, linux-image-2.6, fuse-module, rhcs-modules-1, ndiswrapper-modules-1.1
+Depends: initramfs-tools (>= 0.17), coreutils | fileutils (>= 4.0), module-init-tools (>= 0.9.13)
+Suggests: lilo (>= 19.1) | grub, fdutils, linux-doc-2.6.12 | linux-source-2.6.12
+Conflicts: hotplug (<< 0.0.20040105-1)
+Filename: pool/main/l/linux-source-2.6.12/linux-image-2.6.12-10-k7-smp_2.6.12-10.24_i386.deb
+Size: 19501386
+MD5sum: 9acb2a092e0258a1c281447950307ec8
+Description: Linux kernel image for version 2.6.12 on AMD K7 SMP.
+ This package contains the Linux kernel image for version 2.6.12 on
+ AMD Duron/Athlon with SMP support,
+ the corresponding System.map file, and the modules built by the packager.
+ SMP (symmetric multi-processing) is needed if you have multiple processors.
+ It also contains scripts that try to ensure that the system is not left in
+ a unbootable state after an update.
+ .
+ If you wish to update a bootdisk, or to use a bootloader to make
+ installing and using the image easier, we suggest you install the latest
+ fdutils (for formatting a floppy to be used as boot disk), and LILO, for a
+ powerful bootloader. Of course, both these are optional.
+ .
+ Kernel image packages are generally produced using kernel-package,
+ and it is suggested that you install that package if you wish to
+ create a custom kernel from the sources.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-386
+Priority: optional
+Section: base
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-image-2.6.12-10-386
+Filename: pool/main/l/linux-meta/linux-image-386_2.6.12.16.1_i386.deb
+Size: 22474
+MD5sum: 2428a678be1cc77d2551dec8b451ba50
+Description: Linux kernel image on 386.
+ This package will always depend on the latest kernel image available
+ for 386.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-686
+Priority: optional
+Section: base
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-image-2.6.12-10-686
+Filename: pool/main/l/linux-meta/linux-image-686_2.6.12.16.1_i386.deb
+Size: 22504
+MD5sum: d705486d56bdb384bf15052a69a00a3a
+Description: Linux kernel image on PPro/Celeron/PII/PIII/PIV.
+ This package will always depend on the latest kernel image available
+ for Pentium Pro/Celeron/Pentium II/Pentium III/Pentium IV.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-686-smp
+Priority: optional
+Section: base
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-image-2.6.12-10-686-smp
+Filename: pool/main/l/linux-meta/linux-image-686-smp_2.6.12.16.1_i386.deb
+Size: 22572
+MD5sum: 97417c51d65328c67d6971e3398df613
+Description: Linux kernel image on PPro/Celeron/PII/PIII/PIV SMP.
+ This package will always depend on the latest kernel image available
+ for Pentium Pro/Celeron/Pentium II/Pentium III/Pentium IV with SMP support.
+ SMP (symmetric multi-processing) is needed if you have multiple processors.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-k7
+Priority: optional
+Section: base
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-image-2.6.12-10-k7
+Filename: pool/main/l/linux-meta/linux-image-k7_2.6.12.16.1_i386.deb
+Size: 22488
+MD5sum: 6638219f1f606e00758bae763d2b1c58
+Description: Linux kernel image on AMD K7.
+ This package will always depend on the latest kernel image available
+ for AMD Duron/Athlon.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-image-k7-smp
+Priority: optional
+Section: base
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: i386
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-image-2.6.12-10-k7-smp
+Filename: pool/main/l/linux-meta/linux-image-k7-smp_2.6.12.16.1_i386.deb
+Size: 22554
+MD5sum: a3de827a53f636eb49475db7dbb949ee
+Description: Linux kernel image on AMD K7 SMP.
+ This package will always depend on the latest kernel image available
+ for AMD Duron/Athlon with SMP support.
+ SMP (symmetric multi-processing) is needed if you have multiple processors.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-patch-ubuntu-2.6.12
+Priority: optional
+Section: devel
+Installed-Size: 3488
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: i386
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Depends: bzip2
+Suggests: linux-source-2.6.12
+Filename: pool/main/l/linux-source-2.6.12/linux-patch-ubuntu-2.6.12_2.6.12-10.24_i386.deb
+Size: 3482070
+MD5sum: 83bae10b3ad3160b63eec8dbde256dd2
+Description: Ubuntu patches to Linux 2.6.12
+ This package includes the patches used to produce the prepackaged
+ linux-source-2.6.12 package.  They should be applied to a pristine
+ Linux 2.6.12 kernel.  Note that these patches do NOT apply
+ against a pristine Linux 2.6.12 kernel but only against
+ linux-source-2.6.12_2.6.12.orig.tar.gz from the Ubuntu archive.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-source-2.6.12
+Priority: optional
+Section: devel
+Installed-Size: 39632
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: all
+Version: 2.6.12-10.24
+Provides: linux-source, linux-source-2.6
+Depends: binutils, bzip2, coreutils | fileutils (>= 4.0)
+Recommends: libc-dev, gcc-3.4, make
+Suggests: libncurses-dev | ncurses-dev, kernel-package, libqt3-dev
+Filename: pool/main/l/linux-source-2.6.12/linux-source-2.6.12_2.6.12-10.24_all.deb
+Size: 40447298
+MD5sum: 88289ced21db9504b8777b71ff3780d2
+Description: Linux kernel source for version 2.6.12 with Ubuntu patches
+ This package provides the source code for the Linux kernel version 2.6.12.
+ .
+ You may configure the kernel to your setup by typing "make config"
+ and following instructions, but you could get ncursesX.X-dev and try
+ "make menuconfig" for a jazzier, and easier to use interface. There
+ are options to use QT or GNOME based configuration interfaces, but they
+ need additional packages to be installed. Also, please read the detailed
+ documentation in the file
+ /usr/share/doc/linux-source-2.6.12/README.headers.gz.
+ .
+ If you wish to use this package to create a custom Linux kernel, then
+ it is suggested that you investigate the package kernel-package,
+ which has been designed to ease the task of creating kernel image
+ packages.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-tree
+Priority: optional
+Section: devel
+Installed-Size: 48
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: all
+Source: linux-meta
+Version: 2.6.12.16.1
+Depends: linux-tree-2.6.12
+Filename: pool/main/l/linux-meta/linux-tree_2.6.12.16.1_all.deb
+Size: 22470
+MD5sum: 1c323161f7eef2f32e36900af76fd064
+Description: Linux kernel tree for building prepackaged Ubuntu kernel images
+ This package will always depend on the latest Linux kernel tree
+ available.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: linux-tree-2.6.12
+Priority: optional
+Section: devel
+Installed-Size: 404
+Maintainer: Ben Collins <ben.collins@ubuntu.com>
+Architecture: all
+Source: linux-source-2.6.12
+Version: 2.6.12-10.24
+Provides: linux-tree-2.6.12-10.24
+Depends: linux-patch-ubuntu-2.6.12 (= 2.6.12-10.24), linux-source-2.6.12 (= 2.6.12-10.24)
+Filename: pool/main/l/linux-source-2.6.12/linux-tree-2.6.12_2.6.12-10.24_all.deb
+Size: 375196
+MD5sum: 24211d27aaf0f630204846b6f77a7d0b
+Description: Linux kernel tree for building prepackaged Ubuntu kernel images
+ This meta package is used as a build-time dependency of prepackaged
+ Ubuntu linux-image packages.  Its dependencies are structured so that a
+ complete kernel tree with Ubuntu patches applied will be available after
+ this package is installed.  It also contains the upstream changelog file.
+ .
+ For those intending to use this package as a build-time dependency, this
+ package provides a list of virtual packages that guarantees the availability
+ of a particular Ubuntu revision of the kernel tree.  The
+ linux-image-2.6.12-i386 package is an example of this.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: lynx
+Priority: optional
+Section: web
+Installed-Size: 4552
+Maintainer: James Troup <james@nocrew.org>
+Architecture: i386
+Version: 2.8.5-2ubuntu0.5.10.1
+Replaces: lynx-ssl
+Provides: www-browser, news-reader, lynx-ssl
+Depends: libbz2-1.0, libc6 (>= 2.3.4-1), libgnutls11 (>= 1.0.16), libncursesw5 (>= 5.4-5), zlib1g (>= 1:1.2.1)
+Recommends: mime-support
+Conflicts: lynx-ssl
+Filename: pool/main/l/lynx/lynx_2.8.5-2ubuntu0.5.10.1_i386.deb
+Size: 1833236
+MD5sum: 37e7437cbb088ddd91aa8a2cfae42625
+Description: Text-mode WWW Browser
+ Lynx is a fully-featured World Wide Web (WWW) client for users
+ running cursor-addressable, character-cell display devices (e.g.,
+ vt100 terminals, vt100 emulators running on PCs or Macs, or any other
+ "curses-oriented" display). It will display hypertext markup language
+ (HTML) documents containing links to files residing on the local
+ system, as well as files residing on remote systems running Gopher,
+ HTTP, FTP, WAIS, and NNTP servers.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: mozilla-thunderbird-enigmail
+Priority: optional
+Section: mail
+Installed-Size: 1404
+Maintainer: Alexander Sack <asac@debian.org>
+Architecture: i386
+Source: enigmail
+Version: 2:0.92.1-0ubuntu05.10
+Depends: mozilla-thunderbird (>= 1.0.7), mozilla-thunderbird (<< 1.0.7.0), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libstdc++6 (>= 4.0.1), gnupg
+Filename: pool/main/e/enigmail/mozilla-thunderbird-enigmail_0.92.1-0ubuntu05.10_i386.deb
+Size: 318552
+MD5sum: e9b84e919736b464d0aa5ecd4b787095
+Description: Enigmail - GPG support for Mozilla Thunderbird
+ Enigmail is an extension for Mozilla Thunderbird. It allows users to
+ access the features provided by the popular GnuPG software from within
+ Mozilla Thunderbird.
+ .
+ Enigmail is capable of signing, authenticating, encrypting and decrypting
+ email. Additionally, it supports both the inline PGP format, as well as the
+ PGP/MIME format as described in RFC 3156.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: mysql-common-4.1
+Priority: optional
+Section: misc
+Installed-Size: 92
+Maintainer: Christian Hammers <ch@debian.org>
+Architecture: all
+Source: mysql-dfsg-4.1
+Version: 4.1.12-1ubuntu3.1
+Replaces: mysql-common, libmysqlclient6
+Provides: mysql-common
+Conflicts: mysql-common
+Filename: pool/main/m/mysql-dfsg-4.1/mysql-common-4.1_4.1.12-1ubuntu3.1_all.deb
+Size: 36022
+MD5sum: 86a50a42f1685ad909ae5674d641b6d6
+Description: mysql database common files (e.g. /etc/mysql/my.cnf)
+ MySQL is a fast, stable and true multi-user, multi-threaded SQL database
+ server. SQL (Structured Query Language) is the most popular database query
+ language in the world. The main goals of MySQL are speed, robustness and
+ ease of use.
+ .
+ This package includes files needed by all versions of the client library.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: kubuntu-desktop
+
+Package: netpbm
+Priority: optional
+Section: graphics
+Installed-Size: 4064
+Maintainer: Andreas Barth <aba@not.so.argh.org>
+Architecture: i386
+Source: netpbm-free
+Version: 2:10.0-8ubuntu1.2
+Replaces: pnmtopng, pbmwbmp, netpbm-dev, netpbm-nonfree
+Provides: pnmtopng, pbmwbmp
+Depends: bc, libnetpbm10 (>= 2:10.0-8ubuntu1.2), libc6 (>= 2.3.4-1), libjpeg62, libpng12-0 (>= 1.2.8rel), libtiff4, zlib1g (>= 1:1.2.1)
+Recommends: gs | gs-aladdin
+Conflicts: netpbm-nonfree (<= 1:19940301.1-3), pnmtopng, pbmwbmp, netpbm-dev (<= 2:9.10), ucbmpeg (<= 1r2-6)
+Filename: pool/main/n/netpbm-free/netpbm_10.0-8ubuntu1.2_i386.deb
+Size: 1160942
+MD5sum: 4d1a5506904e1854d911484187256ee7
+Description: Graphics conversion tools
+ Netpbm is a toolkit for manipulation of graphic images, including
+ conversion of images between a variety of different formats. There
+ are over 220 separate tools in the package including converters for
+ more than 80 graphics formats.
+ .
+ Website is http://netpbm.alioth.debian.org/
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop
+
+Package: openssl
+Priority: optional
+Section: utils
+Installed-Size: 2164
+Maintainer: Christoph Martin <christoph.martin@uni-mainz.de>
+Architecture: i386
+Version: 0.9.7g-1ubuntu1.1
+Depends: libc6 (>= 2.3.4-1), libssl0.9.7
+Suggests: ca-certificates
+Conflicts: ssleay (<< 0.9.2b)
+Filename: pool/main/o/openssl/openssl_0.9.7g-1ubuntu1.1_i386.deb
+Size: 904328
+MD5sum: d6b94a9d5fbeaa792e4bb126930c82e2
+Description: Secure Socket Layer (SSL) binary and related cryptographic tools
+ This package contains the openssl binary and related tools.
+ .
+ It is part of the OpenSSL implementation of SSL.
+ .
+ You need it to perform certain cryptographic actions like:
+  o  Creation of RSA, DH and DSA Key Parameters
+  o  Creation of X.509 Certificates, CSRs and CRLs
+  o  Calculation of Message Digests
+  o  Encryption and Decryption with Ciphers
+  o  SSL/TLS Client and Server Tests
+  o  Handling of S/MIME signed or encrypted Mail
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: perl
+Priority: optional
+Section: perl
+Installed-Size: 11180
+Maintainer: Brendan O'Dea <bod@debian.org>
+Architecture: i386
+Version: 5.8.7-5ubuntu1.2
+Replaces: perl-5.005 (<< 6), perl-5.6 (<< 6), perl-doc (<< 5.8.0-1), perl-modules (<< 5.8.1-1), libdigest-md5-perl, libmime-base64-perl, libtime-hires-perl, libstorable-perl
+Provides: perl5, libdigest-md5-perl, libmime-base64-perl, libtime-hires-perl, libstorable-perl
+Depends: perl-base (= 5.8.7-5ubuntu1.2), perl-modules (>= 5.8.7-5ubuntu1.2), libc6 (>= 2.3.4-1), libdb4.2, libgdbm3
+Recommends: perl-doc
+Suggests: libterm-readline-gnu-perl | libterm-readline-perl-perl
+Conflicts: perl-5.004 (<< 6), perl-5.005 (<< 6), perl-5.6 (<< 6), perl-doc (<< 5.8.7-1), libdigest-md5-perl (<< 2.33-1), libmime-base64-perl (<< 3.05-1), libtime-hires-perl (<< 1.66-1), libstorable-perl (<< 2.12-1)
+Filename: pool/main/p/perl/perl_5.8.7-5ubuntu1.2_i386.deb
+Size: 3297206
+MD5sum: 3761f58400331261204a53322eabe79c
+Description: Larry Wall's Practical Extraction and Report Language
+ An interpreted scripting language, known among some as "Unix's Swiss
+ Army Chainsaw".
+ .
+ Perl is optimised for scanning arbitrary text files and system
+ administration.  It has built-in extended regular expression matching
+ and replacement, a data-flow mechanism to improve security with
+ setuid scripts and is extensible via modules that can interface to C
+ libraries.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: perl-base
+Essential: yes
+Priority: required
+Section: base
+Installed-Size: 2052
+Maintainer: Brendan O'Dea <bod@debian.org>
+Architecture: i386
+Source: perl
+Version: 5.8.7-5ubuntu1.2
+Replaces: perl-5.005-base (<< 6), perl-5.6-base (<< 6), perl (<< 5.8.0-9), perl-modules (<< 5.8.4-5), libperl5.8 (<< 5.8.0-20), libscalar-list-utils-perl, libclass-multimethods-perl (<< 1.70-4)
+Provides: perl5-base, perlapi-5.8.0, perlapi-5.8.1, perlapi-5.8.2, perlapi-5.8.3, perlapi-5.8.4, perlapi-5.8.6, perlapi-5.8.7, data-dumper, libscalar-list-utils-perl
+Pre-Depends: libc6 (>= 2.3.4-1)
+Suggests: perl
+Conflicts: perl-5.004-base (<< 6), perl-5.005-base (<< 6), perl-5.6-base (<< 6), data-dumper, autoconf2.13 (<< 2.13-45), libscalar-list-utils-perl (<< 1:1.13-1)
+Filename: pool/main/p/perl/perl-base_5.8.7-5ubuntu1.2_i386.deb
+Size: 737720
+MD5sum: 8df8b2936b3189d9d37586f275096146
+Description: The Pathologically Eclectic Rubbish Lister
+ A scripting language with delusions of full language-hood, Perl is used
+ in many system scripts and utilities.
+ .
+ This is a stripped down Perl with only essential libraries.  To make
+ full use of Perl, you'll want to install the `perl', `perl-modules' and
+ optionally `perl-doc' packages which supplement this one.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: perl-doc
+Priority: optional
+Section: doc
+Installed-Size: 12168
+Maintainer: Brendan O'Dea <bod@debian.org>
+Architecture: all
+Source: perl
+Version: 5.8.7-5ubuntu1.2
+Replaces: perl-5.005-doc (<< 6), perl-5.6-doc (<< 6)
+Depends: perl (>= 5.8.7-1)
+Suggests: man-browser, groff
+Conflicts: perl-5.004-doc (<< 6), perl-5.005-doc (<< 6), perl-5.6-doc (<< 6)
+Filename: pool/main/p/perl/perl-doc_5.8.7-5ubuntu1.2_all.deb
+Size: 7206780
+MD5sum: 3734f65b71a70fef5dda18026153d901
+Description: Perl documentation
+ Perl manual pages, POD documentation and the `perldoc' program.  If you are
+ writing Perl programs, you almost certainly need this.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: perl-modules
+Priority: optional
+Section: perl
+Installed-Size: 11816
+Maintainer: Brendan O'Dea <bod@debian.org>
+Architecture: all
+Source: perl
+Version: 5.8.7-5ubuntu1.2
+Replaces: libpod-parser-perl, libansicolor-perl, libfile-temp-perl, libnet-perl, libattribute-handlers-perl, libcgi-pm-perl, libi18n-langtags-perl, liblocale-maketext-perl, libmath-bigint-perl, libnet-ping-perl, libtest-harness-perl, libtest-simple-perl, liblocale-codes-perl
+Provides: libpod-parser-perl, libansicolor-perl, libfile-temp-perl, libnet-perl, libattribute-handlers-perl, libcgi-pm-perl, libi18n-langtags-perl, liblocale-maketext-perl, libmath-bigint-perl, libnet-ping-perl, libtest-harness-perl, libtest-simple-perl, liblocale-codes-perl
+Depends: perl (>= 5.8.7-1)
+Conflicts: libpod-parser-perl (<< 1.30-1), libansicolor-perl (<< 1.09-1), libfile-temp-perl (<< 0.16-1), libnet-perl (<< 1:1.17-1), libattribute-handlers-perl (<< 0.78-1), libcgi-pm-perl (<< 3.10-1), libi18n-langtags-perl (<< 0.35-1), liblocale-maketext-perl (<< 1.08-1), libmath-bigint-perl (<< 1.77-1), libnet-ping-perl (<< 2.31-1), libtest-harness-perl (<< 2.48-1), libtest-simple-perl (<< 0.54-1), liblocale-codes-perl (<< 2.06.1-1)
+Filename: pool/main/p/perl/perl-modules_5.8.7-5ubuntu1.2_all.deb
+Size: 2325762
+MD5sum: c0febd1257a462bc183633c12f97a9d2
+Description: Core Perl modules
+ Architecture independent Perl modules.  These modules are part of Perl and
+ required if the `perl' package is installed.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-desktop, kubuntu-desktop, ubuntu-desktop
+
+Package: perl-suid
+Priority: optional
+Section: perl
+Installed-Size: 100
+Maintainer: Brendan O'Dea <bod@debian.org>
+Architecture: i386
+Source: perl
+Version: 5.8.7-5ubuntu1.2
+Replaces: perl-5.005-suid (<< 6), perl-5.6-suid (<< 6)
+Depends: perl (= 5.8.7-5ubuntu1.2), libc6 (>= 2.3.4-1), libperl5.8 (= 5.8.7-5ubuntu1.2)
+Conflicts: perl-5.004-suid (<< 6), perl-5.005-suid (<< 6), perl-5.6-suid (<< 6)
+Filename: pool/main/p/perl/perl-suid_5.8.7-5ubuntu1.2_i386.deb
+Size: 29052
+MD5sum: 71fb8a9e0b8cb4a5bb568c8cf8610153
+Description: Runs setuid Perl scripts
+ suidperl is a setuid root helper program which is invoked by perl when
+ executing scripts with setuid/gid bits set on systems (like linux) which
+ don't have support setuid script execution natively in the kernel.
+ .
+ Usage of this program is now strongly deprecated upstream and support
+ (along with this package) will probably be removed in 5.10.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: poppler-utils
+Priority: optional
+Section: text
+Installed-Size: 232
+Maintainer: Changwoo Ryu <cwryu@debian.org>
+Architecture: i386
+Source: poppler
+Version: 0.4.2-0ubuntu6.4
+Replaces: xpdf-utils, pdftohtml
+Provides: xpdf-utils, pdftohtml
+Depends: libc6 (>= 2.3.4-1), libfontconfig1 (>= 2.3.0), libgcc1 (>= 1:4.0.1), libjpeg62, libpoppler0c2 (>= 0.4.0), libstdc++6 (>= 4.0.1)
+Conflicts: xpdf-utils, pdftohtml
+Filename: pool/main/p/poppler/poppler-utils_0.4.2-0ubuntu6.4_i386.deb
+Size: 76644
+MD5sum: cff46f58adaebe998da2de59c30b963a
+Description: PDF utilitites (based on libpoppler)
+ This package contains pdftops (PDF to PostScript converter),
+ pdfinfo (PDF document information extractor), pdfimages
+ (PDF image extractor), pdftotext (PDF to text converter), and
+ pdffonts (PDF font analyzer).
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: rpm
+Priority: optional
+Section: admin
+Installed-Size: 1968
+Maintainer: Anibal Monsalve Salazar <anibal@debian.org>
+Architecture: i386
+Version: 4.0.4-31ubuntu1.1
+Depends: libc6 (>= 2.3.4-1), libdb3 (>= 3.2.9-22ubuntu1), libpopt0 (>= 1.7), librpm4 (<< 4.0.5), librpm4 (>= 4.0.4), perl
+Suggests: alien
+Filename: pool/main/r/rpm/rpm_4.0.4-31ubuntu1.1_i386.deb
+Size: 242302
+MD5sum: a6fc5dd5819b6f76431e32e095d9e971
+Description: Red Hat package manager
+ If you want to install Red Hat Packages then please use the alien
+ package. Using rpm directly will bypass the Debian packaging system!
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: sudo
+Priority: important
+Section: admin
+Installed-Size: 376
+Maintainer: Bdale Garbee <bdale@gag.com>
+Architecture: i386
+Version: 1.6.8p9-2ubuntu2.1
+Depends: libc6 (>= 2.3.4-1), libpam0g (>= 0.76), libpam-modules
+Filename: pool/main/s/sudo/sudo_1.6.8p9-2ubuntu2.1_i386.deb
+Size: 158766
+MD5sum: f3858eb968eaa1ae295d39cfe3e4e7d0
+Description: Provide limited super user privileges to specific users
+ Sudo is a program designed to allow a sysadmin to give limited root
+ privileges to users and log root activity.  The basic philosophy is to give
+ as few privileges as possible but still allow people to get their work done.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: tetex-bin
+Priority: optional
+Section: tex
+Installed-Size: 8720
+Maintainer: teTeX maintainers <debian-tetex-maint@lists.debian.org>
+Architecture: i386
+Version: 2.0.2-30ubuntu3.3
+Replaces: texbin, xdvik, mflib, kpathsea, makeindex, ps2pk, latex, texidoc, dvipdfm, cweb, texdoctk
+Provides: texbin, xdvi, metafont, makeindex, ps2pk, latex, tex, dvips, dvipsk, dvipdfm, cweb, texdoctk
+Depends: libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libice6, libkpathsea3 (>= 2.0.2-1), libpaper1, libpng12-0 (>= 1.2.8rel), libsm6, libstdc++6 (>= 4.0.1), libt1-5 (>= 5.0.2), libwww-ssl0 (>= 5.4.0), libx11-6, libxaw7, libxext6, libxmu6, libxt6, zlib1g (>= 1:1.2.1), perl, tetex-base, ed, debianutils (>= 1.13.1), debconf (>= 0.5.00), mime-support, sed (>= 4.0.5), ucf (>= 1.02)
+Pre-Depends: dpkg (>= 1.6.8)
+Recommends: dialog | whiptail, psutils, texi2html, perl-tk
+Suggests: lpr, gv | postscript-viewer, xpdf-reader | pdf-viewer, tetex-extra, texinfo, chktex | lacheck, rubber
+Conflicts: texbin, xdvik, mflib, kpathsea, makeindex, ps2pk, latex, dvipdfm, cweb (<< 3.64.debian-1), texdoctk, nextawg (<= 0.5.1-34), nextaw (<< 0.8-2), alml (<< 2002.08.29-4), jbibtex-bin (<< 3.0.5+0.04-2), jtex-bin (<= 1.8-5.1), passivetex (<< 1.21-5), ptex-bin (<< 3.0.5+0.04-2), xmltex (<< 1.9-4), tetex-base (<= 2.0.2b-2), jadetex (<< 3.13-2)
+Filename: pool/main/t/tetex-bin/tetex-bin_2.0.2-30ubuntu3.3_i386.deb
+Size: 3882632
+MD5sum: 662bd04f0d6f1bafe878d7b094f7a6de
+Description: The teTeX binary files
+ This is the binary part of teTeX. This package contains all the
+ programs belonging to teTeX, i.e. the (La)TeX compiler itself, and
+ variants like pdf(La)TeX, e-TeX etc.
+ .
+ It also contains auxiliary programs like bibtex, makeindex, dvips
+ and xdvi, conversion tools and some tools for maintaining your teTeX
+ system. Also included are man pages and info files about these
+ programs.
+ .
+ Lambda, Omega, MetaPost, MetaFun and AmSTeX won't work without
+ having tetex-extra installed.
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+
+Package: wget
+Priority: standard
+Section: web
+Installed-Size: 1436
+Maintainer: Noèl Köthe <noel@debian.org>
+Architecture: i386
+Version: 1.10-2ubuntu0.1
+Depends: libc6 (>= 2.3.4-1), libssl0.9.7
+Conflicts: wget-ssl
+Filename: pool/main/w/wget/wget_1.10-2ubuntu0.1_i386.deb
+Size: 232324
+MD5sum: 681fd7679b97b1a9175b3bd271ee60fd
+Description: retrieves files from the web
+ Wget is a network utility to retrieve files from the Web
+ using http and ftp, the two most widely used Internet
+ protocols. It works non-interactively, so it will work in
+ the background, after having logged off. The program supports
+ recursive retrieval of web-authoring pages as well as ftp
+ sites -- you can use wget to make mirrors of archives and
+ home pages or to travel the Web like a WWW robot.
+ .
+ Wget works particularly well with slow or unstable connections
+ by continuing to retrieve a document until the document is fully
+ downloaded. Re-getting files from where it left off works on
+ servers (both http and ftp) that support it. Both http and ftp
+ retrievals can be time stamped, so wget can see if the remote
+ file has changed since the last retrieval and automatically
+ retrieve the new version if it has.
+ .
+ Wget supports proxy servers; this can lighten the network load,
+ speed up retrieval, and provide access behind firewalls.
+ .
+ http://www.gnu.org/software/wget/
+Bugs: mailto:ubuntu-users@lists.ubuntu.com
+Origin: Ubuntu
+Task: edubuntu-standard, kubuntu-standard, ubuntu-standard
+
