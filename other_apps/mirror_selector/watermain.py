@@ -202,7 +202,7 @@ class appgui:
 		dialog.hide()
 		return gtk.TRUE
 
-	def quit(self,widget):
+	def quit(*args):
 		if hasattr(gtk, 'main_quit'):
 	            gtk.main_quit()
 	        else:
