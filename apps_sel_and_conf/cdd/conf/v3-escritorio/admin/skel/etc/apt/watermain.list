@@ -1,0 +1,21 @@
+
+Mirrors de Guadalinex disponibles, en formato watermain.
+Guadalinex Mirrors availables, in watermain format.
+
+#TITLE:Sitio principal de Guadalinex en la Junta de Andalucia
+#ID:jda
+deb http://http.guadalinex.es/repositorio flamenco guada
+deb http://http.guadalinex.es/ubuntu breezy main universe restricted
+#END
+
+#TITLE:Copia en la Universidad de Cadiz
+#ID:uca
+deb http://www.uca.es/guadalinex flamenco guada
+deb http://www.uca.es/ubuntu breezy main universe restricted
+#END
+
+#TITLE:Copia en el Centro de Informatica Cientifica de Andalucia
+#ID:cica
+deb http://www.cica.es/guadalinex flamenco guada
+deb http://www.cica.es/ubuntu breezy main universe restricted
+#END
