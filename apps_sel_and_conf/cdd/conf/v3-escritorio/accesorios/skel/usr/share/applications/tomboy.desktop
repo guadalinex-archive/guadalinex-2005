@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Tomboy
+Name[es]=Notas del escritorio (Tomboy)
+Exec=tomboy
+Icon=tomboy
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Application;Utility;
