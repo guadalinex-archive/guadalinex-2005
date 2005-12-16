@@ -153,6 +153,10 @@ auto_add_modules()
 		manual_add_modules ${x}
 	done
 
+	# firewire
+	for x in ieee1394 ohci1394 raw1394 sbp2; do
+		manual_add_modules ${x}
+	done
 }
 
 usage()
