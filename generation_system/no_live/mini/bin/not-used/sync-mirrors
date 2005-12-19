@@ -1,0 +1,21 @@
+#! /bin/sh
+
+export CDIMAGE_ROOT=/srv/cdimage.no-name-yet.com
+. "$CDIMAGE_ROOT/etc/config"
+
+SECRET="$CDIMAGE_ROOT/secret"
+if [ -d "$HOME/secret" ]; then
+	SECRET="$HOME/secret"
+fi
+
+trigger () {
+	echo "$2:"
+	ssh -i "$SECRET/auckland" "$1@$2" sleep 1
+}
+
+trigger archvsync syncproxy.ubuntu.com
+trigger archvsync mirnyy.ubuntu.com
+trigger archvsync frei.ubuntu.com
+trigger archvsync durville.ubuntu.com
+trigger archvsync mcmurdo.ubuntu.com
+trigger archvsync magellanic.ubuntu.com

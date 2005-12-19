@@ -1,0 +1,17 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+
+BUILD_PACKAGES=$CDIMAGE_ROOT/../../../apps_sel_and_conf/cdd/build
+
+# Go and compile
+cd $BUILD_PACKAGES/gen-package && make mini
+
+# Clean
+rm $CDIMAGE_ROOT/ftp/pool/main/g/gen-package/*
+rm $CDIMAGE_ROOT/ftp/pool/main/m/meta-guadalinex-2005/*
+
+# Copy 
+cp $(find $BUILD_PACKAGES/packages/binary-i386 -name *deb) $CDIMAGE_ROOT/uda/pkgs
