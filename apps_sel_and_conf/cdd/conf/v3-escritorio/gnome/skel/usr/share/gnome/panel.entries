@@ -67,7 +67,7 @@
       <key>applets/clock_screen0/position</key>
       <schema_key>/schemas/apps/panel/objects/position</schema_key>
       <value>
-        <int>0</int>
+        <int>1</int>
       </value>
     </entry>
     <entry>
@@ -242,7 +242,7 @@
       <key>applets/mixer_screen0/position</key>
       <schema_key>/schemas/apps/panel/objects/position</schema_key>
       <value>
-        <int>1</int>
+        <int>2</int>
       </value>
     </entry>
     <entry>
@@ -2780,7 +2780,7 @@
       <key>objects/logout_button0/position</key>
       <schema_key>/schemas/apps/panel/objects/position</schema_key>
       <value>
-        <int>50</int>
+        <int>0</int>
       </value>
     </entry>
     <entry>
