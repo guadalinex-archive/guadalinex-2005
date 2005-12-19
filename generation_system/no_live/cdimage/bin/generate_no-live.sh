@@ -2,6 +2,7 @@
 set -e
 
 [ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+[ ! -d $CDIMAGE_ROOT/log ] && mkdir $CDIMAGE_ROOT/log
 . "$CDIMAGE_ROOT/etc/config"
 
 IMAGE_TYPE="${1:-daily}"
@@ -34,5 +35,4 @@ echo "Running debian-cd/build.sh..."
 cd "$CDIMAGE_ROOT/debian-cd"
 ./build.sh
 
-mv ../scratch/guadalinex/debian-cd/i386/breezy-install-i386.raw ../scratch/guadalinex/debian-cd/i386/breezy-install-i386.iso
-
+mv ../scratch/guadalinex/debian-cd/i386/breezy-install-i386.raw ../scratch/guadalinex/debian-cd/i386/no_live_cd-v1.0b1-$(date +%Y%m%d%H%M).iso
