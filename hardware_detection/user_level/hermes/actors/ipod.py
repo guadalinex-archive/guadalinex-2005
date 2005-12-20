@@ -55,7 +55,8 @@ ICONOFF = os.path.abspath('actors/img/ipodoff.png')
 
 class Actor(DeviceActor):
 
-    __required__ = {'portable_audio_player.type':'ipod'}
+    __required__ = {'portable_audio_player.type': 'ipod',
+                    'info.product': 'iPod'}
 
     def on_added(self):
         s = Synaptic()
@@ -66,7 +67,7 @@ class Actor(DeviceActor):
                 open_gtkpod()
 
         def open_gtkpod():
-            os.system('gkpod &')
+            os.system('gtkpod &')
 
         if s.check(packages):
             actions = {"Abrir administrador iPod": open_gtkpod}
