@@ -5,10 +5,10 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-work.VJRyjq/uda-docs-0.1/docs/recipes/recipes.xml
---- ./docs/recipes/recipes.xml	1970-01-01 01:00:00.000000000 +0100
-+++ /tmp/dpep-work.VJRyjq/uda-docs-0.1/docs/recipes/recipes.xml	2005-11-17 13:22:11.000000000 +0100
-@@ -0,0 +1,157 @@
+diff -urNad uda-docs-0.1~/docs/recipes/recipes.xml uda-docs-0.1/docs/recipes/recipes.xml
+--- uda-docs-0.1~/docs/recipes/recipes.xml	1970-01-01 01:00:00.000000000 +0100
++++ uda-docs-0.1/docs/recipes/recipes.xml	2005-12-20 17:08:23.000000000 +0100
+@@ -0,0 +1,152 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
 +	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
@@ -71,11 +71,6 @@ diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-wo
 +       <xi:fallback> <para><emphasis>Error en chap-bonito</emphasis></para></xi:fallback>
 +       </xi:include>
 +
-+
-+	<xi:include xml:base="chap-movies" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-movies/movies.xml">
-+       <xi:fallback> <para><emphasis>Falló en chap-movies</emphasis></para></xi:fallback>
-+       </xi:include>
-+       
 +       <xi:include xml:base="chap-modem" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-modem/modem.xml">
 +       <xi:fallback> <para><emphasis>Falló en chap-movies</emphasis></para></xi:fallback>
 +       </xi:include>
@@ -93,9 +88,9 @@ diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-wo
 +    <para>El gestor de ficheros Nautilus tiene un grabador de CD/DVD integrado
 +    que se puede usar para crear CDs de datos directamente desde el escritorio. </para>
 +   <para>Para crear un CD de datos tan sólo tiene que pulsar sobre 
-+   <guimenuchoice><guimenu>Lugares</guimenu></guimenuchoice>
++   <guimenuchoice><guimenu>Ir a</guimenu></guimenuchoice>
 +    en el menú de la ventana de Nautilus, seleccionar 
-+   <guimenuchoice><guimenu>Crear un CD/DVD de datos</guimenu></guimenuchoice> 
++   <guimenuchoice><guimenu>Grabador de CD/DVD</guimenu></guimenuchoice> 
 +    y arrastrar los datos que quiera grabar en la ventana que aparecerá a continuación.</para>
 +</chapter>
 +

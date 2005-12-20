@@ -1,0 +1,105 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_molinux_chap_modem.dpatch by  <roberto@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad uda-docs-0.1~/docs/recipes/chap-modem/modem.xml uda-docs-0.1/docs/recipes/chap-modem/modem.xml
+--- uda-docs-0.1~/docs/recipes/chap-modem/modem.xml	1970-01-01 01:00:00.000000000 +0100
++++ uda-docs-0.1/docs/recipes/chap-modem/modem.xml	2005-12-20 16:56:45.000000000 +0100
+@@ -0,0 +1,94 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
++<!ENTITY % xinclude SYSTEM "../../libs/xinclude.mod">
++%xinclude;
++<!ENTITY % globalent SYSTEM "../../libs/global.ent">
++%globalent;
++]>
++
++<chapter id='modem'>
++       <title>Modem</title>
++          <para>Aún hay muchos usuarios que se conectan mediante red telefónica básica usando módem. 
++		Estos usuarios pueden configurar su conexión a Internet usando el gestor de conexiones de Gnome
++		al que se puede acceder mediante el menú: 
++                <menuchoice><guimenu>Sistema</guimenu>
++                            <guimenuitem>Administración</guimenuitem>
++                            <guimenuitem>Red</guimenuitem>
++                </menuchoice>	
++          </para>
++          <sect>
++	     <title>Configuración de su cuenta de acceso con isp</title>
++          <para>
++	    Para configurar su cuenta de acceso en su isp marque la casilla de acceso a través de 
++	    módem. A continuación, pulse en «Propiedades» para activar la configuración del módem.
++	  </para>
++          <figure>
++              <title>Menú de configuración de la red</title>
++	     <screenshot>
++		<mediaobject>
++	           <imageobject>
++			<imagedata fileref="../images/modem-red-configuracion.png" format="png"/>
++		   </imageobject>
++		</mediaobject>
++	     </screenshot>
++	</figure>
++         <para>
++	    en la solapa «General», marque la casilla «Activar esta conexión» para poder escribir en los
++	    campos de abajo. En la configuración de los «Datos del proveedor de servicios de Internet» debe 
++	    escribir el teléfono que debe marcar con el módem para establecer una conexión con su proveedor
++	    y el prefijo de marcado, si fuera necesario.
++         </para>
++
++         <figure>
++              <title>Menú de configuración de la red</title>
++	     <screenshot>
++		<mediaobject>
++	           <imageobject>
++			<imagedata fileref="../images/modem-general.png" format="png"/>
++		   </imageobject>
++		</mediaobject>
++	     </screenshot>
++	</figure>
++      
++        <para>
++           En el apartado «Datos de cuentas» debe escribir su nombre de usuario para la conexión y la contraseña. El nombre de usuario se lo debe facilitar su proveedor, normalmente es un identificador del tipo
++	nombre@empresa
++
++        </para>
++  </sect>
++  <sect>
++     <title>
++	Configuración del módem</title>
++	<para>
++	 La configuración del módem se realiza usando la solapa «Módem». Debe especificar el puerto del módem.
++ 	Normalmente /dev/modem es un enlace simbólico a uno de los disposivos serie de la máquina. El módem suele estar conectado en el COM1 bajo windows, que se corresponde con /dev/ttyS0. Si tiene otro dispositivo serie conectado, como un ratón o un enlace con un SAI, puede ser que tenga el módem en un puerto distinto.
++        </para>
++<figure>
++              <title>Menú de configuración del módem</title>
++	     <screenshot>
++		<mediaobject>
++	           <imageobject>
++			<imagedata fileref="../images/modem-modem.png" format="png"/>
++		   </imageobject>
++		</mediaobject>
++	     </screenshot>
++	</figure>
++       </sect>
++
++       <sect><title>Configuración de la ruta</title>
++	<para>Si dispone solo de una conexión a Internet con módem y no está en una red de área local, debe
++	      marcar la casilla «Establecer el módem como ruta predeterminada a Internet»
++        </para>
++        <figure>
++              <title>Menú de configuración de la red</title>
++	     <screenshot>
++		<mediaobject>
++	           <imageobject>
++			<imagedata fileref="../images/modem-configuracion.png" format="png"/>
++		   </imageobject>
++		</mediaobject>
++	     </screenshot>
++	</figure>
++</sect>
++</chapter>
