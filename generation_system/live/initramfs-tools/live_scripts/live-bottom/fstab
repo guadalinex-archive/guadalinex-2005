@@ -97,9 +97,9 @@ get_cdroms ()
 create_fstab ()
 {
 	if \$(grep rw /proc/cmdline) ; then
-		defaults="    defaults,noauto        0       2"
+		defaults="    defaults,nls=utf8,noauto        0       2"
 	else
-		defaults="    ro,users,noauto        0       2"
+		defaults="    ro,users,nls=utf8,noauto        0       2"
 	fi
 	partitions=\$(get_partitions)
 	for part in \$partitions; do
