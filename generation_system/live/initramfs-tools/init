@@ -74,6 +74,7 @@ log_end_msg
 # Populate /dev tree
 log_begin_msg "Initializing /dev"
 parse_numeric ${ROOT}
+sleep 2
 udevstart
 log_end_msg
 

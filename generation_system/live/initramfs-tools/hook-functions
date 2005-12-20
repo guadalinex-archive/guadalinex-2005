@@ -154,7 +154,7 @@ auto_add_modules()
 	done
 
 	# firewire
-	for x in ieee1394 ohci1394 raw1394 sbp2; do
+	for x in ieee1394 ohci1394 sbp2; do
 		manual_add_modules ${x}
 	done
 }
