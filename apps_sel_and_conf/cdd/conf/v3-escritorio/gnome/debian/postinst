@@ -32,7 +32,7 @@ case "$1" in
 
     $GCONF --load /usr/share/gnome/panel.entries
 
-    adduser hal disk
+#    adduser hal disk
     /usr/sbin/locale-gen
     ;;
 
