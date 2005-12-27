@@ -20,6 +20,7 @@ esac
 # To avoid fsck
 touch ${rootmnt}/fastboot
 
+# Standard initial part of fstab
 cat <<EOF > ${rootmnt}/etc/fstab
 # /etc/fstab: static file system information.
 #
@@ -27,7 +28,6 @@ cat <<EOF > ${rootmnt}/etc/fstab
 proc            /proc           proc    defaults        0       0
 sys             /sys            sysfs   defaults        0       0
 EOF
-
 
 cat <<EOF > ${rootmnt}/etc/rc2.d/S05disks.sh
 #
@@ -106,8 +106,9 @@ get_cdroms ()
 #
 # Create fstab
 #
-create_fstab ()
+add_partitions_to_fstab()
 {
+
 	partitions=\$(get_partitions)
 	for part in \$partitions; do
 		if \$(grep rw /proc/cmdline) ; then
@@ -148,7 +149,7 @@ get_device ()
 }
 
 log_begin_msg "Searching local disks..."
-create_fstab
+add_partitions_to_fstab
 rm -f /etc/mtab
 cat /proc/mounts > /etc/mtab
 mount -a  >> /var/log/initramfs.debug 2>&1
