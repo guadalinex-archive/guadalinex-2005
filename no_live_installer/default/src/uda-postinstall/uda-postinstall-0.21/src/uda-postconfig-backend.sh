@@ -45,3 +45,24 @@ echo "deb http://archive.ubuntu.com/ubuntu breezy-security main restricted" >> /
 
 mv /etc/apt/sources.list.uda /etc/apt/sources.list
 
+# Move the correct lists into his place...
+
+mv /usr/share/uda-postinstall/backend/archive* /var/lib/apt/lists
+
+#Set up fstab...
+# First, add some extra options to some partitions...
+IFS=$'\n'
+FSTAB_TEMP="/etc/fstab.temp"
+for x in $(cat /etc/fstab)
+do
+        if [ -n "$(echo $x | grep media | grep -v cdrom | grep -v floppy)" ]; then
+                echo $x | sed -e s/defaults/defaults,users,exec,auto/ >> $FSTAB_TEMP
+        else
+                echo $x >> $FSTAB_TEMP
+        fi
+done
+mv $FSTAB_TEMP /etc/fstab
+
+# And run update-grub :D
+
+python /usr/share/uda-postinstall/backend/detect-windows-partitions.py
