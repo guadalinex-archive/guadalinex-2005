@@ -21,6 +21,7 @@ build-stamp:
 
 	# Fixing perms
 	chmod +x $(CURDIR)/lib/backend/*.py
+	chmod +x $(CURDIR)/lib/backend/*.sh
 
 	touch build-stamp
 
