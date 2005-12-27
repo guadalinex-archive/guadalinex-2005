@@ -54,27 +54,39 @@ get_partitions ()
 #
 get_filesystem ()
 {
-	ret=\$(sudo file -s \$1)
+	#ret=\$(sudo file -s \$1)
+	# We better use sfdisk
+	disk=\${1:0:8}
+	partition=\${1:8}
+	ret=\$(sudo sfdisk -c \$disk \$partition)
 	case \$ret in
-		*ext3*)
+	#	*ext3*)
+		*83*)
 			echo "\$1 ext3"
 			;;
-		*ext2*)
-			echo "\$1 ext3"
-			;;
-		*reiserfs*)
-			echo "\$1 reiserfs"
-			;;
-		*XFS*)
-			echo "\$1 xfs"
-			;;
-		*vfat*)
+	#	*ext2*)
+        #		
+        #	echo "\$1 ext3"
+	#		;;
+	#	*reiserfs*)
+	#		echo "\$1 reiserfs"
+	#		;;
+	#	*XFS*)
+	#		echo "\$1 xfs"
+	#		;;
+	#	*vfat*)
+		*b*)
 			echo "\$1 vfat"
 			;;
-		*ntfs*)
+		*c*)
+			echo "\$1 vfat"
+			;;
+	#	*ntfs*)
+		*7*)
 			echo "\$1 ntfs"
 			;;
-		*swap*)
+	#	*swap*)
+		*82*)
 			echo "\$1 swap"
 			;;
 		*)
@@ -86,6 +98,7 @@ get_filesystem ()
 #
 # Search for CD/DVDs
 #
+# FIXME: This gets just first CD-ROM device
 get_cdroms ()
 {
 	echo \$(head -3 /proc/sys/dev/cdrom/info | tail -1 | cut -f 3-)
@@ -96,13 +109,13 @@ get_cdroms ()
 #
 create_fstab ()
 {
-	if \$(grep rw /proc/cmdline) ; then
-		defaults="    defaults,nls=utf8,noauto        0       2"
-	else
-		defaults="    ro,users,nls=utf8,noauto        0       2"
-	fi
 	partitions=\$(get_partitions)
 	for part in \$partitions; do
+		if \$(grep rw /proc/cmdline) ; then
+			defaults="    users,defaults,noauto	0       2"
+		else
+			defaults="    ro,users,noauto        	0       2"
+		fi
 		entry=\$(get_filesystem \$part)
 		dev=\$(echo \$entry | cut -d ' ' -f 1 )
 		fs=\$(echo \$entry | cut -d ' ' -f 2 )
@@ -112,16 +125,16 @@ create_fstab ()
 			mntpoint="/media/\${dev#/dev/}"
 			mkdir -p \$mntpoint
 			if [ "\$fs" == "ntfs" ]; then
-				defaults=\$(echo \${defaults} | sed 's|users|user,umask=022|g')
+				defaults=\$(echo \${defaults} | sed 's|users|user,umask=022,nls=utf8|g')
 			fi
-			entry="\${dev}	\${mntpoint}	\${fs}\${defaults}"
+			entry="\${dev}            \${mntpoint}            \${fs}            \${defaults}"
 		fi
 		echo \$entry >> /etc/fstab
 	done
 	num=0
 	cdroms=\$(get_cdroms)
 	for cd in \$cdroms; do
-		entry="/dev/\${cd}        /media/cdrom\${num}   udf,iso9660 ro,user,noauto  0       0"
+		entry="/dev/\${cd}            /media/cdrom\${num}            udf,iso9660 ro,user,noauto  0       0"
 		mkdir -p /media/cdrom\${num} >> /var/log/initramfs.debug 2>&1
 		let num=num+1
 		echo \$entry >> /etc/fstab
