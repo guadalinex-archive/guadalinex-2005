@@ -119,33 +119,60 @@ class Config:
     """create and configure /etc/fstab depending on our installation selections.
     It creates a swapfile instead of swap partition if it isn't defined along the
     installation process. """
+    print "creating fstab"
+    # Remove all dirs in /target/media; they will be recreated
+    dirs_to_remove=os.listdir(os.path.join(self.target,'media'))
+    for dir in dirs_to_remove:
+        try:
+           os.rmdir(os.path.join(self.target,'media',dir))
+        except:
+           pass
 
+    
     swap = 0
     fstab = open(os.path.join(self.target,'etc/fstab'), 'w')
-    print >>fstab, 'proc\t/proc\tproc\tdefaults\t0\t0\nsysfs\t/sys\tsysfs\tdefaults\t0\t0'
+    # add standard fstab header
+    print >>fstab, "# /etc/fstab: static file system information."
+    print >>fstab, "#"
+    print >>fstab, "# <file system> <mount point>   <type>  <options>  <dump>  <pass>"
+    print >>fstab, "proc            /proc           proc    defaults      0       0"
+    print >>fstab, "sys             /sys            sysfs   defaults      0       0"
+    # Creating proc entry
+    #print >>fstab, 'proc\t/proc\tproc\tdefaults\t0\t0\nsysfs\t/sys\tsysfs\tdefaults\t0\t0'
+    # Creating installed system defined partitions
     for device, path in self.mountpoints.items():
         if path == '/':
             passno, options, filesystem = 1, 'defaults,errors=remount-ro', 'ext3'
         elif path == 'swap':
             swap, passno, filesystem, options, path = 1, 0, 'swap', 'sw', 'none'
         else:
-            passno, filesystem, options = 2, 'ext3', 'defaults'
+            passno, filesystem, options = 2, 'ext3', 'defaults,errors=remount-ro'
 
         print >>fstab, '%s\t%s\t%s\t%s\t%d\t%d' % (device, path, filesystem, options, 0, passno)
 
-    counter = 1
-    for device, fs in misc.get_filesystems().items():
+    win_counter = 1
+    for new_device, fs in misc.get_filesystems().items():
+      if new_device in [ele[0] for ele in self.mountpoints.items()]:
+        continue
       if ( fs in ['vfat', 'ntfs'] ):
         passno = 2
         if fs == 'vfat' :
-          options = 'rw,exec,users,sync,noauto,umask=022'
+          options = 'rw,users,exec,sync,auto'
         else:
-          options = 'utf8,noauto,user,exec,uid=1000,gid=1000'
-        path = '/media/Windows%d' % counter
+          options = 'utf8,user,exec,auto,umask=022,nls=utf-8'
+        path = '/media/Windows%d' % win_counter
         os.mkdir(os.path.join(self.target, path[1:]))
-        counter += 1
+        win_counter += 1
+      elif fs == 'ext3':
+              options = 'defaults,users,exec,auto'
+              path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
+              os.mkdir(os.path.join(self.target, path[1:]))
+      elif fs == 'swap':
+              options = 'sw'
+              path = 'none'
+              passno = 0
+      print >>fstab, '%s\t%s\t%s\t%s\t%d\t%d' % (new_device, path, fs, options, 0, passno)
 
-        print >>fstab, '%s\t%s\t%s\t%s\t%d\t%d' % (device, path, fs, options, 0, passno)
 
     # if swap partition isn't defined, we create a swapfile
     if ( swap != 1 ):
