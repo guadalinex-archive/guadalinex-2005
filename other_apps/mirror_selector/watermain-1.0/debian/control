@@ -1,8 +1,8 @@
 Source: watermain
-Section: guadalinex
+Section: admin
 Priority: optional
 Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
-Build-Depends: debhelper (>= 4.0.0)
+Build-Depends: debhelper (>= 4.0.0), docbook-xsl
 Standards-Version: 3.6.2.1
 
 Package: watermain

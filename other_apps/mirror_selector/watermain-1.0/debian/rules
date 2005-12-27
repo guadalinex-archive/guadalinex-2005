@@ -9,48 +9,21 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-
-
-
-CFLAGS = -Wall -g
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	CFLAGS += -O0
-else
-	CFLAGS += -O2
-endif
-
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
-	# Add here commands to configure the package.
-
-	touch configure-stamp
-
-
 build: build-stamp
 
-build-stamp: configure-stamp 
+build-stamp: 
 	dh_testdir
 
-	# Add here commands to compile the package.
-	#$(MAKE)
 	#docbook-to-man debian/watermain.sgml > watermain.1
-	xsltproc -''-nonet /usr/share/sgml/docbook/stylesheet/xsl/nwalsh/manpages/docbook.xsl debian/manpage.es.xml && \
-		mv watermain.8 watermain.es.8
+	xsltproc -''-nonet /usr/share/sgml/docbook/stylesheet/xsl/nwalsh/manpages/docbook.xsl debian/manpage.es.xml
+	mv watermain.8 watermain.es.8
 	xsltproc -''-nonet /usr/share/sgml/docbook/stylesheet/xsl/nwalsh/manpages/docbook.xsl debian/manpage.xml
 	#cp watermain.py.8 watermain.py.en.8
-
-	touch build-stamp
 
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp configure-stamp
-
-	# Add here commands to clean up after the build process.
-	#-$(MAKE) clean
-
+	rm -f build-stamp 
 	dh_clean 
 
 install: build
@@ -60,13 +33,12 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/watermain.
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/watermain
 	install -m 444 watermain.svg $(CURDIR)/debian/watermain/usr/share/icons/watermain
 	install -m 444 watermain.desktop $(CURDIR)/debian/watermain/usr/share/applications
-	# install logo.png DESTDIR=$(CURDIR)/debian/watermain/usr/share/watermain
-	# install watermain.glade DESTDIR=$(CURDIR)/debian/watermain/usr/share/watermain
-	# install watermain.py DESTDIR=$(CURDIR)/debian/watermain/usr/sbin
-
+	install -m 444 logo.png $(CURDIR)/debian/watermain/usr/share/watermain
+	install -m 444 watermain.list $(CURDIR)/debian/watermain/etc/apt
+	install -m 444 watermain.glade $(CURDIR)/debian/watermain/usr/share/watermain
+	install -m 544 watermain $(CURDIR)/debian/watermain/usr/sbin
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -79,22 +51,12 @@ binary-arch: build install
 	dh_installchangelogs 
 	dh_installdocs
 	dh_installexamples
-#	dh_install
-#	dh_installmenu
-#	dh_installdebconf	
-#	dh_installlogrotate
-#	dh_installemacsen
-#	dh_installpam
-#	dh_installmime
-#	dh_installinit
-#	dh_installcron
-#	dh_installinfo
+	dh_installmenu
 	dh_installman
 	dh_link
 	dh_strip
 	dh_compress
 	dh_fixperms
-#	dh_perl
 	dh_python
 #	dh_makeshlibs
 	dh_installdeb
@@ -104,4 +66,4 @@ binary-arch: build install
 	dh_builddeb
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure
+.PHONY: build clean binary-indep binary-arch binary install 
