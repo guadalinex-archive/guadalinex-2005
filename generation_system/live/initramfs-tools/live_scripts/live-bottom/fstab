@@ -125,7 +125,7 @@ add_partitions_to_fstab()
 			mntpoint="/media/\${dev#/dev/}"
 			mkdir -p \$mntpoint
 			if [ "\$fs" == "ntfs" ]; then
-				defaults=\$(echo \${defaults} | sed 's|users|user,umask=022,nls=utf8|g')
+				defaults=\$(echo \${defaults} | sed 's|users|users,umask=022,nls=utf8|g')
 			fi
 			entry="\${dev}            \${mntpoint}            \${fs}            \${defaults}"
 		fi
