@@ -113,6 +113,7 @@ add_partitions_to_fstab()
 {
 
 	partitions=\$(get_partitions)
+	win_counter=1
 	for part in \$partitions; do
 		if \$(grep rw /proc/cmdline) ; then
 			defaults="    users,noauto,defaults	0       2"
@@ -129,11 +130,17 @@ add_partitions_to_fstab()
 			entry="\${dev}	none	swap    sw              0       0"
 		else
 			mntpoint="/media/\${dev#/dev/}"
-			mkdir -p \$mntpoint
 			if [ "\$fs" == "ntfs" ]; then
 				defaults=\$(echo \${defaults} | sed 's|users|users,umask=022,nls=utf8|g')
+				mntpoint="/media/Windows\${win_counter}"
+				let win_counter=win_counter+1
+			fi
+			if [ "\$fs" == "vfat" ]; then
+				mntpoint="/media/Windows\${win_counter}"
+				let win_counter=win_counter+1
 			fi
 			entry="\${dev}            \${mntpoint}            \${fs}            \${defaults}"
+			mkdir -p \$mntpoint
 		fi
 		echo \$entry >> /etc/fstab
 	done
