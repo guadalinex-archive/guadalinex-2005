@@ -10,6 +10,7 @@ deluser --remove-home uda
 addgroup --gid 1000 $USERNAME
 CRYPT_PASS=$(echo "$PASSWD" | mkpasswd --hash=md5 --stdin)
 useradd -m -u 1000 -s /bin/bash -g $USERNAME -p $CRYPT_PASS -G adm,dialout,cdrom,floppy,audio,dip,video,plugdev,lpadmin,scanner,admin $USERNAME
+chmod 755 /home/$USERNAME
 
 #Modify /etc/hosts
 #ORIG=$(cat /etc/hosts | grep 127.0.0.1 | awk '{print $4}')
