@@ -218,7 +218,7 @@ class Config:
     #self.set_debconf('passwd', 'passwd/user-password-again', self.password)
     #self.reconfigure('passwd')
 
-    # Only for Guadalinex
+    # FIXME: Only for Guadalinex (This is ugly!)
     self.chrex('deluser', 'guada')
     self.chrex('rm', '-rf', '/home/guada')
     self.chrex('delgroup', 'guada')
@@ -345,7 +345,14 @@ ff02::3 ip6-allhosts""" % self.hostname
 
     # creates grub menu.lst on target
     self.chrex ('rm', '-f', '/boot/grub/menu.lst')
-    self.chrex('update-grub', '-y')
+    #self.chrex('update-grub', '-y')
+    # guess root device
+    for ele in self.mountpoints.items():
+      if ele[1]=="/":
+        root_device=ele[0]
+        break
+    
+    self.chrex('/usr/lib/python2.4/site-packages/ue/backend/grub-config.sh', root_device)
     misc.ex('umount', '-f', self.target + '/proc')
     misc.ex('umount', '-f', self.target + '/sys')
     misc.ex('umount', '-f', self.target + '/dev')
