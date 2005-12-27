@@ -13,8 +13,11 @@ Pasos:
   - Paquete "libntfs5" (dependencia de "peez")
 - Modificar en la distro base /etc/apt/sources.list para quitar línea del CD del
   no live y actualizar con "apt-get update"
-- Modificar en la distro base /etc/fstab para dejarlo vacío
+- Modificar en la distro base /etc/fstab para dejarlo vacío y borrar /media/*
 - Eliminar cualquier rastro de ficheros de "Hermes" (/var/tmp/*hermes*)
+- Eliminar usuarios creados durante instalación "no live" (típicamente "guada"): asegurar
+  que se borra el "home" y que se ha salido este usuario correctamente de cualquier sesión en 
+  el sistema base
 - Ejecutar "genlive" (-x para no regenerar el squashfs)
 
 [1] http://www.activasistemas.com/forja/files/peez2/
