@@ -98,7 +98,6 @@ get_filesystem ()
 #
 # Search for CD/DVDs
 #
-# FIXME: This gets just first CD-ROM device
 get_cdroms ()
 {
 	echo \$(head -3 /proc/sys/dev/cdrom/info | tail -1 | cut -f 3-)
