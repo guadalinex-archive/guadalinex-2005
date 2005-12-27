@@ -75,19 +75,22 @@ get_filesystem ()
 	#		echo "\$1 xfs"
 	#		;;
 	#	*vfat*)
-		*b*)
+		b)
 			echo "\$1 vfat"
 			;;
-		*c*)
+		c)
 			echo "\$1 vfat"
 			;;
 	#	*ntfs*)
-		*7*)
+		7)
 			echo "\$1 ntfs"
 			;;
 	#	*swap*)
-		*82*)
+		82)
 			echo "\$1 swap"
+			;;
+		5)
+			echo "\$1 extended"
 			;;
 		*)
 			echo "\$1 auto"
@@ -119,6 +122,9 @@ add_partitions_to_fstab()
 		entry=\$(get_filesystem \$part)
 		dev=\$(echo \$entry | cut -d ' ' -f 1 )
 		fs=\$(echo \$entry | cut -d ' ' -f 2 )
+		if [ "\$fs" == "extended" ] ; then
+			continue
+		fi 
 		if [ "\$fs" == "swap" ] ; then
 			entry="\${dev}	none	swap    sw              0       0"
 		else
