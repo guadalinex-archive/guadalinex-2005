@@ -199,17 +199,26 @@ def get_filesystems():
   partition_list = get_partitions()
   for device in partition_list:
     device = '/dev/' + device
-    filesystem_pipe = subprocess.Popen(['file', '-s', device], stdout=subprocess.PIPE)
+#    filesystem_pipe = subprocess.Popen(['file', '-s', device], stdout=subprocess.PIPE)
+    filesystem_pipe = subprocess.Popen(['sfdisk', '-c', device[0:8], device[8:]], stdout=subprocess.PIPE)
     filesystem = filesystem_pipe.communicate()[0]
-    if re.match('.*((ext3)|(swap)|(extended)|(data)).*', filesystem, re.I):
-      if 'ext3' in filesystem.split() or 'data' in filesystem.split() or 'extended' in filesystem.split():
-        device_list[device] = 'ext3'
-      elif 'swap' in filesystem.split():
-        device_list[device] = 'swap'
-      elif 'FAT' in filesystem.split():
-        device_list[device] = 'vfat'
-      elif 'NTFS' in filesystem.split():
-        device_list[device] = 'ntfs'
+    #if re.match('.*((ext3)|(swap)|(extended)|(data)).*', filesystem, re.I):
+    #  if 'ext3' in filesystem.split() or 'data' in filesystem.split() or 'extended' in filesystem.split():
+    #    device_list[device] = 'ext3'
+    #  elif 'swap' in filesystem.split():
+    #    device_list[device] = 'swap'
+    #  elif 'FAT' in filesystem.split():
+    #    device_list[device] = 'vfat'
+    #  elif 'NTFS' in filesystem.split():
+    #    device_list[device] = 'ntfs'
+    if '83' in filesystem:
+      device_list[device] = 'ext3'
+    elif '82' in filesystem:
+      device_list[device] = 'swap'
+    elif 'b' in filesystem or 'c' in filesystem:
+      device_list[device] = 'vfat'
+    elif '7' in filesystem:
+      device_list[device] = 'ntfs'
   return device_list
 
 
