@@ -112,9 +112,9 @@ add_partitions_to_fstab()
 	partitions=\$(get_partitions)
 	for part in \$partitions; do
 		if \$(grep rw /proc/cmdline) ; then
-			defaults="    users,defaults,noauto	0       2"
+			defaults="    users,noauto,defaults	0       2"
 		else
-			defaults="    ro,users,noauto        	0       2"
+			defaults="    ro,users,noauto,defaults 	0       2"
 		fi
 		entry=\$(get_filesystem \$part)
 		dev=\$(echo \$entry | cut -d ' ' -f 1 )
