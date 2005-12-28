@@ -229,6 +229,9 @@ class Config:
         stdout=subprocess.PIPE)
     subprocess.Popen(['chroot', self.target, 'chpasswd', '--md5'], stdin=passwd.stdout)
     self.chrex('mkdir', '/home/%s' % self.username)
+    self.chrex('chown %s' % self.username, '/home/%s' % self.username)
+    self.chrex('chgrp %s' % self.username, '/home/%s' % self.username)
+    self.chrex('chmod 755', '/home/%s' % self.username) # To be able to share folders in home
     self.chrex('adduser', self.username, 'admin')
     if not self.chrex('/usr/local/sbin/adduser.local', self.username):
       for group in GROUPS:
