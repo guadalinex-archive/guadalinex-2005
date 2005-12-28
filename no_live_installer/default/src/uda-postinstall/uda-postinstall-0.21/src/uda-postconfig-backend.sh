@@ -57,7 +57,9 @@ FSTAB_TEMP="/etc/fstab.temp"
 for x in $(cat /etc/fstab)
 do
         if [ -n "$(echo $x | grep media | grep -v cdrom | grep -v floppy)" ]; then
-                echo $x | sed -e s/defaults/defaults,users,exec,auto/ >> $FSTAB_TEMP
+		if [ -z "$(echo $x | grep -e ntfs -e vfat)" ]; then
+	                echo $x | sed -e s/defaults/defaults,users,exec,auto/ >> $FSTAB_TEMP
+		fi
         else
                 echo $x >> $FSTAB_TEMP
         fi
@@ -66,4 +68,4 @@ mv $FSTAB_TEMP /etc/fstab
 
 # And run update-grub :D
 
-python /usr/share/uda-postinstall/backend/detect-windows-partitions.py
+python /usr/share/uda-postinstall/backend/detect-additional-partitions.py
