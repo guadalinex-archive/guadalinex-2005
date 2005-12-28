@@ -29,7 +29,8 @@ sed -i -e "s|^\([^:]*:[^:]*:[^:]*\):.*getty.*\<\(tty[0-9]*\).*$|\1:/bin/login -f
 
 # This has the nice side effect of the cron.{daily,weekly,monthly} jobs in
 # /etc/crontab remaining disabled, yet also not run by anacron
-for file in anacron postfix hwclock.sh hwclockfirst.sh checkfs.sh checkroot.sh hdparm ntpdate mountall.sh ; do
+#for file in anacron postfix hwclock.sh hwclockfirst.sh checkfs.sh checkroot.sh hdparm ntpdate mountall.sh ; do
+for file in anacron postfix hwclock.sh hwclockfirst.sh checkfs.sh checkroot.sh ntpdate mountall.sh ; do
 	echo "deleting ${rootmnt}/etc/init.d/${file}..." >> /tmp/initramfs.debug
 	: > ${rootmnt}/etc/init.d/${file}
 done
