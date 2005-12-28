@@ -2,11 +2,18 @@
 
 if [[ $UID -eq 0 ]];then
 
-if [[ `dpkg --get-selections flashplugin-nonfree|awk '{ print $2 }'` != "install" ]]; then
+#if [[ `dpkg --get-selections flashplugin-nonfree|awk '{ print $2 }'` != "install" ]]; then
+if [ ! -d /usr/lib/flashplugin-nonfree/ ]; then
 
 zenity --question --title "Instalación de Macromedia Flash" --text "Se va a proceder a instalar los plugins para Mozilla Firefox de Macromedia Flash. Es necesario que esté conectado a Interet.
 
-¿Desea continuar?" && echo "flashplugin-nonfree install" | synaptic --hide-main-window --non-interactive --set-selections --progress-str "Instalando Macromedia Flash" --finish-str "Paquete instalado"
+¿Desea continuar?" && update-flashplugin | zenity --progress --pulsate --title="Plugin de Macromedia Flash" --text "Descargando..." --auto-close
+
+if [ -d /usr/lib/flashplugin-nonfree ]; then
+	zenity --info --title "Instalación de Macromedia Flash" --text "Instalación completada con éxito"
+else
+	zenity --info --title "Instalación de Macromedia Flash" --text "Ha habido algún error con la descarga. Inténtelo de nuevo más tarde"
+fi
 
 else
 
