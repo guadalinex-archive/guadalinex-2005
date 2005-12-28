@@ -40,6 +40,7 @@ def get_filesystems():
 
 fstab = open('/etc/fstab', 'r')
 blacklist = []
+import re
 for line in fstab.readlines():
 	list_columns = line.split()
 	try:
@@ -47,6 +48,10 @@ for line in fstab.readlines():
 			blacklist.append(list_columns[0])
 		if list_columns[1] == 'none' and list_columns[2] == 'swap':
 			blacklist.append(list_columns[0])
+                homing = re.compile('/media/*')
+                is_true = homing.match(list_columns[1])
+                if is_true:
+                        blacklist.append(list_columns[0])
 	except:
 		pass
 fstab.close()
