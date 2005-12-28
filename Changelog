@@ -1,3 +1,71 @@
+Guadalinex v3 v1.0rc (28-12-05)
+---------------------
+
+Major changes:
+
+- General
+  - Improved live system to better support other boot methods (as Firewire)
+  - Improved and fixed fstab generation in live system: now it detects and
+  properly configure most common partition types: windows & linux (several
+  BTSs)
+  - Improved and fixed fstab generation during live installation (several
+  BTSs)
+  - Improved fstab generation in no live installation so that partitions are
+  better configured (several BTSs)
+  - Improved grub configuration in live installation to include other
+  typical operating systems as Windows or other Linux (several BTSs)
+
+Not-so-major-changes:
+
+- Live system
+  - Fixed several bugs regarding to creation of a swap file
+  - Included definitive texts in live installer 
+  - Included background image in live-generated Grub
+  - Fixed some bugs related to devices.map & SATA disks
+  - Fixed some bugs with partitions creation in Gparted
+  - Added more help text
+  
+- No live system
+  - Packages lists updated (several BTSs)
+
+- Distribution
+  - Included watermain to select Guadalinex mirrors easily (BTS 087)
+  - Included Openoffice.org 2 (several BTS)
+  - Translated Inkscape (BTS 0141)
+  - Translated Gnomebaker (BTS 0145)
+  - Changed gnome apps icon
+  - Now users have default dirs at home 
+  - Included tnef viewer (included needed script)
+  - Created "Compartido" shared folder common to all users
+  - New compilation of spca5xx module (BTS 006)
+  - Gnomebaker updated to a new backport to Breezy (BTS 070, 017)
+  - Firestarter now asks for a password (BTS 0123)
+  - Hermes now supports scanners
+  - Included basic tools for C/C++ compilation (BTS 0111)
+  - Hermes now supports messaging to diferent virtual desktops
+  - Updated maintainers fields
+  - Updated packages names to "guadalinex-v3"
+  - Improved camorama location in menu
+  - Included "sudoku" game
+  - Fixed Firefox desktop icon
+  - Included "wpasupplicant" pkg 
+  - Fixed problem with Nautilus help (BTS 0129)
+  - Fixed events sound problem (BTS 0160)
+  - Fixed Gaim sound probles (BTS 0235)
+  - Included app to edit gnome menu: alacarte (BTS 0214)
+  - Removed Gxine configuration wizard (BTS 035)
+  - Included red big button to logout system 
+  - Now Hermes supports Ipods 
+  - Fixed diferences in time with Windows (BTS 037)
+  - Now it is possible to share folders (BTS 0157)
+  - Fixed some bugs with audio CDs recording (BTS 0280)
+  - uda-docs integrated and adapted for Guadalinex
+  
+  
+- Mini-distribution:
+  - Ready for release!
+  - Finished customization for mini installer
+
 Guadalinex 2005 v.1.0b2 (24-11-05)
 ------------------------
 
