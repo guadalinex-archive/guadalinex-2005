@@ -268,8 +268,7 @@ class Config:
     fp.close()
 
     hosts = open(os.path.join(self.target, 'etc/hosts'), 'w')
-    print >>hosts, """127.0.0.1       localhost.localdomain   localhost
-%s
+    print >>hosts, """127.0.0.1       localhost.localdomain   localhost  %s
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
