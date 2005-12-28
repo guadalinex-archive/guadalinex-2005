@@ -1,0 +1,312 @@
+#!/bin/sh
+#
+
+LC_NUMERIC=C
+export LC_NUMERIC
+
+ver=7.0.1
+cwd="`pwd 2> /dev/null`"
+
+if [ -h "$0" ]; then
+ ScriptVariable=`ls -l "$0" | sed 's/^.*-> *\(.*\) *$/\1/'`
+ ScriptDirectory=`dirname "$ScriptVariable"`
+
+else
+ ScriptDirectory=`dirname "$0"`
+ cd "$ScriptDirectory"
+ ScriptDirectory="`pwd 2> /dev/null`"
+ cd "$cwd"
+fi
+install_dir=`dirname "$ScriptDirectory"`/Reader
+
+
+#
+# Prepend a colon separated environment variable
+# $1 string to be prepended
+# $2 environment variable
+#
+prepend()
+{
+  if [ -z "$2" -o "$2" = "$1" ] ; then
+    echo "$1"
+  else
+    first="`expr "$2" : '\([^:]*\):'`"
+    if [ "$first" = "$1" ] ; then
+      echo "$2"
+    else
+      echo "${1}:${2}"
+    fi
+  fi
+}
+
+
+#
+# Tests the version file in an installation directory.
+#
+test_install_dir()
+{
+	if [ "`cat "$1"/AcroVersion 2>/dev/null`" = "$ver" ] ; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+
+#
+# Check a given file in given path
+#
+check_file_in_named_path()
+{
+    if [ -x "$2/$1" ] ; then
+	return 1
+    fi
+        
+    return 0
+}
+
+
+#
+# Check a given file in $PATH
+#
+check_file_in_path()
+{
+    OLD_IFS=$IFS
+    IFS=":"
+	
+    if [ -n "$PATH" ] ; then
+	for i in $PATH; do
+	    if [ -d "$i" ] ; then
+		check_file_in_named_path "$1" "$i"
+		if [ $? -eq 1 ]; then
+		    IFS=$OLD_IFS
+		    return 1
+		fi
+	    fi
+	done
+    fi
+    
+    IFS=$OLD_IFS
+    return 0
+}
+
+
+#
+# Get the current working directory.
+# Try to avoid automounter directories by checking
+# if $HOME or $PWD is the same directory as pwd,
+# and removing the automount directory component.
+#
+if [ -z "$cwd" -o ! -d "$cwd" ] ; then
+  echo "ERROR: Cannot determine current directory."
+  exit 1
+fi
+
+if [ "$HOME" -a -d "$HOME" ] && [ "`cd / ; cd "$HOME" ; pwd`" = "$cwd" ] ; then
+  cwd="$HOME"
+elif [ "$PWD" -a -d "$PWD" ] && [ "`cd / ; cd "$PWD" ; pwd`" = "$cwd" ] ; then
+  cwd="$PWD"
+fi
+
+
+PWD="$cwd"
+export PWD
+
+
+#
+# Setup ACRO_ARG0 to this script
+#
+arg0="$0"
+if [ "$arg0" ] ; then
+  case "$arg0" in
+     /*) ;;
+    ./*) arg0="$cwd/`expr "$arg0" : '\./\(.*\)'`" ;;
+      *) arg0="$cwd/$arg0" ;;
+  esac
+
+  ACRO_ARG0="$arg0"
+  export ACRO_ARG0
+fi
+
+
+#
+# Try to find the installation directory
+#
+if ( test_install_dir "$install_dir" ) ; then
+  ACRO_INSTALL_DIR="$install_dir"
+  export ACRO_INSTALL_DIR
+  
+else
+  script="$arg0"
+  while [ "$script" ] ; do
+    install_dir="`dirname "$script"`"
+    if ( test_install_dir "$install_dir/Reader" ) ; then
+      ACRO_INSTALL_DIR="$install_dir/Reader"
+      export ACRO_INSTALL_DIR
+      break
+    fi
+
+    install_dir="`dirname "$install_dir"`"
+    if ( test_install_dir "$install_dir/Reader" ) ; then
+      ACRO_INSTALL_DIR="$install_dir/Reader"
+      export ACRO_INSTALL_DIR
+      break
+    fi
+
+    if [ -h "$script" ] ; then
+      new_script=`ls -l "$script" | sed 's/^.*-> *\(.*\) *$/\1/'`
+      if [ "$new_script" -a "`expr "$new_script" : '/.*'`" = 0 ] ; then
+        new_script="`dirname "$script"`/$new_script"
+      fi
+      script="$new_script"
+    else
+      break
+    fi
+  done
+
+  if ( test_install_dir "$ACRO_INSTALL_DIR" ) ; then
+    :
+  elif ( test_install_dir "$ACRO_HOME" ) ; then
+    ACRO_INSTALL_DIR="$ACRO_HOME"
+    export ACRO_INSTALL_DIR
+  else
+    echo "ERROR: Cannot find installation directory."
+    exit 1
+  fi
+fi
+
+
+#
+# setup the configuration from uname
+#
+os_name=`uname -s`
+os_release=`uname -r`
+
+case "$os_name" in
+  SunOS)
+    case "$os_release" in
+      4.1.3*|4.1.4*|4.1C)
+        ACRO_CONFIG=sparcsun
+        export ACRO_CONFIG
+        ;;
+      5.*)
+        machine_type=`uname -p`
+        case "$machine_type" in
+          sparc)
+            ACRO_CONFIG=sparcsolaris
+            export ACRO_CONFIG
+            ;;
+          intel|i386)
+            ACRO_CONFIG=intelsolaris
+            export ACRO_CONFIG
+            ;;
+          ppc)
+            ACRO_CONFIG=ppcsolaris
+            export ACRO_CONFIG
+            ;;
+        esac
+        ;;
+    esac
+    ;;
+   Linux)
+    ACRO_CONFIG=intellinux
+    export ACRO_CONFIG
+    ;;
+esac
+
+if [ -z "$ACRO_CONFIG" ] ; then
+   echo "The OS named  $os_name version $os_release is currently not installed."
+   echo "Try running on an installed platform and connecting to your display."
+   echo "Installed platform(s) include the following:"
+
+  if [ -d "$ACRO_INSTALL_DIR"/sparcsolaris ] ; then
+    echo "  SPARC/Solaris version 2.x"
+  fi
+  if [ -d "$ACRO_INSTALL_DIR"/intellinux ] ; then
+    echo "  Intel/Linux"
+  fi
+  exit 1
+fi
+
+#
+# Setup configuration specific environment variables
+#
+case "$ACRO_CONFIG" in
+  sparcsolaris)
+    LD_LIBRARY_PATH="`prepend "$ACRO_INSTALL_DIR/$ACRO_CONFIG/lib" "$LD_LIBRARY_PATH"`"
+    export LD_LIBRARY_PATH
+    ;;
+  intellinux)
+    LD_LIBRARY_PATH="`prepend "$ACRO_INSTALL_DIR/$ACRO_CONFIG/lib:$ACRO_INSTALL_DIR/$ACRO_CONFIG/sidecars" "$LD_LIBRARY_PATH"`"
+    export LD_LIBRARY_PATH
+    ;;
+esac
+
+DefaultPSRESPATH="$HOME/psres:$HOME/fonts:/usr/psres"
+if [ -z "$PSRESOURCEPATH" ] ; then
+  PSRESOURCEPATH="$DefaultPSRESPATH"
+else
+  PSRESOURCEPATH="$PSRESOURCEPATH":"$DefaultPSRESPATH"
+fi
+case "$PSRESOURCEPATH" in
+  ::*|*::*|*::)
+    ;;
+  *)
+    PSRESOURCEPATH="$PSRESOURCEPATH"::
+    ;;
+esac
+export PSRESOURCEPATH
+
+directory="`basename \"$ACRO_INSTALL_DIR\"`"
+
+if [ "$directory" = "Reader" ]; then
+	cmd="acroread"
+    prod="Adobe Reader"
+fi
+
+#
+# Set the command.  Process any debug flags and exec.
+#
+ACRO_EXEC_CMD="$ACRO_INSTALL_DIR/$ACRO_CONFIG/bin/$cmd"
+export ACRO_EXEC_CMD
+
+ACRO_RES_DIR=$ACRO_INSTALL_DIR/../Resource
+export ACRO_RES_DIR
+
+ACRO_LANG=ESP
+export ACRO_LANG
+
+# Adobe Reader uses gconftool-2 to check whether accessibility support is enabled. Please refer to the Readme file to work around this.
+check_file_in_path gconftool-2
+if [ $? -eq 0 ]
+then
+	# gconftool-2 is not there on system, turn off AT support
+	ACRO_AT_ACTIVE="false"
+	export ACRO_AT_ACTIVE
+else
+	ACRO_AT_ACTIVE=`gconftool-2 -g /desktop/gnome/interface/accessibility 2>/dev/null`
+	export ACRO_AT_ACTIVE
+fi
+
+if [ "$ACRO_AT_ACTIVE" = "true" ]; then
+	GTK_MODULES=gail:atk-bridge
+	export GTK_MODULES
+fi
+
+if [ "$1" = "-DEBUG" ] ; then
+  if [ $# = 1 ] ; then
+    export ACRO_EXEC_CMD
+    exec "$SHELL"
+  else
+    shift
+    exec ${1+"$@"} "$ACRO_EXEC_CMD"
+  fi
+fi
+
+if [ -f "$ACRO_EXEC_CMD" ] ; then
+  exec "$ACRO_EXEC_CMD" ${1+"$@"}
+else
+  echo "ERROR: Cannot find $ACRO_EXEC_CMD"
+  echo "  $prod not installed for this configuration, \"$ACRO_CONFIG\"."
+  exit 1
+fi
