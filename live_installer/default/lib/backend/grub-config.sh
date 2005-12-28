@@ -119,8 +119,8 @@ debug "Borramos antiguo menu.lst"
 rm -f /boot/grub/menu.lst
 SOS=1
 echo "
-timeout 1
 default 0
+timeout 1
 fallback 1
 " >> /boot/grub/menu.lst
 
@@ -157,7 +157,7 @@ boot" >> /boot/grub/menu.lst
 
 echo "
 title           Guadalinex, memtest86+
-root            (hd0,0)
+root            $NOMBRE
 kernel          /boot/memtest86+.bin
 boot" >> /boot/grub/menu.lst
 
@@ -316,14 +316,14 @@ for i in `seq 1 $nlineas`;
         fi
     done
 
-#if [ "$SOS" -gt 1 ]; then
-#	sed -e 's/timeout 1/timeout 12/g' /boot/grub/menu.lst > /tmp/menut.tmp
-#	mv -f /tmp/menut.tmp /boot/grub/menu.lst
-#fi
-#debug "SO encontrados: $SOS"
-#rm -f /tmp/salfdisk
-#rm -f /tmp/filas
-#rm -f /tmp/ficheros
-#rm -f /tmp/lineas
-#rm -f /tmp/linea
-#rm -f /tmp/fila
+if [ "$SOS" -gt 1 ]; then
+	sed -e 's/timeout 1/timeout 10/g' /boot/grub/menu.lst > /tmp/menut.tmp
+	mv -f /tmp/menut.tmp /boot/grub/menu.lst
+fi
+debug "SO encontrados: $SOS"
+rm -f /tmp/salfdisk
+rm -f /tmp/filas
+rm -f /tmp/ficheros
+rm -f /tmp/lineas
+rm -f /tmp/linea
+rm -f /tmp/fila
