@@ -60,6 +60,7 @@ Not-so-major-changes:
   - Now it is possible to share folders (BTS 0157)
   - Fixed some bugs with audio CDs recording (BTS 0280)
   - uda-docs integrated and adapted for Guadalinex
+  - Fixed bug with audio CDs (BTS 018)
   
   
 - Mini-distribution:
