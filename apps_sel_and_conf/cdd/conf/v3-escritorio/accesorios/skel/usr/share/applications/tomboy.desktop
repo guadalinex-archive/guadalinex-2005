@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Name=Tomboy
 Name[es]=Notas del escritorio (Tomboy)
+Comment[es]=Escriba notas en el escritorio
 Exec=tomboy
 Icon=tomboy
 Terminal=false
