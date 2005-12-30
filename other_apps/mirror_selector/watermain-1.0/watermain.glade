@@ -51,7 +51,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="ayuda">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">&lt;span foreground=&quot;#087021&quot;&gt;Pulse &lt;b&gt;Actualizar&lt;/b&gt; para actualizar la lista.
+	      <property name="label" translatable="yes">&lt;span foreground=&quot;#087021&quot;&gt;Pulse &lt;b&gt;Refrescar&lt;/b&gt; para actualizar la lista.
 Seleccione su repositorio preferido para las actualizaciones y pulse &lt;b&gt;Aceptar&lt;/b&gt;&lt;/span&gt;</property>
 	      <property name="use_underline">True</property>
 	      <property name="use_markup">True</property>
