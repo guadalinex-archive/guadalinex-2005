@@ -312,8 +312,9 @@ ff02::3 ip6-allhosts""" % self.hostname
 
     conf = subprocess.Popen(['/usr/share/setup-tool-backends/scripts/network-conf',
         '--platform', 'ubuntu-5.04', '--get'], stdout=subprocess.PIPE)
-    subprocess.Popen(['chroot', self.target, '/usr/share/setup-tool-backends/scripts/network-conf', 
+    call = subprocess.Popen(['chroot', self.target, '/usr/share/setup-tool-backends/scripts/network-conf', 
         '--platform', 'ubuntu-5.04', '--set'], stdin=conf.stdout)
+    call.wait()
     return True
 
 
