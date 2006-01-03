@@ -29,7 +29,7 @@ case "$1" in
 
     chmod 1777 /home/compartido
     update-alternatives --set java /usr/lib/j2re1.5-sun/bin/java
-    
+
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
