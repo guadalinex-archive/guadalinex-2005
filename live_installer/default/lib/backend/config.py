@@ -224,7 +224,7 @@ class Config:
     self.chrex('delgroup', 'guada')
 
     self.chrex('useradd', '-u', '1000', '-d', '/home/' + self.username, '-m', '-s',
-        '/bin/bash', '-c', self.fullname, self.username)
+        '/bin/bash', '-c', '"' + self.fullname + '"', self.username)
     passwd = subprocess.Popen(['echo', self.username + ':' + self.password],
         stdout=subprocess.PIPE)
     subprocess.Popen(['chroot', self.target, 'chpasswd', '--md5'], stdin=passwd.stdout)
