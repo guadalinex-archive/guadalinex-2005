@@ -1,7 +1,8 @@
+splash.rle
 0fPREREQUISITOS PARA INSTALAR GUADALINEX07                                        09F207
 
 Para usar este instalador debe tener al menos 128 MG de RAM y
-al menos 3 GB de memoria libres.
+al menos 3 GB de memoria libre.
 
 
 

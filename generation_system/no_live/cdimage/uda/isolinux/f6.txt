@@ -1,3 +1,4 @@
+splash.rle
 0fVARIOS DRIVERS DE DISPOSITIVOS07                                                09F607
 
 Puede usar los siguientes argumentos de arranque en el terminal de

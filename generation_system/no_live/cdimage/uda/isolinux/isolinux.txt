@@ -4,5 +4,6 @@
 
 
 
-Bienvenido, pulse INTRO para continuar.
+Bienvenido a Guadalinex V3, pulse INTRO para continuar.
+Para ver la ayuda, pulse F1.
 

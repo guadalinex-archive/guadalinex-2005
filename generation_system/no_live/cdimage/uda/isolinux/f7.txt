@@ -1,3 +1,4 @@
+splash.rle
 0fINSTALACION DEL SISTEMA07                                                       09F707
 
 Puede usar los siguientes argumentos de arranque en el terminal de

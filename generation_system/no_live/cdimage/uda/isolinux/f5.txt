@@ -1,3 +1,4 @@
+splash.rle
 0fARGUMENTOS DE ARRANQUE PARA ORDENADORES ESPECIALES07                            09F507
 
 Puede usar los siguientes argumentos de arranque usando una de las

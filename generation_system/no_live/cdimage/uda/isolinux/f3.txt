@@ -1,3 +1,4 @@
+splash.rle
 0fMETODOS DE ARRANQUE07                                                           09F307
 
 0fOrdenes de arranque disponibles:07

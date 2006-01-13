@@ -1,3 +1,4 @@
+splash.rle
 0fARGUMENTOS ESPECIALES DE ARRANQUE07                                             09F407
 
 En algunos sistemas, es posible que tenga que especificar un argumento
