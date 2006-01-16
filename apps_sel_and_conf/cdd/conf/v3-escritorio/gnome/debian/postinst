@@ -34,6 +34,8 @@ case "$1" in
 
 #    adduser hal disk
     /usr/sbin/locale-gen
+    echo set fontconfig/enable_bitmaps true | debconf-communicate
+    dpkg-reconfigure -pcritical fontconfig
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
