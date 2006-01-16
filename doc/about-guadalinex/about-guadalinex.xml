@@ -14,90 +14,49 @@
 		<title>Acerca de Guadalinex</title>
 		<legalnotice id="sect-acknowledgments">
 			<title>Créditos y Licencia</title>
-			<para>Los siguientes autores del Equipo de Documentación de Guadalinex han contribuído a
-			este documento:</para>
+			<para>Este documento ha sido realizado por la Junta de Andalucía.</para>
 
-			<itemizedlist>
-			<listitem>
-				<para>Luis Mayoral (Responsable actual)</para>
-			</listitem>
-			</itemizedlist>
-
-		    <para>Este documento está disponible bajo una estrategia de doble licencia que incluye la 
-		    Licencia de Documentación Libre GNU (GFDL) y la Licencia Creative Commons ShareAlike 2.0
-		    (CC-BY-SA).</para>
-
-		    <para>Tiene la libertad de modificar, extender y mejorar el código fuente de la documentación 
-		    de Ubuntu bajo los términos de estas licencias. Todos los trabajos que deriven de este deben 
-		    ser liberados bajo alguna o ambas de estas licencias.</para>
+		    <para>Está disponible bajo una Licencia Creative Commons
+			Reconocimiento-No Comercial-Sin Obra Derivada 2.5 (BY-NC-ND).</para>
 
 		    <para>Distribuimos este documento con la intención de que resulte de utilidad, pero SIN NINGÚN 
 		    TIPO DE GARANTÍA, ni siquiera la garantía implícita de COMERCIALIZACIÓN O de que SEA ADECUADA 
 		    PARA UN PROPÓSITO PARTICULAR, TAL Y COMO SE INDICA EN LA CLÁUSULA DE EXENCIÓN DE RESPONSABILIDAD.</para>
 
-		    <para>Copias de estas licencias están disponibles en la sección de apendices de este libro. Las 
-		    versiones en línea se pueden conseguir en las siguientes URLs:</para>
+		    <para>Puede consultar la versión en línea de la licencia de este documento en la
+		    siguiente URL:</para>
 
 		    <itemizedlist>
 	        <listitem>
-	            <para><ulink url="http://www.gnu.org/copyleft/fdl.html">Licencia de documentación libre de GNU</ulink></para>
-	        </listitem>
-	        <listitem>
-	            <para><ulink url="http://creativecommons.org/licenses/by-sa/2.0/">Atribución-Compartir en igualdad 2.0</ulink></para>
+	            <para><ulink url="http://creativecommons.org/licenses/by-nc-nd/2.5/">Reconocimiento-No Comercial-Sin Obra Derivada 2.5</ulink></para>
 	        </listitem>
 		    </itemizedlist>
 		</legalnotice>
         
 		<copyright>
 			<year>2006</year>
-			<holder>Junta de Andalucía y los miembros del Proyecto de Documentación de Guadalinex</holder>
+			<holder>Junta de Andalucía</holder>
 		</copyright>
 
         <authorgroup>
             <author>
-                <firstname>Proyecto de Documentación de Ubuntu</firstname>
-                <email>ubuntu-doc@lists.ubuntu.com</email>
+                <firstname>Junta de Andalucía</firstname>
+                <email>docmaster@guadalinex.org</email>
             </author>
         </authorgroup>
         <abstract>
-            <para>Este documento es una compilación de preguntas hechas comúnmente por usuarios que son nuevos a Ubuntu y las respuestas a estas preguntas.</para>
+            <para>Este documento es una compilación de preguntas hechas comúnmente por usuarios que son nuevos en Guadalinex y las respuestas a estas preguntas.</para>
         </abstract>
         
-		<legalnotice>
-			<title>Descargo de responsabilidad</title>
-			<para>Se ha realizado el mayor esfuerzo posible para asegurar que la información compilada en 
-			esta publicación sea exacta y correcta. Sin embargo, esto no garantiza su total exactitud. Ni 
-			Canonical Ltd., ni los autores, ni los traductores serán responsables de los posibles errores 
-			o las consecuencias que esto conlleve.</para>
-			
-			<para>Es posible que algunas de los paquetes de software y hardware que se citen en esta 
-			publicación sean marcas registradas. Los nombres de los productos, marcas comerciales podrían 
-			tener, por lo tanto, restricciones de copyright. Todos los nombres comerciales están sujetos a 
-			restricción de copyright y son marcas registradas de sus respectivos propietarios. Al citar 
-			dichos nombres, Canonical Ltd. y otros miembros colaboradores del Proyecto de Documentación de 
-			Ubuntu básicamente se ajustan a la manera de escribir el producto según indica el fabricante y 
-			de ninguna manera lo reclaman como propio.</para>
-			
-			<para>LOS AUTORES OFRECEN ESTA DOCUMENTACIÓN TAL Y COMO SE ENCUENTRA AHORA, Y SE DESLINDAN DE 
-			CUALQUIER GARANTÍA EXPRESA O IMPLÍCITA QUE INCLUYA, PERO NO SE LIMITE A, LAS GARANTÍAS IMPLÍCITAS 
-			DE COMERCIALIZACIÓN Y ADECUACIÓN PARA UN PROPÓSITO PARTICULAR. BAJO NINGUNA CIRCUNSTANCIA SERÁN 
-			RESPONSABLES LOS AUTORES DE NINGÚN DAÑO DIRECTO, NDIRECTO, INCIDENTAL, ESPECIAL, EJEMPLAR O 
-			CONSECUENTE (INCLUYENDO, PERO NO LIMITÁNDOSE A, COMPRA DE BIENES SUSTITUTIVOS O SERVICIOS; PÉRDIDA 
-			DE UTILIZACIÓN, DATOS O BENEFICIOS; O INTERRUPCIÓN DE LA ACTIVIDAD ECONÓMICA) QUE NO OBSTANTE 
-			HAYAN OCURRIDO, Y BAJO CUALQUIER TEORÍA DE RESPONSABILIDAD, YA SEA CONTRACTUAL, RESPONSABILIDAD 
-			ESTRICTA, O MALUSO (INCLUYENDO NEGLIGENCIA O NO) QUE HAYAN SUCEDIDO A RAÍZ DE LA UTLILIZACIÓN DE 
-			ESTE SOFTWARE, INCLUSO DESPUÉS DE HABER SIDO ADVERTIDOS DE DICHO DAÑO.</para>
-		</legalnotice>
-        
 		<publisher>
-			<publishername>El Proyecto de Documentación de Guadalinex</publishername>
+			<publishername>Junta de Andalucía</publishername>
 		</publisher>
 
 		<revhistory>
 			<revision>
 				<revnumber>0.1</revnumber>
 				<date>12 de enero de 2006</date>
-				<authorinitials>LM</authorinitials>
+				<authorinitials>JA</authorinitials>
 				<revdescription>
 					<para>Versión inicial del documento.</para>
 				</revdescription>
@@ -413,6 +372,12 @@
 		</listitem>
 		<listitem>
 			<para><ulink url="http://www.guadalinex.org/guadapedia/">Guadapedia</ulink></para>
+		</listitem>
+		<listitem>
+			<para><ulink url="http://www.guadalinex.org/errores/">Sistema de control de errores de Guadalinex</ulink></para>
+		</listitem>
+		<listitem>
+			<para><ulink url="http://www.juntadeandalucia.es/repositorio/">Repositorio de Software Libre</ulink></para>
 		</listitem>
 		</itemizedlist>
 		</para>
