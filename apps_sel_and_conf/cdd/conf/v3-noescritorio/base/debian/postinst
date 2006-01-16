@@ -26,8 +26,13 @@ GCONF="/usr/bin/gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gc
 
 case "$1" in
     configure)
-
-    chmod 1777 /home/compartido
+    
+    if [ -d /home/compartido ];then
+        chmod 1777 /home/compartido
+    fi
+    if [ -f /usr/bin/cpufreq-selector ];then
+        chmod +s /usr/bin/cpufreq-selector
+    fi
     update-alternatives --set java /usr/lib/j2re1.5-sun/bin/java
 
     ;;
