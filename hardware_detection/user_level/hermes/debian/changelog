@@ -1,3 +1,9 @@
+hermeshardware (0.1-6) unstable; urgency=low
+
+  * Added support for Apple iPod.
+
+ -- Gumersindo Coronel Pérez <gumerco@emergya.info>  Tue, 20 Dec 2005 11:03:16 +0100
+
 hermeshardware (0.1-5) unstable; urgency=low
 
   * Added support for usb webcam devices.
