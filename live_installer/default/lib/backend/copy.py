@@ -7,6 +7,7 @@ import os
 import subprocess
 import time
 from ue import misc
+from ue.settings import *
 from sys import stderr
 
 class Copy:
