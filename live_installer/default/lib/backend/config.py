@@ -159,7 +159,7 @@ class Config:
         if fs == 'vfat' :
           options ='rw,gid=100,users,umask=0002,fmask=0113,sync,noauto,defaults'
         else:
-          options ='gid=100,users,umask=0222,fmask=0333,sync,nls=utf8,auto,noauto,defaults'
+          options ='gid=100,users,umask=0222,fmask=0333,sync,nls=utf8,noauto,defaults'
         path = '/media/Windows%d' % win_counter
         os.mkdir(os.path.join(self.target, path[1:]))
         win_counter += 1
