@@ -10,3 +10,4 @@ adduser --quiet $1 video
 adduser --quiet $1 plugdev
 adduser --quiet $1 lpadmin
 adduser --quiet $1 scanner
+adduser --quiet $1 users
