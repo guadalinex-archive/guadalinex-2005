@@ -157,14 +157,14 @@ class Config:
       if ( fs in ['vfat', 'ntfs'] ):
         passno = 2
         if fs == 'vfat' :
-          options ='rw,gid=100,users,umask=0002,fmask=0113,sync,nls=utf8,auto,defaults'
+          options ='rw,gid=100,users,umask=0002,fmask=0113,sync,noauto,defaults'
         else:
-          options ='gid=100,users,umask=0222,fmask=0333,sync,nls=utf8,auto,auto,defaults'
+          options ='gid=100,users,umask=0222,fmask=0333,sync,nls=utf8,auto,noauto,defaults'
         path = '/media/Windows%d' % win_counter
         os.mkdir(os.path.join(self.target, path[1:]))
         win_counter += 1
       elif fs == 'ext3':
-              options = 'defaults,users,exec,auto'
+              options = 'defaults,users,exec,noauto'
               path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
               os.mkdir(os.path.join(self.target, path[1:]))
       elif fs == 'swap':
