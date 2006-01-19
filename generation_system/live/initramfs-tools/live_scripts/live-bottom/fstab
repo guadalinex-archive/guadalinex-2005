@@ -136,7 +136,7 @@ add_partitions_to_fstab()
 				let win_counter=win_counter+1
 			fi
 			if [ "\$fs" == "vfat" ]; then
-				defaults=\$(echo \${defaults} | sed 's|users|gid=100,users,umask=0002,fmask=0113,sync,nls=utf8|g')
+				defaults=\$(echo \${defaults} | sed 's|users|gid=100,users,umask=0002,fmask=0113,sync|g')
 				mntpoint="/media/Windows\${win_counter}"
 				let win_counter=win_counter+1
 			fi
