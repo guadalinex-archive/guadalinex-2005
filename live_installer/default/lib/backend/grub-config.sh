@@ -151,7 +151,7 @@ echo "
 title $DISTRO, kernel $KERNEL_VERSION (recovery mode)
 root $NOMBRE
 kernel $nucleo root=/dev/${TIPOL}${DISCOL}${PARTIL} ro auto single
-initrd /boot/initrd.mag-$KERNEL_VERSION
+initrd /boot/initrd.img-$KERNEL_VERSION
 savedefault
 boot" >> /boot/grub/menu.lst
 
