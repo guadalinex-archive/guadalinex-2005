@@ -4,18 +4,27 @@ Guadalinex Mirrors availables, in watermain format.
 
 #TITLE:Sitio principal de Guadalinex en la Junta de Andalucia
 #ID:jda
-deb http://http.guadalinex.es/repositorio flamenco guada
-deb http://http.guadalinex.es/ubuntu breezy main universe restricted
+deb http://repositorio.guadalinex.org/ubuntu-breezy breezy main restricted  universe multiverse
+deb http://repositorio.guadalinex.org/flamenco flamenco main
+deb http://repositorio.guadalinex.org/flamenco flamenco-updates main restricted universe multiverse
+deb http://repositorio.guadalinex.org/flamenco flamenco-security main restricted universe multiverse
+deb http://repositorio.guadalinex.org/flamenco flamenco-backports main restricted universe multiverse
 #END
 
 #TITLE:Copia en la Universidad de Cadiz
 #ID:uca
-deb http://www.uca.es/guadalinex flamenco guada
-deb http://www.uca.es/ubuntu breezy main universe restricted
+deb http://www.uca.es/ubuntu-breezy breezy main restricted  universe multiverse
+deb http://www.uca.es/flamenco flamenco main
+deb http://www.uca.es/flamenco flamenco-updates main restricted universe multiverse
+deb http://www.uca.es/flamenco flamenco-security main restricted universe multiverse
+deb http://www.uca.es/flamenco flamenco-backports main restricted universe multiverse
 #END
 
 #TITLE:Copia en el Centro de Informatica Cientifica de Andalucia
 #ID:cica
-deb http://www.cica.es/guadalinex flamenco guada
-deb http://www.cica.es/ubuntu breezy main universe restricted
+deb http://www.cica.es/ubuntu-breezy breezy main restricted  universe multiverse
+deb http://www.cica.es/flamenco flamenco main
+deb http://www.cica.es/flamenco flamenco-updates main restricted universe multiverse
+deb http://www.cica.es/flamenco flamenco-security main restricted universe multiverse
+deb http://www.cica.es/flamenco flamenco-backports main restricted universe multiverse
 #END
