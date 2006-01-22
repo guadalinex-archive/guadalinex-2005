@@ -11,3 +11,9 @@ adduser --quiet $1 plugdev
 adduser --quiet $1 lpadmin
 adduser --quiet $1 scanner
 adduser --quiet $1 users
+
+# Creating symlinks
+ln -s /home/$1/.fonts "/home/$1/Tipos de Letra"
+ln -s /home/compartido "/home/$1/Compartido"
+ln -s /home/$1/.aMule/Incoming "/home/$1/P2P/Incoming"
+ln -s /home/$1/.aMule/Temp "/home/$1/P2P/Temp"
