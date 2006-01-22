@@ -1368,7 +1368,7 @@
 				  <property name="right_margin">0</property>
 				  <property name="indent">0</property>
 				  <property name="text" translatable="yes">You have to make room in one or more of your hard disks in order to have GNU/Linux properly installed. 3 partitions are necessary:
-· The root partition (“/”), with a minimum size of 1.5 GB.
+· The root partition (“/”), with a minimum size of 2.0 GB.
 · The home partition (“/home”), of 512 MB at least.
 · The swap partition (“swap”), with 256 MB or more.
 You can now modify your existing partition table and select where you wan what.
