@@ -38,11 +38,14 @@ hostname -F /etc/hostname
 #Clean sources.list
 cat /etc/apt/sources.list | grep -v "^#" | sed -e "/^$/d" > /etc/apt/sources.list.uda
 
+echo '#TITLE:Sitio principal de Guadalinex en la Junta de Andalucia' >> /etc/apt/sources.list.uda
+echo '#ID:jda' >> /etc/apt/sources.list.uda
 echo "deb http://repositorio.guadalinex.org/ubuntu-breezy breezy main restricted universe multiverse" >> /etc/apt/sources.list.uda
 echo "deb http://repositorio.guadalinex.org/guadalinex-flamenco flamenco main" >> /etc/apt/sources.list.uda
 echo "deb http://repositorio.guadalinex.org/guadalinex-flamenco flamenco-updates main restricted universe multiverse" >> /etc/apt/sources.list.uda
 echo "deb http://repositorio.guadalinex.org/guadalinex-flamenco flamenco-security main restricted universe multiverse" >> /etc/apt/sources.list.uda
 echo "deb http://repositorio.guadalinex.org/guadalinex-flamenco flamenco-backports main restricted universe multiverse" >> /etc/apt/sources.list.uda
+echo '#END' >> /etc/apt/sources.list.uda
 
 mv /etc/apt/sources.list.uda /etc/apt/sources.list
 
