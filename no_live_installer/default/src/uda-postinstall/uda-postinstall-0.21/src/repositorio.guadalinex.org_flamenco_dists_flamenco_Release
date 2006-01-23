@@ -1,0 +1,17 @@
+Architectures: i386
+Codename: flamenco
+Components: main
+Date: Fri, 28 Oct 2005 18:51:43 UTC
+Description: Guadalinex 2005
+Label: Guadalinex
+Origin: Guadalinex
+Suite: Guadalinex
+Version: 2005.8.3
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e                0 Release
+ 9afd77e1342bbaaa88a913b72bcf16cd            14940 main/binary-i386/Packages
+ a9c0d9c9dc66d6ddf094a3eeba759766             3071 main/binary-i386/Packages.gz
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709                0 Release
+ 7d94d771ad49a69924882229c38e64306592c107            14940 main/binary-i386/Packages
+ 1c557f172d91a47f9620ce274432de38a73e6d0e             3071 main/binary-i386/Packages.gz
