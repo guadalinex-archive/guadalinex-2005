@@ -1,0 +1,10 @@
+To get a compiled .deb binary package of guadalinex-flavor gparted (which embeddes
+itself into ubuntu-express) is necessary generating it through "fakeroot debian/rules
+binary" command instead of "dpkg-buildpackage -rfakeroot".
+
+-----------------------------------------------------------------------------------
+
+Para obtener el paquete .deb binario de gparted modificado para Guadalinex
+(que se incrusta en el instalador ubuntu-express) es necesario generarlo a
+través de la orden "fakeroot debian/rules binary" en lugar de
+"dpkg-buildpackge -rfakeroot".
