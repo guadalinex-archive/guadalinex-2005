@@ -40,7 +40,7 @@ style "clearlooks-default"
 	
 	base[NORMAL]      = "#ffffff"
 	base[PRELIGHT]    = "#698acb" # Human b39169
-	base[ACTIVE]      = "#2b7042" # Human c8ad8c
+	base[ACTIVE]      = "#2b4270" # Human c8ad8c
 	base[SELECTED]    = "#4f73bc" # Human b39169
 	base[INSENSITIVE] = "#efebe7"
 	
