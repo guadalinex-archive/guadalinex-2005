@@ -1,5 +1,5 @@
 Template: uda-pregrub-message/pregrub-message
 Type: note
 _Description: Gestor de arranque
- En la siguiente pantalla se le dará la oportunidad de seleccionar
- los sistemas operativos que su ordenador podrá arrancar.
+ A continuación se instalará el gestor de arranque. Dicho programa
+ detectará y le permitirá iniciar otros sistemas operativos.
