@@ -1,4 +1,4 @@
-usplash (0.1-22) breezy; urgency=low
+usplash (0.1-22uda) breezy; urgency=low
 
   * debian/init:
     - if we end up in vt8 when usplash stop is called assume usplash
