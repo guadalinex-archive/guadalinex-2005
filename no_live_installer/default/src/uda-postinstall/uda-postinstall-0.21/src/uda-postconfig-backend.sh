@@ -33,7 +33,7 @@ echo "$COMPUTER_NAME" > /etc/hostname
 hostname -F /etc/hostname
 
 #Modify /etc/issue
-echo "Guadalinex 2005 (Flamenco) \n \l" > /etc/issue
+#echo "Guadalinex v3 (Flamenco) \n \l" > /etc/issue
 
 #Clean sources.list
 cat /etc/apt/sources.list | grep -v "^#" | sed -e "/^$/d" > /etc/apt/sources.list.uda
