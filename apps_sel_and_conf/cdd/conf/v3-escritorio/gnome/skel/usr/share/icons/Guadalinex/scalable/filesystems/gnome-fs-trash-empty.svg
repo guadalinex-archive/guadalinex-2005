@@ -13,8 +13,8 @@
    height="48px"
    id="svg57"
    sodipodi:version="0.32"
-   inkscape:version="0.40+cvs"
-   sodipodi:docbase="/home/jimmac/ximian_art/icons/nautilus/snowdunes"
+   inkscape:version="0.43"
+   sodipodi:docbase="/home/chewie/datos/yaco/guadalinex2005/svn/guadalinex2005/apps_sel_and_conf/cdd/conf/v3-escritorio/gnome/skel/usr/share/icons/Guadalinex/scalable/filesystems"
    sodipodi:docname="gnome-fs-trash-empty.svg">
   <defs
      id="defs3">
@@ -44,12 +44,12 @@
     <linearGradient
        id="linearGradient1065">
       <stop
-         style="stop-color:#b5c051;stop-opacity:1.0000000;"
-         offset="0.0000000"
+         style="stop-color:#5163c0;stop-opacity:1;"
+         offset="0"
          id="stop1066" />
       <stop
-         style="stop-color:#858e3f;stop-opacity:1.0000000;"
-         offset="1.0000000"
+         style="stop-color:#758bc2;stop-opacity:1;"
+         offset="1"
          id="stop1067" />
     </linearGradient>
     <linearGradient
@@ -2249,16 +2249,6 @@
        y2="37.720802"
        gradientUnits="userSpaceOnUse" />
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       y2="52.625473"
-       x2="19.672924"
-       y1="23.114082"
-       x1="19.347122"
-       gradientTransform="scale(1.175635,0.850604)"
-       id="linearGradient101"
-       xlink:href="#linearGradient172"
-       inkscape:collect="always" />
-    <linearGradient
        y2="48.441734"
        x2="31.592171"
        y1="22.051744"
@@ -2437,67 +2427,46 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568542"
-     inkscape:cx="24.558695"
-     inkscape:cy="16.335040"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="-9.0115594"
+     inkscape:cy="-4.4471463"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
-     inkscape:window-width="776"
-     inkscape:window-height="863"
-     inkscape:window-x="504"
-     inkscape:window-y="247" />
+     inkscape:window-width="782"
+     inkscape:window-height="692"
+     inkscape:window-x="92"
+     inkscape:window-y="0" />
   <metadata
      id="metadata4">
-    <rdf:RDF
-       id="RDF5">
+    <rdf:RDF>
       <cc:Work
-         rdf:about=""
-         id="Work6">
-        <dc:format
-           id="format7">image/svg+xml</dc:format>
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
         <dc:type
-           id="type9"
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title
-           id="title664">Trash Empty</dc:title>
-        <dc:date
-           id="date665">2003-02-04</dc:date>
-        <dc:creator
-           id="creator666">
-          <cc:Agent
-             id="Agent667">
-            <dc:title
-               id="title668">Jakub Steiner</dc:title>
+        <dc:title>Trash Empty</dc:title>
+        <dc:date>2003-02-04</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jakub Steiner</dc:title>
           </cc:Agent>
         </dc:creator>
-        <dc:subject
-           id="subject669">
-          <rdf:Bag
-             id="Bag670">
-            <rdf:li
-               id="li430">trash</rdf:li>
-            <rdf:li
-               id="li431">delete</rdf:li>
-            <rdf:li
-               id="li432">deleted files</rdf:li>
-            <rdf:li
-               id="li433">waste</rdf:li>
-            <rdf:li
-               id="li434">recycle</rdf:li>
-            <rdf:li
-               id="li435">bin</rdf:li>
-            <rdf:li
-               id="li436">empty</rdf:li>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>trash</rdf:li>
+            <rdf:li>delete</rdf:li>
+            <rdf:li>deleted files</rdf:li>
+            <rdf:li>waste</rdf:li>
+            <rdf:li>recycle</rdf:li>
+            <rdf:li>bin</rdf:li>
+            <rdf:li>empty</rdf:li>
           </rdf:Bag>
         </dc:subject>
-        <dc:publisher
-           id="publisher882">
-          <cc:Agent
-             id="Agent883">
-            <dc:title
-               id="title884">Novell, Inc.</dc:title>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>Novell, Inc.</dc:title>
           </cc:Agent>
         </dc:publisher>
       </cc:Work>
@@ -2607,12 +2576,12 @@
       </g>
     </g>
     <path
-       style="fill:url(#linearGradient1068);fill-opacity:1.0;fill-rule:evenodd;stroke:url(#linearGradient101);stroke-width:1.2500000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0000000;stroke-opacity:1.0000000"
+       style="fill:url(#linearGradient1068);fill-opacity:1.0;fill-rule:evenodd;stroke:#072274;stroke-width:1.2500000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0000000;stroke-opacity:1"
        d="M 3.8366970,16.810238 C 3.7926080,16.775175 5.5686600,42.034206 5.5691660,42.041863 C 5.7357800,44.564407 7.1344330,45.486354 8.6999290,45.490110 C 8.7558700,45.490239 38.069409,45.486863 38.693936,45.484234 C 41.330302,45.473139 41.976184,43.867694 42.149611,42.113575 C 42.163521,42.078990 43.938664,16.844824 43.952571,16.810238 C 30.580614,16.810238 17.208657,16.810238 3.8366970,16.810238 z "
        id="path1751"
        sodipodi:nodetypes="ccccccc" />
     <path
-       style="stroke-opacity:1.0000000;stroke-miterlimit:4.0000000;stroke-linejoin:miter;stroke-linecap:butt;stroke-width:1.2500000;stroke:#4d5506;fill-rule:evenodd;fill-opacity:1.0000000;fill:url(#linearGradient1872)"
+       style="stroke-opacity:1;stroke-miterlimit:4.0000000;stroke-linejoin:miter;stroke-linecap:butt;stroke-width:1.2500000;stroke:#072274;fill-rule:evenodd;fill-opacity:1.0000000;fill:url(#linearGradient1872)"
        d="M 7.5384920,4.7306315 C 6.4941670,4.7330003 5.6201490,4.7569809 5.1440780,5.7442051 C 5.0613330,5.9157934 2.5391290,12.879834 2.4178690,13.145414 C 1.3797640,15.419016 2.3371090,18.283038 4.3421790,18.263863 C 4.7234940,18.260334 43.852401,18.281621 44.459163,18.263863 C 46.165984,18.214785 46.384401,14.898279 45.649626,13.406336 C 45.607999,13.321814 42.197827,5.6492999 42.110852,5.5134018 C 41.708578,4.9064789 40.807722,4.6404880 40.138555,4.6654006 C 40.006734,4.6704304 7.6689550,4.7303368 7.5384920,4.7306315 z "
        id="path1841"
        sodipodi:nodetypes="cssssscss" />
