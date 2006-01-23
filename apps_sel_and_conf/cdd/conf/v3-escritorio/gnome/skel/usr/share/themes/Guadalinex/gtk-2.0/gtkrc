@@ -35,11 +35,11 @@ style "clearlooks-default"
 	bg[NORMAL]        = "#efebe7" # 
 	bg[PRELIGHT]      = "#f5f3f0"
 	bg[ACTIVE]        = "#d0c8c1"
-	bg[SELECTED]      = "#69cb8a" # Human c8ad8c
+	bg[SELECTED]      = "#698acb" # Human c8ad8c
 	bg[INSENSITIVE]   = "#efebe7"
 	
 	base[NORMAL]      = "#ffffff"
-	base[PRELIGHT]    = "#69cb8a" # Human b39169
+	base[PRELIGHT]    = "#698acb" # Human b39169
 	base[ACTIVE]      = "#2b7042" # Human c8ad8c
 	base[SELECTED]    = "#4fbc73" # Human b39169
 	base[INSENSITIVE] = "#efebe7"
