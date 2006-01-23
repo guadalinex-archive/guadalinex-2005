@@ -1,1 +1,0 @@
-gparted_includedir = $(pkgincludedir)
