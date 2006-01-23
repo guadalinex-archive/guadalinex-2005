@@ -26,7 +26,7 @@ FILE* logfile;
 int left_edge, top_edge;
 
 #define BACKGROUND_COLOUR 0
-#define PROGRESSBAR_COLOUR 1
+#define PROGRESSBAR_COLOUR 15
 #define PROGRESSBAR_BACKGROUND 4
 #define TEXT_BACKGROUND 0
 #define TEXT_FOREGROUND 2
