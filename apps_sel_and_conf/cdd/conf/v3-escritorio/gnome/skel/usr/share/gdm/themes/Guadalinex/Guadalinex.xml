@@ -115,7 +115,7 @@
             <stock type="username-label"/>
           </item>
           <item type="rect">
-            <normal color="#523921"/>
+            <normal color="#213152"/>
             <pos width="160" height="24"/>
             <fixed>
               <item type="entry" id="user-pw-entry">
