@@ -9,7 +9,6 @@
   <!-- Read standard .directory and .desktop file locations -->
   <!-- <DefaultAppDirs/> -->
   <AppDir>.</AppDir>
-  <DefaultDirectoryDirs/>
 
   <!-- Read in overrides and child menus from applications-merged/ -->
   <DefaultMergeDirs/>

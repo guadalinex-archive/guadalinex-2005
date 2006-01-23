@@ -40,5 +40,5 @@ if __name__ == "__main__":
         sys.path.insert(0, "/usr/lib/gnome-app-install")
 	from AppInstall import AppInstall
 	desktop_folder = os.path.join(sys.argv[1],"guadalinex-suplementos-apps")
-        app = AppInstall(desktop_folder, "/usr/share/gnome-app-install", [sys.argv[0]] + sys.argv[2:])
+        app = AppInstall(desktop_folder, desktop_folder, [sys.argv[0]] + sys.argv[2:])
         gtk.main()

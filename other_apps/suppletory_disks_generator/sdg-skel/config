@@ -27,6 +27,16 @@
 # METAPACKAGE   Nombre del paquete que instala el suplemento. Si se comenta o 
 #       no se indica, se generará un metapaquete que dependa de todos los paquetes 
 #       del directorio "debs".
+# 
+# PACKAGES  Lista de paquetes (separados por espacios) que se quiere estén
+# disponibles para instalar (además del paquete del suplemento). Esta variable
+# se puede utilizar para crear sub-suplementos. Por ejemplo, puede ser
+# conveniente tener un suplemento para juegos dividido en varios sub-suplementos
+# tales como juegos de estregia, de acción, etc. En  este entorno, tendríamos un
+# meta-paquete "suplementos-juegos" que tenga como dependencia otros
+# metapaquetes (jugos-estrategia, juegos-accion), que estarán disponibles a
+# través de la variable PACKAGES.
+#
 #
 # URI   Opcional. Dirección del repositorio + rama (main, universe, etc).
 #       Ejemplo:
@@ -40,3 +50,4 @@ NAME    Nombre del Suplemento
 SHORTNAME Supl1
 DESC    Descripción del suplemento. 1 línea.
 METAPACKAGE nombre-del-metapaquete
+PACKAGES 

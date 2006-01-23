@@ -14,7 +14,7 @@ GLVALIDLABELS = [
     ]
 
 #GAI (guadalinex-app-install) Packages
-GAIPACKAGES = []
+GAIPACKAGES = ['gnome-app-install']
 
 #Supplement icon (relative to cdrom path)
 RELATIVEICONPATH = '.icon.png'
@@ -64,7 +64,7 @@ class GlSuppletory(object):
                 #Check for required packages
                 if s.check(GAIPACKAGES):
                     actions = {
-                        "Instalar": action_install_sup
+                        "Instalar Suplemento": action_install_sup
                     }
                 else:
                     actions = {
@@ -84,11 +84,7 @@ class GlSuppletory(object):
                             actions = actions)
 
 
-    def guadalinex_suppletory_summoner(self, mountpoint):    
-        """
-        This method install suppletory.
-        """
-        
+    def __prepare_system(self):
         #Try for password. Three times.
         res = 768 
         attemps = 0
@@ -112,6 +108,13 @@ class GlSuppletory(object):
         #Generate sources.list
         self.__create_sources_list()
 
+
+    def guadalinex_suppletory_summoner(self, mountpoint):    
+        """
+        This method install suppletory.
+        """
+        self.__prepare_system() 
+
         #Update apt system
         cmd = 'APT_CONFIG=' + APTCONFPATH + ' sudo synaptic --hide-main-window' 
         cmd += ' --update-at-startup --non-interactive'
@@ -120,6 +123,7 @@ class GlSuppletory(object):
         #Exec app-install
         os.system('APT_CONFIG=%s sudo guadalinex-app-install %s' % \
                 (APTCONFPATH, mountpoint ))
+
 
     def show_supplement_info(self):
         ddpath = self.volume_actor.properties['volume.mount_point']
