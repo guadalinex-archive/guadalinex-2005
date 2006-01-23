@@ -1,0 +1,19 @@
+--- tmp/grub-0.95+cvs20040624/lib/device.c	2004-05-23 18:45:35.000000000 +0200
++++ grub-0.95+cvs20040624/lib/device.c	2005-01-12 18:19:14.000000000 +0100
+@@ -858,8 +938,14 @@
+       if (strcmp (dev + strlen(dev) - 5, "/disc") == 0)
+ 	strcpy (dev + strlen(dev) - 5, "/part");
+     }
+-  sprintf (dev + strlen(dev), "%d", ((partition >> 16) & 0xFF) + 1);
+-  
++  sprintf (dev + strlen(dev), "%s%d", 
++   /* Compaq smart and others */
++   (strncmp(dev, "/dev/ida/", 9) == 0 ||
++   strncmp(dev, "/dev/ataraid/", 13) == 0 ||
++   strncmp(dev, "/dev/cciss/", 11) == 0 ||
++   strncmp(dev, "/dev/rd/", 8) == 0) ? "p" : "",
++   ((partition >> 16) & 0xFF) + 1);
++
+   /* Open the partition.  */
+   fd = open (dev, O_RDWR);
+   if (fd < 0)
