@@ -33,5 +33,5 @@ msgstr ""
 #. Type: note
 #. Description
 #: ../uda-prepartman-message.templates:3
-msgid "Guadalinex need 2.5GB."
+msgid "Guadalinex need 3.4GB."
 msgstr ""
