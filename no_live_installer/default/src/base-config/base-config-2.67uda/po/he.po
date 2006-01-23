@@ -1,0 +1,72 @@
+# English translation of base_config_po_he.
+# Copyright (C) 2004 THE base_config_po_he'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the base_config_po_he package.
+# Lior Kaplan <webmaster@guides.co.il>, 2004.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: base_config_po_he\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-13 11:05+0200\n"
+"PO-Revision-Date: 2004-10-16 01:55+0200\n"
+"Last-Translator: Lior Kaplan <webmaster@guides.co.il>\n"
+"Language-Team: Hebrew <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../base-config:42
+msgid "Configuring the base system..."
+msgstr "מגדיר את בסיס המערכת..."
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "הקלד 'exit' כדי לחזור לתוכנית base-config"
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:140
+msgid "enter information manually, "
+msgstr "הכנסת המידע ידנית, "
+
+#: ../apt-setup:297
+msgid "Scanning CD, this will take a minute."
+msgstr "סורק CD, תהליך זה יקח כדקה."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:381
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Apt, כלי ניהול החבילות של דביאן, מוגדר מעכשיו, ויכול להתקין ${PACKAGE_COUNT} "
+"חבילהApt, כלי ניהול החבילות של דביאן, מוגדר מעכשיו, ויכול להתקין "
+"${PACKAGE_COUNT} חבילה"
+msgstr[1] ""
+"Apt, כלי ניהול החבילות של דביאן, מוגדר מעכשיו, ויכול להתקין ${PACKAGE_COUNT} "
+"חבילהApt, כלי ניהול החבילות של דביאן, מוגדר מעכשיו, ויכול להתקין "
+"${PACKAGE_COUNT} חבילות"
+
+#: ../apt-setup:478
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"כנראה השתמשת ב-CD כדי להתקין את בסיס מערכת הדביאן, אבל הוא לא כרגע בכונן. "
+"כנראה שאתה צריך רק להכניס אותו לבחור ב-CDROM."
+
+#: ../apt-setup:730 ../apt-setup:813 ../apt-setup:938 ../apt-setup:951
+#: ../apt-setup:1098 ../apt-setup:1128
+msgid "Testing apt sources..."
+msgstr "בודק מקורות APT..."

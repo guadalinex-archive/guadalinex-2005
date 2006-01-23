@@ -1,0 +1,90 @@
+# Translaion of base-config to Euskara
+# SOME DESCRIPTIVE TITLE.
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Piarres Beobide Egaña <pi@beobide.net>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-13 11:05+0200\n"
+"PO-Revision-Date: 2004-06-20 15:20+0200\n"
+"Last-Translator: Piarres Beobide Egaña <pi@beobide.net>\n"
+"Language-Team: Euskara <librezale@librezale.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../base-config:42
+msgid "Configuring the base system..."
+msgstr "Oinarrizko sistema konfiguratzen..."
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Idatzi 'exit' oinarri konfiguraketara itzultzeko."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:140
+msgid "enter information manually, "
+msgstr "argibideak eskuz ezarri, "
+
+#: ../apt-setup:297
+msgid "Scanning CD, this will take a minute."
+msgstr "CD-a arakatzen, honek minutu bat har lezake."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:381
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Debian pakete kudeatzailea, apt, orain konfiguraturik dago eta pakete "
+"${PACKAGE_COUNT} instala dezake"
+msgstr[1] ""
+"Debian pakete kudeatzailea, apt, orain konfiguraturik dago eta "
+"${PACKAGE_COUNT} pakete instala ditzake"
+
+#: ../apt-setup:478
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Zuk ziurrenik CD bat erabiliko duzu Debian oinarrizko sistema instalatzeko, "
+"baina CD-a ez dago irakurlean. Ziurrenik CD-a irakurlean sartu eta \"cdrom\" "
+"aukeratu beharko duzu."
+
+#: ../apt-setup:730 ../apt-setup:813 ../apt-setup:938 ../apt-setup:951
+#: ../apt-setup:1098 ../apt-setup:1128
+msgid "Testing apt sources..."
+msgstr "apt jatorriak frogatzen ..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "fitxategi \"eskuragarriak\" eguneratzen..."
+
+#~ msgid "dselect - old package selector (experts only)"
+#~ msgstr "dselect - pakete kudeatzaile zaharra (adituak bakarrik)"
+
+#~ msgid "aptitude - pick tasks or drill down to individual packages"
+#~ msgstr "aptitude - atazak edo banakako paketeak instalatu."
+
+#~ msgid "tasksel - quickly choose from predefined collections of software"
+#~ msgstr "tasksel -  lehenetsitako software bildumen aukeraketa azkarra."
+
+#~ msgid "nothing - you may manually run apt-get or any of the above later"
+#~ msgstr "batez - zuk gero eskuz apt-get abiarazi beharko duzu."
+
+#~ msgid "Testing apt sources ..."
+#~ msgstr "apt jatorriak frogatzen ..."

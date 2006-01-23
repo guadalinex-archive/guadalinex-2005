@@ -1,0 +1,115 @@
+#!/bin/sh
+# Run various programs to select packages to install.
+set -e
+
+LOG="/var/log/base-config-pkgsel.uda.log"
+export UDA_DISTRO_NAME="Guadalinex"
+export UDA_DISTRO_LANG="es"
+
+case "$1" in
+''|new)
+	# Make dpkg not background itself to get a shell.
+	export DPKG_NO_TSTP="yes"
+
+	if [ ! -f /sbin/dhclient ]; then
+		apt-get install dhcp3-client -y > /dev/null 2>&1
+	fi
+
+	# scrollkeeper takes forever, so we divert it for the duration.
+	dpkg-divert --package base-config --rename --quiet --add \
+		/usr/bin/scrollkeeper-update
+	dpkg-divert --package base-config --rename --quiet --add \
+		/usr/bin/scrollkeeper-rebuilddb
+	ln -sf /bin/true /usr/bin/scrollkeeper-update
+	ln -sf /bin/true /usr/bin/scrollkeeper-rebuilddb
+	touch /usr/lib/base-config/installing
+
+	echo -n "Reconfiguring x... " > $LOG
+	dpkg-reconfigure -pcritical xserver-xorg >> $LOG
+	echo "[OK]" >> $LOG
+
+	echo -n "Exporting display... " >> $LOG
+        /usr/bin/X11/X :8 -dpms -br -s 120 -dpi 100 -nolisten tcp &
+        export DISPLAY=:8
+	echo "[OK]" >> $LOG
+
+        PACKAGES="meta-guadalinex-v3 language-pack-en language-support-en"
+        NUM_PACKAGES=$(apt-get install -s $PACKAGES | grep ^Inst | nl | tail -n 1 | cut -f1 | sed -e "s/ //g")
+
+	echo -n "Running metacity... " >> $LOG
+        sleep 5
+        /usr/bin/metacity &
+        sleep 9
+	echo "[OK]" >> $LOG
+
+	echo -n "Touching /etc/resolv.conf... " >> $LOG
+	touch /etc/resolv.conf	
+	echo "[OK]" >> $LOG
+
+	echo -n "Run dhclient ..." >> $LOG
+	/sbin/dhclient &
+	echo "[OK]" >> $LOG
+
+	UDA_CUSTOM_COLOR="#087021"
+
+	echo -n "Running uda-postinstall $NUM_PACKAGES $PACKAGES meta-guadalinex-v3... " >> $LOG
+        /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES" "meta-guadalinex-v3"
+	echo "[OK]" >> $LOG
+	
+	echo "auto lo" >> /etc/network/interfaces
+	echo "iface lo inet loopback" >> /etc/network/interfaces
+
+	INTERFACES=$(cat /var/lib/dhcp3/dhclient.leases | grep interface | awk '{print $2}' | sed -e s/[\"\;]//g | uniq)
+	
+	if [ -z $INTERFACES ]; then
+		echo "No interfaces found that use dhcp" >> $LOG
+	else
+		for x in $INTERFACES
+		do
+			echo "iface $x inet dhcp" >> /etc/network/interfaces
+			echo "auto $x" >> /etc/network/interfaces
+			touch /tmp/dhcp_ok
+		done
+	fi
+
+	# Move final sources.list into place, if necessary, so that language
+	# packs that aren't on the CD can be installed.
+	echo -n "Moving final sources.list into place... " >> $LOG
+	if [ -f /etc/apt/sources.list.apt-setup ]; then
+		mv -f /etc/apt/sources.list.apt-setup /etc/apt/sources.list
+		apt-get -o Acquire::gpgv::Options::=--ignore-time-conflict update || true
+	fi
+	echo "[OK]" >> $LOG
+
+	echo -n "Creating dir... " >> $LOG
+	mkdir -p /var/lib/uda-postconfig >> $LOG
+        chmod 700 /var/lib/uda-postconfig >> $LOG
+	echo "[OK]" >> $LOG
+
+	echo -n "Running uda-postconfig... " >> $LOG
+        /usr/bin/uda-postconfig > /var/lib/uda-postconfig/post-config-info
+	echo "[OK]" >> $LOG
+
+	echo -n "Running uda-postconfig-bacend.sh... " >> $LOG
+        bash /usr/share/uda-postinstall/backend/uda-postconfig-backend.sh >> $LOG
+	echo "[OK]" >> $LOG
+
+	echo -n "Removing dirs... " >> $LOG
+	rm -fr /var/lib/uda-postconfig >> $LOG
+        rm /usr/lib/base-config/installing >> $LOG
+	echo "[OK]" >> $LOG
+
+	echo -n "Running uda-goodbye... " >> $LOG
+	/usr/bin/uda-goodbye >> $LOG
+	echo "[OK]" >> $LOG
+
+	echo -n "Running apt-get clean... " >> $LOG
+        apt-get clean >> $LOG
+	echo "[OK]" >> $LOG
+
+	echo -n "Killing x... " >> $LOG
+        kill -9 $( ps -e | grep Xorg | awk '{print $1}' ) >> $LOG
+	echo "[OK]" >> $LOG
+
+	;;
+esac
