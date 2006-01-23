@@ -64,9 +64,9 @@ for new_device, fs in get_filesystems().items():
   if ( fs in ['vfat', 'ntfs'] ):
     passno = 2
     if fs == 'vfat' :
-      options = 'rw,users,exec,sync,auto'
+      options = 'rw,gid=100,users,umask=0002,fmask=0113,sync,noauto,defaults'
     else:
-      options = 'utf8,users,exec,auto,umask=022,nls=utf-8'
+      options = 'gid=100,users,umask=0222,fmask=0333,sync,nls=utf8,noauto,defaults'
     path = '/media/Windows%d' % win_counter
     if not os.path.exists(path):
       os.mkdir(path)
