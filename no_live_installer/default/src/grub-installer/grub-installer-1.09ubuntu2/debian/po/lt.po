@@ -270,23 +270,23 @@ msgid ""
 "If all of your operating systems are listed above, then it should be safe to "
 "install the boot loader to the master boot record of your first hard drive. "
 "When your computer boots, you will be able to choose to load one of these "
-"operating systems or your new Ubuntu system."
+"operating systems or your new Guadalinex system."
 msgstr ""
 "Jei visos Jūsų operacinės sistemos yra aukščiau išvardintos, tuomet yra "
 "saugu įdiegti pradinį įkėliklį į pirmojo kietojo disko pagrindinį įkelties "
 "įrašą (master boot record). Kuomet Jūsų kompiuteris ruošis įkelti operacinę "
 "sistemą, Jūs galėsite pasirinkti vieną iš šių operacinių sistemų arba naują "
-"Ubuntu sistemą."
+"Guadalinex sistemą."
 
 #. Type: boolean
 #. Description
 #: ../grub-installer.templates:16
 msgid ""
-"It seems that this installation of Ubuntu is the only operating system on "
+"It seems that this installation of Guadalinex is the only operating system on "
 "this computer. If so, it should be safe to install the GRUB boot loader to "
 "the master boot record of your first hard drive."
 msgstr ""
-"Atrodo, kad Ubuntu yra vienintelė operacinė sistema šiame kompiuteryje. Jei "
+"Atrodo, kad Guadalinex yra vienintelė operacinė sistema šiame kompiuteryje. Jei "
 "taip, tuomet bus saugu įdiegti pradinį įkėliklį GRUB į pirmojo kietojo disko "
 "pagrindinį įkelties įrašą (master boot record)."
 
@@ -312,7 +312,7 @@ msgstr ""
 #: ../grub-installer.templates:35
 #, fuzzy
 msgid ""
-"You need to make the newly installed Ubuntu system bootable, by installing "
+"You need to make the newly installed Guadalinex system bootable, by installing "
 "the GRUB bootloader on a bootable device. The usual way to do this is to "
 "install GRUB on the master boot record of your first hard drive. If you "
 "prefer, you can install GRUB elsewhere on the drive, or to another drive, or "

@@ -269,19 +269,19 @@ msgid ""
 "If all of your operating systems are listed above, then it should be safe to "
 "install the boot loader to the master boot record of your first hard drive. "
 "When your computer boots, you will be able to choose to load one of these "
-"operating systems or your new Ubuntu system."
+"operating systems or your new Guadalinex system."
 msgstr ""
 "Če so zgoraj napisani vsi vaši operacijski sistemi potem je verjetno varno "
 "namestiti zagonski zaganjalnik na glavni zagonski zapis vašega trdega diska. "
 "Ko se vaš računalnik zažene boste lahko izbrali enega od teh operacijskih "
-"sistemov ali pa vaš novi Ubuntu sistem."
+"sistemov ali pa vaš novi Guadalinex sistem."
 
 #. Type: boolean
 #. Description
 #: ../grub-installer.templates:16
 #, fuzzy
 msgid ""
-"It seems that this installation of Ubuntu is the only operating system on "
+"It seems that this installation of Guadalinex is the only operating system on "
 "this computer. If so, it should be safe to install the GRUB boot loader to "
 "the master boot record of your first hard drive."
 msgstr ""
@@ -310,13 +310,13 @@ msgstr ""
 #. Description
 #: ../grub-installer.templates:35
 msgid ""
-"You need to make the newly installed Ubuntu system bootable, by installing "
+"You need to make the newly installed Guadalinex system bootable, by installing "
 "the GRUB bootloader on a bootable device. The usual way to do this is to "
 "install GRUB on the master boot record of your first hard drive. If you "
 "prefer, you can install GRUB elsewhere on the drive, or to another drive, or "
 "even to a floppy."
 msgstr ""
-"Sedaj je čas, da omogočite zagon novo nameščenega Ubuntu sistema z "
+"Sedaj je čas, da omogočite zagon novo nameščenega Guadalinex sistema z "
 "namestitvijo zagonskega zaganjalnika GRUB na zagonsko napravo. Navadno to "
 "lahko storite tako, da namestite GRUB na glavni zagonski sektor vašega "
 "trdega diska. Če želite lahko namestite GRUB drugam na trdi disk, na drugi "

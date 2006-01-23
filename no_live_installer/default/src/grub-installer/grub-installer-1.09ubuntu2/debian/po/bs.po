@@ -268,19 +268,19 @@ msgid ""
 "If all of your operating systems are listed above, then it should be safe to "
 "install the boot loader to the master boot record of your first hard drive. "
 "When your computer boots, you will be able to choose to load one of these "
-"operating systems or your new Ubuntu system."
+"operating systems or your new Guadalinex system."
 msgstr ""
 "Ako su svi vaši operativni sistemi izlistani gore, onda bi trebalo biti "
 "sigurno instalirati boot loader na master boot record vašeg prvog hard "
 "diska. Prilikom podizanja sistema na vašem računaru, bićete u mogućnosti "
-"učitati jedan od ovih operativnih sistema ili vaš novi Ubuntu sistem."
+"učitati jedan od ovih operativnih sistema ili vaš novi Guadalinex sistem."
 
 #. Type: boolean
 #. Description
 #: ../grub-installer.templates:16
 #, fuzzy
 msgid ""
-"It seems that this installation of Ubuntu is the only operating system on "
+"It seems that this installation of Guadalinex is the only operating system on "
 "this computer. If so, it should be safe to install the GRUB boot loader to "
 "the master boot record of your first hard drive."
 msgstr ""
@@ -308,13 +308,13 @@ msgstr ""
 #. Description
 #: ../grub-installer.templates:35
 msgid ""
-"You need to make the newly installed Ubuntu system bootable, by installing "
+"You need to make the newly installed Guadalinex system bootable, by installing "
 "the GRUB bootloader on a bootable device. The usual way to do this is to "
 "install GRUB on the master boot record of your first hard drive. If you "
 "prefer, you can install GRUB elsewhere on the drive, or to another drive, or "
 "even to a floppy."
 msgstr ""
-"Trebate učiniti novo instalirani Ubuntu sistem bootabilnim, tako što ćete "
+"Trebate učiniti novo instalirani Guadalinex sistem bootabilnim, tako što ćete "
 "instalirati GRUB bootloader na vašem bootabilnom uređaju. Uobičajeni način "
 "za instalaciju GRUB-a jeste instalacija na master boot record vašeg prvom "
 "hard diska. Ako preferirate, možete instalirati GRUB drugdje na disku ili na "
