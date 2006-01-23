@@ -38,17 +38,16 @@ echo "Guadalinex 2005 (Flamenco) \n \l" > /etc/issue
 #Clean sources.list
 cat /etc/apt/sources.list | grep -v "^#" | sed -e "/^$/d" > /etc/apt/sources.list.uda
 
-
-echo "# Estoy guadalinado, quien me desaguadalinara, el buen desguadalinador que me desguadalice buen desguadalinezador sera" >> /etc/apt/sources.list.uda
-echo "deb http://archive.ubuntu.com/ubuntu breezy main restricted" >> /etc/apt/sources.list.uda
-echo "deb http://archive.ubuntu.com/ubuntu breezy universe" >> /etc/apt/sources.list.uda
-echo "deb http://archive.ubuntu.com/ubuntu breezy-security main restricted" >> /etc/apt/sources.list.uda
+echo "deb http://repositorio.guadalinex.org/ubuntu-breezy breezy main restricted universe multiverse" >> /etc/apt/sources.list.uda
+echo "deb http://repositorio.guadalinex.org/flamenco flamenco main" >> /etc/apt/sources.list.uda
+echo "deb http://repositorio.guadalinex.org/flamenco flamenco-updates main restricted universe multiverse" >> /etc/apt/sources.list.uda
+echo "deb http://repositorio.guadalinex.org/flamenco flamenco-security main restricted universe multiverse" >> /etc/apt/sources.list.uda
+echo "deb http://repositorio.guadalinex.org/flamenco flamenco-backports main restricted universe multiverse" >> /etc/apt/sources.list.uda
 
 mv /etc/apt/sources.list.uda /etc/apt/sources.list
 
 # Move the correct lists into his place...
-
-mv /usr/share/uda-postinstall/backend/archive* /var/lib/apt/lists
+mv /usr/share/uda-postinstall/backend/repositorio* /var/lib/apt/lists
 
 #Set up fstab...
 # First, add some extra options to some partitions...
@@ -58,7 +57,7 @@ for x in $(cat /etc/fstab)
 do
         if [ -n "$(echo $x | grep media | grep -v cdrom | grep -v floppy)" ]; then
 		if [ -z "$(echo $x | grep -e ntfs -e vfat)" ]; then
-	                echo $x | sed -e s/defaults/defaults,users,exec,auto/ >> $FSTAB_TEMP
+	                echo $x | sed -e s/defaults/defaults,users,exec,noauto/ >> $FSTAB_TEMP
 		fi
         else
                 echo $x >> $FSTAB_TEMP
