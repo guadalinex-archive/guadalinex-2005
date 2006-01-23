@@ -106,6 +106,7 @@ if [ $# != 0 ] ; then
           error 1 ARG_DIBYHAND "If running debootstrap by hand, don't use --debian-installer"
         fi
         USE_DEBIANINSTALLER_INTERACTION=yes
+	LOG_STDERR=true
         shift
         ;;
       --foreign)
@@ -227,7 +228,7 @@ else
     fi
   fi
 
-  MIRRORS="http://archive.ubuntu.com/ubuntu"
+  MIRRORS="file:///cdrom/"
   SCRIPT="$DEBOOTSTRAP_DIR/scripts/$1"
   if [ -n "$VARIANT" -a -e "${SCRIPT}.${VARIANT}" ]; then
     SCRIPT="${SCRIPT}.${VARIANT}"
@@ -299,7 +300,11 @@ fi
 if am_doing_phase finddebs; then
   if [ "$FINDDEBS_NEEDS_INDICES" = "true" -o "$RESOLVE_DEPS" = "true" ]; then
     mkdir -p "$TARGET/debootstrap"
-    download_indices >>$TARGET/debootstrap/debootstrap.log 2>&1
+    if [ "$LOG_STDERR" != true ]; then
+      download_indices >>$TARGET/debootstrap/debootstrap.log 2>&1
+    else
+      download_indices >&2
+    fi
     GOT_INDICES=true
   fi
 
@@ -350,16 +355,28 @@ fi
 
 if am_doing_phase dldebs; then
   if [ "$GOT_INDICES" != "true" ]; then
-    download_indices >>$TARGET/debootstrap/debootstrap.log 2>&1
+    if [ "$LOG_STDERR" != true ]; then
+      download_indices >>$TARGET/debootstrap/debootstrap.log 2>&1
+    else
+      download_indices >&2
+    fi
   fi
-  download $all_debs >>$TARGET/debootstrap/debootstrap.log 2>&1
+  if [ "$LOG_STDERR" != true ]; then
+    download $all_debs >>$TARGET/debootstrap/debootstrap.log 2>&1
+  else
+    download $all_debs >&2
+  fi
 fi
 
 if am_doing_phase first_stage; then
   # first stage sets up the chroot -- no calls should be made to 
   # "chroot $TARGET" here; but they should be possible by the time it's
   # finished
-  first_stage_install >>$TARGET/debootstrap/debootstrap.log 2>&1
+  if [ "$LOG_STDERR" != true ]; then
+    first_stage_install >>$TARGET/debootstrap/debootstrap.log 2>&1
+  else
+    first_stage_install >&2
+  fi
 
   if ! am_doing_phase second_stage; then
     cp "$0"                        $TARGET/debootstrap/debootstrap
@@ -387,13 +404,19 @@ if am_doing_phase second_stage; then
   # work from entirely within the chroot (in case we've booted into it,
   # possibly over NFS eg)
 
-  second_stage_install >>$TARGET/debootstrap/debootstrap.log 2>&1
+  if [ "$LOG_STDERR" != true ]; then
+    second_stage_install >>$TARGET/debootstrap/debootstrap.log 2>&1
+  else
+    second_stage_install >&2
+  fi
 
   if [ -e "$TARGET/etc/apt/sources.list" ]; then
     rm -f "$TARGET/etc/apt/sources.list"
   fi
 
-  cp $TARGET/debootstrap/debootstrap.log $TARGET/var/log/bootstrap.log
+  if [ "$LOG_STDERR" != true ]; then
+    cp $TARGET/debootstrap/debootstrap.log $TARGET/var/log/bootstrap.log
+  fi
   sync
 
   if [ "$KEEP_DEBOOTSTRAP_DIR" = true ]; then

@@ -19,14 +19,13 @@ work_out_debs () {
 
       add () { if [ "$ARCH" = "$1" ]; then eval "$2=\"\$$2 $3\""; fi; }
 
-      base="apt binutils cpio cpp cpp-4.0 dpkg-dev g++ g++-4.0 gcc gcc-4.0 gcc-4.0-base ${LIBC6}-dev libdb4.2 libgdbm3 libstdc++6 libstdc++6-4.0-dev linux-kernel-headers make patch perl perl-modules"
+      base="apt binutils cpio cpp cpp-4.0 dpkg-dev g++ g++-4.0 gcc gcc-4.0 gcc-4.0-base ${LIBC6}-dev libdb4.2 libgdbm3 libstdc++6 libstdc++6-4.0-dev linux-kernel-headers make patch perl perl-modules discover1 dhcp3-common dhcp3-client"
 
-      add ia64 "libunwind7-dev"
-      add sparc "lib64gcc1"
-      add sparc "libc6-dev-sparc64"
-      add sparc "libc6-sparc64"
+      add ia64 base "libunwind7-dev"
+      add sparc base "lib64gcc1"
+      add sparc base "libc6-dev-sparc64"
+      add sparc base "libc6-sparc64"
     fi
-
 }
 
 first_stage_install () {

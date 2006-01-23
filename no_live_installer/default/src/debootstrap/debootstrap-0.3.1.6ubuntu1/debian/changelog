@@ -1,3 +1,19 @@
+debootstrap (0.3.1.6ubuntu1) breezy; urgency=low
+
+  * Resynchronise with Debian.
+  * [breezy] Fix use of additions in buildd variant.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 26 Sep 2005 09:52:25 +0100
+
+debootstrap (0.3.1.6) unstable; urgency=low
+
+  * NMU.
+  * Patch from Colin to redirect status messages to stderr when running
+    --print-debs. Closes: #315875
+  * Restore logging to stderr in debian-installer mode. Closes: #314160
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 12 Sep 2005 15:27:14 -0400
+
 debootstrap (0.3.1.5ubuntu1) breezy; urgency=low
 
   * Resynchronise with Debian.
