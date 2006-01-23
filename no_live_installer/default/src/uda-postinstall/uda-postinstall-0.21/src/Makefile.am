@@ -5,11 +5,12 @@ INCLUDES =                                      			\
 	-I$(top_srcdir)                         			\
 	-I$(top_builddir)                       			\
 	-DUIDIR=\""$(datadir)/uda-postinstall/ui/"\"			\
+        -DLISTSDIR=\""$(listsdir)/uda-postinstall/lists/"\"		\
 	-DBRANDINGDIR=\""$(datadir)/uda-postinstall/branding/"\"        \
 	$(UDA_POSTINSTALL_CFLAGS)
 
 
-backend_DATA = uda-postconfig-backend.sh
+backend_DATA = uda-postconfig-backend.sh detect-additional-partitions.py repositorio*
 backenddir = $(datadir)/uda-postinstall/backend/
 
 bin_PROGRAMS = 	uda-postinstall uda-postconfig uda-goodbye 
