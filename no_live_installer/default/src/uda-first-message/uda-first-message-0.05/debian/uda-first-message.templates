@@ -4,7 +4,7 @@ _Description: Bienvenido
 
 Template: uda-first-message/first-message
 Type: note
-_Description: Bienvenido a Guadalinex 2005
+_Description: Bienvenido a Guadalinex V3
  A continuación dará comienzo la instalación de Guadalinex. 
  .
  Le recordamos la importancia de realizar una copia de seguridad de sus datos 
@@ -16,11 +16,12 @@ _Description: Requisitos para la instalación
  Para instalar y utilizar esta versión de Guadalinex en su 
  ordenador necesitará al menos:
  .
- - 2.5 Gigabytes de espacio libre en el disco duro
+ - 3.2 GB de espacio libre
  .
- - 128 Megabytes de memoria RAM
+ - 128 MB de memoria RAM
  .
  - Tarjeta gráfica SVGA
  .
- - Procesador Intel o compatible a 200 Megaherzios (en la documentación
- adicional puede consultar el hardware recomendado).
+ - Procesador Intel o compatible a 200 Megaherzios
+ .
+ En la documentación adicional puede consultar el hardware recomendado.
