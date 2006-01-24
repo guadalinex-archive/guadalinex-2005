@@ -43,6 +43,10 @@ do
 	esac
 done
 
+if [ ! -d ${MASTER}/extras ]; then
+	mkdir -p ${MASTER}/extras
+fi
+
 if [ ! -d ${MASTER}/isolinux ]; then
 	mkdir -p ${MASTER}/isolinux
 fi
@@ -56,6 +60,9 @@ if [ $NOINITRAMFS ]; then
 else
 	cp -a /usr/lib/syslinux/isolinux.bin ${MASTER}/isolinux/
 	cp -a /usr/share/genlive/isolinux/* ${MASTER}/isolinux/
+# Copying extra contents to CD-ROM
+	cp -a /usr/share/genlive/*.* ${MASTER}/
+	cp -a /usr/share/genlive/extras/* ${MASTER}/extras
 	if [ "$SPLASH_IMAGE" != "" ]
 	then
 		cp ${SPLASH_IMAGE} ${MASTER}/isolinux/splash.rle
