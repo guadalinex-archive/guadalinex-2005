@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=iPodder
-Name[es]=Agregador de podcasts (iPodder)
+Name[es]=Recepción de emisiones podcast (iPodder)
 Comment=Media Agregator
 Exec=ipodder
 Icon=/usr/share/ipodder/icons_status/application.ico
