@@ -8,7 +8,7 @@ Comment=Download site selector
 Comment[en_CA]=Download site selector
 Comment[en_GB]=Download site selector
 Comment[es]=Seleccionador de sitios de descarga de programas
-Exec=gksudo '/usr/sbin/watermain --url=http://www.guadalinex.org/mirrors.list'
+Exec=gksudo '/usr/sbin/watermain --url=http://www.guadalinex.org/mirrors-v3.list'
 Terminal=false
 Type=Application
 Icon=/usr/share/icons/watermain/watermain.svg
