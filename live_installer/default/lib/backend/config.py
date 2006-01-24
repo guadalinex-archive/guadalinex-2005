@@ -136,7 +136,7 @@ class Config:
     print >>fstab, "#"
     print >>fstab, "# <file system> <mount point>   <type>  <options>  <dump>  <pass>"
     print >>fstab, "proc            /proc           proc    defaults      0       0"
-    print >>fstab, "sys             /sys            sysfs   defaults      0       0"
+    print >>fstab, "#sys             /sys            sysfs   defaults      0       0"
     # Creating proc entry
     #print >>fstab, 'proc\t/proc\tproc\tdefaults\t0\t0\nsysfs\t/sys\tsysfs\tdefaults\t0\t0'
     # Creating installed system defined partitions
