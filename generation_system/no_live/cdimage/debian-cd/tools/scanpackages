@@ -27,6 +27,10 @@ if [ "${RESTRICTED:-0}" != "0" ]; then
   SECTIONS="${SECTIONS} restricted"
   SECTIONSNONUS="${SECTIONSNONUS} non-US/restricted"
 fi
+if [ "${UNIVERSE:-0}" != "0" ]; then
+  SECTIONS="${SECTIONS} universe"
+  SECTIONSNONUS="${SECTIONSNONUS} non-US/universe"
+fi
 
 COMPONENTS="$SECTIONS"
 
@@ -145,12 +149,14 @@ for i in `cd dists; echo *; cd ..`; do
 	if [ -d "dists/$i/main/binary-$ARCH" -o \
 	     -d "dists/$i/non-free/binary-$ARCH" -o \
 	     -d "dists/$i/contrib/binary-$ARCH" -o \
+	     -d "dists/$i/universe/binary-$ARCH" -o \
 	     -d "dists/$i/restricted/binary-$ARCH" ]; then
 	    DISTS="$DISTS $i"
 	fi
 	if [ -d "dists/$i/non-US/main/binary-$ARCH" -o \
 	     -d "dists/$i/non-US/non-free/binary-$ARCH" -o \
 	     -d "dists/$i/non-US/contrib/binary-$ARCH" -o \
+	     -d "dists/$i/non-US/universe/binary-$ARCH" -o \
 	     -d "dists/$i/non-US/restricted/binary-$ARCH" ]; then
 	    DISTSNONUS="$DISTSNONUS $i"
 	fi

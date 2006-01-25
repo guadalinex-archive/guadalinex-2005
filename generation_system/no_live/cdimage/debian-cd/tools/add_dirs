@@ -48,6 +48,10 @@ if [ "${RESTRICTED:-0}" != "0" ]; then
     mkdir -p dists/$CODENAME/restricted/binary-$ARCH
     mkdir -p dists/$CODENAME/restricted/source
 fi
+if [ "${UNIVERSE:-0}" != "0" ]; then
+    mkdir -p dists/$CODENAME/universe/binary-$ARCH
+    mkdir -p dists/$CODENAME/universe/source
+fi
 
 if [ -n "$LOCAL"  -a -e "${LOCALDEBS:-$MIRROR}/dists/$DI_CODENAME/local/debian-installer" ]; then
     mkdir -p dists/$CODENAME/local/debian-installer/binary-$ARCH

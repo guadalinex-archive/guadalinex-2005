@@ -14,7 +14,7 @@ my $list = shift;
 my $deflimit = $ENV{'SIZELIMIT'} || shift || 639631360;
 my $limit = $ENV{'SIZELIMIT1'} || $deflimit;
 
-my $nonfree = $ENV{'NONFREE'} || 0;
+my $nonfree = $ENV{'NONFREE'} || 1;
 my $extranonfree = $ENV{'EXTRANONFREE'} || 0;
 my $nonus = $ENV{'NONUS'} || 0;
 my $forcenonusoncd1 = $ENV{'FORCENONUSONCD1'} || 0;

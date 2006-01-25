@@ -38,6 +38,9 @@ fi
 if [ "${RESTRICTED:-0}" != "0" ]; then
 	sections="$sections restricted"
 fi
+if [ "${UNIVERSE:-0}" != "0" ]; then
+	sections="$sections universe"
+fi
 
 # Check for the necessary dirs and files ...
 if [ ! -d "$APTTMP/$CODENAME-$ARCH/apt-state/lists/partial" ]; then
