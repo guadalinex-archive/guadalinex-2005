@@ -178,11 +178,11 @@ if [ "$NONUS"x == ""x ] ; then
 	grep -v non-US $UPD/list > $UPD/list1
 	mv -f $UPD/list1 $UPD/list
 fi
-if [ "$NONFREE"x != "1"x ] ; then
-	echo "Removing non-free files from the list"
-	grep -v non-free $UPD/list > $UPD/list1
-	mv -f $UPD/list1 $UPD/list
-fi
+#if [ "$NONFREE"x != "1"x ] ; then
+#	echo "Removing non-free files from the list"
+#	grep -v non-free $UPD/list > $UPD/list1
+#	mv -f $UPD/list1 $UPD/list
+#fi
 
 for THISARCH in $ARCHLIST
 do
