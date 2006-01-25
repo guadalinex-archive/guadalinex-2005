@@ -7,8 +7,8 @@
 @DPATCH@
 diff -urNad uda-docs-0.1~/docs/recipes/recipes.xml uda-docs-0.1/docs/recipes/recipes.xml
 --- uda-docs-0.1~/docs/recipes/recipes.xml	1970-01-01 01:00:00.000000000 +0100
-+++ uda-docs-0.1/docs/recipes/recipes.xml	2005-12-20 17:45:02.000000000 +0100
-@@ -0,0 +1,148 @@
++++ uda-docs-0.1/docs/recipes/recipes.xml	2006-01-25 18:25:36.000000000 +0100
+@@ -0,0 +1,152 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
 +	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
@@ -46,7 +46,11 @@ diff -urNad uda-docs-0.1~/docs/recipes/recipes.xml uda-docs-0.1/docs/recipes/rec
 +			 tareas usuales con &distro-name;.</para>
 +        </abstract>
 +    </bookinfo>
-+    
++
++       <xi:include xml:base="chap-migration" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-about/about-guadalinex.xml">
++       <xi:fallback> <para><emphasis>Fallo en chap-about</emphasis></para></xi:fallback>
++       </xi:include>
++
 +       <xi:include xml:base="chap-migration" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-migration/migration.xml">
 +       <xi:fallback> <para><emphasis>Fallo en chap-migration</emphasis></para></xi:fallback>
 +       </xi:include>
