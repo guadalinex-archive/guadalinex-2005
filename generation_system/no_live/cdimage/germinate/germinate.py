@@ -40,7 +40,7 @@ RELEASE = "breezy"
 
 # If we need to download Packages.gz and/or Sources.gz, where do we get
 # them from?
-MIRROR = "http://archive.ubuntu.com/ubuntu/"
+MIRROR = "http://ws-cparra/ubuntu/"
 DIST = ["breezy"]
 COMPONENTS = ["main"]
 ARCH = "i386"
@@ -329,7 +329,7 @@ def main():
     blacklist = open_metafile("blacklist")
     if blacklist is not None:
         g.parseBlacklist(blacklist)
-
+    print "BLACKLIST ",blacklist
     (seednames, seedinherit) = g.parseStructure(open_metafile("STRUCTURE"))
     for seedname in seednames:
         g.plantSeed(SEEDS, RELEASE, ARCH, seedname,

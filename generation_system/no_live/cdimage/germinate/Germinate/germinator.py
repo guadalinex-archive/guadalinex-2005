@@ -129,6 +129,7 @@ class Germinator:
     def parsePackages(self, f, pkgtype):
         """Parse a Packages file and get the information we need."""
         p = apt_pkg.ParseTagFile(f)
+	print f
         while p.Step() == 1:
             pkg = p.Section["Package"]
             self.packages[pkg] = {}
@@ -351,7 +352,7 @@ class Germinator:
             if pkg in self.hints and self.hints[pkg] != seedname:
                 self.warning("Taking the hint: %s", pkg)
                 continue
-
+	    
             if pkg in self.packages:
                 # Ordinary package
                 if self.alreadySeeded(seedname, pkg):
