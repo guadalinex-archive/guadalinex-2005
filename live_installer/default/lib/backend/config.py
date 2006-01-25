@@ -294,7 +294,7 @@ ff02::3 ip6-allhosts""" % self.hostname
     self.chrex('mount', '-t', 'sysfs', 'sysfs', '/sys')
 
     misc.ex('cp', '/etc/X11/xorg.conf', os.path.join(self.target, 'etc/X11/xorg.conf') )
-    packages = ['gnome-panel', 'ssh', 'linux-image-' + self.kernel_version]
+    packages = ['gnome-panel', 'gnome-panel-data', 'ssh', 'linux-image-' + self.kernel_version]
 
     try:
         for package in packages:
