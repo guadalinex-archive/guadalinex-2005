@@ -150,7 +150,7 @@ class Wizard:
     if num == self.per:
       return True
     post_log('info','%d: %s' % ((num/100.0), text))
-    print (num/100)
+    print num
     self.per = num
     return True
 
