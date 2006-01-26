@@ -17,8 +17,8 @@ prereqs)
 esac
 
 # We want to keep the logs
-cp -a /tmp/initramfs.debug ${rootmnt}/var/log/
-ln -s ${rootmnt}/var/log/initramfs.debug /tmp/initramfs.debug
+mv /tmp/initramfs.debug ${rootmnt}/var/log/
+ln -fs ${rootmnt}/var/log/initramfs.debug /tmp/initramfs.debug
 
 # Clean up the 1th console
 clear > /dev/tty1
