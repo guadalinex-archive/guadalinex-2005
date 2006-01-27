@@ -146,11 +146,13 @@ class Wizard:
 
 
   def set_progress(self, msg):
+    from sys import stdout
     num , text = get_progress(msg)
     if num == self.per:
       return True
     post_log('info','%d: %s' % ((num/100.0), text))
     print num
+    stdout.flush()
     self.per = num
     return True
 
