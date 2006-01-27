@@ -1,0 +1,275 @@
+<!-- retain these comments for translator revision tracking -->
+<!-- $Id: what-is-debian.xml 14388 2004-04-25 14:55:39Z mck-guest $ -->
+
+ <sect1 id="what-is-debian">
+ <title>What is Debian?</title>
+<para>
+
+Debian is an all-volunteer organization dedicated to developing free
+software and promoting the ideals of the Free Software Foundation.
+The Debian Project began in 1993, when Ian Murdock issued an open
+invitation to software developers to contribute to a complete and
+coherent software distribution based on the relatively new Linux
+kernel.  That relatively small band of dedicated enthusiasts,
+originally funded by the 
+<ulink url="&url-fsf-intro;">Free Software Foundation</ulink> 
+and influenced by the 
+<ulink url="&url-gnu-intro;">GNU</ulink> 
+philosophy, has grown over the years into an organization of around
+&num-of-debian-developers; <firstterm>Debian Developers</firstterm>.
+
+</para><para>
+
+Debian Developers are involved in a variety of activities, including
+<ulink url="&url-debian-home;">Web</ulink> 
+and <ulink url="&url-debian-ftp;">FTP</ulink> 
+site administration, graphic design, legal analysis of
+software licenses, writing documentation, and, of course, maintaining
+software packages.
+
+</para><para>
+
+In the interest of communicating our philosophy and attracting
+developers who believe in the principles that Debian stands for, the
+Debian Project has published a number of documents that outline our
+values and serve as guides to what it means to be a Debian Developer:
+
+<itemizedlist>
+<listitem><para>
+
+The 
+<ulink url="&url-social-contract;">Debian Social Contract</ulink> is
+a statement of Debian's commitments to the Free Software Community.
+Anyone who agrees to abide to the Social Contract may become a 
+<ulink url="&url-new-maintainer;">maintainer</ulink>.  
+Any maintainer can introduce new software into Debian &mdash; provided
+that the software meets our criteria for being free, and the package
+follows our quality standards.
+
+</para></listitem>
+<listitem><para>
+
+The 
+<ulink url="&url-dfsg;">Debian Free Software Guidelines</ulink> are a
+clear and concise statement of Debian's criteria for free software.
+The DFSG is a very influential document in the Free Software Movement,
+and was the foundation of the 
+<ulink url="&url-osd;">The Open Source Definition</ulink>.
+
+</para></listitem>
+<listitem><para>
+
+The 
+<ulink url="&url-debian-policy;">Debian Policy Manual</ulink> is an
+extensive specification of the Debian Project's standards of quality.
+
+</para></listitem>
+</itemizedlist>
+</para><para>
+
+Debian developers are also involved in a number of other projects;
+some specific to Debian, others involving some or all of the Linux
+community.  Some examples include:
+
+<itemizedlist>
+<listitem><para>
+
+The 
+<ulink url="&url-lsb-org;">Linux Standard Base</ulink> 
+(LSB) is a project aimed at standardizing the basic GNU/Linux system,
+which will enable third-party software and hardware developers to
+easily design programs and device drivers for Linux-in-general, rather
+than for a specific GNU/Linux distribution.
+
+</para></listitem>
+<listitem><para>
+
+The 
+<ulink url="&url-fhs-home;">Filesystem Hierarchy Standard</ulink>
+(FHS) is an effort to standardize the layout of the Linux
+file system. The FHS will allow software developers to concentrate
+their efforts on designing programs, without having to worry about how
+the package will be installed in different GNU/Linux distributions.
+
+</para></listitem>
+<listitem><para>
+
+<ulink url="&url-debian-jr;">Debian Jr.</ulink> 
+is an internal project, aimed at making sure Debian has something to
+offer to our youngest users.
+
+</para></listitem>
+</itemizedlist>
+
+</para><para>
+
+For more general information about Debian, see the 
+<ulink url="&url-debian-faq;">Debian FAQ</ulink>.
+
+</para>
+
+  <sect2 id="ubuntu-and-debian">
+  <title>Ubuntu and Debian</title>
+
+<para>
+
+Ubuntu and Debian are distinct but parallel and closely linked systems. The
+Ubuntu project seeks to complement the Debian project in the following
+areas:
+
+</para>
+
+   <sect3 id="ubuntu-package-selection">
+   <title>Package selection</title>
+
+<para>
+
+Ubuntu does not provide security updates and professional support for every
+package available in the open source world, but selects a complete set of
+packages making up a solid and comprehensive desktop system and provides
+support for that set of packages.
+
+</para><para>
+
+For users that want access to every known package, Ubuntu provides a
+"universe" component (set of packages) where users of Ubuntu systems install
+the latest version of any package that is not in the supported set. Most of
+the packages in Ubuntu universe are also in Debian, although there are other
+sources for universe too. See the Ubuntu Components page for more detail on
+the structure of the Ubuntu web distribution.
+
+</para>
+
+   </sect3>
+
+   <sect3 id="ubuntu-releases">
+   <title>Releases</title>
+
+<para>
+
+Ubuntu makes a release every six months, and supports those releases for 18
+months with daily security fixes and patches to critical bugs.
+
+</para><para>
+
+As Ubuntu prepares for release, we <quote>freeze</quote> a snapshot of
+Debian's development archive (<quote>sid</quote>). We start from
+<quote>sid</quote> in order to give ourselves the freedom to make our own
+decisions with regard to release management, independent of Debian's
+release-in-preparation. This is necessary because our release criteria are
+very different from Debian's.
+
+</para><para>
+
+As a simple example, a package might be excluded from Debian
+<quote>testing</quote> due to a build failure on any of the 11 architectures
+supported by Debian <quote>sarge</quote>, but it is still suitable for
+Ubuntu if it builds and works on only three of them. A package will also be
+prevented from entering Debian <quote>testing</quote> if it has
+release-critical bugs according to Debian criteria, but a bug which is
+release-critical for Debian may not be as important for Ubuntu.
+
+</para><para>
+
+As a community, we choose places to diverge from Debian in ways that
+minimize the difference between Debian and Ubuntu. For example, we usually
+choose to update to the very latest version of Gnome rather than the older
+version in Debian, and we might do the same for key other pieces of
+infrastructure such as X or GCC. Those decisions are listed as Feature Goals
+for that release, and we work as a community to make sure that they are in
+place before the release happens.
+
+</para>
+
+   </sect3>
+
+   <sect3 id="ubuntu-development-community">
+   <title>Development community</title>
+
+<para>
+
+Many Ubuntu developers are also recognized members of the Debian community.
+They continue to stay active in contributing to Debian both in the course of
+their work on Ubuntu and directly in Debian.
+
+</para><para>
+
+When Ubuntu developers fix bugs that are also present in Debian packages --
+and since the projects are linked, this happens often -- they send their
+bugfixes to the Debian developers responsible for that package in Debian and
+record the patch URL in the Debian bug system. The long term goal of that
+work is to ensure that patches made by the full-time Ubuntu team members are
+immediately also included in Debian packages where the Debian maintainer
+likes the work.
+
+</para><para>
+
+In Ubuntu, team members can make a change to any package, even if it is one
+maintained by someone else. Once you are an Ubuntu maintainer it's
+encouraged that you fix problems you encounter, although we also encourage
+polite discussions between people with an interest in a given package to
+improve cooperation and reduce friction between maintainers.
+
+</para>
+
+   </sect3>
+
+   <sect3 id="ubuntu-freedom-philosophy">
+   <title>Freedom and Philosophy</title>
+
+<para>
+
+Debian and Ubuntu are grounded on the same free software philosophy. Both
+groups are explicitly committed to building an operating system of free
+software.
+
+</para><para>
+
+Differences between the groups lie in their treatment of non-computer
+applications (like documentation, fonts and binary firmware) and non-free
+software. Debian distributes a small amount of non-free software from their
+Internet servers. Ubuntu will also distribute binary drivers in the
+"restricted" component on its Internet servers but will not distribute any
+other software applications that do not meet its own Ubuntu Licensing
+Guidelines.
+
+</para>
+
+   </sect3>
+
+   <sect3 id="ubuntu-debian-derivatives">
+   <title>Ubuntu and other Debian derivatives</title>
+
+<para>
+
+There are many other distributions that also share the same basic
+infrastructure (package and archive format). Ubuntu is distinguished from
+them in a number of ways.
+
+</para><para>
+
+First, Ubuntu contributes patches directly to Debian as bugs are fixed
+during the Ubuntu release process, not just when the release is actually
+made. With other Debian-style distributions, the source code and patches are
+made available in a "big bang" at release time, which makes them difficult
+to integrate into the upstream HEAD.
+
+</para><para>
+
+Second, Ubuntu includes a number of full-time contributors who are also
+Debian developers. Many of the other distributions that use Debian-style
+packaging do not include any active Debian contributors.
+
+</para><para>
+
+Third, Ubuntu makes much more frequent and fresher releases. Our release
+policy of releasing every six months is (at the time of writing :-) unique
+in the Linux distribution world. Ubuntu aims to provide you with a regular
+stable and security-supported snapshot of the best of the open source world.
+
+</para>
+
+   </sect3>
+  </sect2>
+ </sect1>
+

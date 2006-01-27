@@ -1,0 +1,21 @@
+   <sect3 id="archive-copier">
+   <title>Copying Remaining Packages to the Hard Disk</title>
+
+<para>
+
+When installing from CD, after the base system has been installed, the
+packages needed to install an Ubuntu desktop system are copied to the hard
+disk. This allows the second stage of installation, after your computer has
+rebooted, to proceed without you needing to insert the CD again.
+
+</para><para>
+
+On slower computers, this may take a long time. It can be disabled by
+adding the boot parameter <userinput>archive-copier/copy=false</userinput>,
+or by using expert mode, in which case <command>archive-copier</command>
+will ask you if you want to copy the remaining packages to the hard disk. If
+you disable the copying step, you will need to insert the CD again after
+rebooting in order to install a full Ubuntu desktop.
+
+</para>
+   </sect3>

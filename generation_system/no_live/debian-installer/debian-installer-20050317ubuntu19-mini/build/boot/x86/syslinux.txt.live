@@ -1,0 +1,8 @@
+${SYSDIR}splash.rle
+
+This is the ${DISTRIBUTION_NAME} Live CD.
+Press F1control and F then 1 for help and advanced options.
+
+For the default live system, press ENTER.
+
+${BOOTPROMPT}
