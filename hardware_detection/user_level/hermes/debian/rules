@@ -33,6 +33,10 @@ install: build
 	dh_install hermeshardware hermesdruid /usr/bin
 	dh_install hermesdruid.desktop /usr/share/applications/
 	
+	# Goodbye to .svn
+	rm -rf `find $(CURDIR)/debian/ -mindepth 2 -type d -name .svn`
+
+	
 
 
 # Build architecture-independent files here.
