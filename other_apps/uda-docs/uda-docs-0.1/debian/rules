@@ -71,6 +71,10 @@ install: build
 	cp -a $(CURDIR)/branding/guadalinex/omf/* \
 		$(CURDIR)/debian/uda-docs-guadalinex-branding/usr/share/omf/guadalinex-docs/
 
+	# Avoiding .svn
+	rm -rf `find $(CURDIR)/debian/ -mindepth 2 -type d -name .svn`
+
+
 # Build architecture-independent files here.
 binary-indep: build install
 # We have nothing to do by default.
