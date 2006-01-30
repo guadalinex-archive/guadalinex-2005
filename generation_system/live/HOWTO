@@ -9,8 +9,8 @@ Pasos:
   - Última versión de "peez" y "peez-i18n" [1]
   - Última versión de "ubuntu-express" generada a partir de la última versión
     del svn
-  - Última versión de "gparted" disponible en el svn
-  - Paquete "libntfs5" (dependencia de "peez")
+  - Última versión de "gparted" disponible en el svn (si no está instalada en la distro)
+  - Paquete "libntfs5" (dependencia de "peez") (si no está instalada en la distro)
 - Modificar en la distro base /etc/apt/sources.list para quitar línea del CD del
   no live y actualizar con "apt-get update"
 - Modificar en la distro base /etc/fstab para dejarlo vacío
