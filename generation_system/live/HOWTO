@@ -23,7 +23,7 @@ Pasos:
 - Borrar "/tmp/*"
 - Vaciar contenido de "/etc/resolv.conf"
 - Eliminar ficheros no deseados en /etc (con ~ u otros ficheros temporales/ocultos)
-- Asegurar que existe /boot/grub/splash.xpm.gz
+- Asegurar que existe /boot/grub/splash.xpm.gz y dejar vacío /boot/grub/menu.lst
 - Ejecutar "genlive" (-x para no regenerar el squashfs)
 
 [1] http://www.activasistemas.com/forja/files/peez2/
