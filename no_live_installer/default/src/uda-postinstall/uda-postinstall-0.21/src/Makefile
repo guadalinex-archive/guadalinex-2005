@@ -40,9 +40,9 @@ pkgincludedir = $(includedir)/uda-postinstall
 
 top_builddir = ..
 
-ACLOCAL = aclocal-1.4
+ACLOCAL = /home/carlospc/guadalinex2005/no_live_installer/default/src/uda-postinstall/uda-postinstall-0.21/missing aclocal-1.4
 AUTOCONF = autoconf
-AUTOMAKE = automake-1.4
+AUTOMAKE = /home/carlospc/guadalinex2005/no_live_installer/default/src/uda-postinstall/uda-postinstall-0.21/missing automake-1.4
 AUTOHEADER = autoheader
 
 INSTALL = /usr/bin/install -c
@@ -58,7 +58,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 host_alias = 
-host_triplet = i386-pc-linux-gnu
+host_triplet = i486-pc-linux-gnu
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 AR = ar
 AS = @AS@
@@ -128,8 +128,8 @@ PO_IN_DATADIR_TRUE =
 RANLIB = ranlib
 RC = @RC@
 STRIP = strip
-UDA_POSTINSTALL_CFLAGS = -pthread -DXTHREADS -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/X11R6/include -I/usr/include/atk-1.0 -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/libglade-2.0 -I/usr/include/libxml2  
-UDA_POSTINSTALL_LIBS = -pthread -Wl,--export-dynamic -lgthread-2.0 -lglade-2.0 -lgtk-x11-2.0 -lxml2 -lpthread -lz -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangoxft-1.0 -lpangox-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0  
+UDA_POSTINSTALL_CFLAGS = -pthread -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/libglade-2.0 -I/usr/include/libxml2  
+UDA_POSTINSTALL_LIBS = -pthread -Wl,--export-dynamic -lgthread-2.0 -lglade-2.0 -lgtk-x11-2.0 -lxml2 -lz -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangocairo-1.0 -lfontconfig -lXinerama -lXi -lXrandr -lXext -lXcursor -lXfixes -lpango-1.0 -lcairo -lXrender -lX11 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0  
 USE_NLS = yes
 VERSION = 0.21
 WARN_CFLAGS = -Wall -Wmissing-prototypes 
@@ -137,10 +137,10 @@ WARN_CXXFLAGS = @WARN_CXXFLAGS@
 
 SUBDIRS = branding data
 
-INCLUDES =  	-DDATADIR=\"$(datadir)\"                				-I$(top_srcdir)                         				-I$(top_builddir)                       				-DUIDIR=\""$(datadir)/uda-postinstall/ui/"\"				-DBRANDINGDIR=\""$(datadir)/uda-postinstall/branding/"\"        	$(UDA_POSTINSTALL_CFLAGS)
+INCLUDES =  	-DDATADIR=\"$(datadir)\"                				-I$(top_srcdir)                         				-I$(top_builddir)                       				-DUIDIR=\""$(datadir)/uda-postinstall/ui/"\" -DLISTSDIR=\""$(listsdir)/uda-postinstall/lists/"\"				-DBRANDINGDIR=\""$(datadir)/uda-postinstall/branding/"\"        	$(UDA_POSTINSTALL_CFLAGS)
 
 
-backend_DATA = uda-postconfig-backend.sh
+backend_DATA = uda-postconfig-backend.sh detect-additional-partitions.py repositorio*
 backenddir = $(datadir)/uda-postinstall/backend/
 
 bin_PROGRAMS = uda-postinstall uda-postconfig uda-goodbye 

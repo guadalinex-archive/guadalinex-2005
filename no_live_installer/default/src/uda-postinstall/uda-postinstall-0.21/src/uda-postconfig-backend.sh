@@ -9,7 +9,10 @@ MP_PATH="/var/lib/uda-postconfig/"
 deluser --remove-home uda
 addgroup --gid 1000 $USERNAME
 CRYPT_PASS=$(echo "$PASSWD" | mkpasswd --hash=md5 --stdin)
-useradd -m -u 1000 -s /bin/bash -g $USERNAME -p $CRYPT_PASS -G adm,dialout,cdrom,floppy,audio,dip,video,plugdev,lpadmin,scanner,admin $USERNAME
+#useradd -m -u 1000 -s /bin/bash -g $USERNAME -p $CRYPT_PASS -G adm,dialout,cdrom,floppy,audio,dip,video,plugdev,lpadmin,scanner,admin $USERNAME
+useradd -m -u 1000 -s /bin/bash -g $USERNAME -p $CRYPT_PASS -G admin $USERNAME
+/usr/local/sbin/adduser.local $USERNAME 1000 1000 /home/$USERNAME
+
 chmod 755 /home/$USERNAME
 
 #Modify /etc/hosts

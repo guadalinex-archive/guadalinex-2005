@@ -6649,7 +6649,7 @@ Bugs: mailto:ubuntu-users@lists.ubuntu.com
 Origin: Ubuntu
 
 Package: mythmusic
-Priority: optional
+Priority: source
 Section: multiverse/sound
 Installed-Size: 1784
 Maintainer: Matt Zimmerman <mdz@debian.org>
@@ -10786,7 +10786,7 @@ Origin: Ubuntu
 
 Package: xmms-mp4
 Priority: optional
-Section: multiverse/sound
+Section: universe/sound
 Installed-Size: 128
 Maintainer: Sebastian Dröge <mail@slomosnail.de>
 Architecture: i386

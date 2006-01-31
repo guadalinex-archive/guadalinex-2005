@@ -1,311 +1,1435 @@
-Package: guadalinex-2005-base-base-conf
-Priority: optional
-Section: admin
-Installed-Size: 76
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
-Filename: pool/main/g/gen-package/guadalinex-2005-base-base-conf_1.0_all.deb
-Size: 3250
-MD5sum: b5848958683f0baf02eb3e86dba5d7a8
-Description: Configuraci�n de base para el 2005-base de Debian/guadalinex.
-
-Package: guadalinex-2005-base-base
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), adduser, alsa-base, alsa-utils, apt, apt-utils, aptitude, base-config, base-files, base-passwd, bash, bsdutils, bzip2, console-tools, coreutils, debconf, debianutils, dhcp3-client, diff, discover1, dosfstools, dpkg, e2fsprogs, eject, ethtool, findutils, gettext-base, gnupg, grep, grepmap, gzip, hostname, hotplug, ifrename, ifupdown, initramfs-tools, initscripts, iproute, iputils-ping, jfsutils, less, libc6-i686, libfribidi0, libreiserfs0.3-0, locales, login, lsb-release, makedev, mawk, memtest86+, mii-diag, module-init-tools, mount, ncurses-base, ncurses-bin, net-tools, netbase, netcat, ntpdate, passwd, pciutils, perl-base, procps, python, reiser4progs, reiserfsprogs, sed, strace, sudo, sysklogd, sysvinit, tar, udev, usbutils, util-linux, vim, wireless-tools, xfsprogs, language-pack-es, language-support-es, manpages-es
-Filename: pool/main/g/gen-package/guadalinex-2005-base-base_1.0_all.deb
-Size: 3306
-MD5sum: e28b31f3056d08a37581f309a454acc1
-Description: Servicio de base para el 2005-base de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-accesorios
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), gcalctool, gthumb, file-roller, evince, gnopernicus, xzoom, wordtrans-qt, guadalinex-2005-escritorio-sistema-x
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-accesorios_1.0_all.deb
-Size: 2914
-MD5sum: c6bec45d3c5ce6e97e0a6348c46f17fe
-Description: Servicio de accesorios para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-admin
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), gnome-app-install, gnome-system-tools, firestarter, gparted, guadalinex-2005-escritorio-sistema-x
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-admin_1.0_all.deb
-Size: 2888
-MD5sum: 093eac9436e122688ff46e905b1b2505
-Description: Servicio de admin para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-gnome-conf
-Priority: optional
-Section: admin
-Installed-Size: 5240
-Maintainer: Gabriel Rodriguez Alberich <grodriguez@yaco.es>
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-gnome-conf_1.0_all.deb
-Size: 1641992
-MD5sum: 59e74f434305a8fcee9dd3fc7fadd39e
-Description: This is a test description.
-
-Package: guadalinex-2005-escritorio-gnome
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodriguez Alberich <grodriguez@yaco.es>
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), nautilus, metacity, gdm, gedit, gnome-about, gnome-applets, gnome-control-center, gnome-cups-manager, gnome-icon-theme, gnome-menus, gnome-netstatus-applet, gnome-nettool, gnome-panel, gnome-session, gnome-spell, gnome-system-monitor, gnome-terminal, gnome-themes, gnome-utils, gnome-volume-manager, gs-esp, gstreamer0.8-alsa, gstreamer0.8-audiofile, gstreamer0.8-cdparanoia, gstreamer0.8-dv, gstreamer0.8-dvd, gstreamer0.8-esd, gstreamer0.8-flac, gstreamer0.8-gnomevfs, gstreamer0.8-gsm, gstreamer0.8-hermes, gstreamer0.8-jpeg, gstreamer0.8-misc, gstreamer0.8-musepack, gstreamer0.8-oss, gstreamer0.8-plugin-apps, gstreamer0.8-sdl, gstreamer0.8-speex, gstreamer0.8-theora, gstreamer0.8-vorbis, gstreamer0.8-x, gtk2-engines-clearlooks, gtk2-engines-industrial, gtk2-engines-mist, gtk2-engines-smooth, gucharmap, zenity, guadalinex-2005-escritorio-sistema-x, language-pack-gnome-es, yelp, serpentine, nautilus-cd-burner, uda-docs, uda-docs-guadalinex-branding
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-gnome_1.0_all.deb
-Size: 3240
-MD5sum: c3e95a7bca79bd69be50b9f32b2257d8
-Description: This is a test description.
-
-Package: guadalinex-2005-escritorio-graficos
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), blender, gimp, gthumb, qcad, inkscape, xsane, imagemagick, guadalinex-2005-escritorio-sistema-x
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-graficos_1.0_all.deb
-Size: 2906
-MD5sum: ecf4c7439f55b9eea00523d54c9ad3ef
-Description: Servicio de graficos para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-internet-conf
-Priority: optional
-Section: admin
-Installed-Size: 252
-Maintainer: Gabriel Rodriguez Alberich <grodriguez@yaco.es>
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-internet-conf_1.0_all.deb
-Size: 108498
-MD5sum: 66763b0ddede9ea20946e10da005530f
-Description: Configuraci�n de internet para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-internet
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodriguez Alberich <grodriguez@yaco.es>
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), firefox, mozilla-firefox-locale-es-es, mozilla-firefox-locale-es-ar, evolution, gaim, gftp, gnomemeeting, vino, xvncviewer, xchat, liferea, amule, gnome-btdownload, bluefish, d4x, amsn, guadalinex-2005-escritorio-sistema-x
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-internet_1.0_all.deb
-Size: 3024
-MD5sum: 08e936c3542c88c41593cf36a5b68717
-Description: Servicio de internet para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-media
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), tango-icon-theme
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-media_1.0_all.deb
-Size: 2860
-MD5sum: 3665b9b58c55984507ab051977835e0a
-Description: Servicio de media para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-multimedia
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), grip, beep-media-player, gxine, streamtuner, soundtracker, camorama, totem, gnome-media, guadalinex-2005-escritorio-sistema-x, gnomebaker, hermeshardware, guadalinex-suppletory-system
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-multimedia_1.0_all.deb
-Size: 2994
-MD5sum: a72319bd98788f6467ee4e3545ab5222
-Description: Servicio de multimedia para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-oficina
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), openoffice.org2, openoffice.org-debian-files, openoffice.org2-java-common, openoffice.org2-gnome, openoffice.org2-evolution, scribus, acroread, guadalinex-2005-escritorio-sistema-x
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-oficina_1.0_all.deb
-Size: 2964
-MD5sum: ebd5e3568c10cd01753a5ab2b4d1b330
-Description: Servicio de oficina para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-sistema-x-conf
-Priority: optional
-Section: admin
-Installed-Size: 64
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-sistema-x-conf_1.0_all.deb
-Size: 4162
-MD5sum: 13e96f27be8e0f35341b44860d1bd200
-Description: Configuraci�n de sistema-x para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-escritorio-sistema-x
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), x-ttcidfont-conf, x-window-system-core, xkeyboard-config, xorg-driver-synaptics, xscreensaver, xterm, ttf-bitstream-vera, ttf-freefont
-Filename: pool/main/g/gen-package/guadalinex-2005-escritorio-sistema-x_1.0_all.deb
-Size: 2940
-MD5sum: e94cca9ab73c41a9083d3d98a4ea74f1
-Description: Servicio de sistema-x para el 2005-escritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-extras-suplementos
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-suppletory-disk-generator
-Filename: pool/main/g/gen-package/guadalinex-2005-extras-suplementos_1.0_all.deb
-Size: 2872
-MD5sum: bd7dccc1a3788872e57ddcb5ef81ed27
-Description: Servicio de suplementos para el 2005-extras de Debian/guadalinex.
-
-Package: guadalinex-2005-noescritorio-base-conf
-Priority: optional
-Section: admin
-Installed-Size: 15948
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
-Filename: pool/main/g/gen-package/guadalinex-2005-noescritorio-base-conf_1.0_all.deb
-Size: 3802120
-MD5sum: 03f16f2b39472c46a2b1665470f600d8
-Description: Configuraci�n de base para el 2005-noescritorio de Debian/guadalinex.
-
-Package: guadalinex-2005-noescritorio-base
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), joe, mc, at, cpio, cron, dmidecode, dmsetup, dnsutils, dselect, ed, evms, evms-ncurses, fdutils, file, ftp, hdparm, info, iptables, iputils-arping, iputils-tracepath, logrotate, lshw, lsof, ltrace, lvm2, man-db, manpages, mdadm, mime-support, mtr-tiny, nano, openssh-client, parted, ppp, pppconfig, pppoeconf, psmisc, rsync, tcpdump, telnet, time, w3m, wget, acpi, acpi-support, acpid, anacron, bogofilter, bluez-cups, bluez-pin, bluez-utils, cupsys, cupsys-bsd, cupsys-client, cupsys-driver-gimpprint, dbus-1-utils, dvd+rw-tools, foomatic-db, foomatic-db-engine, foomatic-db-gimp-print, foomatic-db-hpijs, foomatic-filters, foomatic-filters-ppds, hal, hal-device-manager, hotkey-setup, mkisofs, slocate, unzip, wvdial, zip, sun-j2re1.5
-Filename: pool/main/g/gen-package/guadalinex-2005-noescritorio-base_1.0_all.deb
-Size: 3278
-MD5sum: a8310f91f39728b675007b3089885613
-Description: Servicio de base para el 2005-noescritorio de Debian/guadalinex.
-
-Package: meta-guadalinex-2005-base
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Depends: guadalinex-2005-base-base-conf
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-2005-base-base
-Filename: pool/main/g/gen-package/meta-guadalinex-2005-base_1.0_all.deb
-Size: 2852
-MD5sum: b8ce764dec7b74fb20f365284b3b32ce
-Description: Definici�n del 2005-base de Debian/guadalinex.
-
-Package: meta-guadalinex-2005-escritorio
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Depends: guadalinex-2005-escritorio-sistema-x-conf, guadalinex-2005-escritorio-internet-conf, guadalinex-2005-escritorio-gnome-conf
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-2005-escritorio-sistema-x, guadalinex-2005-escritorio-internet, guadalinex-2005-escritorio-graficos, guadalinex-2005-escritorio-accesorios, guadalinex-2005-escritorio-oficina, guadalinex-2005-escritorio-gnome, guadalinex-2005-escritorio-multimedia, guadalinex-2005-escritorio-media, guadalinex-2005-escritorio-admin
-Filename: pool/main/g/gen-package/meta-guadalinex-2005-escritorio_1.0_all.deb
-Size: 2972
-MD5sum: f6a3292bb16bd2d3d2717aaaa98a5011
-Description: Definici�n del 2005-escritorio de Debian/guadalinex.
-
-Package: meta-guadalinex-2005-extras
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-2005-extras-suplementos
-Filename: pool/main/g/gen-package/meta-guadalinex-2005-extras_1.0_all.deb
-Size: 2848
-MD5sum: 44c8814b0af0394bb6eb6261d9bd48f8
-Description: Definici�n del 2005-extras de Debian/guadalinex.
-
-Package: meta-guadalinex-2005-noescritorio
-Priority: optional
-Section: admin
-Installed-Size: 56
-Maintainer: Gabriel Rodríguez Alberich
-Architecture: all
-Source: gen-package
-Version: 1.0
-Depends: guadalinex-2005-noescritorio-base-conf
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-2005-noescritorio-base
-Filename: pool/main/g/gen-package/meta-guadalinex-2005-noescritorio_1.0_all.deb
-Size: 2866
-MD5sum: 5f5097631f60fb8b0f6e80fcad687320
-Description: Definici�n del 2005-noescritorio de Debian/guadalinex.
-
-Package: meta-guadalinex-2005
+Package: accessrunner-usb-modules-2.6.12-9-386
+Source: accessrunner-usb
+Version: 0.3
 Priority: optional
 Section: misc
-Installed-Size: 28
-Maintainer: Gabriel Rodríguez Alberich <grodriguez@yaco.es>
+Maintainer: Vicente J. Ruiz Jurado <vjrj@tid.es>
+Recommends: kernel-image-2.6.12-9-386, accessrunner-usb-utils
+Provides: accessrunner-usb-modules
+Architecture: i386
+Filename: pool/main/a/accessrunner-usb/accessrunner-usb-modules-2.6.12-9-386_0.3_i386.deb
+Size: 14570
+Installed-Size: 88
+MD5sum: fda95d6ccc985692c41bc0f92d2c92fd
+Description: accessrunner-usb Linux kernel module
+ This package contains the accessrunner-usb loadable kernel modules for the
+ kernel-image-2.6.12-9-386 package.
+ .
+ If you compiled a custom kernel, you will most likely need to compile a
+ custom version of this module as well. The accessrunner-usb-source
+ package has been provided for this purpose.
+
+Package: accessrunner-usb-source
+Source: accessrunner-usb
+Version: 0.3
+Priority: optional
+Section: misc
+Maintainer: Vicente J. Ruiz Jurado <vjrj@tid.es>
+Depends: module-assistant, bzip2, debhelper (>= 4.0.0), make, gcc-3.4
+Suggests: accessrunner-usb-utils
 Architecture: all
+Filename: pool/main/a/accessrunner-usb/accessrunner-usb-source_0.3_all.deb
+Size: 38272
+Installed-Size: 68
+MD5sum: 63db1823d0b8a81846458283974dde4b
+Description: Source for the accessrunner-usb driver. The accessrunner-usb
+ driver provides support to several USB DSL devices for the Linux kernel.
+ .
+ This package contains the module source. The kernel driver can be built from
+ it using module-assistant or make-kpkg.
+
+Package: accessrunner-usb-utils
+Source: accessrunner-usb
+Version: 0.3
+Priority: optional
+Section: misc
+Maintainer: Vicente J. Ruiz Jurado <vjrj@tid.es>
+Depends: libc6 (>= 2.3.4-1)
+Recommends: accessrunner-usb-source, br2684ctl, atm-tools, hotplug, ppp, pppoe, ifupdown
+Architecture: i386
+Filename: pool/main/a/accessrunner-usb/accessrunner-usb-utils_0.3_i386.deb
+Size: 7694
+Installed-Size: 104
+MD5sum: b94b7b311c4370971c2ee8c31f97dcc8
+Description: This package provide some tools for help in the configuration of
+ the accessrunner-usb driver. The accessrunner-usb driver provides support to
+ several USB DSL devices for the Linux kernel.
+ .
+ This package contains utilities needed to configure the accessrunner-usb
+ drivers.
+
+Package: alacarte
+Version: 0.8-0ubuntu2
+Priority: optional
+Section: utils
+Maintainer: Travis Watkins <alleykat@gmail.com>
+Depends: python (<< 2.5), python (>= 2.4), python-gtk2 (>= 2.6), python-glade2 (>= 2.6), python-gnome2 (>= 2.6), python2.4-libxml2 (>= 2.6.17), gnome-menus (>= 2.10), python-xdg (>= 0.15), python-xdg (<< 0.16)
+Conflicts: smeg (<< 0.8-0ubuntu1)
+Provides: smeg
+Replaces: smeg
+Architecture: all
+Filename: pool/main/a/alacarte/alacarte_0.8-0ubuntu2_all.deb
+Size: 58192
+Installed-Size: 472
+MD5sum: 2986dbcbb4f7f01e808a7b75312b4728
+Description: easy menu editing
+ Alacarte is an easy-to-use menu editor for GNOME that can add and edit new
+ entries and menus. It works with the freedesktop.org menu specification and
+ should work with any desktop environment that uses the spec.
+
+Package: base-config
+Version: 2.67uda
+Priority: important
+Section: base
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Depends: debconf (>= 1.4.56), apt (>= 0.6.40), adduser, console-data (>= 2002.12.04dbs-16), console-tools, passwd (>= 20000902-6), bsdutils (>= 1:2.11l), debianutils (>= 1.6), gettext-base
+Conflicts: tasksel (<< 2.25)
+Architecture: all
+Filename: pool/main/b/base-config/base-config_2.67uda_all.deb
+Size: 288528
+Installed-Size: 1464
+MD5sum: c3fcbd8a17aad2e7601e9512c34278d2
+Description: Debian base system configurator
+ This package handles setting up the Debian base system. It contains the
+ configuration program you see when you install Debian for the first time
+ and boot up your new Debian system.
+ .
+ It can be removed with no ill effects -- once your Debian system is
+ installed, this package's only useful function is to allow you to
+ reconfigure some things.
+
+Package: bb-assist
+Version: 0.5
+Priority: optional
+Section: net
+Maintainer: Vicente J. Ruiz Jurado <vjrj@tid.es>
+Depends: python (>= 2.4), python (<< 3), python-gtk2, python-gnome2, python-glade2, python2.4-dbus (>= 0.36.2), python-xml, python2.4-4suite, python-pexpect, python-serial, gksu, gnome-system-tools (>= 1.4), speedtouch, ppp, pppoe, br2684ctl, atm-tools, eagle-usb-utils, eagle-usb-data, accessrunner-usb-utils, ifupdown, bsdutils (>= 2)
+Recommends: eagle-usb-modules-source, accessrunner-usb-source
+Architecture: i386
+Filename: pool/main/b/bb-assist/bb-assist_0.5_i386.deb
+Size: 152102
+Installed-Size: 660
+MD5sum: a2d9401f3f3a710e43e2be451d1dcdbe
+Description: A BroadBand Assistant configurator
+ This package is an assistant for help in the configuration of several types of
+ Broadband (DSL, etc) devices.
+ .
+ It is oriented for be used by non tech people.
+
+Package: eagle-usb-modules-2.6.12-9-386
+Source: eagle-usb
+Version: 2.1.1-2
+Priority: extra
+Section: devel
+Maintainer: Cyril Martin <mcoolive@free.fr>
+Depends: module-init-tools | modutils
+Recommends: kernel-image-2.6.12-9-386, eagle-usb-data (>= 1.9.6), eagle-usb-utils (>= 1.9.6)
+Provides: eagle-usb-modules
+Architecture: i386
+Filename: pool/main/e/eagle-usb/eagle-usb-modules-2.6.12-9-386_2.1.1-2_i386.deb
+Size: 60194
+Installed-Size: 188
+MD5sum: 8474e3d9ee2f6351d992df8a026e67c9
+Description: EAGLE-USB binary kernel module for Linux 2.6.12-9-386
+ The eagle-usb package is a skeleton for creating packages containing kernel
+ modules.
+ .
+ This package contains the compiled kernel modules for linux version 2.6.12-9-386
+
+Package: gnomebaker
+Version: 0.5.0-3~breezy1
+Priority: optional
+Section: gnome
+Maintainer: Goedson Teixeira Paixao <goedson@debian.org>
+Depends: libart-2.0-2 (>= 2.3.16), libatk1.0-0 (>= 1.9.0), libbonobo2-0 (>= 2.8.0), libbonoboui2-0 (>= 2.5.4), libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libfontconfig1 (>= 2.3.0), libgconf2-4 (>= 2.9), libglade2-0 (>= 1:2.5.1), libglib2.0-0 (>= 2.8.0), libgnome-keyring0 (>= 0.4.3), libgnome2-0 (>= 2.8.0), libgnomecanvas2-0 (>= 2.11.1), libgnomeui-0 (>= 2.8.0), libgnomevfs2-0 (>= 2.11.3), libgstreamer0.8-0 (>= 0.8.11), libgtk2.0-0 (>= 2.8.0), libice6, liborbit2 (>= 1:2.10.0), libpango1.0-0 (>= 1.10.1), libpopt0 (>= 1.7), libsm6, libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxfixes3, libxi6, libxinerama1, libxml2 (>= 2.6.20), libxrandr2, libxrender1, zlib1g (>= 1:1.2.1), cdrecord, mkisofs, cdda2wav, cdrdao
+Recommends: dvd+rw-tools
+Architecture: i386
+Filename: pool/main/g/gnomebaker/gnomebaker_0.5.0-3~breezy1_i386.deb
+Size: 773396
+Installed-Size: 1732
+MD5sum: a6c3c9ab307898bc93479bcc96a33f9a
+Description: application for CD/DVD creation in the GNOME desktop
+ Gnomebaker is an easy to use CD/DVD burner. Its current features include:
+   * Data and audio CD burning
+   * Multisession CDs
+   * DVD formating
+   * DVD data disk burning
+   * On-the-fly data CD burning
+   * Cue bin data CD writing
+
+Package: gparted
+Version: 0.1-0uda1
+Priority: optional
+Section: gnome
+Maintainer: Daniel Holbach <dh@mailempfang.de>
+Depends: libatk1.0-0 (>= 1.9.0), libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libgcc1 (>= 1:4.0.1), libglib2.0-0 (>= 2.8.0), libglibmm-2.4-1c2 (>= 2.8.0), libgtk2.0-0 (>= 2.8.0), libgtkmm-2.4-1c2 (>= 2.8.0), libpango1.0-0 (>= 1.10.1), libparted1.6-12 (>= 1.6.0), libsigc++-2.0-0c2 (>= 2.0.2), libstdc++6 (>= 4.0.1), libuuid1, libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxfixes3, libxi6, libxinerama1, libxrandr2, libxrender1, gksu
+Recommends: jfsutils, xfsprogs, ntfsprogs, dosfstools, hfsutils, reiserfsprogs
+Architecture: i386
+Filename: pool/main/g/gparted/gparted_0.1-0uda1_i386.deb
+Size: 323016
+Installed-Size: 1268
+MD5sum: 118307bb48b26dfbcd17a69e7b5d8159
+Description: partition editor for GNOME
+ It is a graphical editor which uses libparted to detect and manipulate
+ devices and partition tables while several (optional) filesystem tools
+ provide support for filesystems not included in libparted. These optional
+ packages will be detected at runtime.
+ It currently supports ext2, ext3, Reiser3, FAT, NTFS, XFS, JFS, HFS and
+ Linux swap.
+
+Package: grub
+Version: 0.95+cvs20040624-17uda
+Priority: optional
+Section: admin
+Maintainer: Grub Maintainers <pkg-grub-devel@lists.alioth.debian.org>
+Depends: libc6 (>= 2.3.4-1), libncurses5 (>= 5.4-5)
+Suggests: grub-doc, grubconf
+Architecture: i386
+Filename: pool/main/g/grub/grub_0.95+cvs20040624-17uda_i386.deb
+Size: 352418
+Installed-Size: 736
+MD5sum: 128c5de88dd0db3f5ffbb85860ecedd9
+Description: GRand Unified Bootloader
+ GRUB is a GPLed bootloader intended to unify bootloading across x86
+ operating systems.  In addition to loading the Linux kernel,
+ it implements the Multiboot standard, which allows for flexible loading
+ of multiple boot images (needed for modular kernels such as the GNU Hurd).
+
+Package: gthumb
+Version: 3:2.7.1-0ubuntu1~breezy1
+Priority: optional
+Section: gnome
+Maintainer: Remco van de Meent <remco@debian.org>
+Depends: libart-2.0-2 (>= 2.3.16), libatk1.0-0 (>= 1.9.0), libbonobo2-0 (>= 2.8.0), libbonoboui2-0 (>= 2.5.4), libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libexif12, libfontconfig1 (>= 2.3.0), libgconf2-4 (>= 2.9), libglade2-0 (>= 1:2.5.1), libglib2.0-0 (>= 2.8.0), libgnome-keyring0 (>= 0.4.3), libgnome2-0 (>= 2.8.0), libgnomecanvas2-0 (>= 2.11.1), libgnomeprint2.2-0 (>= 2.11.0), libgnomeprintui2.2-0 (>= 2.12.0), libgnomeui-0 (>= 2.8.0), libgnomevfs2-0 (>= 2.11.3), libgphoto2-2 (>= 2.1.6-1ubuntu6), libgphoto2-port0 (>= 2.1.6-1ubuntu6), libgtk2.0-0 (>= 2.8.0), libice6, libjpeg62, liblaunchpad-integration0 (>= 0.0patch26), liborbit2 (>= 1:2.10.0), libpango1.0-0 (>= 1.10.1), libpng12-0 (>= 1.2.8rel), libpopt0 (>= 1.7), libsm6, libtiff4, libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxfixes3, libxi6, libxinerama1, libxml2 (>= 2.6.20), libxrandr2, libxrender1, zlib1g (>= 1:1.2.1), gconf2 (>= 2.6.2-1), scrollkeeper (>= 0.3.8), shared-mime-info
+Conflicts: gthumb2
+Provides: gthumb2
+Replaces: gthumb2
+Architecture: i386
+Filename: pool/main/g/gthumb/gthumb_2.7.1-0ubuntu1~breezy1_i386.deb
+Size: 1145848
+Installed-Size: 7368
+MD5sum: 38f6535d940542656739b490db47930f
+Description: an image viewer and browser
+ gThumb is an advanced image viewer and browser. It has many useful
+ features, such as filesystem browsing, slide show, image catalogs, web
+ album creation, camera import, image CD burning, batch file operations and
+ quick image editing features like transformation and color manipulation.
+ .
+ It's designed for GNOME 2 desktop environment and uses its platform. For
+ camera import feature, the gPhoto2 library is used.
+ .
+ Homepage: http://gthumb.sourceforge.net/
+
+Package: guadalinex-suppletory-disk-generator
+Version: 0.1-1
+Priority: optional
+Section: unknown
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Depends: python, python2.4, mkisofs
+Architecture: i386
+Filename: pool/main/g/guadalinex-suppletory-disk-generator/guadalinex-suppletory-disk-generator_0.1-1_i386.deb
+Size: 14816
+Installed-Size: 160
+MD5sum: a234c74a2d28a3e252494ced14b46f2a
+Description: Sistema generador de suplementos para Guadalinex v3.
+ El sistema generador de suplementos para Guadalinex v3 permite generar de
+ forma sencilla un suplemento, que no es más que un conjunto de paquetes
+ extra, con la particularidad de que su instalación resulta sumamente fácil para
+ el usuario final.
+
+Package: guadalinex-suppletory-system
+Version: 0.1
+Priority: optional
+Section: devel
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Depends: python2.4, gnome-app-install, hermeshardware
+Architecture: i386
+Filename: pool/main/g/guadalinex-suppletory-system/guadalinex-suppletory-system_0.1_i386.deb
+Size: 5274
+Installed-Size: 120
+MD5sum: 3a6990213d3cbd5706cb67b87954c07a
+Description: Herramienta para la instalación de supplementos para Guadalinex
+    El sistema de suplementos de Guadalinex es una herramienta que permite la detección e instalación de suplementos contenidos en diversos soportes, como Cd-roms o DVD.
+
+Package: guadalinex-v3-base-base
+Source: gen-package
 Version: 1.0
-Depends: meta-guadalinex-2005-base, meta-guadalinex-2005-escritorio, meta-guadalinex-2005-noescritorio, meta-guadalinex-2005-extras
-Filename: pool/main/m/meta-guadalinex-2005/meta-guadalinex-2005_1.0_all.deb
-Size: 1056
-MD5sum: 6557fd974f45d2608ee19353bcd92197
-Description: Guadalinex 2005 metapackage
- This metapackage installs a whole Guadalinex 2005 distribution.
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), adduser, alsa-base, alsa-utils, apt, apt-utils, aptitude, base-config, base-files, base-passwd, bash, bsdutils, bzip2, console-tools, coreutils, debconf, debianutils, dhcp3-client, diff, discover1, dosfstools, dpkg, e2fsprogs, eject, ethtool, findutils, gettext-base, gnupg, grep, grepmap, gzip, hostname, hotplug, ifrename, ifupdown, initramfs-tools, initscripts, iproute, iputils-ping, jfsutils, less, libc6-i686, libfribidi0, libreiserfs0.3-0, locales, login, lsb-release, makedev, mawk, memtest86+, mii-diag, module-init-tools, mount, ncurses-base, ncurses-bin, net-tools, netbase, netcat, passwd, pciutils, perl-base, procps, python, reiser4progs, reiserfsprogs, sed, strace, sudo, sysklogd, sysvinit, tar, udev, usbutils, util-linux, vim, wireless-tools, xfsprogs, language-pack-es, manpages-es, usplash, whois, man, cpufrequtils
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-base-base_1.0_all.deb
+Size: 3308
+Installed-Size: 56
+MD5sum: d67e1f03721629bf4583f6cf1d1eac69
+Description: Servicio de base para el v3-base de Debian/guadalinex.
+
+Package: guadalinex-v3-base-base-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-base-base-conf_1.0_all.deb
+Size: 164126
+Installed-Size: 560
+MD5sum: 1d07bef5ff1796c2e215ca540f0a0ce6
+Description: Configuraci�n de base para el v3-base de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-accesorios
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), lemurae, tomboy, gcalctool, gthumb, file-roller, evince, xzoom, dasher, alacarte, smb4k
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-accesorios_1.0_all.deb
+Size: 2900
+Installed-Size: 56
+MD5sum: f200aeb3ed84d7405d1396d1d5eaaa49
+Description: Servicio de accesorios para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-accesorios-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-accesorios-conf_1.0_all.deb
+Size: 11188
+Installed-Size: 152
+MD5sum: 83a37c3b902ca8dc4200042c8917b79c
+Description: Configuraci�n de accesorios para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-admin
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), gnome-app-install, gnome-system-tools, firestarter, gparted, bb-assist, watermain, update-notifier, xapi
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-admin_1.0_all.deb
+Size: 2892
+Installed-Size: 56
+MD5sum: 1da4183b495d49055bb5d8b29c428d8a
+Description: Servicio de admin para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-admin-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-admin-conf_1.0_all.deb
+Size: 13312
+Installed-Size: 132
+MD5sum: 7aaadf7112fab7959e5ed8fe5e37014e
+Description: Configuraci�n de admin para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-gnome
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), nautilus, metacity, gdm, gedit, gnome-about, gnome-applets, gnome-control-center, gnome-cups-manager, gnome-icon-theme, gnome-menus, gnome-netstatus-applet, gnome-nettool, gnome-panel, gnome-session, gnome-spell, gnome-system-monitor, gnome-terminal, gnome-themes, gnome-utils, gnome-volume-manager, gs-esp, gstreamer0.8-alsa, gstreamer0.8-audiofile, gstreamer0.8-cdparanoia, gstreamer0.8-dv, gstreamer0.8-dvd, gstreamer0.8-esd, gstreamer0.8-flac, gstreamer0.8-gnomevfs, gstreamer0.8-gsm, gstreamer0.8-hermes, gstreamer0.8-jpeg, gstreamer0.8-misc, gstreamer0.8-musepack, gstreamer0.8-oss, gstreamer0.8-plugin-apps, gstreamer0.8-sdl, gstreamer0.8-speex, gstreamer0.8-theora, gstreamer0.8-vorbis, gstreamer0.8-x, gtk2-engines-clearlooks, gtk2-engines-industrial, gtk2-engines-mist, gtk2-engines-smooth, gucharmap, zenity, language-pack-gnome-es, language-support-es, yelp, serpentine, nautilus-cd-burner, uda-docs, uda-docs-guadalinex-branding, dictd, dict-freedict-eng-spa, dict-freedict-spa-eng, nautilus-open-terminal, gnome-sudoku, gnome2-user-guide, libesd-alsa0, esound, netapplet, gnome-games, gnome-power-manager
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-gnome_1.0_all.deb
+Size: 3304
+Installed-Size: 56
+MD5sum: 1feb80e187d5a5f7eeed5e9db76759c9
+Description: Servicio de gnome para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-gnome-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-gnome-conf_1.0_all.deb
+Size: 5240070
+Installed-Size: 12596
+MD5sum: 7b311cc4a394bbf03d6fe312663dfd7c
+Description: Configuraci�n de gnome para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-graficos
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), blender, gimp, gthumb, qcad, inkscape, xsane, imagemagick, eog
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-graficos_1.0_all.deb
+Size: 2882
+Installed-Size: 56
+MD5sum: de0a25557abcdf6de8b199b8d96969ac
+Description: Servicio de graficos para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-graficos-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-graficos-conf_1.0_all.deb
+Size: 63242
+Installed-Size: 280
+MD5sum: a46e07bafdfaaac41a437a9164fbea7b
+Description: Configuraci�n de graficos para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-internet
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Gabriel Rodriguez Alberich <grodriguez@yaco.es>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), tnef, ipodder, firefox, mozilla-firefox-locale-es-es, mozilla-firefox-locale-es-ar, evolution, gaim, gftp, gnomemeeting, vino, xvncviewer, xchat, liferea, amule, gnome-btdownload, bluefish, d4x, amsn, mozilla-acroread, flashplugin-nonfree
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-internet_1.0_all.deb
+Size: 3026
+Installed-Size: 56
+MD5sum: f70091f3ea8ec7bff80cfc287f1d50d9
+Description: Servicio de internet para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-internet-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Gabriel Rodriguez Alberich <grodriguez@yaco.es>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-internet-conf_1.0_all.deb
+Size: 192780
+Installed-Size: 548
+MD5sum: 02e86ef0d751cc6fed018acb92ef7fc9
+Description: Configuraci�n de internet para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-media
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), tango-icon-theme
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-media_1.0_all.deb
+Size: 2846
+Installed-Size: 56
+MD5sum: 21e3f2125e5d022ec6cd5e15765664ed
+Description: Servicio de media para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-media-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-media-conf_1.0_all.deb
+Size: 7046
+Installed-Size: 232
+MD5sum: 0d182da7c2b831004ffe8ac8f7265ec6
+Description: Configuraci�n de media para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-multimedia
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), audacity, grip, beep-media-player, xmms, gxine, streamtuner, streamripper, soundtracker, camorama, totem-xine, gnome-media, gnomebaker, hermeshardware, guadalinex-suppletory-system, gstreamer0.8-mad
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-multimedia_1.0_all.deb
+Size: 3000
+Installed-Size: 56
+MD5sum: 017c4752f5c2bd169c5839159846c610
+Description: Servicio de multimedia para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-multimedia-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-multimedia-conf_1.0_all.deb
+Size: 51618
+Installed-Size: 384
+MD5sum: 8db31a4913ecc41ce5d11e652bf37e29
+Description: Configuraci�n de multimedia para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-oficina
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), openoffice.org2, openoffice.org-debian-files, openoffice.org2-java-common, openoffice.org2-gnome, openoffice.org2-evolution, scribus, acroread
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-oficina_1.0_all.deb
+Size: 2898
+Installed-Size: 56
+MD5sum: 4d48eccfe9b130cdb6c880532ad006c7
+Description: Servicio de oficina para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-oficina-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-oficina-conf_1.0_all.deb
+Size: 2908774
+Installed-Size: 6272
+MD5sum: 75f6467cdec4e9e2d8349be7a8f7e099
+Description: Configuraci�n de oficina para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-sistema-x
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), x-ttcidfont-conf, x-window-system-core, xkeyboard-config, xorg-driver-synaptics, xscreensaver, xterm, ttf-bitstream-vera, ttf-freefont, xorg-driver-fglrx, xdialog
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-sistema-x_1.0_all.deb
+Size: 2986
+Installed-Size: 56
+MD5sum: 02c88761b884e3baa62b30dd9bfa851f
+Description: Servicio de sistema-x para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-sistema-x-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-escritorio-sistema-x-conf_1.0_all.deb
+Size: 4146
+Installed-Size: 64
+MD5sum: 2448d4136d87cec6ac01053886155a81
+Description: Configuraci�n de sistema-x para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-extras-suplementos
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-suppletory-disk-generator
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-extras-suplementos_1.0_all.deb
+Size: 2860
+Installed-Size: 56
+MD5sum: e29e9d8b7a5377d19f3bb32dfccf7298
+Description: Servicio de suplementos para el v3-extras de Debian/guadalinex.
+
+Package: guadalinex-v3-noescritorio-base
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), joe, mc, at, cpio, cron, dmidecode, dmsetup, dnsutils, dselect, ed, evms, evms-ncurses, fdutils, file, ftp, hdparm, info, iptables, iputils-arping, iputils-tracepath, logrotate, lshw, lsof, ltrace, lvm2, man-db, manpages, mdadm, mime-support, mtr-tiny, nano, openssh-client, parted, ppp, pppconfig, pppoeconf, psmisc, rsync, tcpdump, telnet, time, w3m, wget, acpi, acpi-support, acpid, anacron, bogofilter, bluez-cups, bluez-pin, bluez-utils, cupsys, cupsys-bsd, cupsys-client, cupsys-driver-gimpprint, dbus-1-utils, dvd+rw-tools, foomatic-db, foomatic-db-engine, foomatic-db-gimp-print, foomatic-db-hpijs, foomatic-filters, foomatic-filters-ppds, hal, hal-device-manager, hotkey-setup, mkisofs, slocate, unzip, wvdial, zip, sun-j2re1.5, unrar-nonfree, prelink, samba, smbclient, smbfs, gcc, cpp, libc6-dev, accessrunner-usb-source, accessrunner-usb-utils, accessrunner-usb-modules-2.6.12-9-386, eagle-usb-modules-2.6.12-9-386, eagle-usb-modules-source, eagle-usb-data, eagle-usb-utils, wpasupplicant, ssh, powernowd, python-pygame, vorbis-tools, pcsc-tools, pcscd, powermanagement-interface, ntfsprogs
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-noescritorio-base_1.0_all.deb
+Size: 3428
+Installed-Size: 56
+MD5sum: 0794eabb0b1c3ae1d8956d92ef199358
+Description: Servicio de base para el v3-noescritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-noescritorio-base-conf
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: pool/main/g/gen-package/guadalinex-v3-noescritorio-base-conf_1.0_all.deb
+Size: 5792278
+Installed-Size: 6268
+MD5sum: 2835b7e5c88529968f162b34c18307b4
+Description: Configuraci�n de base para el v3-noescritorio de Debian/guadalinex.
+
+Package: hermeshardware
+Version: 0.1-6
+Priority: optional
+Section: utils
+Maintainer: Gumersindo Coronel Pérez <gcoronel@emergya.info>
+Depends: hal, dbus, python2.4-dbus, python, python2.4, notification-daemon, libsane, grepmap
+Architecture: i386
+Filename: pool/main/h/hermeshardware/hermeshardware_0.1-6_i386.deb
+Size: 194766
+Installed-Size: 652
+MD5sum: 8aaf7948125527a068ec8a5ad4a33662
+Description: detección y soporte de dispositivos
+ el sistema de detección de hardware engloba tanto las tareas de detección
+ y soporte de dispositivos, como aquellas que tienen que ver con la
+ configuración de los mismos y la interacción con el usuario.
+
+Package: lemurae
+Version: 0.1-3
+Priority: optional
+Section: gnome
+Maintainer: Gumersindo Coronel Pérez <goomerko@gmail.com>
+Depends: mono, libgecko-cil, libgtk2.0-cil
+Architecture: i386
+Filename: pool/main/l/lemurae/lemurae_0.1-3_i386.deb
+Size: 24934
+Installed-Size: 124
+MD5sum: 9a9ae09cca8743f4a1067845b65a5d2b
+Description: Graphical frontend for DRAE
+ Graphical frontend for DRAE written in C-Sharp.
+
+Package: libui-dialog-perl
+Version: 1.06-5
+Priority: optional
+Section: Guadalinex
+Maintainer: Junta de Andaluc�a <packmaster@guadalinex.org>
+Depends: perl (>= 5.6.0-16), libtext-wrapi18n-perl
+Suggests: dialog, gnome-utils, whiptail, xdialog, zenity
+Architecture: all
+Filename: pool/main/l/libui-dialog-perl/libui-dialog-perl_1.06-5_all.deb
+Size: 151322
+Installed-Size: 696
+MD5sum: cfa7af8b9d1a48d0fb4cd01559d319b5
+Description: OO Perl wrapper for dialog(1) based user interfaces
+ An Object Orientated Perl Module that wraps around the various dialog(1)
+ based variants like Whiptail(1), XDialog(1), and of course Dialog(1) itself.
+ .
+ Perl Documentation:
+ .
+ UI::Dialog
+ UI::Dialog::Console
+ UI::Dialog::Gauged
+ UI::Dialog::GNOME
+ UI::Dialog::KDE
+ UI::Dialog::Backend
+ UI::Dialog::Backend::ASCII
+ UI::Dialog::Backend::CDialog
+ UI::Dialog::Backend::GDialog
+ UI::Dialog::Backend::KDialog
+ UI::Dialog::Backend::Nautilus
+ UI::Dialog::Backend::Whiptail
+ UI::Dialog::Backend::XDialog
+ UI::Dialog::Backend::XOSD
+ UI::Dialog::Backend::Zenity
+
+Package: meta-guadalinex-v3
+Version: 1.0
+Priority: optional
+Section: misc
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Depends: meta-guadalinex-v3-base, meta-guadalinex-v3-escritorio, meta-guadalinex-v3-noescritorio, meta-guadalinex-v3-extras
+Architecture: all
+Filename: pool/main/m/meta-guadalinex-v3/meta-guadalinex-v3_1.0_all.deb
+Size: 1046
+Installed-Size: 28
+MD5sum: 42f5da183f63e02c7e4e16b15ad39e2a
+Description: Guadalinex v3 metapackage
+ This metapackage installs a whole Guadalinex v3 distribution.
+
+Package: meta-guadalinex-v3-base
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-base-base
+Depends: guadalinex-v3-base-base-conf
+Architecture: all
+Filename: pool/main/g/gen-package/meta-guadalinex-v3-base_1.0_all.deb
+Size: 2840
+Installed-Size: 56
+MD5sum: 11a3e3abe0dcb33561dec15576b98581
+Description: Definici�n del v3-base de Debian/guadalinex.
+
+Package: meta-guadalinex-v3-escritorio
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-escritorio-sistema-x, guadalinex-v3-escritorio-internet, guadalinex-v3-escritorio-graficos, guadalinex-v3-escritorio-accesorios, guadalinex-v3-escritorio-oficina, guadalinex-v3-escritorio-gnome, guadalinex-v3-escritorio-multimedia, guadalinex-v3-escritorio-media, guadalinex-v3-escritorio-admin
+Depends: guadalinex-v3-escritorio-sistema-x-conf, guadalinex-v3-escritorio-internet-conf, guadalinex-v3-escritorio-graficos-conf, guadalinex-v3-escritorio-accesorios-conf, guadalinex-v3-escritorio-oficina-conf, guadalinex-v3-escritorio-gnome-conf, guadalinex-v3-escritorio-multimedia-conf, guadalinex-v3-escritorio-media-conf, guadalinex-v3-escritorio-admin-conf
+Architecture: all
+Filename: pool/main/g/gen-package/meta-guadalinex-v3-escritorio_1.0_all.deb
+Size: 2986
+Installed-Size: 56
+MD5sum: 20a4e5a48016247a4c18bf2b2f4bb6cd
+Description: Definici�n del v3-escritorio de Debian/guadalinex.
+
+Package: meta-guadalinex-v3-extras
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-extras-suplementos
+Architecture: all
+Filename: pool/main/g/gen-package/meta-guadalinex-v3-extras_1.0_all.deb
+Size: 2828
+Installed-Size: 56
+MD5sum: 6ec5d625eb528b591dc16b09002fa003
+Description: Definici�n del v3-extras de Debian/guadalinex.
+
+Package: meta-guadalinex-v3-noescritorio
+Source: gen-package
+Version: 1.0
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-noescritorio-base
+Depends: guadalinex-v3-noescritorio-base-conf
+Architecture: all
+Filename: pool/main/g/gen-package/meta-guadalinex-v3-noescritorio_1.0_all.deb
+Size: 2854
+Installed-Size: 56
+MD5sum: 988b5947c1a66daaeaddc227257f573d
+Description: Definici�n del v3-noescritorio de Debian/guadalinex.
+
+Package: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1), openoffice.org2-writer, openoffice.org2-calc, openoffice.org2-impress, openoffice.org2-draw, openoffice.org2-math, openoffice.org2-base
+Suggests: myspell-dictionary, openoffice.org2-help, menu, ooqstart-gnome | oooqs-kde, unixodbc, cupsys-bsd, libsane, ttf-bitstream-vera, prelink, openoffice.org-hyphenation, openoffice.org2-thesaurus, libxrender1, msttcorefonts, openoffice.org2-gnome | openoffice.org2-kde, libgl1-mesa | libgl1, mozilla-firefox | firefox | mozilla-browser | mozilla-thunderbird, openoffice.org2-officebean, java-gcj-compat | j2re1.4 | java2-runtime
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2_2.0.1-0breezy1_i386.deb
+Size: 80724
+Installed-Size: 200
+MD5sum: f07e98792bf7d1a7120b5322979e91b9
+Description: OpenOffice.org Office suite version 2.0
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This metapackage installs all components of openoffice.org:
+  * openoffice.org2-writer: Word processor
+  * openoffice.org2-calc: Spreadsheet
+  * openoffice.org2-impress: Presentation
+  * openoffice.org2-draw: Drawing
+  * openoffice.org2-base: Database
+  * openoffice.org2-math: Equation editor
+ .
+ You can extend the functionality of OpenOffice.org by installing these
+ packages:
+  * myspell-dictionary: Myspell dictionaries for use with OpenOffice.org
+  * openoffice.org2-help: User help
+  * openoffice.org2-thesaurus: Thesauri for the use with OpenOffice.org
+  * openoffice.org2-hyphenation: Hyphenation patterns for OpenOffice.org
+  * ooqstart-gnome/oooqs-kde: Quick start applet for Gnome/KDE desktops
+  * openoffice.org2-gnome: Gtk UI Plugin, GNOME VFS, GConf backend and
+    GNOME File Picker support
+  * openoffice.org2-kde: KDE UI Plugin and KDE File Picker support
+  * menu: Will add openoffice.org menu entries for every Debian window manager.
+  * unixodbc: ODBC database support
+  * cupsys-bsd: Allows OpenOffice.org to detect your CUPS printer queues
+     automatically
+  * libsane: Use your sane-supported scanner with OpenOffice.org
+  * libxrender1: Speed up display by using Xrender library
+  * libgl1-mesa / libgl1: OpenGL support
+  * openclipart: Open Clip Art Gallery
+  * mozilla-browser | mozilla-firefox | firefox | mozilla-thunderbird:
+    Mozilla profile with Certificates needed for XML Security...
+  * openoffice.org2-filter-so52: SO 5.2 filters for OpenOffice.org
+  * msttcorefonts: Installs standard MS truetype fonts (contrib)
+  * java-gcj-compat/gij-4.0 | j2re1.4 (non-free) | java2-runtime
+    Java Runtime Environment for use with OpenOffice.org
+ .
+ See README.Debian for information about using OpenOffice.org in Debian, known
+ bugs and workarounds.
+
+Package: openoffice.org2-base
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libglib2.0-0 (>= 2.8.0), libmdbtools, libstdc++6 (>= 4.0.1), libstlport4.6c2, java-gcj-compat | j2re1.4 | java2-runtime, libhsqldb-java (>= 1.8.0.0-2), openoffice.org2-java-common
+Suggests: unixodbc, libmyodbc | odbc-postgresql | tdsodbc | mdbtools, libmysql-java | libpg-java | libsapdbc-java
+Replaces: openoffice.org2-core (<< 1.9.114), openoffice.org2-common (<< 1.9.114), openoffice.org2-l10n-en-us (<< 2.0)
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2-base_2.0.1-0breezy1_i386.deb
+Size: 2983138
+Installed-Size: 7812
+MD5sum: c7a4facda16cca77c9e1dc368f5e1985
+Description: OpenOffice.org office suite - database
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the the database component for OpenOffice.org,
+ a full-featured office productivity suite that provides a near drop-in
+ replacement for Microsoft(R) Office.
+ .
+ You can extend the functionality of OpenOffice.org Base by installing these
+ packages:
+ .
+  * unixodbc: ODBC database support
+  * libmyodbc | odbc-postgresql | tdsodbc | mdbtools: ODBC drivers for:
+    - MySQL
+    - PostgreSQL
+    - MS SQL / Sybase SQL
+    - *.mdb (JET / MS Access)
+  * libmysql-java | libpg-java | libsapdbc-java (contrib): JDBC Drivers
+    for:
+    - MySQL
+    - PostgreSQL
+    - MaxDB
+
+Package: openoffice.org2-calc
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libstdc++6 (>= 4.0.1), libstlport4.6c2
+Replaces: openoffice.org2-core (<< 1.9.114)
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2-calc_2.0.1-0breezy1_i386.deb
+Size: 3665370
+Installed-Size: 8816
+MD5sum: 2b66397cb7e413a1deebf5572132f534
+Description: OpenOffice.org office suite - spreadsheet
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the the spreadsheet component for OpenOffice.org,
+ a full-featured office productivity suite that provides a near drop-in
+ replacement for Microsoft(R) Office.
+
+Package: openoffice.org2-draw
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libstdc++6 (>= 4.0.1), libstlport4.6c2
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2-draw_2.0.1-0breezy1_i386.deb
+Size: 1919504
+Installed-Size: 4792
+MD5sum: 483922f4a38d0903577c313c89452d82
+Description: OpenOffice.org office suite - drawing
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the the drawing component for OpenOffice.org,
+ a full-featured office productivity suite that provides a near drop-in
+ replacement for Microsoft(R) Office.
+
+Package: openoffice.org2-evolution
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: gnome
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libglib2.0-0 (>= 2.8.0), libstdc++6 (>= 4.0.1), libstlport4.6c2, openoffice.org2-core (>> 2.0.1)
+Recommends: evolution, openoffice.org2-base
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2-evolution_2.0.1-0breezy1_i386.deb
+Size: 161108
+Installed-Size: 448
+MD5sum: 34b8b51b7af9bef0e4af18b03fe57359
+Description: Evolution Addressbook support for OpenOffice.org
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package allows OpenOffice.org to access Evolution address books.
+ You need to install evolution separately.
+
+Package: openoffice.org2-gnome
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: gnome
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: libatk1.0-0 (>= 1.9.0), libbonobo2-0 (>= 2.8.0), libc6 (>= 2.3.4-1), libcairo2 (>= 1.0.2), libfontconfig1 (>= 2.3.0), libgcc1 (>= 1:4.0.1), libgconf2-4 (>= 2.9), libglib2.0-0 (>= 2.8.0), libgnomevfs2-0 (>= 2.11.3), libgtk2.0-0 (>= 2.8.0), liborbit2 (>= 1:2.10.0), libpango1.0-0 (>= 1.10.1), libstdc++6 (>= 4.0.1), libstlport4.6c2, libx11-6, libxcursor1 (>> 1.1.2), libxext6, libxfixes3, libxi6, libxinerama1, libxrandr2, libxrender1, openoffice.org2-core (>> 2.0.1)
+Suggests: oooqstart-gnome, openoffice.org2-evolution
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2-gnome_2.0.1-0breezy1_i386.deb
+Size: 268550
+Installed-Size: 720
+MD5sum: 5b2d77dd8957be26a5610fba8f20a086
+Description: GNOME Integration for OpenOffice.org (Widgets, Dialogs, VFS, GConf)
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the Gtk plugin for drawing OOo's widgets with
+ Gtk+ and a Gtk/GNOMEish File Picker when running under GNOME, GNOME VFS
+ support and a GConf backend.
+ .
+ You can extend the functionality of OpenOffice.org Base by installing these
+ packages:
+ .
+  * oooqstart-gnome: Quick start applet for GNOME desktops
+  * openoffice.org2-evolution: Evolution adressbook support
+  * evolution
+enhances: openoffice.org2
+
+Package: openoffice.org2-help-en-us
+Source: openoffice.org2-helpcontent
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Matthias Klose <doko@ubuntu.com>
+Recommends: openoffice.org2-core (>= 2.0.1-0breezy1) | openoffice.org2-core-experimental (>= 2.0.1-0breezy1) | language-support-en-us
+Provides: openoffice.org-help-2.0.1
+Architecture: all
+Filename: pool/main/o/openoffice.org2-helpcontent/openoffice.org2-help-en-us_2.0.1-0breezy1_all.deb
+Size: 10290716
+Installed-Size: 20900
+MD5sum: f9a236da8d611bb959109648f3f96a9e
+Description: English_american help for OpenOffice.org
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the localization of OpenOffice.orgs help in
+ English_american.
+
+Package: openoffice.org2-help-es
+Source: openoffice.org2-helpcontent
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Matthias Klose <doko@ubuntu.com>
+Recommends: openoffice.org2-core (>= 2.0.1-0breezy1) | openoffice.org2-core-experimental (>= 2.0.1-0breezy1) | language-support-es
+Provides: openoffice.org-help-2.0.1
+Architecture: all
+Filename: pool/main/o/openoffice.org2-helpcontent/openoffice.org2-help-es_2.0.1-0breezy1_all.deb
+Size: 11877452
+Installed-Size: 25044
+MD5sum: d4fce4f5042eb898775cd27b3787c4c5
+Description: Spanish help for OpenOffice.org
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the localization of OpenOffice.orgs help in
+ Spanish.
+
+Package: openoffice.org2-impress
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1), openoffice.org2-draw (>> 2.0.1), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libstdc++6 (>= 4.0.1), libstlport4.6c2
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2-impress_2.0.1-0breezy1_i386.deb
+Size: 643638
+Installed-Size: 2320
+MD5sum: e307f42c2f5dedc3d4b21e84ff74b571
+Description: OpenOffice.org office suite - presentation
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the the presentation component for OpenOffice.org,
+ a full-featured office productivity suite that provides a near drop-in
+ replacement for Microsoft(R) Office.
+
+Package: openoffice.org2-java-common
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: libxt-java, libxalan2-java (>= 2.6.0-1), libxerces2-java, bsh (>= 2.0b4-1)
+Replaces: openoffice.org2-common (<= 1.9.127-0.1pre)
+Architecture: all
+Filename: pool/main/o/openoffice.org2/openoffice.org2-java-common_2.0.1-0breezy1_all.deb
+Size: 2295554
+Installed-Size: 2988
+MD5sum: ddbbb0ca77b99b6e411267161ba2758c
+Description: OpenOffice.org office suite Java support arch. independent files
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the architecture-independent files of
+ the Java support for OpenOffice.org (Java classes, scripts, config snippets).
+ See the openoffice.org2 package for more information.
+ .
+ For latest news on OpenOffice.org in Debian, see
+ http://openoffice.debian.net
+
+Package: openoffice.org2-l10n-en-us
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1) | openoffice.org2-core-experimental (>> 2.0.1) | language-support-en, openoffice.org2-core (<< 2.1) | openoffice.org2-core-experimental (<< 2.1) | language-support-en
+Suggests: myspell-dictionary-en-us, openoffice.org-hyphenation-en-us, openoffice.org2-thesaurus-en-us, openoffice.org2-help-en-us-2.0.1
+Conflicts: openoffice.org2-core (<< 2.0.1), openoffice.org2-core (>= 2.1)
+Provides: openoffice.org2-l10n-2.0.1
+Architecture: all
+Filename: pool/main/o/openoffice.org2/openoffice.org2-l10n-en-us_2.0.1-0breezy1_all.deb
+Size: 594244
+Installed-Size: 2572
+MD5sum: a8ce711d3f54910e813b230fce7dcada
+Description: English_american language package for OpenOffice.org
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the localization of OpenOffice.org in
+ English_american.
+ It contains the user interface, the templates and the autotext features.
+ (please note that not all this is available for all possible languages).
+ You can switch user interface language using the locales system.
+ .
+ Spelling dictionaries, hyphenation patterns, thesauri and help are not
+ included in this package. There are some available in separate packages
+ (myspell-*, openoffice.org-hyphenation-*, openoffice.org-thesaurus-*,
+ openoffice.org-help-*)
+ .
+ If you just want to be able to spellcheck etc. in other languages, you can
+ install extra dictionaries/hyphenation patterns/thesauri independently of
+ the language packs.
+
+Package: openoffice.org2-l10n-es
+Source: openoffice.org2-l10n
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1) | openoffice.org2-core-experimental (>> 2.0.1) | language-support-es, openoffice.org2-core (<< 2.1) | openoffice.org2-core-experimental (<< 2.1) | language-support-es
+Suggests: myspell-dictionary-es, openoffice.org-hyphenation-es, openoffice.org2-thesaurus-es, openoffice.org2-help-es-2.0.1
+Conflicts: openoffice.org2-core (<< 2.0.1), openoffice.org2-core (>= 2.1)
+Provides: openoffice.org2-l10n-2.0.1
+Architecture: all
+Filename: pool/main/o/openoffice.org2-l10n/openoffice.org2-l10n-es_2.0.1-0breezy1_all.deb
+Size: 2390412
+Installed-Size: 7692
+MD5sum: ca55065eb9ec4ed8c7d900f67b6f898d
+Description: Spanish language package for OpenOffice.org
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the localization of OpenOffice.org in
+ Spanish.
+ It contains the user interface, the templates and the autotext features.
+ (please note that not all this is available for all possible languages).
+ You can switch user interface language using the locales system.
+ .
+ Spelling dictionaries, hyphenation patterns, thesauri and help are not
+ included in this package. There are some available in separate packages
+ (myspell-*, openoffice.org-hyphenation-*, openoffice.org-thesaurus-*,
+ openoffice.org-help-*)
+ .
+ If you just want to be able to spellcheck etc. in other languages, you can
+ install extra dictionaries/hyphenation patterns/thesauri independently of
+ the language packs.
+
+Package: openoffice.org2-math
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libstdc++6 (>= 4.0.1), libstlport4.6c2
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2-math_2.0.1-0breezy1_i386.deb
+Size: 363354
+Installed-Size: 1124
+MD5sum: a20ebd5639569dffda96ca84272ff818
+Description: OpenOffice.org office suite - equation editor
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the the equation editor component for OpenOffice.org,
+ a full-featured office productivity suite that provides a near drop-in
+ replacement for Microsoft(R) Office.
+
+Package: openoffice.org2-writer
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: editors
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: openoffice.org2-core (>> 2.0.1), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libstdc++6 (>= 4.0.1), libstlport4.6c2, libwpd8c2, zlib1g (>= 1:1.2.1), python-uno (>> 2.0.1)
+Recommends: java-gcj-compat | j2re1.4 | java2-runtime, openoffice.org2-java-common
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/openoffice.org2-writer_2.0.1-0breezy1_i386.deb
+Size: 4847452
+Installed-Size: 10796
+MD5sum: 64487766da359f942a8a0401baaa16ad
+Description: OpenOffice.org office suite - word processor
+ OpenOffice.org is a full-featured office productivity suite that provides
+ a near drop-in replacement for Microsoft(R) Office.
+ .
+ This package contains the the wordprocessor component for OpenOffice.org,
+ a full-featured office productivity suite that provides a near drop-in
+ replacement for Microsoft(R) Office.
+
+Package: peez2
+Version: 1.0.0rc10
+Priority: optional
+Section: misc
+Maintainer: Augusto Beiro <abeiro@activasistemas.com>
+Depends: e2fslibs, libatk1.0-0 (>= 1.7.2), libc6 (>= 2.3.2.ds1-21), libglib1.2 (>= 1.2.0), libglib2.0-0 (>= 2.6.0), libgtk1.2 (>= 1.2.10-4), libgtk2.0-0 (>= 2.6.0), libncurses5 (>= 5.4-1), libntfs5 (>= 1.9.4), libpango1.0-0 (>= 1.8.1), libparted1.6-12 (>= 1.6.0), libuuid1, libx11-6 | xlibs (>> 4.1.0), libxext6 | xlibs (>> 4.1.0), libxi6 | xlibs (>> 4.1.0)
+Architecture: i386
+Filename: pool/main/p/peez2/peez2_1.0.0rc10_i386.deb
+Size: 56252
+Installed-Size: 148
+MD5sum: 97ffbc97d75d5063b1dc2fec673bb342
+Description: Analisis de particiones instalacion Guadalinex
+ Analisis de particiones instalacion Guadalinex.
+ Determina el particionamiento adecuado para instalar
+ Guadalinex
+
+Package: peez2-i18n
+Version: 1.0.0rc4-1
+Priority: extra
+Section: checkinstall
+Maintainer: abeiro@localhost
+Architecture: i386
+Filename: pool/main/p/peez2-i18n/peez2-i18n_1.0.0rc4-1_i386.deb
+Size: 4630
+Installed-Size: 1
+MD5sum: 3c4e5ebd6e1fb768bdef9f0d1159c063
+Description: peez2 spanish language file
+
+Package: pmount
+Version: 0.9.6-1~breezy1
+Priority: optional
+Section: utils
+Maintainer: Martin Pitt <mpitt@debian.org>
+Depends: libc6 (>= 2.3.4-1), libdbus-1-1 (>= 0.36.2), libhal-storage1, libhal1 (>= 0.5), libsysfs1
+Suggests: hal, cryptsetup (>= 1.0)
+Architecture: i386
+Filename: pool/main/p/pmount/pmount_0.9.6-1~breezy1_i386.deb
+Size: 36536
+Installed-Size: 352
+MD5sum: e1dbb8e7a7318c3bfaf4c187d528f6fd
+Description: mount removable devices as normal user
+ pmount is a wrapper around the standard mount program which permits normal
+ users to mount removable devices without a matching /etc/fstab entry. This
+ provides a robust basis for automounting frameworks like GNOME's Utopia project
+ and confines the amount of code that runs as root to a minimum.
+ .
+ This package also contains a wrapper "pmount-hal" which reads some
+ information like device labels and mount options from hal and passes
+ them to pmount. Install the package "hal" if you want to use this
+ feature.
+ .
+ If a LUKS capable cryptsetup package is installed, pmount is able to
+ transparently mount encrypted volumes.
+
+Package: python-uno
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: python
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Depends: python (<< 2.5), python (>= 2.4), libc6 (>= 2.3.4-1), libgcc1 (>= 1:4.0.1), libstdc++6 (>= 4.0.1), libstlport4.6c2, python2.4 (>= 2.3.90), openoffice.org2-core (>> 2.0.1)
+Replaces: openoffice.org2-common (<< 1.9.82)
+Architecture: i386
+Filename: pool/main/o/openoffice.org2/python-uno_2.0.1-0breezy1_i386.deb
+Size: 215498
+Installed-Size: 688
+MD5sum: d76790eda49add9d8bb2e1cbed08ea88
+Description: Python interface for OpenOffice.org
+ The Python-UNO bridge allows to use the standard OpenOffice.org API
+ with the python scripting language. It additionally allows
+ others to develop UNO components in python, thus python UNO components
+ may be run within the OpenOffice.org process and can be called from C++
+ or the built in StarBasic scripting language.
+ .
+ You can more information about Pyuno at
+ http://udk.openoffice.org/python/python-bridge.html
+enhances: openoffice.org2
+
+Package: sun-j2re1.5
+Version: 1.5.0+update04
+Priority: optional
+Section: non-free/devel
+Maintainer: Teófilo Ruiz Suárez <teo@yaco.es>
+Depends: libasound2 (>> 1.0.9), libc6 (>= 2.3.4-1), libx11-6, libxext6, libxi6, libxt6, libxtst6
+Recommends: netbase, libx11-6 | xlibs, libasound2, libgtk1.2
+Provides: java-common, java-virtual-machine, java-runtime, java2-runtime, java-browser-plugin, j2re1.5
+Replaces: sun-j2re1.5debian
+Architecture: i386
+Filename: pool/main/s/sun-j2re1.5/sun-j2re1.5_1.5.0+update04_i386.deb
+Size: 30547678
+Installed-Size: 87608
+MD5sum: 01ac50b8227901a09d92189fc1c999a7
+Description: Java(TM) 2 RE, Standard Edition, Sun Microsystems(TM)
+ The Java(TM) 2 Runtime Environment contains the Java virtual machine,
+ runtime class libraries, and Java application launcher that are
+ necessary to run programs written in the Java progamming language
+ (this includes the Java 2 Plug-In for Netscape and Mozilla
+ browsers). It is not a development environment and doesn't contain
+ development tools such as compilers or debuggers. For development
+ tools, see the Java 2 SDK, Standard Edition.
+ .
+ This package has been automatically created with java-package (0.26).
+
+Package: ttf-opensymbol
+Source: openoffice.org2
+Version: 2.0.1-0breezy1
+Priority: optional
+Section: x11
+Maintainer: Debian OpenOffice Team <debian-openoffice@lists.debian.org>
+Recommends: fontconfig
+Replaces: openoffice.org (<= 1.1.1+1.1.2rc3)
+Architecture: all
+Filename: pool/main/o/openoffice.org2/ttf-opensymbol_2.0.1-0breezy1_all.deb
+Size: 150830
+Installed-Size: 332
+MD5sum: 905559c2a0379ea65e53dffb4087e22f
+Description: The OpenSymbol TrueType font
+ This package contains the OpenSymbol TrueType font included in
+ OpenOffice.org. This font contains symbols (like fonts as Wingdings(tm)),
+ bullets (needed for bullets in OpenOffice.org) and non-latin characters.
+
+Package: ubuntu-express
+Version: 0.99-1
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Depends: python (<< 2.5), python (>= 2.4), debconf, yaboot | grub, ubuntu-express-frontend, system-tools-backends, ubuntu-express-doc, zenity
+Recommends: gparted, peez2
+Architecture: all
+Filename: pool/main/u/ubuntu-express/ubuntu-express_0.99-1_all.deb
+Size: 65498
+Installed-Size: 760
+MD5sum: d8f592168f88a123de2d502bb71049fe
+Description: Ubuntu Live installer
+ Live installers have featured itself until now by being very
+ simple, friendly and graphical.
+ .
+ This Live Installer will be a simple one and well integrated with
+ Debian and Ubuntu based systems.
+ .
+ Use Cases:
+   * An user takes Ubuntu, he likes it and wants to install, as is,
+ in his computer.
+   * An user takes Ubuntu, he likes it, tests it, configures it and
+ wants to have it installed, keeping the stored configuration, in his
+ computer.
+   * An user has tried Ubuntu, he knows that likes it and wants to
+ install it, but neither wants nor needs to launch the complete distro
+ (Desktop and so on). He just wants a fast and simple way to install.
+   * An user has installed Ubuntu from Live version and wants to be
+ able to have a configuration file with the chosen options, so in case
+ he needs to reinstall or to install in a similar computer, just must
+ get it.
+
+Package: ubuntu-express-frontend-cloner
+Source: ubuntu-express
+Version: 0.99-1
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Depends: python (<< 2.5), python (>= 2.4), ubuntu-express-artwork, ubuntu-express-doc
+Provides: ubuntu-express-frontend
+Architecture: all
+Filename: pool/main/u/ubuntu-express/ubuntu-express-frontend-cloner_0.99-1_all.deb
+Size: 7404
+Installed-Size: 80
+MD5sum: 9601dcbc11c9cd898df80f6c9480c682
+Description: Network Cloner Frontend for Ubuntu Express Live installer
+ This package provides a Ubuntu Express GUI non interactive which will install the system from a server.
+
+Package: ubuntu-express-frontend-gtk
+Source: ubuntu-express
+Version: 0.99-1
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-frontend
+Architecture: all
+Filename: pool/main/u/ubuntu-express/ubuntu-express-frontend-gtk_0.99-1_all.deb
+Size: 26054
+Installed-Size: 256
+MD5sum: 19cffcfef847b18523332177666ca9fe
+Description: Gtk+ Frontend for Ubuntu Express Live installer
+ This package provides a Gtk+ based Ubuntu Express GUI.
+
+Package: ubuntu-express-guadalinex-artwork
+Source: ubuntu-express
+Version: 0.99-1
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-artwork
+Architecture: all
+Filename: pool/main/u/ubuntu-express/ubuntu-express-guadalinex-artwork_0.99-1_all.deb
+Size: 664996
+Installed-Size: 756
+MD5sum: 5e2258449a4ed0ba5cd3af07a4bd10d1
+Description: Guadalinex artwork for Ubuntu Express Live installer
+ This package provides a set of pixmaps, logo images and colormap for
+ window styles and Ubuntu Express UI. All the stuff provide by this
+ package is Guadalinex related.
+
+Package: ubuntu-express-guadalinex-doc
+Source: ubuntu-express
+Version: 0.99-1
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-doc
+Architecture: all
+Filename: pool/main/u/ubuntu-express/ubuntu-express-guadalinex-doc_0.99-1_all.deb
+Size: 578834
+Installed-Size: 700
+MD5sum: 3cfe54761309f4386e68a5a1671bb4ea
+Description: Guadalinex Documentation and help files for UE Live installer
+ This package provides a set of help files, html pages for the Ubuntu
+ Express UI, text messages for the installer and more stuff related
+ to Guadalinex distribution.
+
+Package: ubuntu-express-ubuntu-artwork
+Source: ubuntu-express
+Version: 0.99-1
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-artwork
+Architecture: all
+Filename: pool/main/u/ubuntu-express/ubuntu-express-ubuntu-artwork_0.99-1_all.deb
+Size: 762894
+Installed-Size: 860
+MD5sum: a1e03b6a46ab71d45e05df5e3db93f0d
+Description: Ubuntu artwork for Ubuntu Express Live installer
+ This package provides a set of pixmaps, logo images and colormap for
+ window styles and Ubuntu Express UI. All the stuff provide by this
+ package is Ubuntu related.
+
+Package: ubuntu-express-ubuntu-doc
+Source: ubuntu-express
+Version: 0.99-1
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-doc
+Architecture: all
+Filename: pool/main/u/ubuntu-express/ubuntu-express-ubuntu-doc_0.99-1_all.deb
+Size: 334154
+Installed-Size: 480
+MD5sum: 25320e3974a47d5dd9760fa67d444eb7
+Description: Ubuntu Documentation and help files for UE Live installer
+ This package provides a set of help files, html pages for the Ubuntu
+ Express UI, text messages for the installer and more stuff related
+ to Ubuntu distribution.
+
+Package: ubuntu-keyring
+Version: 2005.01.12.1
+Priority: optional
+Section: misc
+Maintainer: Michael Vogt <michael.vogt@canonical.com>
+Depends: gnupg (>= 1.0.6-4)
+Architecture: all
+Filename: pool/main/u/ubuntu-keyring/ubuntu-keyring_2005.01.12.1_all.deb
+Size: 4796
+Installed-Size: 48
+MD5sum: c98f9c3c7652ad989aa8856572c41b95
+Description: GnuPG keys of the Ubuntu archive
+ The Ubuntu project digitally signs its Release files. This package
+ contains the archive keys used for that.
+
+Package: uda-docs
+Version: 0.1-9
+Priority: optional
+Section: unknown
+Maintainer: roberto <roberto@molinux.info>
+Depends: uda-docs-molinux-branding | uda-docs-guadalinex-branding
+Architecture: i386
+Filename: pool/main/u/uda-docs/uda-docs_0.1-9_i386.deb
+Size: 25042
+Installed-Size: 200
+MD5sum: 6b5acad977e5d5ce77d63aa0c25e4a1f
+Description: uda-docs
+ uda-docs
+
+Package: uda-docs-guadalinex-branding
+Source: uda-docs
+Version: 0.1-9
+Priority: optional
+Section: unknown
+Maintainer: roberto <roberto@molinux.info>
+Architecture: i386
+Filename: pool/main/u/uda-docs/uda-docs-guadalinex-branding_0.1-9_i386.deb
+Size: 6737598
+Installed-Size: 10264
+MD5sum: cd8ae5c78a5a7e21eb11b71c38cbbda8
+Description: uda-docs-guadalinex-branding
+ uda-docs-guadalinex-branding
+
+Package: usplash
+Version: 0.1-22uda
+Priority: standard
+Section: universe/misc
+Maintainer: Matthew Garrett <mjg59@srcf.ucam.org>
+Depends: libc6 (>= 2.3.4-1), initramfs-tools (>= 0.15)
+Architecture: i386
+Filename: pool/main/u/usplash/usplash_0.1-22uda_i386.deb
+Size: 93752
+Installed-Size: 308
+MD5sum: 897857197bb58718a3e4133a3542dfd3
+Description: Userspace bootsplash utility
+ Usplash is a userspace application that uses the Linux framebuffer interface
+ to draw a splash screen at boot. It has a companion utility that is able to
+ send commands to usplash, allowing information about the bootup sequence to
+ be displayed in a more attractive way.
+
+Package: watermain
+Version: 1.0-2
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Depends: python (>= 2.4), python (<< 3), apt (>= 0.6), python-gtk2
+Architecture: i386
+Filename: pool/main/w/watermain/watermain_1.0-2_i386.deb
+Size: 27934
+Installed-Size: 192
+MD5sum: 2497fec00cec1a005e743fbbc9d8972a
+Description: debian mirror's selector
+ Watermain allows an easy mirror selection and automatic
+ sources.list rewriting according with a simple combo
+ box choice.
+ .
+ Available mirrors list is downloadable via http thru a
+ mouse click.
+ .
+ Watermain was developed for the Andalusian Local
+ Government's distribution, Guadalinex (Ubuntu based).
+
+Package: xapi
+Version: 1.6-4
+Priority: optional
+Section: Guadalinex
+Maintainer: Junta de Andaluc�a <packmaster@guadalinex.org>
+Pre-Depends: mime-support
+Depends: perl-base (>= 4.0), libui-dialog-perl
+Architecture: i386
+Filename: pool/main/x/xapi/xapi_1.6-4_i386.deb
+Size: 8420
+Installed-Size: 112
+MD5sum: 9e57ec365946e89bd759b307ae76cc36
+Description: Manejador de paquetes deb para instalaci�n desde navegador
+ Facilita la instalaci�n de paquetes .deb desde el navegador al
+ ser descargados de la web.
 

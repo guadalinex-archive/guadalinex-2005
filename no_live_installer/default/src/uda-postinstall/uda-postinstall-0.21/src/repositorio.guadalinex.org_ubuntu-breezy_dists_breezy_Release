@@ -3,34 +3,34 @@ Label: Ubuntu
 Suite: breezy
 Version: 5.10
 Codename: breezy
-Date: Wed, 23 Nov 2005 21:38:18 UTC
+Date: Thu, 13 Oct 2005 19:34:42 UTC
 Architectures: i386 amd64 powerpc ia64 sparc hppa
 Components: main restricted universe multiverse
 Description: Ubuntu Breezy 5.10
 MD5Sum:
- 91395d3ae2e9dcb26646bab38485061c          3923414 main/binary-amd64/Packages
- d6cdebf5dae8ca5b8591754c2b98b3ac           764481 main/binary-amd64/Packages.gz
- 498f6f3801c2083a17ccc58f7607ae00           581648 main/binary-amd64/Packages.bz2
+ 4e070fcb71c373265b4305df1cbf2eee          3893681 main/binary-amd64/Packages
+ 8d85960af536bdb9a24049169a8cb160           762825 main/binary-amd64/Packages.gz
+ 1a589b5108b39b2835a1c2f6fe584cac           582007 main/binary-amd64/Packages.bz2
  b6e6643bc5e877550f33601c32e4d723               95 main/binary-amd64/Release
- c737ae2fc55917c50ea1d5efe122d691          3682914 main/binary-hppa/Packages
- d3733c72eaefde1626e37864553ebde6           719370 main/binary-hppa/Packages.gz
- 8f543f26b957b3e8d2cc2d4610602e54           547307 main/binary-hppa/Packages.bz2
+ 072ca7519e00be73eec04bbf62b57546          3656873 main/binary-hppa/Packages
+ 18cda9f369bd4a383bc4f8ffa107e10f           717815 main/binary-hppa/Packages.gz
+ 0f99c260a66d0a3d6d0503b6481f41db           545416 main/binary-hppa/Packages.bz2
  b1f4b8fe0e914881ed65faeca67c9999               94 main/binary-hppa/Release
- c76792aa98101d37778e7d950d3e7683          3943645 main/binary-i386/Packages
- 92e4df2cce57f954becfcc6e52763f0a           768767 main/binary-i386/Packages.gz
- 2e274a3f6f664443ee2aa6b1b0431436           585765 main/binary-i386/Packages.bz2
+ ee93e0ce084179cca27ad667ae5ad772          3913703 main/binary-i386/Packages
+ f48682e7ab4502874ceed4ed596f744b           766975 main/binary-i386/Packages.gz
+ 451ee1795248a0e16372fa7cd5269a11           585288 main/binary-i386/Packages.bz2
  2ff1aa54c697bac2f0792a11c889f2ee               94 main/binary-i386/Release
- 9df2a0bb637da32356c4e58b26284c21          3917089 main/binary-ia64/Packages
- c1b6ed23098a49a48630d0c474529b03           761785 main/binary-ia64/Packages.gz
- 543b15471d8bc0e9d245bad366e060d5           580994 main/binary-ia64/Packages.bz2
+ 8c5df77251731808bcef8286e2533199          3887358 main/binary-ia64/Packages
+ 84e1c6218616f16598ce2287a4a124ce           760162 main/binary-ia64/Packages.gz
+ fd4ca325fc1abee848dba95fc5553f26           579710 main/binary-ia64/Packages.bz2
  757bb0ae20c4be90c24956ac7bd8652d               94 main/binary-ia64/Release
- 3467d7651f25238fdee78b88db722287          3925436 main/binary-powerpc/Packages
- 8857f2c21ad5bc6a828902af521f0cad           763559 main/binary-powerpc/Packages.gz
- 84721d402f106ae982b8abf1fd81f732           581709 main/binary-powerpc/Packages.bz2
+ e42341ef11534b279f4766f875c08595          3896354 main/binary-powerpc/Packages
+ d542e6ed59a93ad4310fa1bc6d2d0e40           761818 main/binary-powerpc/Packages.gz
+ 3bb3cbfa27720388294e2ca50a89a9a2           580613 main/binary-powerpc/Packages.bz2
  eb023d5711d2efddb302c69e40cb17c1               97 main/binary-powerpc/Release
- e6500892d88bf074e06ba929bb365f2e          3896766 main/binary-sparc/Packages
- a2c14e404da17afd2bb836e83e26b453           758077 main/binary-sparc/Packages.gz
- 8e77aa73fdf61fef50006f267e4cbc94           577944 main/binary-sparc/Packages.bz2
+ e104ecb69ddfa7794ed774fd631b53e1          3867191 main/binary-sparc/Packages
+ 66577a77380042dcd889c76f78a532e9           756366 main/binary-sparc/Packages.gz
+ 8d34da8bafef220852570f42e674b6e3           575678 main/binary-sparc/Packages.bz2
  27558eeac5250a18a1777e36dc41c899               95 main/binary-sparc/Release
  7a77f9b5688e0c9c9b518c906e5ebf3b          1338839 main/source/Sources
  17a33211fbbf74cdb1eda072854d44f8           304690 main/source/Sources.gz
@@ -64,61 +64,61 @@ MD5Sum:
  38067753e13ff1e24dbcff73f14b56dc             1363 restricted/source/Sources.gz
  5b8745148e76b2827702f8e95edc19c8             1454 restricted/source/Sources.bz2
  57861e8a46840dfae8f6dc7e9ecf31a3              102 restricted/source/Release
- 00b60e87676427c13c09c2f2fcfcb816         11800848 universe/binary-amd64/Packages
- 0015ae4e3cf04c865c562a20298f7262          2931720 universe/binary-amd64/Packages.gz
- 9ee32d0acf5f8c710f3653a71d001cd2          2237664 universe/binary-amd64/Packages.bz2
+ cb1e58cd39cc438a8c0e5c68073cbb19         11800846 universe/binary-amd64/Packages
+ ae5a2ed1a0c14a1a9929e3286cda33f0          2931724 universe/binary-amd64/Packages.gz
+ 9d5771b75e99828f85a579a7c91269cb          2237169 universe/binary-amd64/Packages.bz2
  5872f898309f5a73e8056935cf600bf4               99 universe/binary-amd64/Release
- 477a253a35b60f4536698ec270f4dfd4         10958848 universe/binary-hppa/Packages
- 0deb79c0ec6326cb71a7761c0760f93f          2757394 universe/binary-hppa/Packages.gz
- 33602194a9a52faf7236951bf881ac67          2092213 universe/binary-hppa/Packages.bz2
+ b6a77216f10e60274ddbbbabb35a3b79         10958846 universe/binary-hppa/Packages
+ d92761af44cd1f01b785152da2ec8c6f          2757400 universe/binary-hppa/Packages.gz
+ d6f879c85991b418f6909c7590550d0d          2092390 universe/binary-hppa/Packages.bz2
  3343065618bcbf00bd4660d3ed8bfc21               98 universe/binary-hppa/Release
- 8d10cf8c183dcde86123a4f72086eaea         12203111 universe/binary-i386/Packages
- 12718c2c47295f2b19708a13459fc540          3027689 universe/binary-i386/Packages.gz
- 91608647d372f632b7f9f557c0a8f2b9          2304358 universe/binary-i386/Packages.bz2
+ e6d0ab10589d546ace9c8cd1f0b56185         12203109 universe/binary-i386/Packages
+ 2aee65b6659ebabac03f69e493b5ffff          3027689 universe/binary-i386/Packages.gz
+ 8a847932a18dd71f6244ff064114d9a5          2303973 universe/binary-i386/Packages.bz2
  d55c46f2df68f0564fc4383a46d725ca               98 universe/binary-i386/Release
- 30c8824dc59a7bf0c94017657d21a4b3         11730907 universe/binary-ia64/Packages
- f518e5c7cff8e74e667d1f7254eb7312          2916070 universe/binary-ia64/Packages.gz
- 18e8c8257d8a01381d0eb207106f1935          2223449 universe/binary-ia64/Packages.bz2
+ 0677fa05b2ecdb297b3d888176f04e47         11730905 universe/binary-ia64/Packages
+ eb3375e6f50021b078833e2609d579e7          2916071 universe/binary-ia64/Packages.gz
+ d606055791c7fe7d84adb6a9645ddcbe          2223403 universe/binary-ia64/Packages.bz2
  ab5b2b4af188ca7dae537c8972c40e2d               98 universe/binary-ia64/Release
- 108d9f6aa17ad6990222a2eea182491d         11934144 universe/binary-powerpc/Packages
- 4aa6801142a000b296f52524798b0e66          2956623 universe/binary-powerpc/Packages.gz
- 2a56f14bf6912413a6a1b0b6e6e2f4db          2258374 universe/binary-powerpc/Packages.bz2
+ d6b39953788b84526867c793c82ca87c         11934142 universe/binary-powerpc/Packages
+ 2773364e4398bb378ba8f8c803e67c86          2956627 universe/binary-powerpc/Packages.gz
+ e0a483d8ca309de407744439244e4d54          2258224 universe/binary-powerpc/Packages.bz2
  dd26d8e8f1c0d612cbd0b432243c0c06              101 universe/binary-powerpc/Release
  21756f0e80cda951c3a002c2fea0861c         11268251 universe/binary-sparc/Packages
  fc8871e4e3df3e8edbb1d5da424fb2c1          2820481 universe/binary-sparc/Packages.gz
  82e43aa10d9fa1201253a26272f9035f          2142539 universe/binary-sparc/Packages.bz2
  6fc70072dd978fa8dcfeb14b6e521453               99 universe/binary-sparc/Release
- c9b7bb4d5b19981780762378873affe5          4481226 universe/source/Sources
- 9ef68f69f5ebd2b938c53715ad389e4d          1222905 universe/source/Sources.gz
- 94fae03d5fda7afc3f5ebd4ad493c206           914391 universe/source/Sources.bz2
+ 6222ce89bce77996b67e24225b22c9a5          4481224 universe/source/Sources
+ d4779c1ce9d3f8c34ff8662056254dc9          1222910 universe/source/Sources.gz
+ c86025818f87381ffcb1976f375bef8e           914802 universe/source/Sources.bz2
  7f9766bbc98917cc18508dd5b7d81b4a              100 universe/source/Release
- f8b020a466dfb6ed5df3818f1ae0c369           378161 multiverse/binary-amd64/Packages
- c047c3f45cd998d6be6e9bade9cdcb73            99059 multiverse/binary-amd64/Packages.gz
- dabb9d291b28fcde35fee894259a74e7            80230 multiverse/binary-amd64/Packages.bz2
+ 65ae040a28d4c510aff7c98344fe7afa           378159 multiverse/binary-amd64/Packages
+ 6c8c307eaeccc66165fdd96b32db0a0d            99064 multiverse/binary-amd64/Packages.gz
+ a8e3eb36bd58a53224af4d91e3da4322            80197 multiverse/binary-amd64/Packages.bz2
  dd29e60157d790fcaf1e7c38e530790a              101 multiverse/binary-amd64/Release
- 2689e4b1ac69ecf17df47f3d857d9f67           313994 multiverse/binary-hppa/Packages
- 7e99b3cf821af2c31dc48da46f5d2e68            85680 multiverse/binary-hppa/Packages.gz
- 0660f8c01c4355ef8ea79888bf28bed9            70090 multiverse/binary-hppa/Packages.bz2
+ 6544fd732ba0daeada781fd7c9d82dd8           313992 multiverse/binary-hppa/Packages
+ 3845e94d39795d1fa5c507c677568a09            85685 multiverse/binary-hppa/Packages.gz
+ 9aaac5f9bee96fadfe3074858af7d340            70088 multiverse/binary-hppa/Packages.bz2
  d0e2feeae93d5ef4711d702adedbaabb              100 multiverse/binary-hppa/Release
- a91674c6c523ad30a6486cf36cd42e5d           445423 multiverse/binary-i386/Packages
- 96687e137a0837bdde8d2396c1c2ae86           115787 multiverse/binary-i386/Packages.gz
- 65225c53accf1760cd7314cc42d394c8            91927 multiverse/binary-i386/Packages.bz2
+ b35f3154bf2af4c11b4ee5f6653a04b0           445419 multiverse/binary-i386/Packages
+ cdb80f21a2b49df630207ee531d04424           115798 multiverse/binary-i386/Packages.gz
+ 30c7a528cb4914529f0d82afbb55bded            91635 multiverse/binary-i386/Packages.bz2
  61b49b27e765d35ea00625ae984f59cd              100 multiverse/binary-i386/Release
- f939662de4fe6e2d26d4efded5ac2e25           347803 multiverse/binary-ia64/Packages
- b3173bbb41ba5db9c21bedd548729cb1            93414 multiverse/binary-ia64/Packages.gz
- 37ce67331f2086baf11affbb85df95dd            75800 multiverse/binary-ia64/Packages.bz2
+ de6b820ebbd82978a56675ece9c04254           347801 multiverse/binary-ia64/Packages
+ 1452d0316fd7d7b32fe9ab7bc946c964            93418 multiverse/binary-ia64/Packages.gz
+ 5dc6ebac3d83b432e62e1ab726ea5819            75788 multiverse/binary-ia64/Packages.bz2
  01f11d8c65b895f4c04f72ac5811e911              100 multiverse/binary-ia64/Release
- 998a5a4c5f9b2e998f912369ffa76328           374512 multiverse/binary-powerpc/Packages
- 3f720002821dafb35a149056946c4491            99176 multiverse/binary-powerpc/Packages.gz
- 5841eb5bc292df6c2836103c4cf8f7b0            80067 multiverse/binary-powerpc/Packages.bz2
+ 4f0b4a8d9a80f7fb7129097a109b0b6d           374510 multiverse/binary-powerpc/Packages
+ 855f437ee9f543eb70b10912a4c01535            99180 multiverse/binary-powerpc/Packages.gz
+ dfc12ad940ffac4e9903092cae54be5c            80051 multiverse/binary-powerpc/Packages.bz2
  5a941ec09c6a4f0755f3693090ad1ff0              103 multiverse/binary-powerpc/Release
- bbaa4e8987e06e08b6af81d21de269dc           316587 multiverse/binary-sparc/Packages
- aef6f6e78fc44dfc7b3fdc3f319b308a            87268 multiverse/binary-sparc/Packages.gz
- 333a014b0bf847bfd55b69b95bffefd2            71251 multiverse/binary-sparc/Packages.bz2
+ 94568b221ab154114cf54400db009386           316585 multiverse/binary-sparc/Packages
+ 4c87ed9d91090c27e9c4c8d5f738d838            87273 multiverse/binary-sparc/Packages.gz
+ 86557d57c760bff437d763a3a3d6e731            71241 multiverse/binary-sparc/Packages.bz2
  81d4753205ef403432ac3955e2a84162              101 multiverse/binary-sparc/Release
- 4bba57281bac8d21a00d55266fe99996           211292 multiverse/source/Sources
- 2799a5159ee85fc045c3e085232e54e1            57950 multiverse/source/Sources.gz
- b639e8c45f8c6549ac37bd702274850f            46866 multiverse/source/Sources.bz2
+ dc23e864f53b1fd482e618da8d213864           211290 multiverse/source/Sources
+ 6e47f341ede53ee612dceda2606ce5c9            57955 multiverse/source/Sources.gz
+ adc4af8014cf95ee5ee6b52c31c39f04            46858 multiverse/source/Sources.bz2
  83316e4945e1a8f340457e8c9cfa1c8b              102 multiverse/source/Release
  c5e801f5bad52bc14af92bf28c1f1047           106991 main/debian-installer/binary-amd64/Packages
  5760fe11a91e4d7bd4b9ed1f00384255            22752 main/debian-installer/binary-amd64/Packages.gz
@@ -175,29 +175,29 @@ MD5Sum:
  6086952d9a9d1b9e74c7773a8f0f6751             9041 universe/debian-installer/binary-sparc/Packages.gz
  f2cd7fcda7c52cda7e1ec24383589c47             8516 universe/debian-installer/binary-sparc/Packages.bz2
 SHA1:
- 3fbde205bdcaaccd33e853393bd7f0f8507a4275          3923414 main/binary-amd64/Packages
- 36d318431556e2215ba7fa5d621d809d594f4eb7           764481 main/binary-amd64/Packages.gz
- 334c7facf22265f9d1acea9c9f60e89f48e0c37e           581648 main/binary-amd64/Packages.bz2
+ 7b6961210b0002ee4ad8c884d4737db4966a5f8e          3893681 main/binary-amd64/Packages
+ 30fe18b0ed59b3dc1fef77f83b8f285c318f4ac3           762825 main/binary-amd64/Packages.gz
+ 020b933ff7a17babc5cbd4674d84b971d0ef81f8           582007 main/binary-amd64/Packages.bz2
  ceeca22e56eb33b87369c3662ed7e219e30ef1fa               95 main/binary-amd64/Release
- 2209efdd3870b62a3189c60ad5b06a2de311ad61          3682914 main/binary-hppa/Packages
- 7d2467cb970eacb62981082497639ae2afc09999           719370 main/binary-hppa/Packages.gz
- ebcd65f4026903aa29d95cb3269b6b845cea7ded           547307 main/binary-hppa/Packages.bz2
+ 404aacb451b45b4c362e23d3304f97f1b8f3e907          3656873 main/binary-hppa/Packages
+ 4fafe1f1e10a3f7849cd5c8642a47640931be3bd           717815 main/binary-hppa/Packages.gz
+ a2b350c3e5e999a6fd4827a7a7feb93208f4ce4d           545416 main/binary-hppa/Packages.bz2
  31adae85c2ead41f35a4ee640767b000deda5ae2               94 main/binary-hppa/Release
- 875dacd2ee22a5952a28a1b672964254f89c2125          3943645 main/binary-i386/Packages
- a08380f8ba611e80ff4ad03a05391d533c6abc52           768767 main/binary-i386/Packages.gz
- f812386c99f785c7827a8b1808fc30f5e1abd8e5           585765 main/binary-i386/Packages.bz2
+ 717f3f43f28debb9ff210e5126620c7261e6c973          3913703 main/binary-i386/Packages
+ 976c8af3c2ff3e1dd0790a0b52326e5743e38282           766975 main/binary-i386/Packages.gz
+ 591828fd79f8a3e5fb495a35b4b6ed7057eb2f24           585288 main/binary-i386/Packages.bz2
  6ff1ebf6451613eee537b333ca78cdc87da63468               94 main/binary-i386/Release
- f5869f34ae1de9ddd8cc5f3cae1d817b98d0d99f          3917089 main/binary-ia64/Packages
- 4a503a233c6da669fc850ff83d47a8bdc47b1c01           761785 main/binary-ia64/Packages.gz
- b9e3fed7a27e45aa9a100c34ea13c31c137c5136           580994 main/binary-ia64/Packages.bz2
+ 9ff8de59e105bd028cbe40c4b5308cea99d6dfe6          3887358 main/binary-ia64/Packages
+ c952a8182fa2f9a54a48fb45af8c72026beb17d3           760162 main/binary-ia64/Packages.gz
+ 8010fc853a89b09bb85545c7443251e2700f5d3b           579710 main/binary-ia64/Packages.bz2
  944b412fc7788b158c63b56f89c7d796445a70c5               94 main/binary-ia64/Release
- 95cffb4f85da368514f08305d7b7fa6aced89efa          3925436 main/binary-powerpc/Packages
- 73c1fce01544df2e3f32320758a577729b12fb18           763559 main/binary-powerpc/Packages.gz
- bbc8cbb37033d116f81f85dc0dd7e46f2ee348ab           581709 main/binary-powerpc/Packages.bz2
+ 563b29b538e3438f922a713533620acca6b07cce          3896354 main/binary-powerpc/Packages
+ 5ae4ec2cae0fc29bca90ff63d9cb711ce4441c31           761818 main/binary-powerpc/Packages.gz
+ 73cc49daaf21d91fbe9b131572b4d74d14291d3d           580613 main/binary-powerpc/Packages.bz2
  15cd6c4227f02c7cf270f6d1e22f2b5d41b92333               97 main/binary-powerpc/Release
- 92feb229c74370878d52a42691aefba144cba3ce          3896766 main/binary-sparc/Packages
- d67b6893097b7a76fba59e4b10609d6d7c77d833           758077 main/binary-sparc/Packages.gz
- 524aa4c62ebf258372d5e93b43f078453af8ef96           577944 main/binary-sparc/Packages.bz2
+ cb9f2feb9c150c81fdbf78b2f7814d237030b16e          3867191 main/binary-sparc/Packages
+ b87b4fdc46c26114ab33cb391098b1f0699ed011           756366 main/binary-sparc/Packages.gz
+ eae540adc36718863f0d9c66a8293f0509d56c4d           575678 main/binary-sparc/Packages.bz2
  05385ee4c7cc6fd18af9871329bec794e28c414e               95 main/binary-sparc/Release
  c88cfbe639f9e2ac3d7bad6550c110041469d4f7          1338839 main/source/Sources
  cae50591870217b9fd0e20935f8108d7580e4bdf           304690 main/source/Sources.gz
@@ -231,61 +231,61 @@ SHA1:
  1f366f9d254b841e6fb0b168fc12a07c942367d7             1363 restricted/source/Sources.gz
  953a1b55c4b96d7b68b1be06ab49b5d42b463bd6             1454 restricted/source/Sources.bz2
  474da1aef3f6d93f5a591a73f9079ed73290586a              102 restricted/source/Release
- 892a132cc3c6c15fab9c0888234de8a5a4ec8dbd         11800848 universe/binary-amd64/Packages
- e16c4dca131d5fd0deb980c41109dc64afa48d60          2931720 universe/binary-amd64/Packages.gz
- ae204395e75bc8982915c719c36317505a3f2ebc          2237664 universe/binary-amd64/Packages.bz2
+ 4336350c1a395285cfd472ff00fb31f72c66cd2d         11800846 universe/binary-amd64/Packages
+ 7330ec7dacccf28df0ba36f1d0df3418924504fa          2931724 universe/binary-amd64/Packages.gz
+ f4c6480f39649bf8d76002006a79e858384a10c5          2237169 universe/binary-amd64/Packages.bz2
  c481eabcae5a40b3ec7ccfe4088f6e3a1c4617b8               99 universe/binary-amd64/Release
- dc40d1630c408eecdf3570f43fbe716a18eabd6e         10958848 universe/binary-hppa/Packages
- 0de73923af11476a491841330d0a19d39565e6b5          2757394 universe/binary-hppa/Packages.gz
- 437c0fdca1441c9afab316f65e45926ee4788740          2092213 universe/binary-hppa/Packages.bz2
+ 2b69908544184dbaffdf2691e1cbf87a49d1c7dc         10958846 universe/binary-hppa/Packages
+ 2e9f809c57ad50c9a336c6afdc62c9d3a6d25a51          2757400 universe/binary-hppa/Packages.gz
+ 42e65c380d99b2f76704785b84b83408bd6dbbf6          2092390 universe/binary-hppa/Packages.bz2
  fe993e650906d5dda8b89b5b35cd6e272b233587               98 universe/binary-hppa/Release
- b827450bbb8213fcecfed76d173b0bfe646d2df6         12203111 universe/binary-i386/Packages
- 72ae11333f62ec69c16cc8dd0064429a46686a25          3027689 universe/binary-i386/Packages.gz
- b588c9de06c1069c79b8fd759e49919ec36a550d          2304358 universe/binary-i386/Packages.bz2
+ 82ab884a8cc2743419a836613e9ca9fd58326e23         12203109 universe/binary-i386/Packages
+ a7b90873ff959c61cb0d26b0a5b7035ee96182fa          3027689 universe/binary-i386/Packages.gz
+ 575f10e5710d95700a1e9a789ae5187dd854deef          2303973 universe/binary-i386/Packages.bz2
  3f862f9db4a2a4519190f090a882c458c4cda07e               98 universe/binary-i386/Release
- abe3ce3ac195484e7506e24fbad20e801327eaf0         11730907 universe/binary-ia64/Packages
- 2d16837581b1094c3656a9d85d2f8306baeb1559          2916070 universe/binary-ia64/Packages.gz
- a9536f3a8a5aea1d37c5867088f5bcbb89df2179          2223449 universe/binary-ia64/Packages.bz2
+ 6c3adc5e7a97d36e7673ce19227306e42cc05c13         11730905 universe/binary-ia64/Packages
+ de286dcf74b26574fe91e707918f5d001f7aa8ae          2916071 universe/binary-ia64/Packages.gz
+ 3c869dafe8480d5048db53d42edece427dbda21b          2223403 universe/binary-ia64/Packages.bz2
  d0f37e26c5a73bc53acf31a8c611a6aedf340db4               98 universe/binary-ia64/Release
- 641acfcb8ca3e5ae65991c1c185ffd892623f062         11934144 universe/binary-powerpc/Packages
- 632250388f7e8213886edbdfaddf604955b4282f          2956623 universe/binary-powerpc/Packages.gz
- 56f0d23f951cfdec8b142228ac4c8ee71a6b04d7          2258374 universe/binary-powerpc/Packages.bz2
+ 3d916fc4af45141b0cc76d58d130857190acafa2         11934142 universe/binary-powerpc/Packages
+ 0ab85d97673a81f17c6c6212b717c04d683f4a31          2956627 universe/binary-powerpc/Packages.gz
+ 9cf94608f88e79212059a37ec442c2baf6156c6b          2258224 universe/binary-powerpc/Packages.bz2
  482ccabd1e43811460074873bfe223f71354d30f              101 universe/binary-powerpc/Release
  732eaad0d1b3f380ff59e1969fc2890d792e566f         11268251 universe/binary-sparc/Packages
  57b36814ab32d70f18c299aa4e7f9a013b3a569f          2820481 universe/binary-sparc/Packages.gz
  ecef8f687834d3fa6dcf7587b0101fda09e054f5          2142539 universe/binary-sparc/Packages.bz2
  338a77b6d62726019a78e878a253f02458999124               99 universe/binary-sparc/Release
- 31f807ff85ebc4f30ffab3271af421388b3c6163          4481226 universe/source/Sources
- 52b95bb273f2053db3a7f856f7cbf6d2ef877ccb          1222905 universe/source/Sources.gz
- 1de14098cd5215e90a9804e62a373f8e5ea7d24c           914391 universe/source/Sources.bz2
+ 531d75d49f792adae68b618eb2ad686be8202dc4          4481224 universe/source/Sources
+ 422aaaa77d7bb95ad0f94c2237466f33f7732ab1          1222910 universe/source/Sources.gz
+ f4eb351f666dea40ce60c47aae24e679d55aa6ab           914802 universe/source/Sources.bz2
  0f159746b5a5bb24e06587632674575197030189              100 universe/source/Release
- b6e9be4d2f2f71a8c2304c21b0e65c78b61db3c5           378161 multiverse/binary-amd64/Packages
- 82211d223df453aeb7914b13cdd2b0c9cd225814            99059 multiverse/binary-amd64/Packages.gz
- faa17161e8928b1f66061a79a26f4c43ff71107c            80230 multiverse/binary-amd64/Packages.bz2
+ cc35973aa48ff304e7e53730efe96c6e1929e49e           378159 multiverse/binary-amd64/Packages
+ f620f9aa578ca925b137d4bf512ca787851be13b            99064 multiverse/binary-amd64/Packages.gz
+ ee7737e20e675524cad2d1a4995cfa2e243fe7fe            80197 multiverse/binary-amd64/Packages.bz2
  2e68b683ad03232b0d84f8b27efd652af94af059              101 multiverse/binary-amd64/Release
- a840f8aed80a7dcacea7810b2244b1c37f08a4be           313994 multiverse/binary-hppa/Packages
- 28008a6fe246d5d0f83cc7fc052fc063e3d8492b            85680 multiverse/binary-hppa/Packages.gz
- 8d92525abddfe4a234327f1f12446f5b1ccb5291            70090 multiverse/binary-hppa/Packages.bz2
+ 326d2fedf857dc45c0bcec7ee9bb75402b484da3           313992 multiverse/binary-hppa/Packages
+ 31b1c62ea933f9caa63e5243ef5979c591e9f386            85685 multiverse/binary-hppa/Packages.gz
+ 2ef7afce4d9ef803d4e5f1ef603c1986e875f102            70088 multiverse/binary-hppa/Packages.bz2
  47439c82de9a21d71e6deda5f69cd0e74f9e4aff              100 multiverse/binary-hppa/Release
- 997a2dde9f61e7ce5e826e26d2daaec38c871d68           445423 multiverse/binary-i386/Packages
- 7469b1932b5cc29471e8900746718872216572cc           115787 multiverse/binary-i386/Packages.gz
- 4a4265afe65e5b5d979aadf132dfa7a951bc1976            91927 multiverse/binary-i386/Packages.bz2
+ 51cb32448ab37b4c3ac6dfbc803c306e120238cb           445419 multiverse/binary-i386/Packages
+ 33fc56f7f776a5de34e5a1cb9411ecc9cb9a6d8f           115798 multiverse/binary-i386/Packages.gz
+ 693f613656e3fc23829d039e338fc7ad2d0b6266            91635 multiverse/binary-i386/Packages.bz2
  d6d06834a2cb92db84b454b41b4dca07af474e2b              100 multiverse/binary-i386/Release
- 134f83728ef4dbdecfc14cc1397305afc5f1f167           347803 multiverse/binary-ia64/Packages
- 8a12036528e694b864325cee67fe1a94c3ed4af7            93414 multiverse/binary-ia64/Packages.gz
- 9711ac59007e83020e875db570f3ba7c371f2217            75800 multiverse/binary-ia64/Packages.bz2
+ c33752d41f3af1e86c61f729351a061d611a214b           347801 multiverse/binary-ia64/Packages
+ fee65676122f55dc331d92c7d1ff955115e6069d            93418 multiverse/binary-ia64/Packages.gz
+ 8a2ce8eab811b7e99cb098180a9d866be03def90            75788 multiverse/binary-ia64/Packages.bz2
  fcbb04f6b3d54d91d96dfd1b11bafc357bf7dee7              100 multiverse/binary-ia64/Release
- 0640a453be385cef531f4e57dcbb3af57dada860           374512 multiverse/binary-powerpc/Packages
- 705917c9448515940e2be4bc7455c26789264fb3            99176 multiverse/binary-powerpc/Packages.gz
- c64ed4922893aac7300b7255ad0d7f643f672b59            80067 multiverse/binary-powerpc/Packages.bz2
+ 668f1bc0a9bc8ad0fdd9f302c9f3a784f393112d           374510 multiverse/binary-powerpc/Packages
+ d7ead12c7ea688c97805fb9e89a493530bf47afb            99180 multiverse/binary-powerpc/Packages.gz
+ 75b6fd0ae31450c8b6e56b064238c2c277d46edf            80051 multiverse/binary-powerpc/Packages.bz2
  e1de5abfe4750abd1c9e8507a3b03e369fe2ec5a              103 multiverse/binary-powerpc/Release
- 7efcf670fdfe06c499ca8ee0aa6e03986cab1830           316587 multiverse/binary-sparc/Packages
- c7be65a444497e89811db6824f729ae41ef17e4c            87268 multiverse/binary-sparc/Packages.gz
- f0f695c71791f0d2b17eb6f3e2166fb3f803a8d2            71251 multiverse/binary-sparc/Packages.bz2
+ 7fd6af3363077eed85ede657a1834827f090d433           316585 multiverse/binary-sparc/Packages
+ ad16350ce6d41270bb6f4d6052a27f6c9a8c68c7            87273 multiverse/binary-sparc/Packages.gz
+ cac9dbce028a5d5aafae11e7dcb26ed8aa34b6f9            71241 multiverse/binary-sparc/Packages.bz2
  9605dbfbbdfe1fb4c2fb9dafb5e67d26690c7566              101 multiverse/binary-sparc/Release
- 948f52195a99e156a1b6e599bef902c6e249b51e           211292 multiverse/source/Sources
- e0900a464d249eb03ad65bc6d4e22ed62258bbca            57950 multiverse/source/Sources.gz
- ecea37e54d5bb6321df1a863d4a6d76032b6b7f0            46866 multiverse/source/Sources.bz2
+ d062c91414123b8b0300256e6429f2da8d2a356f           211290 multiverse/source/Sources
+ 8fa03f886b10aad37e16371b200c3d3fadab4bee            57955 multiverse/source/Sources.gz
+ 2fcd5925d1b4bd850ca407234d1045a98ad15090            46858 multiverse/source/Sources.bz2
  e30bd6f9f3e5f4b360df51c8d998173693a4f4e3              102 multiverse/source/Release
  ad1ba5d75218b45774bad9dfd0f28f4cefb2fdfd           106991 main/debian-installer/binary-amd64/Packages
  7b7692f056b557c8d2a9baeec5ab0dbd0d757194            22752 main/debian-installer/binary-amd64/Packages.gz
