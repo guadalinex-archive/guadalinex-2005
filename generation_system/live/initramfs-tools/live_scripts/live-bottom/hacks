@@ -26,7 +26,7 @@ mv ${rootmnt}/usr/bin/netapplet ${rootmnt}/usr/bin/netapplet.orig
 cat <<EOF > ${rootmnt}/usr/bin/netapplet
 #!/bin/sh
 
-sudo /usr/bin/netapplet.orig $*
+sudo /usr/bin/netapplet.orig \$*
 
 EOF
 
@@ -39,7 +39,7 @@ mv ${rootmnt}/usr/bin/find ${rootmnt}/usr/bin/find.orig
 cat <<EOF > ${rootmnt}/usr/bin/find
 #!/bin/sh
 
-/usr/bin/find.orig -noleaf $*
+/usr/bin/find.orig -L -P \$*
 
 EOF
 
