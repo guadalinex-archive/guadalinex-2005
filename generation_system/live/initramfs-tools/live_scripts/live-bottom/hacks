@@ -1,0 +1,51 @@
+#!/bin/sh
+# 
+
+PREREQ="hwdetect"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+
+
+. /conf/initramfs.conf
+
+# Fixing sudo problems with netapplet
+mv ${rootmnt}/usr/bin/netapplet ${rootmnt}/usr/bin/netapplet.orig
+
+cat <<EOF > ${rootmnt}/usr/bin/netapplet
+#!/bin/sh
+
+sudo /usr/bin/netapplet.orig $*
+
+EOF
+
+${rootmnt}/bin/chmod +x ${rootmnt}/usr/bin/netapplet 
+
+
+# Fixing find noleaf problems with unionfs
+mv ${rootmnt}/usr/bin/find ${rootmnt}/usr/bin/find.orig
+
+cat <<EOF > ${rootmnt}/usr/bin/find
+#!/bin/sh
+
+/usr/bin/find.orig -noleaf $*
+
+EOF
+
+${rootmnt}/bin/chmod +x ${rootmnt}/usr/bin/find
+
+# Setting right permissions for /sbin
+chmod 755 ${rootmnt}/sbin
+
+exit 0

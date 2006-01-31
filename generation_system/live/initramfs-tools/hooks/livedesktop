@@ -25,8 +25,3 @@ if [ "${BOOT}" == "live" ]; then
 	install -m 644 /etc/mkinitramfs/install.desktop ${DESTDIR}/conf/install.desktop
 fi
 
-# Launching netapplet as root in live session
-
-if [ "${BOOT}" == "live" ]; then
-	install -m 755 /etc/mkinitramfs/netapplet.sudo ${DESTDIR}/conf/netapplet.sudo
-fi

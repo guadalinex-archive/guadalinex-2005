@@ -159,8 +159,4 @@ ${rootmnt}/bin/chmod +x ${rootmnt}/etc/rc2.d/S10adduser.sh ${rootmnt}/etc/rc2.d/
 # Copy the installer .desktop to the user desktop
 cp -a /conf/install.desktop ${rootmnt}/etc/skel/Desktop/ >> /tmp/initramfs.debug 2>&1
 
-# Make changes for netapplet to be exec as root
-cp ${rootmnt}/usr/bin/netapplet ${rootmnt}/usr/bin/netapplet.orig >> /tmp/initramfs.debug 2>&1
-cp -a /conf/netapplet.sudo ${rootmnt}/usr/bin/netapplet
-
 exit 0
