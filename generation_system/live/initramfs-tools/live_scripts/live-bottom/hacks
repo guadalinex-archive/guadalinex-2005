@@ -47,10 +47,7 @@ ${rootmnt}/bin/chmod +x ${rootmnt}/usr/bin/find
 
 # Setting right permissions for every dir in which we modify files from here
 # Right now, they are: /sbin, /usr/bin
-DIRS="/sbin /usr/bin"
-for dir in $DIRS;
-do
-	chmod 755 ${rootmnt}${dir}
-done
+chmod 755 ${rootmnt}/sbin
+chmod 755 ${rootmnt}/usr/bin
 
 exit 0
