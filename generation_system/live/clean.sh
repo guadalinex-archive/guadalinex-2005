@@ -40,6 +40,10 @@ rm -rf /usr/lib/flashplugin-nonfree
 rm /etc/resolv.conf
 touch /etc/resolv.conf
 
+# Cleaning menu.lst
+rm /boot/grub/menu.lst
+touch /boot/grub/menu.lst
+
 # Cleaning /tmp
 cd /tmp
 for file in `find`
