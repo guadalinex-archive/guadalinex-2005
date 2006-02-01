@@ -1,0 +1,7 @@
+
+[Default]
+num_clients=1
+0,RestartStyleHint=3
+0,Priority=50
+0,RestartCommand=/usr/bin/netapplet
+0,Program=/usr/bin/netapplet
