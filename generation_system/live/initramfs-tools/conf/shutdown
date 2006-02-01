@@ -23,6 +23,8 @@ for path in $(which halt) $(which reboot) /etc/rc?.d /etc/default; do
     cache_path "$path"
 done
 
+chvt 1
+
 clear
 
 eject -p -m /.dirs/dev >/dev/null 2>&1

@@ -38,12 +38,26 @@ mv ${rootmnt}/usr/bin/find ${rootmnt}/usr/bin/find.orig
 
 cat <<EOF > ${rootmnt}/usr/bin/find
 #!/bin/sh
-
-/usr/bin/find.orig -L -P \$*
+IFS=""
+/usr/bin/find.orig -L -P \$@
 
 EOF
 
 ${rootmnt}/bin/chmod +x ${rootmnt}/usr/bin/find
+
+
+# Fixing reboot command and eject process from everywhere
+mv ${rootmnt}/sbin/reboot ${rootmnt}/sbin/reboot.orig
+
+cat <<EOF > ${rootmnt}/sbin/reboot
+#!/bin/sh
+
+chvt 1
+/sbin/reboot.orig \$@
+
+EOF
+
+${rootmnt}/bin/chmod +x ${rootmnt}/sbin/reboot
 
 # Setting right permissions for every dir in which we modify files from here
 # Right now, they are: /sbin, /usr/bin
