@@ -77,4 +77,6 @@ else
         mksquashfs ${SOURCES} ${MASTER}/META/META.squashfs
 fi
 
+#FIXME: Añadirle una opcion para cambiarle el isolinux.cfg
+
 mkisofs -l -r -J -V "${VOLUMENAME}" -hide-rr-moved -v -b isolinux/isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o  ${OUTPUTIMAGE} ${MASTER}
