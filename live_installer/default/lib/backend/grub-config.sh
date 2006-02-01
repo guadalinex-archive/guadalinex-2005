@@ -120,7 +120,7 @@ rm -f /boot/grub/menu.lst
 SOS=1
 echo "
 default 0
-timeout 1
+timeout 3
 fallback 1
 " >> /boot/grub/menu.lst
 
@@ -317,7 +317,7 @@ for i in `seq 1 $nlineas`;
     done
 
 if [ "$SOS" -gt 1 ]; then
-	sed -e 's/timeout 1/timeout 10/g' /boot/grub/menu.lst > /tmp/menut.tmp
+	sed -e 's/timeout 3/timeout 10/g' /boot/grub/menu.lst > /tmp/menut.tmp
 	mv -f /tmp/menut.tmp /boot/grub/menu.lst
 fi
 debug "SO encontrados: $SOS"
