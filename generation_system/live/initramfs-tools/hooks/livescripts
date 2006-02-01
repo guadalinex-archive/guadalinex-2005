@@ -29,4 +29,7 @@ if [ "${BOOT}" == "live" ]; then
 	        mkdir --parents ${DESTDIR}/scripts/$(dirname ${f})
 		cp -p ${LIVE_SCRIPTS}/${f} ${DESTDIR}/scripts/$(dirname ${f})
 	done
+	LIVE_DIR="/usr/share/initramfs-tools"
+	cp -p ${LIVE_DIR}/bin/* ${DESTDIR}/sbin/
+
 fi

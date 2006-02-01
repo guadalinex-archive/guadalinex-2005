@@ -35,4 +35,12 @@ for file in anacron postfix checkfs.sh checkroot.sh ntpdate mountall.sh ; do
 	: > ${rootmnt}/etc/init.d/${file}
 done
 
+# Install shutdown script
+if [ -f ${rootmnt}/etc/rc0.d/S90halt ]; then
+    cp -a /sbin/shutdown ${rootmnt}/etc/rc0.d/S89shutdown
+fi
+if [ -f ${rootmnt}/etc/rc6.d/S90reboot ]; then
+    cp -a /sbin/shutdown ${rootmnt}/etc/rc6.d/S89shutdown
+fi
+
 exit 0

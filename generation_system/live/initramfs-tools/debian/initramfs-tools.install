@@ -1,9 +1,10 @@
-mkinitramfs		usr/sbin
-init			usr/share/initramfs-tools
-scripts			usr/share/initramfs-tools
+mkinitramfs		    usr/sbin
+init			    usr/share/initramfs-tools
+scripts			    usr/share/initramfs-tools
 live_scripts		usr/share/initramfs-tools
 conf/initramfs.conf	etc/mkinitramfs
 conf/install.desktop	etc/mkinitramfs
-hooks			usr/share/initramfs-tools
+hooks			    usr/share/initramfs-tools
 hook-functions		usr/share/initramfs-tools
 update-initramfs	usr/sbin
+conf/shutdown       usr/share/initramfs-tools/bin
