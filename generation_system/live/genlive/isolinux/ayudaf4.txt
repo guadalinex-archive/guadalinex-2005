@@ -1,0 +1,29 @@
+
+                       09Iniciando Guadalinex v307
+
+
+
+Iniciar Guadalinex v3 en modo 0d"live"07 (desde el CD) es muy sencillo,
+únicamente debe insertar el CD-ROM en el ordenador y reiniciar.
+Se le mostrará una pantalla de presentación y en unos segundos se cargará
+el sistema operativo.
+
+Si Guadalinex no se iniciase correctamente, es posible que deba modificar
+el 0dorden de arranque07 de los dispositivos en la 0dBIOS07 de su ordenador.
+Este procedimiento varía ligeramente entre distintos modelos así que se
+recomienda consultar en el manual del ordenador la forma correcta de hacerlo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+07Pulse 0dF207 para volver al Índice de ayuda
+Presione 0dINTRO07 para iniciar Guadalinex v307
