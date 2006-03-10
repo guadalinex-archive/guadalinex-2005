@@ -33,7 +33,7 @@ case "$1" in
         export DISPLAY=:8
 	echo "[OK]" >> $LOG
 
-        PACKAGES="meta-guadalinex-2005-mini"
+        PACKAGES="meta-guadalinex-v3-mini"
         NUM_PACKAGES=$(apt-get install -s $PACKAGES | grep ^Inst | nl | tail -n 1 | cut -f1 | sed -e "s/ //g")
 
 	echo -n "Running metacity... " >> $LOG
@@ -50,10 +50,10 @@ case "$1" in
 	/sbin/dhclient &
 	echo "[OK]" >> $LOG
 
-	UDA_CUSTOM_COLOR="#087021"
+	export UDA_CUSTOM_COLOR="#087021"
 
-	echo -n "Running uda-postinstall $NUM_PACKAGES $PACKAGES meta-guadalinex-2005-mini... " >> $LOG
-        /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES" "meta-guadalinex-2005-mini"
+	echo -n "Running uda-postinstall $NUM_PACKAGES $PACKAGES meta-guadalinex-v3-mini... " >> $LOG
+        /usr/bin/uda-postinstall $NUM_PACKAGES "$PACKAGES" "meta-guadalinex-v3-mini"
 	echo "[OK]" >> $LOG
 	
 	echo "auto lo" >> /etc/network/interfaces
@@ -107,9 +107,11 @@ case "$1" in
         apt-get clean >> $LOG
 	echo "[OK]" >> $LOG
 
+	mv -f /etc/inittab.real /etc/inittab
+	shutdown -r now
+	
 	echo -n "Killing x... " >> $LOG
         kill -9 $( ps -e | grep Xorg | awk '{print $1}' ) >> $LOG
 	echo "[OK]" >> $LOG
-
 	;;
 esac

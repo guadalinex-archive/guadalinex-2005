@@ -2,10 +2,11 @@
 # Exit base-config.
 set -e
 
+echo "exit executed" >> /var/log/mylog
 # Finally, put the real inittab into place and tell init.
 if [ -f /etc/inittab.real ]; then
 	mv -f /etc/inittab.real /etc/inittab
 	telinit q >/dev/null
 	# Clear the screen, in preparation for the login prompt
-	clear
+	#clean
 fi
