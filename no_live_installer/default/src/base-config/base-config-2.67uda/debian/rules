@@ -43,6 +43,8 @@ install: build
 	dh_installdirs -ptzsetup-udeb
 
 	dh_installdirs -papt-setup-udeb
+	rm -rf `find $(CURDIR)/debian/ -mindepth 2 -type d -name .svn`
+
 
 # Build architecture-dependent files here.
 binary-arch: build install
