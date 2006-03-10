@@ -81,9 +81,9 @@ msgid ""
 "\n"
 msgstr ""
 "El usuario administrador, es un usuario que tiene capacidades especiales con "
-"respecto al resto de los usuarios. Desde este usuario se tiene la "
-"posibilidad de acceder a las herramientas de administración (instalación de "
-"software, herramientas de configuración ...).\n"
+"respecto al resto de los usuarios. Este usuario tiene la posibilidad de "
+"acceder a las herramientas de administración (instalación de software, "
+"herramientas de configuración, permisos, creación de nuevos usuarios...).\n"
 "\n"
 
 #: ../src/uda-postconfig.c:181
@@ -99,7 +99,8 @@ msgid ""
 msgstr ""
 "En sistemas como este es habitual ponerle un nombre al equipo para poder\n"
 "identificarlo. Puede poner como nombre \"casa\", \"oficina\" o cualquier \n"
-"otro nombre que se le ocurra, siempre y cuando sea una sola palabra.\n"
+"otro que se le ocurra, siempre y cuando sea una sola palabra, sin \n"
+"espacios ni signos de puntuación. \n"
 "\n"
 
 #: ../src/uda-postconfig.c:185
