@@ -24,7 +24,11 @@ case "$1" in
 	ln -sf /bin/true /usr/bin/scrollkeeper-rebuilddb
 	touch /usr/lib/base-config/installing
 
-	echo -n "Reconfiguring x... " > $LOG
+	echo -n "Detect laptop..." > $LOG
+	apt-get install laptop-detect -y > /dev/null 2>&1
+	echo "[OK]" >> $LOG
+
+	echo -n "Reconfiguring x... " >> $LOG
 	dpkg-reconfigure -pcritical xserver-xorg >> $LOG
 	echo "[OK]" >> $LOG
 
