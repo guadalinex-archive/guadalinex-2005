@@ -1,0 +1,62 @@
+EXTERNAL PACKAGES INCLUDED IN DISTRO:
+
+DISTRO_CONF:
+
+- guadalinex-2005-base-base-conf_1.0_all.deb
+- guadalinex-2005-base-base_1.0_all.deb
+- meta-guadalinex-2005-base_1.0_all.deb
+- guadalinex-2005-escritorio-sistema-x-conf_1.0_all.deb
+- guadalinex-2005-escritorio-sistema-x_1.0_all.deb
+- guadalinex-2005-escritorio-internet-conf_1.0_all.deb
+- guadalinex-2005-escritorio-internet_1.0_all.deb
+- guadalinex-2005-escritorio-graficos_1.0_all.deb
+- guadalinex-2005-escritorio-accesorios_1.0_all.deb
+- guadalinex-2005-escritorio-oficina_1.0_all.deb
+- guadalinex-2005-escritorio-gnome-conf_1.0_all.deb
+- guadalinex-2005-escritorio-gnome_1.0_all.deb
+- guadalinex-2005-escritorio-multimedia_1.0_all.deb
+- guadalinex-2005-escritorio-media_1.0_all.deb
+- guadalinex-2005-escritorio-admin_1.0_all.deb
+- meta-guadalinex-2005-escritorio_1.0_all.deb
+- guadalinex-2005-noescritorio-base-conf_1.0_all.deb
+- guadalinex-2005-noescritorio-base_1.0_all.deb
+- meta-guadalinex-2005-noescritorio_1.0_all.deb
+- guadalinex-2005-extras-suplementos_1.0_all.deb
+- meta-guadalinex-2005-extras_1.0_all.deb
+- meta-guadalinex-2005_1.0_all.deb
+
+ADSL_ASSISTANT
+
+- accessrunner-usb-modules-2.6.12-9-386_0.3_i386.deb
+- accessrunner-usb-source_0.3_all.deb
+- accessrunner-usb-utils_0.3_i386.deb
+- eagle-usb-modules-2.6.12_2.1.1-2_i386.deb
+- bb-assist_0.5_i386.deb
+
+LIVE_INSTALLER
+
+- peez2_1.0.0rc10_i386.deb
+- peez2-i18n_1.0.0rc4-1_i386.deb
+- gparted_0.0.8+cvs2005061901-0uda3_i386.deb
+- ubuntu-express_0.98ubuntu1_all.deb
+- ubuntu-express-frontend-cloner_0.98ubuntu1_all.deb
+- ubuntu-express-frontend-gtk_0.98ubuntu1_all.deb
+- ubuntu-express-guadalinex-artwork_0.98ubuntu1_all.deb
+- ubuntu-express-guadalinex-doc_0.98ubuntu1_all.deb
+- ubuntu-express-ubuntu-artwork_0.98ubuntu1_all.deb
+- ubuntu-express-ubuntu-doc_0.98ubuntu1_all.deb
+
+HARDWARE_DETECTION
+
+- hermeshardware_0.1-3_i386.deb
+
+
+OTHER_APPS
+
+- uda-docs_0.1-9_i386.deb
+- uda-docs-guadalinex-branding_0.1-9_i386.deb
+- uda-docs-molinux-branding_0.1-9_i386.deb
+- guadalinex-suppletory-system_0.1_i386.deb
+- guadalinex-suppletory-disk-generator_0.1-1_i386.deb
+- gnomebaker_0.5.0-3_i386.deb
+- lemurae_0.1-3_i386.deb

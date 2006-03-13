@@ -1,0 +1,21 @@
+Los paquetes que se incluyen en guadalinex están en:
+deb http://people.ubuntu.com/~doko/OOo2 ./
+
+Y son:
+
+openoffice.org2-math
+openoffice.org2-l10n-es
+openoffice.org2-impress
+openoffice.org2
+openoffice.org2-writer
+openoffice.org2-base
+openoffice.org2-calc
+openoffice.org2-java-common
+python-uno
+openoffice.org2-core
+openoffice.org2-evolution
+openoffice.org2-draw
+openoffice.org2-common
+openoffice.org2-l10n-en-us
+openoffice.org2-help-es
+openoffice.org2-help-en-us openoffice.org2-gnome
