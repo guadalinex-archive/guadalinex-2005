@@ -48,7 +48,7 @@ unset INSTALLER_CD      || true
 unset DI_CODENAME       || true
 unset MAXCDS            || true
 unset OMIT_MANUAL	|| true
-
+unset WINDOWS		|| true
 
 if [ -z "$PROJECT" ]; then
   PROJECT=guadalinex
@@ -123,6 +123,9 @@ export MIRROR=${MIRROR:-$CDIMAGE_ROOT/ftp}
 # non-US packages on it, one with none. Useful if you're likely to
 # need both.
 #export FORCENONUSONCD1=1
+
+# Path of the windows files to autorun
+export WINDOWS=$CDIMAGE_ROOT/windows
 
 # Path of the temporary directory
 export TDIR=$CDIMAGE_ROOT/scratch/$PROJECT/tmp

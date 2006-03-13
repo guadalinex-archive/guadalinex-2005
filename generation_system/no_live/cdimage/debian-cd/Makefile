@@ -684,6 +684,7 @@ bin-doc: ok bin-infos $(MIRROR)/doc $(BDIR)/CD1/doc
 $(BDIR)/CD1/doc:
 	@echo "Adding the documentation (bin) ..."
 	mkdir -p $(BDIR)/$$DISK/doc
+	cp -r $(WINDOWS)/* $(BDIR)/CD1/
 	$(Q)$(add_bin_doc) # Common stuff for all disks
 
 src-doc: ok src-infos $(SDIR)/CD1/README.html
