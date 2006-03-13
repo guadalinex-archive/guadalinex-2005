@@ -1,0 +1,25 @@
+Template: uda-first-message/title
+Type: title
+_Description: Bienvenido
+
+Template: uda-first-message/first-message
+Type: note
+_Description: Bienvenido a Guadalinex Mini
+ A continuación dará comienzo la instalación de Guadalinex Mini.
+ .
+ Le recordamos la importancia de realizar una copia de seguridad de sus datos 
+ y aplicaciones más importantes antes de continuar.
+
+Template: uda-first-message/requirements
+Type: note
+_Description: Requisitos para la instalación
+ Para instalar y utilizar esta versión de Guadalinex en su 
+ ordenador necesitará al menos:
+ .
+ - 1 GB de espacio libre en el disco duro
+ .
+ - 32 MB de memoria RAM
+ .
+ - Procesador Intel o compatible a 100 Megaherzios
+ .
+ En la documentación adicional puede consultar el hardware recomendado.
