@@ -1,0 +1,227 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_molinux_recipes_xml.dpatch by  <roberto@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/recipes.xml /tmp/dpep-work.xDBDD9/uda-docs-0.1/docs/recipes/recipes.xml
+--- ./docs/recipes/recipes.xml	1970-01-01 01:00:00.000000000 +0100
++++ /tmp/dpep-work.xDBDD9/uda-docs-0.1/docs/recipes/recipes.xml	2005-10-28 11:30:25.000000000 +0200
+@@ -0,0 +1,216 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
++<!ENTITY % xinclude SYSTEM "../libs/xinclude.mod">
++%xinclude;
++<!ENTITY % globalent SYSTEM "../libs/global.ent">
++%globalent;
++]>
++<!--<!ENTITY % local.common.attrib  "xml:base  CDATA  #IMPLIED">-->
++
++<?yelp:chunk-depth 3?>
++
++<book lang="es" id="recipes">
++    <title>&inline-distro-icon; <phrase>Recetas de uso común</phrase>
++    </title>
++    <bookinfo>
++        <title>Soluciones rápidas para &distro-name;</title>
++        <!-- Create a new <copyright> secton here if you are a contributor -->
++        <revhistory>
++            <revision>
++                <revnumber>&recipes-rev;</revnumber>
++                <date>18/05/2005</date>
++                <authorinitials>FJS</authorinitials>
++                <revdescription>
++                    <para>Versión inicial</para>
++                </revdescription>
++            </revision> 
++        </revhistory> &copyright; &disclaimer; &legalnotice; &publisher; 
++        <authorgroup>
++             &author-francisco-serrador; &author-emilio-jimenez;
++        </authorgroup>
++        
++        <abstract>
++		<para>A continuación damos un conjunto de instrucciones para realizar
++			 tareas usuales con &distro-name;.</para>
++        </abstract>
++    </bookinfo>
++    
++       <xi:include xml:base="chap-migration" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-migration/migration.xml">
++       <xi:fallback> <para><emphasis>Fallo en chap-migration</emphasis></para></xi:fallback>
++       </xi:include>
++    
++     <xi:include xml:base="chap-music"  xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-music/music.xml">
++       <xi:fallback> <para><emphasis>Fallo en chap-music</emphasis></para></xi:fallback>
++       </xi:include>
++    
++    
++    <xi:include xml:base="chap-security" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-security/security.xml">
++       <xi:fallback> <para><emphasis>Error en chap-security</emphasis></para></xi:fallback>
++       </xi:include>
++
++       <xi:include xml:base="chap-cdwriting" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-cdwriting/cdwriting.xml">
++       <xi:fallback> <para><emphasis>Error en chap-cdwriting</emphasis></para></xi:fallback>
++       </xi:include>
++
++      <xi:include xml:base="chap-evolution" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-evolution/evolution.xml">
++       <xi:fallback> <para><emphasis>Error en chap-evolution</emphasis></para></xi:fallback>
++       </xi:include>
++
++      <xi:include xml:base="chap-gaim" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-gaim/gaim.xml">
++       <xi:fallback> <para><emphasis>Falló en chap-gaim</emphasis></para></xi:fallback>
++       </xi:include>
++
++       <xi:include xml:base="chap-gst" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-gst/gst.xml">
++       <xi:fallback> <para><emphasis>Error en chap-gst-useradmin</emphasis></para></xi:fallback>
++       </xi:include>
++
++       <xi:include xml:base="chap-bonito" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-bonito/bonito.xml">
++       <xi:fallback> <para><emphasis>Error en chap-bonito</emphasis></para></xi:fallback>
++       </xi:include>
++
++
++	<xi:include xml:base="chap-movies" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-movies/movies.xml">
++       <xi:fallback> <para><emphasis>Falló en chap-movies</emphasis></para></xi:fallback>
++       </xi:include>
++       
++       <xi:include xml:base="chap-modem" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-modem/modem.xml">
++       <xi:fallback> <para><emphasis>Falló en chap-movies</emphasis></para></xi:fallback>
++       </xi:include>
++
++       <xi:include xml:base="chap-nautilus" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-nautilus/nautilus-spatial.xml">
++       <xi:fallback> <para><emphasis>Falló en chap-nautilus</emphasis></para></xi:fallback>
++       </xi:include>
++ 
++       <xi:include xml:base="chap-printer" xmlns:xi="http://www.w3.org/2001/XInclude" href="chap-printer/printer.xml">
++       <xi:fallback> <para><emphasis>Falló en chap-printer</emphasis></para></xi:fallback>
++       </xi:include>
++
++<chapter id="commontasks-createdatacd">
++    <title>Crear un CD de datos con Nautilus</title>
++    <para>El gestor de ficheros Nautilus tiene un grabador de CD/DVD integrado
++    que se puede usar para crear CDs de datos directamente desde el escritorio. </para>
++   <para>Para crear un CD de datos tan sólo tiene que pulsar sobre 
++   <guimenuchoice><guimenu>Lugares</guimenu></guimenuchoice>
++    en el menú de la ventana de Nautilus, seleccionar 
++   <guimenuchoice><guimenu>Crear un CD/DVD de datos</guimenu></guimenuchoice> 
++    y arrastrar los datos que quiera grabar en la ventana que aparecerá a continuación.</para>
++</chapter>
++
++   
++
++    <chapter id="commontasks-webbrowsing">
++    <title>Navegar por Internet</title>
++    <para>&distro-name; usa el navegador para realizar todo este tipo de acciones. Firefox nace desde el proyecto Mozilla como una aplicación segura, extensible y cumpliendo muchos de los estándares actuales para la 	
++	  visualización de las páginas web. Al magnífico soporte web que tiene Firefox, se le une la posibilidad
++	  de personalizarlo mediante temas y extensiones desde la propia aplicación. </para>
++	<figure>
++                <screenshot><title>  El navegador web Firefox</title>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/firefox.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++	</figure>
++ </chapter>
++
++ <chapter id="archivos" lang="es">
++ 	<title>Trabajar con archivos, ficheros y paquetes</title>
++     	<sect><note><para>En este capítulo, por archivo nos referiremos a los ficheros que contengan otros ficheros,
++	también conocidos por tarballs, tar.gz, zip, etc...</para></note>
++	<para>Gnome cuenta con la aplicación File-Roller para comprimir y empaquetar ficheros en archivos. 
++	Puede acceder a esta aplicación desde el menú 
++	<menuchoice>
++	  <guisubmenu>Aplicaciones</guisubmenu>
++	  <guisubmenu>Accesorios</guisubmenu>
++	  <guimenuitem>Gestor de archivos comprimidos</guimenuitem>
++	</menuchoice>
++        </para>
++              <figure><title>Pantalla principal de FileRoller</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/file-roller.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++         <para>FileRoller depende de varios programas para entenderse con los distintos formatos de archivos, por lo
++	 que está limitado por ellos. </para>
++       	</sect>
++     </chapter>
++    
++     
++
++     <chapter id="java-install">
++      <title>Instalar Java</title>
++        <sect><title>Descarga de JRE</title>
++	<para>Para instalar Java, debe descargar el software desde la página de Sun pulsando en este
++	<ulink url="&sunjava-download;">enlace</ulink></para>
++	<para>En la página que aparecerá en el navegador web, busque las siglas JRE y pulse en el 
++	      enlace apropiado para descargar. A continuación se le presentará un acuerdo de licencia 
++	      con Sun Microsystems. Léalo y si está de acuerdo marque «accept» y pulse en «continue».
++              </para>
++        <para>En la página siguiente, debe pulsar donde ponga «Linux self extracting file». Señale 
++	«Guardar en disco» en el diálogo que aparecerá después. La descarga debería comenzar en este
++	momento. </para>
++        </sect>
++
++	<sect>
++	  <title>Instalación de JRE en su cuenta de usuario</title>	
++	<para>Abra un terminal y vaya al directorio donde ha descargado el paquete. Déle permisos de ejecución con el comando: 
++	<programlisting>chmod u+x jre-1_5_0_03-linux-i586.bin</programlisting>
++	(El nombre del paquete puede diferir). A continuación ejecutelo: <programlisting>./jre-1_5_0_03-linux-i586.bin</programlisting>
++	Se le volverá a pedir su conformidad con el acuerdo de licencia. Debe tecleear yes si está de acuerdo.
++       A continuación, se descomprimirá el paquete en el directorio recien creado jre1.5.0_03.
++	Recuerde que debe modificar la variable PATH de su entorno para que busque ejecutables en este
++	nuevo directorio. Esto puede hacerse poniendo 
++ 	<programlisting>
++	export PATH=$PATH:$HOME/jre-1_5_0_03/bin
++	</programlisting>
++	en su ~/.bashrc
++	</para>
++	<para><note>Iremos actualizando esta documentación a medida
++		 que cambie el proceso de instalación de Java</note>
++	</para>
++	</sect>
++        <sect><title>Empaquetar Java e instalarlo en el sistema</title>
++	<para>Si desea que java esté integrado en su sistema para todos los usuarios, el método correcto
++	ES EMPAQUETARLO. Puede obtener un programa que le ayudará en esta tarea en el siguiente 
++	<ulink url="&java-debian;">enlace</ulink>:</para>
++	<para>
++	Básicamente el proceso consiste en descargar este programa, instalarlo y hacer que él automáticamente
++	cree el .deb necesario para integrar Java en &distro-name;. Los siguientes pasos que hay que hacer son:
++	<programlisting>
++
++        sudo apt-get install java-package
++	make-jpkg jre-1_5_0_03-linux-i586.bin
++       	sudo dpkg -i sun-j2jre.5.0_i386.deb
++	</programlisting>
++	</para>
++ 	</sect>
++     </chapter>
++
++     <chapter id="flash-install">
++	<title>Instalar Flash</title>
++	<para>Normalmente cuando no tenga instalado el complemento de Flash, se mostrará la siguiente imagen bajo la 
++	barra de direcciones indicando que puede instalar el complemento directamente. No necesita hacer ninguna
++	otra operación.</para>
++	<para><figure>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/flash.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++	</figure>
++ 	</para>
++	
++	<para>Para descargar el complemento de Macromedia Flash puede ir a la siguiente <ulink 
++	url="&flash-download;">dirección</ulink>. Siga las instrucciones de la página para instalar el reproductor
++	de Flash en el navegador.
++        </para>
++     </chapter>
++</book>

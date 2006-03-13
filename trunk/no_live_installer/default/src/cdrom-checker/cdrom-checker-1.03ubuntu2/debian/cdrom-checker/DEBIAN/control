@@ -1,0 +1,10 @@
+Package: cdrom-checker
+Version: 1.03ubuntu2
+Section: debian-installer
+Priority: optional
+Architecture: i386
+Depends: cdrom-detect, cdebconf-udeb (>= 0.31)
+Installed-Size: 88
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Description: Verify the cd contents
+installer-menu-item: 40

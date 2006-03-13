@@ -1,0 +1,69 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+. "$CDIMAGE_ROOT/bin/functions.sh"
+
+GERMINATE_OUT="$CDIMAGE_ROOT/scratch/$PROJECT/germinate"
+
+case $DIST in
+	warty)
+		GERMINATE_DISTS="$DIST,$DIST-security"
+		;;
+	*)
+		GERMINATE_DISTS="$DIST"
+		;;
+esac
+
+case $PROJECT in
+	ubuntu)
+		# for legacy purposes
+		GERMINATE_SEED_DIST="$DIST"
+		;;
+	guadalinex)
+		GERMINATE_SEED_DIST="$DIST"
+		;;
+	*)
+		GERMINATE_SEED_DIST="$PROJECT-$DIST"
+		;;
+esac
+
+mkindex () {
+	target="$1"
+	subdir="${target%/*}"
+
+	mkemptydir "$GERMINATE_OUT/$subdir"
+	for file in "$@"; do
+		if [ "${file#/}" = "$file" ]; then
+			absfile="$(find-mirror "$arch")/$file"
+		else
+			absfile="$file"
+		fi
+		if [ -f "$absfile" ]; then
+			zcat "$absfile"
+		fi
+	done | gzip -c > "$GERMINATE_OUT/$target"
+}
+
+for arch in $ARCHES; do
+	echo "Germinating for $DIST/$arch ..."
+	mkindex "dists/$DIST/main/binary-$arch/Packages.gz" \
+		"dists/$DIST/restricted/binary-$arch/Packages.gz" \
+		${LOCAL:+$LOCALDEBS/dists/$DIST/local/binary-$arch/Packages.gz}
+	mkindex "dists/$DIST/main/source/Sources.gz" \
+		"dists/$DIST/restricted/source/Sources.gz" \
+		${LOCAL:+$LOCALDEBS/dists/$DIST/local/binary-$arch/Sources.gz}
+	mkindex "dists/$DIST/main/debian-installer/binary-$arch/Packages.gz" \
+		"dists/$DIST/restricted/debian-installer/binary-$arch/Packages.gz" \
+		${LOCAL:+$LOCALDEBS/dists/$DIST/local/debian-installer/binary-$arch/Packages.gz}
+	mkemptydir "$GERMINATE_OUT/$DIST-$arch"
+	cd "$GERMINATE_OUT/$DIST-$arch"
+	if [ "$GERMINATE_HINTS" ] && [ -f "$GERMINATE_HINTS" ]; then
+		cp -a "$GERMINATE_HINTS" hints
+	fi
+	echo "****************************"
+#	"$CDIMAGE_ROOT/germinate/germinate.py" ${LOCAL_SEEDS:+--seed-source "$LOCAL_SEEDS"} --mirror "file://$GERMINATE_OUT/" --seed-dist "$GERMINATE_SEED_DIST" --dist "$GERMINATE_DISTS" --arch "$arch" --no-rdepends
+	"$CDIMAGE_ROOT/germinate/germinate.py" ${LOCAL_SEEDS:+--seed-source "$LOCAL_SEEDS"} --mirror "http://archive.ubuntu.com/ubuntu" --seed-dist "$GERMINATE_SEED_DIST" --dist "$GERMINATE_DISTS" --arch "$arch" --no-rdepends -c main,restricted
+
+done

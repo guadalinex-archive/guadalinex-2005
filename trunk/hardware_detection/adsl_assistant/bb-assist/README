@@ -1,0 +1,8 @@
+bb-assist
+=========
+
+bb-assist is a configurator assistant for broadband devices and debian/ubuntu systems. For details of devices and provider supported see bb-device.xml, and providers.xml.
+
+FOR DEVEL
+=========
+See HOWTO-DEVEL to include more providers/devices/operations

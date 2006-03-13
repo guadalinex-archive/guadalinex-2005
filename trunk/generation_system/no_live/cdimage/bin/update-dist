@@ -1,0 +1,23 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+
+[ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/main/binary-i386 ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/main/binary-i386
+[ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/main/debian-installer/binary-i386 ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/main/debian-installer/binary-i386
+[ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/main/source ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/main/source
+
+[ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/universe/binary-i386 ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/universe/binary-i386
+[ ! -d $CDIMAGE_ROOT/ftp/dists/breezy/universe/source ] && mkdir -p $CDIMAGE_ROOT/ftp/dists/breezy/universe/source
+
+echo "Creando repositorios... "
+cd $CDIMAGE_ROOT/ftp
+apt-ftparchive -c $CDIMAGE_ROOT/uda/conf/apt_flamenco.conf generate $CDIMAGE_ROOT/uda/conf/flamenco.conf
+apt-ftparchive -c $CDIMAGE_ROOT/uda/conf/apt_flamenco.conf generate $CDIMAGE_ROOT/uda/conf/d-i_flamenco.conf
+echo "Repositorios creados... "
+
+echo -n "Creando Release File... "
+apt-ftparchive -c ../uda/conf/apt_flamenco.conf release dists/breezy/ > dists/breezy/Release
+echo "OK"
+cd -

@@ -1,0 +1,10 @@
+clone_scripts           usr/share/server-clone
+conf			usr/share/server-clone
+hooks/cloneconf         usr/share/initramfs-tools/hooks
+hooks/clonemods         usr/share/initramfs-tools/hooks
+hooks/clonescripts      usr/share/initramfs-tools/hooks
+server-clone		usr/sbin
+server-clone-start	usr/sbin
+bin/sfdisk		usr/share/server-clone/bin
+bin/mkfs.ext3		usr/share/server-clone/sbin
+

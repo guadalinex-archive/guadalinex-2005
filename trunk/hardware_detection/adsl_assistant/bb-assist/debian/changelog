@@ -1,0 +1,127 @@
+bb-assist (0.5) unstable; urgency=low
+
+  * One less druidpage to USB with IP static
+  * ifup interface in USB
+  * changes in dependencies
+  * added gnome help (only in Spanish)
+  * added better clean of old configurations in /etc/network/interfaces
+  * check if correct USB vendor/product is connected
+  * More examples and devel doc
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 14 Nov 2005 17:01:41 +0100
+
+bb-assist (0.4) unstable; urgency=low
+
+  * Serial lock support during operations
+  * fixed bug in on_except send commands
+  * Improved configuration Efficient Speedstream 5660: now support of more
+    configurations
+  * Improved of 3com configuration modes
+  * Added .desktop menu
+  * bbsysbackend: Added backend for configure local computer interfaces
+  * Now requires gksudo
+  * bbutils and bb-assist code reorganized
+  * Icons and menu improved
+  * Full support of 3Com OfficeConnect 812 device
+  * Full support of Efficient Speedstream 5660 device
+  * Now bb-devices.xml indicates how can be configured the devices (by
+    ethernet or serial port), becaus some devices can't be configured using
+    the ethernet.
+  * Added second stage verification druid page
+  * Added ethernet in the computer to conf druid page
+  * Added partial support to Nokia 1112
+  * Minor fixes
+  * Added HOWTO-DEVEL documentation
+  * Full support of Efficient Speedstream 5660 device
+  * debian/rules: clean-up. Added CREDITS, README to package
+  * bbsysbackend: added resolv.conf update
+  * bbsysbackend: /etc/ppp/{chap,pap}-secrets update function
+  * bbsysbackend: New druidpage with PPP advanced options added /etc/ppp/peers/
+    configuration
+  * new peer device default values for UI params
+  * Added images to device selection druid page. Normal people don't now the
+    exact name of his broadband device. It's more easy the selection with a
+    image.
+  * device default ui values restore
+  * Add post verifications functions (eth, tty, and so on)
+  * Added Alcatel speedtouch support
+  * Added dinamic IP operation in Vitelcom, Comtrend (eagle)
+  * Added eagleconf call
+  * Added new IP static configuration to accessrunner and speedtouch
+  * Configuration of accessrunner and vitelcom via ifupdown/hotplug
+  * Description in ethernet and tty (COM) combobox via dbus
+  * Save logs to file button
+  * pppoa and ppp startonboot bug fix
+  * Password size checks
+  * hotplug mapping in interfaces
+  * Several bug fixes
+  * tty/eth configuration in Eff 5660
+  * Fixes when there is no tty or eth (USB can be configured others not)
+  * sudo/notsudo problem with save log to file solved
+  * Bug fixes after organization of code
+  * PPPoE better conf in USB and Routers
+  * Build-depends fixes
+  * Ethernet interfaces configuration
+  * Better nas configuration with ifupdown
+  * cxacru better support (accessrunner)
+  * Better ifupdown configuration
+  * start on boot of USB fixed
+  * Cleanup of /etc/network/interfaces of old configurations of the interface
+    to configure
+  * Solved hangs with Alcatel Speedtouch when the phone line is not connected
+  * Added support to Comtrend/Eagle + static IP
+  * Solved problem with taskbar in Gnome
+  * eth description improves (try, trunc, replaces)
+  * return exit of sys operations
+  * better clean of /etc/network/interfaces
+  * use of subprocess.call instead of os.system
+  * Fixed eagle with subprocess call bug
+  * fixed efficient 'set passwd' when no has password
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Wed,  2 Nov 2005 09:56:18 +0100
+
+bb-assist (0.3) unstable; urgency=low
+
+  * Improves in bb-assist Gui
+  * New xml/xsl files and structure
+  * bb-assist-uml.xmi: update of the UML model of the assistant
+  * debian/control: dependencies update
+  * exp-backend.py: update and new syntax more powerfull for commands. Now is
+    recursive and functions call support.
+  * glade/bb-assist.glade: - computadora + ordenador
+  * cmd-list.xsl: update with new syntax
+  * bb-assist: show watch icon for long operations
+  * expbackend.py: rename and clean of the code
+  * bb-assist: connection with expect backend, error processing, debug
+    processing, serial/eth dialog fixes, pass dialog fixes.
+  * cmd-list.xsl: 3com device commands added
+  * setup.py: fixed installation of module
+  * glade/bb-assist.glade: "be patient" message
+  * Basic Efficient Speedstream 5660 device commands added
+  * expbackend.py: add send_delay option to send chars one by one and with
+    delay, for troubleshoot Efficient Speedstream 5660 sickness
+  * new examples of commands and operations
+  * return codes of operations better support
+  * 3com officeconnect: better authentication, filter securization
+  * Improvements frontend/backend in the pass of variables
+  * doc/net-diagram.txt: with ASCII diagram of net variables
+  * Efficient Speedstream 5660 new operations, but it need improvements
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 16 Oct 2005 06:39:28 +0200
+
+bb-assist (0.2) unstable; urgency=low
+
+  * New icons
+  * bb-assist-uml.xmi: first version of the UML model of the assistant
+  * Prototipe of xml/xsl pexpect backend
+  * examples directory with xml examples files for test
+  * exp-backend.py: now better support of serial parameters
+  * New cmd-list.xsl file with device commands and an operation example
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Fri, 23 Sep 2005 13:22:36 +0200
+
+bb-assist (0.1) unstable; urgency=low
+
+  * Initial Release. 
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 12 Sep 2005 10:23:34 +0200

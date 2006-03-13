@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Disquete de Arranque</TITLE>
+
+<style>
+body {font: 10pt Free Sans;background:white}
+a {color:grey;text-decoration:none}
+a:visited {color:grey;text-decoration:none}
+h1 {font: bold 12pt}
+small {font-size: 8pt}
+</style>
+
+</HEAD>
+<BODY LANG="es-ES" BGCOLOR="#ffffff" DIR="LTR">
+<H1>Disquete de arranque</H1>
+<P ALIGN=JUSTIFY>
+Incluimos en el CDROM de Guadalinex 2004 esta utilidad, que permite
+arrancar con el CDROM en aquellos ordenadores (no muy modernos) que
+no contemplan esta posibilidad en la BIOS.
+</P>
+
+<P ALIGN=center>
+		¿ COMO USAR SMART BOOT MANAGER ?
+</P>
+
+<P ALIGN=JUSTIFY>
+Con Smart Boot Manager vamos a crear un disquete especial de arranque.
+Necesitas por tanto un disquete. El contenido se perderá, así que utiliza 
+uno vacio o que ya no te sirva.
+</P>
+
+<ul>
+<li> DESDE GNU/LINUX
+
+	<ul>
+	<li> Introduce el disquete en el lector.
+	<li> Desde este directorio (donde está este documento), ejecuta:
+	</ul>
+<br>
+<pre>./sbminst -t es -d /dev/fd0 -y</pre>
+<br><br>
+
+<li>	* Desde DOS
+
+<ul>
+<li> Introduce el disquete en el lector
+<li> Desde este directorio, ejecuta:
+</ul>
+<br>
+<pre>sbminst.exe -t es -d 0 -y</pre>
+<br><br>
+</ul>
+
+</ul>
+
+<P ALIGN=JUSTIFY>
+Ya tienes un disquete capaz de arrancar tu ordenador. Apágalo, comprueba que
+el disquete está en la unidad y enciende de nuevo el equipo.
+</p>
+
+<P ALIGN=JUSTIFY>
+Introduce el CDROM de Guadalinex en el lector. 
+<br><br>
+Selecciona CD-ROM en el menú que aparece en la pantalla.
+<br><br>
+Ante la pregunta "¿ Desea guardar los cambios?", puedes elegir "Sí" o "No"
+indistintamente.
+<br><br>
+Si todo ha ido bien, el disquete pasará el control al CDROM y Guadalinex 
+arrancará normalmente.
+</p>
+
+<center>
+¡ NO OLVIDES SACAR EL DISQUETE PARA VOLVER AL USO NORMAL DE TU ORDENADOR !
+</center>
+
+</BODY>
+</HTML>

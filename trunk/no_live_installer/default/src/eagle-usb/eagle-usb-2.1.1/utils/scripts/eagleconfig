@@ -1,0 +1,748 @@
+#!/bin/bash
+# $Id: eagleconfig,v 1.69 2005/01/30 01:01:33 Tux Exp $
+
+# Copyright (C) 2003-2005 Olivier Borowski
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+# Goal :
+#	configuration utility for Eagle-USB modems
+# Params :
+#	h = display help
+#	l = choose language (keep, auto or [LL])
+#		keep => use previous language (read $LANG in eagle-usb.conf)
+#		auto => use system language (given by $LANG var)
+#		LL   => language you want to use (en, fr, pl...)
+#	e = expert mode (additional choices)
+# Params set by setvars :
+#	USE_HOTPLUG=1		=> use hotplug
+#	USE_IFUPDOWN=1		=> use ifup/ifdown scripts instead of ifconfig
+#	SIMPLE=1			=> don't use hotplug nor ifup/ifdown
+
+# the following line will be replaced by the absolute path of setvars
+exit 123
+
+#SERVICE_MISSING_MSG="\nwarning: 'internet' service is not present, connection on boot is disabled.\n"\
+#"You should try to install eagle-usb package first."
+CRON_MISSING_MSG="\nwarning: /etc/cron.d does not exist. testconnec is disabled."
+
+# TODO : maybe we should improve the method used to get $PPP_RESOLV_CONF
+RESOLV_CONF=/etc/resolv.conf
+IPUP_SCRIPT=$PPP_DIR/ip-up
+PPPD_BIN=/usr/sbin/pppd
+PPP_RESOLV_CONF=`strings $PPPD_BIN | grep resolv.conf`
+
+set -- "${@//#--help/-h}"
+set -- "${@//#--params=/-p}"
+# params for eagleconfig_front.*
+set -- "${@//#--lang=/-l}"
+set -- "${@//#--expert/-e}"
+evalParams() {
+	while getopts "hp:l:e" opt; do
+		case $opt in
+			h  )	doInUtf8 echo -e $EAGLECONFIG_USAGE_MSG ; exit 0 ;;
+			p  )	LSTOPTIONS="$OPTARG" ;;
+			# params for eagleconfig_front.*
+			l  )	;;
+			e  )	;;
+			\? )	doInUtf8 echo -e $EAGLECONFIG_USAGE_MSG ; exit 1 ;;
+		esac
+	done
+}
+TESTCONNEC_DELAY=2	# check every 2min
+LSTOPTIONS=""
+# keep old ISP_LOGIN (returned by setvars)
+OLD_ISP_LOGIN="$ISP_LOGIN"
+evalParams "$@"
+
+SEND_DSP_NEEDED=0
+
+if [ -z "$LSTOPTIONS" ] ; then
+	exec eagleconfig_front.bash "$@"
+	# => exit
+fi
+
+# params are already initialized by setvars
+# can be the real value or "keep"
+OLD_IFS=$IFS
+IFS=\|
+for OPT in $LSTOPTIONS ; do
+	NAME=`echo $OPT | cut -d "=" -f1`
+	VALUE=`echo $OPT | cut -d "=" -f2`
+	eval OLDVAL=\$$NAME
+	#echo "NAME=$NAME # OLDVAL=$OLDVAL # VALUE=$VALUE"
+	case $NAME in
+		"LINETYPE" | "VPI" | "VCI" | "ENC" | "FORCE_IF" )
+			if [ "x$VALUE" != "xkeep" ] && [ "x$VALUE" != "x$OLDVAL" ]; then
+				SEND_DSP_NEEDED=1
+				eval "$NAME='$VALUE'"
+			fi
+			;;
+		"EU_LANG" )
+			if [ "x$VALUE" != "xkeep" ]; then
+				eval "$NAME='$VALUE'"
+				setStrings # necessary to take in account $LANG parameter
+			fi
+			;;
+		"CMVEI" )
+			if [ "x$VALUE" != "xkeep" ]; then
+				eval "$NAME='$VALUE'"
+				# erase previous link to change CMV file for ISP
+				# we'll have to deal with the fact that it does not work
+				# for ISDN lines with current DSPcode :-(
+				rm -f /etc/eagle-usb/CMVei.txt
+				ln -s /etc/eagle-usb/CMVei${VALUE}.txt /etc/eagle-usb/CMVei.txt
+			fi
+			;;
+		"CMVEP" )
+			if [ "x$VALUE" != "xkeep" ]; then
+				eval "$NAME='$VALUE'"
+				# erase previous link to change CMV file for ISP
+				rm -f /etc/eagle-usb/CMVep.txt
+				ln -s /etc/eagle-usb/CMVep${VALUE}.txt /etc/eagle-usb/CMVep.txt
+			fi
+			;;
+		* )
+			if [ "x$VALUE" != "xkeep" ]; then
+				eval "$NAME='$VALUE'"
+			fi
+			;;
+	esac
+done
+IFS=$OLD_IFS
+#echo "VPI=$VPI VCI=$VCI ENC=$ENC ISP=$ISP ISP_LOGIN=$ISP_LOGIN"
+#echo "ISP_PWD=$ISP_PWD PWD_ENCRYPT=$PWD_ENCRYPT STATIC_IP=$STATIC_IP"
+#echo "USE_TESTCONNEC=$USE_TESTCONNEC EU_LANG=$EU_LANG"
+#echo "FORCE_IF=$FORCE_IF SEND_DSP_NEEDED=$SEND_DSP_NEEDED"
+
+# ============== APPLY CHANGES TO SYSTEM =================
+# should /etc/eagle-usb/eagle-usb.conf be created?
+#if [ ! -f $EU_DIR/eagle-usb.conf ] ; then
+# modif baud123 20041107 : for 2.0.0 always recreate eagle-usb.conf as template has changed
+	#echo -e "\nThe file $EU_DIR/eagle-usb.conf is missing!\nYou should reinstall this driver!\n"
+	cp -f $EU_DIR/eagle-usb.conf.template $EU_DIR/eagle-usb.conf
+	chmod 0644 $EU_DIR/eagle-usb.conf
+#fi
+if ! grep -q "STATIC_IP=" $EU_DIR/eagle-usb.conf ; then
+	echo "STATIC_IP=" >> $EU_DIR/eagle-usb.conf
+fi
+if ! grep -q "ISP=" $EU_DIR/eagle-usb.conf ; then
+	echo "ISP=" >> $EU_DIR/eagle-usb.conf
+fi
+if ! grep -q "LANG=" $EU_DIR/eagle-usb.conf ; then
+	echo "LANG=" >> $EU_DIR/eagle-usb.conf
+fi
+if ! grep -q "ASYNCHRONOUS_START=" $EU_DIR/eagle-usb.conf ; then
+	echo "ASYNCHRONOUS_START=1" >> $EU_DIR/eagle-usb.conf
+fi
+
+# language, VPI, VCI, encapsulation
+sed	-e "s|STATIC_IP *=.*|STATIC_IP=$STATIC_IP|g" \
+	-e "s|ISP *=.*|ISP=$ISP|g" \
+	-e "s|LANG *=.*|LANG=$EU_LANG|g" \
+	-e "s|Linetype *=.*|Linetype=$LINETYPE|g" \
+	-e "s|VCI *=.*|VCI=$VCI|g" \
+	-e "s|VPI *=.*|VPI=$VPI|g" \
+	-e "s|Encapsulation *=.*|Encapsulation=$ENC|g" \
+	<$EU_DIR/eagle-usb.conf >$EU_DIR/tmp
+cat $EU_DIR/tmp > $EU_DIR/eagle-usb.conf
+
+# $ENC => $PPPOX
+encapsToPppox "$ENC"
+
+if [ "$PPPOX" = "none" ] ; then
+	if [ "$STATIC_IP" = "none" ] ; then
+	# degroupé - dhcp
+		# if /etc/resolv.conf is a link (probably -> /etc/ppp/resolv.conf), it is removed
+		if [ -h $RESOLV_CONF ] ; then
+			rm -f $RESOLV_CONF
+			if [ -f ${RESOLV_CONF}.old ] ; then
+				cat ${RESOLV_CONF}.old > $RESOLV_CONF
+			fi
+		fi
+	fi
+else
+	# ensure that /etc/ppp/peers exists
+	mkdir -p $PPP_OPTIONS_DIR
+
+	# == temporary solution ==
+	# in fact, we should sure that $PPP_OPTIONS_ADSL contains at least
+	# the same content as $EU_DIR/ppp_options.template!
+	if [ ! -f $PPP_OPTIONS_ADSL ] ; then
+		cat $EU_DIR/ppp_options.template > $PPP_OPTIONS_ADSL
+	fi
+	touch $PPP_OPTIONS_MIRE
+
+	# remove unnecessary lines
+	grep -v -e "pty" -e "nodetach" -e "adictrl" -e "eaglectrl" $PPP_OPTIONS_ADSL > $EU_DIR/tmp
+	cat $EU_DIR/tmp > $PPP_OPTIONS_ADSL
+
+	# then add new options
+	if ! grep -q "updetach" $PPP_OPTIONS_ADSL ; then
+		echo "updetach" >> $PPP_OPTIONS_ADSL
+	fi
+	echo "pty \"$SBIN_DIR/fctStartAdsl -i\"" >> $PPP_OPTIONS_ADSL
+
+	if [ "$ISP_LOGIN" != "keep" ] ; then
+		# user/password not found or user wants to change there
+
+		# update $PPP_OPTIONS_ADSL with the new login
+		echo "user \"$ISP_LOGIN\"" > $EU_DIR/tmp
+		cat $PPP_OPTIONS_ADSL | grep -v "^user " >> $EU_DIR/tmp
+		cat $EU_DIR/tmp > $PPP_OPTIONS_ADSL
+
+		# to simplify, $PPP_OPTIONS_MIRE is recreated every time
+		echo "user \"adsl@adsl\"" > $PPP_OPTIONS_MIRE
+		echo "pty \"$SBIN_DIR/fctStartAdsl -i\"" >> $PPP_OPTIONS_MIRE
+		cat $EU_DIR/ppp_options.template >> $PPP_OPTIONS_MIRE
+
+		if [ $PWD_ENCRYPT -eq 0 ]
+		then	WITH_PWD="pap" ; WITHOUT_PWD="chap"
+		else	WITH_PWD="chap" ; WITHOUT_PWD="pap"
+		fi
+
+		# Write login and passwd, we must be careful
+		umask 0077
+		TEMP="$PPP_DIR/secret$$.temp"
+		rm -f $TEMP ; touch $TEMP
+
+		# if ${WITHOUT_PWD}-secrets exists, remove references to the adsl account
+		if [ -f $PPP_DIR/${WITHOUT_PWD}-secrets ]; then
+			# remove old account
+			if [ -n "$OLD_ISP_LOGIN" ] ; then
+				grep -v -e "$OLD_ISP_LOGIN" $PPP_DIR/${WITHOUT_PWD}-secrets > $TEMP
+				cat $TEMP > $PPP_DIR/${WITHOUT_PWD}-secrets
+			fi
+			# remove new account
+			if [ -n "$ISP_LOGIN" ] ; then
+				grep -v -e "$ISP_LOGIN" -e "adsl@adsl" $PPP_DIR/${WITHOUT_PWD}-secrets > $TEMP
+			else
+				grep -v -e "adsl@adsl" $PPP_DIR/${WITHOUT_PWD}-secrets > $TEMP
+			fi
+			cat $TEMP > $PPP_DIR/${WITHOUT_PWD}-secrets
+		fi
+
+		# if ${WITH_PWD}-secrets doesn't exist, set proper heading
+		if [ ! -f $PPP_DIR/${WITH_PWD}-secrets ] ; then
+			cat > $PPP_DIR/${WITH_PWD}-secrets << EOF
+# Secrets for authentication using ${WITH_PWD}
+# client	server	secret		IP addresses
+# userlogin	*	password	*
+EOF
+			# may not be useful
+			chown root.root $PPP_DIR/${WITH_PWD}-secrets
+		fi
+
+		# remove old account
+		if [ -n "$OLD_ISP_LOGIN" ] ; then
+			grep -v -e "$OLD_ISP_LOGIN" $PPP_DIR/${WITH_PWD}-secrets > $TEMP
+			cat $TEMP > $PPP_DIR/${WITH_PWD}-secrets
+		fi
+
+		# append/update login&password to ${WITH_PWD}-secrets
+		if [ -n "ISP_LOGIN" ] ; then
+			grep -v -e "$ISP_LOGIN" $PPP_DIR/${WITH_PWD}-secrets > $TEMP
+			cat $TEMP > $PPP_DIR/${WITH_PWD}-secrets
+			echo "\"$ISP_LOGIN\" * \"$ISP_PWD\" *" >> $PPP_DIR/${WITH_PWD}-secrets
+		fi
+
+		# append mire
+		if ! grep -q "adsl@adsl" $PPP_DIR/${WITH_PWD}-secrets ; then
+			echo "\"adsl@adsl\" * \"adsl\" *" >> $PPP_DIR/${WITH_PWD}-secrets
+		fi
+
+		rm -f $TEMP
+		umask 0022
+	fi
+
+	# DNS
+	IPUP_UPDATE_DNS=0
+	if [ -f $IPUP_SCRIPT ] ; then
+		grep -q "# ppp temp entry" $IPUP_SCRIPT && IPUP_UPDATE_DNS=1
+	fi
+	if [ $IPUP_UPDATE_DNS -eq 1 ] ; then
+		# Mandrake use the ifup script to update /etc/resolv.conf
+		touch $RESOLV_CONF
+	else
+		# if resolv.conf exists and is not a link, it is saved
+		if [ -f $RESOLV_CONF ] && [ ! -h $RESOLV_CONF ] ; then
+			cat $RESOLV_CONF >> ${RESOLV_CONF}.old
+		fi
+		ln -sf $PPP_RESOLV_CONF $RESOLV_CONF
+	fi
+
+	# to allow "pppd call adsl", adsl must contains the right app
+	#sed "s|/pppo[a-z]|/$PPPOX|" $PPP_OPTIONS_ADSL > $EU_DIR/tmp
+	#cat $EU_DIR/tmp > $PPP_OPTIONS_ADSL
+	# same thing for mire
+	#if [ -e $PPP_OPTIONS_MIRE ] ; then
+	#	sed "s|/pppo[a-z]|/$PPPOX|" $PPP_OPTIONS_MIRE > $EU_DIR/tmp
+	#	cat $EU_DIR/tmp > $PPP_OPTIONS_MIRE
+	#fi
+fi
+touch $RESOLV_CONF
+chmod a+r $RESOLV_CONF
+
+
+# === resolv.conf ===
+if [ "$PPPOX" != "none" ] ; then
+	if [ $UPDATE_DNS -eq 1 ] ; then
+		if ! grep -q "usepeerdns" $PPP_OPTIONS_ADSL ; then
+			echo "usepeerdns" >> $PPP_OPTIONS_ADSL
+		fi
+	else
+		grep -v -e "usepeerdns" $PPP_OPTIONS_ADSL > $TEMP
+		cat $TEMP > $PPP_OPTIONS_ADSL
+	fi
+fi
+
+# === init.d ===
+case "x$BOOT_METHOD" in
+	"xinternet_service" )
+		if [ $START_ON_BOOT -eq 1 ] ; then
+			chkconfig --add internet
+		else
+			chkconfig --del internet
+		fi
+		;;
+	"xchkconfig" )
+		if [ $START_ON_BOOT -eq 1 ] ; then
+			chkconfig --add eagle-usb >/dev/null
+		else
+			chkconfig --del eagle-usb >/dev/null
+		fi
+		;;
+	"xupdate-rc.d" )
+		if [ $START_ON_BOOT -eq 1 ] ; then
+			update-rc.d eagle-usb defaults 99 01 &>/dev/null
+		else
+			update-rc.d -f eagle-usb remove &>/dev/null
+		fi
+		;;
+	"xslackware" )
+		# backup old MODCONF
+		if [ ! -e "/etc/rc.d/rc.local.old" ] ; then
+			cp /etc/rc.d/rc.local /etc/rc.d/rc.local.old
+		fi
+		grep -v "eagle-usb" /etc/rc.d/rc.local > $EU_DIR/tmp
+		if [ $START_ON_BOOT -eq 1 ] ; then
+			echo -e ". $EU_DIR/rc.eagle-usb" >> $EU_DIR/tmp
+		fi
+		cat $EU_DIR/tmp > /etc/rc.d/rc.local
+		chmod +x /etc/rc.d/rc.local
+# 	# Mdk10.1 use /etc/ppp/peers/ppp0
+# 		rm -f $NET_SCRIPT_DIR/ifcfg-ppp0
+# 		touch $NET_SCRIPT_DIR/ifcfg-ppp0
+# 		echo "DEVICE=ppp0" >> $NET_SCRIPT_DIR/ifcfg-ppp0
+# 		echo "TYPE=ADSL" >> $NET_SCRIPT_DIR/ifcfg-ppp0
+# 		if [ $START_ON_BOOT -eq 1 ] ; then
+# 			echo "ONBOOT=yes" >> $NET_SCRIPT_DIR/ifcfg-ppp0
+# 		else
+# 			echo "ONBOOT=no" >> $NET_SCRIPT_DIR/ifcfg-ppp0
+# 		fi
+esac
+
+
+# === testconnec ===
+if [ $USE_TESTCONNEC -eq 1 ] ; then
+	# add testconnec in /etc/cron.d
+	if [ ! -d /etc/cron.d ] ; then
+		doInUtf8 echo -e $CRON_MISSING_MSG
+	else
+		echo "*/${TESTCONNEC_DELAY} * * * * root $SBIN_DIR/eagletestconnec -d1" > /etc/cron.d/eagle-usb
+		chmod 644 /etc/cron.d/eagle-usb
+	fi
+else
+	# remove testconnec in /etc/cron.d
+	rm -f /etc/cron.d/eagle-usb
+fi
+
+
+# === custom interface name ===
+if [ "$FORCE_IF" != "auto" ] ; then
+	VAR="`uname -r`"
+	if [ "x${VAR:0:3}" = "x2.4" ] ; then
+		MODCONF=/etc/modules.conf
+	else
+		MODCONF=/etc/modprobe.conf
+	fi
+	if [ -e $MODCONF ] ; then
+		# "-" character may lead to problems
+		FORCE_IF=`echo $FORCE_IF | sed s/-/_/g`
+		# backup old MODCONF
+		if [ ! -e "$MODCONF.old" ] ; then
+			cp "$MODCONF" "$MODCONF.old"
+		fi
+		grep -v "options $MODULE_STR if_name=" $MODCONF > $EU_DIR/tmp
+		echo -e "options $MODULE_STR if_name=$FORCE_IF" >> $EU_DIR/tmp
+		cat $EU_DIR/tmp > $MODCONF
+	else
+		echo -e "warning: $MODCONF was not found!"
+	fi
+fi
+
+
+# === load module, dsp... ===
+
+# the following line (and SEND_DSP var) should be removed
+SEND_DSP=$SEND_DSP_NEEDED
+
+if [ $SEND_DSP -eq 1 ] ; then
+	if lsmod | sed s/_/-/g | grep -q "${MODULE_STR}" ; then
+		# if the module is already loaded, it is unloaded to
+		# take in account a possible interface name change
+		rmmod ${MODULE_STR}
+		sleep 2s
+	fi
+fi
+
+# note: on kernel 2.6 "lsmod" display "eagle_usb" instead of "eagle-usb"
+if ! lsmod | sed s/_/-/g | grep -q "${MODULE_STR}" ; then
+	doInUtf8 echo -en "\n\n${MODULE_MSG}"
+	# run depmod in case the user copied the module himself
+	depmod -a
+	modprobe $MODULE_STR 1>/dev/null 2>/dev/null
+	RES=$?
+	sleep 5s
+	if [ $RES -eq 0 ] ; then
+		doInUtf8 echo $OK_MSG
+		# modem was not operational => send DSP
+		SEND_DSP=1
+	else
+		doInUtf8 echo $ERR_MSG
+		exit 1
+	fi
+fi
+
+# if iftab exists, remove the line containing modem interface
+if [ -f /etc/iftab ] ; then
+	MAC_ADDR=`$EAGLESTAT | grep "MAC:" | cut -d" " -f2`
+	if [ ! -z $MAC_ADDR ] ; then
+		if [ ! -f /etc/iftab.old ] ; then
+			cp /etc/iftab /etc/iftab.old
+		fi
+		grep -v "$MAC_ADDR" /etc/iftab > $EU_DIR/tmp
+		cat $EU_DIR/tmp > /etc/iftab
+	else
+		echo "warning : unable to get MAC address!"
+	fi
+fi
+
+# ensure that eaglestat displays "Pre-firmware device"
+if $EAGLESTAT | grep -q "$PREFIRMWARE_STR" ; then
+	# this problem occurs when the modem is not plugged
+	doInUtf8 echo -en "\n$DSP_MSG"
+	doInUtf8 echo $ERR_MSG
+	# the configuration can be completed as soon as virtual interface name
+	if [ -z "$FORCE_IF" ] || [ "x$FORCE_IF" = "xauto" ] ; then
+		exit 1
+	fi
+	INTERFACE=$FORCE_IF
+	# the modem is not plugged, so it's not useful to send DSP!
+	SEND_DSP=0
+fi
+
+# only send DSP whether it's necessary (1st time or line option changed)
+if [ $SEND_DSP -eq 1 ] ; then
+	# === DSP & options are sent to take in account new params ==
+	doInUtf8 echo -en "\n$DSP_MSG"
+	# stop adsl (else eaglectrl -d can't send DSP)
+	fctStopAdsl -sf
+	$EAGLECTRL -d 1>/dev/null 2>/dev/null
+	if [ $? -eq 0 ] ; then
+		doInUtf8 echo $OK_MSG
+
+		# ==== waiting for "operational state" ===
+		doInUtf8 echo -en "\n${WAIT_OPER_MSG}"
+		# wait 5s to see if modem has crashed.
+		# (5s is the maximum delay between "booting" and "initializing" states)
+		$EAGLECTRL -s5 1>/dev/null 2>/dev/null
+		if $EAGLESTAT | grep -q "${BOOTING_STR}" ; then
+			# crashed when "booting"?
+			echo_log "== Modem crashed! Rebooting... =="
+			sleep 1
+			$EAGLECTRL -w 1>/dev/null 2>/dev/null
+		else
+			# not crashed => wait until end of synchro (or timeout)
+			$EAGLECTRL -s 1>/dev/null 2>/dev/null
+		fi
+		if [ $? -eq 0 ] ; then
+			doInUtf8 echo -e "$OK_MSG\n"
+		else
+			doInUtf8 echo $ERR_MSG
+			exit 1
+		fi
+		INTERFACE=`${EAGLECTRL} -i 2>/dev/null`
+		RES=$?
+	else
+		doInUtf8 echo $ERR_MSG
+		exit 1
+	fi
+else
+	INTERFACE=`${EAGLECTRL} -i 2>/dev/null`
+	RES=0
+fi
+
+# === ifup / ifdown ===
+if [ $RES -eq 0 -a $USE_IFUPDOWN -eq 1 -a $SIMPLE -eq 0 ] ; then
+	rm -f $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+	touch $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+	echo "DEVICE=$INTERFACE" >> $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+	if [ $PPPOX != "none" ] ; then
+		echo "BOOTPROTO=static" >> $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+		echo "IPADDR=0.0.0.0" >> $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+		echo "NETMASK=255.255.255.255" >> $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+	else
+		echo "BOOTPROTO=dhcp" >> $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+	fi
+	echo "ONBOOT=no" >> $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+	echo "MII_NOT_SUPPORTED=yes" >> $NET_SCRIPT_DIR/ifcfg-$INTERFACE
+
+	# Mandrake 10.1 specific (allow "ifup ppp0" for pppd users)
+	if test $PPPOX != "none" -a "$DISTRIB" = "Mandrake" && test_version $DISTVER -ge 10.1 ; then
+		rm -f $NET_SCRIPT_DIR/ifcfg-ppp0
+		touch $NET_SCRIPT_DIR/ifcfg-ppp0
+		echo "DEVICE=ppp0" >> $NET_SCRIPT_DIR/ifcfg-ppp0
+		echo "TYPE=ADSL" >> $NET_SCRIPT_DIR/ifcfg-ppp0
+		#if [ $START_ON_BOOT -eq 1 ] ; then
+		#	echo "ONBOOT=yes" >> $NET_SCRIPT_DIR/ifcfg-ppp0
+		#else
+			echo "ONBOOT=no" >> $NET_SCRIPT_DIR/ifcfg-ppp0
+		#fi
+	fi
+fi
+
+rm -f $EU_DIR/tmp*
+rm -f $EU_DIR/eagle-usb_must_be_configured
+
+
+doInUtf8 echo -e $GENER_MSG
+if [ $SEND_DSP -eq 1 ] ; then
+	doInUtf8 echo -e $EAGLECONFIG_END_MSG
+fi
+echo
+
+#***************************************************************************
+# $Log: eagleconfig,v $
+# Revision 1.69  2005/01/30 01:01:33  Tux
+# *** empty log message ***
+#
+# Revision 1.68  2005/01/28 00:01:32  baud123
+# add CMV config (misses Linetype + keep)
+#
+# Revision 1.67  2005/01/16 22:02:45  Tux
+# - add license header
+#
+# Revision 1.66  2005/01/04 21:14:05  Tux
+# - switch strings to utf-8
+#
+# Revision 1.65  2005/01/02 12:41:45  mcoolive
+# - fix a bug: PPPD_BIN must be initialized before be used
+#
+# Revision 1.64  2004/12/29 16:32:42  Tux
+# - /etc/resolv.conf => $RESOLV_conf
+# - only create a link "/etc/resolv.conf => /var/run/ppp/resolv.conf" when "/etc/ppp/ip-up" doesn't update the "/etc/resolv.conf" file itself
+#
+# Revision 1.63  2004/12/05 01:27:59  mcoolive
+# - replace flt_to_float function by test_version anywhere
+#
+# Revision 1.62  2004/11/21 15:28:41  Tux
+# - replaced == with -eq
+# - testconnec => eagletestconnec
+#
+# Revision 1.61  2004/11/17 20:58:14  Tux
+# - change paths
+#
+# Revision 1.60  2004/11/15 22:44:19  mcoolive
+# - one simplification (eval)
+#
+# Revision 1.59  2004/11/11 16:21:26  mcoolive
+# - renaming $EU_SCRIPT_DIR/lock in $EU_DIR/eagle-usb_must_be_configured
+#
+# Revision 1.58  2004/11/07 20:49:37  Tux
+# - eagle-usb => $MODULE_STR
+#
+# Revision 1.57  2004/11/07 20:40:05  baud123
+# cp -f for eagle-usb.conf
+#
+# Revision 1.56  2004/11/07 20:32:13  mcoolive
+# - improve FORCE_IF section
+#
+# Revision 1.55  2004/11/07 15:18:59  baud123
+# always recreate eagle-usb.conf
+#
+# Revision 1.54  2004/11/02 21:46:40  Tux
+# - remove modem mac address from /etc/iftab
+#
+# Revision 1.53  2004/10/25 19:48:05  Tux
+# - "x" char was missing, autostart should now works on slack
+#
+# Revision 1.52  2004/10/17 00:08:51  mcoolive
+# - eu_config_bash => eagleconfig_bash (in comments)
+#
+# Revision 1.51  2004/10/10 13:52:22  Tux
+# - eu_config_bash => eagleconfig_bash
+# - when changing ISP, DSP is not sent anymore
+#
+# Revision 1.50  2004/09/28 09:55:22  mcoolive
+# - to respect POSIX: command are typed "int main..."
+#   => replacer "$? =="  by  "$? -eq"
+# - to decrease the number of pipes (`cat fic | sed` => `sed <fic`)
+# - cosmetic changes
+#
+# Revision 1.49  2004/09/26 21:26:23  mcoolive
+# - i ensure myself of the access permissions of /etc/eagle-usb/eagle-usb.conf
+#
+# Revision 1.48  2004/09/26 18:51:04  mcoolive
+# - little simplifications
+#
+# Revision 1.47  2004/09/23 20:37:15  Tux
+# - use generic boot method detection
+#
+# Revision 1.46  2004/09/16 20:13:51  Tux
+# - "eagleconfig -e" now ask whether resolv.conf should be automatically updated
+#
+# Revision 1.45  2004/09/14 20:38:20  Tux
+# - on Mdk10.1, give up "network" service => use "eagle-usb" service instead
+#
+# Revision 1.44  2004/08/29 21:29:53  Tux
+# *** empty log message ***
+#
+# Revision 1.43  2004/08/29 21:16:16  Tux
+# - removed bc dependancy
+# - let Makefile install eu_init script
+#
+# Revision 1.42  2004/08/27 14:29:48  mcoolive
+# - fix last modifications
+#
+# Revision 1.41  2004/08/26 21:39:39  Tux
+# - removed generation of the link to eu_dsp
+# - moved ifcfg-ppp0 generation (Mdk10.1)
+#
+# Revision 1.40  2004/08/26 15:56:02  mcoolive
+# - if the symbolic link /etc/resolv.conf is erased
+#   then one tries to restore his old contents
+# - don't filter and don't add the new login if it is the empty word
+#
+# Revision 1.39  2004/08/15 01:32:17  mcoolive
+# - cancel the "add protections around ISP_LOGIN" (badly made)
+#
+# Revision 1.38  2004/08/15 01:21:48  mcoolive
+# - add protection around ISP_LOGIN and mend a bad grep
+#
+# Revision 1.37  2004/08/10 21:01:26  Tux
+# - do a mix between old & new methods to parse pppd config files
+#
+# Revision 1.36  2004/08/09 21:25:54  Tux
+# - use pty "...fctStartAdsl -i" for all distributions
+#
+# Revision 1.34  2004/08/07 09:26:52  mcoolive
+# - i ensure myself of the  access permissions of /etc/resolv.conf
+# - fix the writing of pap-secret and chap-secret, marks are posed
+#   to delimit what is written for the configuration of eagle-usb
+#
+# Revision 1.33  2004/08/05 22:52:03  mcoolive
+# - replace forgotten ${MODULE} by ${MODULE_STR}
+#
+# Revision 1.32  2004/08/04 21:46:14  mcoolive
+# - change file access permissions of /etc/cron.d/eagle-usb (755 => 644)
+#
+# Revision 1.31  2004/08/04 19:51:52  Tux
+# - $MODULE => $MODULE_STR
+#
+# Revision 1.30  2004/08/04 01:57:34  mcoolive
+# - removed intermediate $OLDNAME variable
+#
+# Revision 1.29  2004/08/03 17:51:34  Tux
+# - support for spaces in options
+#
+# Revision 1.28  2004/07/26 19:34:44  Tux
+# - removed unused $EXPERT variable
+#
+# Revision 1.27  2004/07/25 20:17:27  Tux
+# - new method to update pppd's options files
+#
+# Revision 1.26  2004/07/19 20:41:40  Tux
+# - change pty call in /etc/ppp/pears/adsl
+# - add "updetach" to pppd options on Mandrake
+#
+# Revision 1.25  2004/07/17 15:40:47  Tux
+# *** empty log message ***
+#
+# Revision 1.24  2004/07/16 21:07:44  Tux
+# - simplify parameters processing
+# - support for Mdk10.1 autostart (using ifcfg-ppp0)
+#
+# Revision 1.23  2004/07/12 21:06:13  Tux
+# - modules.usbmap should already contains device IDs
+#   => remove /etc/hotplug/usb/eagle-usb
+#
+# Revision 1.22  2004/07/02 19:09:39  Tux
+# - slackware 10 support
+# - fixed bug with custom interface name on 2.4 kernels
+#
+# Revision 1.21  2004/06/23 20:47:54  Tux
+# - fix bug: if_name is always eagle_usb
+# - reload module when interface named change
+#
+# Revision 1.20  2004/06/06 20:47:15  Tux
+# - added custom interface name
+#
+# Revision 1.19  2004/05/30 01:51:46  Tux
+# - fixed bug with parameters
+# - vars name "FAI..." => "ISP..."
+#
+# Revision 1.18  2004/05/23 20:11:38  Tux
+# - improved $LSTOPTIONS loop (Cyril Olivier Martin)
+# - do not ask questions anymore
+#
+# Revision 1.17  2004/05/11 19:44:17  Tux
+# - netmask for pppd users = 255.255.255.255
+#
+# Revision 1.16  2004/04/24 10:57:14  Tux
+# - network mask changed from 255.255.255.255 to 255.255.255.0
+#   for non-pppd users
+#
+# Revision 1.15  2004/04/21 20:07:52  Tux
+# *** empty log message ***
+#
+# Revision 1.14  2004/04/21 19:57:56  Tux
+# - virtual interface does not use an IP anymore
+# - bug fix: wrong variable names
+#
+# Revision 1.13  2004/04/21 18:18:53  Tux
+# - some changes with ">/dev/null"
+#
+# Revision 1.12  2004/04/21 17:41:51  Tux
+# - prevent empty values from crashing the script
+# - fix bug: $INTERFACE is not initialized when $SEND_DSP=0
+#
+# Revision 1.11  2004/04/18 09:46:56  Tux
+# - bugfix (lot of crashes)
+#
+# Revision 1.10  2004/04/03 16:12:27  Tux
+# - cut eagleconfig into 2 parts: eagleconfig & eu_config_bash
+# - removed $USE_UPD_USB_USERMAP
+# - only stopadsl & send DSP when it's necessary
+#
+# Revision 1.9  2004/03/23 20:16:06  Tux
+# - fixed bug "This language (C) is not supported!"
+# - autostart on slackware
+# - expert mode allow eagleconfig to finish even if modem is not plugged
+#
+# Revision 1.8  2004/03/22 21:10:25  Tux
+# - new usb.usermap location (/etc/hotplug/usb/)
+#
+#***************************************************************************/

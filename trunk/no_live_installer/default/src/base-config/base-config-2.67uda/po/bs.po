@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-13 11:05+0200\n"
+"PO-Revision-Date: 2004-06-13 17:28+0200\n"
+"Last-Translator: Safir Šećerović <safir@open.net.ba>\n"
+"Language-Team: Bosnian <lokal@lugbih.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.5\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: ../base-config:42
+msgid "Configuring the base system..."
+msgstr "Podešavam osnovi sistem..."
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Ukucajte 'exit' da se vratite na base-config."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:140
+msgid "enter information manually, "
+msgstr "unesite informacije ručno, "
+
+#: ../apt-setup:297
+msgid "Scanning CD, this will take a minute."
+msgstr "Pretražujem CD, ovo će trajati minutu."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:381
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Debian alat za upravljanje paketima, apt, je sada podešen i može instalirati "
+"${PACKAGE_COUNT} paketa"
+msgstr[1] ""
+"Debian alat za upravljanje paketima, apt, je sada podešen i može instalirati "
+"${PACKAGE_COUNT} paketa"
+msgstr[2] ""
+"Debian alat za upravljanje paketima, apt, je sada podešen i može instalirati "
+"${PACKAGE_COUNT} paketa"
+
+#  Several notes for translators:
+#  * The singular form is only there to make use of plural forms;
+#  * If package count is 0, a separate error message should be displayed.
+#  * This sentence is part of a longer paragraph, full stop is omitted here.
+#  * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:478
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Vjerovatno ste koristili CD-ove za instalaciju osnovnog sistema Debiana, ali "
+"CD nije u CD-ROM pogonu. Vjerovatno ih trebate ubaciti i odabrati \"cdrom\"."
+
+#: ../apt-setup:730 ../apt-setup:813 ../apt-setup:938 ../apt-setup:951
+#: ../apt-setup:1098 ../apt-setup:1128
+msgid "Testing apt sources..."
+msgstr "Testiram apt izvore..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "Osvježavam \"available\" datoteku..."
+
+#~ msgid "dselect - old package selector (experts only)"
+#~ msgstr "dselect - stari alata za izbor paketa (samo za stručnjake)"
+
+#~ msgid "aptitude - pick tasks or drill down to individual packages"
+#~ msgstr "aptitude - izaberite skup paketa ili pojedinačne pakete"
+
+#~ msgid "tasksel - quickly choose from predefined collections of software"
+#~ msgstr ""
+#~ "tasksel - brzo odaberite neku unaprijed određenih kolekcija sofwarea"
+
+#~ msgid "nothing - you may manually run apt-get or any of the above later"
+#~ msgstr ""
+#~ "nothing - kasnije možete ručno pokrenuti apt-get ili bilo koji od gornjih"

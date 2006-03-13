@@ -1,0 +1,34 @@
+#!/bin/sh
+# Get the image, putting in the rigth place and mount it
+
+PREREQ="network"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# Just to be sure
+modprobe -q squashfs >> /tmp/initramfs.debug 2>&1
+modprobe -q loop >> /tmp/initramfs.debug 2>&1
+
+IMAGE=/mnt/image
+mkdir -p ${IMAGE} >> /tmp/initramfs.debug 2>&1
+
+mknod /dev/loop0 b 7 0 >> /tmp/initramfs.debug 2>&1
+mount -r -o loop -t squashfs /mnt/dev/META/META.squashfs $IMAGE >> /tmp/initramfs.debug 2>&1
+if [ $? = 0 ]; then
+	echo "SETUP_IMAGE: image mounted"  >> /tmp/initramfs.debug 2>&1
+	exit 0
+else
+	echo "SETUP_IMAGE: ERROR -> image non mounted"  >> /tmp/initramfs.debug 2>&1
+	exit 1
+fi

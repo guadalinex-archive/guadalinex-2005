@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<provider_list>
+  <provider id='0001' name='Telefónica de España' shortname='tlfcaes'>
+    <dns1>80.58.0.33</dns1>
+    <dns2>80.58.32.97</dns2>
+    <vpi>8</vpi>
+    <vci>32</vci>
+    <pppoe>1</pppoe>
+    <pppoa>0</pppoa>
+    <encap>llc</encap>
+  </provider>
+</provider_list>

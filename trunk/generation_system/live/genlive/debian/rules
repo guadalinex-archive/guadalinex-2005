@@ -1,0 +1,62 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+export DEB_DH_ALWAYS_EXCLUDE=".svn"
+
+BUILDDIR=$(CURDIR)/debian/genlive
+KERNEL=2.6.12-9-386
+
+build: build-stamp
+
+build-stamp:
+	dh_testdir
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -fr build-stamp $(BUILDDIR)
+
+	dh_clean 
+
+install:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs -A
+
+	install -m 755 $(CURDIR)/genlive.sh $(BUILDDIR)/usr/sbin/genlive
+	install -m 644 $(CURDIR)/isolinux/* $(BUILDDIR)/usr/share/genlive/isolinux/
+	install -m 644 $(CURDIR)/extras/disquete/* $(BUILDDIR)/usr/share/genlive/extras/disquete/
+	install -m 644 $(CURDIR)/extras/info/documentos/* $(BUILDDIR)/usr/share/genlive/extras/info/documentos/
+	install -m 644 $(CURDIR)/extras/info/*.* $(BUILDDIR)/usr/share/genlive/extras/info/
+	install -m 644 $(CURDIR)/autorun* $(BUILDDIR)/usr/share/genlive/
+	install -m 644 $(CURDIR)/unionfs.ko $(BUILDDIR)/lib/modules/$(KERNEL)/kernel/fs/unionfs/unionfs.ko
+
+# Build architecture-independent files here.
+binary-indep: install
+
+# Build architecture-dependent files here.
+binary-arch: install
+	dh_testdir -A
+	dh_testroot -A
+	dh_installchangelogs
+	dh_installdocs -A
+#	dh_installexamples -A
+#	dh_install -A
+#	dh_installdebconf -A
+#	dh_installman -A
+	dh_strip -A
+	dh_compress -A
+	dh_fixperms -A
+#	dh_python -A
+	dh_installdeb -A
+	dh_shlibdeps -A
+	dh_gencontrol -A
+	dh_md5sums -A
+	dh_builddeb -A
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

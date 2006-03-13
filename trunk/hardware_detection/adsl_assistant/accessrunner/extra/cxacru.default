@@ -1,0 +1,19 @@
+# cxacru kernel module options with hotplug
+
+# IP over ATM
+#
+# NET_IF="atm0"
+# You also need a correct /etc/network/interfaces defining atm0
+# See /usr/share/doc/accessrunner-usb-utils/examples/interfaces for examples
+
+NET_IF=""
+
+# PPPoE configuration
+# You need to create an appropriate /etc/ppp/peers/pppoe-dsl file, look at
+# /usr/share/doc/ppp/examples/peers-pppoe for an example and configure it
+# to use the nas0 interface.
+# PPPD_PEER="/etc/ppp/peer/pppoe-dsl
+
+PPPD_PEER=""
+
+# See /etc/hotplug/usb/cxacru for details of the interaction with hotplug

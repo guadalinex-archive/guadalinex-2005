@@ -1,0 +1,135 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_molinux_chap_evolution.dpatch by  <roberto@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad uda-docs-0.1~/docs/recipes/chap-evolution/evolution.xml uda-docs-0.1/docs/recipes/chap-evolution/evolution.xml
+--- uda-docs-0.1~/docs/recipes/chap-evolution/evolution.xml	1970-01-01 01:00:00.000000000 +0100
++++ uda-docs-0.1/docs/recipes/chap-evolution/evolution.xml	2005-12-20 18:12:43.000000000 +0100
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
++<!ENTITY % xinclude SYSTEM "../../libs/xinclude.mod">
++%xinclude;
++<!ENTITY % globalent SYSTEM "../../libs/global.ent">
++%globalent;
++]>
++
++ <chapter id="evolution">
++    <title>Cómo trabajar con el correo electrónico</title>
++    <para>&distro-name; incluye el software de productividad <application>Evolution</application> para trabajo en grupo. Puede ejecutar Evolution desde el menú 
++	<menuchoice>
++	  <guisubmenu>Aplicaciones</guisubmenu>
++	   <guisubmenu>Oficina</guisubmenu>
++	   <guimenuitem>Evolution</guimenuitem>
++	 </menuchoice>
++    </para>
++    <para>Si es la primera vez que se inicia, Evolution le mostrará un asistente que le guiará a través de los pasos necesarios para configurar su cuenta de correo. 
++    Si sabe inglés, puede acceder a la ayuda de Evolution pulsando F1. En caso contrario, puede pedir ayuda en los foros de &distro-name;.</para>
++    <sect>
++	<title>Añadir una cuenta de correo</title>
++        <para>
++	   Evolution permite configurar cuentas de correo externas con los protocolos IMAP, IMAP4rev1,
++	   POP y Novell Groupwise. Para configurar una cuenta tan sólo tiene que seleccionar
++	   <menuchoice><guimenu>Editar</guimenu><menuitem>Preferencias</menuitem></menuchoice>.
++  	   </para>
++	
++         <para>Aparece una ventana parecida a la siguiente:
++	 <figure>
++		<screenshot>
++		   <mediaobject>
++		       <imageobject>
++		   	<imagedata fileref="../images/evo-preferencias.png" format="png"/>
++		</imageobject>
++	     </mediaobject>
++	</screenshot>
++      </figure>
++        </para> 
++        <para>En la ventana que puede ver arriba, a la izquierda hay una columna con la configuración de 
++	diversos aspectos de Evolution. Si pulsa en «Cuentas» y después en «Añadir» podrá añadir
++	otra cuenta de correo además de la que debió añadir la primera vez que ejecutó la 
++	aplicación. Pulse en «Añadir».
++        </para> 
++
++         <para> A continuación aparecerá la siguiente pantalla donde puede configurar los datos de la 
++	 identidad que usará para su nueva cuenta de correo. Escriba el nombre, la dirección de correo,
++	  y opcionalmente rellene los campos de empresa y dirección de respuesta.
++	  <figure>
++		<screenshot>
++		   <mediaobject>
++		       <imageobject>
++		   	<imagedata fileref="../images/evo-mail-account.png" format="png"/>
++		</imageobject>
++	     </mediaobject>
++	</screenshot>
++      </figure> 
++      </para>
++      <para> Evolution también soporta otros tipos de cuentas. Por ejemplo, si lee noticias de Usenet, puede
++	     configurar una cuenta de correo para que funcione como una de noticias. Sin embargo Evolution no
++	     es una suite de noticias tan eficiente como otros programas como Pan, ya que no es su cometido.
++       </para>
++	<para>
++             <figure>
++		<screenshot>
++		   <mediaobject>
++		       <imageobject>
++		   	<imagedata fileref="../images/evo-recepcion1.png" format="png"/>
++		</imageobject>
++	     </mediaobject>
++	</screenshot>
++      </figure> 
++      </para>
++      <para>Si recibe el correo directamente en su máquina a través de un MTA, puede hacer que Evolution lea
++	    su correo local, eligiendo el tipo de almacenamiento requerido: mbox, maildir, MH-format.
++      </para>
++      <para>Hay diversas opciones que pueden especificarse en el correo entrante, como por ejemplo si la conexión va a transcurrir cifrada, o si se va a emplear algún tipo de comando especial para recibir el correo.</para>
++       <para>
++         <figure>
++		<screenshot>
++		   <mediaobject>
++		       <imageobject>
++		   	<imagedata fileref="../images/evo-recepcion2.png" format="png"/>
++		</imageobject>
++	     </mediaobject>
++	</screenshot>
++      </figure> 
++      </para>
++      </sect>
++      <sect><title>Añadir más de un servidor de correo saliente</title>
++	<para>Los servidores de correo saliente, están vinculados cada uno a una cuenta, por lo que tendrá
++	que crear tantas cuentas de correo como servidores salientes desee usar. El servidor saliente que se
++	usará es el de la cuenta de correo marcada como predeterminada.</para>
++        <para>
++         <figure>
++		<screenshot>
++		   <mediaobject>
++		       <imageobject>
++		   	<imagedata fileref="../images/evo-envio.png" format="png"/>
++		</imageobject>
++	     </mediaobject>
++	</screenshot>
++      </figure> 
++	</para>
++      </sect>
++      
++      <sect><title>Filtrar el spam</title>
++	<para>El filtro antispam que usa evolution se basa en el spam que reconoce al llegar el correo y 
++	tiene la capacidad de ir aprendiendo a medida que usted le va indicando qué es spam o qué no lo es. </para>
++	<para>A diferencia de otros clientes de correo, Evolution usa un sistema de carpetas virtuales para 
++	catalogar el spam, por lo que no borra ni mueve automáticamente el correo, simplemente lo cataloga
++	y lo oculta de su vista. Para acceder a la carpeta virtual de spam de una cuenta, tan sólo tiene que
++	pulsar sobre su icono. Allí podrá ver el spam almacenado y borrarlo definitivamente. Si por alguna
++	razón hubiera catalogado incorrectamente un mensaje puede indicárselo a la aplicación pulsando sobre
++	el botón «No Spam».</para><para>
++	<inlinemediaobject> <imageobject>
++	   	<imagedata fileref="../images/evo-nospam-button.png" format="png"/>
++                            </imageobject>
++         </inlinemediaobject></para>
++      </sect>
++
++    </chapter>
++
++   

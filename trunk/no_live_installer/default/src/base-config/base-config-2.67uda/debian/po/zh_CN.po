@@ -1,0 +1,1173 @@
+#    Chinese (Simplified) translation for base-config
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-10 19:59+0100\n"
+"PO-Revision-Date: 2005-07-07 22:03+1200\n"
+"Last-Translator: Carlos Z.F. Liu <carlos_liu@yahoo.com>\n"
+"Language-Team: Debian Chinese [GB] <debian-chinese-gb@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: title
+#. Description
+#: ../templates:3
+msgid "Ubuntu base system configuration"
+msgstr "Ubuntu 基本系统配置"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "Choose the next step in the install process:"
+msgstr "请选择安装过程的下一步："
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "This is the base system configuration menu."
+msgstr "这是 Debian 基本系统配置菜单。"
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid "Welcome to your new Ubuntu system!"
+msgstr "欢迎进入新的 Ubuntu 系统！"
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid ""
+"This program will now walk you through the process of setting up your newly "
+"installed system. It will start with the basics -- time zone selection, "
+"setting a root password and adding a user, and then progress to installing "
+"additional software to tune this new Ubuntu system to your needs."
+msgstr ""
+"本程序将会带您进行对新系统的设置工作。工作将从最基本的设置开始 -- 时区选择、"
+"设置 root 密码并增添新用户，然后带您安装额外的软件并根据你的需要调整新的 "
+"Ubuntu 系统。"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid "Use a PPP connection to install the system?"
+msgstr "是否通过 PPP 连接来安装系统？"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"This system does not seem to be currently connected to the internet. Even if "
+"you plan to install from CD, it is wise to download at least security "
+"updates from the internet."
+msgstr ""
+"本系统似乎并未连接到因特网。就算您计划从光盘进行安装，从因特网至少下载安全更"
+"新也是个明智的选择。"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"If you have an account on an Internet Services Provider (ISP), and you want "
+"to use it during the install, you may configure the PPP service now, and "
+"open a PPP connection to your ISP."
+msgstr ""
+"如果您有一个网络服务提供商(ISP)的帐号，而且想在安装过程中使用它，您应该现在就"
+"配置 PPP 服务并建立与 ISP 之间的连接。"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid "There was a problem installing the selected software"
+msgstr "在安装选定软件时产生了一个问题"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"One or more packages failed to install. This may be due to bugs in the "
+"packages, or you may be out of disk space or experiencing some other problem."
+msgstr ""
+"有一个或多个软件包安装失败。这可能是因为软件包的错误，或是磁盘空间不够，也有"
+"可能是其它的原因。"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"Simply trying to install those packages (or a slightly different set of "
+"packages) again may work around the problem, or at least move the "
+"installation process along a little further. If you want, you can go back to "
+"the package selection step, and try again."
+msgstr ""
+"简单地尝试重新安装这些软件包(或者在软件包的选择上稍作变化)也许就能解决问题，"
+"或者至少将此安装步骤往后挪一些。您可以稍后再返回软件选择步骤并重试。"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"If you decide not to try again, bear in mind that some packages on your "
+"system will be in a broken state until you manually resolve the problem."
+msgstr ""
+"如果你决定不重试，请记住系统上有些软件包将处于故障状态，直到您手动修复它们为"
+"止。"
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Thank you for choosing Ubuntu!"
+msgstr "非常感谢您选择 Ubuntu ！"
+
+#. Type: note
+#. Description
+#: ../templates:84
+#, fuzzy
+msgid "Setup of your Ubuntu system is complete. You may now login."
+msgstr "Ubuntu 系统已经设置完成。您现在就可以在 login: 提示后进行登录了。"
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid ""
+"If you want to revisit this setup process at a later date, just run the base-"
+"config program."
+msgstr "如果您以后还想进行这个设置过程。请运行 base-config 程序。"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "System hostname:"
+msgstr "系统主机名："
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "Please enter your system hostname."
+msgstr "请输入你的系统的主机名。"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid ""
+"The hostname is a name that identifies your system to the network. If you "
+"don't know what your hostname should be, consult your network administrator. "
+"If you are setting up your own home network, you can make something up here."
+msgstr ""
+"主机名是在网络中标示您的系统的一个单词。如果您不知道主机名应当是什么，请询问"
+"网管。如果您正在设置您自己的内部网络，那么可以随意写个名字。"
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid "Invalid hostname \"${HOSTNAME}\""
+msgstr "无效的主机名“${HOSTNAME}”"
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid ""
+"A valid hostname may contain period-separated parts containing only "
+"alphanumeric characters and the minus sign, be between 2 and 63 characters "
+"long, and each part cannot begin or end with a minus sign."
+msgstr ""
+"有效的主机名应该由仅包含字母数字和减号并由句点分隔的多个部分组成，总长度在 2 "
+"到 63 个字符之间，并且被个部分都不能以减号开头或结尾。"
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid "Do you want to start the graphical display manager?"
+msgstr "您是否想使用图形界面显示管理器？"
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid ""
+"The graphical display manager makes it possible to log in using a graphical "
+"environment."
+msgstr "图形显示管理器使您可以通过图形界面进行登录。"
+
+#. Type: text
+#. Description
+#: ../templates:117
+msgid "Load preseed file"
+msgstr "载入预设置文件"
+
+#. Type: text
+#. Description
+#: ../templates:121
+msgid "Display introductory message"
+msgstr "显示介绍信息"
+
+#. Type: text
+#. Description
+#: ../templates:125
+msgid "Configure the keyboard"
+msgstr "设置键盘"
+
+#. Type: text
+#. Description
+#. Type: title
+#. Description
+#: ../templates:129 ../tzsetup-udeb.templates:3
+msgid "Configure timezone"
+msgstr "设置时区"
+
+#. Type: text
+#. Description
+#: ../templates:133
+msgid "Set up users and passwords"
+msgstr "设置用户及其密码"
+
+#. Type: text
+#. Description
+#: ../templates:137
+msgid "Set the hostname"
+msgstr "设置主机名"
+
+#. Type: text
+#. Description
+#: ../templates:141
+msgid "Configure and enable ppp"
+msgstr "设置并启用 ppp"
+
+#. Type: text
+#. Description
+#. This MUST NOT contain a comma. The same goes for other descriptions
+#. in base-config/menu/*. These form a debconf choices list.
+#. Type: title
+#. Description
+#: ../templates:147 ../apt-setup-udeb.templates:3
+msgid "Configure apt"
+msgstr "设置 apt"
+
+#. Type: text
+#. Description
+#: ../templates:151
+msgid "Select and install packages"
+msgstr "选择并安装软件包"
+
+#. Type: text
+#. Description
+#: ../templates:155
+msgid "Configure the Mail Transfer Agent"
+msgstr "配置邮件传输代理(MTA)"
+
+#. Type: text
+#. Description
+#: ../templates:159
+msgid "Finish configuring the base system"
+msgstr "结束基本系统配置过程"
+
+#. Type: text
+#. Description
+#: ../templates:163
+msgid "Exit the base system configuration"
+msgstr "退出基本系统配置"
+
+#. Type: text
+#. Description
+#: ../templates:167
+msgid "Execute a shell"
+msgstr "执行一个 shell"
+
+#. Type: text
+#. Description
+#: ../templates:171
+#, fuzzy
+msgid "Installing packages"
+msgstr "安装选定的软件包"
+
+#. Type: text
+#. Description
+#: ../templates:175
+msgid "Preparing for installation..."
+msgstr ""
+
+#. Type: text
+#. Description
+#: ../templates:184
+msgid "Registering documentation, please wait..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:7
+msgid "Preparing to configure apt..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:11
+#, fuzzy
+msgid "Copying mirror configuration..."
+msgstr "时区配置"
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:15 ../../apt-setup.templates:202
+msgid "Checking for CD-ROM..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../tzsetup.templates:3
+msgid "Time zone configuration"
+msgstr "时区配置"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "Is the hardware clock set to GMT?"
+msgstr "硬件时钟是否被设为格林威治标准时间(GMT)？"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid ""
+"Unix system clocks are generally set to GMT (\"Greenwich Mean Time\", also "
+"known as \"Universal Coordinated Time\", or UTC). The operating system knows "
+"your time zone and converts system time into the local time. You can specify "
+"whether the hardware clock is set to either GMT (recommended for a Linux-"
+"only system) or local time (which may be more convenient for a system that "
+"also runs other operating systems or an off-the-shelf PC)."
+msgstr ""
+"Unix 系统的时钟通常被设为 GMT (即“格林威治时间”，也就是“国际通用时间”简称 "
+"UTC)。操作系统则根据您所设置的时区将系统时间转换为本地时间。您可以指定是将硬"
+"件时钟设置成 GMT (仅推荐给只安装了 Linux 的系统) 或是本地时间(比较适用于装有"
+"多个操作系统的电脑或是品牌 PC)。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "The hardware clock says the time is now ${hwtime}."
+msgstr "硬件时钟显示现在的时间是 ${hwtime}。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Do you want to change your current time zone?"
+msgstr "您是否想改变当前的时区？"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Your current time zone is set to ${timezone}."
+msgstr "您当前的时区是 ${timezone}。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:27
+msgid ""
+"Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
+"Indiana, Indiana-Starke, Michigan, Samoa, other"
+msgstr ""
+"Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
+"Indiana, Indiana-Starke, Michigan, Samoa, 其它"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:28
+msgid "The following are common time zones in the United States of America."
+msgstr "以下是美国境内常见的时区。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:37
+msgid ""
+"Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, other"
+msgstr ""
+"Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, 其它"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:38
+msgid "The following are common time zones in Canada."
+msgstr "以下是加拿大境内常见的时区。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:47
+msgid "East, West, Acre, DeNoronha, other"
+msgstr "East, West, Acre, DeNoronha, 其它"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid "The following are common time zones in Brazil."
+msgstr "以下是巴西境内常见的时区。"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid ""
+"If you are in a different time zone, choose \"other\" to select from all "
+"available time zones."
+msgstr "如果您在其它不同的时区，请选择“其它”，然后在所有可用时区中进行挑选。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Are you in the ${zone} time zone?"
+msgstr "您是否位于 ${zone} 时区？"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Based on your country, your time zone is probably ${zone}."
+msgstr "根据您的国家，您的时区可能是 ${zone}。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:62
+msgid "${choices}, other"
+msgstr "${choices}, 其它"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid "Select your time zone:"
+msgstr "请选择您的时区："
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid ""
+"Based on your country, you are probably in one of these time zones. If you "
+"are not, choose \"other\" to select from all available time zones."
+msgstr ""
+"根据您的国家，您的时区可能是以下之一。如果不是，请选择“其它”，然后在所有可用"
+"的时区中进行挑选。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:69
+msgid ""
+"Africa, America, US, Canada, Asia, Atlantic Ocean, Australia, Europe, Indian "
+"Ocean, Pacific Ocean, System V style time zones, None of the above"
+msgstr ""
+"非洲, 美洲, 美国, 加拿大, 亚洲, 大西洋, 澳洲, 欧洲, 印度洋, 太平洋, System V "
+"样式时区, 以上都不是"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Area for your time zone:"
+msgstr "您的时区所在的地区："
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Pick the geographic area in which the time zone you desire is located."
+msgstr "请选择您想要指定的时区所在的地理区域。"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid "Select a city or time zone:"
+msgstr "请选择一个城市或时区："
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid ""
+"Cities represent the time zone in which they are located, so you may choose "
+"any city in the desired time zone."
+msgstr "这里的城市只是代表了它们所在的时区，所以您可以选择时区中的任一个城市。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Is this information correct?"
+msgstr "这些信息正确吗？"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Here is your selected time zone information."
+msgstr "这是您所选择的时区信息。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid ""
+" Local time is now:          ${tzdate}\n"
+" Universal Time is now:      ${utdate}\n"
+" Time zone is set to:        ${timezone}"
+msgstr ""
+" 现在的本地时间是:           ${tzdate}\n"
+" 现在的国际标准时间是:       ${utdate}\n"
+" 目前的时区设置是:           ${timezone}"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "If something looks wrong, you can go through the setup process again."
+msgstr "如果出了错误，您可以重新进行设置。"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:3
+msgid "Apt configuration"
+msgstr "Apt 配置"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid "HTTP proxy information (blank for none):"
+msgstr "HTTP 代理信息(如果没有请置空)"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"If you need to use a HTTP proxy to access the outside world, please enter "
+"the proxy information here. Otherwise, leave this blank."
+msgstr ""
+"如果需要使用 HTTP 代理连接外部网络，请在这里输入代理信息。否则，请置空。"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"The proxy information should be the standard form of \"http://[[user][:pass]"
+"@]host[:port]\""
+msgstr "代理信息的标准格式应该是“http://[[user][:pass]@]host[:port]/”"
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:24
+msgid "cdrom, http, ftp, filesystem, edit sources list by hand"
+msgstr "光盘, http, ftp, filesystem, 手动修改安装源列表"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "Archive access method for apt:"
+msgstr "apt 读取档案的方式："
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"Please choose the method apt (the Ubuntu package management tool) should use "
+"to access the Ubuntu archive."
+msgstr "请选择 apt (即 Ubuntu 软件包管理工具)读取 Ubuntu 档案的方式。"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"For example if you have an Ubuntu cd, select \"cdrom\", while if you plan to "
+"install via an Ubuntu mirror, choose \"ftp\" or \"http\"."
+msgstr ""
+"例如，如果您有一张 Ubuntu 光盘，就可以选择“cdrom”，如果您计划通过 Ubuntu 镜像"
+"安装，则可以选择“ftp”或“http”。"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "${note}"
+msgstr "${note}"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid "Mirror country:"
+msgstr "镜像所在国家："
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid ""
+"Select the country the mirror should be in. You should use a mirror in your "
+"country or region if you do not know which mirror has the best Internet "
+"connection to you."
+msgstr ""
+"请选择镜像服务器所在的国家。如果不知道哪个镜像与您之间的连接效果最好，您应该"
+"选择一个位于您的国家或地区内的镜像。"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid "Choose the Ubuntu mirror to use:"
+msgstr "请选择 Ubuntu 镜像："
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid ""
+"Select the Ubuntu mirror apt should use. You should select a mirror that is "
+"close to you on the net."
+msgstr ""
+"请选择 apt 将要使用的 Ubuntu 镜像。您应该选择一个在网络中离您最近的镜像。"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Mirror hostname:"
+msgstr "镜像主机："
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Enter the hostname of the mirror from which Ubuntu will be downloaded."
+msgstr "请输入 Ubuntu 下载镜像的主机名。"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Mirror directory:"
+msgstr "镜像目录："
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Enter the directory in which the Ubuntu mirror is located."
+msgstr "请输入 Ubuntu 镜像所在的目录。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:66
+msgid "The directory you entered does not exist."
+msgstr "您输入的目录不存在。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid "Mirror not found"
+msgstr "无找到镜像"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid ""
+"The directory you entered does not contain a subdirectory named \"dists\", "
+"so it doesn't seem to be an Ubuntu mirror."
+msgstr ""
+"您所输入的目录并未包含一个名为“dists”的子目录，所以这可能并不是一个 Ubuntu 镜"
+"像。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "CD-ROM missing"
+msgstr "未找到 CD-ROM"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "Please insert a suitable CD."
+msgstr "请插入一张恰当的 CD"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid "CD-ROM device file:"
+msgstr "CD-ROM 设备文件："
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"This program was unable to auto-detect a CD-ROM drive, or there is no usable "
+"CD in the drive."
+msgstr "本程序不能自动探测光盘驱动器，或者驱动器中并无可用的光盘。"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"Enter the device file to use to access your CD-ROM, and place an Ubuntu CD "
+"in the drive."
+msgstr "请输入光盘驱动器的设备文件名，并在驱动器中放入一张 Ubuntu 光盘。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "Non-Ubuntu CD-ROM detected"
+msgstr "探测到非 Ubuntu 光盘"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "The CD-ROM drive contains a non-Ubuntu CD."
+msgstr "光盘驱动器中的不是一张 Ubuntu 光盘。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid "Scan another CD?"
+msgstr "扫描另一张光盘吗？"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid ""
+"If you have another Ubuntu CD (for example, the second in a two CD set), you "
+"should insert and scan it now."
+msgstr ""
+"如果您还有其它的 Ubuntu 光盘(例如，套装中的第二张光盘)，请将其插入并扫描之。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+#, fuzzy
+msgid "Use restricted software?"
+msgstr "使用 restricted 软件吗？"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+#, fuzzy
+msgid ""
+"Some restricted software has been made to work with Ubuntu. Though this "
+"software is not at all a part of Ubuntu, standard Ubuntu tools can be used "
+"to install it. This software has varying licenses which may prevent you from "
+"using, modifying, or sharing it."
+msgstr ""
+"有些非自由软件也能在 Ubuntu 中使用。尽管这些软件并不是 Ubuntu 的一部分，但标"
+"准 Ubuntu 工具还是可以安装它们。这些软件都有其不同的许可权，这可能会阻止您使"
+"用、修改或共享它们。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Please choose whether you want to have it available anyway."
+msgstr "请您选择是否想使用它们。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid "Use contrib software?"
+msgstr "使用 contrib 软件吗？"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid ""
+"Some additional software has been made to work with Ubuntu. Though this "
+"software is free, it depends on non-free software for its operation. This "
+"software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
+"install it."
+msgstr ""
+"有些额外的软件可以在 Ubuntu 中使用。尽管其本身是自由的，但它们的运行依赖于其"
+"它一些非自由的软件。这些软件也不是 Ubuntu 的一部分，但标准 Ubuntu 工具可以安"
+"装它们。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+#, fuzzy
+msgid "Use universe software?"
+msgstr "使用 non-free 软件吗？"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+#, fuzzy
+msgid ""
+"Some additional software has been made to work with Ubuntu. This software is "
+"free and, though it is not a part of Ubuntu, standard Ubuntu tools can be "
+"used to install it."
+msgstr ""
+"有些额外的软件可以在 Ubuntu 中使用。尽管其本身是自由的，但它们的运行依赖于其"
+"它一些非自由的软件。这些软件也不是 Ubuntu 的一部分，但标准 Ubuntu 工具可以安"
+"装它们。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+#, fuzzy
+msgid "Use backported software?"
+msgstr "使用 contrib 软件吗？"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+msgid ""
+"Some software has been backported from the Ubuntu development tree to work "
+"with this release of Ubuntu. Although this software has not gone through "
+"such complete testing as that contained in the release, it includes newer "
+"versions of some applications which may provide useful features."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+msgid ""
+"Please choose whether you want this software to be made available to you."
+msgstr "请您选择是否想使用这些软件。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:149
+msgid "Failed to access the Ubuntu archive"
+msgstr "无法读取 Ubuntu 档案"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:149
+msgid ""
+"While trying to access the Ubuntu archive using the information you "
+"provided, the Ubuntu package management tool, apt, returned the following "
+"error. The questions will be asked again."
+msgstr ""
+"Ubuntu 软件包管理工具(即 apt)，在通过您所提供的信息读取 Ubuntu 档案时，返回了"
+"如下错误。程序将会再次询问您相关信息的问题。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:158
+msgid "Add another apt source?"
+msgstr "增加另一个 apt 源吗？"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:158
+msgid ""
+"${MESSAGE}. However, you may want to add another source to apt, so it can "
+"download packages from more than one location."
+msgstr ""
+"${MESSAGE}。然而，您也许还想为 apt 添加另外的安装源，这样它就能从多个位置下载"
+"软件包。"
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:164
+msgid "edit, revert to backup"
+msgstr "编辑, 恢复到备份文件"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid "What do you want to do?"
+msgstr "您想干什么？"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid ""
+"The entries you added in sources.list (the file defining package sources for "
+"apt) seem to be incorrect. Here is the error message from apt:"
+msgstr ""
+"您所添加到 sources.list (为 apt 定义安装源的文件)中的条目似乎有错。以下是从 "
+"apt 返回的错误信息："
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid ""
+"A backup of the sources.list was made before you edited it. You may either "
+"revert to that backup or edit the existing file and fix it."
+msgstr ""
+"在您开始编辑之前，会建立一个 sources.list 的备份。您可以恢复到那个备份或编辑"
+"并修复当前文件。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:177
+msgid "Download software from the Internet?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:177
+#, fuzzy
+msgid ""
+"Ubuntu provides additional software and timely security updates via the "
+"Internet. These updates may be tracked each time you upgrade your system. If "
+"you have a connection to the Internet, this is generally a good idea."
+msgstr ""
+"Ubuntu 通过 security.ubuntu.com 网站提供及时的安全更新。每次您升级系统时都会"
+"自动跟踪这些更新。如果您能连接到因特网，建议使用它。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+#, fuzzy
+msgid "Cannot access network updates"
+msgstr "无法读取安全更新"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+#, fuzzy
+msgid ""
+"The software archive at ${site} couldn't be accessed, so those updates will "
+"not be made available to you at this time. You may want to investigate this "
+"later."
+msgstr ""
+"无法读取 security.ubuntu.com 上的安全更新，所以您目前无法使用它。请稍后再检"
+"查。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+#, fuzzy
+msgid ""
+"Commented out entries for ${site} have been added to the bottom of the /etc/"
+"apt/sources.list file."
+msgstr ""
+"security.ubuntu.com 安装源(已被注释)被添加到了 /etc/apt/sources.list 文件的末"
+"尾。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid "The error message returned by apt:"
+msgstr "apt 返回了以下错误信息："
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid "${apt_error}"
+msgstr "${apt_error}"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:198
+#, fuzzy
+msgid "Configuring apt..."
+msgstr "设置 apt"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:206
+msgid "Setting up primary installation repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:210
+msgid "Testing primary installation repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:214
+msgid "Setting up network repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:218
+msgid "Testing network repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:222
+#, fuzzy
+msgid "Setting up security update repository..."
+msgstr "是否使用来自 security.debian.org 的安全更新？"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:226
+#, fuzzy
+msgid "Testing security update repository..."
+msgstr "是否使用来自 security.debian.org 的安全更新？"
+
+#, fuzzy
+#~ msgid "Installing popularity-contest"
+#~ msgstr "安装选定的软件包"
+
+#, fuzzy
+#~ msgid ""
+#~ "Simply trying to install those packages (or a slightly different set of "
+#~ "packages) again may work around the problem, or at least move the "
+#~ "installation process along a little further. You will now enter aptitude, "
+#~ "a package management frontend, which will give you the opportunity to do "
+#~ "this."
+#~ msgstr ""
+#~ "简单地尝试重新安装这些软件包(或者在软件包的选择上稍作变化)也许就能解决问"
+#~ "题，或者至少将此安装步骤往后挪一些。您可以稍后再返回软件选择步骤并重试。"
+
+#~ msgid "Debian base system configuration"
+#~ msgstr "Debian 基本系统配置"
+
+#~ msgid "Welcome to your new Debian system!"
+#~ msgstr "欢迎进入新的 Debian 系统！"
+
+#~ msgid "Thank you for choosing Debian!"
+#~ msgstr "非常感谢您选择 Debian ！"
+
+#~ msgid ""
+#~ "Setup of your Debian system is complete. You may now login at the login: "
+#~ "prompt."
+#~ msgstr "Debian 系统已经设置完成。您现在就可以在 login: 提示后进行登录了。"
+
+#~ msgid "stable, unstable, testing"
+#~ msgstr "稳定, 不稳定, 测试中"
+
+#~ msgid "Debian distribution to use:"
+#~ msgstr "可供选择的 Debian 版本："
+
+#~ msgid ""
+#~ "Debian comes in several flavors. Stable is well-tested and rarely "
+#~ "changes. Unstable is untested and frequently changing. Testing is a "
+#~ "middle ground, that receives many of the new versions from unstable if "
+#~ "they are not too buggy."
+#~ msgstr ""
+#~ "Debian 同时存在多个版本。稳定版是经过大量测试，很少更动的版本。不稳定版是"
+#~ "没有经过测试，变动非常频繁的版本。测试中版本则是界于稳定与不稳定之间，它通"
+#~ "常会从不稳定版中接收一些没太多问题的新版软件。"
+
+#~ msgid "Please choose which version of Debian you wish to install."
+#~ msgstr "请选择您希望安装的 Debian 版本。"
+
+#~ msgid ""
+#~ "Please choose the method apt (the Debian package management tool) should "
+#~ "use to access the Debian archive."
+#~ msgstr "请选择 apt (即 Debian 软件包管理工具)读取 Debian 档案的方式。"
+
+#~ msgid ""
+#~ "For example if you have a Debian cd, select \"cdrom\", while if you plan "
+#~ "to install via a Debian mirror, choose \"ftp\" or \"http\"."
+#~ msgstr ""
+#~ "例如，如果您有一张 Debian 光盘，就可以选择“cdrom”，如果您计划通过 Debian "
+#~ "镜像安装，则可以选择“ftp”或“http”。"
+
+#~ msgid "Choose the Debian mirror to use:"
+#~ msgstr "请选择 Debian 镜像："
+
+#~ msgid ""
+#~ "Select the Debian mirror apt should use. You should select a mirror that "
+#~ "is close to you on the net."
+#~ msgstr ""
+#~ "请选择 apt 将要使用的 Debian 镜像。您应该选择一个在网络中离您最近的镜像。"
+
+#~ msgid ""
+#~ "Enter the hostname of the mirror from which Debian will be downloaded."
+#~ msgstr "请输入 Debian 下载镜像的主机名。"
+
+#~ msgid "Enter the directory in which the Debian mirror is located."
+#~ msgstr "请输入 Debian 镜像所在的目录。"
+
+#~ msgid ""
+#~ "The directory you entered does not contain a subdirectory named \"dists"
+#~ "\", so it doesn't seem to be a Debian mirror."
+#~ msgstr ""
+#~ "您所输入的目录并未包含一个名为“dists”的子目录，所以这可能并不是一个 "
+#~ "Debian 镜像。"
+
+#~ msgid ""
+#~ "Enter the device file to use to access your CD-ROM, and place a Debian CD "
+#~ "in the drive."
+#~ msgstr "请输入光盘驱动器的设备文件名，并在驱动器中放入一张 Debian 光盘。"
+
+#~ msgid "Non-Debian CD-ROM detected"
+#~ msgstr "探测到非 Debian 光盘"
+
+#~ msgid "The CD-ROM drive contains a non-Debian CD."
+#~ msgstr "光盘驱动器中的不是一张 Debian 光盘。"
+
+#~ msgid ""
+#~ "If you have another Debian CD (for example, the second in a two CD set), "
+#~ "you should insert and scan it now."
+#~ msgstr ""
+#~ "如果您还有其它的 Debian 光盘(例如，套装中的第二张光盘)，请将其插入并扫描"
+#~ "之。"
+
+#~ msgid "Use non-free software?"
+#~ msgstr "使用 non-free 软件吗？"
+
+#~ msgid ""
+#~ "Some non-free software has been made to work with Debian. Though this "
+#~ "software is not at all a part of Debian, standard Debian tools can be "
+#~ "used to install it. This software has varying licenses which may prevent "
+#~ "you from using, modifying, or sharing it."
+#~ msgstr ""
+#~ "有些非自由软件也能在 Debian 中使用。尽管这些软件并不是 Debian 的一部分，但"
+#~ "标准 Debian 工具还是可以安装它们。这些软件都有其不同的许可权，这可能会阻止"
+#~ "您使用、修改或共享它们。"
+
+#~ msgid ""
+#~ "Some additional software has been made to work with Debian. Though this "
+#~ "software is free, it depends on non-free software for its operation. This "
+#~ "software is not a part of Debian, but standard Debian tools can be used "
+#~ "to install it."
+#~ msgstr ""
+#~ "有些额外的软件可以在 Debian 中使用。尽管其本身是自由的，但它们的运行依赖于"
+#~ "其它一些非自由的软件。这些软件也不是 Debian 的一部分，但标准 Debian 工具可"
+#~ "以安装它们。"
+
+#~ msgid "Failed to access the Debian archive"
+#~ msgstr "无法读取 Debian 档案"
+
+#~ msgid ""
+#~ "While trying to access the debian archive using the information you "
+#~ "provided, the Debian package management tool, apt, returned the following "
+#~ "error. The questions will be asked again."
+#~ msgstr ""
+#~ "Debian 软件包管理工具(即 apt)，在通过您所提供的信息读取 Debian 档案时，返"
+#~ "回了如下错误。程序将会再次询问您相关信息的问题。"
+
+#~ msgid "Use security updates from security.debian.org?"
+#~ msgstr "是否使用来自 security.debian.org 的安全更新？"
+
+#~ msgid ""
+#~ "Debian provides timely security updates via the website security.debian."
+#~ "org. These updates may be tracked each time you upgrade your system. If "
+#~ "you have a connection to the Internet, this is generally a good idea."
+#~ msgstr ""
+#~ "Debian 通过 security.debian.org 网站提供及时的安全更新。每次您升级系统时都"
+#~ "会自动跟踪这些更新。如果您能连接到因特网，建议使用它。"
+
+#~ msgid "Cannot access security updates"
+#~ msgstr "无法读取安全更新"
+
+#~ msgid ""
+#~ "The security updates on security.debian.org couldn't be accessed, so "
+#~ "those updates will not be made available to you at this time. You may "
+#~ "want to investigate this later."
+#~ msgstr ""
+#~ "无法读取 security.debian.org 上的安全更新，所以您目前无法使用它。请稍后再"
+#~ "检查。"
+
+#~ msgid ""
+#~ "Commented out entries for security.debian.org have been added to the "
+#~ "bottom of the /etc/apt/sources.list file."
+#~ msgstr ""
+#~ "security.debian.org 安装源(已被注释)被添加到了 /etc/apt/sources.list 文件"
+#~ "的末尾。"
+
+#, fuzzy
+#~ msgid ""
+#~ "This program will now walk you through the process of setting up your "
+#~ "newly installed system. It will start with the basics -- time zone "
+#~ "selection and adding a user, and then progress to installing additional "
+#~ "software to tune this new Ubuntu system to your needs."
+#~ msgstr ""
+#~ "本程序将会带您进行对新系统的设置工作。工作将从最基本的设置开始 -- 时区选"
+#~ "择、设置 root 密码并增添新用户，然后带您安装额外的软件并根据你的需要调整新"
+#~ "的 Ubuntu 系统。"
+
+#~ msgid "Software selection method:"
+#~ msgstr "软件选择模式："
+
+#~ msgid ""
+#~ "You can choose more software to be installed to customize the computer "
+#~ "for your particular needs. The following methods are available to select "
+#~ "software to install."
+#~ msgstr ""
+#~ "根据您自己的特殊需求，您可以选择安装更多的软件来配置您的电脑系统。以下是可"
+#~ "用的选择安装软件方法。"

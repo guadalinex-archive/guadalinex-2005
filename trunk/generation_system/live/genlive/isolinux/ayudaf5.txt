@@ -1,0 +1,29 @@
+
+                        09Configuración adicional07
+
+
+
+Guadalinex v3 está preparado para detectar de forma 0dautomática07 el
+hardware de su ordenador pero, en algunas configuraciones, es posible
+que el arranque falle. En estos casos, es necesario indicarle al
+sistema operativo algunos datos sobre nuestro ordenador para facilitar
+el arranque.
+
+Para pasarle esta información a Guadalinex se debe utilizar el
+indicador 0d"boot:"07 situado en la parte inferior de la pantalla.
+En este indicador debemos escribir 0d"linux"07 seguido de los
+parámetros deseados.
+
+Puede consultar los posibles valores en la sección Parámetros 
+(tecla 0dF607).
+
+
+
+
+
+
+
+
+
+07Pulse 0dF207 para volver al Índice de ayuda
+Presione 0dINTRO07 para iniciar Guadalinex v307

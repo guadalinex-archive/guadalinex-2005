@@ -1,0 +1,28 @@
+accessrunner-usb (0.3) unstable; urgency=low
+
+  * Driver from linux kernel 2.6.13.4
+  * Added interfaces example
+  * Added hotplug interface configuration
+  * Added pppoe example
+  * Debian package fixes to new files and configuration
+  * Build depends fixes
+  * hotplug script small changes
+  * start on boot fixed
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Sun, 30 Oct 2005 14:07:26 +0100
+
+accessrunner-usb (0.2) unstable; urgency=low
+
+  * Driver stable instead of CVS driver
+  * drivers/usb/atm/cxacru.c: added support for 0x1242:0x2003 device
+  * debian/README.Debian: Update of firmware section with example
+  * debian/README.Debian: More instructions about firmwares
+  * Added br2684ctl dependency
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 24 Oct 2005 02:26:22 +0200
+
+accessrunner-usb (0.1) unstable; urgency=low
+
+  * Initial Release. 
+
+ -- Vicente J. Ruiz Jurado <vjrj@tid.es>  Mon, 12 Sep 2005 10:23:34 +0200

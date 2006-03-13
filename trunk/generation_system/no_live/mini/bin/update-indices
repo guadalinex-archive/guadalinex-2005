@@ -1,0 +1,9 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+
+rsync --recursive --links --hard-links --times --verbose --stats --compress --delete-after \
+  --exclude *hoary* --exclude *warty* --exclude *universe* --exclude *multiverse* \
+  archive.ubuntu.com::ubuntu/indices/ $CDIMAGE_ROOT/ftp/indices > $CDIMAGE_ROOT/log/update-indices.log 2>&1

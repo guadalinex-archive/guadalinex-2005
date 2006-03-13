@@ -1,0 +1,341 @@
+archive-copier (0.3.6) breezy; urgency=low
+
+  * Update French translation (thanks, Sebastien Bacher, Vincent Untz, and
+    Rosetta).
+  * Update Greek and Norwegian Bokmål translations from Rosetta.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue,  4 Oct 2005 18:00:44 +0100
+
+archive-copier (0.3.5) breezy; urgency=low
+
+  * Fix handling of multiple Task headers in a single package stanza.
+  * Fix a memory leak on each package stanza containing a Task header.
+  * Make -D/-S match Archive-Copier-Set headers (which cdimage will
+    synthesise) as well as Task headers, so that we don't have to pollute
+    user-visible Task headers with stuff that's just there to help
+    archive-copier.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 21 Sep 2005 14:35:11 +0100
+
+archive-copier (0.3.4) breezy; urgency=low
+
+  * Update translations from Rosetta: Greek, Hungarian.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 19 Sep 2005 19:42:12 +0100
+
+archive-copier (0.3.3) breezy; urgency=low
+
+  * Expand on archive-copier/copy-failed text to explain that failures may
+    be due to CD problems.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 19 Sep 2005 10:53:30 +0100
+
+archive-copier (0.3.2) breezy; urgency=low
+
+  * Add Portuguese translation (thanks, Hugo Monteiro).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri, 16 Sep 2005 15:14:47 +0100
+
+archive-copier (0.3.1) breezy; urgency=low
+
+  * Always copy dash as part of desktop, since discover1 depends on it.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri,  2 Sep 2005 11:17:49 +0100
+
+archive-copier (0.3.0) breezy; urgency=low
+
+  * Apply macrology to reduce code duplication.
+  * Allow multiple -D/-S options to package-cache-names.
+  * Copy language pack and language support tasks rather than individual
+    packages, in order to follow dependencies. cdimage has been modified to
+    generate appropriate Task headers.
+  * Policy version 3.6.2. No changes required.
+  * Update debian/copyright with the FSF's new address.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 31 Aug 2005 23:06:28 +0100
+
+archive-copier (0.2.6) breezy; urgency=low
+
+  * Copy language-pack-*-base as well as language-pack-*.
+  * Copy desktop and ship if there is anything to copy for them, not just if
+    the corresponding task name is defined.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Sun,  7 Aug 2005 21:25:18 +0100
+
+archive-copier (0.2.5) breezy; urgency=low
+
+  * Stop forcing mdetect into desktop; base-config no longer needs it.
+  * Copy language-pack-gnome-$LL as well as language-pack-$LL by default.
+  * Force libdiscover1 into desktop; discover1 depends on it.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Sat,  6 Aug 2005 12:56:24 +0100
+
+archive-copier (0.2.4) breezy; urgency=low
+
+  * Minor copyright file updates.
+  * debootstrap 0.3 needs a mirror location even when doing --print-debs.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 28 Jun 2005 01:06:16 +0100
+
+archive-copier (0.2.3) breezy; urgency=low
+
+  * Force discover1 and discover1-data into desktop, since base-config
+    installs them.
+  * Copy any necessary language packs.
+  * Don't bother scanning the CD if there aren't many files to copy (< 100).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 16 May 2005 23:27:42 +0100
+
+archive-copier (0.2.2) breezy; urgency=low
+
+  * Assign to DESKTOP and SHIP so that the desktop and ship tasks actually
+    get copied.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 12 May 2005 11:08:05 +0100
+
+archive-copier (0.2.1) breezy; urgency=low
+
+  * Allow the desktop and ship tasks to be extended regular expressions.
+  * Remove support for the obsolete ubuntu/install-type; instead, copy tasks
+    if their task names are set.
+  * Default to copying ubuntu-standard and ubuntu-desktop as the "desktop
+    task".
+  * Allow archive-copier/desktop-task and/or archive-copier/ship-task to be
+    empty, so that server installations can copy only the standard seed.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 11 May 2005 13:58:31 +0100
+
+archive-copier (0.2.0) breezy; urgency=low
+
+  * Use options to package-cache-names rather than ordered arguments, to
+    allow extensibility.
+  * Add -d/-s package-cache-names options to add packages to desktop/ship,
+    allowing the force_desktop hack to be implemented in debian/postinst
+    instead of in C.
+  * Copy language-support-* packages as required (closes: Ubuntu #8766).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 13 Apr 2005 14:32:00 +0100
+
+archive-copier (0.1.5) hoary; urgency=low
+
+  * Subtract "\n\n" length from *left, not left; fixes occasional segfault
+    when reaching the end of the Packages file.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu,  7 Apr 2005 03:30:16 +0100
+
+archive-copier (0.1.4) hoary; urgency=low
+
+  * Update French translation (thanks, Sebastien Bacher).
+  * Add Greek translation (thanks, Giorgos Logiotatidis).
+  * Add Norwegian Bokmål translation (thanks, Terance Edward Sola).
+  * Add Romanian translation (thanks, Ovidiu Damian).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed,  6 Apr 2005 00:36:38 +0100
+
+archive-copier (0.1.3) hoary; urgency=low
+
+  * Fix segfault when the Packages file size is an exact multiple of
+    getpagesize(). get_paragraph() was relying on the mmap()ed Packages file
+    being null-terminated, which in turn relied on mmap() zero-filling
+    partial pages, and so failed when there were no partial pages. We now
+    avoid relying on null-termination here.
+  * Add Spanish translation (thanks, Enrique Matías Sánchez).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 29 Mar 2005 13:25:27 +0100
+
+archive-copier (0.1.2) hoary; urgency=low
+
+  * Update Brazilian Portuguese translation (thanks, Carlos Eduardo Pedroza
+    Santiviago).
+  * Update French translation (thanks, Sebastien Bacher).
+  * Update German translation (thanks, Maximilian Gerlach).
+  * Add Hungarian translation (thanks, Gabor Burjan).
+  * Add Indonesian translation (thanks, Yoppy Hidayanto).
+  * Add Polish translation (thanks, Dominik Zabłotny).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 28 Mar 2005 20:01:14 +0100
+
+archive-copier (0.1.1) hoary; urgency=low
+
+  * Add Brazilian Portuguese translation (thanks, Carlos Eduardo Pedroza
+    Santiviago).
+  * Add German translation (thanks, Herbert Straub).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Sat, 26 Mar 2005 01:08:59 +0000
+
+archive-copier (0.1.0) hoary; urgency=low
+
+  * After copying packages, check whether the required language-support
+    packages are available; if not, ask whether to download them from the
+    network. (This question is already preseeded in server installations, so
+    won't be asked.)
+  * Add French translation (thanks, Sebastien Bacher).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri, 25 Mar 2005 02:52:42 +0000
+
+archive-copier (0.0.21) hoary; urgency=low
+
+  * Add draft Xhosa translation.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 22 Mar 2005 14:29:07 +0000
+
+archive-copier (0.0.20) hoary; urgency=low
+
+  * Get name of desktop task from archive-copier/desktop-task rather than
+    hardcoding ubuntu-desktop (for Kubuntu et al).
+  * Use new ubuntu-ship task to find contents of ship, so that we don't copy
+    all the packages on an install DVD.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri, 11 Mar 2005 20:02:12 +0000
+
+archive-copier (0.0.19) hoary; urgency=low
+
+  * Remove Release/Release.gpg hack, since apt-cdrom has now been fixed.
+  * Stop running apt-cdrom altogether; apt-setup-udeb does that now.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri, 25 Feb 2005 15:06:37 +0000
+
+archive-copier (0.0.18) hoary; urgency=low
+
+  * Cope with apt-cdrom's slightly changed format for the "Stored Label:"
+    line.
+  * Stop progress bar if exiting early.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri, 11 Feb 2005 14:20:26 +0000
+
+archive-copier (0.0.17) hoary; urgency=low
+
+  * Renumber menu item to 68 to give myself slightly more room before
+    bootloader installation.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 31 Jan 2005 18:18:04 +0000
+
+archive-copier (0.0.16) hoary; urgency=low
+
+  * Merge prebaseconfig script into postinst. We don't run before
+    base-installer any more, so there's no need for the separation, and
+    running apt-cdrom earlier allows apt-setup to be slotted in more
+    conveniently before the first reboot.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 31 Jan 2005 14:47:32 +0000
+
+archive-copier (0.0.15) hoary; urgency=low
+
+  * It turns out that apt-cdrom doesn't yet copy Release and Release.gpg
+    files around in such a way as to ensure that apt believes that the
+    packages in the cache have been authenticated. To work around this bug
+    for now, verify the signature and move Release and Release.gpg by hand
+    into the place where apt expects to find them. (This is awful, and
+    apt-cdrom should be fixed before Hoary rather than allowing this code to
+    remain.)
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 19 Jan 2005 23:12:54 +0000
+
+archive-copier (0.0.14) hoary; urgency=low
+
+  * Switch maintainer address to @ubuntu.com.
+  * Raise priority to standard, so that archive-copier doesn't have to go in
+    udeb_include on the CD any more. This was causing problems for combined
+    install/live DVDs.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 18 Jan 2005 13:49:27 +0000
+
+archive-copier (0.0.13) hoary; urgency=low
+
+  * Go back to sorting by filename rather than package name, in order to get
+    better seek time performance.
+
+ -- Colin Watson <cjwatson@canonical.com>  Tue,  4 Jan 2005 18:39:57 +0000
+
+archive-copier (0.0.12) hoary; urgency=low
+
+  * Run find over pool directories on the CD, to get all the directories
+    into the dentry cache and cut down on seek times. (cdrom-detect does
+    this too, but apparently the directories have generally been driven out
+    of cache by the time archive-copier runs.)
+
+ -- Colin Watson <cjwatson@canonical.com>  Tue,  4 Jan 2005 18:23:08 +0000
+
+archive-copier (0.0.11) hoary; urgency=low
+
+  * Put working files in /var/spool/archive-copier/ rather than /tmp.
+  * Calculate the length of the progress bar after working out which
+    packages to copy.
+  * Copy packages sorted by package name, which looks better.
+
+ -- Colin Watson <cjwatson@canonical.com>  Fri, 17 Dec 2004 14:17:42 +0100
+
+archive-copier (0.0.10) hoary; urgency=low
+
+  * Look at all components listed by the CD as installable.
+  * Consider linux-image-* as part of base so that it doesn't get copied.
+    (This isn't complete due to linux-386 etc., but it gets rid of most of
+    the space wastage.)
+
+ -- Colin Watson <cjwatson@canonical.com>  Wed,  8 Dec 2004 20:04:28 +0100
+
+archive-copier (0.0.9) warty; urgency=low
+
+  * Move Desktop cache to /var/cache/archive-copier/desktop.
+  * Copy Ship to /var/cache/archive-copier/ship.
+
+ -- Colin Watson <cjwatson@canonical.com>  Tue, 19 Oct 2004 00:02:10 +0100
+
+archive-copier (0.0.8) warty; urgency=low
+
+  * Always treat laptop-detect, mdetect, and xresprobe as though they were
+    in Desktop. base-config needs them.
+
+ -- Colin Watson <cjwatson@canonical.com>  Wed,  6 Oct 2004 23:08:24 +0100
+
+archive-copier (0.0.7) warty; urgency=low
+
+  * Don't copy Supported; we need more integration work for that to be
+    useful.
+
+ -- Colin Watson <cjwatson@canonical.com>  Wed, 29 Sep 2004 20:30:50 +0100
+
+archive-copier (0.0.6) warty; urgency=low
+
+  * Only copy Desktop and Supported in normal mode, and nothing in custom
+    mode. debootstrap runs quickly enough nowadays that it doesn't need
+    help.
+  * Move to after base-installer has finished.
+  * Adjust templates to read "Copying remaining packages to hard disk", etc.
+
+ -- Colin Watson <cjwatson@canonical.com>  Thu,  9 Sep 2004 16:44:05 +0100
+
+archive-copier (0.0.5) warty; urgency=low
+
+  * Fix base-system-only copying in custom mode (closes: Warty #1093).
+
+ -- Colin Watson <cjwatson@canonical.com>  Wed,  8 Sep 2004 12:12:34 +0100
+
+archive-copier (0.0.4) warty; urgency=low
+
+  * Fix retrieval of answer to archive-copier/copy.
+
+ -- Colin Watson <cjwatson@canonical.com>  Wed,  8 Sep 2004 00:13:42 +0100
+
+archive-copier (0.0.3) warty; urgency=low
+
+  * Add prebaseconfig script to run 'apt-cdrom add' if packages were copied.
+
+ -- Colin Watson <cjwatson@canonical.com>  Tue,  7 Sep 2004 18:55:29 +0100
+
+archive-copier (0.0.2) warty; urgency=low
+
+  * Copy non-base packages into /var/cache/archive-copier rather than
+    /var/cache/apt/archives. base-config will deal with moving them into the
+    right place once it's cleaned base packages out of the cache.
+  * Don't copy non-base packages in the custom install mode.
+  * Expand progress bar title to "Copying packages to hard disk".
+
+ -- Colin Watson <cjwatson@canonical.com>  Fri,  3 Sep 2004 22:33:16 +0100
+
+archive-copier (0.0.1) warty; urgency=low
+
+  * Colin Watson
+    - Initial release.
+
+ -- Colin Watson <cjwatson@flatline.org.uk>  Sun, 22 Aug 2004 17:31:56 +0100

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY appversion "0.5">
+<!ENTITY manrevision "0.5">
+<!ENTITY date "Noviembre 2005">
+<!ENTITY app "Asistente de Banda Ancha">
+
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Mar 12, 2002  
+-->
+<article id="index" lang="es">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo> 
+	 <title>Manual del Asistente de Banda Ancha V0.5</title> 
+	 <abstract role="description"><para>Manual del usuario para el asistente de configuración de Equipos de Banda Ancha.</para></abstract>
+	 <copyright> 
+		<year>2005</year> 
+		<holder>Junta de Andalucia</holder> 
+	 </copyright>  
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2003</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+
+	 <publisher> 
+		<publishername>Junta de Andalucía</publishername> 
+	 </publisher> 
+
+	 <authorgroup> 
+		<author> 
+		  <firstname>Junta de Andalucía</firstname> 
+		  <surname>Equipo de desarrollo de Guadalinex</surname> 
+		  <affiliation> 
+			 <orgname>Junta de Andalucía</orgname> 
+			 <address/> 
+		  </affiliation> 
+		</author> 
+      <!-- This is appropriate place for other contributors: translators,
+           maintainers,  etc. Commented out by default.
+           <othercredit role="translator">
+	     <firstname>Latin</firstname> 
+	     <surname>Translator 1</surname> 
+	     <affiliation> 
+	       <orgname>Latin Translation Team</orgname> 
+	       <address> <email>translator@gnome.org</email> </address> 
+	     </affiliation>
+	     <contrib>Latin translation</contrib>
+           </othercredit>
+-->
+	 </authorgroup>
+
+	 <revhistory>
+	   <revision>
+	     <revnumber>Versión 0.5</revnumber>
+	     <date>Noviembre de 2005</date>
+	     <revdescription>
+	       <para role="author">Equipo de desarrollo de Guadalinex</para>
+	       <para role="publisher">Junta de Andalucía</para>
+	     </revdescription>
+	   </revision>
+		<revision> 
+		  <revnumber>Manual del Asistente de Banda Ancha V0.5</revnumber> 
+		  <date>Noviembre de 2005</date> 
+		  <revdescription> 
+			 <para role="author">Equipo de desarrollo de Guadalinex</para> 
+			 <para role="publisher">Junta de Andalucía</para> 
+		  </revdescription> 
+		</revision>
+	 </revhistory> 
+	 <releaseinfo>Este manual describe la versión 0.5 del Asistente de Banda Ancha.</releaseinfo> 
+	 <legalnotice> 
+		<title>Comentarios</title> 
+		<para>Para informar sobre un fallo o hacer sugerencias sobre la aplicación Asistente de Banda Ancha o sobre este manual, siga las indicaciones en la <ulink url="http://www.guadalinex.org/errores">Página de errores de Guadalinex</ulink>.</para>
+		
+	 </legalnotice> 
+  </articleinfo> 
+  <indexterm> 
+	 <primary>Asistente de Banda Ancha</primary> 
+  </indexterm> 
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+<sect1 id="bb-assist-introduction">
+<title>Introducción</title>
+<para>El <application>Asistente de Banda Ancha</application> proporciona una forma sencilla de configurar equipos de banda ancha y la conexión de su PC a Internet a través de estos.</para>
+<para>Para configurar uno de estos dispositivos, seleccione, operadora, modelo y modo de funcionamiento, y responda a los datos solicitados.</para>
+</sect1>
+<!-- ============= Configuration Modes ====================== -->
+<sect1 id="bb-assist-conf-modes">
+<title>Modos de Configuración</title>
+<para>Para configurar el <application>Asistente de Banda Ancha</application>, actualmente existen varios modos de funcionamiento:</para>
+<itemizedlist>
+<listitem>
+<para><guilabel>Monopuesto estático</guilabel></para>
+<para>El dispositivo permite conectarse a un solo PC con direccionamiento estático, es decir, con una dirección IP fija que le debe haber proporcionado la operadora.</para>
+</listitem>
+<listitem>
+<para><guilabel>Monopuesto Dinámico</guilabel></para>
+<para>El dispositivo permite conectarse a un solo PC con direccionamiento dinámico, es decir, con una dirección IP variable en cada conexión. Se deberá introducir un usuario y una contraseña que le debe haber proporcionado la operadora.</para>
+</listitem>
+<listitem>
+<para><guilabel>Multipuesto Estático</guilabel></para>
+<para>El dispositivo permite conectarse a varios PCs con direccionamiento estático, es decir, con una dirección IP fija que le debe haber proporcionado la operadora. Los PCs tendrán un direccionamiento privado que introducirá el usuario y que podrá ser configurados a través de DHCP o con IP fijas.</para>
+</listitem>
+<listitem>
+<para><guilabel>Multipuesto Dinámico</guilabel></para>
+<para>El dispositivo permite conectarse a varios PCs con direccionamiento dinámico, es decir, con una dirección IP variable en cada conexión. Se deberá introducir un usuario y una contraseña que le debe haber proporcionado la operadora. Los PCs tendrán un direccionamiento privado que introducirá el usuario y que podrá ser configurados a través de DHCP o con IP fijas.</para>
+</listitem>
+</itemizedlist>
+
+</sect1>
+</article>

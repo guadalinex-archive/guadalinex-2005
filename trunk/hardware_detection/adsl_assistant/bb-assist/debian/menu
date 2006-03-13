@@ -1,0 +1,4 @@
+?package(bb-assist):needs="X11" section="Apps/System" \
+  title="BroadBand Assistant" \
+  icon="/usr/share/bb-assist/glade/pixmaps/bb-assist32.xpm" \
+  command="gksudo /usr/bin/bb-assist"

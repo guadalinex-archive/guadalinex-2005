@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE author PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+	"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY % xinclude SYSTEM "../../libs/xinclude.mod">
+%xinclude;
+<!ENTITY % globalent SYSTEM "../../libs/global.ent">
+%globalent;
+]>-->
+<author>
+    <firstname>Niel</firstname>
+    <surname>Tallim</surname>
+    <!-- <email>red.hamsterx@gmail.com</email> -->
+    <!-- <alias>Flonne</alias> -->
+</author>

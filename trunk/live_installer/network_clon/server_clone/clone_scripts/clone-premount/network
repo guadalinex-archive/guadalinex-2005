@@ -1,0 +1,30 @@
+#!/bin/sh
+# Setup the network with dhcp
+PREREQ="format"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+DEVS=$(grep [0-9]: /proc/net/dev | grep -v sit | tr -s '  ' ' ' | cut -d ' ' -f 2 | cut -d ':' -f 1)
+for DEV in $DEVS
+        do
+	ifconfig $DEV
+	udhcpc -s /etc/udhcpc/default.script $DEV
+done
+
+SERVER=$(grep serverip /etc/config.cfg | cut -d '=' -f 2)
+
+mkdir -p /mnt/dev/META/
+ftpget $SERVER /mnt/dev/META/META.squashfs /META.squashfs
+
+

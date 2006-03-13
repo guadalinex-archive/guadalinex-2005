@@ -1,0 +1,52 @@
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.TH "grub-floppy" "8" "August 17, 2001" "Jason Thomas"
+.SH NAME
+grub\-floppy \- program to do build a generic grub boot disc
+.SH SYNOPSIS
+.B grub\-floppy
+.RI [ options ]  " <block_device>" ...
+.SH DESCRIPTION
+.B \fBgrub\-floppy\fR
+is a program to build a generic grub boot disc. The boot disc when booted provides the grub command line (also referred to as the grub shell).
+.PP
+For more information on using the grub command line, see \fBinfo grub\fR
+.PP
+.SH OPTIONS
+This program follow the usual GNU command line syntax, with long
+options starting with two dashes (`-').
+A summary of options is included below.
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.SH NOTE
+It is possible to create a grub boot disc using grub-install, although the boot disc created will be specific to the computer it is created on. Using grub-floppy will create a more generic floppy only limted by architecture.
+.SH SEE ALSO
+.BR grub (8),
+.BR grub-install (8).
+.PP
+The full documentation for
+.B grub
+is maintained as a Texinfo manual.  If the
+.B info
+and
+.B grub
+programs are properly installed at your site, the command
+.IP
+.B info grub
+.PP
+should give you access to the complete manual.
+.SH AUTHOR
+This manual page was written by Jason Thomas <jason@debian.org>,
+for the Debian GNU/Linux system (but may be used by others).
+.\" vim:syn=nroff

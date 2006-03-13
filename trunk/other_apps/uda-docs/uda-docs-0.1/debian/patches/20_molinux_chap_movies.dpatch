@@ -1,0 +1,196 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_molinux_chap_movies.dpatch by  <roberto@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/chap-movies/movies.xml /tmp/dpep-work.5nZgKq/uda-docs-0.1/docs/recipes/chap-movies/movies.xml
+--- ./docs/recipes/chap-movies/movies.xml	1970-01-01 01:00:00.000000000 +0100
++++ /tmp/dpep-work.5nZgKq/uda-docs-0.1/docs/recipes/chap-movies/movies.xml	2005-10-28 11:58:21.000000000 +0200
+@@ -0,0 +1,185 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
++<!ENTITY % xinclude SYSTEM "../../libs/xinclude.mod">
++%xinclude;
++<!ENTITY % globalent SYSTEM "../../libs/global.ent">
++%globalent;
++]>
++
++
++<chapter id="movies" lang="es">
++   <title>Ver películas con Totem</title>
++		<sect>
++		<title>Introducción</title>
++		<para>La aplicación reproductor de películas Totem, es un reproductor de películas para el escritorio de Gnome basado en la biblioteca xine, que permite reproducir películas o canciones. 
++
++Totem dispone de las siguiente características:</para>
++                <itemizedlist>
++		<listitem>
++		<para>Proporciona varios niveles de ampliación y proporciones, y una vista a pantalla completa.</para>
++		</listitem>
++		<listitem>
++		<para>Controles de búsqueda y volumen.</para>
++		</listitem>
++		<listitem>
++		<para>Lista de reproducción.</para>
++		</listitem>
++		<listitem>
++		<para>Navegación completa a través del teclado.</para>
++		</listitem>
++		</itemizedlist>
++                </sect>
++		<sect>
++		<title>Ver una película</title>
++		<para>Totem, permite la reproducción de películas partiendo de varios medios, como:</para>
++		<itemizedlist>
++		<listitem>
++		<para>DVD: Esta opción nos permite ver las películas que tengamos en dvd.</para>
++		</listitem>
++		<listitem>
++		<para>VCD: Permite ver las películas que tengamos en este formato.</para>
++		</listitem>
++		<listitem>
++		<para>Abriendo archivos divx, mpeg...: Con esta opción, podemos introducir a totem la ruta donde se encuentra las película que queremos ver.</para>
++		</listitem>
++		</itemizedlist>
++		<para>Para ver una película, ejecutamos reproductor de películas totem.</para>
++		<figure> <title>Inicio de totem</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-menu.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++		<para>Aparecerá una pantalla como la siguiente:</para>
++		<figure><title>  Pantalla inicial de Tótem</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-inicio.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++		<para>Para ver una película, tenemos las tres opciones antes comentadas, DVD, VCD y reproducción partiendo de un archivo.</para>
++		</sect>
++		<sect>
++		<title>Reproducción de DVD.</title>
++		<para>Para reproducir una película en dvd, no tenemos que mas que introducir la película en nuestro lector de dvd, pulse en <guimenuchoice><guimenu>Película</guimenu><guimenuitem>Reproducir DVD</guimenuitem></guimenuchoice>
++</para>                
++		<figure><title>  Reproducir un DVD</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-dvdplay.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++		<note>
++		<para>Para que totem reproduzca los dvd's correctamente, este tiene que estar bien configurado en nuestro sistema.</para>
++		</note>
++		</sect>
++		<sect>
++		<title>Reproducción de VCD.</title>
++		<para>Para reproducir una película en vcd, los pasos que tenemos que realizar, son los mismos que para reproducir un dvd. Introducimos el vdc en nuestro lector de cd/dvd y no tenemos mas que pulsar en <menuchoice><guimenu>Película</guimenu><guimenuitem>Reproducir vcd</guimenuitem></menuchoice>.</para>
++		<figure><title>  Reproducir un Vídeo CD</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-vcdplay.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++		<note>
++		<para>Al igual que en el apartado anterior, para que totem reproduzca correctamente vcd, el lector de cds/dvds debe de estar bien configurado en nuestro sistema.</para>
++		</note>
++		</sect>
++		<sect>
++		<title>Reproduciendo archivos de vídeo.</title>
++		<para>Con totem ejecutado, no tenemos mas que pulsar en <guimenuchoice><guimenu>Película</guimenu><guimenuitem>Abrir dirección</guimenuitem></guimenuchoice>.
++Aparecerá una pantalla como la que a continuación se muestra:</para>
++                <figure><title>Abrir una dirección (URI)</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-openuri.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++		<para>Y nos aparecerá una pantalla como la siguiente, en la que tendremos que introducir la dirección de la película que queremos ver.</para>
++		<informalfigure>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-openmovie.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</informalfigure>
++		<para>Cuando totem este visualizando una película, se vera de la siguiente forma:</para>
++		<informalfigure>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-totemplay.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</informalfigure>
++		<note>
++		<para>Para poder ver las películas que tengamos en divx, xvid... necesitaremos los códecs correspondientes.</para>
++		</note>
++		</sect>
++		<sect>
++		<title>Instalando códecs.</title>
++		<para>Los códecs, son bibliotecas que nos permiten descodificar una película codificada en un formato especial.
++¿Nunca os ha pasado que intentáis ver una película y solamente se escucha mientras que la pantalla se queda en negro?
++Pues eso es por falta de códecs.
++Los códecs que se utilizar mas habitualmente se pueden encontrar en la siguiente <ulink url="http://www.ara3d.com/codecs-video-nonfree-1.0.deb">enlace</ulink></para>
++                 <para>Al descargarlo, se obtiene el archivo <filename>codecs-video-nonfree-1.0.deb</filename> y para instalarlo solo tenemos que hacer los siguiente.</para>
++		 <para>Abrimos un terminal, que se encuentra dentro del menú <guimenuchoice><guimenu>Aplicaciones</guimenu><guisubmenu>Herramientas de sistema></guisubmenu></guimenuchoice>:</para>
++                <figure><title>Menú del terminal</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-terminalmenu.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++		<para>Aparecerá una terminal de gnome como la de la imagen:</para>
++		<figure><title>Ventana con el terminal de Gnome</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-terminal.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++		<para>Una vez en la terminal, nos validamos como administrador con el comando 
++			<programlisting>su -</programlisting> e introducimos la 
++		clave de administrador. Nos situamos donde tengamos el archivo descargado, mediante 
++                <programlisting>cd ruta_del_archivo</programlisting> y una vez que estemos situados 
++		a la misma altura que el archivo, ejecutar el siguiente comando:
++		<programlisting>dpkg -i codecs-video-nonfree-1.0.deb</programlisting>
++
++En la terminal nos aparecerá lo siguiente:</para>
++                <figure><title>  Instalación de códecs</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/movies-codecinstall.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++		</figure>
++		<para>Con esto ya tenemos instalados los códecs.</para>
++		</sect>
++	</chapter>

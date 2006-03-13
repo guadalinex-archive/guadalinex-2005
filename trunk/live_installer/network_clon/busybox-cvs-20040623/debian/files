@@ -1,0 +1,5 @@
+busybox-cvs-static_20040623-1ubuntu22uda1_i386.deb shells optional
+busybox-cvs_20040623-1ubuntu22uda1_i386.deb utils optional
+busybox-cvs-initramfs_20040623-1ubuntu22uda1_i386.deb shells optional
+busybox-cvs-udeb_20040623-1ubuntu22uda1_i386.udeb debian-installer extra
+busybox-cvs-floppy-udeb_20040623-1ubuntu22uda1_i386.udeb debian-installer extra

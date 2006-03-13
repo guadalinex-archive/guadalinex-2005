@@ -1,0 +1,37 @@
+#!/bin/sh
+set -e
+
+# Summary of ways preinst script is called
+#    * new-preinst install
+#    * new-preinst install old-version
+#    * new-preinst upgrade old-version
+#    * old-preinst abort-upgrade new-version
+
+#DEBHELPER#
+
+case $1 in
+    install | upgrade)
+	oldversion=$2
+
+	# Version before 2.0.1-1, this files are moved
+	rm -rf /etc/eagle-usb/lang
+	rm -rf /etc/eagle-usb/scripts
+
+	# Version before 1.9.9-2 create an unused file configuration
+	rm -f /etc/modutils/eagle-usb
+
+	# Version before 1.9.9-1 create links
+	# remove obsolet files and links
+	if test -L /etc/init.d/eagle-usb; then
+	    rm /etc/init.d/eagle-usb; fi
+	if test -L /etc/hotplug/usb/eagle-usb; then
+	    rm /etc/hotplug/usb/eagle-usb; fi
+
+	;;
+
+    abort-upgrade)
+	newversion=$2
+	;;
+esac
+
+exit 0

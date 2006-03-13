@@ -1,0 +1,46 @@
+#!/bin/sh
+# 
+
+PREREQ="fstab"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# XXX Ugly hack to be sure the $init is a copy in the memory and not in the mounted image
+if [ -f "${rootmnt}${init}" ]; then
+	mv ${rootmnt}${init} ${rootmnt}${init}_
+	mv ${rootmnt}${init}_ ${rootmnt}${init}
+fi		
+
+# Arrange for shells on virtual consoles, rather than login prompts
+. /conf/initramfs.conf
+sed -i -e "s|^\([^:]*:[^:]*:[^:]*\):.*getty.*\<\(tty[0-9]*\).*$|\1:/bin/login -f $USERNAME </dev/\2 >/dev/\2 2>\&1|" ${rootmnt}/etc/inittab
+
+
+# This has the nice side effect of the cron.{daily,weekly,monthly} jobs in
+# /etc/crontab remaining disabled, yet also not run by anacron
+#for file in anacron postfix hwclock.sh hwclockfirst.sh checkfs.sh checkroot.sh hdparm ntpdate mountall.sh ; do
+for file in anacron postfix checkfs.sh checkroot.sh ntpdate mountall.sh ; do
+	echo "deleting ${rootmnt}/etc/init.d/${file}..." >> /tmp/initramfs.debug
+	: > ${rootmnt}/etc/init.d/${file}
+done
+
+# Install shutdown script
+if [ -f ${rootmnt}/etc/rc0.d/S90halt ]; then
+    cp -a /sbin/shutdown ${rootmnt}/etc/rc0.d/S89shutdown
+fi
+if [ -f ${rootmnt}/etc/rc6.d/S90reboot ]; then
+    cp -a /sbin/shutdown ${rootmnt}/etc/rc6.d/S89shutdown
+fi
+
+exit 0

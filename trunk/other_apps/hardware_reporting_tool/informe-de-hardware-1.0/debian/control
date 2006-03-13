@@ -1,0 +1,13 @@
+Source: informe-de-hardware
+Section: guadalinex
+Priority: optional
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Build-Depends: debhelper (>= 4.0.0), xsltproc (>= 1.1.15), docbook-xsl (>= 1.68.1)
+Standards-Version: 3.6.2.1
+
+Package: informe-de-hardware
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, xdialog (>= 2.0.6-3)
+Description: generador de informe de configuraciones
+ Utilidad para generar un informe con las configuraciones
+ susceptibles de error en sistemas GNU/Linux. 

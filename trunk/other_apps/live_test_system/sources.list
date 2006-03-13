@@ -1,0 +1,5 @@
+
+deb http://archive.ubuntu.com/ubuntu breezy main universe restricted multiverse
+deb http://archive.ubuntu.com/ubuntu breezy-updates main universe restricted multiverse
+deb http://security.ubuntu.com/ubuntu breezy-security main universe restricted multiverse
+

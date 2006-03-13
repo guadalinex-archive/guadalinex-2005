@@ -1,0 +1,123 @@
+#!/bin/sh
+# /etc/init.d/xdm: start or stop the X display manager
+
+set -e
+
+# To start xdm even if it is not the default display manager, change
+# HEED_DEFAULT_DISPLAY_MANAGER to "false."
+HEED_DEFAULT_DISPLAY_MANAGER=true
+DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+DAEMON=/usr/bin/X11/xdm
+PIDFILE=/var/run/xdm.pid
+UPGRADEFILE=/var/run/xdm.daemon-not-stopped
+
+test -x $DAEMON || exit 0
+
+stillrunning () {
+  if expr "$(cat /proc/$DAEMONPID/cmdline 2>/dev/null)" : "$DAEMON" >/dev/null \
+    2>&1; then
+    true
+  else
+    # if the daemon does not remove its own pidfile, we will
+    rm -f $PIDFILE $UPGRADEFILE
+    false
+  fi
+}
+
+# If we upgraded the daemon, we can't use the --exec argument to
+# start-stop-daemon since the inode will have changed.  The risk here is that
+# in a situation where the daemon died, its pidfile was not cleaned up, and
+# some other process is now running under that pid, start-stop-daemon will send
+# signals to an innocent process.  However, this seems like a corner case.
+# C'est la vie!
+if [ -e $UPGRADEFILE ]; then
+  SSD_START_ARGS="--pidfile $PIDFILE --startas $DAEMON"
+  SSD_STOP_ARGS="--pidfile $PIDFILE --name ${DAEMON#**/}"
+else
+  SSD_START_ARGS="--pidfile $PIDFILE --exec $DAEMON"
+  SSD_STOP_ARGS="$SSD_START_ARGS"
+fi
+
+case "$1" in
+  start)
+    if [ -e $DEFAULT_DISPLAY_MANAGER_FILE ] &&
+       [ "$HEED_DEFAULT_DISPLAY_MANAGER" = "true" ] &&
+       [ "$(cat $DEFAULT_DISPLAY_MANAGER_FILE)" != "$DAEMON" ]; then
+      echo "Not starting X display manager (xdm); it is not the default" \
+        "display manager."
+    else
+      echo -n "Starting X display manager: xdm"
+      start-stop-daemon --start --quiet $SSD_START_ARGS \
+        || echo -n " already running"
+      echo "."
+    fi
+  ;;
+
+  restart)
+    /etc/init.d/xdm stop
+    if [ -f $PIDFILE ]; then
+      if stillrunning; then
+        exit 1
+      fi
+    fi
+    /etc/init.d/xdm start
+  ;;
+
+  reload)
+    echo -n "Reloading X display manager configuration..."
+    if start-stop-daemon --stop --signal 1 --quiet $SSD_STOP_ARGS; then
+      echo "done."
+    else
+      echo "xdm not running."
+    fi
+  ;;
+
+  force-reload)
+    /etc/init.d/xdm reload
+  ;;
+
+  stop)
+    echo -n "Stopping X display manager: xdm"
+    if ! [ -f $PIDFILE ]; then
+      echo " not running ($PIDFILE not found)."
+      exit 0
+    else
+      DAEMONPID=$(cat $PIDFILE | tr -d '[:blank:]')
+      KILLCOUNT=1
+      if ! [ -e $UPGRADEFILE ]; then
+        if start-stop-daemon --stop --quiet $SSD_STOP_ARGS; then
+          # give xdm's signal handler a second to catch its breath
+          sleep 1
+        else
+          echo -n " not running"
+        fi
+      fi
+      while [ $KILLCOUNT -le 5 ]; do
+        if stillrunning; then
+          kill $DAEMONPID
+        else
+          break
+        fi
+        sleep 1
+        KILLCOUNT=$(( $KILLCOUNT + 1 ))
+      done
+      if stillrunning; then
+        echo -n " not responding to TERM signal (pid $DAEMONPID)"
+      else
+        rm -f $UPGRADEFILE
+      fi
+    fi
+    echo "."
+  ;;
+
+  *)
+    echo "Usage: /etc/init.d/xdm {start|stop|restart|reload|force-reload}"
+    exit 1
+    ;;
+esac
+
+exit 0
+
+# vim:set ai et sts=2 sw=2 tw=0:

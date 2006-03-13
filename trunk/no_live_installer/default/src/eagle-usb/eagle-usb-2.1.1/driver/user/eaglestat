@@ -1,0 +1,16 @@
+#!/bin/bash
+# $Id: eaglestat,v 1.4 2004/05/12 19:21:35 Tux Exp $
+# Name: eaglestat
+# Goal: display modem state
+# Author: ?
+
+if [ -d /proc/driver/eagle-usb ] ; then
+    if  ls /proc/driver/eagle-usb/* &>/dev/null ; then
+	cat /proc/driver/eagle-usb/*
+    else
+	echo "Pre-firmware device"
+    fi
+else
+    echo "eagle-usb driver not loaded"
+    exit 1
+fi

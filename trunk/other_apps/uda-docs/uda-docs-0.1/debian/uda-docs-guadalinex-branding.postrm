@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm /usr/share/gnome/help/recipes/common
+rm /usr/share/gnome/help/recipes/images
+rm /usr/share/gnome/help/recipes/libs

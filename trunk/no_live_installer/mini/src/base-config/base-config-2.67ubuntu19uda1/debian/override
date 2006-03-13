@@ -1,0 +1,12 @@
+# This is intentional.
+base-config: no-debconf-config
+base-config: debconf-is-not-a-registry ./usr/sbin/apt-setup
+base-config: debconf-is-not-a-registry ./usr/sbin/tzsetup
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/00dbootstrap_settings
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/10intro
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/25pcmcia
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/30pon
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/60pkgsel
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/75apt-get
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/80poff
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/90final-messages

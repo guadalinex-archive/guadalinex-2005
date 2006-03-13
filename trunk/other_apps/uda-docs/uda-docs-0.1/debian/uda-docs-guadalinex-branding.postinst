@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ln -s /usr/share/guadalinex-docs/C/common /usr/share/gnome/help/recipes/common
+ln -s /usr/share/guadalinex-docs/C/images /usr/share/gnome/help/recipes/images
+ln -s /usr/share/guadalinex-docs/C/libs /usr/share/gnome/help/recipes/libs
+
+/usr/bin/scrollkeeper-update

@@ -1,0 +1,78 @@
+# translation of base-config_ru.po to Russian
+# translation of base-config_po_ru.po to Russian
+# Nikolai Prokoschenko <nikolai@prokoschenko.de>, 2004.
+# Alexander Saltanov <asdgray@yandex.ru>, 2004.
+# Yuriy Talakan' <yt@amur.elektra.ru>, 2004.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config_ru\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-13 11:05+0200\n"
+"PO-Revision-Date: 2004-07-02 18:55+1000\n"
+"Last-Translator: Yuriy Talakan' <yt@amur.elektra.ru>\n"
+"Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../base-config:42
+msgid "Configuring the base system..."
+msgstr "Идёт настройка основной системы..."
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "Наберите 'exit', чтобы вернуться в программу настройки."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:140
+msgid "enter information manually, "
+msgstr "введите информацию вручную, "
+
+#: ../apt-setup:297
+msgid "Scanning CD, this will take a minute."
+msgstr "Сканирование компакт-диска, может занять некоторое время."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:381
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Утилита управления пакетами Debian, apt, настроена, и может установить "
+"${PACKAGE_COUNT} пакет"
+msgstr[1] ""
+"Утилита управления пакетами Debian, apt, настроена, и может установить "
+"${PACKAGE_COUNT} пакета"
+msgstr[2] ""
+"Утилита управления пакетами Debian, apt, настроена, и может установить "
+"${PACKAGE_COUNT} пакетов"
+
+#: ../apt-setup:478
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Вероятно, для установки базовой системы Debian использовался компакт-диск, "
+"но сейчас в приводе нет диска. Скорее всего, нужно вставить диск и выбрать "
+"пункт \"cdrom\"."
+
+#: ../apt-setup:730 ../apt-setup:813 ../apt-setup:938 ../apt-setup:951
+#: ../apt-setup:1098 ../apt-setup:1128
+msgid "Testing apt sources..."
+msgstr "Проверка источников apt..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "Обновляется список доступных пакетов..."

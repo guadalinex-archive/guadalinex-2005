@@ -1,0 +1,91 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+	echo 'Usage: find-live-filesystem ARCH cloop|manifest|winfoss' >&2
+	exit 1
+fi
+ARCH="$1"
+ITEM="$2"
+
+case $ARCH in
+	amd64)
+		BUILDD=king.buildd
+		;;
+	i386)
+		BUILDD=terranova.buildd
+		;;
+	ia64)
+		BUILDD=weddell.buildd
+		;;
+	powerpc)
+		BUILDD=royal.buildd
+		;;
+	*)
+		echo "No live filesystem source known for $ARCH" >&2
+		exit 1
+		;;
+esac
+
+case $ITEM in
+	cloop)
+		echo $PROJECT
+		echo "$BUILDD/~buildd/livecd/$PROJECT/current/livecd.$PROJECT.cloop"
+		;;
+	manifest)
+		echo "$BUILDD/~buildd/livecd/$PROJECT/current/livecd.$PROJECT.manifest"
+		;;
+	winfoss)
+		if [ "$DIST" = warty ]; then
+			exit 1
+		fi
+		case $PROJECT in
+			ubuntu)
+				case $ARCH in
+					i386)
+						echo http://maitri.ubuntu.com/theopencd/ubuntu/winfoss/latest/Hoary-WinFOSS.tgz
+						;;
+					amd64)
+						echo http://maitri.ubuntu.com/theopencd/ubuntu/amd64/latest/Hoary-WinFOSS-amd64.tgz
+						;;
+					*)	exit 1 ;;
+				esac
+				;;
+			guadalinex)
+				case $ARCH in
+					i386)
+						echo http://maitri.ubuntu.com/theopencd/ubuntu/winfoss/latest/Hoary-WinFOSS.tgz
+						;;
+					*)	exit 1 ;;
+				esac
+				;;
+			kubuntu)
+				case $ARCH in
+					i386)
+						echo http://maitri.ubuntu.com/theopencd/kubuntu/winfoss/latest/Kubuntu-WinFOSS-i386.tgz
+						;;
+					*)	exit 1 ;;
+				esac
+				;;
+			tocd3)
+				case $ARCH in
+					i386)
+						echo http://maitri.ubuntu.com/theopencd/tocd3/latest/TOCD3.tgz
+						;;
+					*)	exit 1 ;;
+				esac
+				;;
+			*)	exit 1 ;;
+		esac
+		;;
+	*)
+		echo "Unknown live filesystem item '$ITEM'" >&2
+		exit 1
+		;;
+esac
+
+exit 0
+

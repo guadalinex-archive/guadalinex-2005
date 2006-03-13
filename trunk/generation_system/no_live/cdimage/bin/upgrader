@@ -1,0 +1,106 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import shutil
+import os
+import re
+import sys
+import apt_pkg, apt_inst
+
+class Global:
+	already_copied = 0
+	packages_copied = []
+	packages_old = []
+	cdimage_root=sys.argv[1]
+
+	def copy_pkg (self, root, file, nextdir):
+		shutil.copy(root + '/' + file, Global.cdimage_root + '/ftp/pool/main/' + nextdir + '/')
+		sys.stdout.write('. ')
+		Global.packages_copied.append(file)
+
+	def main (self):
+		for root, dirs, files in os.walk(Global.cdimage_root + '/uda/pkgs'):
+			break
+
+		# I just want a 'mkdir -p' like bash :(
+		if not os.path.exists(Global.cdimage_root + '/ftp/old/pool/main'):
+			if not os.path.exists(Global.cdimage_root + '/ftp/old/pool'):
+				if not os.path.exists(Global.cdimage_root + '/ftp/old'):
+					os.mkdir(Global.cdimage_root + '/ftp/old')
+				os.mkdir(Global.cdimage_root + '/ftp/old/pool')
+			os.mkdir(Global.cdimage_root + '/ftp/old/pool/main')
+
+		for file in files:
+			pkg = apt_pkg.ParseSection(apt_inst.debExtractControl(open(root + '/' + file,'r')))
+			file_Package = pkg.Find('Package')
+			file_Version = pkg.Find('Version')
+			file_Source = pkg.Find('Source')
+
+			nextdir = pkg.Find('Source')
+			if not nextdir:
+				nextdir = file_Package
+	
+			if nextdir.count('('):
+				nextdir = nextdir.split(' ')[0]
+
+			if nextdir[0:3] == 'lib':
+				nextdir = nextdir[0:4] + '/' + nextdir
+				if not os.path.exists(Global.cdimage_root + '/ftp/pool/main/' + nextdir[0:4]):
+					os.mkdir(Global.cdimage_root + '/ftp/pool/main/' + nextdir[0:4])
+			else:
+				nextdir = nextdir[0] + '/' + nextdir
+				if not os.path.exists(Global.cdimage_root + '/ftp/pool/main/' + nextdir[0]):
+					os.mkdir(Global.cdimage_root + '/ftp/pool/main/' + nextdir[0])
+	
+			# If the dir doesn't exist, create it and copy directly	
+			if not os.path.exists(Global.cdimage_root + '/ftp/pool/main/' + nextdir):
+				os.mkdir(Global.cdimage_root + '/ftp/pool/main/' + nextdir)
+				Global.copy_pkg(self, root, file, nextdir)
+				Global.already_copied = 1
+			# If the dir exists, look for the package, if the pkg exists, compare the versions...
+			else:
+				re_file = re.compile(file_Package.replace('+', '\+') + '.*')
+				# Have a look for the pkg, if we don't find the pkg, "Global.already_copied" will be 0, and our pkg will be copied after.
+				for posible_file in os.listdir(Global.cdimage_root + '/ftp/pool/main/' + nextdir):
+					pkg_nominee = apt_pkg.ParseSection(apt_inst.debExtractControl(open(Global.cdimage_root + '/ftp/pool/main/' + nextdir + '/' + posible_file,'r')))
+					nominee_Package = pkg_nominee.Find('Package')
+					nominee_Version = pkg_nominee.Find('Version')
+		
+					if (file_Package == nominee_Package):
+						# Compare the versions
+						if file_Version > nominee_Version:
+							# Copy the new
+							Global.copy_pkg(self, root, file, nextdir)
+		
+							# Arhive the old
+							os.renames(Global.cdimage_root + '/ftp/pool/main/' + nextdir + '/' + posible_file, Global.cdimage_root + '/ftp/old/pool/main/' + nextdir + '/' + posible_file)
+							Global.packages_old.append(posible_file)
+						# If there are the same version or older -> don't do nothing
+
+						Global.already_copied = 1
+						break
+					else:
+						Global.already_copied = 0			
+			# If the var "Global.already_copied" is 0, it means one of this things:
+			#  - the pkg had already been copied
+			#  - the pkg don't need to be copied (is older than the pkg that is in pool)
+			
+			if not Global.already_copied:
+				Global.copy_pkg(self, root, file, nextdir)
+
+		# Show info
+		if len(Global.packages_copied):
+			print "\nArchived packages:"
+			for x in Global.packages_copied:
+				print x
+			print "\nNumber of archived packages", len(Global.packages_copied), '\n'
+			if len(Global.packages_old):
+				print "\nObsoletes packages: (They had been replaced by a newer version)"
+				for y in Global.packages_old:
+					print y
+		else:
+			print "No new packages"
+
+if __name__ == '__main__':
+	maining = Global()
+	maining.main()

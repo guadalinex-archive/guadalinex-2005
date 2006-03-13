@@ -1,0 +1,110 @@
+#!/bin/sh
+
+# Create GRUB boot floppy.
+#   Copyright (C) 2001 Jason Thomas <jason@debian.org>
+#
+# This file is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307,
+
+# Initialize some variables.
+dd=`which dd`
+pkglibdir=$(eval echo /lib/grub/*-*)
+stage1=$pkglibdir/stage1
+stage2=$pkglibdir/stage2
+
+# I like functions.
+
+abort()
+{
+        /bin/echo -e "\n$@\n" >&2
+                exit 1
+}
+
+checkfiles()
+{
+        [ -x "$dd" ] || abort "Can't find $dd, aborting"
+        [ -f "$stage1" ] || abort "Can't find $stage1, aborting"
+        [ -f "$stage2" ] || abort "Can't find $stage2, aborting"
+}
+
+usage()
+{
+        cat <<EOF
+Usage: $0 [options] <block device>
+Create GRUB boot floppy.
+
+options:
+        -h, --help      print this message and exit
+
+EOF
+        exit 1
+}
+
+checkdevice()
+{
+        [ -z "$1" ] && abort "checkdevice() takes block device as parameter"
+
+        [ -b "$1" ] || abort "$1 is not a block device, aborting"
+        [ -w "$1" ] || abort "$1 is not a writeable block device, aborting"
+}
+
+questiondevice()
+{
+        [ -z "$1" ] && abort "questiondevice() takes block device as parameter"
+
+        echo "You are about to overwrite the boot sector of the following device:"
+        echo "$1"
+        echo -n "Are you sure you want to take this action (y/N) "
+        read answer
+        case "$answer" in
+                y* | Y*)
+                        # let this fall through to the next function
+                        ;;
+                *)
+                        abort "Not continuing as you wish"
+                ;;
+        esac
+}
+
+createfloppy()
+{
+        [ -z "$1" ] && abort "createfloppy() takes block device as parameter"
+
+        /bin/echo -e "Creating grub boot floppy now, please be patient ...\n"
+
+        # heres where we actually create the floppy :-p
+        $dd if="$stage1" of="$1" bs="512" count="1"
+        $dd if="$stage2" of="$1" bs="512" seek="1"
+
+        /bin/echo -e "\nThat's All Folks!"
+}
+
+case "$1" in
+        -h | --help)
+                usage
+                ;;
+
+        *)
+                if [ -z "$1" ] ; then
+                        usage
+                else
+						checkfiles
+                        checkdevice "$1"
+                        questiondevice "$1"
+                        createfloppy "$1"
+                fi
+                ;;
+esac
+
+exit 0

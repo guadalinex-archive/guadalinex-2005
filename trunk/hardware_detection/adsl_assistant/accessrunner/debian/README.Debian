@@ -1,0 +1,55 @@
+accessrunner-usb for Debian
+---------------------------
+
+Configuration
+-------------
+Edit /etc/default/cxacru and /etc/network/interfaces. See /usr/share/doc/accessrunner-usb-utils/examples/interfaces for examples. With these configurations hotplug will ifup your connection when you connect your device.
+
+About a accessrunner-usb firmwares
+----------------------------------
+
+Due to the licensing restrictions this package can not redistribute the firmware produced by Conexant.
+
+As we read in
+http://people.debian.org/~md/
+there are some unofficial and potentially illegal packages of firmwares for USB DSL modems in:
+http://ftp.linux.it/pub/People/md/warez/
+
+You can get more instructions about how to obtain the firmware here:
+http://accessrunner.sourceforge.net/firmware.shtml
+"Conexant usually ships the firmware embedded in a [Windows] driver library, typically CnxEtU.sys. There is a program which may help you to extract it from there, cxacru-fw."
+
+In the accessrunner-usb-utils package there are one utils to obtain firmwares of accessrunner USB devices: cxacru-fw.
+
+For example, a tipical firmware configuration:
+$ cxacru-fw CnxEtU.sys cxacru-fw.bin
+found firmware in `/tmp/CnxEtU.sys' at offset 0x41c0
+
+$ sudo cp cxacru-fw.bin /lib/hotplug/firmware/cxacru-fw.bin
+
+How do i build this module the debian way?
+------------------------------------------
+
+- Building with module-assistant
+
+$ m-a a-i accessrunner-usb
+
+(for kernel source or headers in non-standard directory, add the option 
+-k /path/to/kernel/source with the correct path)
+
+- Building with make-kpkg
+
+$ cd /usr/src/
+$ ta jxvf accessrunner-usb.tar.bz2
+$ cd /usr/src/kernel-source-2.6.9
+$ make-kpkg --added-modules=accessrunner-usb modules
+
+- Building without make-kpkg
+
+$ cd /usr/src/
+$ tar jxvf accessrunner-usb.tar.bz2
+$ cd modules/accessrunner-usb
+$ fakeroot debian/rules kdist_image
+
+(no fakeroot needed if you run this as root)
+

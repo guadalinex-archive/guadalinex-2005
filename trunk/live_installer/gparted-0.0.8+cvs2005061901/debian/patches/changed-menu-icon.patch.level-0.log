@@ -1,0 +1,12 @@
+can't find file to patch at input line 4
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|diff -Nur gparted-0.0.8+cvs20050502/gparted.desktop.in gparted-0.0.8+cvs20050502.new/gparted.desktop.in
+|--- gparted-0.0.8+cvs20050502/gparted.desktop.in	2004-09-20 23:18:46.000000000 +0200
+|+++ gparted-0.0.8+cvs20050502.new/gparted.desktop.in	2005-06-03 09:28:47.000000000 +0200
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+1 out of 1 hunk ignored

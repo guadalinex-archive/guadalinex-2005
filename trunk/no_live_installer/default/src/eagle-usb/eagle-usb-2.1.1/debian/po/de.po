@@ -1,0 +1,761 @@
+# translation of eagle-adsl_1.0.4-14_templates.po to German
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans#
+#    Developers do not need to manually edit POT or PO files.
+# Erik Schanze <mail@erikschanze.de>, 2004, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eagle-adsl_1.0.4-16_de\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-03-24 15:46+0100\n"
+"PO-Revision-Date: 2005-03-24 22:59+0100\n"
+"Last-Translator: Erik Schanze <mail@erikschanze.de>\n"
+"Language-Team: German <debian-l10n-german@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "manual configuration"
+msgstr "manuelle Konfiguration"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Algeria              Wanadoo"
+msgstr "Algerien             Wanadoo"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Argentina            Speedy"
+msgstr "Argentinien          Speedy"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Austria              *"
+msgstr "Österreich           *"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Austria              AON"
+msgstr "Österreich           AON"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Austria              Telstra"
+msgstr "Österreich           Telstra"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Belgium              ADSL Office"
+msgstr "Belgien              ADSL Office"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Belgium              Belgacom"
+msgstr "Belgien              Belgacom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Belgium              Tiscali"
+msgstr "Belgien              Tiscali"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Belgium              Turboline"
+msgstr "Belgien              Turboline"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Brazil               Rio Grande do Sul"
+msgstr "Brasilien            Rio Grande do Sul"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Brazil               Speedy Telefonica"
+msgstr "Brasilien            Speedy Telefonica"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Brazil               Turbo Brasil Telecom"
+msgstr "Brasilien            Turbo Brasil Telecom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Brazil               Velox Telemar"
+msgstr "Brasilien            Velox Telemar"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Bulgaria             BTC isdn"
+msgstr "Bulgarien            BTK isdn"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Bulgaria             BTC pots"
+msgstr "Bulgarien            BTK pots"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Netcom Beijing"
+msgstr "China                China Netcom Beijing"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Netcom Changchun"
+msgstr "China                China Netcom Changchun"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Netcom Harbin"
+msgstr "China                China Netcom Harbin"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Netcom Hunan"
+msgstr "China                China Netcom Hunan"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Netcom Jilin"
+msgstr "China                China Netcom Jilin"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Netcom Lanzhou"
+msgstr "China                China Netcom Lanzhou"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Netcom Tianjin"
+msgstr "China                China Netcom Tianjin"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Netcom Xi'an"
+msgstr "China                China Netcom Xi'an"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Chongqing"
+msgstr "China                China Telecom Chongqing"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Fujian"
+msgstr "China                China Telecom Fujian"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Guangxi"
+msgstr "China                China Telecom Guangxi"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Guangzhou"
+msgstr "China                China Telecom Guangzhou"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Hangzhou"
+msgstr "China                China Telecom Hangzhou"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Nanjing"
+msgstr "China                China Telecom Nanjing"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Shanghai"
+msgstr "China                China Telecom Shanghai"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Shenzhen"
+msgstr "China                China Telecom Shenzhen"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Urumqi"
+msgstr "China                China Telecom Urumqi"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Wuhan"
+msgstr "China                China Telecom Wuhan"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Yunnan"
+msgstr "China                China Telecom Yunnan"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "China                China Telecom Zhuhai"
+msgstr "China                China Telecom Zhuhai"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Czech Republic       Cesky Telecom"
+msgstr "Tschechien           Cesky Telecom"
+
+# msgstr "Tschechische Republik Cesky Telecom"
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Denmark              *"
+msgstr "Dänemark             *"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Egypt                Raya Telecom"
+msgstr "Ägypten              Raya Telecom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Finland              Sonera"
+msgstr "Finnland             Sonera"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Cegetel ADSL 512"
+msgstr "Frankreich           Cegetel ADSL 512"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Cegetel ADSL Max"
+msgstr "Frankreich           Cegetel ADSL Max"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Club-Internet"
+msgstr "Frankreich           Club-Internet"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Free degroupe"
+msgstr "Frankreich           Free degroupe"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Free non degroupe"
+msgstr "Frankreich           Free non degroupe"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Tele2"
+msgstr "Frankreich           Tele2"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Tiscali 128k"
+msgstr "Frankreich           Tiscali 128k"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Tiscali 512k"
+msgstr "Frankreich           Tiscali 512k"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               Wanadoo"
+msgstr "Frankreich           Wanadoo"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "France               n9uf tel9com"
+msgstr "Frankreich           n9uf tel9com"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Germany              1&1"
+msgstr "Deutschland          1&1"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Germany              Deutsche Telekom"
+msgstr "Deutschland          Deutsche Telekom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Greece               *"
+msgstr "Griechenland         *"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Hungary              Matav"
+msgstr "Ungarn               Matav"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Ireland              *"
+msgstr "Irland               *"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Israel               Bezeq"
+msgstr "Israel               Bezeq"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Italy                Alice dynamic IP"
+msgstr "Italien              Alice dynamische IP"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Italy                Alice static IP"
+msgstr "Italien              Alice statische IP"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Italy                Libero"
+msgstr "Italien              Libero"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Italy                Tiscali"
+msgstr "Italien              Tiscali"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Lithuania            Lietuvos Telekomas"
+msgstr "Litauen              Lietuvos Telekomas"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Mauritius            Wanadoo"
+msgstr "Mauritius            Wanadoo"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Morocco              Maroc Telecom"
+msgstr "Marokko              Maroc Telecom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Netherlands          Eager Telecom"
+msgstr "Niederlande          Eager Telecom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Netherlands          KPN"
+msgstr "Niederlande          KPN"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Netherlands          Tiscali"
+msgstr "Niederlande          Tiscali"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Netherlands          Versatel"
+msgstr "Niederlande          Versatel"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Poland               Netia Neostrada"
+msgstr "Polen                Netia Neostrada"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Poland               TPSA Telekomunikacja Polska"
+msgstr "Polen                TPSA Telekomunikacja Polska"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Portugal             Portugal Telecom"
+msgstr "Portugal             Portugal Telecom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Russia Federation    MTU-Intel"
+msgstr "Russische Föderation MTU-Intel"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Slovenia             SiOL"
+msgstr "Slowenien            SiOL"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Arrakis"
+msgstr "Spanien              Arrakis"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Auna"
+msgstr "Spanien              Auna"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Communitel"
+msgstr "Spanien              Communitel"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Euskatel"
+msgstr "Spanien              Euskatel"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Telefonica dynamic IP"
+msgstr "Spanien              Telefonica dynamische IP"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Telefonica static IP"
+msgstr "Spanien              Telefonica statische IP"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Tiscali"
+msgstr "Spanien              Tiscali"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Uni2"
+msgstr "Spanien              Uni2"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Wanadoo dynamic IP"
+msgstr "Spanien              Wanadoo dynamische IP"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Wanadoo static IP"
+msgstr "Spanien              Wanadoo statische IP"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                Wanadoo/Eresmas Retevision"
+msgstr "Spanien              Wanadoo/Eresmas Retevision"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                ya.com dynamic IP"
+msgstr "Spanien              ya.com dynamische IP"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Spain                ya.com static IP"
+msgstr "Spanien              ya.com statische IP"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Sweden               Telia"
+msgstr "Schweden             Telia"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Switzerland          *"
+msgstr "Schweiz              *"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Switzerland          BlueWin"
+msgstr "Schweiz              BlueWin"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Switzerland          Swisscom"
+msgstr "Schweiz              Swisscom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Switzerland          Tiscali"
+msgstr "Schweiz              Tiscali"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Thailand             Asianet"
+msgstr "Thailand             Asianet"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "Tunisia              Planet"
+msgstr "Tunesien             Planet"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "United Arab Emirates Etisalat"
+msgstr "V. Arabische Emirate Etisalat"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "United Kingdom       British Telecom"
+msgstr "V. Königreich        British Telecom"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:4
+msgid "United Kingdom       Tiscali"
+msgstr "V. Königreich        Tiscali"
+
+#. Type: select
+#. Description
+#: ../eagle-usb-utils.templates:6
+msgid "Network configuration:"
+msgstr "Netzwerk-Konfiguration:"
+
+#. Type: select
+#. Description
+#: ../eagle-usb-utils.templates:6
+msgid ""
+"If your Internet Services Provider (ISP) is not listed, select \"manual "
+"configuration\"."
+msgstr ""
+"Wenn Ihr Internet-Anbieter (ISP) nicht aufgeführt ist, wählen Sie \"manuelle "
+"Konfiguration\" aus."
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:13
+msgid "VPI:"
+msgstr "VPI:"
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:13
+msgid "Virtual Path Identifier"
+msgstr "Virtual Path Identifier"
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:19
+msgid "VCI:"
+msgstr "VCI:"
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:19
+msgid "Virtual Channel Identifier"
+msgstr "Virtual Channel Identifier"
+
+#. Type: select
+#. Description
+#: ../eagle-usb-utils.templates:26
+msgid "Encapsulation method:"
+msgstr "Einkapselungsmethode:"
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:31
+msgid "Linetype:"
+msgstr "Anschlussart:"
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:35
+msgid "Static IP address (empty for none):"
+msgstr "Feste IP-Adresse (leer für keine):"
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:35
+msgid ""
+"If you want to use a static IP address, please enter it now. If you address "
+"is obtained from your ISP, leave this field blank."
+msgstr ""
+"Wenn Sie eine statische IP-Adresse nutzen wollen, geben Sie die jetzt ein; "
+"um die IP-Adresse vom ISP zu beziehen, lassen Sie das Feld leer."
+
+#. Type: boolean
+#. Description
+#: ../eagle-usb-utils.templates:42
+msgid "Do you want automatically update DNS server?"
+msgstr "DNS-Server automatisch aktualisieren?"
+
+#. Type: boolean
+#. Description
+#: ../eagle-usb-utils.templates:42
+msgid ""
+"If you installed a DNS server, answer \"No\". If you don't understand the "
+"question, answer \"Yes\"."
+msgstr ""
+"Wenn Sie einen DNS-Server installiert haben, lehnen Sie ab. Wenn Sie "
+"unsicher sind, stimmen Sie zu."
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:49
+msgid "DSL login:"
+msgstr "DSL-Login:"
+
+#. Type: string
+#. Description
+#: ../eagle-usb-utils.templates:49
+msgid ""
+"Please enter the login for identification with your DSL access provider. "
+"Some providers may also call it username."
+msgstr ""
+"Geben Sie bitte das Login-Kennzeichen zur Identifikation bei Ihrem DSL-"
+"Zugangsanbieter ein. Manche Anbieter nennen es Benutzername (username)."
+
+#. Type: password
+#. Description
+#: ../eagle-usb-utils.templates:56
+msgid "DSL password:"
+msgstr "DSL-Passwort:"
+
+#. Type: password
+#. Description
+#: ../eagle-usb-utils.templates:56
+msgid ""
+"Please enter the password for identification with your DSL access provider."
+msgstr ""
+"Geben Sie bitte das Passwort zur Identifikation bei Ihrem DSL-"
+"Zugangsanbieter ein."
+
+#. Type: boolean
+#. Description
+#: ../eagle-usb-utils.templates:62
+msgid "Does your ISP support password encryption?"
+msgstr "Unterstützt Ihr ISP Passwort-Verschlüsselung?"
+
+#. Type: select
+#. Choices
+#: ../eagle-usb-utils.templates:66
+msgid "onboot, onplug, no"
+msgstr "beim Hochfahren, beim Einschalten, nicht"
+
+#. Type: select
+#. Description
+#: ../eagle-usb-utils.templates:68
+msgid "Method for starting the DSL connection:"
+msgstr "Start der DSL-Verbindung:"
+
+#. Type: select
+#. Description
+#: ../eagle-usb-utils.templates:68
+msgid ""
+"You can choose to automatically start your Internet connection on plug or on "
+"boot. If you choose \"onplug\", the connection will be triggered when "
+"plugging your modem (including at boot time). If you choose \"onboot\", the "
+"connection will only happen at boot time."
+msgstr ""
+"Sie können auswählen, ob Ihre Internetverbindung beim Hochfahren oder beim "
+"Einschalten automatisch aufgebaut werden soll. Wenn Sie \"Beim Einschalten\" "
+"auswählen, wird die Verbindung bei jedem Einschalten Ihres Modems (incl. "
+"Hochfahren des Rechners) aufgebaut. Wenn Sie \"Beim Hochfahren\" auswählen, "
+"wird die Verbindung nur einmal beim Starten des Rechners aufgebaut."
+
+#. Type: boolean
+#. Description
+#: ../eagle-usb-utils.templates:77
+msgid "Do you want to enable a 'cron' task to control connection?"
+msgstr "Soll ein Cron-Job zur Überwachung der Verbindung eingerichtet werden?"
+
+#. Type: boolean
+#. Description
+#: ../eagle-usb-utils.templates:77
+msgid ""
+"If you choose this option, a 'cron' task will control your Internet "
+"connection periodically and restart it when it is lost."
+msgstr ""
+"Wenn Sie zustimmen, wird ein Cron-Job eingerichtet, der Ihre "
+"Internetverbindung regelmäßig überprüft und neu startet, wenn sie "
+"untergebrochen ist."

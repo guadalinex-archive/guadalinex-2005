@@ -1,0 +1,162 @@
+#!/bin/sh
+# 
+
+PREREQ="hwdetect"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+
+
+. /conf/initramfs.conf
+
+cat <<EOF > ${rootmnt}/etc/rc2.d/S10adduser.sh
+#
+# adduser.sh	Add a new user for the live session.
+#
+# Version:	@(#)adduser.sh  1.0  15-Oct-2005  juanje@interactors.coop
+# Based in casper script
+#
+
+VERBOSE=yes
+TMPTIME=0
+[ -f /etc/default/rcS ] && . /etc/default/rcS
+. /lib/lsb/init-functions
+#. /usr/share/debconf/confmodule
+
+#
+# Add the user for the live session
+#
+log_begin_msg "Adding user $USERNAME..."
+
+# Comment for testing better
+#for question in username user-fullname user-password user-password-again; do
+#    db_set passwd/\$question $USERNAME
+#    db_fset passwd/\$question seen true
+#done
+#
+#db_set passwd/md5 true
+#db_fset passwd/md5 seen true
+#
+##DEBCONF_RECONFIGURE=1 dpkg-reconfigure -fpassthrough passwd
+#version="\$(dpkg --status passwd | grep ^Version: | sed 's/^Version: //')"
+#CODE=0
+#DEBCONF_RECONFIGURE=1 /var/lib/dpkg/info/passwd.config reconfigure "\$version"
+
+# Ugly way, but necessary by now, and anyway is the way as internally passwd package does....
+# Create the user
+if test -x /usr/sbin/adduser; then
+    adduser --disabled-password --gecos "$USERNAME" "$USERNAME" >/dev/null 2>&1
+else
+    useradd -c "$USERNAME" -m "$USERNAME" >/dev/null 2>&1
+fi
+
+# Setup the password
+echo "$USERNAME:$USERNAME" | chpasswd --md5 >/dev/null 2>&1
+
+# Add to the groups
+if test -x /usr/sbin/adduser; then
+	for group in adm audio cdrom dialout floppy video plugdev dip ; do
+		adduser "$USERNAME" \$group >/dev/null 2>&1
+	done
+	for group in lpadmin scanner admin ; do
+		addgroup --system \$group >/dev/null 2>&1
+		adduser "$USERNAME" admin >/dev/null 2>&1
+	done
+else
+	exit 1
+fi
+
+if [ -f /etc/sudoers ]; then
+    if grep -q \%admin /etc/sudoers; then 
+        sed -i -e '/^%admin/s/ALL$/NOPASSWD: ALL/' /etc/sudoers
+    else
+	echo "%admin  ALL=NOPASSWD: ALL" >> /etc/sudoers
+    fi 
+fi
+
+# Lock the user's password
+passwd -l $USERNAME
+
+# XXX - awful hack to stop xscreensaver locking the screen (#7150)
+echo 'RUNNING_UNDER_GDM="yes"' >> /etc/environment
+
+log_end_msg \$?
+
+exit 0
+EOF
+
+# GDM
+cat <<FEOF > ${rootmnt}/etc/rc2.d/S10autologin.sh
+#
+# autologin.sh	Configure the [G|K]dm for starting the session with the live user.
+#
+# Version:	@(#)autologin.sh  1.0  15-Oct-2005  juanje@interactors.coop
+# Based in casper script
+#
+
+VERBOSE=yes
+TMPTIME=0
+[ -f /etc/default/rcS ] && . /etc/default/rcS
+. /lib/lsb/init-functions
+
+#
+# Configure the X
+#
+log_begin_msg "Configuring the Session Manager..."
+
+if [ -f /etc/gdm/gdm.conf ]; then
+    # Configure GDM autologin
+
+    sed -i \
+        -e "s/^AutomaticLoginEnable=.*\$/AutomaticLoginEnable=true/" \
+        -e "s/^AutomaticLogin=.*\$/AutomaticLogin=$USERNAME/" \
+        -e "s/^TimedLoginEnable=.*\$/TimedLoginEnable=true/" \
+        -e "s/^TimedLogin=.*\$/TimedLogin=$USERNAME/" \
+        -e "s/^TimedLoginDelay=.*\$/TimedLoginDelay=10/" \
+        /etc/gdm/gdm.conf
+fi
+
+if [ -f /etc/kde3/kdm/kdmrc ]; then
+    # Configure KDM autologin
+    sed -i -r \
+        -e "s/^#?AutoLoginEnable=.*\$/AutoLoginEnable=true/" \
+        -e "s/^#?AutoLoginUser=.*\$/AutoLoginUser=$USERNAME/" \
+        -e "s/^#?AutoReLogin=.*\$/AutoReLogin=true/" \
+        /etc/kde3/kdm/kdmrc
+fi
+
+if which kpersonalizer >/dev/null; then
+    # Disable first-login wizard for KDE
+    if [ ! -f /etc/kde3/kpersonalizerrc ]; then
+        cat > /etc/kde3/kpersonalizerrc <<EOF
+[General]
+FirstLogin=false
+EOF
+    else
+        echo "I'm not smart enough to disable kpersonalizer startup" >&2
+        echo "Because kpersonalizerrc already exists" >&2
+    fi
+fi
+
+log_end_msg
+
+: exit 0
+FEOF
+
+${rootmnt}/bin/chmod +x ${rootmnt}/etc/rc2.d/S10adduser.sh ${rootmnt}/etc/rc2.d/S10autologin.sh
+
+# Copy the installer .desktop to the user desktop
+cp -a /conf/install.desktop ${rootmnt}/etc/skel/Desktop/ >> /tmp/initramfs.debug 2>&1
+
+exit 0

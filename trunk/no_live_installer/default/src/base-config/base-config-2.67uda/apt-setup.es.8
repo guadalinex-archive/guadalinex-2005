@@ -1,0 +1,33 @@
+.\" (c) 2003 Software in the Public Interest
+.\" Esta traducción ha sido realizada por Rubén Porras Campo <nahoo@inicia.es>
+.\" Está basada en la página de manual original:
+.\" versión 1.3 del CVS de
+.\" /cvs/debian-doc/manpages/english/base-config/apt-setup.8
+
+.TH APT-SETUP 8
+.SH NOMBRE
+apt-setup \- añade fuentes para las descargas de apt
+.SH SINOPSIS
+.B apt-setup [probe] [-N]
+.SH DESCRIPCIÓN
+.BR apt-setup
+es un programa interactivo que simplifica el proceso de añadir fuentes al 
+sources.list de apt. Conoce las principales réplicas Debian y puede ayudarle a
+seleccionar una. Incluso puede usar
+.BR apt-cdrom (8)
+para analizar CD's.
+.SH OPCIONES
+.TP
+.I "probe"
+Por omisión no se busca ningún CD. Si se pasa "probe" como primer argumento el
+programa mirará al arrancar si hay un CD en la unidad y lo añadirá al
+sources.list. Esto es útil en instalaciones iniciales de Debian, para minimizar
+la interacción con el usuario.
+.TP
+.I "-N"
+Este parámetro permite ejecutar apt-setup de forma no interactiva si
+los valores de debconf han sido preconfigurados.
+.SH AUTOR
+Joey Hess <joey@kitenet.net>
+.SH TRADUCTOR
+Traducción de Rubén Porras Campo <debian-l10n-spanish@lists.debian.org>

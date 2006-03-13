@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tty_conf_list>
+  <tty_conf id='0001'  baudrate='9600' bits='8' parity='N' stopbits='1' xonxoff='0' rtscts='0'/>
+  <tty_conf id='0002' baudrate='38400' bits='8' parity='N' stopbits='1' xonxoff='0' rtscts='0'/>
+</tty_conf_list>

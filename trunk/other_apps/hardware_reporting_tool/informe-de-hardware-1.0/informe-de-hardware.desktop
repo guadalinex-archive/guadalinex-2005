@@ -1,0 +1,16 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Hardware Report Tool
+Name[en_CA]=Hardware Report Tool
+Name[en_GB]=Hardware Report Tool
+Name[es]=Herramienta de informe de hardware
+Comment=Create a hardware report in GNU/Linux systems
+Comment[en_CA]=Create a hardware report in GNU/Linux systems
+Comment[en_GB]=Create a hardware report in GNU/Linux systems
+Comment[es]=Crea un informe de hardware en sistemas GNU/Linux
+Exec=/usr/bin/infhard
+Icon=/usr/share/icons/informe-de-hardware/informe-de-hardware.svg
+Terminal=false
+Type=Application
+Categories=GNOME;Application;System;
+StartupNotify=true

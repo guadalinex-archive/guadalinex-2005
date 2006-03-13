@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<firmware_list>
+  <firmware id='0001' distributed='0' location='' public_name='V1.1.7' comment='' internal_name='V1.1.7'/>
+  <firmware id='0002' distributed='0' location='' public_name='2.3.0(4R3)' comment='' internal_name='2.3.0(4R3)'/>
+  <firmware id='0003' distributed='0' location='' public_name='Gx1x2230.R04' comment='' internal_name='Gx1x2230.R04'/>
+</firmware_list>

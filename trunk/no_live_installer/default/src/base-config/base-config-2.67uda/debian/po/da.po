@@ -1,0 +1,1382 @@
+# translation of base-config_da.po to Danish
+# translation of da.po to Danish
+# Danish translation for the Debian base-config package
+# Copyright (C) 2003 The Debian Project
+# This file is distributed under the same license as the base-config package.
+#    Translators, please read /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+# Claus Hindsgaul <claus_h@image.dk>, 2003, 2004, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: da\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-10 19:59+0100\n"
+"PO-Revision-Date: 2005-06-20 16:30+0200\n"
+"Last-Translator: Claus Hindsgaul <claus_h@image.dk>\n"
+"Language-Team: Danish <dansk@klid.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#. Type: title
+#. Description
+#: ../templates:3
+msgid "Ubuntu base system configuration"
+msgstr "Opsætning af Ubuntus basissystem"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "Choose the next step in the install process:"
+msgstr "Vælg næste trin i installationsprocessen:"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "This is the base system configuration menu."
+msgstr "Dette er basissystemets opsætningsmenu."
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid "Welcome to your new Ubuntu system!"
+msgstr "Velkommen til dit nye Ubuntusystem!"
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid ""
+"This program will now walk you through the process of setting up your newly "
+"installed system. It will start with the basics -- time zone selection, "
+"setting a root password and adding a user, and then progress to installing "
+"additional software to tune this new Ubuntu system to your needs."
+msgstr ""
+"Dette program vil nu lede dig gennem opsætningen af dit nyinstallerede "
+"system. Det vil starte med de grundlæggende ting - valg af tidszone, "
+"angivelse af adgangskode for root samt tilføjelse af en bruger, for derefter "
+"at fortsætte til installation af yderligere programmer, så dit Ubuntusystem "
+"kommer til at svare til dine behov."
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid "Use a PPP connection to install the system?"
+msgstr "Benyt en PPP-forbindelse til at installere systemet?"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"This system does not seem to be currently connected to the internet. Even if "
+"you plan to install from CD, it is wise to download at least security "
+"updates from the internet."
+msgstr ""
+"Dette system lader ikke til aktuelt at være forbundet til internettet. Selv "
+"hvis du ønsker at installere fra cd, vil det være fornuftigt i det mindste "
+"at hente sikkerhedsopdateringer fra internettet."
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"If you have an account on an Internet Services Provider (ISP), and you want "
+"to use it during the install, you may configure the PPP service now, and "
+"open a PPP connection to your ISP."
+msgstr ""
+"Hvis du har en konto hos en internetudbyder, og vil anvende denne under "
+"installationen, kan du sætte PPP-systemet op nu og oprette PPP-forbindelsen "
+"til din udbyder."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid "There was a problem installing the selected software"
+msgstr "Der var et problem med installation af de valgte programmer"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"One or more packages failed to install. This may be due to bugs in the "
+"packages, or you may be out of disk space or experiencing some other problem."
+msgstr ""
+"En eller flere pakker kunne ikke installeres. Dette kan skyldes fejl i "
+"pakkerne, eller mangel på diskplads eller andre problemer."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"Simply trying to install those packages (or a slightly different set of "
+"packages) again may work around the problem, or at least move the "
+"installation process along a little further. If you want, you can go back to "
+"the package selection step, and try again."
+msgstr ""
+"Muligvis vil et simpelt forsøg på at installere pakkerne (eller en lidt "
+"ændret pakkeliste) igen klare problemet, eller i det mindste komme lidt "
+"længere i installationsprocessen. Du kan også gå tilbage til "
+"pakkeudvælgelsestrinnet og prøve igen, hvis du vil."
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"If you decide not to try again, bear in mind that some packages on your "
+"system will be in a broken state until you manually resolve the problem."
+msgstr ""
+"Hvis du beslutter dig for ikke at prøve igen, skal du være klar over at "
+"enkelte pakker i dit system muligvis ikke er funktionsdygtige før du manuelt "
+"løser problemet."
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Thank you for choosing Ubuntu!"
+msgstr "Tak fordi du valgte Ubuntu!"
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Setup of your Ubuntu system is complete. You may now login."
+msgstr "Opsætningen af dit Ubuntusystem er afsluttet. Du kan nu logge ind."
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid ""
+"If you want to revisit this setup process at a later date, just run the base-"
+"config program."
+msgstr ""
+"Hvis du senere vil køre denne opsætningsproces igennem, skal du blot køre "
+"programmet base-config."
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "System hostname:"
+msgstr "Systemets værtsnavn:"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "Please enter your system hostname."
+msgstr "Angiv dit systems værtsnavn."
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid ""
+"The hostname is a name that identifies your system to the network. If you "
+"don't know what your hostname should be, consult your network administrator. "
+"If you are setting up your own home network, you can make something up here."
+msgstr ""
+"Værtsnavnet er et navn, som identificerer dit system på netværket. Hvis du "
+"ikke ved, hvad dit værtsnavn skal være, bør du snakke med din "
+"netværksadministrator. Hvis du sætter dit eget hjemmenetværk op, kan du blot "
+"selv finde på et navn."
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid "Invalid hostname \"${HOSTNAME}\""
+msgstr "Værtsnavnet \"${HOSTNAME}\" er ugyldigt"
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid ""
+"A valid hostname may contain period-separated parts containing only "
+"alphanumeric characters and the minus sign, be between 2 and 63 characters "
+"long, and each part cannot begin or end with a minus sign."
+msgstr ""
+"Et gyldigt værtsnavn kan indeholde dele med kun tal, bogstaver og minustegn "
+"adskilt af punktummer. Det skal være mellem 2 og 63 tegn langt og hver del "
+"må hverken begynde eller ende med et minustegn."
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid "Do you want to start the graphical display manager?"
+msgstr "Vil du starte den grafiske skærmhåndtering?"
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid ""
+"The graphical display manager makes it possible to log in using a graphical "
+"environment."
+msgstr ""
+"Den grafiske skærmhåndtering gør det muligt at logge på i et grafisk miljø."
+
+#. Type: text
+#. Description
+#: ../templates:117
+msgid "Load preseed file"
+msgstr "Indlæs preseed-fil"
+
+#. Type: text
+#. Description
+#: ../templates:121
+msgid "Display introductory message"
+msgstr "Vis introduktionsbesked"
+
+#. Type: text
+#. Description
+#: ../templates:125
+msgid "Configure the keyboard"
+msgstr "Sæt tastaturet op"
+
+#. Type: text
+#. Description
+#. Type: title
+#. Description
+#: ../templates:129 ../tzsetup-udeb.templates:3
+msgid "Configure timezone"
+msgstr "Indstil tidszonen"
+
+#. Type: text
+#. Description
+#: ../templates:133
+msgid "Set up users and passwords"
+msgstr "Sæt brugere og adgangskoder op"
+
+#. Type: text
+#. Description
+#: ../templates:137
+msgid "Set the hostname"
+msgstr "Angiv værtsnavnet"
+
+#. Type: text
+#. Description
+#: ../templates:141
+msgid "Configure and enable ppp"
+msgstr "Indstil og aktivér ppp"
+
+#. Type: text
+#. Description
+#. This MUST NOT contain a comma. The same goes for other descriptions
+#. in base-config/menu/*. These form a debconf choices list.
+#. Type: title
+#. Description
+#: ../templates:147 ../apt-setup-udeb.templates:3
+msgid "Configure apt"
+msgstr "Sæt apt op"
+
+#. Type: text
+#. Description
+#: ../templates:151
+msgid "Select and install packages"
+msgstr "Udvælg og installér pakker"
+
+#. Type: text
+#. Description
+#: ../templates:155
+msgid "Configure the Mail Transfer Agent"
+msgstr "Sæt posthåndteringen op"
+
+#. Type: text
+#. Description
+#: ../templates:159
+msgid "Finish configuring the base system"
+msgstr "Afslut opsætning af basissystemet"
+
+#. Type: text
+#. Description
+#: ../templates:163
+msgid "Exit the base system configuration"
+msgstr "Afslut opsætningen af basissystemet"
+
+#. Type: text
+#. Description
+#: ../templates:167
+msgid "Execute a shell"
+msgstr "Eksekvér en skal"
+
+#. Type: text
+#. Description
+#: ../templates:171
+#, fuzzy
+msgid "Installing packages"
+msgstr "Installér valgte pakker"
+
+#. Type: text
+#. Description
+#: ../templates:175
+#, fuzzy
+msgid "Preparing for installation..."
+msgstr "Forbereder opsætning af apt..."
+
+#. Type: text
+#. Description
+#: ../templates:184
+msgid "Registering documentation, please wait..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:7
+msgid "Preparing to configure apt..."
+msgstr "Forbereder opsætning af apt..."
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:11
+msgid "Copying mirror configuration..."
+msgstr "Kopierer opsætning af filspejl..."
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:15 ../../apt-setup.templates:202
+msgid "Checking for CD-ROM..."
+msgstr "Tjekker for cdrom..."
+
+#. Type: title
+#. Description
+#: ../../tzsetup.templates:3
+msgid "Time zone configuration"
+msgstr "Opsætning af tidszone"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "Is the hardware clock set to GMT?"
+msgstr "Er maskinuret sat efter GMT?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid ""
+"Unix system clocks are generally set to GMT (\"Greenwich Mean Time\", also "
+"known as \"Universal Coordinated Time\", or UTC). The operating system knows "
+"your time zone and converts system time into the local time. You can specify "
+"whether the hardware clock is set to either GMT (recommended for a Linux-"
+"only system) or local time (which may be more convenient for a system that "
+"also runs other operating systems or an off-the-shelf PC)."
+msgstr ""
+"Unix-systemure sættes normalt til GMT (\"Greenwich Mean Time\", også kendt "
+"som UTC). Operativsystemet kender din tidszone og omsætter systemtiden til "
+"lokaltid. Du skal angive, om maskinuret er sat efter GMT (anbefales for rene "
+"Linux-systemer) eller lokaltid (hvilket kan være praktisk, hvis maskinen "
+"også kører under andre operativsystemer samt for fabriksinstallerede "
+"maskiner)."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "The hardware clock says the time is now ${hwtime}."
+msgstr "Maskinuret viser, at klokken nu er ${hwtime}."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Do you want to change your current time zone?"
+msgstr "Ønsker du at vælge en anden tidszone?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Your current time zone is set to ${timezone}."
+msgstr "Din nuværende tidszone er sat til ${timezone}."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:27
+msgid ""
+"Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
+"Indiana, Indiana-Starke, Michigan, Samoa, other"
+msgstr ""
+"Østlige, Centrale, Bjergene, Stillehavet, Alaska, Hawaii, Aleutian, Arizona, "
+"Øst-Indiana, Indiana-Starke, Michigan, Samoa, anden"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:28
+msgid "The following are common time zones in the United States of America."
+msgstr "Herunder er de almindelige tidszoner i Amerikas Forenede Stater."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:37
+msgid ""
+"Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, other"
+msgstr ""
+"Newfoundland, Atlantiske, Østlige, Centrale, Øst-Saskatchewan, Saskatchewan, "
+"Bjergene, Stillehavet, Yukon, anden"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:38
+msgid "The following are common time zones in Canada."
+msgstr "Herunder er de almindelige tidszoner i Canada."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:47
+msgid "East, West, Acre, DeNoronha, other"
+msgstr "Øst, Vest, Acre, DeNoronha, anden"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid "The following are common time zones in Brazil."
+msgstr "Herunder er de almindelige tidszoner i Brasilien."
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid ""
+"If you are in a different time zone, choose \"other\" to select from all "
+"available time zones."
+msgstr ""
+"Hvis du er i en anden tidszone, så vælg \"anden\" for at vælge mellem "
+"samtlige tilgængelige tidszoner."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Are you in the ${zone} time zone?"
+msgstr "Er du i tidszonen ${zone}?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Based on your country, your time zone is probably ${zone}."
+msgstr "Ud fra dig landevalg, er din tidszone sandsynligvis ${zone}."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:62
+msgid "${choices}, other"
+msgstr "${choices}, anden"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid "Select your time zone:"
+msgstr "Vælg din tidszone:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid ""
+"Based on your country, you are probably in one of these time zones. If you "
+"are not, choose \"other\" to select from all available time zones."
+msgstr ""
+"Ud fra dit landevalg, er du sandsynligvis i en af disse tidszone. Hvis ikke, "
+"så vælg \"anden\" for at vælge mellem samtlige tilgængelige tidszoner."
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:69
+msgid ""
+"Africa, America, US, Canada, Asia, Atlantic Ocean, Australia, Europe, Indian "
+"Ocean, Pacific Ocean, System V style time zones, None of the above"
+msgstr ""
+"Afrika, Amerika, USA, Canada, Asien, Atlanterhavet, Australien, Europa, "
+"Indiske Ocean, Middelhavet, System V-tidszoner, Ingen af ovenstående"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Area for your time zone:"
+msgstr "Område for din tidszone:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Pick the geographic area in which the time zone you desire is located."
+msgstr "Vælg det geografiske område, hvori den ønskede tidszone ligger."
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid "Select a city or time zone:"
+msgstr "Vælg en by eller tidszone:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid ""
+"Cities represent the time zone in which they are located, so you may choose "
+"any city in the desired time zone."
+msgstr ""
+"Byerne repræsenterer den tidszone, hvori de ligger, så du kan bare vælge en "
+"by, der ligger i din tidzone."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Is this information correct?"
+msgstr "Er oplysningerne korrekte?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Here is your selected time zone information."
+msgstr "Her er de valgte tidszoneoplysninger."
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid ""
+" Local time is now:          ${tzdate}\n"
+" Universal Time is now:      ${utdate}\n"
+" Time zone is set to:        ${timezone}"
+msgstr ""
+" Lokaltiden er nu:                   ${tzdate}\n"
+" Universaltiden er nu:             ${utdate}\n"
+" Tidszonen er sat til:                    ${timezone}"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "If something looks wrong, you can go through the setup process again."
+msgstr ""
+"Hvis der er noget, der ser forkert ud, kan du udføre opsætningsprocessen "
+"igen."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:3
+msgid "Apt configuration"
+msgstr "Apt-opsætning"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid "HTTP proxy information (blank for none):"
+msgstr "Angiv eventuelt proxyoplysninger for http:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"If you need to use a HTTP proxy to access the outside world, please enter "
+"the proxy information here. Otherwise, leave this blank."
+msgstr ""
+"Angiv proxyoplysninger, hvis du er nødt til at anvende en http-proxy for at "
+"nå ud på internettet. I modsat fald efterlades feltet tomt."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"The proxy information should be the standard form of \"http://[[user][:pass]"
+"@]host[:port]\""
+msgstr ""
+"Når du angiver proxyoplysninger, skal du benytte standardformen: \"http://"
+"[[bruger][:adgangskode]@]værtsnavn[:port]\""
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:24
+msgid "cdrom, http, ftp, filesystem, edit sources list by hand"
+msgstr "cdrom, http, ftp, filsystem, redigere kildeliste i hånden"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "Archive access method for apt:"
+msgstr "Adgangmetode til arkiverne for apt:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"Please choose the method apt (the Ubuntu package management tool) should use "
+"to access the Ubuntu archive."
+msgstr ""
+"Vælg den metode, apt (Ubuntus pakkehåndteringsværktøj) skal benytte for at "
+"tilgå Ubuntu-arkivet."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"For example if you have an Ubuntu cd, select \"cdrom\", while if you plan to "
+"install via an Ubuntu mirror, choose \"ftp\" or \"http\"."
+msgstr ""
+"Vælg for eksempel \"cdrom\", hvis du har en Ubuntu-cd, mens du skal vælge "
+"\"ftp\" eller \"http\", hvis du vil installere fra et Ubuntuspejl."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "${note}"
+msgstr "${note}"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid "Mirror country:"
+msgstr "Filspejls-land:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid ""
+"Select the country the mirror should be in. You should use a mirror in your "
+"country or region if you do not know which mirror has the best Internet "
+"connection to you."
+msgstr ""
+"Vælg det land, filspejlet skal være i. Du bør benytte et filspejl fra dit "
+"eget land eller region, hvis du ikke ved hvilket filspejl, du har bedst "
+"internetforbindelse til."
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid "Choose the Ubuntu mirror to use:"
+msgstr "Vælg det Ubuntu-filspejl, som skal anvendes:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid ""
+"Select the Ubuntu mirror apt should use. You should select a mirror that is "
+"close to you on the net."
+msgstr ""
+"Vælg det Ubuntu-spejl, apt skal anvende. Du bør vælge et spejl, som er tæt "
+"på dig på nettet."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Mirror hostname:"
+msgstr "Filspejlets værtsnavn:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Enter the hostname of the mirror from which Ubuntu will be downloaded."
+msgstr "Skriv værtsnavnet på det filspejl, Ubuntu skal hentes fra."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Mirror directory:"
+msgstr "Filspejlets mappe:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Enter the directory in which the Ubuntu mirror is located."
+msgstr "Angiv den mappe, hvori Ubuntuspejlet er placeret."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:66
+msgid "The directory you entered does not exist."
+msgstr "Den mappe, du angav, eksisterer ikke."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid "Mirror not found"
+msgstr "Filspejl blev ikke fundet"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid ""
+"The directory you entered does not contain a subdirectory named \"dists\", "
+"so it doesn't seem to be an Ubuntu mirror."
+msgstr ""
+"Den mappe, du angav, indeholder ikke undermappen \"dists\", og lader derfor "
+"ikke til at være et Ubuntuspejl."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "CD-ROM missing"
+msgstr "Cdrom mangler"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "Please insert a suitable CD."
+msgstr "Indsæt venligst en passende cd."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid "CD-ROM device file:"
+msgstr "Cdrom-enhedsfilen:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"This program was unable to auto-detect a CD-ROM drive, or there is no usable "
+"CD in the drive."
+msgstr ""
+"Dette program kunne ikke finde cdrom-enheden automatisk, eller også er der "
+"ingen brugbar cd i drevet."
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"Enter the device file to use to access your CD-ROM, and place an Ubuntu CD "
+"in the drive."
+msgstr ""
+"Angiv den enhedsfil, som skal bruges for at tilgå din cdrom, og læg en "
+"Ubuntu-cd i drevet."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "Non-Ubuntu CD-ROM detected"
+msgstr "Fandt en ikke-Ubuntu-cd."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "The CD-ROM drive contains a non-Ubuntu CD."
+msgstr "Cd-drevet indholder en ikke-Ubuntu-cd."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid "Scan another CD?"
+msgstr "Skanne en anden cd?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid ""
+"If you have another Ubuntu CD (for example, the second in a two CD set), you "
+"should insert and scan it now."
+msgstr ""
+"Hvis du har en anden Ubuntu-cd (f.eks. næste cd i et cd-sæt), bør du lægge "
+"den i drevet og skanne den nu."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Use restricted software?"
+msgstr "Anvend \"restricted\"-programmel?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid ""
+"Some restricted software has been made to work with Ubuntu. Though this "
+"software is not at all a part of Ubuntu, standard Ubuntu tools can be used "
+"to install it. This software has varying licenses which may prevent you from "
+"using, modifying, or sharing it."
+msgstr ""
+"En del restricted programmer er tilpasset, så  det fungerer på Ubuntu. På "
+"trods af, at dette programmel på ingen måde er en del af Ubuntu, kan Ubuntus "
+"standardværktøjer bruges til at installere det. Programmerne er udgivet "
+"under forskellige licenser, der måske ikke tillader dig at bruge, ændre "
+"eller dele dem med andre."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Please choose whether you want to have it available anyway."
+msgstr "Vælg om du ønsker at have dem tilgængelige alligevel."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid "Use contrib software?"
+msgstr "Anvend \"contrib\"-programmel?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid ""
+"Some additional software has been made to work with Ubuntu. Though this "
+"software is free, it depends on non-free software for its operation. This "
+"software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
+"install it."
+msgstr ""
+"En del yderligere programmel er tilpasset, så det fungerer på Ubuntu. Selvom "
+"programmellet er frit, er det afhængigt af ikke-frit programmel for at "
+"virke. På trods af, at dette programmel på ingen måde er en del af Ubuntu, "
+"kan Ubuntus standardværktøjer bruges til at installere det."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid "Use universe software?"
+msgstr "Anvend \"universe\"-programmel?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+msgid ""
+"Some additional software has been made to work with Ubuntu. This software is "
+"free and, though it is not a part of Ubuntu, standard Ubuntu tools can be "
+"used to install it."
+msgstr ""
+"Ekstra programmel er blevet tilpasset, så det fungerer med Ubuntu. Dette "
+"programmel er frit, og selvom det ikke er en del af Ubuntu, kan Ubuntus "
+"standardværktøjer bruges til at installere programmellet."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+#, fuzzy
+msgid "Use backported software?"
+msgstr "Anvend \"contrib\"-programmel?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+msgid ""
+"Some software has been backported from the Ubuntu development tree to work "
+"with this release of Ubuntu. Although this software has not gone through "
+"such complete testing as that contained in the release, it includes newer "
+"versions of some applications which may provide useful features."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+msgid ""
+"Please choose whether you want this software to be made available to you."
+msgstr "Angiv om du ønsker at dette software gøres tilgængeligt for dig?"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:149
+msgid "Failed to access the Ubuntu archive"
+msgstr "Kunne ikke tilgå Ubuntu-arkivet"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:149
+msgid ""
+"While trying to access the Ubuntu archive using the information you "
+"provided, the Ubuntu package management tool, apt, returned the following "
+"error. The questions will be asked again."
+msgstr ""
+"Da jeg forsøgte at nå Ubuntu-arkivet ud fra de oplysninger, du gav mig, fik "
+"jeg følgende fejlmeddelelse fra Ubuntus pakkehåndteringsværktøj, apt. Jeg "
+"løber spørgsmålene igennem igen."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:158
+msgid "Add another apt source?"
+msgstr "Tilføj endnu en apt-kilde?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:158
+msgid ""
+"${MESSAGE}. However, you may want to add another source to apt, so it can "
+"download packages from more than one location."
+msgstr ""
+"${MESSAGE}. Dog vil du muligvis tilføje endnu en apt-kilde, så det kan hente "
+"pakker fra flere steder."
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:164
+msgid "edit, revert to backup"
+msgstr "redigere, indlæse sikkerhedskopi"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid "What do you want to do?"
+msgstr "Hvad vil du gøre?"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid ""
+"The entries you added in sources.list (the file defining package sources for "
+"apt) seem to be incorrect. Here is the error message from apt:"
+msgstr ""
+"De indgange, du indsatte i sources.list (den fil, der definerer apt's "
+"pakkekilder) virkede ikke. Her er fejlmeddelelsen fra apt:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid ""
+"A backup of the sources.list was made before you edited it. You may either "
+"revert to that backup or edit the existing file and fix it."
+msgstr ""
+"Jeg har en sikkerhedskopi af sources.list fra før du ændrede den. Du kan "
+"enten gå tilbage til kopien eller rette de eksisterende filer."
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:177
+msgid "Download software from the Internet?"
+msgstr "Download software fra Internettet?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:177
+msgid ""
+"Ubuntu provides additional software and timely security updates via the "
+"Internet. These updates may be tracked each time you upgrade your system. If "
+"you have a connection to the Internet, this is generally a good idea."
+msgstr ""
+"Ubuntu gør ekstra software og rettidige sikkerhedsopdateringer tilgængelig "
+"via Internettet. Disse opdateringer kan medtages hver gang, du opgraderer "
+"dit system. Hvis du har en Internet-forbindelse, er dette generelt en god "
+"idé."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid "Cannot access network updates"
+msgstr "Kan ikke tilgå netværksopdateringer"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid ""
+"The software archive at ${site} couldn't be accessed, so those updates will "
+"not be made available to you at this time. You may want to investigate this "
+"later."
+msgstr ""
+"Softwarearkivet hos ${site} kunne ikke tilgås, så disse opdateringer vil "
+"ikke være tilgængelige for dig på nuværende tidspunkt. Du bør undersøge "
+"årsagen hertil nærmere."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid ""
+"Commented out entries for ${site} have been added to the bottom of the /etc/"
+"apt/sources.list file."
+msgstr ""
+"Udkommenterede indgangene for ${site} er blevet tilføjet i bunden af filen /"
+"etc/apt/sources.list."
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid "The error message returned by apt:"
+msgstr "Fejlbeskeden fra apt:"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid "${apt_error}"
+msgstr "${apt_error}"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:198
+msgid "Configuring apt..."
+msgstr "Sætter apt op..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:206
+msgid "Setting up primary installation repository..."
+msgstr "Sætter det primære installationsarkiv op..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:210
+msgid "Testing primary installation repository..."
+msgstr "Tester det primære installationsarkiv op..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:214
+msgid "Setting up network repository..."
+msgstr "Sætter netværksarkivet op..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:218
+msgid "Testing network repository..."
+msgstr "Tester netværksarkivet..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:222
+msgid "Setting up security update repository..."
+msgstr "Sætter sikkerhedsopdateringsarkivet op..."
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:226
+msgid "Testing security update repository..."
+msgstr "Tester sikkerhedsopdateringsarkivet..."
+
+#, fuzzy
+#~ msgid "Installing popularity-contest"
+#~ msgstr "Installér valgte pakker"
+
+#~ msgid ""
+#~ "Simply trying to install those packages (or a slightly different set of "
+#~ "packages) again may work around the problem, or at least move the "
+#~ "installation process along a little further. You will now enter aptitude, "
+#~ "a package management frontend, which will give you the opportunity to do "
+#~ "this."
+#~ msgstr ""
+#~ "Muligvis vil et simpelt forsøg på at installere pakkerne (eller en lidt "
+#~ "ændret pakkeliste) igen klare problemet. I det mindste bør du komme lidt "
+#~ "længere i installationsprocessen. Du vil nu blive præsenteret for "
+#~ "pakkehåndteringsprogrammet aptitude, som giver dig denne mulighed."
+
+#~ msgid "Ubuntu version to install:"
+#~ msgstr "Installér Ubuntu-version:"
+
+#, fuzzy
+#~ msgid ""
+#~ "Warty Warthog (4.10) was the first Ubuntu release. Hoary Hedgehog (5.04) "
+#~ "was the second release. Breezy Badger (5.10) is the third release."
+#~ msgstr ""
+#~ "Warty Warthog er første Ubuntu-udgivelse, 4.10. Hoary Hedgehog vil være "
+#~ "den anden udgivelse."
+
+#~ msgid "Debian base system configuration"
+#~ msgstr "Opsætning af Debians basissystem"
+
+#~ msgid "Welcome to your new Debian system!"
+#~ msgstr "Velkommen til dit nye Debiansystem!"
+
+#~ msgid ""
+#~ "This program will now walk you through the process of setting up your "
+#~ "newly installed system. It will start with the basics -- time zone "
+#~ "selection, setting a root password and adding a user, and then progress "
+#~ "to installing additional software to tune this new Debian system to your "
+#~ "needs."
+#~ msgstr ""
+#~ "Dette program vil nu lede dig gennem opsætningen af dit nyinstallerede "
+#~ "system. Det vil starte med de grundlæggende ting - valg af tidszone, "
+#~ "angivelse af adgangskode for root samt tilføjelse af en bruger, for "
+#~ "derefter at fortsætte til installation af yderligere programmer, så dit "
+#~ "Debiansystem kommer til at svare til dine behov."
+
+#~ msgid "Thank you for choosing Debian!"
+#~ msgstr "Tak fordi du valgte Debian!"
+
+#~ msgid ""
+#~ "Setup of your Debian system is complete. You may now login at the login: "
+#~ "prompt."
+#~ msgstr ""
+#~ "Opsætningen af dit Debiansystem er afsluttet. Nu kan du logge på ved "
+#~ "login: prompten."
+
+#~ msgid "stable, unstable, testing"
+#~ msgstr "stabil, ustabil, test"
+
+#~ msgid "Debian distribution to use:"
+#~ msgstr "Benyt Debiandistribution:"
+
+#~ msgid ""
+#~ "Debian comes in several flavors. Stable is well-tested and rarely "
+#~ "changes. Unstable is untested and frequently changing. Testing is a "
+#~ "middle ground, that receives many of the new versions from unstable if "
+#~ "they are not too buggy."
+#~ msgstr ""
+#~ "Debian findes i flere udgaver. Stabil (\"stable\") er gennemtestet og "
+#~ "ændres sjældent. Ustabil (\"unstable\") er uafprøvet og ændres ofte. Test "
+#~ "(\"testing\") er middelvejen, der modtager mange af de nye versioner fra "
+#~ "ustabil, hvis de ikke er for fejlbehæftede."
+
+#~ msgid "Please choose which version of Debian you wish to install."
+#~ msgstr "Angiv hvilken Debianversion du ønsker at installere."
+
+#~ msgid ""
+#~ "Please choose the method apt (the Debian package management tool) should "
+#~ "use to access the Debian archive."
+#~ msgstr ""
+#~ "Vælg den metode, apt (Debians pakkehåndteringsværktøj) skal benytte for "
+#~ "at tilgå debianarkivet."
+
+#~ msgid ""
+#~ "For example if you have a Debian cd, select \"cdrom\", while if you plan "
+#~ "to install via a Debian mirror, choose \"ftp\" or \"http\"."
+#~ msgstr ""
+#~ "Vælg for eksempel \"cdrom\", hvis du har en Debian-cd, mens du skal vælge "
+#~ "\"ftp\" eller \"http\", hvis du vil installere fra et Debianspejl."
+
+#~ msgid "Choose the Debian mirror to use:"
+#~ msgstr "Vælg det Debian-filspejl, som skal anvendes:"
+
+#~ msgid ""
+#~ "Select the Debian mirror apt should use. You should select a mirror that "
+#~ "is close to you on the net."
+#~ msgstr ""
+#~ "Vælg det Debianspejl, apt skal anvende. Du bør vælge et spejl, som er tæt "
+#~ "på dig på nettet."
+
+#~ msgid ""
+#~ "Enter the hostname of the mirror from which Debian will be downloaded."
+#~ msgstr "Skriv værtsnavnet på det filspejl, Debian skal hentes fra."
+
+#~ msgid "Enter the directory in which the Debian mirror is located."
+#~ msgstr "Angiv den mappe, hvori Debianspejlet er placeret."
+
+#~ msgid ""
+#~ "The directory you entered does not contain a subdirectory named \"dists"
+#~ "\", so it doesn't seem to be a Debian mirror."
+#~ msgstr ""
+#~ "Den mappe, du angav, indeholder ikke undermappen \"dists\", og lader "
+#~ "derfor ikke til at være et Debianspejl."
+
+#~ msgid ""
+#~ "Enter the device file to use to access your CD-ROM, and place a Debian CD "
+#~ "in the drive."
+#~ msgstr ""
+#~ "Angiv den enhedsfil, som skal bruges for at tilgå din cdrom, og læg en "
+#~ "Debian-cd i drevet."
+
+#~ msgid "Non-Debian CD-ROM detected"
+#~ msgstr "Fandt en ikke-Debian-cd."
+
+#~ msgid "The CD-ROM drive contains a non-Debian CD."
+#~ msgstr "Cd-drevet indholder en ikke-Debian-cd."
+
+#~ msgid ""
+#~ "If you have another Debian CD (for example, the second in a two CD set), "
+#~ "you should insert and scan it now."
+#~ msgstr ""
+#~ "Hvis du har en anden Debian-cd (f.eks. næste cd i et cd-sæt), bør du "
+#~ "lægge den i drevet og skanne den nu."
+
+#~ msgid "Use non-free software?"
+#~ msgstr "Anvend ikke-frit programmel?"
+
+#~ msgid ""
+#~ "Some non-free software has been made to work with Debian. Though this "
+#~ "software is not at all a part of Debian, standard Debian tools can be "
+#~ "used to install it. This software has varying licenses which may prevent "
+#~ "you from using, modifying, or sharing it."
+#~ msgstr ""
+#~ "En del ikke-frit programmer er tilpasset, så  det fungerer på Debian. På "
+#~ "trods af, at dette programmel på ingen måde er en del af Debian, kan "
+#~ "Debians standardværktøjer bruges til at installere det. Programmerne er "
+#~ "udgivet under forskellige licenser, der måske ikke tillader dig at bruge, "
+#~ "ændre eller dele dem med andre."
+
+#~ msgid ""
+#~ "Some additional software has been made to work with Debian. Though this "
+#~ "software is free, it depends on non-free software for its operation. This "
+#~ "software is not a part of Debian, but standard Debian tools can be used "
+#~ "to install it."
+#~ msgstr ""
+#~ "En del yderligere programmel er tilpasset, så det fungerer på Debian. "
+#~ "Selvom programmellet er frit, er det afhængigt af ikke-frit programmel "
+#~ "for at virke. På trods af, at dette programmel på ingen måde er en del af "
+#~ "Debian, kan Debians standardværktøjer bruges til at installere det."
+
+#~ msgid "Failed to access the Debian archive"
+#~ msgstr "Kunne ikke tilgå debianarkivet"
+
+#~ msgid ""
+#~ "While trying to access the debian archive using the information you "
+#~ "provided, the Debian package management tool, apt, returned the following "
+#~ "error. The questions will be asked again."
+#~ msgstr ""
+#~ "Da jeg forsøgte at nå debianarkivet ud fra de oplysninger, du gav mig, "
+#~ "fik jeg følgende fejlmeddelelse fra Debians pakkehåndteringsværktøj, apt. "
+#~ "Jeg løber spørgsmålene igennem igen."
+
+#~ msgid "Use security updates from security.debian.org?"
+#~ msgstr "Anvend sikkerhedsopdateringer fra security.debian.org?"
+
+#~ msgid ""
+#~ "Debian provides timely security updates via the website security.debian."
+#~ "org. These updates may be tracked each time you upgrade your system. If "
+#~ "you have a connection to the Internet, this is generally a good idea."
+#~ msgstr ""
+#~ "Debian gør sikkerhedsopdateringer hurtigt tilgængelige på hjemmesiden "
+#~ "http://security.debian.org/ . Disse opdateringer kan medtages hver gang "
+#~ "du opgraderer dit system. Hvis du har en internetforbindelse, er dette "
+#~ "generelt en god idé."
+
+#~ msgid "Cannot access security updates"
+#~ msgstr "Kan ikke tilgå sikkerhedsopdateringerne."
+
+#~ msgid ""
+#~ "The security updates on security.debian.org couldn't be accessed, so "
+#~ "those updates will not be made available to you at this time. You may "
+#~ "want to investigate this later."
+#~ msgstr ""
+#~ "Jeg kan ikke nå sikkerhedsopdateringerne på security.debian.org, så disse "
+#~ "opdateringer bliver ikke tilgængelige for dig på nuværende tidspunkt. Du "
+#~ "bør undersøge dette senere."
+
+#~ msgid ""
+#~ "Commented out entries for security.debian.org have been added to the "
+#~ "bottom of the /etc/apt/sources.list file."
+#~ msgstr ""
+#~ "Jeg har tilføjet udkommenterede indgangene for security.debian.org "
+#~ "nederst i filen /etc/apt/sources.list."
+
+#~ msgid "Software selection method:"
+#~ msgstr "Metode til valg af programmer:"
+
+#~ msgid ""
+#~ "You can choose more software to be installed to customize the computer "
+#~ "for your particular needs. The following methods are available to select "
+#~ "software to install."
+#~ msgstr ""
+#~ "Du kan vælge flere programmer for at tilpasse computeren til dine behov. "
+#~ "Du har mulighed for at benytte følgende metoder til at udvælge de "
+#~ "programmer, der skal installeres:"
+
+#~ msgid "Use non-US software?"
+#~ msgstr "Brug \"non-US\"-programmel?"
+
+#~ msgid ""
+#~ "Some software in Debian must be downloaded from sites outside the United "
+#~ "States. This includes some cryptographic software, and some software with "
+#~ "patent problems in the US."
+#~ msgstr ""
+#~ "En del programmel i Debian er nødt til at blive hentet fra steder udenfor "
+#~ "USA. Dette omfatter krypteringsprogrammel og programmer med "
+#~ "patentprobelmer i USA."
+
+#~ msgid "Cannot access non-US software."
+#~ msgstr "Kan ikke tilgå \"non-US\"-programmellet."
+
+#~ msgid ""
+#~ "The Debian archive site that contains non-US software couldn't be "
+#~ "accessed, so that software will not be made available to you. The "
+#~ "following error message was returned by apt:"
+#~ msgstr ""
+#~ "Jeg kan ikke nå det debianarkiv, der indeholder \"non-US\"-programmel, så "
+#~ "disse programmer vil ikke være tilgængelige for dig. Fejlmeddelelsen, jeg "
+#~ "fik fra apt, var:"
+
+#~ msgid "Choose a program to run:"
+#~ msgstr "Vælg et program at køre:"
+
+#~ msgid "Packages failed to install. Back up and try again?"
+#~ msgstr "Pakkeinstallation mislykkedes. Prøv igen?"
+
+#~ msgid "Do you want me to close the PPP connection?"
+#~ msgstr "Vil du have, at jeg skal lukke PPP-forbindelsen?"
+
+#~ msgid ""
+#~ "The installation is complete. I can close the PPP connection to your  ISP "
+#~ "now or I can keep it open if you want."
+#~ msgstr ""
+#~ "Installationen er afsluttet. Jeg kan lukke PPP-forbindelsen til din "
+#~ "internetudbyder ned nu, eller efterlade den åben, hvis du ønsker dette."
+
+#~ msgid ""
+#~ "If you decide to keep it open, remember to use 'poff' to close it when "
+#~ "you finish."
+#~ msgstr ""
+#~ "Hvis du vælger at efterlade den åben, skal du vide, at du kan benytte "
+#~ "kommandoen 'poff' til at lukke den ned."
+
+#~ msgid "Enter the system's hostname including domain name."
+#~ msgstr "Angiv systemets værtsnavn inklusive domænenavn."
+
+#~ msgid "What area is your desired time zone in?"
+#~ msgstr "I hvilket område ligger den ønskede tidszone?"
+
+#~ msgid "Are you happy with your choices?"
+#~ msgstr "Er du tilfreds med valgene?"
+
+#~ msgid "Select a country:"
+#~ msgstr "Vælg et land:"
+
+#~ msgid ""
+#~ "Select the country the mirror should be in. The goal is to find a mirror "
+#~ "that is close to you on the network -- be aware that near countries, or "
+#~ "even your own, may not be the best choice."
+#~ msgstr ""
+#~ "Vælg det land, spejlet skal være i. Målet er, at finde et spejl, som er "
+#~ "tæt på dig på netværket -- bemærk, at det geografisk nært land ikke "
+#~ "nødvendigvis er det bedste valg."
+
+#~ msgid "Bad CD"
+#~ msgstr "Ugyldig CD"
+
+#~ msgid ""
+#~ "Your CD drive was detected, but it does not seem to have a Debian CD in "
+#~ "it."
+#~ msgstr ""
+#~ "Jeg fandt din CD-enhed, men den lader ikke til at indeholde en Debian-CD."
+
+#~ msgid "Congratulations, you have successfully installed Debian!"
+#~ msgstr "Til lykke! Du har fuldført installationen af Debian!"
+
+#~ msgid "Run another package selection program?"
+#~ msgstr "Kør et andet pakkeudvælgelsesprogram?"
+
+#~ msgid ""
+#~ "You've probably already selected some packages, but if you're not "
+#~ "satisfied yet, you can run any of the package selection programs again, "
+#~ "to further tweak what will be installed."
+#~ msgstr ""
+#~ "Du har sikkert allerede udvalgt nogle pakker, men hvis du endnu ikke er "
+#~ "tilfreds, kan du gøre at af pakkeudvælgelsesprogrammerne igen, så du kan "
+#~ "vælge, hvad der bliver installeret."
+
+#~ msgid "tasksel, aptitude, dselect, done"
+#~ msgstr "tasksel, aptitude, dselect, færdig"
+
+#~ msgid ""
+#~ "At this point, your Debian system composed of just enough software to "
+#~ "bootstrap a complete system. You should probably choose some additional "
+#~ "software to add your system, to tune it to your needs, using one of these "
+#~ "programs:"
+#~ msgstr ""
+#~ " På dette stadie er dit Debiansystem minimalt, og består kun af de\n"
+#~ "programmer, der skal til for at starte et system op. Du vil nok få brug "
+#~ "for at tilføje yderligere programmer til dit system nu, så det svarer til "
+#~ "dine behov. Det kan du gøre med et af disse programmer:"
+
+#~ msgid ""
+#~ "'tasksel' lets you pick from various predefined collections of software "
+#~ "that are aimed at letting you set up a system for specific tasks."
+#~ msgstr ""
+#~ "'tasksel' lader dig vælge fra flere foruddefinerede programsamlinger, der "
+#~ "sigter mod at sætte dit system op til at udføre bestemte computeropgaver."
+
+#~ msgid ""
+#~ "'aptitude' is a more powerful interface that lets you pick tasks, but "
+#~ "also lets you pick individual packages."
+#~ msgstr ""
+#~ "'aptitude' er en mere magtfuld grænseflade, der både lader dig udvælge "
+#~ "computeropgaver og individuelle pakker."
+
+#~ msgid ""
+#~ "'dselect' is an older package selector that many people find hard to use, "
+#~ "but some oldtimers still swear by it (rather than at it)."
+#~ msgstr ""
+#~ "'dselect' er en ældre pakkeudvælger, som mange synes er svær at bruge, "
+#~ "men nogle langtidsbrugere sværger stadig til den."
+
+#~ msgid ""
+#~ "You'll be given the chance to run any of these programs as many times as "
+#~ "you like. Later, all of the packages and tasks you have selected will be "
+#~ "installed."
+#~ msgstr ""
+#~ "Du vil have chancen for at køre ethvert af disse programmer så mange "
+#~ "gange, du har lyst. Derefter vil alle de pakker og computeropgaver, du "
+#~ "har valgt, blive installeret."
+
+#~ msgid "Have fun!"
+#~ msgstr "God fornøjelse!"
+
+#~ msgid ""
+#~ "You may also take advantage of the multi-tasking features of Debian by "
+#~ "pressing <Left Alt><Fn> (<Left Command> on a Macintosh keyboard) to "
+#~ "switch to a new 'virtual console', where n is the number of the virtual "
+#~ "console to switch to. For example, to switch to virtual console #3, you "
+#~ "would press <Left Alt><F3>, and to return to this virtual console "
+#~ "(virtual console #1), you would press <Left Alt><F1>."
+#~ msgstr ""
+#~ "Du kan også udnytte Debians multitasking-funktioner ved at trykke "
+#~ "<venstre Alt><Fn> (<venstre Command> på et Macintosh-tastatur) for at "
+#~ "skifte til en ny 'virtuel konsol', hvor n er nummeret på den virtuelle "
+#~ "konsol, du vil skifte til. For eksempel skal du trykke <venstre Alt><F3> "
+#~ "for at gå til den tredie virtuelle konsol. For at gå tilbage til denne "
+#~ "virtuelle konsol (nummer et), skal du trykke <venstre Alt><F1>."

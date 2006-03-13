@@ -1,0 +1,97 @@
+.\" Copyright 1998 Marcus Brinkmann (brinkmd@debian.org) (GPL)
+.\" (c) 2003 Software in the Public Interest
+.\" Esta traducción ha sido realizada por Rubén Porras Campo <nahoo@inicia.es>
+.\" Está basada en la página de manual original:
+.\" versión 1.3 del CVS de
+.\" /cvs/debian-doc/manpages/english/base-config/tzsetup.8
+
+.TH TZSETUP 8 "16 de enero de 2004" "Debian" "Configuración de zona horaria en Debian"
+.SH NOMBRE
+tzsetup \- establece la zona horaria local
+.SH SINOPSIS
+.B tzsetup [-y] [-g] [-c CC] [-N]
+.SH DESCRIPCIÓN
+Esta página del manual explica como puede usar la utilidad
+.B "tzsetup"
+para establecer la zona horaria local. Esto es importante para que su sistema
+sepa la diferencia entre el tiempo del sistema y el tiempo local (el tiempo del
+mundo real). También es necesario para que su sistema se comporte de forma
+adecuada cuando en su zona se realicen cambios horarios para aprovechar mejor la
+luz del día.
+
+Un tiempo del sistema válido junto con la zona horaria adecuada le dará mejores
+resultados y una mayor seguridad. Es especialmente importante en un entorno de
+red, donde incluso pequeñas diferencias de tiempo pueden hacer que una réplica
+vuelva a descargar todo un sitio ftp, o donde se usan marcas de tiempo en un
+sistema de ficheros externo.
+
+Normalmente se invoca
+.B tzsetup
+desde un shell sin parámetros. Opcionalmente, puede usarse la opción -y, para
+que siempre cambie la zona horaria sin preguntar primero. El parámetro -g puede
+también usarse, para que pregunte si el reloj físico del sistema está en hora
+GMT o no. El parámetro -c, seguido de un código de país, indica el país en el
+que posiblemente esté la zona horaria del usuario. El parámetro -N hace que se
+ejecute de forma no interactiva si ha sido preconfigurado.
+
+Después de que realice su elección,
+.B tzsetup
+tratará de cambiar la zona horaria por usted. Lea la sección
+.B "FUNCIONAMIENTO INTERNO"
+de más abajo para los detalles técnicos. Debe de tener privilegios de
+superusuario para cambiar realmente cualquier configuración. Puede usar
+.BR tzselect (1)
+como una orden de usuario para simplemente mirar las zonas horarias reconocidas
+por el sistema. Mostrará la hora local y todas las zonas horarias reconocidas
+por el sistema.
+.SH "UN AVISO"
+¿Qué zona horaria es correcta para su sistema? Depende de la localización
+geográfica de la máquina. Obtener la localización correcta es importante, pero
+el sistema también necesita saber cómo funciona el reloj físico. La mayoría de
+los ordenadores personales basados en DOS establecen el reloj físico según el
+tiempo local, mientras que los sistemas UNIX lo establecen según UTC.
+
+El sistema Debian GNU/Linux obtiene la configuración del fichero
+.IR /etc/default/rcS .
+Este fichero contiene o bien la línea
+.BR UTC=yes , 
+que indica que el reloj físico está en UTC, o bien la línea
+.BR UTC=no ,
+que indica que está en tiempo local. Si el reloj está de verdad como se indica,
+entonces configurar la zona horaria adecuada hará que se muestre la fecha y
+el tiempo correcto. En caso de no ser así, el tiempo mostrado podrá ser bastante
+incorrecto. Consulte
+.BR hwclock (8)
+para más detalles acerca de este tema.
+
+.SH "FUNCIONAMIENTO INTERNO"
+El trabajo hecho por
+.B tzsetup
+es realmente bastante sencillo. Sólo actualiza el enlace
+.I /etc/localtime
+para que apunte al la zona horaria correcta instalada en
+.IR /usr/share/zoneinfo/ .
+
+No pasa nada malo si esto se realiza manualmente. Sin embargo, usando
+.B tzsetup
+no es necesario recordar donde se guardan las zonas horarias.
+.SH FICHEROS
+.I /etc/timezone
+.BR
+.I /etc/localtime
+.BR
+.I /usr/share/zoneinfo
+.SH "DERIVACIÓN"
+Este programa se base en
+.BR tzconfig (8)
+-- la mayor diferencia está en que éste usa debconf para la interfaz de usuario,
+y que además permite la configuración de GMT.
+.SH "VÉASE ADEMÁS"
+.BR hwclock (8)
+.BR tzselect (1)
+.BR rcS (5)
+.BR tzconfig (8)
+.SH AUTOR
+Joey Hess <joeyh@debian.org>
+.SH TRADUCTOR
+Traducción de Rubén Porras Campo <debian-l10n-spanish@lists.debian.org>

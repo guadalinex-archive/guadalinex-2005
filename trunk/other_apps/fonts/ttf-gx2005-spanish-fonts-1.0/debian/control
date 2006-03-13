@@ -1,0 +1,35 @@
+Source: ttf-gx2005-spanish-fonts
+Section: guadalinex
+Priority: optional
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.2.1
+
+Package: ttf-gx2005-spanish-fonts
+Architecture: any
+Description: Fuentes GPL con carácteres españoles 
+ Añade los nuevos tipos de letra de licencia GNU/GPL
+ con soporte de carácteres españoles.
+ .
+ Architext by S.G. Moye
+ Black Chancery by Doug Miles
+ Domestic Manners by Dustin Norlander  
+ Dustismo by Dustin Norlander  
+ Dustismo Roman by Dustin Norlander
+ Dwerneck by Daniel Leal Werneck  
+ Fixed_bold by Orgdot 
+ Fixed_v01 by Orgdot
+ Fixed_v03 by Orgdot
+ Flow by Matt Chisholm 
+ Genown by Orgdot
+ Kharon 4a by Orgdot
+ L'Olivier by ADT 
+ Org_v01 by Orgdot
+ Penguin Attack by Dustin Norlander  
+ Psicopatologia de la Vida Cotidiana by Daniel Leal Werneck
+ Shark by Matt Chisholm
+ Swfit by Orgdot
+ Teachers Pet by Orgdot
+ Teachers Pet Sans Serif by Orgdot
+ .
+ Ejemplos disponibles en: http://www.dafont.com/en/

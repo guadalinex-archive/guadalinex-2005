@@ -1,0 +1,28 @@
+
+                               09Parámetros07
+
+
+
+0dacpi=off07: Deshabilita el soporte para control de energía por ACPI 
+           Ej: linux acpi=off
+0dnoapic07:   Deshabilitado el módulo de temporización APIC
+           Ej: linux noapic
+0dnolapic07:  Pruebe este opción si la anterior falla 
+           Ej: linux nolapic
+0dnousb07:    Deshabilita el subsistema USB
+           Ej: linux nousb
+
+                                                               (Más ayuda... F7)
+
+
+Se pueden 0dcombinar07 varios parámetros separándolos por espacios, por ejemplo:
+linux acpi=off noapic nolapic nousb
+
+
+
+
+
+
+
+07Pulse 0dF207 para volver al Índice de ayuda
+Presione 0dINTRO07 para iniciar Guadalinex v307

@@ -1,0 +1,319 @@
+<!-- retain these comments for translator revision tracking -->
+<!-- $Id: automatic-install.xml 25302 2005-01-30 18:34:34Z fjpop-guest $ -->
+<!-- copied version: 24663 -->
+
+ <sect1 id="automatic-install">
+ <title>Automatic Installation</title>
+<para>
+
+For installing on multiple computers it's possible to do fully
+automatic installations. Ubuntu packages intended for this include
+<classname>fai</classname> (which uses an install server),
+<classname>replicator</classname>,
+<classname>systemimager</classname>,
+<classname>autoinstall</classname>, and 
+the Ubuntu Installer itself.
+
+</para>
+
+<sect2>
+<title>Automatic installation using the Ubuntu Installer</title>
+
+<para>
+The Ubuntu Installer supports automating installs via preconfiguration
+files. A preconfiguration file can be loaded from the network or from
+removable media, and used to fill in answers to question asked during the
+installation process.
+
+</para><para>
+
+The preconfiguration file is in the format used by the
+debconf-set-selections command. A well documented and working example that
+you can edit is in <xref linkend="example-preseed"/>.
+
+</para><para>
+
+Alternatively, one way to get a complete file listing
+all the values that can be preseeded is to do a manual install,
+and then use <filename>debconf-get-selections</filename>,
+from the <classname>debconf-utils</classname> package,
+to dump both the debconf database and the cdebconf
+database in /var/log/installer/cdebconf to a single file:
+
+<informalexample><screen>
+$ debconf-get-selections --installer &gt; <replaceable>file</replaceable>
+$ debconf-get-selections &gt;&gt; <replaceable>file</replaceable>
+</screen></informalexample>
+
+However, a file generated in this manner will have some items that should
+not be preseeded, and the file in <xref linkend="example-preseed"/> is a
+better starting place for most users.
+
+</para><para>
+
+Once you have a preconfiguration file, you can edit it if necessary, and
+place it on a web server, or copy it onto the installer's boot media. Wherever
+you place the file, you need to pass a parameter to the installer at boot
+time to tell it to use the file.
+
+</para><para>
+
+To make the installer use a preconfiguration file downloaded from the
+network, add preseed/url=http://url/to/preseed.cfg to the kernel boot
+parameters. Of course the preconfiguration will not take effect until the
+installer manages to set up the network to download the file, so this is
+most useful if the installer can set up the network via DHCP without asking
+any questions. You may want to set the installation priority to critical to
+avoid any questions while the network is being configured. See 
+<xref linkend="installer-args"/>.
+
+</para><para>
+
+To place a preconfiguration file on a CD, you would need to remaster the
+ISO image to include your preconfiguration file. See the manual page for
+mkisofs for details. Alternatively, put the preseed file on a floppy, and
+use preseed/file=/floppy/preseed.cfg
+
+</para><para arch="i386">
+
+If you'll be booting from a USB memory stick, then you can simply copy your
+preconfiguration file onto the memory stick's filesystem, and edit the
+syslinux.cfg file to add preseed/file=/hd-media/preseed.cfg to the kernel boot
+parameters.
+
+</para>
+</sect2>
+
+<sect2>
+<title>Automatic installation using Kickstart</title>
+
+<para>
+
+The Ubuntu installer has preliminary support for automating installs using
+Kickstart files, as designed by Red Hat for use in their Anaconda installer.
+This method is not as flexible as the preconfiguration file method above,
+but it requires less knowledge of how the installer works.
+
+</para><para>
+
+This section documents only the basics, and differences between Anaconda and
+the Ubuntu installer. Refer to the
+<ulink url="http://www.redhat.com/docs/manuals/linux/RHL-9-Manual/custom-guide/part-install-info.html">
+Red Hat documentation</ulink> for detailed instructions.
+
+</para><para>
+
+To generate a Kickstart file, install the
+<classname>system-config-kickstart</classname> package and run
+<filename>system-config-kickstart</filename>. This offers you a graphical
+user interface to the various options available.
+
+</para><para>
+
+Once you have a Kickstart file, you can edit it if necessary, and place it
+on a web, FTP, or NFS server, or copy it onto the installer's boot media.
+Wherever you place the file, you need to pass a parameter to the installer
+at boot time to tell it to use the file.
+
+</para><para>
+
+To make the installer use a Kickstart file downloaded from a web or FTP
+server, add ks=http://url/to/ks.cfg or ks=ftp://url/to/ks.cfg respectively
+to the kernel boot parameters. This requires the installer to be able to set
+up the network via DHCP on the first connected interface without asking any
+questions; you may also need to add ksdevice=eth1 or similar if the
+installer fails to determine the correct interface automatically.
+
+</para><para>
+
+Similarly, to make the installer use a Kickstart file on an NFS server, add
+ks=nfs:server:/path/to/ks.cfg to the kernel boot parameters. The method
+supported by Anaconda of adding a plain "ks" boot parameter to work out the
+location of the Kickstart file from a DHCP response is not yet supported by
+the Ubuntu installer.
+
+</para><para>
+
+To place a Kickstart file on a CD, you would need to remaster the ISO image
+to include your Kickstart file, and add ks=cdrom:/path/to/ks.cfg to the
+kernel boot parameters. See the manual page for mkisofs for details.
+Alternatively, put the Kickstart file on a floppy, and add
+ks=floppy:/path/to/ks.cfg to the kernel boot parameters.
+
+</para>
+
+<sect3>
+<title>Additions</title>
+
+<para>
+
+The Ubuntu installer supports a few extensions to Kickstart that were needed
+to support automatic installations of Ubuntu:
+
+<itemizedlist>
+<listitem><para>
+
+The <userinput>rootpw</userinput> command now takes the
+<userinput>--disabled</userinput> option to disable the root password. If
+this is used, the initial user will be given root privileges via
+<filename>sudo</filename>.
+
+</para></listitem>
+<listitem><para>
+
+A new <userinput>user</userinput> command has been added to control the
+creation of the initial user:
+
+<informalexample><screen>
+user <replaceable>joe</replaceable> --fullname "Joe User" --password iamjoe
+</screen></informalexample>
+
+The <userinput>--disabled</userinput> option prevents any non-root users
+from being created. The <userinput>--fullname</userinput> option specifies
+the user's full name, as opposed to the Unix username. The
+<userinput>--password</userinput> option supplies the user's password, by
+default in the clear (in which case make sure your Kickstart file is kept
+confidential!); the <userinput>--iscrypted</userinput> option may be used to
+state that the password is already MD5-hashed.
+
+</para></listitem>
+<listitem><para>
+
+A new <userinput>preseed</userinput> command has been added to provide a
+convenient way to preseed additional items in the debconf database that are
+not directly accessible using the ordinary Kickstart syntax:
+
+<informalexample><screen>
+preseed --owner gdm shared/default-x-display-manager select gdm
+</screen></informalexample>
+
+The <userinput>--owner</userinput> option sets the name of the package that
+owns the question; if omitted, it defaults to d-i, which is generally
+appropriate for items affecting the first stage of the installer. The three
+mandatory arguments are the question name, question type, and answer, in
+that order, just as would be supplied as input to the
+<filename>debconf-set-selections</filename> command.
+
+</para></listitem>
+</itemizedlist>
+
+</para>
+
+</sect3>
+
+<sect3>
+<title>Missing features</title>
+
+<para>
+
+As yet, the Ubuntu installer only supports a subset of Kickstart's features.
+The following is a brief summary of features that are known to be missing:
+
+<itemizedlist>
+<listitem><para>
+
+LDAP, Kerberos 5, Hesiod, and Samba authentication.
+
+</para></listitem>
+<listitem><para>
+
+The <userinput>auth --enablecache</userinput> command to enable
+<filename>nscd</filename>.
+
+</para></listitem>
+<listitem><para>
+
+The <userinput>bootloader --linear</userinput>,
+<userinput>--nolinear</userinput>, and <userinput>--lba32</userinput>
+options for detailed LILO configuration.
+
+</para></listitem>
+<listitem><para>
+
+Upgrades. To upgrade from one Ubuntu release to another, use the facilities
+provided by <filename>apt</filename> and its frontends.
+
+</para></listitem>
+<listitem><para>
+
+Partitioning of multiple drives. Due to current limitations in the partition
+manager, it is only possible to partition a single drive.
+
+</para></listitem>
+<listitem><para>
+
+Using the <userinput>device</userinput> command to install extra kernel
+modules.
+
+</para></listitem>
+<listitem><para>
+
+Driver disks.
+
+</para></listitem>
+<listitem><para>
+
+Firewall configuration.
+
+</para></listitem>
+<listitem><para>
+
+Installation from an archive on a local hard disk or from an NFS archive.
+
+</para></listitem>
+<listitem><para>
+
+The <userinput>lilocheck</userinput> command to check for an existing LILO
+installation.
+
+</para></listitem>
+<listitem><para>
+
+Logical Volume Management (LVM) configuration.
+
+</para></listitem>
+<listitem><para>
+
+Restrictions of a partition to a particular disk or device, and
+specifications of the starting or ending cylinder for a partition.
+
+</para></listitem>
+<listitem><para>
+
+Checking a partition for bad sectors.
+
+</para></listitem>
+<listitem><para>
+
+RAID configuration.
+
+</para></listitem>
+<listitem><para>
+
+The <userinput>xconfig --monitor</userinput> option to use a specified
+monitor name.
+
+</para></listitem>
+<listitem><para>
+
+Most package groups. As special cases, the "Ubuntu Desktop" and "Kubuntu
+Desktop" groups install the standard Ubuntu or Kubuntu desktop systems
+respectively, and any group name not containing a space (for example,
+"ubuntu-desktop") causes packages with the corresponding Task: header in the
+Packages file to be installed.
+
+</para></listitem>
+<listitem><para>
+
+Pre-installation scripts and non-chrooted post-installation scripts may only
+be shell scripts; other interpreters are not available at this point in the
+installation.
+
+</para></listitem>
+</itemizedlist>
+
+</para>
+
+</sect3>
+</sect2>
+ </sect1>

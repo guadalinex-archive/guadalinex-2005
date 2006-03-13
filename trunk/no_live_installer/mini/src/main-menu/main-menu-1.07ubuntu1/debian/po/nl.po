@@ -1,0 +1,82 @@
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: main-menu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-11-28 11:36+0100\n"
+"PO-Revision-Date: 2004-04-06 18:05+0100\n"
+"Last-Translator: Bart Cornelis <cobaco@linux.be>\n"
+"Language-Team: debian-l10n-dutch <debian-l10n-dutch@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: text
+#. Description
+#: ../main-menu.templates:3
+#, fuzzy
+msgid "Guadalinex Mini installer main menu"
+msgstr "Hoofdmenu Guadalinex-installatieprogramma"
+
+#. Type: select
+#. Description
+#: ../main-menu.templates:9
+msgid "Choose the next step in the install process:"
+msgstr "Wat is de volgende installatiestap die u wilt uitvoeren?"
+
+#. Type: select
+#. Description
+#: ../main-menu.templates:9
+#, fuzzy
+msgid "This is the main menu for the Guadalinex Mini installer."
+msgstr "Dit is het hoofdmenu van het Guadalinex-installatieprogramma."
+
+#. Type: error
+#. Description
+#: ../main-menu.templates:14
+msgid "Installation step failed"
+msgstr "Installatiestap is mislukt"
+
+#. Type: error
+#. Description
+#: ../main-menu.templates:14
+msgid ""
+"An installation step failed. You can try to run the failing item again from "
+"the menu, or skip it and choose something else. The failing step is: ${ITEM}"
+msgstr ""
+"De installatiestap ${ITEM} is mislukt. U kunt deze stap nogmaals proberen "
+"uit te voeren, of u kunt deze stap overslaan en iets anders kiezen."
+
+#. Type: select
+#. Description
+#: ../main-menu.templates:23
+msgid "Choose an installation step:"
+msgstr "Welke installatiestap wilt u uitvoeren?"
+
+#. Type: select
+#. Description
+#: ../main-menu.templates:23
+msgid ""
+"This installation step depends on one or more other steps that have not yet "
+"been performed."
+msgstr ""
+"Deze installatiestap is afhankelijk van één of meer nog niet uitgevoerde "
+"installatiestappen."
+
+#~ msgid "Debian installer main menu"
+#~ msgstr "Hoofdmenu Debian-installatieprogramma"
+
+#~ msgid "This is the main menu for the Debian installer."
+#~ msgstr "Dit is het hoofdmenu van het Debian-installatieprogramma."
