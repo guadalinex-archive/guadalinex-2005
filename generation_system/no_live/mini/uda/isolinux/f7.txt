@@ -1,0 +1,24 @@
+splash.rle
+0fINSTALACION DEL SISTEMA07                                                       09F707
+
+Puede usar los siguientes argumentos de arranque en el terminal de
+0fboot:07 combinandolo con el sistema de arranque (vea <09F307>). Estos
+argumentos de arranque controlan como funciona el instalador.
+0f
+RESULT                                  PARAMETER07
+Modo debug                              0fDEBCONF_DEBUG=507
+Debug boot sequence                     0fBOOT_DEBUG=107
+Deshabilitar framebuffer                0fdebian-installer/framebuffer=false07
+No usar USB                             0fdebian-installer/probe/usb=false07
+No lanzar PCMCIA                        0fhw-detect/start_pcmcia=false07
+Deshabilitar ACPI para mapas PCI maps   0fpci=noacpi07
+
+Por ejemplo:
+
+  boot: linux debian-installer/framebuffer=false
+
+
+
+
+
+Presione INTRO para iniciar el instalador

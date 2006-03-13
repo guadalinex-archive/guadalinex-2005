@@ -1,0 +1,24 @@
+splash.rle
+0fMETODOS DE ARRANQUE07                                                           09F307
+
+0fOrdenes de arranque disponibles:07
+
+0flinux07
+  Comenzar a instalar Guadalinex.
+0ftestcd07
+  Comenzar a instalar Guadalinex comprobando la integridad de
+los ficheros.
+
+Para usar estas ordenes de arranque, escribalas en el terminal y
+opcionalmente escriba cualquier argumento de arranque. Por ejemplo:
+
+  boot: linux acpi=off
+
+Si no tiene claro que orden usar, probablemente tenga que usar la 
+orden por defecto sin argumentos. Para ello, simplemente pulse INTRO
+en el terminal.
+
+
+
+
+Presione INTRO para iniciar el instalador
