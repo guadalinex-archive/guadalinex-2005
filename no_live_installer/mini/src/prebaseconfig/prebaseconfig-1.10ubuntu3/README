@@ -1,9 +1,0 @@
-prebaseconfig
--------------
-
-This part is run as the last part of the installation process, doing stuff 
-like munging the inittab etc.
-
-Happy hacking,
-
-Tollef Fog Heen <tfheen@debian.org>, Sat, 27 Apr 2002 21:11:11 +0200

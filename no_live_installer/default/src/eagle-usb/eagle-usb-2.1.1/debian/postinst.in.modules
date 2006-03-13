@@ -1,7 +1,0 @@
-#!/bin/sh
-
-depmod -a -F /boot/System.map-_KVERS_ _KVERS_
-
-#DEBHELPER#
-
-exit 0

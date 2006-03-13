@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-PATH=$PATH:.
-
-uda-prepartman-message
-
-#DEBHELPER#
-
-exit 0

@@ -1,5 +1,0 @@
-[type: gettext/rfc822deb] templates
-[type: gettext/rfc822deb] tzsetup-udeb.templates
-[type: gettext/rfc822deb] apt-setup-udeb.templates
-[type: gettext/rfc822deb] ../tzsetup.templates
-[type: gettext/rfc822deb] ../apt-setup.templates
