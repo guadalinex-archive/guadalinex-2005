@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Exec=/usr/bin/instala_plugins.sh
+Icon=/usr/share/pixmaps/macromediaflash.png
+StartupNotify=true
+Terminal=false
+MultipleArgs=false
+Name=Instalar el plugin de Macromedia Flash
+Comment=Instala el plugin de Macromedia Flash
+Type=Application
+Categories=Application;System

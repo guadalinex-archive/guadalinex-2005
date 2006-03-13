@@ -1,0 +1,15 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Blender 3D modeller
+Name[es]=Modelador 3D (Blender)
+Name[ru]=Редактор 3D-моделей Blender
+Comment=Create and edit 3D models and animations
+Comment[es]=Cree y edite modelos y animaciones 3D
+Comment[ru]=Создание и редактирование трёхмерных моделей и анимаций
+Exec=blender
+Icon=blender
+Terminal=false
+Type=Application
+Categories=Application;Graphics;
+StartupNotify=false
+MimeType=application/x-blender

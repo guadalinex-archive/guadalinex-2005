@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<special-files>
+  <rule match="/usr/bin/mad">
+    <icon>/usr/share/pixmaps/equipo.xpm</icon>
+  </rule>
+  <rule match="/usr/bin/gksudo-synaptic">
+    <icon>/usr/share/pixmaps/synaptic.png</icon>
+  </rule>
+  <rule match="/usr/bin/xmms">
+    <icon>/usr/share/xmms/wmxmms.xpm</icon>
+  </rule>
+  <rule match="/usr/bin/abiword">
+    <icon>/usr/share/pixmaps/abiword.xpm</icon>
+  </rule>
+  <rule match="/usr/bin/google">
+    <icon>/usr/share/pixmaps/dillo.xpm</icon>
+  </rule>
+</special-files>

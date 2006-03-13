@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<pinboard>
+  <backdrop style="Stretched">/usr/share/icewm/themes/guadalinex-mini/GL-fondo800-mini.xpm</backdrop>
+  <icon x="96" y="64" label="Equipo">/usr/bin/mad</icon>
+  <icon x="96" y="160" label="  Instalaci&#xF3;n de programas">/usr/bin/gksudo-synaptic</icon>
+  <icon x="256" y="64" label="     Reproductor de m&#xFA;sica">/usr/bin/xmms</icon>
+  <icon x="256" y="160" label="Procesador de texto">/usr/bin/abiword</icon>
+  <icon x="96" y="256" label="Navegador web">/usr/bin/google</icon>
+</pinboard>

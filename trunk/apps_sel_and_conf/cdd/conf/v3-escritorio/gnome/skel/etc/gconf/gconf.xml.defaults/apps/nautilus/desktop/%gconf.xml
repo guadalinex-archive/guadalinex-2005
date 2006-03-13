@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<gconf>
+        <entry name="documents_icon_name" mtime="1126736685" schema="/schemas/apps/nautilus/desktop/documents_icon_name"/>
+        <entry name="trash_icon_name" mtime="1126736685" schema="/schemas/apps/nautilus/desktop/trash_icon_name"/>
+        <entry name="home_icon_name" mtime="1126736685" schema="/schemas/apps/nautilus/desktop/home_icon_name"/>
+        <entry name="computer_icon_name" mtime="1126736685" schema="/schemas/apps/nautilus/desktop/computer_icon_name"/>
+        <entry name="volumes_visible" mtime="1126736685" type="bool" value="false"/>
+        <entry name="documents_icon_visible" mtime="1126736685" type="bool" value="false"/>
+        <entry name="trash_icon_visible" mtime="1128419918" type="bool" value="false"/>
+        <entry name="computer_icon_visible" mtime="1126736685" type="bool" value="true"/>
+        <entry name="home_icon_visible" mtime="1126736685" type="bool" value="true"/>
+</gconf>

@@ -1,0 +1,123 @@
+============
+Introducción
+============
+
+Este fichero recoge las modificaciones realizadas al cdd original para adaptarlo
+a la especificacioń del cdd de Guadalinex 2005 (fichero doc/spec). 
+
+NOTA: Sería conveniente mirar antes de seguir el fichero doc/dpsyco, el cual 
+contiene información básica para entender las modificaciones que aquí se describen
+
+
+===============================
+Fichero /etc/dpsyco/cmd/R20skel
+===============================
+
+Este fichero pertenece al mismo dpsyco, no a nuestro cdd. Dicho fichero es un
+script que se ejecuta cada vez que se realiza casi cualquier acción del sistema
+apt, y su funcionamiento se basa en ejecutar a su vez el script
+update-dpsyco-skel, encargado de sincronizar el skel de dpsyco con el sistema
+raíz.
+
+Es necesario borrar este fichero para poder controlar la ejecución de
+update-dpsyco-ske. Si no se borra, se produce el siguiente problema:
+
+    - Un usuario instala un paquete, que contiene el fichero /etc/wgetrc
+    - El usuario modifica el fichero /etc/wgetrc
+    - Ahora instala otro paquete controlado a través de dpsyco.
+    - El fichero /etc/wgetrc se restaura (con la copia del skel), violándose así
+      el punto 3 de la Descripcion del funcionamiento de la especificación
+      (doc/spec).
+
+Actualización: en realidad, /etc/dpsyco/cmd/R20skel pertenece al paquete dpsyco-base,
+que no es necesario instalar. Los únicos paquetes necesarios son dpsyco-lib y
+dpsyco-skel.
+
+
+=============================================================
+Ficheros postinst, preinst y postrm de los paquetes generados
+=============================================================
+
+Estos ficheros son los encargados de la correcta ejecución del script
+update-dpsyco-skel. Se podría decir, a grandes rasgos, que se han modificado
+para "engañar" al sistema de dpsyco. Esto se consigue "preparando" el skel antes
+de llamar a update-dpsyco-skel.
+
+Esa "preparación" consiste en comprobar si el usuario ha modificado algún
+fichero controlado por dpsyco (en el raíz del sistema). Si es así, dicho fichero
+modificado se copia al skel, para que a la hora de realizar un rsync con el skel
+y el raíz del sistema, dpsyco instale los ficheros modificados. 
+
+Es importante realizar la comprobación (para ver si un fichero ha sido 
+modificado) con el skel que existe ANTES de la instalación de los paquetes.
+
+
+Veamos más a fondo las modificaciones realizadas, o cómo han quedado estos
+scripts:
+
+=== preinst ===
+Hay que tener en cuenta que este script se ejecuta ANTES de que se hayan
+descomprimido los nuevos ficheros de configuración en el skel
+
+1) Genera una lista con los ficheros que se encuentran actualmente en el skel 
+de dpsyco, sii dicha lista NO existe. Esta lista se almacena en el fichero 
+/tmp/original_files.
+
+2) Compara los ficheros contenidos en esa lista con los del sistema. Si
+encuentra alguna diferencia, almacena los ficheros modificados en la lista de
+modificados. Esta lista se almacena en el fichero /tmp/modified_files. 
+
+Con la creación de la lista de ficheros originales del skel se evita  el
+siguiente error (que es mejor explicar con un ejemplo):
+
+        Si no existiera dicha lista de ficheros originales, se podría dar la
+        siguiente situación:
+
+        Se instalan a la vez varios paquetes generados por el cdd: gx2005-net y
+        gx2005-net-conf, que contiene el fichero /etc/wgetrc.
+
+        Sus scripts (post y pre) se ejecutan de la siguiente forma:
+
+        preinst de gx2005-net-conf: Genera una lista vacía con los paquetes
+        modificados en /tmp/modified_files, ya que el skel no contiene ningún
+        fichero con el que comparar.
+
+        (se descomprimen los ficheros de configuración de este paquete, es
+        decir, /etc/wgetrc en el skel de dpsyco)
+        
+        preinst de gx2005-net: Compara el fichero etc/wgetrc del skel con el del
+        sistema, y como no son iguales, añade a la lista /tmp/modified_files
+        este fichero
+
+
+        postinst de gx2005-net-conf: Coge la lista /tmp/modified_files, y copia
+        el fichero etc/wgetrc del usuario en el skel (machacando SU propio
+        fichero de configuración). Luego ejecuta update-dpsyco-skel, el cual
+        instala el fichero etc/wgetrc del usuario otra vez en el sistema,
+        violando el punto 1 de la especificación.
+         
+        ...
+        
+
+=== postinst ===
+Hay que tener en cuenta que este script se ejecuta DESPUÉS de que los nuevos
+ficheros de configuración se hayan descomprimidos en el skel.
+
+1) Borra el fichero /tmp/original_files.
+
+2) Copia los ficheros listados en /tmp/modified_files en el skel.
+
+3) Borra el fichero /tmp/modified_files.
+
+4) Ejecuta update-dpsyco-skel.
+
+=== postrm ===
+Similar a postinst
+
+
+
+
+
+
+
+

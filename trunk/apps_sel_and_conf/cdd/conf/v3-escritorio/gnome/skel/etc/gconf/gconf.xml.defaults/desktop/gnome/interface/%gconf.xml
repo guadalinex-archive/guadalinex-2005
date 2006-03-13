@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<gconf>
+        <entry name="menubar_accel" mtime="1126736647" schema="/schemas/desktop/gnome/interface/menubar_accel"/>
+        <entry name="file_chooser_backend" mtime="1126736647" schema="/schemas/desktop/gnome/interface/file_chooser_backend"/>
+        <entry name="status_bar_meter_on_right" mtime="1126736647" schema="/schemas/desktop/gnome/interface/status_bar_meter_on_right"/>
+        <entry name="use_custom_font" mtime="1126736647" schema="/schemas/desktop/gnome/interface/use_custom_font"/>
+        <entry name="monospace_font_name" mtime="1126736647" schema="/schemas/desktop/gnome/interface/monospace_font_name"/>
+        <entry name="document_font_name" mtime="1126736647" schema="/schemas/desktop/gnome/interface/document_font_name"/>
+        <entry name="gtk-im-status-style" mtime="1126736647" schema="/schemas/desktop/gnome/interface/gtk-im-status-style"/>
+        <entry name="gtk-im-preedit-style" mtime="1126736647" schema="/schemas/desktop/gnome/interface/gtk-im-preedit-style"/>
+        <entry name="font_name" mtime="1126736647" schema="/schemas/desktop/gnome/interface/font_name"/>
+        <entry name="gtk_key_theme" mtime="1126736647" schema="/schemas/desktop/gnome/interface/gtk_key_theme"/>
+	<entry name="gtk_theme" mtime="1126736647" schema="/schemas/desktop/gnome/interface/gtk_theme"/>
+	<entry name="icon_theme" mtime="1126736647" schema="/schemas/desktop/gnome/interface/icon_theme"/>
+        <entry name="cursor_blink_time" mtime="1126736647" schema="/schemas/desktop/gnome/interface/cursor_blink_time"/>
+        <entry name="cursor_blink" mtime="1126736647" schema="/schemas/desktop/gnome/interface/cursor_blink"/>
+        <entry name="toolbar_icon_size" mtime="1126736647" schema="/schemas/desktop/gnome/interface/toolbar_icon_size"/>
+        <entry name="toolbar_detachable" mtime="1126736647" schema="/schemas/desktop/gnome/interface/toolbar_detachable"/>
+        <entry name="menubar_detachable" mtime="1126736647" schema="/schemas/desktop/gnome/interface/menubar_detachable"/>
+        <entry name="menus_have_icons" mtime="1126736647" schema="/schemas/desktop/gnome/interface/menus_have_icons"/>
+        <entry name="toolbar_style" mtime="1126736647" schema="/schemas/desktop/gnome/interface/toolbar_style"/>
+        <entry name="can_change_accels" mtime="1126736647" schema="/schemas/desktop/gnome/interface/can_change_accels"/>
+        <entry name="menus_have_tearoff" mtime="1126736647" schema="/schemas/desktop/gnome/interface/menus_have_tearoff"/>
+        <entry name="enable_animations" mtime="1126736647" schema="/schemas/desktop/gnome/interface/enable_animations"/>
+        <entry name="accessibility" mtime="1126736647" schema="/schemas/desktop/gnome/interface/accessibility"/>
+</gconf>

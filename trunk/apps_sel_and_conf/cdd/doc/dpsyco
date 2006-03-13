@@ -1,0 +1,39 @@
+============
+Introducción
+============
+
+Este fichero contiene una pequeña descripción sobre el funcionamiento de dpsyco, y
+sirve de complemento al fichero de modificaciones (mods).
+
+
+==================
+El directorio skel
+==================
+
+Dpsyco basa su funcionamiento en la generación de paquetes que instalan ficheros
+en /usr/share/dpsyco/skel (a partir de ahora SKEL) y en herramientas que se
+encargan de sincronizar dicho directorio con el raíz del sistema. Esto nos da la
+posibilidad de crear paquetes que instalen ficheros en el sistema destino de
+manera "inteligente" (obsérvense las dobles comillas), sin violar la
+debian-policy.
+
+El script que se encarga de realizar la sincronización se llama update-dpsyco-skel,
+que a su vez hace uso de dpsyco-skel, que a su vez, y con esto acabo, utiliza
+rsync.
+
+El uso del programa rsync convierte la tarea de modificación de un fichero de
+configuración en algo no trivial, ya que si el usuario modifica cualquier
+fichero (por ejemplo /etc/hosts), y éste fichero a su vez está controlado por
+dpsyco (es decir, existe un /usr/share/dpsyco/skel/etc/hosts), en el momento en
+el que se ejecute de nuevo el script update-dpsyco-skel, rsync colocará de nuevo
+el fichero /usr/share/dpsyco/skel/etc/hosts en /etc/, perdiéndose los cambios
+realizados por el  usuario (en realidad no se pierden, se guardan en un fichero
+de copias de seguridad). 
+
+Por decirlo de otra forma, dpsyco tiene un comportamiento algo intrusivo con las
+modificaciones realizadas por el usuario.
+
+
+
+
+

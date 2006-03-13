@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Instalador de paquetes (Xapi)
+Comment=Instale paquetes de Debian en su sistema
+Exec=xapi
+Terminal=false
+Type=Application
+Categories=Application;System
+NoDisplay=true
+MimeType=application/x-deb

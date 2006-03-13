@@ -1,0 +1,32 @@
+#!/bin/bash
+
+. cdd.cfg
+DEBIANSRC="meta-pkg-mini"
+
+if [ ! $# -gt 0 ];then
+	echo "Usage: $0 depend [depend..]"
+	exit 1
+fi
+
+cd $DEBIANSRC
+
+echo "Source: meta-guadalinex-v3-mini
+Section: misc
+Priority: optional
+Maintainer: Gumersindo Coronel Pérez <gcoronel@emergya.info>
+Standards-Version: 3.6.0
+
+Package: meta-guadalinex-v3-mini
+Architecture: all" > debian/control
+
+depends=$(echo $@ | sed -e 's/ /, /g')
+echo "Depends: $depends" >> debian/control
+
+echo "Description: Guadalinex v3 Mini metapackage
+ This metapackage installs a whole Guadalinex v3 Mini distribution." >> debian/control
+
+
+fakeroot debian/rules binary
+fakeroot debian/rules clean
+cd ..
+mv meta-guadalinex-v3*.deb $CDDPACKAGESDIR

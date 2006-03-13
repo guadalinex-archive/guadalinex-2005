@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=GnomeBaker
+Name[es]=Grabador de CD/DVD (Gnome Baker)
+Comment=GnomeBaker CD/DVD Writer
+Comment[es]=Grabe CDs y DVDs
+GenericName=CD/DVD Writer
+Exec=gnomebaker
+Icon=/usr/share/gnomebaker/gnomebaker-48.png
+Terminal=false
+MultipleArgs=false
+Type=Application
+Categories=Application;AudioVideo;DiscBurning;
+StartupNotify=true

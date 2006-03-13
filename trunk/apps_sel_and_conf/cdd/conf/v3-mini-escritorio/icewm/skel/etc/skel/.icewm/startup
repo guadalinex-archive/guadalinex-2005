@@ -1,0 +1,2 @@
+#!/bin/sh
+rox-filer -p=.rox_choices/ROX-Filer/pb_mypin

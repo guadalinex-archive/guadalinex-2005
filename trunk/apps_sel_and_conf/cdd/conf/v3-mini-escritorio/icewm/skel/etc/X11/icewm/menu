@@ -1,0 +1,52 @@
+menu "Accesorios" "folder" {
+    prog "rox-filer (Explorador de Archivos)" "rox-filer" rox-filer
+    prog "eVim (Editor de texto)" "evim" evim
+    prog "EmelFM (Explorador de Archivos)" "emelfm" emelfm
+    prog "Xpdf (Visor de archivos PDF)" "xpdf" xpdf
+    prog "M.A.D. (Menú de Acceso a Dispositivos)" "mad" mad
+    prog "Aumix (Control de volumen)" "aumix" aumix
+    prog "Editor MIME" "mime-editor" /usr/local/share/MIME-Editor/AppRun
+    prog "Lupa" "xmag" xmag
+    prog "Calculadora" "xcalc" xcalc
+    prog "Portapapeles" "xclip" xclipboard
+    prog "Reloj" "xclock" xclock
+    prog "Xeyes (Ojos)" "xeyes" xeyes
+    prog "Terminal" "xterm" xterm
+    prog "Terminar Programa" "bomb" xkill
+}
+menu "Configuración" "folder" {
+    prog "gmcc (Centro de control)" "gmcc" gmcc
+    prog "Synaptic (Gestor de paquetes)" "synaptic" synaptic
+    prog "xnetworkconf (Configurar la red)" "xnetworkconf" xnetwork
+    prog "Cambiar el menú" "iceme" iceme
+    prog "Preferencias" "icepref" icepref
+}
+menu "Internet" "folder" {
+    prog "Gaim (Mensajería instantánea)" "gaim" gaim
+    prog "Firefox (Navegador Web)" "firefox" firefox
+    prog "XChat (Charlas)" "xchat" xchat
+    prog "Sylpheed (Correo Electrónico)" "sylpheed-claws" sylpheed-claws
+    prog "Dillo (Navegador Web Ligero)" "dillo" dillo
+    prog "xvncviewer (Visor VNC)" "xvncviewer" xvncviewer
+}
+menu "Oficina" "folder" {
+    prog "Abiword (Procesador de Textos)" "abiword" abiword
+    prog "Abs (Hojas de cálculo)" "abs" abs
+}
+menu "Gráficos" "folder" {
+    prog "mtPaint (Dibujo)" "mtpaint" mtpaint
+    prog "XSane (Escáner)" "xsane" xsane
+    prog "XZgv (Visor de imágenes)" "xzgv" xzgv
+}
+menu "Multimedia" "folder" {
+    prog "xmms (Reproductor de música)" "xmms" xmms
+    prog "xCDRoast (Grabador de CDs)" "xcdroast" xcdroast
+    prog "xCDRoast (Configuración)" "xcdroast" xcdroastconf
+    prog "Xine (Visor de videos)" "xine" xine
+    prog "XFreeCD (Reproductor de CDs)" "xfreecd" xfreecd
+}
+menu "Juegos" "folder" {
+    prog "XGalaga (Naves espaciales)" "xgalaga" xgalaga
+    prog "Xtris (Tipo Tetris)" "xtris" xtris
+    prog "XPacman (Comecocos)" "xpacman" xpacman
+}

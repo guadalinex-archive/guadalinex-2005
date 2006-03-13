@@ -1,0 +1,1013 @@
+aalib1                         1.4p5-22                       1.4p5-22                      
+abiword-common                 2.0.10-1.2                     2.2.7-3ubuntu4                
+abiword-gnome                  2.0.10-1.2                     2.2.7-3ubuntu4                
+acpid                          1.0.3-20                       1.0.4-1ubuntu4                
+adduser                        3.59                           3.64                          
+airstrike                      0.99+1.0pre6a-1                0.99+1.0pre6a-3               
+alsa-base                      1.0.5a-3                       1.0.9b-2ubuntu1               
+alsa-oss                       1.0.5-1                        1.0.9-1                       
+alsa-utils                     1.0.5-3                        1.0.9a-3ubuntu1               
+amsn                           0.93-1                         0.94-1                        
+amule                          2.0.0rc3-1                     2.0.0-1                       
+apt                            0.5.27                         0.6.39ubuntu4                 
+apt-howto-common               1.8.6-3                        1.8.10.3-1                    
+apt-howto-es                   1.8.6-3                        1.8.10.3-1                    
+apt-utils                      0.5.27                         0.6.39ubuntu4                 
+aptitude                       0.2.15.2-1                     0.2.15.9-3ubuntu1             
+armagetron                     0.2.5.2-3.1                    0.2.7.0-1                     
+armagetron-common              0.2.5.2-3.1                    0.2.7.0-1                     
+aspell                         0.50.5-3                       0.60.2+20050121-2ubuntu4      
+aspell-bin                     0.50.5-3                       0.60.2+20050121-2ubuntu4      
+aspell-en                      0.51-1-1                       6.0-0-3ubuntu1                
+aspell-es                      0.50-2-2                       0.50-2-4ubuntu1               
+at-spi                         1.4.2-2                        1.6.4-1                       
+audacity                       1.2.1-4                        1.2.3-1build1                 
+avifile-win32-plugin           0.7.38.20030710-1              1:0.7.43.20050224-1ubuntu4    
+ayuda                          0.1-4                          0.1-4                         
+base-files                     3.1                            3.1.2ubuntu1                  
+base-passwd                    3.5.7                          3.5.10                        
+bash                           2.05b-15                       3.0-15                        
+bc                             1.06-15                        1.06-17                       
+bcm4400-module-2.6.5           3.0.7-3                        No existe en breezy           
+bcm5700-module-2.6.5           7.1.22-1                       No existe en breezy           
+bind9-host                     9.2.3+9.2.4-rc5-1              1:9.3.1-2ubuntu1              
+binutils                       2.14.90.0.7-8                  2.16.1-0ubuntu1               
+blender                        2.34-1                         2.36-1ubuntu1                 
+blt                            2.4z-3                         2.4z-3ubuntu1                 
+bluefish                       0.13-1                         1.0.1-0ubuntu1                
+bonobo                         1.0.22-2.2                     1.0.22-2.3build1              
+bonobo-activation              2.4.0-4                        1:2.4.0-4                     
+brltty                         3.4.1-3                        3.4.1-4                       
+bsdmainutils                   6.0.15                         6.1.2                         
+bsdutils                       2.12-7                         1:2.12p-4ubuntu4              
+bug-buddy                      2.6.1-3                        2.11.0-0ubuntu1               
+bwidget                        1.7.0-1                        1.7.0-1                       
+bzip2                          1.0.2-1                        1.0.2-7                       
+cabextract                     1.0-1                          1.1-1                         
+calctool                       4.3.51-4                       5.6.21-0ubuntu1               
+camorama                       0.17-2                         0.17-3                        
+capplets                       2.6.1-12                       1:2.11.5-0ubuntu2             
+capplets-data                  2.6.1-12                       1:2.11.5-0ubuntu3             
+cd-discid                      0.9-1                          0.9-1                         
+cdda2wav                       2.0+a34-2                      4:2.01+01a01-4                
+cddb                           2.6-17                         2.6-17                        
+cdparanoia                     3a9.8-11                       3a9.8-11                      
+cdrdao                         1.1.9-3                        1:1.1.9-3ubuntu2              
+cdrecord                       2.0+a34-2                      4:2.01+01a01-4                
+console-common                 0.7.46                         0.7.51ubuntu1                 
+console-data                   2002.12.04dbs-43               2002.12.04dbs-49ubuntu1       
+console-tools                  0.2.3dbs-54                    1:0.2.3dbs-56ubuntu2          
+coreutils                      5.2.1-2                        5.2.1-2ubuntu1                
+cpio                           2.5-1.1                        2.5-1.2                       
+cpp                            3.3.4-2                        4:4.0.0-3                     
+cpp-3.3                        3.3.4-6sarge1.2                1:3.3.6-7                     
+crack-attack                   1.1.10-1                       1.1.12-r1-2                   
+cramfsprogs                    1.1-6                          1.1-6                         
+cron                           3.0pl1-86                      3.0pl1-87ubuntu2              
+cupsomatic-ppd                 20040506-1                     20050430-1ubuntu1             
+cupsys                         1.1.20final+rc1-6              1.1.23-10ubuntu2              
+cupsys-bsd                     1.1.20final+rc1-6              1.1.23-10ubuntu2              
+cupsys-client                  1.1.20final+rc1-6              1.1.23-10ubuntu2              
+cupsys-driver-gimpprint        4.2.7-2                        4.2.7-10                      
+cupsys-driver-gimpprint-data   4.2.7-2                        4.2.7-10                      
+d4x                            2.5.0rel-1                     2.5.0rel-5                    
+dash                           0.5.1-3                        0.5.2-5                       
+dbus-1                         0.22-1.0.1                     No existe en breezy           
+dbus-glib-1                    0.22-1.0.1                     No existe en breezy           
+debconf                        1.4.30.5                       1.4.52ubuntu1                 
+debconf-i18n                   1.4.30.5                       1.4.52ubuntu1                 
+debianutils                    2.8.4                          2.14.1                        
+debrecipes-es                  20030403-1                     No existe en breezy           
+debtags                        0.99.2                         0.99.4ubuntu1                 
+defoma                         0.11.8-0.1                     0.11.8ubuntu2                 
+desktop-base                   0.3.14                         0.3.15                        
+dhcp3-client                   3.0.1-1                        3.0.1-2ubuntu10               
+dhcp3-common                   3.0.1-1                        3.0.1-2ubuntu10               
+dia                            0.93-5                         0.94.0-7ubuntu3               
+dia-common                     0.93-5                         0.94.0-7ubuntu3               
+dia-gnome                      0.93-5                         0.94.0-7ubuntu3               
+dia-libs                       0.93-5                         0.94.0-7ubuntu3               
+dialog                         1.0-20040731-1                 1.0-20050306-1                
+dict                           1.9.14-2                       1.9.15-1                      
+dictionaries-common            0.22.40sarge2                  0.30.2                        
+diff                           2.8.4-0.0                      2.8.1-11                      
+dnsutils                       9.2.3+9.2.4-rc5-1              1:9.3.1-2ubuntu1              
+doc-debian-es                  2.4                            2.5                           
+doc-es-misc                    2.0.2-1                        No existe en breezy           
+doc-linux-es                   2003.04-2                      2003.04-2                     
+docbook                        4.3-1                          4.3-1.1                       
+docbook-dsssl                  1.78-4                         1.79-3                        
+docbook-xml                    4.3-1                          4.4-4                         
+docbook-xsl                    1.64.1.0-4.2                   1.68.1-0.1                    
+docker                         1.4-2                          1.4-2                         
+dosfstools                     2.10-1                         2.11-2.1                      
+dpkg                           1.10.23                        1.13.10                       
+dselect                        1.10.23                        1.13.10                       
+dvd+rw-tools                   5.21.4.10.8-1                  5.21.4.10.8-1ubuntu3          
+e2fslibs                       1.35-6                         1.38-1ubuntu1                 
+e2fsprogs                      1.35-6                         1.38-1ubuntu1                 
+ed                             0.2-20                         0.2-20                        
+effectv                        0.3.9-1                        0.3.9-1                       
+eject                          2.0.13deb-7                    2.0.13deb-11ubuntu3           
+epiphany-browser               1.2.6-1                        1.7.2-0ubuntu1                
+esound                         0.2.29-1                       0.2.36-1ubuntu3               
+esound-common                  0.2.32-0                       0.2.36-1ubuntu3               
+etherwake                      1.08-1                         1.08-1                        
+euro-support                   1.30                           1.31                          
+euro-support-x                 1.30                           1.31                          
+evolution                      1.4.6-5                        2.3.4-0ubuntu1                
+evolution-data-server          0.0.92-1                       1.3.5-0ubuntu1                
+fb-music-high                  0.1.1                          0.1.1                         
+fbmngplay                      0.5a-1                         No existe en breezy           
+fbtruetype                     0.2-1                          No existe en breezy           
+fdutils                        5.4-20040228-1                 5.5-20050303-1                
+festival                       1.4.3-15                       1.4.3-16ubuntu1               
+festlex-oald                   1.4.0-3                        1.4.0-3                       
+festlex-poslex                 1.4.0-5                        1.4.0-5                       
+festvox-don                    1.4.0-4                        1.4.0-4                       
+festvox-ellpc11k               1.4.0-3                        1.4.0-3                       
+file                           4.09-1                         4.12-1                        
+file-roller                    2.6.2-2                        2.11.2-0ubuntu1               
+fileutils                      5.2.1-2                        5.2.1-2ubuntu1                
+findutils                      4.1.20-4                       4.2.22-2                      
+finger                         0.17-7                         0.17-8                        
+firestarter                    0.9.3-5                        1.0.3-1.1ubuntu1              
+fluxbox                        0.9.9-1                        0.9.12-1build1                
+fontconfig                     2.2.3-1                        2.3.2-1ubuntu1                
+fonty                          1.0-18                         1.0-22build1                  
+foobillard                     3.0a-2                         3.0a-2                        
+foomatic-db                    20040705-1                     20050705-1                    
+foomatic-db-engine             3.0.1-20040506-1               3.0.2-20050705-2              
+foomatic-db-gimp-print         4.2.7-2                        4.2.7-10                      
+foomatic-db-hpijs              1.5-20040621-1                 1.5-20050705-1                
+foomatic-filters               3.0.2-1                        3.0.2-20050705-1              
+foomatic-filters-ppds          20040506-1                     20050430-1ubuntu1             
+foomatic-gui                   0.6.7                          0.7.4.2ubuntu1                
+fortune-mod                    1.99.1-1                       1:1.99.1-2                    
+fortunes-guadalinex            1.0-2                          No existe en breezy           
+freeglut3                      2.2.0-8                        2.2.0-8ubuntu5                
+frozen-bubble                  1.0.0-6                        1.0.0-6                       
+frozen-bubble-data             1.0.0-6                        1.0.0-6                       
+ftp                            0.17-12                        0.17-13                       
+fuenteslinex                   1.0-1                          No existe en breezy           
+g++                            3.3.4-2                        4:4.0.0-3                     
+g++-3.3                        3.3.4-6sarge1.2                1:3.3.6-7                     
+gaim                           0.82.1-1                       1:1.4.0-1ubuntu1              
+gawk                           3.1.4-1                        1:3.1.4-2                     
+gcalctool                      4.3.51-4                       5.6.21-0ubuntu1               
+gcc                            3.3.4-2                        4:4.0.0-3                     
+gcc-3.3                        3.3.4-6sarge1.2                1:3.3.6-7                     
+gcc-3.3-base                   3.3.4-6sarge1.2                1:3.3.6-7                     
+gconf                          1.0.9-6                        1.0.9-7ubuntu1                
+gconf-editor                   2.6.2-1                        2.10.0-2                      
+gconf2                         2.6.4-2                        2.11.1-0ubuntu1               
+gdb                            6.1-3                          6.3-6ubuntu1                  
+gdesklets                      0.26.2-6                       0.35.1-1                      
+gdesklets-data                 0.30.0.17                      0.32                          
+gdk-imlib1                     1.9.14-16                      1.9.14-16.2ubuntu2            
+gdm                            2.4.4.7-3                      2.8.0.1-0ubuntu2              
+gdm-themes                     0.3.1                          0.4.1                         
+gedit                          2.6.2-1                        2.10.3-2                      
+gedit-common                   2.6.2-1                        2.10.3-2                      
+gettext                        0.14.1-5                       0.14.5-1ubuntu2               
+gettext-base                   0.14.1-5                       0.14.5-1ubuntu2               
+gftp                           2.0.17-5                       2.0.18-6                      
+gftp-common                    2.0.17-5                       2.0.18-6                      
+gftp-gtk                       2.0.17-5                       2.0.18-6                      
+gftp-text                      2.0.17-5                       2.0.18-6                      
+gimp                           2.0.4-1                        2.2.8-2ubuntu1                
+gimp-data                      2.0.4-1                        2.2.8-2ubuntu1                
+gkdial                         1.8.0-1                        1:1.8.0-2                     
+gkdial-gnome                   1.8.0-1                        1:1.8.0-2                     
+gksu                           1.2.1-1                        1.3.0-1ubuntu2                
+glutg3                         3.7-25                         3.7-25                        
+gmax                           1.0-2                          No existe en breezy           
+gnome-about                    2.6.1-2                        2.11.5-0ubuntu1               
+gnome-accessibility-themes     2.6.3-1                        2.11.3-0ubuntu1               
+gnome-applets                  2.6.2-1                        2.11.1-0ubuntu3               
+gnome-applets-data             2.6.2-1                        2.11.1-0ubuntu3               
+gnome-audio                    2.0.0-2                        2.0.0-2                       
+gnome-bin                      1.4.2-19                       1.4.2-20                      
+gnome-bluetooth                0.5.1-1                        0.5.1-1ubuntu7                
+gnome-control-center           2.6.1-12                       1:2.11.5-0ubuntu3             
+gnome-cups-manager             0.18-2                         0.30-2ubunu1                  
+gnome-desktop-data             2.6.1-2                        2.11.5-0ubuntu1               
+gnome-doc-tools                1.0-6.1                        1.0-6.1                       
+gnome-extra-icons              1.0-1                          1.0-1                         
+gnome-games                    2.6.2-3                        1:2.11.1-0ubuntu2             
+gnome-games-data               2.6.2-3                        1:2.11.1-0ubuntu2             
+gnome-gv                       2.6.2-3                        1:2.11.0-0ubuntu1             
+gnome-icon-theme               1.2.3-1                        2.11.4-0ubuntu1               
+gnome-keyring                  0.2.1-3                        0.4.3-1                       
+gnome-libs-data                1.4.2-19                       1.4.2-20                      
+gnome-mag                      0.11.2-1                       1:0.12.1-0ubuntu1             
+gnome-media                    2.6.2-1                        2.11.5-0ubuntu1               
+gnome-mime-data                2.4.1-2                        2.4.2-1                       
+gnome-network                  1.99.5-2                       No existe en breezy           
+gnome-panel                    2.6.2-3                        2.11.4-0ubuntu1               
+gnome-panel-data               2.6.2-3                        2.11.4-0ubuntu1               
+gnome-phone-manager            0.4-1                          0.4-1ubuntu3                  
+gnome-ppp                      0.3.14-1                       0.3.21-1                      
+gnome-session                  2.6.2-5                        2.11.1-0ubuntu2               
+gnome-system-monitor           2.6.0-5                        2.11.4-0ubuntu2               
+gnome-system-tools             0.90.0-3                       1.3.0.1-0ubuntu2              
+gnome-terminal                 2.6.1-6                        2.11.1-0ubuntu1               
+gnome-themes                   2.6.3-1                        2.11.3-0ubuntu1               
+gnome-themes-common            2.4.1-2                        No existe en breezy           
+gnome-themes-extras            0.7.debian.1-2                 0.8.1-0ubuntu1                
+gnome-utils                    2.6.2-1                        2.11.2-0ubuntu1               
+gnome-vfs-extfs                1.0.5-5                        1.0.5-5                       
+gnome-vfs-extras               0.2.0-4                        No existe en breezy           
+gnome-volume-manager           0.9.9-2                        1.3.2-0ubuntu2                
+gnome2-user-guide              2.6.0.1-1                      2.8.1cvs20050323-0ubuntu1     
+gnomemeeting                   1.0.2-1                        1.2.1-1ubuntu6                
+gnopernicus                    0.9.14-1                       0.11.1-0ubuntu1               
+gnumeric                       1.2.13-4                       1.5.2-1ubuntu1                
+gnumeric-common                1.2.13-4                       1.5.2-1ubuntu1                
+gnupg                          1.2.4-4                        1.4.1-1ubuntu1                
+gnupg-doc                      2003.04.06-2                   2003.04.06-4                  
+goff                           1.0-2                          No existe en breezy           
+gok                            0.11.3-2                       1.0.5-1ubuntu2                
+gpart                          0.1h-4                         0.1h-4                        
+gpgp                           0.4-12                         0.4-12ubuntu1                 
+gphoto2                        2.1.4-3                        2.1.6-1                       
+gpppkill                       1.0.3-4                        1.0.3-5build1                 
+gqview                         1.4.3-3                        2.0.0-1                       
+grep                           2.5.1.ds1-3                    2.5.1.ds1-4ubuntu1            
+grip                           3.2.0-2                        3.2.0-3ubuntu4                
+groff-base                     1.18.1.1-1                     1.18.1.1-8                    
+grub                           0.95+cvs20040624-8             0.95+cvs20040624-17ubuntu4    
+gs                             8.01-5                         8.01-5                        
+gs-common                      0.3.6                          0.3.7ubuntu1                  
+gs-esp                         7.07.1-9                       7.07.1-9ubuntu4               
+gs-gpl                         8.01-5                         8.01-5                        
+gsfonts                        8.14+urwcyr1.0.7pre35-1        8.14+v8.11+urw-0.2            
+gsfonts-other                  6.0-3                          6.0-3                         
+gsfonts-x11                    0.17                           0.17ubuntu1                   
+gsm-utils                      1.10-5                         1.10-6ubuntu1                 
+gstreamer-alsa                 0.6.4-5                        No existe en breezy           
+gstreamer-gconf                0.6.4-5                        No existe en breezy           
+gstreamer-gnomevfs             0.6.4-5                        No existe en breezy           
+gstreamer-mad                  0.6.4-5                        No existe en breezy           
+gstreamer-misc                 0.6.4-5                        No existe en breezy           
+gstreamer-oss                  0.6.4-5                        No existe en breezy           
+gstreamer-plugin-libs          0.6.4-5                        No existe en breezy           
+gstreamer-vorbis               0.6.4-5                        No existe en breezy           
+gstreamer0.8-flac              0.8.2-3                        0.8.10-1ubuntu1               
+gstreamer0.8-gnomevfs          0.8.2-3                        0.8.10-1ubuntu1               
+gstreamer0.8-mad               0.8.2-3                        0.8.10-1ubuntu1               
+gstreamer0.8-misc              0.8.2-3                        0.8.10-1ubuntu1               
+gstreamer0.8-oss               0.8.2-3                        0.8.10-1ubuntu1               
+gstreamer0.8-vorbis            0.8.2-3                        0.8.10-1ubuntu1               
+gthumb                         2.4.2-1                        3:2.6.5-1                     
+gtk-engines-geramik-data       0.26-2                         0.26-2.1                      
+gtk-engines-pixmap             0.12-8                         0.12-8                        
+gtk-engines-raleigh            0.12-8                         0.12-8                        
+gtk-engines-thingeramik-data   0.26-2                         0.26-2.1                      
+gtk-theme-switch               2.0.1                          2.0.4                         
+gtk2-engines-crux              2.6.3-1                        1:2.6.3-1ubuntu2              
+gtk2-engines-highcontrast      2.6.3-1                        1:2.6.3-1ubuntu2              
+gtk2-engines-industrial        0.2.36.2                       1:2.6.3-1ubuntu2              
+gtk2-engines-lighthouseblue    2.6.3-1                        1:2.6.3-1ubuntu2              
+gtk2-engines-pixbuf            2.2.0-3                        2.6.8-1ubuntu2                
+gtk2-engines-redmond95         2.2.0-3                        1:2.6.3-1ubuntu2              
+gtk2-engines-smooth            0.5.8-1                        1:2.6.2-0ubuntu2              
+gtk2-engines-spherecrystal     0.7-8                          0.7-10                        
+gtk2-engines-thinice           2.6.3-1                        1:2.6.3-1ubuntu2              
+gtkam                          0.1.11-2                       0.1.12-2.1                    
+gtkhtml3.0                     3.0.10-1                       3.0.10-1                      
+guadalinex-bonobo              1.2-2                          No existe en breezy           
+guadalinex-fsck                1.0-1                          No existe en breezy           
+guadalinex-hora                1.0-1                          No existe en breezy           
+guadalinex-numlock             1.0-3                          No existe en breezy           
+guadalinex-profiles            1.2-3                          No existe en breezy           
+guadalinex-utils               1.2-2                          No existe en breezy           
+guadalinex-x11wheel            1.2-4                          No existe en breezy           
+gucharmap                      1.2.0-6                        1:1.4.3-2                     
+guile-1.6-libs                 1.6.4-4                        1.6.7-1ubuntu2                
+gzip                           1.3.5-9                        1.3.5-11ubuntu2               
+hal                            0.2.97-0.1                     0.5.2-0ubuntu6                
+hdparm                         5.6-0.1                        6.1-1ubuntu1                  
+hermes1                        1.3.3+really1.3.2-2            1.3.3+really1.3.2-2           
+hicolor-icon-theme             0.5-3                          0.8-1                         
+hostname                       2.13                           2.13                          
+hotplug                        0.0.20040329-15                0.0.20040329-22ubuntu3        
+hpijs                          1.6-3                          2.1.2+0.9.2-2ubuntu3          
+hwtools                        0.8-1                          0.8-2                         
+i2e                            0.5.1-1                        0.5.1-2                       
+ifupdown                       0.6.4-4.8                      0.6.7ubuntu1                  
+ijsgimpprint                   4.2.7-2                        4.2.7-10                      
+imagemagick                    6.0.7.1-1                      6:6.2.3.1-1ubuntu1            
+imlib-base                     1.9.14-16                      1.9.14-16.2ubuntu2            
+imlib1                         1.9.14-16                      1.9.14-16.2ubuntu2            
+infhard                        1.0-1                          No existe en breezy           
+info                           4.7-2.1                        4.7-2.2ubuntu1                
+initrd-tools                   0.1.74                         0.1.78ubuntu2                 
+initscripts                    2.86-1                         2.86.ds1-1ubuntu3             
+inkscape                       0.39-2                         0.41-4ubuntu2                 
+iptables                       1.2.9-10                       1.3.1-2ubuntu1                
+irda-utils                     0.9.16-7                       0.9.16-9                      
+jackd                          0.98.1-5                       0.99.0-2ubuntu1               
+jade                           1.2.1-42                       1.2.1-43ubuntu1               
+jhead                          2.2-1                          2.41-1                        
+joe                            3.1-0.2                        3.1-0.2                       
+k3b                            0.11.12-1                      0.12.2-0ubuntu1               
+k3b-i18n                       0.11-1                         0.11-2                        
+k3blibs                        0.11.12-1                      0.12.2-0ubuntu1               
+kde-i18n-es                    3.2.3-2                        4:3.4.1-0ubuntu1              
+kdebase-bin                    3.2.2-1                        4:3.4.1-0ubuntu4              
+kdelibs-bin                    3.2.3-2                        4:3.4.1-0ubuntu5              
+kdelibs-data                   3.2.3-2                        4:3.4.1-0ubuntu5              
+kdelibs4                       3.2.3-2                        No existe en breezy           
+kernel-image-2.6.5             2.6.5-1                        No existe en breezy           
+kino                           0.71-2                         0.75-7build1                  
+klogd                          1.4.1-15                       1.4.1-17ubuntu1               
+lame                           3.96-1                         3.96.1-1                      
+lde                            2.6.0-6                        2.6.0-6                       
+ldp-es                         20021105-5                     No existe en breezy           
+ldp-es-garl                    20021105-5                     No existe en breezy           
+ldp-es-glup                    20021105-5                     No existe en breezy           
+ldp-es-lipp                    20021105-5                     No existe en breezy           
+ldp-es-lipp2                   20021105-5                     No existe en breezy           
+less                           382-1                          382-2                         
+lesstif2                       0.93.94-8                      1:0.93.94-11.4                
+liba52-0.7.4                   0.7.4-1                        0.7.4-1                       
+libacl1                        2.2.23-1                       2.2.29-1                      
+libadns1                       1.0-8.2                        1.0-8.3                       
+libamu2                        6.0.9-3                        6.0.9-3.1                     
+libao2                         0.8.5-1                        0.8.6-1ubuntu3                
+libapm1                        3.2.2-2                        3.2.2-3ubuntu2                
+libart-2.0-2                   2.3.16-6                       2.3.17-1                      
+libart2                        1.4.2-19                       1.4.2-20                      
+libarts1                       1.2.3-1                        No existe en breezy           
+libartsc0                      1.2.3-1                        1.4.1-0ubuntu1                
+libasn1-6-heimdal              0.6.2-6                        0.6.3-11ubuntu1               
+libasound2                     1.0.5-1                        1.0.9-2                       
+libaspell15                    0.50.5-3                       No existe en breezy           
+libatk1.0-0                    1.6.1-3                        1.10.1-2                      
+libatspi1.0-0                  1.4.2-2                        1.6.4-1                       
+libattr1                       2.4.16-1                       2.4.21-1                      
+libaudio2                      1.6d-2                         1.7-2ubuntu1                  
+libaudiofile0                  0.2.6-4                        0.2.6-6                       
+libavc1394-0                   0.4.1-2                        0.5.0-2                       
+libavifile-0.7c102             0.7.38.20030710-1              No existe en breezy           
+libblkid1                      1.35-6                         1.38-1ubuntu1                 
+libbluetooth1                  2.9-1                          2.15-2                        
+libbonobo-activation4          2.4.0-4                        1:2.4.0-4                     
+libbonobo2                     1.0.22-2.2                     1.0.22-2.3build1              
+libbonobo2-0                   2.6.2-6                        2.10.0-1                      
+libbonobo2-common              2.6.2-6                        2.10.0-1                      
+libbonoboui2-0                 2.6.1-1                        2.10.0-1                      
+libbonoboui2-common            2.6.1-1                        2.10.0-1                      
+libbrlapi                      3.4.1-3                        3.4.1-4                       
+libbtctl1                      0.4.1-1                        0.4.1-1ubuntu3                
+libbz2-1.0                     1.0.2-1                        1.0.2-7                       
+libc6                          2.3.2.ds1-16                   2.3.5-1ubuntu7                
+libc6-dev                      2.3.2.ds1-16                   2.3.5-1ubuntu7                
+libcap1                        1.10-14                        1:1.10-14                     
+libcdio0                       0.68-2                         No existe en breezy           
+libcdk4                        4.9.9-3.2                      4.9.9-4                       
+libcdparanoia0                 3a9.8-11                       3a9.8-11                      
+libclan2-gui                   0.6.5-1-2.2                    0.6.5-1-2.2ubuntu3            
+libclan2-jpeg                  0.6.5-1-2.2                    0.6.5-1-2.2ubuntu3            
+libclan2-mikmod                0.6.5-1-2.2                    0.6.5-1-2.2ubuntu3            
+libclan2-png                   0.6.5-1-2.2                    0.6.5-1-2.2ubuntu3            
+libclan2-sound                 0.6.5-1-2.2                    0.6.5-1-2.2ubuntu3            
+libclan2-vorbis                0.6.5-1-2.2                    0.6.5-1-2.2ubuntu3            
+libclanlib2                    0.6.5-1-2.2                    No existe en breezy           
+libcomerr1-kerberos4kth        1.2.2-3                        No existe en breezy           
+libcomerr2                     1.35-6                         1.38-1ubuntu1                 
+libconsole                     0.2.3dbs-54                    1:0.2.3dbs-56ubuntu2          
+libcroco1                      0.3.0-0                        No existe en breezy           
+libcroco2                      0.5.1-1                        No existe en breezy           
+libcroco3                      0.6.0-2                        0.6.0-2                       
+libcrypto++5.1                 5.1-5                          No existe en breezy           
+libcupsimage2                  1.1.20final+rc1-6              1.1.23-10ubuntu2              
+libcupsys2-gnutls10            1.1.20final+rc1-6              1.1.23-10ubuntu2              
+libcurl2                       7.11.2-8                       1:7.11.2-12ubuntu3            
+libcurl3                       7.12.1-1                       7.12.3-2ubuntu3               
+libdate-manip-perl             5.42a-2                        5.44-1build1                  
+libdb1-compat                  2.1.3-7                        2.1.3-7                       
+libdb2                         2.7.7.0-9                      2:2.7.7.0-9                   
+libdb3                         3.2.9-20                       3.2.9-22ubuntu1               
+libdb3++c102                   3.2.9-20                       No existe en breezy           
+libdb3-util                    3.2.9-20                       3.2.9-22ubuntu1               
+libdb4.0                       4.0.14-2                       No existe en breezy           
+libdb4.1                       4.1.25-17                      4.1.25-18                     
+libdb4.2                       4.2.52-17                      4.2.52-19ubuntu2              
+libdb4.2++                     4.2.52-17                      No existe en breezy           
+libdbh1.0-1                    1.0.15-1                       1.0.22-1                      
+libdebtags0                    0.9.5                          No existe en breezy           
+libdns11                       9.2.3+9.2.4-rc5-1              No existe en breezy           
+libdns5                        9.2.1-2.woody.1                No existe en breezy           
+libdns9                        9.2.2+9.2.3rc1-3               No existe en breezy           
+libdps1                        4.3.0.dfsg.1-4                 6.8.2-16                      
+libdv2                         0.99-2                         No existe en breezy           
+libdv4                         0.103-1                        0.103-2                       
+libdvbpsi2                     0.1.3-1                        No existe en breezy           
+libdvdcss2                     1.2.8-0.0                      No existe en breezy           
+libdvdnav4                     0.1.9-3                        0.1.9-3                       
+libdvdplay0                    1.0.1-6                        1.0.1-6                       
+libdvdread3                    0.9.4-5                        0.9.4-5                       
+libeel2-2                      2.6.2-1                        2.11.4-0ubuntu1               
+libeel2-data                   2.6.2-1                        2.11.4-0ubuntu1               
+libefs1                        1.0.22-2.2                     1.0.22-2.3build1              
+libenchant1                    1.1.4+cvs.2004.08.10-1         No existe en breezy           
+libesd-alsa0                   0.2.29-1                       0.2.36-1ubuntu3               
+libesmtp5                      1.0.3-1                        1.0.3-1                       
+libestools1.2c102              1.2.3-8                        No existe en breezy           
+libexif-gtk4                   0.3.3-5                        0.3.3-6                       
+libexif10                      0.6.9-1                        0.6.9-6                       
+libexif9                       0.5.12-1                       No existe en breezy           
+libexpat1                      1.95.6-8                       1.95.8-3                      
+libfam0c102                    2.7.0-5                        No existe en breezy           
+libfinance-quote-perl          1.08-1                         1.08-1                        
+libflac++2c102                 1.1.0-11                       No existe en breezy           
+libflac4                       1.1.0-11                       No existe en breezy           
+libfontconfig1                 2.2.3-1                        2.3.2-1ubuntu1                
+libfreetype6                   2.1.7-2.2                      2.1.7-2.4ubuntu1              
+libfribidi0                    0.10.4-3                       0.10.5-2                      
+libgail-common                 1.6.6b-1                       1.8.4-1                       
+libgail-gnome-module           1.0.2-2                        1.1.1-1                       
+libgail17                      1.6.6b-1                       1.8.4-1                       
+libgal2.0-6                    1.99.11-1                      1.99.11-1.2ubuntu1            
+libgal2.0-common               1.99.11-1                      1.99.11-1.2ubuntu1            
+libgal23                       0.24-1.3                       0.24-1.4ubuntu1               
+libgcc1                        3.4.1-4sarge1                  1:4.0.1-1ubuntu1              
+libgcj-common                  3.3.4-6sarge1.2                1:4.0.1-1ubuntu1              
+libgcj4                        3.3.4-6sarge1.2                1:3.3.6-7                     
+libgconf11                     1.0.9-6                        1.0.9-7ubuntu1                
+libgconf2-4                    2.6.4-2                        2.11.1-0ubuntu1               
+libgcrypt1                     1.1.12-8                       1.1.12-8ubuntu1               
+libgcrypt11                    1.2.0-4                        1.2.0-11.1ubuntu1             
+libgcrypt7                     1.1.90-9                       1.1.90-9ubuntu1               
+libgda2-1                      1.0.4-1                        No existe en breezy           
+libgda2-common                 1.0.4-1                        1.2.1-2ubuntu1                
+libgdbm3                       1.8.3-2                        1.8.3-2                       
+libgdbmg1                      1.7.3-28                       1.7.3-28                      
+libgdk-pixbuf-gnome2           0.22.0-7                       0.22.0-8                      
+libgdk-pixbuf2                 0.22.0-7                       0.22.0-8                      
+libgdkcardimage0               2.6.2-3                        No existe en breezy           
+libghttp1                      1.0.9-15                       1.0.9-15                      
+libgimp1.2                     1.2.5-4                        No existe en breezy           
+libgimp2.0                     2.0.4-1                        2.2.8-2ubuntu1                
+libgimpprint1                  4.2.7-2                        4.2.7-10                      
+libgksu0                       1.0.5-1                        No existe en breezy           
+libgksu1.2-0                   1.2.3-1                        1.3.1-1ubuntu1                
+libgksuui1.0-0                 1.0.2-1                        1.0.5-1ubuntu1                
+libglade-gnome0                0.17-3                         1:0.17-3                      
+libglade0                      0.17-3                         1:0.17-3                      
+libglade2-0                    2.4.0-1                        1:2.5.1-2ubuntu1              
+libgle3                        3.1.0-5                        3.1.0-5ubuntu2                
+libglib-perl                   1.043-1                        1:1.091-1                     
+libglib1.2                     1.2.10-9                       1.2.10-10                     
+libglib2.0-0                   2.4.6-2                        2.7.1-1                       
+libglpng                       1.45-3                         1.45-3                        
+libglut3                       3.7-25                         3.7-25                        
+libgnet2.0-0                   2.0.4-1                        2.0.7-1                       
+libgnome-desktop-2             2.6.1-2                        2.11.5-0ubuntu1               
+libgnome-keyring0              0.2.1-3                        0.4.3-1                       
+libgnome-mag1                  0.11.2-1                       No existe en breezy           
+libgnome-pilot2                2.0.10-6                       2.0.13-0ubuntu3               
+libgnome-speech3               0.3.2-3                        1:0.3.7-0ubuntu1              
+libgnome-vfs-common            1.0.5-5                        1.0.5-5                       
+libgnome-vfs0                  1.0.5-5                        1.0.5-5                       
+libgnome2-0                    2.6.1.2-2                      2.11.1-0ubuntu2               
+libgnome2-canvas-perl          1.002-1                        1.002-1                       
+libgnome2-common               2.6.1.2-2                      2.11.1-0ubuntu2               
+libgnome2-perl                 1.011-1                        1.023-1                       
+libgnome2-vfs-perl             1.003-1                        1.022-1                       
+libgnome32                     1.4.2-19                       1.4.2-20                      
+libgnomebt0                    0.5.1-1                        0.5.1-1ubuntu7                
+libgnomecanvas2-0              2.6.1.1-2                      2.11.1-0buntu1                
+libgnomecanvas2-common         2.6.1.1-2                      2.11.1-0buntu1                
+libgnomecups1.0-1              0.1.11-1                       0.2.0-2                       
+libgnomecupsui1.0-1            0.18-2                         0.30-2ubunu1                  
+libgnomeprint-bin              0.37-5                         0.37-5                        
+libgnomeprint-data             0.37-5                         0.37-5                        
+libgnomeprint15                0.37-5                         0.37-5                        
+libgnomeprint2.2-0             2.6.2-3                        2.11.0-0ubuntu1               
+libgnomeprint2.2-data          2.6.2-3                        2.11.0-0ubuntu1               
+libgnomeprintui2.2-0           2.6.2-1                        2.11.0-0ubuntu2               
+libgnomeprintui2.2-common      2.6.2-1                        2.11.0-0ubuntu2               
+libgnomesupport0               1.4.2-19                       1.4.2-20                      
+libgnomeui-0                   2.6.1.1-4                      2.11.1-0ubuntu1               
+libgnomeui-common              2.6.1.1-4                      2.11.1-0ubuntu1               
+libgnomeui32                   1.4.2-19                       1.4.2-20                      
+libgnomevfs2-0                 2.6.2-2                        2.11.3-0ubuntu1               
+libgnomevfs2-common            2.6.2-2                        2.11.3-0ubuntu1               
+libgnorba27                    1.4.2-19                       1.4.2-20                      
+libgnorbagtk0                  1.4.2-19                       1.4.2-20                      
+libgnutls10                    1.0.4-3                        1.0.4-8ubuntu1                
+libgnutls11                    1.0.16-7                       1.0.16-13ubuntu1              
+libgnutls7                     0.8.12-6                       0.8.12-7                      
+libgpg-error0                  1.0-1                          1.0-1                         
+libgpgme6                      0.3.16-2                       0.3.16-2                      
+libgphoto2-2                   2.1.4-6                        2.1.6-1ubuntu1                
+libgphoto2-port0               2.1.4-6                        2.1.6-1ubuntu1                
+libgpmg1                       1.19.6-12.1                    1.19.6-20ubuntu2              
+libgsf-1                       1.10.1-1                       1.12.1-1                      
+libgsf-gnome-1                 1.10.1-1                       1.12.1-1                      
+libgsm1                        1.0.10-13                      1.0.10-13                     
+libgsmme1c102                  1.10-5                         No existe en breezy           
+libgssapi1-heimdal             0.6.2-6                        0.6.3-11ubuntu1               
+libgstreamer-gconf0.8-0        0.8.2-3                        0.8.10-1ubuntu1               
+libgstreamer-plugins0.8-0      0.8.2-3                        0.8.10-1ubuntu1               
+libgstreamer0.6-0              0.6.4-1.1                      No existe en breezy           
+libgstreamer0.8-0              0.8.5-1                        0.8.10-2ubuntu1               
+libgtk-perl                    0.7009-1.1                     0.7009-2                      
+libgtk1.2                      1.2.10-17                      1.2.10-17build1               
+libgtk1.2-common               1.2.10-17                      1.2.10-17build1               
+libgtk2-perl                   1.043-1                        1:1.061-1ubuntu1              
+libgtk2.0-0                    2.4.9-1                        2.6.8-1ubuntu2                
+libgtk2.0-bin                  2.4.9-1                        2.6.8-1ubuntu2                
+libgtk2.0-common               2.4.9-1                        2.6.8-1ubuntu2                
+libgtkhtml2-0                  2.4.1-1                        2.6.3-1                       
+libgtkhtml20                   1.0.4-6.1                      No existe en breezy           
+libgtkhtml3.0-4                3.0.10-1                       3.0.10-1                      
+libgtksourceview-common        1.0.1-4                        1.2.1-0ubuntu1                
+libgtksourceview1.0-0          1.0.1-4                        1.2.1-0ubuntu1                
+libgtkspell0                   2.0.7-1                        2.0.10-2                      
+libgtop2-2                     2.6.0-4                        No existe en breezy           
+libgucharmap3                  1.2.0-6                        No existe en breezy           
+libguile-ltdl-1                1.6.4-4                        1.6.7-1ubuntu2                
+libguile9                      1.4-26                         1:1.4-26                      
+libguppi16                     0.40.3-10                      0.40.3-10ubuntu1              
+libhal0                        0.2.97-0.1                     No existe en breezy           
+libhesiod0                     3.0.2-15.1                     3.0.2-15.1                    
+libhtml-parser-perl            3.36-1                         3.45-2                        
+libhtml-tableextract-perl      1.08-1                         1.08-1                        
+libhtml-tagset-perl            3.03-2                         3.04-1                        
+libhtml-tree-perl              3.18-1                         3.18-1                        
+libice6                        4.3.0.dfsg.1-4                 1:6.3.5-3                     
+libid3-3.8.3                   3.8.3-4                        No existe en breezy           
+libid3tag0                     0.15.1b-3                      0.15.1b-7                     
+libident                       0.22-2.2                       0.22-3                        
+libidl0                        0.8.3-1                        0.8.5-1ubuntu1                
+libidn11                       0.5.2-3                        0.5.13-1.0                    
+libidn9                        0.1.14-2                       No existe en breezy           
+libieee1284-3                  0.2.8-2                        0.2.10-1                      
+libijs-0.34                    0.34-1                         No existe en breezy           
+libijs-0.35                    0.35-1                         0.35-1                        
+libisc4                        9.2.1-2.woody.1                No existe en breezy           
+libisc7                        9.2.3+9.2.4-rc5-1              No existe en breezy           
+libiw27                        26+27pre22-1                   No existe en breezy           
+libjack0.80.0-0                0.98.1-5                       0.99.0-2ubuntu1               
+libjasper-1.701-1              1.701.0-2                      1.701.0-2                     
+libjpeg-mmx-progs              0.1.5-2                        0.1.5-2                       
+libjpeg62                      6b-9                           6b-10                         
+libkrb-1-kerberos4kth          1.2.2-11                       1.2.2-11.1ubuntu2             
+libkrb5-17-heimdal             0.6.2-6                        0.6.3-11ubuntu1               
+libkrb53                       1.3.4-4                        1.3.6-3ubuntu1                
+liblame0                       3.96-1                         3.96.1-1                      
+liblcms1                       1.12-2.1                       1.13-1                        
+libldap2                       2.1.30-3                       2.1.30-11                     
+liblinc1                       1.0.3-4                        No existe en breezy           
+liblircclient0                 0.6.6-7                        0.7.0.1-1ubuntu1              
+liblocale-gettext-perl         1.01-17                        1.05-1                        
+liblockfile1                   1.06                           1.06                          
+liblrdf0                       0.3.7-3                        0.4.0-1                       
+libltdl3                       1.6-0+1.5a-2                   1.5.6-6                       
+liblwres1                      9.2.3+9.2.4-rc5-1              1:9.3.1-2ubuntu1              
+liblzo1                        1.08-1.2                       1.08-2                        
+libmad0                        0.15.1b-1                      0.15.1b-2.1                   
+libmagic1                      4.09-1                         4.12-1                        
+libmagick5.5.7                 5.5.7.9-1.1                    No existe en breezy           
+libmagick6                     6.0.7.1-1                      6:6.2.3.1-1ubuntu1            
+libmetacity0                   2.8.1-4                        1:2.11.0-0ubuntu1             
+libmikmod2                     3.1.11-a-5                     3.1.11-a-6ubuntu2             
+libmng1                        1.0.5-1                        1.0.8-1                       
+libmpeg2-4                     0.4.0b-2                       0.4.0b-2ubuntu1               
+libmultisync-plugin-all        0.82-2                         0.82-5ubuntu3                 
+libmultisync-plugin-backup     0.82-2                         0.82-5ubuntu3                 
+libmultisync-plugin-evolution  0.82-2                         0.82-5ubuntu3                 
+libmultisync-plugin-irmc       0.82-2                         0.82-5ubuntu3                 
+libmultisync-plugin-irmc-bluetooth 0.82-2                         0.82-5ubuntu3                 
+libmultisync-plugin-opie       0.82-2                         0.82-5ubuntu3                 
+libmultisync-plugin-syncml     0.82-2                         0.82-5ubuntu3                 
+libmyspell3                    3.1-8                          No existe en breezy           
+libmysqlclient12               4.0.21-1                       4.0.24-10                     
+libnautilus2-2                 2.6.3b-3                       No existe en breezy           
+libncurses5                    5.4-4                          5.4-8                         
+libncursesw5                   5.4-4                          5.4-8                         
+libneon23                      0.23.9.dfsg.3-2                0.23.9.dfsg.3-2ubuntu1        
+libnet-perl                    1.19-1                         1:1.19-1                      
+libnetpbm10                    10.0-7                         2:10.0-8                      
+libnewt0                       0.50.17-9.6                    No existe en breezy           
+libnewt0.51                    0.51.6-5                       0.51.6-20ubuntu4              
+libnspr4                       1.6-5                          2:1.7.8-1ubuntu2              
+libnss-db                      2.2-6.2                        2.2-6.3ubuntu1                
+libnss3                        1.6-5                          2:1.7.8-1ubuntu2              
+libntfs5                       1.9.2-2                        1.9.4-2                       
+liboaf0                        0.6.10-3                       0.6.10-3                      
+libofx0c102                    0.6.6-2                        No existe en breezy           
+libogg0                        1.1.0-1                        1.1.2-1                       
+liboggflac1                    1.1.0-11                       No existe en breezy           
+libopenal0                     0.2003020200-1.2               0.2004090900-1.1build1        
+libopencdk8                    0.5.5-8                        0.5.5-10                      
+libopenh323-1.13.2             1.13.4-1                       No existe en breezy           
+libopenobex-1.0-0              1.0.0-rel-3                    1:1.0.0-rel-3                 
+libopenobex1                   0.9.8-10                       No existe en breezy           
+liborbit0                      0.5.17-9                       0.5.17-11.1                   
+liborbit2                      2.10.2-1.1                     1:2.12.2-1                    
+libosp3c102                    1.5release-4                   No existe en breezy           
+libosp4                        1.5.1.0-2                      1.5.1.0-2ubuntu2              
+libpam-modules                 0.76-22                        0.76-22ubuntu2                
+libpam-runtime                 0.76-22                        0.76-22ubuntu2                
+libpam0g                       0.76-22                        0.76-22ubuntu2                
+libpanel-applet2-0             2.6.2-3                        2.11.4-0ubuntu1               
+libpango1.0-0                  1.4.1-2                        1.8.1-1ubuntu1                
+libpango1.0-common             1.4.1-2                        1.8.1-1ubuntu1                
+libpaper1                      1.1.14-0.4                     1.1.14ubuntu7                 
+libparted1.6-0                 1.6.9-3.2                      No existe en breezy           
+libparted1.6-i18n              1.6.9-3.2                      1.6.21-1ubuntu3               
+libpcap0                       0.6.2-2                        No existe en breezy           
+libpcap0.7                     0.7.2-7                        0.7.2-7                       
+libpcap0.8                     0.8.3-4                        0.8.3-6                       
+libpcre3                       4.5-1.1                        5.0-1.1                       
+libperl5.8                     5.8.4-2.2                      5.8.7-3                       
+libpisock8                     0.11.8-10                      0.11.8-10ubuntu3              
+libpisync0                     0.11.8-10                      0.11.8-10ubuntu3              
+libpng10-0                     1.0.15-6                       1.0.18-1ubuntu1               
+libpng12-0                     1.2.5.0-7                      1.2.8rel-1ubuntu1             
+libpng2                        1.0.15-6                       1.0.18-1ubuntu1               
+libpopt0                       1.7-4                          1.7-5                         
+libpq3                         7.4.5-3                        1:7.4.8-10                    
+libprinterconf0                0.5-6                          No existe en breezy           
+libprintsys                    0.6-4                          0.6-4                         
+libpt-1.6.3                    1.6.5-1                        No existe en breezy           
+libpt-plugins-alsa             1.6.5-1                        1.8.4-1ubuntu2                
+libqcad0                       2.0.3.3-1-1                    2.0.4.0-1-2                   
+libqt3c102-mt                  3.3.3-2                        No existe en breezy           
+libqthreads-12                 1.6.4-4                        1.6.7-1ubuntu2                
+libquicktime1                  0.9.3-1                        0.9.3-2ubuntu1                
+libraptor1                     1.3.2-1                        1.4.7-1                       
+libraw1394-5                   0.10.1-1                       0.10.1-1.1                    
+libreadline4                   4.3-11                         4.3-15                        
+librecode0                     3.6-10                         3.6-10                        
+libreiserfs0.3-0               0.3.0.4-4                      0.3.0.4-4                     
+librekall0                     2.2.0-beta4-2                  No existe en breezy           
+libroken16-kerberos4kth        1.2.2-11                       1.2.2-11.1ubuntu2             
+librsvg2-2                     2.7.2-5                        2.9.5-0ubuntu1                
+librsvg2-common                2.7.2-5                        2.9.5-0ubuntu1                
+libsamplerate0                 0.1.1-2                        0.1.1-2                       
+libsane                        1.0.14-7                       1.0.15-9ubuntu4               
+libsane-extras                 1.0.14.2                       1.0.15.9                      
+libsasl2                       2.1.19-1.1                     2.1.19-1.5ubuntu3             
+libsasl7                       1.5.28-6.1                     No existe en breezy           
+libscrollkeeper0               0.3.14-9                       0.3.14-10                     
+libsdl-console                 1.3-3                          1.3-3                         
+libsdl-gfx1.2                  2.0.9-4                        2.0.9-4                       
+libsdl-image1.2                1.2.3-5                        1.2.4-1                       
+libsdl-mixer1.2                1.2.5-8                        1.2.6-1build1                 
+libsdl-net1.2                  1.2.5-3                        1.2.5-3                       
+libsdl-perl                    1.20.3-1                       1.20.3-1ubuntu6               
+libsdl-ttf2.0-0                2.0.6-5                        2.0.6-5                       
+libsdl1.2debian                1.2.7-7                        1.2.7+1.2.8cvs20041007-4.1ubuntu4
+libsdl1.2debian-all            1.2.7-7                        1.2.7+1.2.8cvs20041007-4.1ubuntu4
+libselinux1                    1.14-2                         1.24-1                        
+libsigc++-1.2-5c102            1.2.5-1                        No existe en breezy           
+libslp1                        1.0.11-7                       1.2.1-2                       
+libsm6                         4.3.0.dfsg.1-4                 1:6.0.4-2                     
+libsmbclient                   3.0.6-3                        3.0.14a-5ubuntu1              
+libsmpeg0                      0.4.5+cvs20030824-1            No existe en breezy           
+libsndfile1                    1.0.10-1                       1.0.10-2                      
+libsnmpkit2c102                0.9-7                          No existe en breezy           
+libsoup2.0-0                   1.99.28-5                      1.99.28-5                     
+libsoup2.2-3                   2.1.12-2                       No existe en breezy           
+libsp1                         1.3.4-1.2.1-42                 No existe en breezy           
+libspeex1                      1.1.3-1                        1.1.6-2                       
+libss2                         1.35-6                         1.38-1ubuntu1                 
+libssl0.9.6                    0.9.6l-3                       0.9.6m-1                      
+libssl0.9.7                    0.9.7d-4                       0.9.7g-1                      
+libstartup-notification0       0.7-1                          0.8-1                         
+libstdc++5                     3.3.4-6sarge1.2                1:3.3.6-7                     
+libstdc++5-3.3-dev             3.3.4-6sarge1.2                1:3.3.6-7                     
+libstlport4.6                  4.6.2-1                        No existe en breezy           
+libsvga1                       1.4.3-17                       1:1.4.3-20ubuntu2             
+libt1-5                        5.0.2-3                        5.0.2-3                       
+libtagcoll0                    0.99.1-1                       No existe en breezy           
+libtasn1-0                     0.1.2-5                        0.1.2-5                       
+libtasn1-2                     0.2.10-3                       0.2.10-4                      
+libtdb1                        1.0.6-11                       1.0.6-13                      
+libtext-charwidth-perl         0.04-1                         0.04-2                        
+libtext-iconv-perl             1.2-3                          1.4-1                         
+libtext-wrapi18n-perl          0.06-1                         0.06-2                        
+libtextwrap1                   0.1-1                          0.1-1ubuntu1                  
+libtiff3g                      3.6.1-2                        No existe en breezy           
+libtiff4                       3.6.1-1.1                      3.7.2-3ubuntu2                
+libttf2                        1.4pre.20030402-1.1            1.4pre.20030402-1.1           
+libui-dialog-perl              1.06-5                         No existe en breezy           
+libungif4g                     4.1.3-1                        4.1.3-2                       
+liburi-perl                    1.30-1                         1.35-1                        
+libusb-0.1-4                   0.1.8-16                       2:0.1.10a-13ubuntu2           
+libuuid1                       1.35-6                         1.38-1ubuntu1                 
+libvncauth0                    3.3.7-5                        3.3.7-7build1                 
+libvorbis0a                    1.0.1-1                        1.1.0-1                       
+libvorbisenc2                  1.0.1-1                        1.1.0-1                       
+libvorbisfile3                 1.0.1-1                        1.1.0-1                       
+libvte-common                  0.11.11-5                      1:0.11.13-2ubuntu1            
+libvte4                        0.11.11-5                      1:0.11.13-2ubuntu1            
+libwine                        0.0.20040615-1                 0.0.20050310-1.1              
+libwmf0.2-7                    0.2.8-1.1                      0.2.8.3-2                     
+libwnck-common                 2.6.2-1                        2.11.4-0ubuntu1               
+libwnck4                       2.6.2-1                        No existe en breezy           
+libwrap0                       7.6.dbs-6                      7.6.dbs-8                     
+libwvstreams3-base             3.75.0-1                       No existe en breezy           
+libwww-perl                    5.800-1                        5.803-4                       
+libwxbase2.4                   2.4.2.6                        No existe en breezy           
+libwxgtk2.4                    2.4.2.6                        No existe en breezy           
+libwxgtk2.4-python             2.4.2.6                        2.4.3.1ubuntu2                
+libx11-6                       4.3.0.dfsg.1-4                 1:6.2.1+cvs.20050711-1        
+libxaw7                        4.3.0.dfsg.1-4                 6.8.2-36                      
+libxbase0-rekall               2.0.0-1                        No existe en breezy           
+libxbsql0                      0.11-1                         0.11-4                        
+libxcursor1                    1.1.3-1                        1.1.3-1ubuntu4                
+libxext6                       4.3.0.dfsg.1-4                 1:6.4.3-2                     
+libxft1                        4.3.0.dfsg.1-4                 4.3.0.dfsg.1-6ubuntu25        
+libxft2                        2.1.2-6                        2.1.7-1ubuntu2                
+libxi6                         4.3.0.dfsg.1-4                 1:1.3.0-1                     
+libxine1                       1-rc3c-1                       No existe en breezy           
+libxklavier8                   1.03-1                         No existe en breezy           
+libxml1                        1.8.17-8                       1:1.8.17-10                   
+libxml2                        2.6.11-3                       2.6.17-0ubuntu1               
+libxmu6                        4.3.0.dfsg.1-4                 6.8.2-36                      
+libxmuu1                       4.3.0.dfsg.1-4                 6.8.2-36                      
+libxosd2                       2.2.11-1                       2.2.14-1ubuntu1               
+libxp6                         4.3.0.dfsg.1-4                 6.8.2-20                      
+libxpm4                        4.3.0.dfsg.1-4                 6.8.2-36                      
+libxrandr2                     4.3.0.dfsg.1-4                 1:1.0.2-1                     
+libxrender1                    0.8.3-7                        1:0.9.0-1                     
+libxslt1                       1.1.8-4                        1.1.12-8ubuntu1               
+libxslt1.1                     1.1.8-4                        1.1.12-8ubuntu1               
+libxt6                         4.3.0.dfsg.1-4                 6.8.2-36                      
+libxtrap6                      4.3.0.dfsg.1-4                 6.8.2-36                      
+libxtst6                       4.3.0.dfsg.1-4                 6.8.2-36                      
+libxv1                         4.3.0.dfsg.1-4                 1:2.2.0+cvs.20050712-2        
+libzvt2.0-0                    2.0.1cvs20021009-4             2.0.1cvs20021009-4            
+liferea                        0.5.3b-2                       0.9.1-1                       
+liferea-gtkhtml                0.5.3b-2                       0.9.1-1                       
+links                          0.99-1.2                       0.99+1.00pre12-1              
+linux-kernel-headers           2.5.999-test7-bk-16            2.6.11.2-0ubuntu10            
+localepurge                    0.0.71                         0.3                           
+locales                        2.3.2.ds1-16                   2.3.5-1ubuntu7                
+login                          4.0.3-30.1                     1:4.0.3-37ubuntu1             
+logrotate                      3.7-2                          3.7-5                         
+lrzsz                          0.12.21-4                      0.12.21-4                     
+lshw                           01.03-1                        02.03-2build1                 
+lsof                           4.71-1                         4.75.dfsg.1-1                 
+lynx                           2.8.5-1                        2.8.5-2                       
+m4                             1.4.1-1                        1.4.3-1                       
+mad                            2.0-3                          No existe en breezy           
+make                           3.80-9                         3.80-9                        
+makedev                        2.3.1-75                       2.3.1-78ubuntu1               
+man-db                         2.4.2-19                       2.4.3-1                       
+manpages                       1.67-2                         2.02-2                        
+manpages-es                    1.28-13                        1.55-1                        
+manpages-es-extra              0.8a-12                        0.8a-12ubuntu1                
+mc                             4.6.0-4.6.1-pre1-3             1:4.6.0-4.6.1-pre4-1          
+menu                           2.1.17                         2.1.25                        
+menu-xdg                       0.1.1                          0.2ubuntu1                    
+meta-back                      0.1-5                          No existe en breezy           
+meta-guadalinex2004            1.0-1                          No existe en breezy           
+metacity                       2.8.1-4                        1:2.11.0-0ubuntu1             
+mime-support                   3.28-1                         3.34-1                        
+minicom                        2.1-7                          2.1-9                         
+mkisofs                        2.0+a34-2                      4:2.01+01a01-4                
+modconf                        0.2.46                         0.2.49                        
+module-init-tools              3.1-pre5-7                     3.2-pre7-0ubuntu1             
+modutils                       2.4.26-1                       2.4.27.0-3ubuntu1             
+mount                          2.12-7                         2.12p-4ubuntu4                
+mozilla                        1.6-5                          2:1.7.8-1ubuntu2              
+mozilla-bonobo                 0.4.1-3                        0.4.1-3ubuntu2                
+mozilla-browser                1.6-5                          2:1.7.8-1ubuntu2              
+mozilla-ctxextensions          3.1.2004033001-2               3.1.2005012901-1              
+mozilla-diggler                0.6-3                          0.9-3                         
+mozilla-firefox                0.8-12                         1.0.2-0ubuntu5                
+mozilla-firefox-locale-es      0.8-5                          1.0.3lang20050420-1ubuntu1    
+mozilla-locale-es-es           1.6                            1.7.3                         
+mozilla-mailnews               1.6-5                          2:1.7.8-1ubuntu2              
+mozilla-psm                    1.6-5                          2:1.7.8-1ubuntu2              
+mozilla-tabextensions          1.10.2004040401-1              1.14.2005051901-1             
+mozilla-xft                    1.6-5                          No existe en breezy           
+mpg321                         0.2.10.3                       0.2.10.3                      
+mtools                         3.9.9-2                        3.9.9-2.1ubuntu1              
+multisync                      0.82-2                         0.82-5ubuntu3                 
+myspell-es                     1.7-25                         1.8-1                         
+mysql-common                   4.0.21-1                       4.0.24-10                     
+nautilus                       2.6.3b-3                       2.11.4-0ubuntu1               
+nautilus-cd-burner             2.6.1-4                        2.11.4-0ubuntu1               
+nautilus-data                  2.6.3b-3                       2.11.4-0ubuntu1               
+ncurses-base                   5.4-4                          5.4-8                         
+ncurses-bin                    5.4-4                          5.4-8                         
+ncurses-term                   5.4-4                          5.4-8                         
+ndiswrapper                    0.8-1                          No existe en breezy           
+ndiswrapper-modules-2.6.5      0.8-1                          No existe en breezy           
+net-tools                      1.60-10                        1.60-10ubuntu2                
+netbase                        4.18                           4.21ubuntu2                   
+netcat                         1.10-23                        1.10-27                       
+netkit-inetd                   0.10-9                         0.10-10.1ubuntu2              
+netkit-ping                    0.10-9                         0.10-10.1ubuntu2              
+netpbm                         10.0-7                         2:10.0-8                      
+netspeed                       0.10-2                         0.10-2ubuntu3                 
+nmap                           3.55-1                         3.81-2build1                  
+ntfstools                      1.9.0-1                        1.9.4-2                       
+numlockx                       1.0-7                          1.0-14                        
+nvi                            1.79-21                        1.79-22                       
+oaf                            0.6.10-3                       0.6.10-3                      
+ooqstart-gnome                 0.8.3-8                        0.8.3-8                       
+openoffice.org                 1.1.2-3                        1.1.3-8ubuntu7                
+openoffice.org-bin             1.1.2-3                        1.1.3-8ubuntu7                
+openoffice.org-debian-files    1.1.2-3+2                      1.1.3-3+1ubuntu1              
+openoffice.org-help-es         1.1+20030814-2                 1.1+20040420-1ubuntu1         
+openoffice.org-l10n-en         1.1.2-3                        1.1.3-8ubuntu7                
+openoffice.org-l10n-es         1.1.2-3                        1.1.3-8ubuntu7                
+openssl                        0.9.7d-4                       0.9.7g-1                      
+pan                            0.14.2.91-2                    0.14.2.91-2ubuntu3            
+parted                         1.6.9-3.2                      1.6.21-1ubuntu3               
+parted-doc                     1.6.9-3.2                      1.6.21-1ubuntu3               
+passwd                         4.0.3-30.1                     1:4.0.3-37ubuntu1             
+patch                          2.5.9-2                        2.5.9-2                       
+pciutils                       2.1.11-15                      1:2.1.11-15ubuntu5            
+pcmcia-cs                      3.2.5-8                        3.2.5-11ubuntu1               
+pconf-detect                   0.5-6                          0.5-6ubuntu1                  
+pdftk                          1.00-1                         1.12-5                        
+perl                           5.8.4-2.2                      5.8.7-3                       
+perl-base                      5.8.4-2.2                      5.8.7-3                       
+perl-modules                   5.8.4-2.2                      5.8.7-3                       
+pingus                         0.6.0-8                        0.6.0-8                       
+pingus-data                    0.6.0-8                        0.6.0-8                       
+pkg-config                     0.15.0-4                       0.18.1-1                      
+planner                        0.12-3                         0.13-0.4                      
+plib1c102                      1.6.0-4                        No existe en breezy           
+powermgmt-base                 1.21                           1.22                          
+ppp                            2.4.2+20040428-2               2.4.3-20050321+2ubuntu1       
+pppconfig                      2.3.6                          2.3.11ubuntu1                 
+procps                         3.2.1-2                        1:3.2.5-1ubuntu1              
+psmisc                         21.5-1                         21.6-1                        
+python                         2.3.4-1                        2.4.1-0ubuntu2                
+python-glade2                  2.2.0-3                        2.6.2-1ubuntu1                
+python-gnome2                  2.0.3-1                        2.11.3-0ubuntu1               
+python-gtk2                    2.2.0-3                        2.6.2-1ubuntu1                
+python-newt                    0.51.6-5                       0.51.6-20ubuntu4              
+python-numeric                 23.3-5                         23.8-3                        
+python-pythoncard              0.7.3.1-1                      0.8.1-1ubuntu1                
+python-tk                      2.3.4-1                        2.4.1-0ubuntu2                
+python2.3                      2.3.4-5                        2.3.5-6                       
+python2.3-dbus                 0.22-1.0.1                     No existe en breezy           
+python2.3-glade2               2.2.0-3                        No existe en breezy           
+python2.3-gnome2               2.0.3-1                        No existe en breezy           
+python2.3-gtk2                 2.2.0-3                        No existe en breezy           
+python2.3-iconvcodec           1.1.2-1                        1.1.2-1ubuntu2                
+python2.3-libbtctl             0.4.1-1                        No existe en breezy           
+python2.3-numeric              23.3-5                         23.8-3                        
+python2.3-pyorbit              2.0.0-4                        2.0.1-1ubuntu5                
+python2.3-pythoncard           0.7.3.1-1                      No existe en breezy           
+python2.3-tk                   2.3.4-5                        2.3.5-6                       
+qc-usb-modules-2.6.5           0.6.0-5+test1.0                No existe en breezy           
+qcad                           2.0.3.3-1-1                    2.0.4.0-1-2                   
+qcad-partlibrary               2.0.1.2-1-1                    No existe en breezy           
+qtparted                       0.4.4-2                        0.4.4-3ubuntu3                
+rar                            3.30-2                         3.30-2                        
+rdesktop                       1.3.1-1                        1.4.1-1                       
+recode                         3.6-10                         3.6-10                        
+rekall                         2.2.0-beta4-2                  No existe en breezy           
+rekall-xbase                   2.0.0-1                        No existe en breezy           
+reportbug                      2.63                           3.12ubuntu1                   
+rhythmbox                      0.8.5-3                        0.8.8cvs20050710-0ubuntu1     
+rp-pppoe                       3.5-4                          No existe en breezy           
+samba                          3.0.6-3                        3.0.14a-5ubuntu1              
+samba-common                   3.0.6-3                        3.0.14a-5ubuntu1              
+sane-utils                     1.0.14-7                       1.0.15-9ubuntu4               
+scribus                        1.2.0.cvs20040714-2            1.2.2.1-1ubuntu1              
+scrollkeeper                   0.3.14-9                       0.3.14-10                     
+sed                            4.1.2-1                        4.1.4-2                       
+setserial                      2.17-36                        2.17-41                       
+sgml-base                      1.26                           1.26                          
+sgml-data                      2.0.2                          2.0.3                         
+shared-mime-info               0.15-1                         0.16-3                        
+sharutils                      4.2.1-11                       1:4.2.1-13                    
+shellutils                     5.2.1-2                        5.2.1-2ubuntu1                
+sl-modem-modules-2.6.5         2.9.8-1                        No existe en breezy           
+slang1                         1.4.9dbs-6                     1.4.9dbs-8                    
+slang1a-utf8                   1.4.9dbs-6                     1.4.9dbs-8                    
+slib                           3a1-4                          3a1-4.2                       
+smbclient                      3.0.6-3                        3.0.14a-5ubuntu1              
+smbfs                          3.0.6-3                        3.0.14a-5ubuntu1              
+soundtracker                   0.6.7-4                        0.6.7-5                       
+sox                            12.17.5-3                      12.17.7-2                     
+splashutils                    0.1-1                          No existe en breezy           
+ssh                            3.8.1p1-8                      1:4.1p1-6ubuntu1              
+strace                         4.5.5-1                        4.5.12-1ubuntu1               
+sudo                           1.6.7p5-2                      1.6.8p9-2ubuntu1              
+supertux                       0.1.2-1                        0.1.2-4build1                 
+supertux-data                  0.1.2-1                        0.1.2-4build1                 
+svgalibg1                      1.4.3-17                       1:1.4.3-20ubuntu2             
+svncviewer                     0.1.1-5                        1:0.1.1-6                     
+symlinks                       1.2-4.1                        1.2-4.2                       
+synaptic                       0.53.3-2                       0.57.2-1                      
+sysklogd                       1.4.1-15                       1.4.1-17ubuntu1               
+syslinux                       2.10-1                         2.11-0.1ubuntu3               
+sysv-rc                        2.86-1                         2.86.ds1-1ubuntu3             
+sysvinit                       2.86-1                         2.86.ds1-1ubuntu3             
+tar                            1.13.93-4                      1.15.1-2                      
+tasksel                        2.12                           2.25                          
+tcl8.3                         8.3.5-4                        8.3.5-4                       
+tcl8.4                         8.4.7-1                        8.4.9-1                       
+tcltls                         1.5.0-1                        1.5.0-2                       
+tcpd                           7.6.dbs-6                      7.6.dbs-8                     
+tcpdump                        3.8.3-3                        3.9.1-1                       
+tcptraceroute                  1.4-5                          1.5beta6-1                    
+tcsh                           6.13.00-1                      6.14.00-1                     
+telnet                         0.17-24                        0.17-29build1                 
+texinfo                        4.7-2.1                        4.7-2.2ubuntu1                
+textutils                      5.2.1-2                        5.2.1-2ubuntu1                
+time                           1.7-19                         1.7-21                        
+timidity                       2.13.0-rc1-CVS20040221-2       2.13.2-5ubuntu1               
+timidity-patches               0.1-5                          No existe en breezy           
+tk8.4                          8.4.7-1                        8.4.9-1build1                 
+tkpppoe                        3.5-4                          No existe en breezy           
+totem                          0.99.9-5                       1.1.2-0ubuntu6                
+traceroute                     1.4a12-16                      1.4a12-18                     
+trackballs                     1.0.0-3                        1.0.0-10                      
+trackballs-data                1.0.0-3                        1.0.0-10                      
+ttf-bitstream-vera             1.10-3                         1.10-3ubuntu1                 
+ttf-dustin                     20030517-1                     20030517-1ubuntu1             
+ttf-freefont                   20031008-1.1                   20031008-1.1ubuntu1           
+ttf-isabella                   1.01-6                         1.01-6ubuntu1                 
+ttf-opensymbol                 1.1.2-3                        1.1.3-8ubuntu7                
+ttf-xfree86-nonfree            4.2.1-2                        4.2.1-2                       
+ttmkfdir                       3.0.9-3                        3.0.9-3                       
+tuxracer                       0.61-6.4                       0.61-7                        
+tuxracer-data                  0.61-2                         0.61-7                        
+tvtime                         0.9.12-2                       0.9.15-1ubuntu1               
+ucf                            1.08                           1.18                          
+udev                           0.031-2                        0.060-1ubuntu1                
+unace                          1.2b-2                         1.2b-3                        
+unrar                          0.0.1-1                        No existe en breezy           
+unzip                          5.51-2                         5.52-3ubuntu1                 
+usbutils                       0.11+cvs20040318-3             0.70-1ubuntu3                 
+usbview                        1.0-6                          1.0-6ubuntu1                  
+user-euro-es                   0.34                           0.34                          
+util-linux                     2.12-7                         2.12p-4ubuntu4                
+vim                            6.3-013+2                      1:6.3-078+1ubuntu1            
+vim-common                     6.3-013+2                      1:6.3-078+1ubuntu1            
+vim-gtk                        6.3-013+2                      1:6.3-078+1ubuntu1            
+vorbis-tools                   1.0.1-1                        1.0.1-1.4                     
+wavemon                        0.4.0b-6                       0.4.0b-7                      
+wget                           1.9.1-4                        1.10-2                        
+whiptail                       0.51.6-5                       0.51.6-20ubuntu4              
+whois                          4.6.21                         4.7.5                         
+wine                           0.0.20040615-1                 0.0.20050310-1.1              
+winesetuptk                    0.7-1                          0.7-1.1                       
+wireless-tools                 26+27pre22-1                   27+28pre8-1ubuntu1            
+wordtrans-data                 1.1pre13-4                     1.1pre13-5build1              
+wordtrans-kde                  1.1pre13-4                     1.1pre13-5build1              
+wordtrans-qt                   1.1pre13-4                     1.1pre13-5build1              
+wvdial                         1.54.0-1                       1.54.0-1.1ubuntu1             
+xapi                           1.6-1                          No existe en breezy           
+xbase-clients                  4.3.0.dfsg.1-4                 6.8.2-36                      
+xbsql                          0.11-1                         No existe en breezy           
+xcdroast                       0.98+0alpha15-1                0.98+0alpha15-1.1             
+xchat                          2.0.10-0.3                     2.4.4-0ubuntu1                
+xchat-common                   2.0.10-0.3                     2.4.4-0ubuntu1                
+xdialog                        2.0.6-3                        2.0.6-3                       
+xfonts-75dpi                   4.3.0.dfsg.1-4                 6.8.2-14                      
+xfonts-75dpi-transcoded        4.3.0.dfsg.1-4                 6.8.2-10                      
+xfonts-artwiz                  2.7                            1:1.3-2                       
+xfonts-base                    4.3.0.dfsg.1-4                 6.8.2-14                      
+xfonts-base-transcoded         4.3.0.dfsg.1-4                 6.8.2-10                      
+xfonts-cyrillic                4.3.0.dfsg.1-4                 6.8.2-10                      
+xfonts-scalable                4.3.0.dfsg.1-4                 6.8.2-14                      
+xfree86-common                 4.3.0.dfsg.1-4                 6.8.2-36                      
+xine-ui                        0.99.1-1                       0.99.3-1ubuntu2               
+xlibmesa-dri                   4.3.0.dfsg.1-4                 6.8.2-36                      
+xlibmesa-gl                    4.3.0.dfsg.1-4                 6.8.2-36                      
+xlibmesa-glu                   4.3.0.dfsg.1-4                 6.8.2-10                      
+xlibs                          4.3.0.dfsg.1-4                 6.8.2-36                      
+xlibs-data                     4.3.0.dfsg.1-4                 6.8.2-36                      
+xml-core                       0.09                           0.09                          
+xmms                           1.2.10-1                       1.2.10+cvs20050209-2ubuntu1   
+xmms-crossfade                 0.3.5-1                        0.3.5-1                       
+xnest                          4.3.0.dfsg.1-4                 6.8.2-36                      
+xpdf                           3.00-8                         3.00-13ubuntu1                
+xpdf-common                    3.00-8                         3.00-13ubuntu1                
+xpdf-reader                    3.00-8                         3.00-13ubuntu1                
+xpdf-utils                     3.00-8                         3.00-13ubuntu1                
+xsane                          0.95-1                         0.97-3ubuntu1                 
+xsane-common                   0.95-1                         0.97-3ubuntu1                 
+xscreensaver                   4.16-1                         4.21-4ubuntu5                 
+xscreensaver-gl                4.16-1                         4.21-4ubuntu5                 
+xscreensaver-gnome             4.16-1                         4.21-4ubuntu5                 
+xserver-common                 4.3.0.dfsg.1-4                 6.8.2-36                      
+xserver-xfree86                4.3.0.dfsg.1-4                 4.3.0.dfsg.1-6ubuntu26        
+xterm                          4.3.0.dfsg.1-4                 200-2                         
+xutils                         4.3.0.dfsg.1-4                 6.8.2-36                      
+xzoom                          0.3-16                         0.3-16                        
+yasr                           0.6.5-1                        0.6.5-1                       
+yelp                           2.6.2-1                        2.11.1-0ubuntu1               
+zenity                         2.6.3-3                        2.11.0-0ubuntu1               
+zip                            2.30-6                         2.31-3                        
+zlib1g                         1.2.1.1-7                      1:1.2.2-4ubuntu5              
+
+

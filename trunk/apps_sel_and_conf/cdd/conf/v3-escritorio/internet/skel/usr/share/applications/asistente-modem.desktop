@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Analog modem/router Internet assistant
+Name[es]=Asistente para Internet con módem analógico
+Comment=Configure your analog modem to connect to Internet
+Comment[es]=Configure su módem analógico para conectarse a Internet
+Exec=gksudo "/usr/bin/network-admin --configure=ppp0"
+Icon=/usr/share/gnome-app-install/icons/linphone2.png
+Terminal=false
+Type=Application
+Categories=Application;Network;

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+adduser --quiet $1 adm
+adduser --quiet $1 dialout
+adduser --quiet $1 cdrom
+adduser --quiet $1 floppy
+adduser --quiet $1 audio
+adduser --quiet $1 dip
+adduser --quiet $1 video
+adduser --quiet $1 plugdev
+adduser --quiet $1 lpadmin
+adduser --quiet $1 scanner
+adduser --quiet $1 users
+
+# Creating symlinks
+ln -s /home/$1/.fonts "/home/$1/Tipos de Letra"
+ln -s /home/compartido "/home/$1/Compartido"
+ln -s /home/$1/.aMule/Incoming "/home/$1/P2P/Incoming"
+ln -s /home/$1/.aMule/Temp "/home/$1/P2P/Temp"
+
+# Exec gnome-power-manager in new user sessions if this is a laptop
+# Is this a laptop?
+laptop-detect
+LAPTOP=$?
+if [ "$LAPTOP" == "0" ]; then
+
+    [ ! -d "$4"/.gnome2 ] && su $1 -c "mkdir $4/.gnome2"
+    cat <<EOF >> "$4"/.gnome2/session-manual
+
+[Default]
+num_clients=1
+0,RestartStyleHint=3
+0,Priority=50
+0,RestartCommand=gnome-power-manager --has-quit
+0,Program=gnome-power-manager
+EOF
+    chown $1:$2 "$4"/.gnome2/session-manual
+fi

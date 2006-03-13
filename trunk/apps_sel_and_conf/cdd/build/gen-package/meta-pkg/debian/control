@@ -1,0 +1,11 @@
+Source: meta-guadalinex-v3
+Section: misc
+Priority: optional
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Standards-Version: 3.6.0
+
+Package: meta-guadalinex-v3
+Architecture: all
+Depends: meta-guadalinex-v3-base, meta-guadalinex-v3-escritorio, meta-guadalinex-v3-noescritorio, meta-guadalinex-v3-extras
+Description: Guadalinex v3 metapackage
+ This metapackage installs a whole Guadalinex v3 distribution.

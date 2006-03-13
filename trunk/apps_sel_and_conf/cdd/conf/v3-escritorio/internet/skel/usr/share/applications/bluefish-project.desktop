@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Bluefish Editor
+Name[de]=Bluefish Editor
+Name[es]=Editor de HTML (Bluefish)
+Comment=Web Development Editor
+Comment[es]=Editor para desarrollo web
+Comment[de]=Editor für Web-Entwickler
+Exec=bluefish -n -p %f
+Icon=/usr/share/pixmaps/bluefish-icon.png
+Terminal=false
+Type=Application
+NoDisplay=true
+Encoding=UTF-8
+StartupNotify=true
+MimeType=application/bluefish-project;

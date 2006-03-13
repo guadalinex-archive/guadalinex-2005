@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=ADSL modem/router Internet assistant
+Name[es]=Asistente para Internet con módem/router ADSL
+Comment=Configure your ADSL modem/router to connect to Internet
+Comment[es]=Configure su módem/router ADSL para conectarse a Internet
+Exec=gksudo /usr/bin/bb-assist
+Icon=/usr/share/bb-assist/glade/pixmaps/bb-assist48.png
+Terminal=false
+Type=Application
+Categories=Application;Network;

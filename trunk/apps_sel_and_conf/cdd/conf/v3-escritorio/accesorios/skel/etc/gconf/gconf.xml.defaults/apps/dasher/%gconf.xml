@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<gconf>
+        <entry name="TruncationType" mtime="1131710410" type="int" value="0">
+        </entry>
+        <entry name="Truncation" mtime="1131710410" type="int" value="0">
+        </entry>
+        <entry name="SpeechEnabled" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="PaletteChange" mtime="1131710803" type="bool" value="true">
+        </entry>
+        <entry name="OutlineBoxes" mtime="1131710803" type="bool" value="true">
+        </entry>
+        <entry name="StartOnMousePosition" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="MousePositionBoxDistance" mtime="1131710784" type="int" value="50">
+        </entry>
+        <entry name="YScaling" mtime="1131710784" type="int" value="0">
+        </entry>
+        <entry name="UniformTimes1000" mtime="1131710784" type="int" value="50">
+        </entry>
+        <entry name="KeyboardMode" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="ScreenHeight" mtime="1131710804" type="int" value="500">
+        </entry>
+        <entry name="ScreenWidth" mtime="1131710804" type="int" value="400">
+        </entry>
+        <entry name="EditHeight" mtime="1131710804" type="int" value="75">
+        </entry>
+        <entry name="DasherFontSize" mtime="1131710784" type="int" value="1">
+        </entry>
+        <entry name="DasherFont" mtime="1131710784" type="string">
+                <stringvalue></stringvalue>
+        </entry>
+        <entry name="EditFontSize" mtime="1131710784" type="int" value="0">
+        </entry>
+        <entry name="EditFont" mtime="1131710784" type="string">
+                <stringvalue></stringvalue>
+        </entry>
+        <entry name="AlphabetID" mtime="1131710784" type="string">
+                <stringvalue>Español / Spanish with punctuation and numerals</stringvalue>
+        </entry>
+        <entry name="ColourID" mtime="1131710804" type="string">
+                <stringvalue>Default</stringvalue>
+        </entry>
+        <entry name="LanguageModelID" mtime="1131710410" type="int" value="0">
+        </entry>
+        <entry name="LMMixture" mtime="1131710784" type="int" value="87">
+        </entry>
+        <entry name="LMBeta" mtime="1131710784" type="int" value="77">
+        </entry>
+        <entry name="LMAlpha" mtime="1131710784" type="int" value="49">
+        </entry>
+        <entry name="LMUpdateExclusion" mtime="1131710784" type="int" value="1">
+        </entry>
+        <entry name="LMExclusion" mtime="1131710784" type="int" value="0">
+        </entry>
+        <entry name="LMMaxOrder" mtime="1131710784" type="int" value="5">
+        </entry>
+        <entry name="ControlMode" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="PauseOutsideWindow" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="EyetrackerMode" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="NumberDimensions" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="KeyControl" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="StartOnSpace" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="StartOnLeft" mtime="1131710803" type="bool" value="true">
+        </entry>
+        <entry name="ScreenOrientation" mtime="1131710410" type="int" value="0">
+        </entry>
+        <entry name="ViewToolbar" mtime="1131710803" type="bool" value="true">
+        </entry>
+        <entry name="ShowLargeIcons" mtime="1131710784" type="bool" value="true">
+        </entry>
+        <entry name="ShowToolbarText" mtime="1131710784" type="bool" value="true">
+        </entry>
+        <entry name="FixLayout" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="ShowSpeedSlider" mtime="1131710803" type="bool" value="true">
+        </entry>
+        <entry name="FileEncodingFormat" mtime="1131710784" type="int" value="-2">
+        </entry>
+        <entry name="DrawMouseLine" mtime="1131710803" type="bool" value="true">
+        </entry>
+        <entry name="DrawMouse" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="CopyAllOnStop" mtime="1131710784" type="bool" value="false">
+        </entry>
+        <entry name="TimeStampNewFiles" mtime="1131710803" type="bool" value="true">
+        </entry>
+        <entry name="MaxBitRateTimes100" mtime="1131710803" type="int" value="150">
+        </entry>
+</gconf>

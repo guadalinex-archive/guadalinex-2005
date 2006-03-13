@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=gFTP
+Name[es]=Cliente FTP (gFTP)
+GenericName=gFTP
+Comment=Download and upload files using multiple file transfer protocols
+Comment[es]=Descargue y suba ficheros utilizando múltiples protocolos de transferencia
+Exec=gftp %u
+TryExec=gftp
+Icon=gftp.png
+Terminal=0
+Type=Application
+Categories=Application;GTK;GNOME;Network;FileTransfer;

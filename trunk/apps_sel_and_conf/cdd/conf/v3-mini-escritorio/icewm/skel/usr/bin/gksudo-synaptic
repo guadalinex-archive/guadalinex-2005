@@ -1,0 +1,3 @@
+#!/bin/sh
+# Los iconos de firefox son algo pobres..., no puedes lanzar una orden compuesta, así que hay que ejecutar un fichero que ejecute nuestra ansiada orden.
+gksudo /usr/sbin/synaptic

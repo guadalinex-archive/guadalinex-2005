@@ -1,0 +1,17 @@
+gen-package (1.0) unstable; urgency=low
+
+  * Stable release.
+  * Actually, the package setup a clean sarge to transform it into a
+    productive system using a Guadalinex flavour.
+
+ -- Carlos Parra <cparra@emergya.info>  Tue,  5 Apr 2005 10:05:58 +0200
+
+gen-package (0.1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Teófilo Ruiz Suárez <teo@debian.org>  Mon, 27 Dec 2004 09:00:15 +0200
+
+Local variables:
+mode: debian-changelog
+End:

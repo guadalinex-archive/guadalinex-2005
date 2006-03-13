@@ -1,0 +1,13 @@
+Source: gen-package
+Section: admin
+Priority: optional
+Maintainer: ${cdd:Maintainer}
+Build-Depends-Indep: debhelper (>> 3.0.0), dpsyco-devel
+Standards-Version: 3.6.2
+
+Package: this-will-be-replaced-package-name
+Architecture: all
+Depends:  ${cdd:Depends}
+Pre-Depends: ${dpsyco:Depends}, ${cdd:Pre-Depends}
+Conflicts: ${cdd:Conflicts}
+Description: ${cdd:Description}.

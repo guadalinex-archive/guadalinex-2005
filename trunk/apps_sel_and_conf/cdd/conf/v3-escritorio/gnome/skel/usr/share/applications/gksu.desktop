@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=Root Terminal
+Name[es]=Terminal de administrador
+Name[de]=Root-Terminal
+Name[fr]=Terminal superutilisateur
+Name[pt_BR]=Terminal como Root
+Comment=Opens a terminal as the root user, using gksudo to ask for the password
+Comment[es]=Abre una terminal como usuario root, preguntando la contraseña
+Comment[de]=Befehlszeile mit Administrationsrechten
+Comment[fr]=Ouvrir un terminal superutilisateur
+Comment[pt_BR]=Abre um terminal como usuário root, usando o gksudo para pedir a senha
+Exec=gksudo /usr/bin/x-terminal-emulator
+Icon=/usr/share/pixmaps/gksu-root-terminal.png
+StartupNotify=true
+Terminal=false
+MultipleArgs=false
+Type=Application
+NoDisplay=true
+Categories=Application;System
