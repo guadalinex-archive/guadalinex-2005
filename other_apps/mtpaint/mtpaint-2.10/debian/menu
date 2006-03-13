@@ -1,2 +1,0 @@
-?package(mtpaint):needs="X11" section="Apps/Graphics"\
-  title="mtpaint" command="/usr/bin/mtpaint"
