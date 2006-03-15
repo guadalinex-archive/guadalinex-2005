@@ -164,6 +164,8 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+last_revision=$(cat ../../conf/.svn/entries |grep revision|sed -e 's/^.*revision="\([0-9]*\)"\/>/\1/')
+dch -v 1.0-r${last_revision} "Auto-generated version increment" || continue
 section=$(basename $1)
 
 big_meta_deps=""

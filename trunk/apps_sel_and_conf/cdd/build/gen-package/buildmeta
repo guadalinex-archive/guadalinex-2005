@@ -25,6 +25,8 @@ echo "Depends: $depends" >> debian/control
 echo "Description: Guadalinex v3 metapackage
  This metapackage installs a whole Guadalinex v3 distribution." >> debian/control
 
+last_revision=$(cat ../../../conf/.svn/entries |grep revision|sed -e 's/^.*revision="\([0-9]*\)"\/>/\1/')
+dch -v 1.0-r${last_revision} "Auto-generated version increment" || continue
 
 fakeroot debian/rules binary
 fakeroot debian/rules clean
