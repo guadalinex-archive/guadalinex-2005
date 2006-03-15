@@ -1,8 +1,0 @@
-Changelog (Versión Guadalinex)
-- Añadida carpeta uda/ en esta carpeta se mantendrán (en la medida de lo
-posible) todo los archivos externos del sistema de generación original.
-- Cambiado nombre de proyecto ubuntu ---> guadalinex
-- Cambios en los scripts para considerar unicamente la arquitectura i386
-- debian-cd intenta generar las sumas de los ficheros con
-/usr/bin/md5sum.textutils. Esté binario se encuentra en el paquete coreutils,
-por razones varias, en versiones recientes, este binario ya no existe. Por ello he modificado debian-cd para que apunte directamente a /usr/bin/md5sum

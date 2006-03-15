@@ -1,8 +1,0 @@
-#! /bin/sh
-set -e
-
-[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
-. "$CDIMAGE_ROOT/etc/config"
-
-rsync --recursive --links --hard-links --times --verbose --stats --compress --delete-after \
- archive.ubuntu.com::ubuntu/dists/breezy/main/daily-installer-i386/current/ $CDIMAGE_ROOT/ftp/dists/breezy/main/installer-i386/current/ > $CDIMAGE_ROOT/log/update-installer-i386.log 2>&1

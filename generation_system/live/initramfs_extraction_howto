@@ -1,8 +1,0 @@
-Juanje dixit:
-
-    # mv initramfs initramfs.gz
-    # gunzip initramfs.gz
-    # mkdir dir
-    # cd dir
-    # cpio -i < ../initramfs
-    (inside "dir" you'll have the contents of initramfs)

@@ -1,5 +1,0 @@
-network-preseed
-
-# verify what we download
-gpgv-udeb
-ubuntu-keyring-udeb

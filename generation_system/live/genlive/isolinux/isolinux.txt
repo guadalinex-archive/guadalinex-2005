@@ -1,8 +1,0 @@
-splash.rle
-
-
-
-
-
-07Bienvenido a Guadalinex v3 (live), pulse INTRO para continuar.
-Para ver la ayuda, pulse F2.
