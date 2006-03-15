@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=Sintetizador de música y muestras (SoundTracker)
-Comment=Cree música a partir de muestras de sonido
-Exec=soundtracker
-Icon=gnome-grecord.png
-Terminal=false
-Type=Application
-Categories=Application;AudioVideo;Audio;

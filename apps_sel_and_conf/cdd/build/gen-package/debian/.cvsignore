@@ -1,4 +1,0 @@
-*.debhelper
-*.substvars
-files
-03_apt_proxy

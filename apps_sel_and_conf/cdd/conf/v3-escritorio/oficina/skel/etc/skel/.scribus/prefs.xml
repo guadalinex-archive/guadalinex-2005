@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<preferences>
-	<level name="application">
-		<context name="user_preferences">
-			<attribute key="gui_language" value=""/>
-		</context>
-	</level>
-</preferences>

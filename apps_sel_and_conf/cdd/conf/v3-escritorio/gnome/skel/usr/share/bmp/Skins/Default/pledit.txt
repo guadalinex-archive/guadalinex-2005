@@ -1,6 +1,0 @@
-[Text]
-Normal=#bbc0c8
-Current=#999999
-NormalBG=#dce4f0
-SelectedBG=#eeeeee
-Font=Helvetica
