@@ -1,0 +1,96 @@
+# -*- mode: Makefile -*-
+#   eagleconfig: configuration utility for eagle USB modems
+#
+#   Copyright (C) 2003 Jerome Marant <jerome.marant@sagem.com>
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License Version 2 as 
+#   published by the Free Software Foundation.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#   or contact the author.
+#
+#   $Id: Makefile.in,v 1.1 2004/02/15 12:50:16 Tux Exp $
+#
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+BINDIR=@bindir@
+SBINDIR=@sbindir@
+DATADIR=@datadir@
+
+INSTALL=@INSTALL@
+
+CONFDIR=@CONFDIR@
+
+EAGLEUSB_CONFDIR=@EAGLEUSB_CONFDIR@
+EAGLEUSB_BINDIR=@EAGLEUSB_BINDIR@
+
+DIALOG=@DIALOG@
+EAGLECONFIG_LIBDIR=@datadir@/eagleconfig
+
+PROFILES_DIR=$(EAGLEUSB_CONFDIR)/profiles
+
+LIBS=modem.pl network.pl ui.pl mandrake.pl redhat.pl
+CONTRIB_LIBS=Config
+
+PROFILES=$(shell find profiles -type f -maxdepth 1)
+
+BIN=eagleconfig
+
+all:: $(BIN)
+
+$(BIN) : $(BIN).pl
+	sed -e "s:\$$eagleconfig_libdir[[:space:]]*=[[:space:]]*['\"][^'\"]*['\"]:\$$eagleconfig_libdir = \"$(EAGLECONFIG_LIBDIR)\": ; \
+	s:\$$eagledir[[:space:]]*=[[:space:]]*['\"][^'\"]*['\"]:\$$eagledir = \"$(EAGLEUSB_CONFDIR)\": ; \
+	s:\$$etcdir[[:space:]]*=[[:space:]]*['\"][^'\"]*['\"]:\$$etcdir = \"$(CONFDIR)\":" \
+	< $< > $@
+
+install::
+	$(INSTALL) -d $(DESTDIR)$(PROFILES_DIR)
+	$(INSTALL) $(PROFILES) $(DESTDIR)$(PROFILES_DIR)
+
+	$(INSTALL) -d $(DESTDIR)$(SBINDIR)
+	$(INSTALL) -m 0755 $(BIN) $(DESTDIR)$(SBINDIR)
+
+	$(INSTALL) -d $(DESTDIR)$(EAGLECONFIG_LIBDIR)
+	$(INSTALL) $(LIBS) $(DESTDIR)$(EAGLECONFIG_LIBDIR)
+	cp -a contrib/$(CONTRIB_LIBS) $(DESTDIR)$(EAGLECONFIG_LIBDIR) 
+
+uninstall::
+	rm -rf $(DESTDIR)$(PROFILES_DIR)
+	rm -f $(DESTDIR)$(SBINDIR)/$(BIN)
+	rm -rf $(DESTDIR)$(EAGLECONFIG_LIBDIR)
+
+clean::
+	rm -f $(BIN)
+
+distclean::
+
+# Add dialog rules if no dialog-alike program was found
+ifndef DIALOG
+all:: dialog
+
+dialog:
+	cd contrib/dialog && \
+	./configure --prefix=$(prefix) && \
+	make
+
+install::
+	make -C contrib/dialog install DESTDIR=$(DESTDIR)
+
+uninstall::
+	make -C contrib/dialog uninstall DESTDIR=$(DESTDIR)
+
+clean::
+	make -C contrib/dialog clean
+
+distclean::
+	make -C contrib/dialog distclean
+
+endif
+
+
+.PHONY: all dialog install uninstall clean distclean

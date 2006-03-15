@@ -1,0 +1,55 @@
+                                 BNM FILE FORMAT
+	
+I analyzed the BNM file structure as DOS text files (therefore ended with
+CR/LF line terminators), in which firmware is encoded in ASCII hexadecimal
+representation. Whith this representation, each byte is stored on two bytes
+representing the two 4 bits hexadecimal digits of the byte. Digits A to F
+may be represented in upper or in lower case.
+
+Each line constitutes a so-called "S record", with a header followed by
+ASCII encoded binary data.
+
+The general format of a S record is the following :
+
+Magic	Type	Length	Offset		Binary data	Checksum
+1 byte	1 byte	2 bytes	6/8 bytes	variable	2 bytes
+
+The Magic field is always the 'S' character. It is followed by a code telling
+the kind of record the current line describes. As far as I known, there
+are 3 kinds of records :
+- records whose type code is character '9', who marks the end of the firmware
+code ;
+- records whose type code is '2' or '3', who store firmware data.
+S records of type 2 encode the Offset field on 6 bytes only, whereas
+S records of type 3 encode the Offset field on 8 bytes (these offsets
+are therefore 32 bits wide when converted from ASCII hexadecimal to binary).
+
+The Length field tells the length in bytes of the remaining datas on the line.
+This length is the length once the data converted, the remaining size of
+the record is therefore two times this length.
+
+The Offset field stores the offset of the binary data of the S record
+in the firmware. These offsets can be coded on 6 bytes (24 bits offsets)
+or on 8 bytes (32 bits offsets).
+
+The Binary data field contains the firmware chunk the S record represents.
+
+The checksum is the logical not of the least signigicant byte of the sum
+of preceding binary converted bytes from the count field (comprised). For
+instance, if the sum of the preceding hexadecimal bytes is F1, the checksum
+is 0E.
+
+As .bnm files are ASCI printable files, therefore each S record ends with
+a CR and a LF byte, which of course must be taken in account in parsing
+the records.
+
+Records can be read in any order, since the encode the binary chunk's offset
+in the firmware. However, the first record is special because its offset
+is the so-called IDMA start, which certainly is the offset of the bootstrap
+code in the firmware. As we have no way to distinguish the first record
+from the others, it is assumed it's the first record of the first file.
+The first file is therefore very important and should always be loaded
+before the others.
+
+-- CC
+

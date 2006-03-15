@@ -1,0 +1,23 @@
+\" Translation of apt-setup.8 CVS revision 1.4
+.TH APT-SETUP 8
+.SH NAZWA
+apt-setup \- dodaje nowe ¼ród³a pakietów dla apt-a
+.SH SK£ADNIA
+.B apt-setup [probe]
+.SH OPIS
+.BR apt-setup
+to interaktywny program u³atwiaj±cy dodawanie ¼róde³ pakietów do pliku
+sources.list apt-a. Zna on wszystkie g³ówne serwery lustrzane Debiana
+i mo¿e pomóc wybraæ jeden z nich. Mo¿e nawet u¿yæ programu
+.BR apt-cdrom (8)
+do przeszukiwania p³yt CD.
+.SH OPCJE
+.TP
+.I "probe"
+Domy¶lnie nie jest sprawdzana obecno¶æ p³yty CD. Je¶li jako pierwszy
+argument zostanie podany wyraz "probe", program przeszuka p³ytê CD znajduj±c±
+siê w napêdzie i doda j± do pliku sources.list. Jest to przydatne przy
+instalacji systemu, gdy¿ pozwala na ograniczenie koniecznych dzia³añ
+u¿ytkownika.
+.SH AUTOR
+Joey Hess <joey@kitenet.net>

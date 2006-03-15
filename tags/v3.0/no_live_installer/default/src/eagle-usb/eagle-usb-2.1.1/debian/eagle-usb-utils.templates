@@ -1,0 +1,79 @@
+
+Template: eagle-usb/ISP
+Type: select
+__Choices: manual configuration, Algeria              Wanadoo, Argentina            Speedy, Austria              *, Austria              AON, Austria              Telstra, Belgium              ADSL Office, Belgium              Belgacom, Belgium              Tiscali, Belgium              Turboline, Brazil               Rio Grande do Sul, Brazil               Speedy Telefonica, Brazil               Turbo Brasil Telecom, Brazil               Velox Telemar, Bulgaria             BTC isdn, Bulgaria             BTC pots, China                China Netcom Beijing, China                China Netcom Changchun, China                China Netcom Harbin, China                China Netcom Hunan, China                China Netcom Jilin, China                China Netcom Lanzhou, China                China Netcom Tianjin, China                China Netcom Xi'an, China                China Telecom Chongqing, China                China Telecom Fujian, China                China Telecom Guangxi, China                China Telecom Guangzhou, China                China Telecom Hangzhou, China                China Telecom Nanjing, China                China Telecom Shanghai, China                China Telecom Shenzhen, China                China Telecom Urumqi, China                China Telecom Wuhan, China                China Telecom Yunnan, China                China Telecom Zhuhai, Czech Republic       Cesky Telecom, Denmark              *, Egypt                Raya Telecom, Finland              Sonera, France               Cegetel ADSL 512, France               Cegetel ADSL Max, France               Club-Internet, France               Free degroupe, France               Free non degroupe, France               Tele2, France               Tiscali 128k, France               Tiscali 512k, France               Wanadoo, France               n9uf tel9com, Germany              1&1, Germany              Deutsche Telekom, Greece               *, Hungary              Matav, Ireland              *, Israel               Bezeq, Italy                Alice dynamic IP, Italy                Alice static IP, Italy                Libero, Italy                Tiscali, Lithuania            Lietuvos Telekomas, Mauritius            Wanadoo, Morocco              Maroc Telecom, Netherlands          Eager Telecom, Netherlands          KPN, Netherlands          Tiscali, Netherlands          Versatel, Poland               Netia Neostrada, Poland               TPSA Telekomunikacja Polska, Portugal             Portugal Telecom, Russia Federation    MTU-Intel, Slovenia             SiOL, Spain                Arrakis, Spain                Auna, Spain                Communitel, Spain                Euskatel, Spain                Telefonica dynamic IP, Spain                Telefonica static IP, Spain                Tiscali, Spain                Uni2, Spain                Wanadoo dynamic IP, Spain                Wanadoo static IP, Spain                Wanadoo/Eresmas Retevision, Spain                ya.com dynamic IP, Spain                ya.com static IP, Sweden               Telia, Switzerland          *, Switzerland          BlueWin, Switzerland          Swisscom, Switzerland          Tiscali, Thailand             Asianet, Tunisia              Planet, United Arab Emirates Etisalat, United Kingdom       British Telecom, United Kingdom       Tiscali
+Default: manual configuration
+_Description: Network configuration:
+ If your Internet Services Provider (ISP) is not listed, select
+ "manual configuration".
+
+Template: eagle-usb/VPI
+Type: string
+Default: 00000008
+_Description: VPI:
+ Virtual Path Identifier
+
+Template: eagle-usb/VCI
+Type: string
+Default: 00000024
+_Description: VCI:
+ Virtual Channel Identifier
+
+Template: eagle-usb/Encapsulation
+Type: select
+Choices: MPOA_MODE_BRIDGED_ETH_LLC, MPOA_MODE_BRIDGED_ETH_VC, MPOA_MODE_ROUTED_IP_LLC, MPOA_MODE_ROUTED_IP_VC, MPOA_MODE_PPPOA_LLC, MPOA_MODE_PPPOA_VC
+Default: MPOA_MODE_ROUTED_IP_VC
+_Description: Encapsulation method:
+
+Template: eagle-usb/Linetype
+Type: string
+Default: 00000001
+_Description: Linetype:
+
+Template: eagle-usb/static_ip
+Type: string
+_Description: Static IP address (empty for none):
+ If you want to use a static IP address, please enter it now.
+ If you address is obtained from your ISP, leave this field blank.
+
+Template: eagle-usb/update_dns
+Type: boolean
+Default: true
+_Description: Do you want automatically update DNS server?
+ If you installed a DNS server, answer "No".
+ If you don't understand the question, answer "Yes".
+
+Template: eagle-usb/dsl_login
+Type: string
+Default: DSL_LOGIN
+_Description: DSL login:
+ Please enter the login for identification with your DSL access provider.
+ Some providers may also call it username.
+
+Template: eagle-usb/dsl_passwd
+Type: password
+Default:
+_Description: DSL password:
+ Please enter the password for identification with your DSL access provider.
+
+Template: eagle-usb/dsl_encrypt_passwd
+Type: boolean
+Default: true
+_Description: Does your ISP support password encryption?
+
+Template: eagle-usb/autostart
+Type: select
+_Choices: onboot, onplug, no
+Default: no
+_Description: Method for starting the DSL connection:
+ You can choose to automatically start your Internet connection
+ on plug or on boot. If you choose "onplug", the connection will
+ be triggered when plugging your modem (including at boot time).
+ If you choose "onboot", the connection will only happen at boot time.
+
+Template: eagle-usb/use_testconnec
+Type: boolean
+Default: false
+_Description: Do you want to enable a 'cron' task to control connection?
+ If you choose this option, a 'cron' task will control your Internet
+ connection periodically and restart it when it is lost.

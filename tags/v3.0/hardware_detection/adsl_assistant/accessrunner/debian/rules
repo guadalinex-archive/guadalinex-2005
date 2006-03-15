@@ -1,0 +1,131 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	touch configure-stamp
+
+build-arch: configure-stamp  build-arch-stamp
+build-arch-stamp:
+	dh_testdir
+	/usr/bin/docbook-to-man debian/cxacru-fw.sgml > debian/cxacru-fw.1
+	$(MAKE) binutils
+	touch build-arch-stamp
+
+build-indep:  configure-stamp build-indep-stamp
+build-indep-stamp:
+	dh_testdir
+	touch build-indep-stamp
+
+build: build-arch build-indep
+
+clean:
+	dh_testdir
+	rm -f build-arch-stamp build-indep-stamp configure-stamp
+	-$(MAKE) clean
+	dh_clean
+
+install: DH_OPTIONS=
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs -i usr/src/modules/accessrunner-usb/debian
+	dh_installdirs -a usr/bin /etc/default/ /etc/hotplug/usb/
+
+	install -m 755 extra/hotplug debian/accessrunner-usb-utils/etc/hotplug/usb/cxacru
+	install -m 644 extra/cxacru.default debian/accessrunner-usb-utils/etc/default/cxacru
+	dh_installexamples extra/interfaces extra/peers-pppoe
+
+	$(MAKE) installbins PREFIX=debian/accessrunner-usb-utils/usr
+	tar -v -c --exclude ".svn" --exclude "old" --exclude "CVS" --exclude "debian" . | tar x -C debian/accessrunner-usb-source/usr/src/modules/accessrunner-usb
+	cp -a debian/compat debian/*modules.in debian/rules debian/copyright debian/changelog debian/accessrunner-usb-source/usr/src/modules/accessrunner-usb/debian
+	cd debian/accessrunner-usb-source/usr/src && tar c modules | bzip2 -9 > accessrunner-usb.tar.bz2 && rm -rf modules
+
+	install -p -d -m 755 debian/accessrunner-usb-utils/usr/share/man/man1/
+	install -p -d -m 755 debian/accessrunner-usb-utils/usr/share/modass/overrides/
+	install -m 644 debian/cxacru-fw.1 debian/accessrunner-usb-utils/usr/share/man/man1/cxacru-fw.1
+	ln -s /usr/share/modass/packages/default.sh debian/accessrunner-usb-utils/usr/share/modass/overrides/accessrunner-usb-source
+	dh_install
+
+binary-indep: build install
+	dh_testdir -i
+	dh_testroot -i
+#	dh_installchangelogs ChangeLog -i
+	dh_installdocs -i
+	dh_link -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_shlibdeps -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+binary-arch: build install
+	dh_testdir -s
+	dh_testroot -s
+	dh_installdocs -s
+#	dh_installchangelogs ChangeLog -s
+	dh_strip -s
+	dh_link -s
+	dh_compress -s
+	dh_fixperms -s
+	dh_installdeb -s
+	dh_shlibdeps -s
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
+
+# module-assistant stuff
+PACKAGE = accessrunner-usb-modules
+MA_DIR ?= /usr/share/modass
+-include $(MA_DIR)/include/generic.make
+-include $(MA_DIR)/include/common-rules.make
+
+MAJOR=$(shell echo $(KVERS) | sed -e 's/\(...\).*/\1/')
+ifeq ($(MAJOR),2.6)
+KO=k
+endif
+
+KVERCOMP=$(shell uname -r)
+
+kdist_clean: prep-deb-files
+	dh_clean
+	$(MAKE) -C drivers/usb/atm clean
+
+kdist_config: prep-deb-files
+kdist_configure: kdist_config
+
+binary-modules: kdist_config
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+# build and install the module
+	$(MAKE) KVERS=$(KVERS) LINUXSRC=$(KSRC) MODPREFIX=$(CURDIR)/debian/$(PKGNAME)/ modules
+	@for mod in cxacru usbatm; do \
+		install -m644 -b -D drivers/usb/atm/$${mod}.$(KO)o $(CURDIR)/debian/$(PKGNAME)/lib/modules/$(KVERCOMP)/misc/$${mod}.$(KO)o ; \
+	done
+	# FIXME KVERS no tiene minor
+
+	dh_installdocs 
+	dh_installchangelogs
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol -- -v$(VERSION)
+	dh_md5sums
+	dh_builddeb --destdir=$(DEB_DESTDIR)
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure binary-modules kdist kdist_config kdist_image kdist_clean

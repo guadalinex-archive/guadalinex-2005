@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+	"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY % xinclude SYSTEM "../libs/xinclude.mod">
+%xinclude;
+<!ENTITY % globalent SYSTEM "../libs/global.ent">
+%globalent;
+]>
+<glossary id="glossary-1">
+    <title>Glosario</title>
+    <glossentry id="glossary-6">
+        <glossterm>miniaplicación</glossterm>
+        <glossdef>
+            <para>Una miniaplicación es un programa de corta extensión que residedentro de un panel
+	        por ejemplo <application>CD Player</application>. Cada miniaplicación tiene un 
+		interfaz de usuario simple que puede funcionar sólo con el ratón o el teclado.
+                </para>
+        </glossdef>
+    </glossentry>
+    <glossentry id="glossary-7">
+        <glossterm>espacio de trabajo</glossterm>
+        <glossdef>
+            <para>Un espacio de trabajo es un área discreta en el Escritorio de Gnome en la cual
+	     se puede trabajar. </para>
+        </glossdef>
+    </glossentry>
+    <glossentry id="glossary-8">
+        <glossterm>AFAIK</glossterm>
+        <glossdef>
+            <para>As Far As I Know</para>
+        </glossdef>
+    </glossentry>
+    <glossentry id="filesystem">
+        <glossterm>Sistema de archivos</glossterm>
+        <glossdef>
+            <para>Una forma de almacinar lso archivos en un medio 
+	    como pueden ser los discos duros, diskquetes, cdroms etc,etc...</para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <guimenu>Ext3</guimenu> (3nd Extended) actualmente es el sistema de archivos de Linux.</para>
+                </listitem>
+            </itemizedlist>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <guimenu>ReiserFS</guimenu> es un sistema de archivos reciente, diseñado ptanto para velocidad como para durabilidad.
+                        </para>
+                </listitem>
+            </itemizedlist>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <guimenu>ISO9660</guimenu>Usualmente el sistema de archivos estándar para los r CD-ROMs.</para>
+                </listitem>
+            </itemizedlist>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <guimenu>FAT &amp; VFAT</guimenu>Los nombres de linux para los sistemas de archivos de Microsoft(r) Windows(r) filesystems: fat16 (fat) y fat32 (vfat).</para>
+                </listitem>
+            </itemizedlist>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <guimenu>SMB &amp; NFS</guimenu> Sistemas de archivos de red, que permiten a los  ordenadores compartir datos, 'smb' es el 'entorno de red' de Windows.</para>
+                </listitem>
+            </itemizedlist>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <guimenu>PROC &amp; DEV</guimenu>Sistemas de ficheros especiales</para>
+                </listitem>
+            </itemizedlist>
+            <para>Linux soporta un gran número de otros sistemas de archivos, muchos de los cuales tienen acceso de lectura-escritura y otros sólo con acceso de lectura. </para>
+        </glossdef>
+    </glossentry>
+</glossary>

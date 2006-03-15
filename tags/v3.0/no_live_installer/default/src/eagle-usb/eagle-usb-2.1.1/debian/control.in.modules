@@ -1,0 +1,17 @@
+Source: eagle-usb
+Section: devel
+Priority: extra
+Maintainer: Cyril Martin <mcoolive@free.fr>
+Standards-Version: 3.6.1
+Build-Depends: 
+
+Package: eagle-usb-modules-_KVERS_
+Architecture: any
+Provides: eagle-usb-modules
+Depends: module-init-tools | modutils
+Recommends: kernel-image-_KVERS_, eagle-usb-data (>=1.9.6), eagle-usb-utils (>=1.9.6)
+Description: EAGLE-USB binary kernel module for Linux _KVERS_
+ The eagle-usb package is a skeleton for creating packages containing kernel
+ modules.
+ .
+ This package contains the compiled kernel modules for linux version _KVERS_

@@ -1,0 +1,16 @@
+Source: bb-assist
+Section: net
+Priority: optional
+Maintainer: packmaster@guadalinex.org
+Build-Depends: debhelper (>= 4.1.0), docbook-to-man, cdbs, python2.4-dev
+Standards-Version: 3.6.2
+
+Package: bb-assist
+Architecture: any
+Depends: python (>= 2.4), python (<< 3), python-gtk2, python-gnome2, python-glade2, python2.4-dbus (>= 0.36.2), python-xml, python2.4-4suite, python-pexpect, python-serial, gksu, gnome-system-tools (>= 1.4), speedtouch, ppp, pppoe, br2684ctl, atm-tools, eagle-usb-utils, eagle-usb-data, accessrunner-usb-utils, ifupdown, bsdutils (>= 2)
+Recommends: eagle-usb-modules-source, accessrunner-usb-source
+Description: A BroadBand Assistant configurator
+ This package is an assistant for help in the configuration of several types of 
+ Broadband (DSL, etc) devices.
+ .
+ It is oriented for be used by non tech people.

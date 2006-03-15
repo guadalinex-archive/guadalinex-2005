@@ -1,0 +1,90 @@
+#
+#
+# Ubuntu Installer master translation file template
+# Don't forget to properly fill-in the header of PO files 
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Ubuntu Installer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-06-07 16:42+0100\n"
+"PO-Revision-Date: 2005-03-08 20:54+0200\n"
+"Last-Translator: Canonical Ltd <translations@canonical.com>\n"
+"Language-Team: Xhosa <xh-translate@ubuntu.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: text
+#. Description
+#. Main menu item
+#: ../prebaseconfig.templates:4
+msgid "Finish the installation"
+msgstr "Gqiba ukumisela inkqubo"
+
+#. Type: text
+#. Description
+#: ../prebaseconfig.templates:8
+msgid "Finishing the installation"
+msgstr "Igqibezela ukumisela inkqubo yothungelwano"
+
+#. Type: text
+#. Description
+#: ../prebaseconfig.templates:12
+msgid "Running ${SCRIPT}..."
+msgstr "Iphumeza inkqubo i-${SCRIPT}..."
+
+#. Type: text
+#. Description
+#: ../prebaseconfig.templates:16
+msgid "Configuring network..."
+msgstr "Imisela inkqubo yothungelwano..."
+
+#. Type: text
+#. Description
+#: ../prebaseconfig.templates:20
+msgid "Setting up frame buffer..."
+msgstr "Imisa isigcini sethutyana se-frame..."
+
+# base-config must appear verbatim in translation
+#. Type: text
+#. Description
+#: ../prebaseconfig.templates:24
+#, fuzzy
+msgid "Preparing for base-config..."
+msgstr "Ilungiselela ukumisela inkqubo esisiseko yekhompyutha..."
+
+#. Type: text
+#. Description
+#: ../prebaseconfig.templates:28
+msgid "Unmounting file systems..."
+msgstr "Yehlisa iinkqubo zefayili..."
+
+#. Type: text
+#. Description
+#: ../prebaseconfig.templates:32
+msgid "Rebooting into your new Ubuntu system..."
+msgstr "Ivula kwakhona kwinkqubo yakho entsha ye-Ubuntu..."
+
+#. Type: note
+#. Description
+#: ../prebaseconfig.templates:36
+msgid "First stage of installation complete"
+msgstr "Umgangatho wokuqala wokusekwa kwenkqubo ugqityiwe"
+
+#. Type: note
+#. Description
+#: ../prebaseconfig.templates:36
+#, fuzzy
+msgid ""
+"The first stage of the installation process is complete. Your computer will "
+"now reboot and install more packages. Make sure to remove the installation "
+"media (CD-ROM, floppies), so that your system boots from the disk to which "
+"Ubuntu was installed."
+msgstr ""
+"Umgangatho wokuqala wenkqubo yokuseka uphelele. Ikompyutha yakho iyakuvula "
+"kwakhona, ikubuze imibuzo embalwa eseleyo, iseke eminye kwakhona imiqulu "
+"yenkqubo. Qiniseka ukuba uyazishenxisa iziixhobo eziphathelene nolwazi "
+"zokumisela (i-CD-ROM, ii-floppy), ukwenzela ukuba inkqubo yakho ivule "
+"kwidiski leyo inkqubo Ubuntu ibisekelwe kuyo."

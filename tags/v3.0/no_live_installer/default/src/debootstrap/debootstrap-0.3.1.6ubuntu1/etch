@@ -1,0 +1,183 @@
+mirror_style release
+download_style apt
+variants - buildd
+
+work_out_debs () {
+    add () { if [ "$ARCH" = "$1" ]; then eval "$2=\"\$$2 $3\""; fi; }
+    drop () { 
+     if [ "$ARCH" = "$1" ]; then eval "$2=\"\$(without \"\$$2\" \"$3\")\""; fi
+    }
+
+    LIBC6=libc6
+    if [ "$ARCH" = "alpha" -o "$ARCH" = "ia64" ]; then LIBC6="libc6.1"; fi
+
+    required="base-files base-passwd bash bsdutils coreutils libacl1 libattr1 debianutils diff dpkg dselect libblkid1 e2fsprogs e2fslibs libcomerr2 libss2 libuuid1 findutils grep gzip hostname libcap1 libdb1-compat libdb3 libncurses5 libnewt0.51 libpam-modules libpam-runtime libpam0g login makedev mawk mount ncurses-base ncurses-bin passwd perl-base procps sed slang1a-utf8 initscripts sysvinit sysv-rc tar util-linux libgcc1 gcc-3.3-base libstdc++5 zlib1g $LIBC6"
+
+    if doing_variant -; then 
+      if [ "$ARCH" = "alpha" -o "$ARCH" = "m68k" ]; then
+        IPFWTOOL="ipchains"
+      elif [ "$ARCH" = "powerpc" -o "$ARCH" = sparc ]; then
+        IPFWTOOL="ipchains iptables"
+      else
+        IPFWTOOL=iptables
+      fi
+
+      required="$required debconf debconf-i18n liblocale-gettext-perl libtext-wrapi18n-perl libtext-charwidth-perl libtext-iconv-perl"
+
+      base="adduser apt apt-utils libdb4.2 base-config aptitude libsigc++-1.2-5c102 bsdmainutils console-common console-tools libconsole console-data cpio cron dhcp-client ed libgnutls11 libgcrypt11 libgpg-error0 libncursesw5 libopencdk8 libtasn1-2 fdutils gettext-base groff-base ifupdown info klogd libssl0.9.7 liblzo1 liblockfile1 libpcre3 libwrap0 logrotate man-db libgdbm3 manpages nano net-tools netbase netkit-inetd iputils-ping nvi ppp pppconfig pppoe pppoeconf libpcap0.7 sysklogd tasksel libtextwrap1 tcpd telnet wget libpopt0 modutils whiptail $IPFWTOOL" 
+
+      # libthings
+      drop i386 required "libperl5.8"
+      drop hppa required "libstdc++2.10-glibc2.2"
+
+      add ia64 required "libreadline4"
+      add m68k required "libreadline4"
+      add powerpc required "libreadline4"
+
+      add arm base "libgpmg1"
+      add i386 base "psmisc"
+      add amd64 base "psmisc"
+      add powerpc base "psmisc"
+
+      # hardware
+      add alpha base "pciutils"
+      add i386 base "pciutils"
+      add ia64 base "elilo efibootmgr pciutils dosfstools libparted1.6-12 parted"
+      add m68k base "atari-bootstrap atari-fdisk amiga-fdisk eject mac-fdisk pmac-fdisk-cross vmelilo"
+      add powerpc base "mac-fdisk amiga-fdisk powerpc-utils pciutils hfsutils"
+      add sparc base "silo eject pciutils sparc-utils"
+      add mips base "dvhtool pciutils"
+      add mipsel base "pciutils"
+      add hppa base "palo pciutils"
+      add amd64 base "pciutils"
+
+      # base-config depends on console-tools and console-data
+      # so we can't exclude them although they are useless on s390
+      add s390 base "s390-tools telnetd devfsd"
+      drop s390 base "console-tools-libs fdutils ppp pppconfig pppoe pppoeconf"
+      add s390x base "s390-tools telnetd devfsd"
+      drop s390x base "console-tools-libs fdutils ppp pppconfig pppoe pppoeconf"
+
+    elif doing_variant buildd; then
+      base="apt binutils cpio cpp cpp-3.3 dpkg-dev g++ g++-3.3 gcc gcc-3.3 ${LIBC6}-dev libdb4.2 libgdbm3 libstdc++5-3.3-dev linux-kernel-headers make patch perl perl-modules"
+    fi
+}
+
+first_stage_install () {
+    extract $required
+
+    mkdir -p "$TARGET/var/lib/dpkg"
+    : >"$TARGET/var/lib/dpkg/status"
+    : >"$TARGET/var/lib/dpkg/available"
+
+    setup_etc
+    if [ ! -e "$TARGET/etc/fstab" ]; then
+        echo '# UNCONFIGURED FSTAB FOR BASE SYSTEM' > "$TARGET/etc/fstab"
+        chown 0.0 "$TARGET/etc/fstab"; chmod 644 "$TARGET/etc/fstab"
+    fi
+
+    setup_devices
+
+    x_feign_install () {
+        local pkg="$1"
+        local deb="$(debfor $pkg)"
+        local ver="$(
+            ar -p "$TARGET/$deb" control.tar.gz | zcat |
+                tar -O -xf - control ./control 2>/dev/null |
+                sed -ne 's/^Version: *//Ip' | head -n 1
+        )"
+
+        mkdir -p "$TARGET/var/lib/dpkg/info"
+
+        echo \
+"Package: $pkg
+Version: $ver
+Status: install ok installed" >> "$TARGET/var/lib/dpkg/status"
+
+        touch "$TARGET/var/lib/dpkg/info/${pkg}.list"
+    }
+
+    x_feign_install dpkg
+}
+
+second_stage_install () {
+    x_core_install () {
+	smallyes '' | in_target dpkg --force-depends --install $(debfor "$@")
+    }
+
+    p () {
+	baseprog="$(($baseprog + ${1:-1}))"
+    }
+
+    setup_proc
+    in_target /sbin/ldconfig
+
+    DEBIAN_FRONTEND=noninteractive
+    export DEBIAN_FRONTEND
+
+    baseprog=0
+    bases=40
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #1
+    info INSTCORE "Installing core packages..."
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #2
+    ln -fs mawk $TARGET/usr/bin/awk
+    x_core_install base-files base-passwd
+    p; progress $baseprog $bases INSTBASE "Installing base system" #3
+    x_core_install dpkg
+
+    if [ ! -e "$TARGET/etc/localtime" ]; then
+        ln -sf /usr/share/zoneinfo/UTC "$TARGET/etc/localtime"
+    fi
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #4
+    x_core_install $LIBC6
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #5
+    x_core_install perl-base
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #6
+    rm $TARGET/usr/bin/awk
+    x_core_install mawk
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #7
+    if doing_variant -; then
+      x_core_install debconf
+    fi
+
+    info UNPACKREQ "Unpacking required packages..."
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #8
+    smallyes '' | repeat 5 in_target_failmsg UNPACK_REQ_FAIL_FIVE "Failure while unpacking required packages.  This will be attempted up to five times." "" dpkg --force-depends --unpack $(debfor $required)
+    p 10; progress $baseprog $bases INSTBASE "Installing base system" #18
+
+    info CONFREQ "Configuring required packages..."
+
+    mv "$TARGET/sbin/start-stop-daemon" "$TARGET/sbin/start-stop-daemon.REAL"
+    echo \
+"#!/bin/sh
+echo
+echo \"Warning: Fake start-stop-daemon called, doing nothing\"" > "$TARGET/sbin/start-stop-daemon"
+    chmod 755 "$TARGET/sbin/start-stop-daemon"
+
+    setup_dselect_method apt
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #19
+    smallyes '' | in_target_failmsg CONF_REQ_FAIL "Failure while configuring required packages." "" dpkg --configure --pending --force-configure-any --force-depends
+    p 10; progress $baseprog $bases INSTBASE "Installing base system" #29 
+
+    info INSTBASE "Installing base packages..."
+
+    p; progress $baseprog $bases INSTBASE "Installing base system" #30
+    smallyes '' | repeat 5 in_target_failmsg INST_BASE_FAIL_FIVE "Failure while installing base packages.  This will be re-attempted up to five times." "" dpkg --force-auto-select --force-overwrite --force-confold --skip-same-version --unpack $(debfor $base)
+
+    smallyes '' | repeat 5 in_target_failmsg CONF_BASE_FAIL_FIVE "Failure while configuring base packages.  This will be attempted 5 times." "" dpkg  --force-confold --skip-same-version  --configure -a
+
+    p 9; progress $baseprog $bases INSTBASE "Installing base system" #39
+
+    mv "$TARGET/sbin/start-stop-daemon.REAL" "$TARGET/sbin/start-stop-daemon"
+
+    progress $bases $bases INSTBASE "Installing base system" #40
+    info BASESUCCESS "Base system installed successfully."
+}

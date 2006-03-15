@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+PATH=$PATH:.
+
+uda-pregrub-message
+
+#DEBHELPER#
+
+exit 0

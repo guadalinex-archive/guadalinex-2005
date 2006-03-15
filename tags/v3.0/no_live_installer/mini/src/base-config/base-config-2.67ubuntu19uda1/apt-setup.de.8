@@ -1,0 +1,23 @@
+.TH APT-SETUP 8
+.\"
+.\" Translated into german by Helge Kreutzmann <kreutzm@itp.uni-hannover.de>
+.SH NAME
+apt-setup \- Hinzufügen von Quellen zum Herunterladen
+.SH "ÜBERSICHT"
+.B apt-setup [probe]
+.SH BESCHREIBUNG
+.BR apt-setup
+ist ein interaktives Programm, daß das Hinzufügen von Quellen zu
+apt's sources.list vereinfacht. Es kennt alle bedeutenden Debian-Spiegel
+und kann Ihnen bei der Auswahl helfen. Es kann sogar
+.BR apt-cdrom (8)
+zum Durchsuchen von CDs verwenden.
+.SH OPTIONEN
+.TP
+.I »probe«
+Standardmäßig wird nicht auf CDs überprüft. Wird »probe« als erstes Argument
+an dieses Programm übergeben, dann wird beim Starten auf eine CD im Laufwerk
+geprüft und diese zu den sources.list hinzugefügt. Dies ist bei Debian
+Erstinstallationen nützlich, um die Interaktion mit dem Nutzer zu minimieren.
+.SH AUTOR
+Joey Hess <joey@kitenet.net>

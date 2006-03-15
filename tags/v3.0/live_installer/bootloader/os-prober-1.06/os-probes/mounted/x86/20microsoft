@@ -1,0 +1,57 @@
+#!/bin/sh
+# Detects all Microsoft OSes on a collection of partitions.
+
+. /usr/share/os-prober/common.sh
+
+partition=$1
+mpoint=$2
+type=$3
+
+# Weed out stuff that doesn't apply to us
+case "$type" in
+  ntfs) debug "$1 is a NTFS partition" ;;
+  vfat) debug "$1 is a FAT32 partition" ;;
+  msdos) debug "$1 is a FAT16 partition" ;;
+  *) debug "$1 is not a MS partition: exiting"; exit 1 ;;
+esac
+
+# 2000/XP/NT4.0
+if [ -e "$2/ntldr" -a -e "$2/NTDETECT.COM" ]; then
+  long="Windows NT/2000/XP"
+  short=Windows
+  if [ -e "$2/boot.ini" ]; then
+    multicount="$(grep -e "^multi" $2/boot.ini | wc -l)"
+    scsicount="$(grep -e "^scsi" $2/boot.ini | wc -l)"
+    msoscount="$(expr ${multicount} + ${scsicount})"
+    if [ $msoscount -eq 1 ]; then
+      # We need to remove a Carriage Return at the end of the line...
+      defaultmspart="$(grep -e "^default=" $2/boot.ini | cut -d '=' -f2 | tr -d '\r')"
+      # Escape any backslashes in defaultmspart
+      grepexp="^$(echo $defaultmspart | sed -e 's/\\/\\\\/')="
+      # Colons not allowed; replace by spaces
+      # Accented characters (non UTF-8) cause debconf to hang, so we fall back
+      # to the default if the name contains any weird characters.
+      long="$(grep -e "$grepexp" $2/boot.ini | cut -d '"' -f2 | \
+            tr ':' ' ' | grep -v '[^a-zA-Z0-9 &()/_-]')"
+      if [ -z "$long" ]; then
+        long="Windows NT/2000/XP"
+      fi
+    else
+      long="Windows NT/2000/XP (loader)"
+    fi
+  fi
+# MS-DOS
+elif [ -d "$2/dos" ]; then
+  long="MS-DOS 5.x/6.x/Win3.1"
+  short=MS-DOS
+# 95/98/Me
+elif [ -e "$2/windows/win.com" ]; then
+  long="Windows 95/98/Me"
+  short=Windows9xMe
+else
+  exit 1
+fi
+
+label=$(count_next_label $short)
+result "${partition}:${long}:${label}:chain"
+exit 0

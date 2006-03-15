@@ -1,0 +1,8 @@
+#!/bin/sh
+# Sample udhcpc deconfig script
+
+if [ -x /sbin/resolvconf ] ; then 
+	resolvconf -d "${interface}.udhcpc"
+else
+	/sbin/ifconfig $interface 0.0.0.0
+fi

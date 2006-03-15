@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<operation>
+  <model>3Com OfficeConnect 812</model>
+  <initial_func>verif3com</initial_func>
+  <default_timeout>15</default_timeout>
+  <send_delay>0</send_delay>
+  <serial_params parity="N" tty="0" baudrate="9600" xonxoff="0" rtscts="0" stopbits="1" bits="8"/>
+  <!--<eth_params dev='/dev/eth0' ip='10.0.0.1' port='23'/>-->
+  <vci>32</vci>
+  <ppp_proto>PPPoE</ppp_proto>
+  <vpi>8</vpi>
+  <mod_conf></mod_conf>
+  <passwd1>adminttd</passwd1>
+</operation>

@@ -1,0 +1,5 @@
+Template: uda-pregrub-message/pregrub-message
+Type: note
+_Description: Gestor de arranque
+ A continuación se instalará el gestor de arranque. Dicho programa
+ detectará y le permitirá iniciar otros sistemas operativos.

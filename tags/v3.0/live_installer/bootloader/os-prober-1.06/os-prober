@@ -1,0 +1,81 @@
+#!/bin/sh
+set -e
+
+. /usr/share/os-prober/common.sh
+
+partitions () {
+	find /dev/discs/ -follow -type b | grep /part
+}
+
+parse_proc_mounts () {
+	while read line; do
+		set -- $line
+		echo "$(mapdevfs $1) $2 $3"
+	done
+}
+
+parse_proc_mdstat () {
+	while read line; do
+		for word in $line; do
+			if $(echo $word | grep -q "/part") ; then
+				raidpart="/dev/$(echo $word | sed "s:\[.*$::")"
+				echo "$(mapdevfs $raidpart)"
+			fi
+		done
+	done
+}
+
+# Needed for idempotency
+rm -f /var/lib/os-prober/labels
+
+for prog in /usr/lib/os-probes/init/*; do
+	if [ -x $prog ] && [ -f $prog ]; then
+		debug "running init $prog"
+		$prog || true
+	fi
+done
+
+# Partman mounts partitions on /dev/ide/ and /dev/scsi, not /dev/discs
+# Therefore we use mapdevfs to match partitions with mount points
+# and partitions used in RAID
+grep "^/dev/" /proc/mounts | parse_proc_mounts >/tmp/mounted-map || true
+: >/tmp/raided-map
+if [ -f /proc/mdstat ] ; then
+	grep "^md" /proc/mdstat | parse_proc_mdstat >/tmp/raided-map || true
+fi
+
+for partition in $(partitions); do
+	mapped=$(mapdevfs $partition)
+
+	# Skip partitions used in software RAID arrays
+	if grep -q "^$mapped" /tmp/raided-map ; then
+		debug "$partition: part of software raid array"
+		continue
+	fi
+
+	if ! grep -q "^$mapped " /tmp/mounted-map ; then
+		for test in /usr/lib/os-probes/*; do
+			if [ -f $test ] && [ -x $test ]; then
+				debug "running $test on $partition"
+				if $test $partition; then
+					debug "os detected by $test"
+			   		break
+				fi
+			fi
+		done
+	else
+		mpoint=$(grep "^$mapped " /tmp/mounted-map | cut -d " " -f 2)
+		if [ "$mpoint" != "/target" ] && [ "$mpoint" != "/" ]; then
+			type=$(grep "^$mapped " /tmp/mounted-map | cut -d " " -f 3)
+			for test in /usr/lib/os-probes/mounted/*; do
+				if [ -f $test ] && [ -x $test ]; then
+					debug "running $test on mounted $partition"
+					if $test $partition $mpoint $type; then
+						debug "os detected by $test"
+						break
+					fi
+				fi
+			done
+		fi
+	fi
+done

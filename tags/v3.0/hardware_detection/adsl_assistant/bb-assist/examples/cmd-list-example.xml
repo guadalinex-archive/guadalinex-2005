@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<cmd_list>
+  <initial_func>verif3com</initial_func>
+  <default_timeout>15</default_timeout>
+  <send_delay>0</send_delay>
+  <eth_params ip="" port="" dev=""/>
+  <serial_params parity="N" baudrate="9600" tty="0" xonxoff="0" rtscts="0" stopbits="1" bits="8"/>
+  <cmd_func id="__ok__">
+    <cmd return="0"/>
+  </cmd_func>
+  <cmd_func id="__exit__">
+    <cmd return="1"/>
+  </cmd_func>
+  <cmd_func id="__eof__">
+    <cmd return="2"/>
+  </cmd_func>
+  <cmd_func id="__timeout__">
+    <cmd return="3"/>
+  </cmd_func>
+  <cmd_func id="auth3com">
+    <cmd exp_ok="(CLI -|>)" send="">
+      <expect_list>
+        <expect out="Password:">
+          <cmd exp_ok=">" send="adminttd">
+            <expect_list>
+              <expect out="Password:">
+                <cmd exp_ok=">" send="adminttd">
+                  <expect_list>
+                    <expect out="Password:">
+                      <cmd return="4"/>
+                    </expect>
+                  </expect_list>
+                </cmd>
+              </expect>
+            </expect_list>
+          </cmd>
+        </expect>
+        <expect out="Do you want to continue with OfficeConnect Quick Setup">
+          <cmd exp_ok="Starting line test ..." send="n"/>
+          <cmd exp_ok=">" send=""/>
+        </expect>
+      </expect_list>
+    </cmd>
+  </cmd_func>
+  <cmd_func id="verif3com">
+    <cmd call="auth3com"/>
+    <cmd exp_ok="Password:" err="CLI - " send="exit cli"/>
+  </cmd_func>
+</cmd_list>

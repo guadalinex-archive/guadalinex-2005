@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<druid_page_list>
+  <druid_page id='druidpagestart' optional='0'/>
+  <druid_page id='druidFirstVerification' optional='0'/>
+  <druid_page id='druidVerificationResults' optional='0'/>
+  <druid_page id='druidPreConfAdvice' optional='0'/>
+  <druid_page id='druidProviderSelect' optional='0'/>
+  <druid_page id='druidDeviceSel' optional='0'/>
+  <druid_page id='druidOperationSelect' optional='0'/>
+  <druid_page id='druidNewPasswd' optional='1'/>
+  <druid_page id='druidUsuIP' optional='1'/>
+  <druid_page id='druidGestIP' optional='1'/>
+  <druid_page id='druidDinamConf' optional='1'/>
+  <druid_page id='druidMultiConf' optional='1'/>
+  <druid_page id='druidPortOpenning' optional='1'/>
+  <druid_page id='druidPPPadv' optional='1'/>
+  <druid_page id='druidEffSpeedAdvice' optional='1'/>
+  <druid_page id='druidSelecEthernetToConf' optional='1'/>
+  <druid_page id='druidSelecInterface' optional='1'/>
+  <druid_page id='druidPasswdSel' optional='1'/>
+  <druid_page id='druidSecondVerificationResults' optional='0'/>
+  <druid_page id='druidVerifParamsConf' optional='1'/>
+  <druid_page id='druidRunOper' optional='0'/>
+  <druid_page id='druidOperResult' optional='0'/>
+  <druid_page id='druidUnplugUSB' optional='1'/>
+  <druid_page id='druidpagefinish' optional='0'/>
+</druid_page_list>

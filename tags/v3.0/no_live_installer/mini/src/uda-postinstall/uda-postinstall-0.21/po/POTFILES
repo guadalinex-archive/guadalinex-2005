@@ -1,0 +1,3 @@
+	../src/data/uda-postconfig.glade \
+	../src/uda-postconfig.c \
+	../src/uda-postinstall.c

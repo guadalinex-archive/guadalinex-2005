@@ -1,0 +1,46 @@
+#! /usr/bin/make -f
+
+DESTDIR = debian/prebaseconfig
+
+scripts = \
+	10bind-mount \
+	20final-message \
+        49cdrom-module-ia64 \
+	50config-target-network \
+	90prepare-base-config \
+	93save-debconf \
+	95umount \
+	99reboot
+
+build: 
+
+clean:
+	dh_testdir
+	dh_testroot
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	install -m0644 inittab.install $(DESTDIR)/usr/share/prebaseconfig/inittab
+	set -e ; for file in $(scripts); do \
+		install -m0755 prebaseconfig.d/$$file $(DESTDIR)/usr/lib/prebaseconfig.d/$$file; \
+	done
+
+binary-arch: build install
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installdebconf
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb 
+	dh_shlibdeps
+	dh_gencontrol
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

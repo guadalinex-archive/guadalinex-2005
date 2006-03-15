@@ -1,0 +1,108 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_molinux_chap_gst.dpatch by  <roberto@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/chap-gst/gst.xml /tmp/dpep-work.SPhMAW/uda-docs-0.1/docs/recipes/chap-gst/gst.xml
+--- ./docs/recipes/chap-gst/gst.xml	1970-01-01 01:00:00.000000000 +0100
++++ /tmp/dpep-work.SPhMAW/uda-docs-0.1/docs/recipes/chap-gst/gst.xml	2005-10-28 11:44:00.000000000 +0200
+@@ -0,0 +1,97 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
++<!ENTITY % xinclude SYSTEM "../../libs/xinclude.mod">
++%xinclude;
++<!ENTITY % globalent SYSTEM "../../libs/global.ent">
++%globalent;
++]>
++
++<chapter id="gst" lang="es">
++     <title>Administración de usuarios</title>
++     <para>&distro-name; es un sistema operativo multiusuario, por lo tanto puede tener varias cuentas en 
++	   una sola máquina con configuraciones personalizadas para cada usuario.</para>
++     <para>Para administrar los usuarios, debe usar la herramienta de administración que se encuentra
++	   en el menú 
++		<menuchoice>
++                  <guisubmenu>Sistema</guisubmenu>
++		  <guimenuitem>Administración de usuarios</guimenuitem>
++		</menuchoice>
++      </para>
++       <para>Con el editor de usuarios puede establecer los detalles de cada cuenta de usuario.
++	<figure lang="es"><title>Editor de usuarios</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/gst-usereditor.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++	</figure>
++       </para>
++      <sect><title>Añadir un usuario nuevo</title>
++	<para>Puede añadir un usuario nuevo pulsando el botón «Añadir usuario...». A continuación
++	introduzca los datos necesarios para crear una cuenta nueva y cuado termine, pulse en
++	«Aceptar».</para>    
++        <para>
++         <figure lang="es"><title>Ventana principal de control de usuarios</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/gst-usermain.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++	</figure>
++	</para>	
++        <para> La solapa «Avanzado» permite ver perfiles de usuario o asignarlos, así como configurar
++	       otros detalles avanzados del mismo. Existen tres tipos de usuarios predeterminados:
++                 <itemizedlist>
++		   <listitem> <term>Default:</term> es el usuario normal de la máquina</listitem>
++	           <listitem> <term>Desktop:</term> es un perfil para usuario de escritorio
++		   que le da accedo a dispositivos de sonido, cdrom, etc, </listitem>
++		   <listitem> <term>Administrator:</term> es un usuario con privilegios de administrador mediante sudo.</listitem>
++	         </itemizedlist>
++	
++	</para>
++   
++         <figure lang="es"><title>Configuración avanzada de usuarios</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/gst-useradvanced.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++	</figure>
++        
++       <para>
++	  La solapa de privilegios del usuario, le permite configurar qué acciones será capaz de
++	  realizar cada usuario</para>
++	<figure lang="es"><title>Privilegios del usuario</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/gst-userpriv.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++	</figure>
++        <para>Los permisos de usuario de crean según el perfil de usuario seleccionado, para dar permisos de
++              acceso a los distintos dispositivos.
++ 	</para>
++	<para>
++	Por último, la solapa de grupos le permite crear grupos administrativos y asignarles un 	
++	identificador</para>
++	<para><figure lang="es"><title>Grupos de usuarios</title>
++                <screenshot>
++                <mediaobject>
++                <imageobject>
++                <imagedata fileref="../images/gst-usergroup.png" format="png"/>
++		</imageobject>
++		</mediaobject>
++		</screenshot>
++	</figure>
++ 	</para>
++     </sect>
++     </chapter>

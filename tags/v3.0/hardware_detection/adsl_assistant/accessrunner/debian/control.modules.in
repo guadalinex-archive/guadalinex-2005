@@ -1,0 +1,18 @@
+Source: accessrunner-usb
+Section: misc
+Priority: optional
+Maintainer: Vicente J. Ruiz Jurado <vjrj@tid.es>
+Build-Depends: debhelper (>> 4.1.0), bzip2
+Standards-Version: 3.6.2
+
+Package: accessrunner-usb-modules-_KVERS_
+Architecture: i386
+Recommends: kernel-image-_KVERS_, accessrunner-usb-utils
+Provides: accessrunner-usb-modules
+Description: accessrunner-usb Linux kernel module
+ This package contains the accessrunner-usb loadable kernel modules for the
+ kernel-image-_KVERS_ package.
+ .
+ If you compiled a custom kernel, you will most likely need to compile a
+ custom version of this module as well. The accessrunner-usb-source
+ package has been provided for this purpose.

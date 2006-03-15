@@ -1,0 +1,87 @@
+# Turkish translation of base-config.
+# This file is distributed under the same license as the base-config package.
+# Özgür Murat Homurlu <ozgurmurat@gmx.net>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-13 11:05+0200\n"
+"PO-Revision-Date: 2004-10-01 23:59+0300\n"
+"Last-Translator: Özgür Murat Homurlu <ozgurmurat@gmx.net>\n"
+"Language-Team: Turkish <debian-l10n-turkish@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: KBabel 1.0.2\n"
+
+#: ../base-config:42
+msgid "Configuring the base system..."
+msgstr "Temel sistem yapılandırılıyor..."
+
+#: ../lib/menu/shell:3
+msgid "Type 'exit' to return to base-config."
+msgstr "base-config'e dönmek için 'exit' yazın."
+
+#. translators: there MUST be a comma followed by a space at the end
+#. of your translation, or things will break!
+#: ../apt-setup:140
+msgid "enter information manually, "
+msgstr "gerekli bilgiyi elle girin, "
+
+#: ../apt-setup:297
+msgid "Scanning CD, this will take a minute."
+msgstr "CD taranıyor, bu işlem biraz vakit alabilir."
+
+#. Several notes for translators:
+#. * The singular form is only there to make use of plural forms;
+#. * If package count is 0, a separate error message should be displayed.
+#. * This sentence is part of a longer paragraph, full stop is omitted here.
+#. * "${PACKAGE_COUNT}" must not be translated.
+#: ../apt-setup:381
+#, sh-format
+msgid ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} package"
+msgid_plural ""
+"The Debian package management tool, apt, is now configured, and can install "
+"${PACKAGE_COUNT} packages"
+msgstr[0] ""
+"Debian paket yönetim aracı apt şu an yapılandırılıyor.  Bu işlem sonucunda "
+"${PACKAGE_COUNT} adet paket kurulabilecek"
+msgstr[1] ""
+"Debian paket yönetim aracı apt şu an yapılandırılıyor.  Bu işlem sonucunda "
+"${PACKAGE_COUNT} adet paket kurulabilecek"
+
+#: ../apt-setup:478
+msgid ""
+"You probably used a CD to install the Debian base system, but it is not "
+"currently in the drive. You should probably just insert it and select \"cdrom"
+"\"."
+msgstr ""
+"Debian temel sistem kurulumu için muhtemelen bir CD kullandınız, fakat bu CD "
+"şu an sürücüde takılı değil.  Söz konusu CD'yi takmanız ve \"cdrom\"u "
+"seçmeniz büyük olasılıkla yeterli olacaktır."
+
+#: ../apt-setup:730 ../apt-setup:813 ../apt-setup:938 ../apt-setup:951
+#: ../apt-setup:1098 ../apt-setup:1128
+msgid "Testing apt sources..."
+msgstr "Apt kaynakları sınanıyor..."
+
+#~ msgid "Updating \"available\" file..."
+#~ msgstr "\"available\" dosyası güncelleniyor..."
+
+#~ msgid "dselect - old package selector (experts only)"
+#~ msgstr "dselect - eski paket seçici (sadece uzmanlar için)"
+
+#~ msgid "aptitude - pick tasks or drill down to individual packages"
+#~ msgstr "aptitude - görevleri seçin veya tek tek paket paket seçimi yapın"
+
+#~ msgid "tasksel - quickly choose from predefined collections of software"
+#~ msgstr "tasksel - önceden tanımlı yazılım demetleri arasından çabucak seçin"
+
+#~ msgid "nothing - you may manually run apt-get or any of the above later"
+#~ msgstr ""
+#~ "hiçbirisi - apt-get veya yukarıdakilerden birini daha sonra "
+#~ "çalıştırabilirsiniz"

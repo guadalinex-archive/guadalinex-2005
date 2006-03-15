@@ -1,0 +1,14 @@
+This package was debianized by Roland Mas on Fri, 21 Feb 2003 20:31:47 +0100.
+
+It was downloaded from <http://www.eagle-usb.org>
+
+Upstream Authors:
+- Copyright (c) 2001,2002 Analog Devices Inc.
+- Copyright (c) 2002,2003 Christian Casteyde <casteyde.christian@free.fr>
+- Copyright (c) 2003,2004 Fred "Sleeper" Ros <sl33p3r@free.fr>
+- Copyright (c) 2003 R. Guerin <rguerin@freebox.fr>
+- Copyright (c) 2003,2004 Olivier "Tux" Borowski <coin@tuxfamily.org>
+- Copyright (c) 2003,2004 Benoit Audouard <baud123@tuxfamily.org>
+
+This package is released under the GNU General Public License, which
+you can find in /usr/share/common-licenses/ on Debian systems.

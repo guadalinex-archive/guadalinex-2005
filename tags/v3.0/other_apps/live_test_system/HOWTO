@@ -1,0 +1,64 @@
+
+    El guión «pack.sh» crea los 6 paquetes de «ubuntu-express» a partir
+de la última versión del repositorio. Los paquetes Debian se crearán en
+el subdirectorio «lab/» dentro del directorio actual. Necesita un
+parámetro: la ruta de la rama «live_installer» del repositorio. Por
+ejemplo:
+
+    $ sudo ./pack.sh repo/live_installer/
+
+    La opción «-f» (como último parámetro) hace que «Gparted» no se
+vuelva a empaquetar, sino que se copie un paquete anterior, si éste
+existe en el directorio «lab.OLD/».
+
+    Los guiones «prepare-source.sh» y «tune-source.sh» están pensados para
+automatizar la generación de la imagen ISO de pruebas. Están preparados
+para trabajar bajo los siguientes supuestos:
+
+    Hay un directorio con las fuentes que queremos utilizar. Dentro de
+este directorio, en «tmp/», están los paquetes de «ubuntu-express» (6
+paquetes), «peez2» (2 paquetes) y «gparted» (un paquete) que queremos
+probar.
+
+    Los paquetes de «ubuntu-express» pueden generarse a partir de las
+fuentes del repositorio (rama «live_installer/default/»).
+
+    «Peez2» puede descargarse de la web de «Activa Sistemas»
+( http://activasistemas.com/forja/files/peez2 ) y la versión modificada
+de «Gparted» puede obtenerse del FTP de la forja del proyecto
+( ftp://ws314.juntadeandalucia.es/guadalinex2005/archives ). Estos 3
+paquetes están también en este directorio del repositorio (la versión
+de «gparted» es la última compilada por Rafa Martín).
+
+    Además, es necesario tener en el directorio actual los archivos
+«sources.list» y  «lsb-release».
+
+    Modo de uso:
+
+1. Suponiendo que las fuentes están en «./sources-breezy», primero
+   debemos ejecutar «prepare-source.sh»:
+
+   $ sudo ./prepare-source.sh sources-breezy
+
+2. Una vez hecho eso, estaremos dentro de «sources-breezy» con un «chroot»,
+   y «tune-source.sh» se habrá copiado al actual «/tmp/», así que tendremos
+   que montar «/proc/» y ejecutar el guión de ajustes:
+
+   # mount /proc/
+   # /tmp/tune-source.sh
+
+3. El proceso es no interactivo, excepto por la configuración de los locales
+   (tendremos que eleguir «es_ES.utf8» o «es_ES.UTF-8»). Una vez finalizadas
+   todas las comprobaciones y ajustes, debemos desmontar «/proc/» y salir
+   del entorno «chroot»:
+
+   # umount /proc/
+   # exit
+
+4. En ese momento terminará de ejecutarse el guión externo
+   («prepare-source.sh») y habremos terminado.
+
+    Nota: el guión «tune-source.sh» puede usarse también independientemente
+sobre un sistema funcionando en directo. En ese caso no habrá que utilizar
+«prepare-source.sh».
+

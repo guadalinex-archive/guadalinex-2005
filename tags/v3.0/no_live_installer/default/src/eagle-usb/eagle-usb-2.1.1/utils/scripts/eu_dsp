@@ -1,0 +1,114 @@
+#!/bin/bash
+# $Id: eu_dsp,v 1.14 2005/01/16 22:04:34 Tux Exp $
+
+# Copyright (C) 2003-2005 Olivier Borowski
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+# Goal :
+#	This script handles the ADI ADSL Modem USB driver after firmware
+#	uploading. It loads the DSP code as needed by the modem.
+#	It create a script /var/run/usb/%proc%bus%usb%002%005 in order
+#	for the ADSL connexion to be stopped and module to be unloaded.
+#   It should only be run by hotplug.
+# Params (given by hotplug) :
+#	$DEVICE  ex: /proc/bus/usb/002/005
+#	$DEVPATH ex: /devices/pci0000:00/0000:00:02.0/usb1/1-2/1-2:1.2
+#	$REMOVER ex: /var/run/usb/%proc%bus%usb%001%006
+#	note: only kernels 2.5+ provide $DEVPATH
+#	note: some distribs like SuSE9.1 does not provide $REMOVER param
+
+# the following line will be replaced by the absolute path of setvars
+exit 123
+
+# this script should only be called by hotplug (giving the $DEVICE param)
+if [ -z "$DEVICE" ] ; then
+	logger "$NO_PARAM_MSG"
+	doInUtf8 echo -e "$NO_PARAM_MSG"
+	exit
+fi
+
+# this script is called multiple times by hotplug, so we try to
+# send DSP only one time
+SEND_DSP="false"
+if [ -z "$DEVPATH" ] ; then
+	# kernel 2.4
+	SEND_DSP="true"
+else
+	# kernel 2.5+
+	LAST_CHARS=`echo $DEVPATH | sed -e "s/.*\-.[^:]*//1"`
+	if [ "x$LAST_CHARS" = "x:1.0" ] ; then
+		SEND_DSP="true"
+	fi
+fi
+
+if [ $SEND_DSP = "true" ] ; then
+	if ! eaglestat | grep -q "$SEND_DSP_STR" ; then
+		SEND_DSP="false"
+	fi
+fi
+
+if [ $SEND_DSP = "true" ] ; then
+	# small delay to prevent a bug
+	sleep 1s
+	
+	# script called when the modem will be unplugged
+	if [ -z "$REMOVER" ] ; then
+		REMOVER="/var/run/usb/`echo $DEVICE | sed 's/\//%/g'`"
+	fi
+	mkdir -p `dirname $REMOVER`
+	echo "#!/bin/sh" > $REMOVER
+	echo "${SBIN_DIR}/fctStopAdsl" >> $REMOVER
+	echo "rmmod $MODULE_STR" >> $REMOVER
+	chmod u+x $REMOVER
+	
+	# load DSP & options
+	eaglectrl -d 2>&1 | logger
+fi
+
+#***************************************************************************
+# $Log: eu_dsp,v $
+# Revision 1.14  2005/01/16 22:04:34  Tux
+# - add license header
+#
+# Revision 1.13  2005/01/04 21:14:05  Tux
+# - switch strings to utf-8
+#
+# Revision 1.12  2004/10/31 17:11:06  mcoolive
+# *** empty log message ***
+#
+# Revision 1.11  2004/09/28 10:45:30  mcoolive
+# - cosmetic changes
+#
+# Revision 1.10  2004/08/29 21:36:54  Tux
+# - add a small delay to prevent a bug with "eaglectrl -d"
+#
+# Revision 1.9  2004/08/04 19:53:20  Tux
+# - fix conflict between two vars named $SEND_DSP
+# - use $MODULE_STR instead of "eagle-usb"
+#
+# Revision 1.8  2004/07/12 21:04:56  Tux
+# - don't send DSP for pre-firmware device
+#
+# Revision 1.7  2004/07/02 23:18:34  Tux
+# - slackware 10 support
+#
+# Revision 1.6  2004/06/23 20:39:30  Tux
+# - add support for distribs which do not provide $REMOVER param (eg: SuSE9.1)
+#
+# Revision 1.5  2004/03/22 21:15:04  Tux
+# - $UNPLUGSCRIPT => $REMOVER
+#
+#***************************************************************************/

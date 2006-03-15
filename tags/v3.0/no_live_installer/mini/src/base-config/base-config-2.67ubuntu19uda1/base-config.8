@@ -1,0 +1,94 @@
+.TH BASE-CONFIG 8
+.SH NAME
+base-config \- Debian base system configuration
+.SH SYNOPSIS
+.B base-config [new]
+.SH DESCRIPTION
+.BR base-config
+is the program that was run when you first rebooted into your newly
+installed debian system. It walks you through setting up the system and
+downloading additional software, and so forth. The program can be run at
+any later date to walk you through essentially the same process again.
+.SH IMPLEMENTATION
+.BR base-config
+generates a menu of choices from the contents of 
+.BR /usr/lib/base-config/ ,
+and from debconf templates.
+.P
+The .mnu files in /usr/lib/base-config/ control whether the menu item
+appears only on new installs (Only-New: true), whether debconf can already
+be running when the item is run (Debconf: true), a numeric Order controls
+placement in the menu. If a .mnu file contains "Exit-Menu: true", then
+base-config will terminate after running that menu item. Finally, a
+"Changes-Menu: true" line will make base-config rebuild the menu after
+running the menu item.
+.P
+The .tst files in /usr/lib/base-config/ are run when base-config builds
+the menu and must return true for that menu item to appear on the menu.
+.P
+The menu items are taken from debconf, by looking for items in the debconf
+database named base-config/menu/whatever.
+.P
+When a menu item is selected, the corresponding program, in
+/usr/lib/base-config is run. If this is a fresh install onto a new
+debian system, the program receives "new" as its first argument.
+.P
+.B base-config
+checks the return codes of each of the programs. If a program returns
+nonzero, the main menu is displayed (this may involve lowering the
+debconf priority).
+.P
+Generally the user is advanced down the menu from item to item as each
+succeeds. If a menu item needs to jump back to a previous item in the menu,
+or skip over a subsequent item, it can write the name of the next menu item
+to show to the file "jump-to" in the current directory.
+.SH FILES
+Every base-config run is logged to 
+.BR /var/log/base-config.log .
+.BR /var/log/base-config.timings
+contains timing information to go with the log. This allows replays of
+base-config runs using the
+.BR replay (1)
+utility.
+.P
+.BR /var/log/installer/cdebconf ,
+if it exists, is used by
+.B base-config
+on new installs to get values from the debian-installer first stage
+install.
+.P
+Other packages can drop files into 
+.BR /usr/lib/base-config/ ,
+and add menu titles in debconf, and they will be added to the menu. It
+is very strongly encouraged that any such programs communicate with the user
+entirely via debconf, so that the base configuration maintains a consistent
+and professional look.
+.P
+Another useful thing for custom distributions is
+/usr/share/base-config/debconf-seed. If that directory exists, every file
+in it will be loaded into the debconf database using
+.BR debconf-set-selections (1)
+.P
+If the file /var/log/installer/debconf-seed is created by the
+debian-installer, it will also be loaded into the debconf database.
+.SH ENVIRONMENT
+The following environment variables influence 
+.BR base-config .
+These variables may be set at run time, or for new installs, may be
+passed to the kernel at the 
+.BR lilo (8)
+(or other bootloader) command line. Consult your boot loader's
+documentation for details. For example, lilo can be booted with something
+like "linux DEBIAN_FRONTEND=readline".
+.TP
+.B DEBIAN_FRONTEND
+.TP
+.B DEBIAN_PRIORITY
+.TP
+.B DEBCONF_DEBUG
+.TP
+.B DEBCONF_TERSE
+Control various things about
+.BR debconf (7)
+.SH AUTHOR
+Joey Hess <joeyh@debian.org>

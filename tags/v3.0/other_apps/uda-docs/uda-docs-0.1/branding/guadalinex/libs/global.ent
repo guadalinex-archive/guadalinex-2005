@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Editar según convenga -->
+
+<!-- NAMES -->
+<!ENTITY project-name 'Guadalinex'>
+<!ENTITY distro-name 'Guadalinex'>
+<!ENTITY distro-codename 'Flamenco'>
+<!ENTITY distro-rootimage '/usr/share/doc/guadalinex/'>
+<!ENTITY distro-administration 'Junta de Andalucía'>
+
+<!ENTITY distro-dpkg 'http://www.guadalinex.org/' > 
+<!ENTITY distro-dpkgfile 'guadalinex.tar.gz' >
+<!ENTITY distro-web 'http://www.guadalinex.org/' >
+<!ENTITY distro-main 'http://www.guadalinex.org/guadalinex/' >
+<!ENTITY distro-site 'http://www.guadalinex.info/' >
+<!ENTITY distro-download 'http://www.guadalinex.info/descarga' >
+<!ENTITY distro-forums 'http://www.guadalinex.info/forums/' >
+<!ENTITY distro-lists 'http://www.guadalinex.info/lists/' >
+<!ENTITY distro-wiki 'http://www.guadalinex.info/wiki/' >
+<!ENTITY distro-paidsupport 'http://www.guadalinex.info/support/paidsupport' >
+<!ENTITY distro-bugzilla 'http://bugzilla.guadalinex.info/' >
+<!ENTITY distro-webhelp 'http://www.guadalinex.info/help' >
+<!ENTITY distro-shipit 'http://www.guadalinex.info/support/documentation' >
+<!ENTITY distro-icon 'http://www.guadalinex.info/guadalinex.favicon' >
+<!ENTITY distro-zone 'Andalucía' >
+<!ENTITY distro-rediris 'http://ftp.rediris.es/pub/linux/distributions/guadalinex' >
+<!ENTITY distro-documentation-site 'http://www.ubuntulinux.org/support/documentation' >
+<!ENTITY java-debian 'http://www.guadalinex.info/java' >
+<!-- IMAGE HIERARCHY -->
+<!--
+	admon/  (mandatory)
+	branding/ (mandatory)
+        callouts/ (mandatory
+      	navig/ (mandatory)
+	
+-->
+	
+<!-- DISTRO VERSION -->
+<!ENTITY distro-version '1.0'>
+<!ENTITY distro-rev 'rev0'>
+<!ENTITY distro-rev-before '1.0'>
+
+<!-- DOC REVISION  -->
+<!ENTITY userguide-rev '1.0'>
+<!ENTITY quickguide-rev '1.0'>
+<!ENTITY faqguide-rev '1.0'>
+<!ENTITY adminguide-rev '1.0'>
+<!ENTITY recipes-rev '1.0'>
+<!ENTITY comunidad-rev '1.0'>
+
+<!-- Doc SPECIFIC CREDITS -->
+<!ENTITY author-francisco-serrador SYSTEM '../common/authors/francisco-serrador.xml'>
+<!ENTITY author-emilio-jimenez SYSTEM '../common/authors/emilio-jimenez.xml'>
+
+<!-- Distro SPECIFIC CREDITS -->
+
+<!-- COMMON IMAGES -->
+<!ENTITY inline-distro-icon SYSTEM '../common/inlinemediaobject-distroicon.xml'>
+<!ENTITY inline-distro-icon-header SYSTEM '../common/inlinemediaobject-distroicon-header.xml'>
+<!ENTITY relative-distro-icon SYSTEM '../common/mediaobject-relativedistro.xml'>
+<!ENTITY distro-icon SYSTEM '../common/mediaobject-distroicon.xml'>
+
+
+
+
+<!-- No debería ser necesario modificar nada a partir de aquí-->
+
+<!-- LEGAL No modificar!-->
+<!ENTITY cc 'http://creativecommons.org/'>
+<!ENTITY cc-attrib '<ulink url="http://creativecommons.org/licenses/by-sa/2.0/">Attribution-ShareAlike 2.0</ulink>'>
+<!ENTITY cc-fulldeed-url 'http://creativecommons.org/licenses/by-sa/2.0/legalcode/'>
+<!ENTITY fdl-url '<ulink url="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License</ulink>'>
+<!ENTITY cc-disclaimer-url 'http://creativecommons.org/licenses/disclaimer-popup?lang=en'>
+
+<!-- COMMON DOC OBJECTS -->
+<!ENTITY copyright SYSTEM '../common/copyright.xml'>
+<!ENTITY conventions SYSTEM '../common/conventions.xml'>
+<!ENTITY feedback SYSTEM '../common/feedback.xml'>
+<!ENTITY publisher SYSTEM '../common/publisher.xml'>
+<!ENTITY feedback SYSTEM '../common/feedback.xml'>
+<!ENTITY legalnotice SYSTEM '../common/legalnotice.xml'>
+<!ENTITY disclaimer SYSTEM '../common/disclaimer.xml'>
+<!ENTITY gpl SYSTEM '../common/gpl.xml'>
+<!ENTITY fdl SYSTEM '../common/fdl.xml'>
+<!ENTITY cc-by-sa SYSTEM '../common/ccbysa.xml'>
+
+<!-- AUTHORS -->
+<!ENTITY author-christoph-haas SYSTEM '../common/authors/christoph-haas.xml'>
+<!ENTITY author-alexander-poslavsky SYSTEM '../common/authors/alexander-poslavsky.xml'>
+<!ENTITY author-alan-hood SYSTEM '../common/authors/alan-hood.xml'>
+<!ENTITY author-johnathon-hornbeck SYSTEM '../common/authors/johnathon-hornbeck.xml'>
+<!ENTITY author-nick-loeve SYSTEM '../common/authors/nick-loeve.xml'>
+<!ENTITY author-gordon-ingram SYSTEM '../common/authors/gordon-ingram.xml'>
+<!ENTITY author-sean-wheller SYSTEM '../common/authors/sean-wheller.xml'>
+<!ENTITY author-enrico-zini SYSTEM '../common/authors/enrico-zini.xml'>
+<!ENTITY author-kevin-muligan SYSTEM '../common/authors/kevin-muligan.xml'>
+<!ENTITY author-ari-torhamo SYSTEM '../common/authors/ari-torhamo.xml'>
+<!ENTITY author-jeff-schering SYSTEM '../common/authors/jeff-schering.xml'>
+<!ENTITY author-corey-burger SYSTEM '../common/authors/corey-burger.xml'>
+<!ENTITY author-niel-tallim SYSTEM '../common/authors/niel-tallim.xml'>
+
+
+<!-- Ubuntu RESOURCES -->
+<!ENTITY ubuntu-irc 'http://www.ubuntulinux.org/community/wiki/' >
+<!ENTITY ubuntu-bugzilla 'http://bugzilla.ubuntu.com/' >
+<!ENTITY ubuntu-paidsupport 'http://www.ubuntulinux.org/support/paidsupport' >
+<!ENTITY ubuntu-comments 'http://www.ubuntuforums.org/showthread.php?p=21787' >
+<!ENTITY ubuntu-documentation-site 'http://www.ubuntulinux.org/support/documentation' >
+<!ENTITY ubuntu-shipit 'http://shipit.ubuntulinux.org/' >
+<!ENTITY ubuntu-launchpad 'https://launchpad.ubuntu.com/' >
+<!ENTITY ubuntu-rosetta 'https://launchpad.ubuntu.com/rosetta' >
+<!ENTITY ubuntu-favicon 'https://www.ubuntu.com/favicon.icon' >
+<!ENTITY ubuntu-web 'https://www.ubuntu.com' >
+
+
+<!-- CANONICAL RESOURCES -->
+<!ENTITY canonical-url 'http://www.canonical.com' >
+<!ENTITY canonical-name 'Canonical Ltd.' >
+
+<!-- EXTERNAL RESOURCES -->
+<!ENTITY gnome 'http://www.gnome.org/' >
+<!ENTITY linuxorg 'http://www.linux.org/' >
+<!ENTITY ooo 'http://www.openoffice.org/' >
+<!ENTITY kde 'http://www.kde.org/' >
+<!ENTITY lugww 'http://lugww.counter.li.org/' >
+<!ENTITY distro-watch 'http://distrowatch.com/guadalinex/' >
+<!ENTITY skype-download 'http://www.skype.com/products/skype/linux/' >
+<!ENTITY realplayer-download 'http://www.real.com/linux/' >
+<!ENTITY nvu-download 'http://www.nvu.com/download.html' >
+<!ENTITY sunjava-download 'http://java.sun.com/j2se/1.5.0/download.jsp'>
+<!ENTITY flash-download 'http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash'>
+<!ENTITY xorg 'http://www.x.org'>
+
+<!-- APPLICATION SERVICES-->
+<!ENTITY shoutcast 'http://www.shoutcast.com/' >

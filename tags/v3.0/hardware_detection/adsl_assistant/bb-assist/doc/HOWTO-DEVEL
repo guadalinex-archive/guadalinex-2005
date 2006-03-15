@@ -1,0 +1,175 @@
+HOWTO ADD SUPPORT FOR NEW DEVICE TO BB-ASSIST
+=============================================
+
+1) Edit providers.xml and add a new Broadband Provider if necessary
+2) Edit bb-device.sml, firmwares.xml and ttyconf.xml, with the basic info about this device. If you add elements (for example a new devide) to this xml files, check that the id of the element is unique (for instance <bb_device id='NNNN' ....> must be unique.
+   For example:
+
+  <bb_device id='0001' name='3Com OfficeConnect 812' image='3com812.png'>
+    <device_type id='0002'/> <!-- A router -->
+    <support>1</support>     <!-- If the assistant must show this device -->
+    <provider_list>
+      <provider id='0001'>   <!-- Providers and per provider default values -->
+        <default_passwd_list>
+          <default_passwd id='0001' passwd='adminttd'/>
+        </default_passwd_list>
+      </provider>
+    </provider_list>
+    <console>1</console>     <!-- If has serial console -->
+    <tty_conf id='0001'/>    <!-- tty configuration (baudrate, etc) -->
+    <eth_conf_port>23</eth_conf_port>    <!-- port for eth configuration -->
+    <can_be_eth_conf>0</can_be_eth_conf> <!-- if we can use ethernet to configure it -->
+    <can_be_tty_conf>1</can_be_tty_conf>
+    <list_firmware>
+      <fw id='0001'/>
+    </list_firmware>
+    <postverif_list>
+      <postverif>hasEth</postverif>  <!-- Verify if the PC has ethernet -->
+      <postverif>hasTTY</postverif>  <!-- Verifi if the PC has serial ports -->
+    </postverif_list>
+  </bb_device>
+
+3) Edit operations.xml and add a operation for the device (also with a new id). 
+
+  <operation id='0014' bb_device='0005' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="en" name='Verify device access'/>
+      <opername lang="es_ES" name='Verificar acceso al equipo'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>verifNokiaM1112</initial_func>  <!-- put here a new function -->
+    <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <!-- Put here the druid pages you need and you can reuse -->
+      <druid_page>druidVerifParamsConf</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+    </druid_page_list>
+  </operation>
+
+  Another example:
+
+  <operation id='0017' bb_device='0005' supported='1' ui_public='1'>
+    <opername_list>
+      <opername lang="es_ES" name='Configurar en modo Multipuesto Estático'/>
+    </opername_list>
+    <firmware>*</firmware>
+    <initial_func>confNokiaM1112</initial_func>
+    <default_timeout>15</default_timeout>
+    <send_delay>0</send_delay>
+    <druid_page_list>
+      <druid_page>druidUsuIP</druid_page>
+      <druid_page>druidGestIP</druid_page>
+      <druid_page>druidMultiConf</druid_page>
+      <druid_page>druidPasswdSel</druid_page>
+      <druid_page>druidSelecInterface</druid_page>
+      <druid_page>druidVerifParamsConf</druid_page>
+      <druid_page>druidSelecEthernetToConf</druid_page>
+    </druid_page_list>
+    <defvalue_list>
+      <!-- Def values for some conf variables -->
+      <defvalue name='mod_conf' value='multistatic'/>
+      <defvalue name='dhcp' value='True'/>
+    </defvalue_list>
+  </operation>
+
+
+4) For expect operations, edit cmd-list.xls and add the function (in the example 'verifNokiaM1112'):
+ <xsl:if test = "$model='Nokia M1112 ADSL Router'">
+    <!-- model is the same name as in bb-device.xml -->
+
+    <!-- Nokia M1112 ADSL Router -->
+
+    <!-- Nokia M1112 ADSL Router - Auth -->
+    
+    <cmd_func id='auth3com'>
+      <cmd send='' exp_ok='(CLI -|>)'>
+        <expect_list>
+          <expect out='Password:'>
+            <cmd send='{$passwd1}' exp_ok='>'>
+              <expect_list>
+                <expect out='Password:'>
+                  <cmd send='{$passwd1}' exp_ok='>'>
+                    <expect_list>
+                      <expect out='Password:'>
+                        <cmd return='4'/> <!-- Wrong passwd -->
+                      </expect>
+                    </expect_list>
+                  </cmd>
+                </expect>
+              </expect_list>
+            </cmd>
+          </expect>
+          <expect out='Do you want to continue with OfficeConnect Quick Setup'>
+            <cmd send='n' exp_ok='Starting line test ...'/>
+            <cmd send='' exp_ok='>'/>
+          </expect>
+        </expect_list>
+      </cmd>
+    </cmd_func>
+
+ This is equivalent to:
+
+ function auth3com:
+   send EOL
+   case 
+     received == "CLI -" or expect == ">":
+       pass
+     received == "Do you want to continue with OfficeConnect Quick Setup"
+       send "n"
+       if received == "Starting line test ...":
+         pass
+       else:
+         raise timeout exception
+       send "\n"
+       if received == ">":
+         pass
+       else:
+         raise timeout exception
+     received == "Password:":
+       send the password
+       case
+         received == ">":
+           pass
+         received == "Password:"
+           send the password
+           (...)
+           (and we try four times to send the password)
+   
+    Then we can use this funcion in other functions and operations:
+
+    <!-- Nokia M1112 ADSL Router - Test Access -->
+
+    <cmd_func id='verifNokiaM1112'>
+      <cmd call='authNokiaM1112'/>
+      <cmd send='logout\r' exp_ok='login-id:' err='invalid command'/>
+    </cmd_func>
+
+  </xsl:if>
+
+5) Maybe you have to add a druidpage to the druid for this new device, or maybe you can reuse the existing pages. See glade directory.
+6) If you have to change the PC configuration then maybe you have to call to expbackend.py functions to configure interfaces, PPPoE/oA, name servers, etc.
+7) Finally you can test the druid with the new device and operation
+8) Add more operations for this device
+
+See net-diagram.txt for information about network variables and configuration.
+
+TROUBLESHOOTING
+===============
+Some recommendations for debug:
+* If the assistant don't work properly, try to run it with the command:
+  gksudo bb-assist 
+and try to see if there is any additional python warning/error. Check the syntax of your modifications in xml files.
+* In routers, check the expect debug output to see something wrong
+* With the PC configuration, check /var/log/syslog for additional info. Try:
+  grep bb-assist /var/log/syslog
+
+For test:
+* You can test directly a expect command list, for instance:
+  cat /usr/share/doc/bb-assist/examples/cmd-list-example.xml | python2.4 /usr/lib/python2.4/site-packages/bbexpbackend.py
+and check the output a return code.
+* You can also generate the command list from a operation:
+  4xslt examples/operation.example2.xml /usr/share/bb-assist/cmd-list.xsl
+and pipe the output to bbexpbackend.py
+

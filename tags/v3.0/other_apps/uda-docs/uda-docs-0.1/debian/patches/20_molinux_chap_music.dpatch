@@ -1,0 +1,116 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_molinux_chap_music.dpatch by  <roberto@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/chap-music/music.xml /tmp/dpep-work.T2Kuqf/uda-docs-0.1/docs/recipes/chap-music/music.xml
+--- ./docs/recipes/chap-music/music.xml	1970-01-01 01:00:00.000000000 +0100
++++ /tmp/dpep-work.T2Kuqf/uda-docs-0.1/docs/recipes/chap-music/music.xml	2005-10-28 11:59:00.000000000 +0200
+@@ -0,0 +1,105 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
++<!ENTITY % xinclude SYSTEM "../../libs/xinclude.mod">
++%xinclude;
++<!ENTITY % globalent SYSTEM "../../libs/global.ent">
++%globalent;
++]>
++
++<chapter id="music">
++    <title>Escuchar música</title>
++    <para>&distro-name; contiene programas para extraer CDs a ficheros mp3 y ogg-vorbis. Le recomendamos
++	  este último formato, ya que es un formato libre de patentes y que ofrece mayor calidad
++	  aunque comprime entre un 2 y un 10% menos que mp3.</para>
++    <para>Si desea archivar CDs sin perder calidad, el formato FLAC es el más indicado para esto, ya
++	   que tiene un ratio de compresión bastante alto y no produce pérdidas.</para>
++
++    <sect>
++        <title>Extraer música de CDs con Sound Juicer</title>
++        <para>Lance Sound Juicer de la sección multimedia del menú de aplicaciones. Primero
++	      debe establecer dónde se va a almacenar la música extraída, así que seleccione
++	      Preferencias del menú Editar. Navegue hasta la ubicación donde almacena su 
++	      música o tan sólo o cree una carpeta nueva (por ejemplo ~/Music), y selecciónela
++	      para usar. Cierre la ventana de preferencias, e inserte el CD de sonido que quiera
++	      extraer. Si tienen una conexión a Internet, Sound Juicer debería rellenar la
++	      información para el CD que ha insertado. En cualquier otro caso, edite los campos 
++	      apropiadamente. Ahora para extraer y codificar todas las pistas, sólo tiene que 
++	      pulsar en el botón «Extraer». Puede seleccionar las pistas que quiere extraer 
++	      usando las casillas a la izquierda de cada pista, si lo desea.
++	      Se le avisará cuando se hayan extraído todas las pistas, y se le dará la opción
++	      de expulsar el disco.</para>
++    	
++	<para>
++	   En el menú <menuchoice>
++			<guimenuitem>Editar</guimenuitem>
++			<guimenuitem>Preferencias</guimenuitem>
++		      </menuchoice> 
++	   puede cambiar los formatos de compresión que SoundJuicer utiliza, 
++	   las jerarquías de los nombres de pista y las unidades ópticas desde donde se extraerán
++	   los datos.
++        </para>
++	   <figure id="sounjuicer-preferences" lang="es">
++               <title>Preferencias de Soundjuicer</title>
++                 <screenshot>
++		   <mediaobject>
++		        <imageobject>
++			    <imagedata
++			       fileref="../images/music-soundjuicerprefs.png" format="png"/>
++		 	</imageobject>
++		</mediaobject>
++              </screenshot>
++	</figure>
++        <para>
++		Puede encontrar más información en el manual de 
++		<ulink type="help" url="ghelp:sound-juicer">Sound Juicer</ulink>.
++    	</para>
++    </sect>
++    <sect>
++        <title>Usar el reproductor de música</title>
++        <para>Lance el reproductor de música desde la sección multimedia del menú de aplicaciones. 
++	Si esta es la primera vez que usa el reproductor de música, aparecerá la ventana 
++	«Bienvenido a Rhythmbox».
++        Pulse en «Siguiente» para iniciar la configuración. Le preguntará 
++	la ubicación de su biblioteca de música. Si no ha extraído ningún CD todavía usando
++	Sound Juicer, entonces tendrá la opción de saltarse este paso. En otro caso, tan 
++	sólo pulse en el botón «Examinar» y para ir a la dirección de su biblioteca de música.
++        y pulse en «Adelante» para continuar.
++           </para>
++
++        <figure id="rhythmbox-main" lang="es">
++               <title>Pantalla principal de Rhythmbox</title>
++                 <screenshot>
++		   <mediaobject>
++		        <imageobject>
++			    <imagedata
++			       fileref="../images/music-rhythmbox.png" format="png"/>
++		 	</imageobject>
++		</mediaobject>
++              </screenshot>
++	</figure>
++
++        <para>Ahora puede:</para>
++        <itemizedlist>
++            <listitem>
++                <para>Hacer búsquedas por artistas, álbumes o pistas individuales usando la barra de búsqueda.</para>
++            </listitem>
++            <listitem>
++                <para>Puede acortar la lista de pistas seleccionando artistas o álbumes individuales.</para>
++            </listitem>
++            <listitem>
++                <para>Escuchar radio por Internet - seleccione Radio en la lista de fuentes, y 
++			elija entre los canales disponibles. Alternativamente - si 
++		 tiene soporte para .mp3 instalado
++                        <ulink url="&shoutcast;">SHOUTcast</ulink> es un buen lugar
++		para buscar más. Si encuentra un canal que le gusta, pulsando en el enlace
++                    &apos;Sintonizar&apos; y debería conectarse con el canal y empezar a sonar
++			inmediatamente. </para>
++            </listitem>
++       </itemizedlist>
++     	<para>
++		Hay una explicación en profundidad sobre <application>Rhythmbox</application> en
++		la  <ulink type="help" url="ghelp:rhythmbox">ayuda</ulink>. (En inglés).
++    	</para>
++    </sect>
++   </chapter>

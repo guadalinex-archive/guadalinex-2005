@@ -1,0 +1,19 @@
+\" Translation of termwrap.8 CVS revision 1.4
+.TH TERMWRAP 8
+.SH NAZWA
+termwrap \- program po¶rednicz±cy terminala
+.SH SK£ADNIA
+.B termwrap [-nnt] komenda [argumenty]
+.SH OPIS
+.BR termwrap
+jest u¿ywany do wywo³ania
+.BR base-config(8)
+w nowo instalowanych systemach Debian. Sprawdza on ¶rodowisko, zwracaj±c
+uwagê na ustawienia locale i typ dostêpnej konsoli, a nastêpnie uruchamia
+odpowiedni program terminala. Na przyk³ad na konsoli Linux przy locale
+japoñskim uruchamia program jfterm. Podana komenda jest wykonywana
+w uruchomionym terminalu.
+.SH OPCJE
+.TP
+.I "-nnt"
+Nie uruchamiaj innego terminala.

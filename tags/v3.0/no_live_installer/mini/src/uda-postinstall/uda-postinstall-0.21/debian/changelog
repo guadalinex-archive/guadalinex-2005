@@ -1,0 +1,120 @@
+uda-postinstall (0.21-1mini) hoary; urgency=low
+
+  * Special version for guadalinex mini
+
+ -- Carlos Parra Camargo <cparra@emergya.info  Mon, 26 Sep 2005 11:22:02 +0200
+
+uda-postinstall (0.21-1) hoary; urgency=low
+
+  * New version and separate packages for branding
+
+ -- Roberto Majadas <roberto@molinux.info>  Mon, 26 Sep 2005 11:22:02 +0200
+
+uda-postinstall (0.20-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Fri, 23 Sep 2005 13:35:00 +0200
+
+uda-postinstall (0.19-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Tue,  6 Sep 2005 14:49:33 +0200
+
+uda-postinstall (0.16-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Thu,  9 Jun 2005 10:38:49 +0200
+
+uda-postinstall (0.15-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Wed,  1 Jun 2005 12:49:26 +0200
+
+uda-postinstall (0.14-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Mon, 16 May 2005 11:16:36 +0200
+
+uda-postinstall (0.13-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Fri, 13 May 2005 18:24:02 +0200
+
+uda-postinstall (0.12-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Thu, 12 May 2005 17:06:53 +0200
+
+uda-postinstall (0.11-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Thu, 12 May 2005 13:06:34 +0200
+
+uda-postinstall (0.10-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Thu, 12 May 2005 11:14:43 +0200
+
+uda-postinstall (0.9-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Thu,  5 May 2005 15:18:57 +0200
+
+uda-postinstall (0.8-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Thu,  5 May 2005 11:54:34 +0200
+
+uda-postinstall (0.7-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Wed,  4 May 2005 11:36:47 +0200
+
+uda-postinstall (0.6-1) hoary; urgency=low
+
+  * New version 
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Wed, 27 Apr 2005 13:00:40 +0200
+
+uda-postinstall (0.5-1) hoary; urgency=low
+
+  * New version 
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Tue, 26 Apr 2005 15:39:23 +0200
+
+uda-postinstall (0.4-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Tue, 26 Apr 2005 12:35:08 +0200
+
+uda-postinstall (0.3-1) hoary; urgency=low
+
+  * New version
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Mon, 25 Apr 2005 15:54:39 +0200
+
+uda-postinstall (0.2-1) hoary; urgency=low
+
+  * New version 
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Thu, 21 Apr 2005 11:17:14 +0200
+
+uda-postinstall (0.1-1) hoary; urgency=low
+
+  * Initial Release.
+
+ -- Roberto Majadas <roberto@hispafuentes.com>  Thu, 21 Apr 2005 09:56:22 +0200
+

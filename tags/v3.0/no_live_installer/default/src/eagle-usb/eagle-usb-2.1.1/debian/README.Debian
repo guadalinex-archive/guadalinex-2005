@@ -1,0 +1,57 @@
+Eagle-usb packages for Debian
+==============================
+
+This source package gives three binary packages:
+
+- eagle-usb-utils contains the userspace tools used to manipulate the
+  modem, as well as some scripts to set up the connection;
+
+- eagle-usb-data contains the DSP codes for the modem;
+
+- eagle-usb-modules-source contains the source for the kernel module,
+  the kernel-space part of the driver, which is required
+  for the modem to be usable.
+
+There are (at least) two ways of having this kernel module working.
+
+- The Debian way (with module-assistant): install the
+  "module-assistant" package and the kernel-headers-* package
+  corresponding to the kernel version you want to use, then run the
+  following commands:
+
+  # module-assistant prepare               # May not be needed
+  # module-assistant get eagle-usb
+  # module-assistant build eagle-usb
+
+  You should now have an eagle-usb-modules-<version>.deb file in
+  /usr/src, which you can install with dpkg -i to get the modules
+  installed.
+
+- The "by hand" way: if you prefer handling your kernel by hand, then
+  you're supposed to know what to do with eagle-usb-modules-source and I
+  won't bother you any longer.  It is for you only that there is no
+  dependency on eagle-usb-modules (only a recommendation) :-)
+
+There also used to be a third way, using kernel-package.  It's been
+removed (module-assistant becoming the standard way to build modules
+in Debian).  For reference, here's the text that used to be above
+(will probably be removed in some future version):
+,----
+| The Debian way (with kernel-package): if you compile this kernel
+| module using the standard Debian tools to manage packaged kernels
+| (which involves using the package named "kernel-package"), you'll get
+| a package named eagle-usb-modules-#KVERS#, where #KVERS# is the
+| version number of the kernel package you are compiling.  Read the
+| documentation for kernel-package to know about compiling kernel
+| modules that way.
+| 
+| The eagle-usb-modules-#KVERS# "provide" eagle-usb-modules virtual package.
+|
+| The eagle-usb-utils depends on eagle-usb-data.
+| It only recommands eagle-usb-modules virtual package for the user
+| who install driver "by hand" way.
+| Pay attention to kernel version numbers and you'll be fine.
+`----
+
+ -- Cyril Martin <mcoolive@free.fr>, Sat, 27 Nov 2004 19:48:55 +0100
+

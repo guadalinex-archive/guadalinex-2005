@@ -1,0 +1,12 @@
+base-config: no-debconf-config
+base-config: debconf-is-not-a-registry ./usr/sbin/apt-setup
+base-config: debconf-is-not-a-registry ./usr/sbin/tzsetup
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/menu/apt-get
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/menu/keyboard
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/menu/finish
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/menu/pkgsel
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/menu/hostname
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/menu/intro
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/menu/pon
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/prep-menu
+base-config: debconf-is-not-a-registry ./usr/lib/base-config/show-menu

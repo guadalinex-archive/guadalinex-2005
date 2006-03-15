@@ -1,0 +1,73 @@
+#!/bin/sh -e
+# Set up apt sources list.
+
+# On new installs, comment out the shipped sources.list, since it assumes
+# they are on the network, which is wrong if this is a CD install (this may
+# no longer br true; debootstrap generates a pretty decent sources.list).
+# Anyway apt-setup generates a better one. Touch the file in any case, because
+# apt-setup requires it exist.
+
+. /usr/share/debconf/confmodule
+
+if [ -f /etc/apt/sources.list.apt-setup ]; then
+	# Already configured by d-i first stage.
+	exit 0
+fi
+
+touch /etc/apt/sources.list
+if [ "$1" = "new" ]; then
+	# Warty change: Attempt to guess the uri type from d-i first stage
+	# (See: #296 #353 #355)
+	line="`grep -v "^#" /etc/apt/sources.list | grep "^deb " | head -n 1`"
+	uritype="`echo "$line" | sed -e 's/deb\ //g' -e 's/:.*//g'`"
+	scanned=
+	# if uritype is unknown, we need to tell it to apt-setup that will
+	# prompt with higher priority
+	case "$uritype" in
+		http|ftp)
+		;;
+		cdrom)
+			# d-i has already scanned the CD-ROM
+			scanned=yes
+		;;
+		file)
+			# cdrom install from d-i is a special case
+			if [ "`echo "$line" | grep "///cdrom"`" ]; then
+				uritype="cdrom"
+			fi
+		;;
+		*)
+			uritype="unknown"
+		;;
+	esac
+	if [ "$uritype" != unknown ]; then
+		db_fget apt-setup/uri_type seen
+		if [ "$RET" = false ]; then
+			db_set apt-setup/uri_type "$uritype"
+			db_fset apt-setup/uri_type seen true
+		fi
+	fi
+	if [ -z "$scanned" ]; then
+		sed 's/^\([^#]\)/#\1/' /etc/apt/sources.list > /etc/apt/sources.list.new
+		mv -f /etc/apt/sources.list /etc/apt/sources.list.pre-apt-setup
+		mv -f /etc/apt/sources.list.new /etc/apt/sources.list
+	fi
+fi
+
+# Probe for cd's in the drive prior to setting up apt.
+CODE=0
+if [ "$1" = "new" ]; then
+	apt-setup probe -N || CODE=$?
+else
+	apt-setup probe || CODE=$?
+fi
+
+if [ "$CODE" -ne 0 ]; then
+	if [ -f /etc/apt/sources.list.pre-apt-setup ]; then
+		mv -f /etc/apt/sources.list.pre-apt-setup /etc/apt/sources.list
+	fi
+	exit $CODE
+fi
+rm -f /etc/apt/sources.list.pre-apt-setup
+
+clear 2>/dev/null || true

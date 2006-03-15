@@ -1,0 +1,50 @@
+#!/bin/sh -e
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export PATH
+
+# ignore device events
+[ "$PRODUCT" ] || exit 0
+
+# a PPP peer to call
+PPPD_PEER=""
+# an interface to start with ifup
+NET_IF=""
+
+# you can use this file to change the default configuration
+[ -f /etc/default/cxacru ] && . /etc/default/cxacru
+
+##############################################################################
+
+start_networking() {
+  runlevel=`runlevel | cut -d" " -f 2` 
+  if [ "$PPPD_PEER" ]; then
+    if [[ $runlevel -eq 2 ]] ; then sleep 5; ifup $PPPD_PEER | /usr/bin/logger -t cxacru; fi
+  fi
+  if [ "$NET_IF" ]; then
+    if [[ $runlevel -eq 2 ]] ; then sleep 5; ifup $NET_IF | /usr/bin/logger -t cxacru; fi
+  fi
+  return 0
+}
+
+setup_remover() {
+  [ "$REMOVER" ] || return 0
+  {
+  [ "$PPPD_PEER" ] && printf "#!/bin/sh\nifdown $PPPD_PEER\nsleep 5\nrmmod cxacru\nrmmod usbatm\n/usr/bin/logger -t cxacru 'hotplug stopping cxacru'\n"
+  [ "$NET_IF" ] && printf "#!/bin/sh\nifdown $NET_IF\nsleep 5\n/usr/bin/logger -t cxacru 'hotplug stopping cxacru'\n"
+  } > $REMOVER
+  chmod +x $REMOVER
+  return 0
+}
+
+##############################################################################
+case "$ACTION" in
+    add)
+	/usr/bin/logger -t cxacru "hotplug starting iface ${NET_IF}${PPPD_PEER}"
+	start_networking
+	setup_remover
+    ;;
+esac
+
+exit 0
+

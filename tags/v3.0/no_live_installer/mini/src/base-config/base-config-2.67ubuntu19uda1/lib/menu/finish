@@ -1,0 +1,131 @@
+#!/bin/sh
+# Finish up the install, clean up anything necessary.
+set -e
+
+case "$1" in
+'')
+	# Nothing to do.
+	;;
+new)
+       if [ -f /etc/inittab.real ]; then
+          mv -f /etc/inittab.real /etc/inittab
+          telinit q >/dev/null
+          # Clear the screen, in preparation for the login prompt
+          echo "clear the screen" >> /var/log/mylog
+          reboot
+          echo "screen cleared" >> /var/log/mylog
+        fi
+	reboot
+	# Code that does not need debconf.
+	
+	# en_US is treated as a special case, because it is the default.
+	# If d-i used C for the default, we could remove this special case.
+	if [ -n "$LANG" ] && [ "$LANG" != en_US ]; then
+		if [ -e /etc/environment ]; then
+			grep -v "^LANG=" /etc/environment > /etc/environment.new || true
+			mv /etc/environment.new /etc/environment
+			echo "LANG=$LANG" >> /etc/environment
+		else
+			echo "LANG=$LANG" > /etc/environment
+		fi
+
+		# fix GDM language problem
+		if [ -e /etc/default/gdm ]; then
+			sed -i "s,^#*LANG=$,LANG=$LANG,g" /etc/default/gdm
+		fi
+	fi
+	
+	# See if there is a preseeded command. If so, run it.
+	PRESEED_COMMAND=$($0 get_preseed_command 4>&1 || true)
+	if [ -n "$PRESEED_COMMAND" ]; then
+		echo "running $PRESEED_COMMAND" >> /var/log/mylog
+		# TODO error handling (needs error dialog)
+		eval $PRESEED_COMMAND || true
+	fi
+        echo "finish running preseed_command" >> /var/log/mylog
+	DMS=""
+	for dm in gdm kdm; do
+		if test -x /etc/init.d/$dm; then
+			DMS="$dm $DMS"
+		fi
+	done
+        echo "test -x /etc/init.d/$DMS" >> /var/log/mylog
+	if [ "$DMS" ]; then
+                echo " $DMS " >> /var/log/mylog
+		set +e
+		# Ask about display manager, display final message, return
+		# true if display manager should be started.
+		#$0 debconf 1
+		start_dm="0"
+		set -e
+		if [ "$start_dm" = 30 ]; then
+			exit 30 # back up to main menu
+		fi
+		if [ "$start_dm" = 0 ]; then
+			for dm in $DMS ; do
+				/etc/init.d/$dm restart || true
+			done
+		fi
+	else
+                echo " ! $DMS " >> /var/log/mylog
+		# Display final message.
+		exit 30 # back up to main menu
+	fi
+
+	# Turn on console screen blanking again
+        echo "just before which setterm " >> /var/log/mylog
+	if which setterm >/dev/null 2>&1; then
+		# It seem to be impossible to get the current timeout
+		# value before changing it, so the only way to
+		# undo the setting is to set the timeout period to some
+		# random value. 10 minutes sounds like a good value.
+		setterm -blank 10
+	fi
+	echo "just after" >> /var/log/mylog
+	;;
+get_preseed_command)
+	# Get the preseeded command, if any.
+	. /usr/share/debconf/confmodule
+	if db_get base-config/late_command; then
+		echo "$RET" >&4
+	fi
+	
+	;;
+debconf)
+        echo "Somebody has executed finish debconf" >> /var/log/mylog
+	# Code that does need debconf.
+	. /usr/share/debconf/confmodule
+	db_capb backup
+	db_settitle base-config/title
+	
+	ask_dm="$2"
+	if [ "$ask_dm" = "1" ]; then
+		db_input low base-config/start-display-manager || true
+		if ! db_go; then
+			db_fset base-config/start-display-manager seen false
+			exit 30 # back up to menu
+		fi
+		db_fset base-config/start-display-manager seen false
+	fi
+	
+	# Display the final message.
+	db_input medium base-config/login || true
+	if ! db_go; then
+		db_fset base-config/login seen false
+		exit 30 # back up to menu TODO should use state machine
+	fi
+	db_fset base-config/login seen false
+
+	# Return nonzero if we asked about starting the display manager and
+	# it should not be started.
+	if [ "$ask_dm" = 1 ]; then
+		db_get base-config/start-display-manager
+		if [ "$RET" = true ]; then
+			exit 0
+		else
+			exit 1
+		fi
+	fi
+
+	;;
+esac

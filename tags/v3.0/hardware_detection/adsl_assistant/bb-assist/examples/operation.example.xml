@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<operation>
+  <model>Efficient SpeedStream 5660</model>
+  <initial_func>confEff5660</initial_func>
+  <default_timeout>15</default_timeout>
+  <send_delay>0</send_delay>
+  <serial_params parity="N" tty="0" baudrate="38400" xonxoff="0" rtscts="0" stopbits="1" bits="8"/>
+  <dhcp_ip_net>10.0.0.0</dhcp_ip_net>
+  <remote_mask>255.255.255.0</remote_mask>
+  <ext_mask_router>255.255.255.0</ext_mask_router>
+  <passwd1>adminttd</passwd1>
+  <ip_computer>10.0.0.1</ip_computer>
+  <vci>32</vci>
+  <dhcp>True</dhcp>
+  <dhcp_ip_end>10.0.0.1</dhcp_ip_end>
+  <remote_ip>10.1.0.1</remote_ip>
+  <gw_computer>10.0.0.1</gw_computer>
+  <usu_ip>10.0.0.1</usu_ip>
+  <dhcp_ip_gw>10.0.0.1</dhcp_ip_gw>
+  <dhcp_ip_start>10.0.0.1</dhcp_ip_start>
+  <dhcp_mask>255.255.255.0</dhcp_mask>
+  <vpi>8</vpi>
+  <mask_computer>255.255.255.0</mask_computer>
+  <mod_conf>monostatic</mod_conf>
+  <dns2>80.58.32.97</dns2>
+  <dns1>80.58.0.33</dns1>
+  <int_ip_router>10.0.0.1</int_ip_router>
+  <eth_to_conf>eth1</eth_to_conf>
+  <int_mask_router>255.255.255.0</int_mask_router>
+  <dhcp_num_hosts>1</dhcp_num_hosts>
+  <usu_mask>255.255.255.0</usu_mask>
+  <ext_ip_router>10.1.0.0</ext_ip_router>
+</operation>

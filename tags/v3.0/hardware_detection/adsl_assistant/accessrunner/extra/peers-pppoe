@@ -1,0 +1,16 @@
+noipdefault
+# Use this connection as the default route.
+defaultroute
+replacedefaultroute
+# Try to get the name server addresses from the ISP.
+usepeerdns
+# Do not ask the remote to authenticate.
+noauth
+user 'testuser'
+plugin rp-pppoe.so
+nas0
+# Makes pppd "dial again" when the connection is lost.
+persist
+maxfail 10
+mru 1492
+mtu 1492

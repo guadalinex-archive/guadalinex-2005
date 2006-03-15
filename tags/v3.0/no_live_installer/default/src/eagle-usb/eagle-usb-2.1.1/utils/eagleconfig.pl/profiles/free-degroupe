@@ -1,0 +1,13 @@
+[General]
+name=Free Dégroupé
+
+[Modem]
+vpi=8
+vci=36
+encapsulation=1
+bnmdir=/etc/eagle-usb
+startup=hotplug
+
+[Network]
+protocol=dhcp
+

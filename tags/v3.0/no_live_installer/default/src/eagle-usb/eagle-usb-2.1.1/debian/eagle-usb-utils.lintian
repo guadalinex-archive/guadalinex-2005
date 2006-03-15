@@ -1,0 +1,2 @@
+eagle-usb-utils: postrm-contains-additional-updaterc.d-calls /etc/init.d/eagle-usb
+eagle-usb-utils: script-in-etc-init.d-not-registered-via-update-rc.d /etc/init.d/eagle-usb

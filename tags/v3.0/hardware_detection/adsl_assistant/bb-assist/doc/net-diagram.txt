@@ -1,0 +1,99 @@
+
+  N E T   D I A G R A M
+  ===================== 
+  Some net variables used in bb-assist
+
+           .-----------.
+           |  Gateway  |
+           '-----------'
+                 | remote_ip, remote_mask
+                 | 
+                 | WAN
+                 | 
+                 | ext_ip_router,
+                 | ext_mask_router
+   .---------------------------.
+   |                           |
+   |        R O U T E R        |
+   |                           |
+   |     Dhcp server (dhcp):   |
+   |          dhcp_ip_start,   |
+   |          dhcp_ip_end,     |
+   |          dhcp_mask,       |
+   |          dhcp_ip_gw,      |
+   |          dns1, dns2       |
+   |                           |
+   '---------------------------'
+                 | int_ip_router,
+                 | int_mask_router
+                 |
+                 |
+                 |                        LAN
+ ---------.------'-----------------------------
+          |
+          |
+          |
+          | ip_computer,
+          | mask_computer,
+          | gw_computer
+.--------------------.
+|                    |
+|                    |
+|  C O M P U T E R   |
+|                    |
+|                    |
+'--------------------'
+
+Monostatic
+**********
+  remote_ip       = ([GUI gestIP] AND [GUI gestMask]) + 2
+  remote_mask     = [GUI gestMask]
+  ext_ip_router   = [GUI gestIP] 
+  ext_mask_router = [GUI gestMask]
+  int_ip_router   = ([GUI usuIP] AND [GUI usuMask]) + 1
+  int_mask_router = [GUI usuMask]
+  ip_computer     = [GUI usuIP]
+  mask_computer   = [GUI usuMask]
+  gw_computer     = ([GUI usuIP] AND [GUI usuMask]) + 1
+
+Monodinamic
+***********
+  remote_ip       = Bridged
+  remote_mask     = Bridged
+  ext_ip_router   = Bridged
+  ext_mask_router = Bridged
+  int_ip_router   = Bridged
+  int_mask_router = Bridged
+  ip_computer     = PPPOE
+  mask_computer   = PPPOE
+  gw_computer     = PPPOE
+
+Multistatic
+***********
+  remote_ip       = ([GUI usuIP] AND [GUI usuMask]) + 2
+  remote_mask     = [GUI usuMask]
+  ext_ip_router   = [GUI usuIP] 
+  ext_mask_router = [GUI usuMask]
+  int_ip_router   = ip_gw = [GUI ipGatewayEntry]
+  int_mask_router = dhcp_mask
+  if dhcp:
+     ip_computer = mask_computer = gw_computer = [configuredByDHCP]
+  else:
+     ip_computer   = [GUI IPaddressPcEntry]
+     mask_computer = [GUI maskAddressPcEntry]
+     gw_computer   = [GUI ipGatewayEntry]
+
+Multidinamic
+************
+  remote_ip       = PPPOA
+  remote_mask     = PPPOA
+  ext_ip_router   = PPPOA
+  ext_mask_router = PPPOA
+  int_ip_router   = ip_gw = [GUI ipGatewayEntry]
+  int_mask_router = dhcp_mask
+  if dhcp:
+     ip_computer = mask_computer = gw_computer = [configuredByDHCP]
+  else:
+     ip_computer   = [GUI IPaddressPcEntry]
+     mask_computer = [GUI maskAddressPcEntry]
+     gw_computer   = [GUI ipGatewayEntry]

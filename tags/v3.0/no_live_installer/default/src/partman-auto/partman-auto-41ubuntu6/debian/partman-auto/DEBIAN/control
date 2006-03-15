@@ -1,0 +1,12 @@
+Package: partman-auto
+Version: 41ubuntu6
+Section: debian-installer
+Priority: standard
+Architecture: all
+Depends: partman, partman-basicfilesystems, partman-ext3
+Installed-Size: 404
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Description: Automatically partition storage devices (partman)
+ This package adds to the main partitioning menu of partman an item
+ `Automatically partition the storage devices'.  For each free space
+ it also adds an item `Automatically partition this free space'.

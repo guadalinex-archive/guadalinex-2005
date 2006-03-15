@@ -1,0 +1,9 @@
+Package: main-menu
+Version: 1.07ubuntu1
+Section: debian-installer
+Priority: standard
+Architecture: i386
+Depends: libc6 (>= 2.3.4-1), libdebconfclient0, libdebian-installer4 (>= 0.32)
+Installed-Size: 60
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Description: Debian installer main menu

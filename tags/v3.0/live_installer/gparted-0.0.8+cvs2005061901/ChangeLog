@@ -1,0 +1,899 @@
+2005-06-19  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
+
+	* configure.in: Added 'gl' to ALL_LINGUAS.
+
+2005-05-02  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
+
+	* configure.in: Added "zh_TW" (Traditional Chinese) to ALL_LINGUAS.
+
+2005-04-01  Steve Murphy  <murf@e-tools.com>
+
+        * configure.in: Added "rw" to ALL_LINGUAS.
+
+2005-03-22  Žygimantas Beručka  <uid0@akl.lt>
+
+	* configure.in: Add "lt" (Lithuanian) to ALL_LINGUAS.
+
+2005-02-28  Alexander Shopov  <ash@contact.bg>
+
+	* configure.in: Added "bg" (Bulgarian) to ALL_LINGUAS
+
+2005-02-26  Kostas Papadimas  <pkst@gnome.org>
+
+	* configure.in: Added "el" (Greek) to ALL_LINGUAS.
+
+2005-02-19  Christophe Merlet  <redfox@redfoxcenter.org>
+
+	* configure.in: Added "fr" (French) to ALL_LINGUAS.
+
+2005-02-08 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/hfs.cc,
+	  src/jfs.cc,
+	  src/ntfs.cc,
+	  src/reiserfs.cc : fixed bug with LC_NUMERIC=C .. (thanks to mantiena for reporting)
+
+2005-02-06 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/Win_GParted.cc: fixed a potential infinite loop in Show_Pulsebar() (thanks to xilun)
+
+2005-02-01 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* Fixed a bunch of bugs (some of them crashers) which showed up if no devices were detected.
+
+2005-01-30 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* include/Win_GParted.h,
+	  src/Win_GParted.cc: Replaced menu "Operations" with "Device" and "Partition". Also implemented a 'set-disklabel feature'.
+	* src/Dialog_Disklabel.cc: changed title and header to be more generic (was specific for a new disk).
+
+2005-01-29 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/Dialog_Filesystems.cc: Replaced stockitems APPLY and CANCEL with YES and NO.
+
+2005-01-25 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/Frame_Resizer_Base.cc: hmmz, i forgot to remove one unnecessary check.
+
+2005-01-25 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* include/Frame_Resizer_Base.h,
+	  include/Frame_Resizer_Extended.h,
+	  src/Frame_Resizer_Base.cc,
+	  src/Frame_Resizer_Extended.cc: finally got around to fix this annoying 'flickering' while using the resizer :)
+
+2005-01-23 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/GParted_Core.cc: write actually used libpartedversion to stdout on startup. (usefull for debugging)
+
+2005-01-22 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* include/Dialog_Base_Partition.h,
+	  src/Dialog_Base_Partition.cc,
+	  src/Dialog_Partition_Copy.cc,
+	  src/Dialog_Partition_Resize_Move.cc: Fixed bug in copy functionality (due to unset ORIG_START startsector wasn't set correctly). Also have ORIG*
+	  initialized in ctor of dialogbase to prevent such errors from ever happening again (this one only showed up with gcc-3.3.5) .
+
+2005-01-19 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/GParted_Core.cc: removed sleep( 1 ). This isn't needed anymore now the layout is scanned before the re-readtest. (saves seconds at scantime :) )
+	* replaced C-style typeconversion with static_casts throughout the project.
+
+2005-01-18 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* include/Utils.h: used static_cast<> instead of C-style type conversion.
+	* src/Makefile.am: install gparted binary in bin/ instead of sbin/ (as soon as i've time i want to implement a read-only modus)
+
+2005-01-11 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/Win_GParted.cc: activate_convert used old filesystem instead of new one for checks. fixed.
+
+2005-01-09 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* include/Win_GParted.h,
+	  src/Win_GParted.cc: Added menu 'Operations' to menubar. This menu is a duplicate of the popupmenu and imho a bit unnecessary, but lots of
+	  people requested this.. :)  Besides this, i removed 'menu_devices' and performed a few other cleanups.
+
+2005-01-09 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/GParted_Core.cc,
+	  src/Win_GParted.cc: call GParted_Core::find_supported_filesystems( ) in GParted_Core::GParted_Core() instead of Win_GParted::Win_GParted().
+	  Also replaced 0xFFFF with GDK_Delete to improve readability of the source.
+
+2004-12-29 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* replaced atoi with atol .
+
+2004-12-29 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* src/jfs.cc: implemented read used/unused space on a jfs filesystem.
+
+2004-12-29 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* include/GParted_Core.h,
+	  src/GParted_Core.cc: As explained in the previous entry i've decided to add reiser4 detection to gparted as well..
+
+2004-12-29 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* Added support for reiser4 (only creation atm, since the other functionality appears to be non-free software :/ )
+	  Also, libparted isn't able to detect reiser4 yet, a patch to fix this is underway, but i should probably add reiser4 detection to gparted as well.
+
+2004-12-28 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+	
+	* The Filesystemclasses: Changed 'bool Create( const Glib::ustring & device_path, const Partition & new_partition )'
+	to 'bool Create( const Partition & new_partition )'. Since i now use external tools for all filesystems, the partitionpath will suffice.
+
+2004-12-28 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* include/GParted_Core.h,
+	  src/GParted_Core.cc,
+	  src/linux_swap.cc: fixed some issues with linux-swap. From now on you need 'mkswap' to create/resize/move linux-swap.
+
+2004-12-27 Bart Hakvoort  <hakvoort@cvs.gnome.org>
+
+	* include/Device.h,
+	  src/Device.cc,
+	  src/GParted_Core.cc,
+	  src/Win_GParted.cc: Removed the ugly Get_Highest_Logical_Busy() from Device and added a classvariable instead. This one is set in
+	  GParted_Core and used wherever needed. I also removed Device::busy, and used the new variable to check if a device is busy.
+
+2004-12-27 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Added cylsize to Device and made Operation contain a Device instead of only the path and lenght.
+	  This way i was able to dump Get_Cyl_Size in the Core. Besides that, i used cylsize in WinGparted and made a lot of
+	  cosmetic changes. Most of them were pretty useless, but hey, i'm bored ;)
+
+2004-12-25 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/GParted_Core.cc,
+	  src/Win_GParted.cc,
+	  include/Utils.h,
+	  include/GParted_Core.h: moved inline Get_FS from Utils.h to GParted_Core, saves a few K in exe size ;)
+
+2004-12-23 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/GParted_Core.cc: removed sorting of detected devices. I figured we didn't need it anymore now 'deep_scan' is removed.
+
+2004-12-22 Bart Hakvoort  <gparted@users.sf.net>
+
+	* configure.in: bumped to 0.0.8
+
+2004-12-20 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_Copy.cc,
+	  src/Win_GParted.cc,
+	  src/xfs.cc: xfs copy now uses xfsdump and xfsrestore. icw some hacks in the other 2 files, it's now possible to shrink an xfs partition
+	  while doing the copy. Although i'd rather preffered 'real' (in place) resizing i figured it's better then nothing.
+	  Also the sourcefilesystem is now checked before the actual copy is performed. If damaged beyond repair, the copy won't start.
+	* src/Dialog_Partition_Resize_Move.cc: removed commented code.
+
+2004-12-18 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Dialog_Filesystems.h,
+	  src/Dialog_Filesystems.cc: Replaced treestore with liststore. I decided i didn't need a treeview after all...
+	* src/Dialog_About.cc: Replaced "Gnome Partition Editor based on libparted" with "Gnome Partition Editor"
+	* src/xfs.cc: fixed small error with creation of xfs filesystems (adrighem)
+
+2004-12-17 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/GParted_Core.h,
+	  src/GParted_Core.cc: Removed 'deep_scan' flag. From now on all scans are 'deep scans'.
+	* include/Win_GParted.h,
+	  src/Win_GParted.cc: Gui is now loaded before anything else. (#161054)
+
+2004-12-17 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Win_GParted.cc: fixed bug with enabling/disabling 'copy' in menus.
+	* src/ext2.cc,
+	  src/ext3.cc: added missing check while deciding to disable/enable copy feature.
+
+2004-12-17 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/GParted_Core.cc: Only peform partable re-read check if at least one partition on a device is mounted.
+
+2004-12-15 Bart Hakvoort  <gparted@users.sf.net>
+
+	* some minor internal codechanges, which should save a few bytes of mem here and there.
+	  (i was in a nitpicking mood :P )
+
+2004-12-15 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Gparted_Core::get_fs now returns a const reference.
+	* in copy and resizedialog filesystems with MAX set now have a max size of MAX - one cylinder .
+
+2004-12-15 Bart Hakvoort  <gparted@users.sf.net>
+
+	* (all filesystem classes): fixed bug with thousand separator (#161362).
+	* ext2.cc,
+	  ext3.cc: fixed bug with incorrect used/unused space after copying.
+
+2004-12-15 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Added dialog (accessable from 'gparted' menu) which shows supported operations for the various filesystems.
+	  I plan to put some more info in it, like what is missing etc..
+
+2004-12-15 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_Copy: fixed small error with incorrect display of used space and did some cleanups.
+
+2004-12-15 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Refined checks for functionality a bit. e.g. even if a filesystem can't be read, it's still possible to grow it 
+	  (but shrinking gets disabled). Also removed that stupid grow_only flag from Utils.h and reordered Win_GParted::Set_Valid_Operations()
+
+2004-12-14 Bart Hakvoort  <gparted@users.sf.net>
+
+	* added support for jfs (create, copy, grow) and hfs (create, copy)
+	* fixed a bug in copying xfs filesystems.
+	* fixed a number of small bugs/annoying issues.
+	* I guess this also means gparted now supports more filesystems then any other (OSS) partitionmanager.. (lekker belangrijk ;) )
+
+2004-12-13 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Added support for xfs. this means creating and growing xfs filesystems. Shrinking requires some hacking with dump_xfs etc..
+	  i'll add that at a later point. :)
+
+2004-12-13 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Replaced boolean 'resize' with 'shrink' and 'grow'. It seems some filesystems only support growing (e.g. xfs) so i need
+	  two flags to control the behaviour of the filesystemclasses.
+
+2004-12-13 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/GParted_Core.h,
+	  src/GParted_Core.cc: Removed a couple of unnecesarry variables. (saves a few bytes in memory =) )
+
+2004-12-12 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/GParted_Core.h,
+	  src/GParted_Core.cc: modified layoutscan a bit for improved handling of metadata.
+	* include/Operation.h,
+	  src/Operation.cc: modified Insert_Unallocated() to prevent potential crasher.
+
+2004-12-12 Bart Hakvoort  <gparted@users.sf.net>
+
+	* The fixes from 12-09 unearthed a number of long forgotten issues and annoyances. Hopefully they're all resolved now.
+
+2004-12-09 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Fixed a bunch of issues with min. and max. sizes of filesystems.
+
+2004-12-10  Gil Osher  <dolfin@rpg.org.il>
+
+	* configure.in: Added 'he' (Hebrew) to ALL_LINGUAS.
+
+2004-12-09 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/fat16: use mkdosfs -F16 instead of libparted to create fat16 filesystems 
+
+2004-12-09 Bart Hakvoort  <gparted@users.sf.net>
+
+	 * src/ext2.cc,
+	   src/ext3.cc,
+	   src/ntfs.cc,
+	   src/reiserfs.cc: added LANG=C to the commands which read the used space of a filesystem. This prevent errors with some locales.
+
+2004-12-09 Bart Hakvoort  <gparted@users.sf.net>
+
+	* added MIN and MAX to filesystemstruct to set min. and max sizes of a filesystem. So instead of checking per filesystem
+	  i now simply check the fs.MIN or fs.MAX. this results in less and cleaner code. Also this will come in handy when adding
+	  support for new filesystems. (This also fixed several minor bugs with filesystemsizes and gained some improvement in resizer
+	  performance)
+
+2004-12-07 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/VBox_VisualDisk.cc: placed a small (2px) border around the legend.
+
+2004-12-08  Dmitry G. Mastrukov  <dmitry@taurussoft.org>
+
+	* configure.in: Added Russian to ALL_LINGUAS.
+
+2004-12-07 Bart Hakvoort  <gparted@users.sf.net>
+
+	* README: updated description to reflect current situation.
+
+2004-12-07 Amanpreet Singh Alam <amanpreetalam@yahoo.com>
+
+	* configure.in: pa is aeed ALL_LINGUAS
+
+2004-12-03 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/fat16.cc,
+	  src/fat32.cc: added correct check for availability of 'dosfsck'
+	* configure.in: bumped to 0.0.7  YAY! ;)
+
+2004-12-03 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/GParted_Core.cc: When ( ! deep_scan ) now only one device is scanned (first found one). Shaves off a couple of millisec from startuptime |-)
+	* src/Win_GParted.cc: Fixed small bug with removable devices and the devicemenu. Also fixed redundant calling of 2 functions.
+
+2004-12-02 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Win_GParted.cc,
+	  src/TreeView_Detail.cc: fixed a minor annoying with treeviewdrawing.(Really minor ;) )
+
+2004-12-01 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_New.cc,
+	  src/Frame_Resizer_Base.cc: Fixed a crasher with the New Partition Dialog (thanks to Tino for reporting)
+
+2004-11-30 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/fat16.cc,
+	  src/fat32.cc: implemented correct filesystemcheck using dosfsck.
+
+2004-11-30 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/FileSystem.h,
+	  src/FileSystem.cc: Execute_Command() now returns exit status of executed command
+	* the filesystemclasses: returnvalue (bool) is now set according to the return status of the command
+	
+2004-11-29 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/GParted_Core.cc: It seemed some kernels remove and re-add blockdevicepaths after the commit_to_os. This caused trouble at some points
+	  where the path was required. I decided to sleep 1 sec after each scan. So rescanning devices will take 1 extra second per device :|
+	* src/Win_GParted.cc: fixed typo in string.
+
+2004-11-29 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Every devicescan now tests on beforehand if the kernel is able to reread the partitiontable. If the kernel is unable to do
+	  this, i disallow most operations. This may seem weird and even a bad thing to do, but the fact is it protects
+	  the innocent user from a lot of potential damage. Till the linuxkernel is able to reread partitiontables no matter what, this seems
+	  to be the best option. Of course a dialog with information will popup whenever such a situation is encountered.
+	  In a next release i might consider adding an 'advanced mode' for users who know what they're doing.
+
+2004-11-28  Alessio Frusciante  <algol@firenze.linux.it>
+
+	* configure.in: Added "it" (Italian) to ALL_LINGUAS. 
+
+2004-11-28 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_New.cc: selecting 'extended partition' twice caused a segfault. i cannot believe i didn't detect this bug earlier :| Fixed.
+	  also made it possible to create an unformatted partition.
+	* src/GParted_Core.cc: backend support for creating partition without filesystem (unformatted).
+
+2004-11-28 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Disklabel.cc,
+	  src/GParted_Core.cc: minor stringchanges (typos)
+
+2004-11-28 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Makefile.am: sorted sourcefiles alphabetically, i know, pretty useless, but i like it :P
+
+2004-11-28 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Harddisks without disklabel are now properly initizalized and shown in the menu. When one tries to create a new partition on
+	  such a disk a dialog pops up with some blabla about disklabels and offers to create a disklabel. sweet :P (special thanks to mantiena-baltix 
+	  for bringing this issue to my attention)
+	* fixed minor annoyance with refreshing detailed deviceinfo after a 'deep refresh'
+
+2004-11-24 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_Resize_Move.cc: fixed small bug with resizing and lower limits.
+	* src/GParted_Core.cc: use ped_file_system_clobber before creating a filesystem on a partition.
+	* src/Win_GParted.cc: pasting is now only allowed if unallocated >= copied partition + cylindersize.
+	  Instead of dividing length device by amount of cylinders i use heads * sectors/track to get cylindersize.
+	  Changed device busy warning a bit to more decent english (adamw)
+	* src/ntfs.cc: readded '-Q' to mkntfs. The error about an 'unknown filesystem' was related to detection problems and not to
+	  faulty creation of the filesystem. Should be solved anyway by implementing ped_file_system_clobber.
+	  Also removed ntfsfix since it didn't do anything relevant. Instead i use ntfsresize, because this contains relevant checks (szaka)
+
+2004-11-24 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/TreeView_Detail.cc: renamed columnheader from 'Type' to 'Filesystem'. Dunno why it was called 'Type' (maybe some PM legacy =)  )
+	* src/Win_GParted.cc: Made device busy warning a bit more sensible.
+
+2004-11-24 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Utils.h,
+	  src/GParted_Core.cc,
+	  src/Partition.cc,
+	  src/TreeView_Detail.cc,
+	  src/VBox_VisualDisk.cc: marked some strings for translation ('unknown', 'used', 'unused') and replaced lowercase 'unallocated' with '---'.
+
+2004-11-24 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/GParted_Core.h,
+	  src/GParted_Core.cc: fixed nasty error with resizing 'fixed-start filesystems'.
+	* src/Partition.cc: added a check to prevent unused space from being bigger then total space.
+	* src/ntfs.cc: removed -Q from mkntfs. -Q bypassed some safetychecks to gain performance and (so i heard later) also had a
+	  tendency of failing ;) (Adrighem)
+
+2004-11-23 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_New.cc,
+	  src/Win_GParted.cc: Fixed some errors with 'unknown' filesystem. + some cosmetics
+
+2004-11-23 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/GParted_Core.h,
+	  src/GParted_Core.cc,
+	  src/Makefile.am,
+	  include/ntfs.h,
+	  src/ntfs.cc: added full ntfs support. (couldn't test it very well due to the absence of a win32 box :P )
+
+2004-11-22 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Utils.h: fixed crasher with unknown filesystems.
+
+2004-11-22 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/GParted_Core.cc: cosmetics
+	* src/reiserfs.cc: make use of real commands instead of their symlinks. fixed copy of reiserfs filsystem
+	  (the new size wasn't reported correctly)
+
+2004-11-22 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/ext2.cc,
+	  src/ext3.cc: removed ':' from Blocksize scan.
+	* src/reiserfs.cc: dumped progsreiserfs. From now on gparted uses the official namesystools (reiserfsprogs)
+	  this resulted in much more reliable creation en resizing of reiserfs filesystems.
+
+2004-11-21 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Again way too many chances to create a detailed entry (i'm glad i'm the only dev atm :P ).
+	  Resizing of ext2/3 works perfect now. I've even tested it on the partition holding my SG seasons =)
+	  Implemented checking of filesystems (only internally used atm).
+	  Done some overall tweaking, finetuning etc.. release 0.0.7 is getting shape.
+
+2004-11-19 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Device.h,
+	  src/Device.cc: Removed bool Get_Any_Busy() in favor of public bool busy which is set in gparted_core.
+	  This also fixed a small bug with incorrect mountdetection of logical partitions.
+	  Also added a Reset() function to properly reset the contents of a device. to zero/empty .
+	* include/GParted_Core.h,
+	  src/GParted_Core.cc: 'busyness' of a device is now determined in get_devices().
+	  Renamed get_partitions() to set_device_partitions to reflect its proper function.
+	  When a new partition is created to contain a copied filesystem the size is now properly set. This fixes
+	  a very annoying bug which no one knew about except for me =) .
+	* src/Win_GParted.cc: use boolean busy from device instead of Get_Any_Busy() .
+
+2004-11-17 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/ext3.cc: availability of 'tune2fs' command wasn't detected correctly. fixed
+	* src/fat32.cc: make use of dosfs tools (mkdosfs -F32) instead of libparted's Fat-creator.
+	
+2004-11-17 Bart Hakvoort  <gparted@users.sf.net>
+
+	* Rewrote a large part of gparteds internal code. Filesystemssupport is now much more separated from the rest of gparted and
+	  adding support for other filesystems should be a piece of cake now (hope that's true :P)
+	  It still needs a lot of love, but the foundations are laid =)
+
+2004-11-07 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Operation.h,
+	  src/Operation.cc: make use of reference arguments instead of return values in some functions.
+	  Also fixed a small bug with deletion of a virtual (new) logical partition.
+	* include/VBox_VisualDisk.h,
+	  src/VBox_VisualDisk.cc: logical filesystems weren't shown in the legend, fixed.
+	* src/Frame_Resizer_Base.cc: fixed small bug with custom cursors.
+	* src/TreeView_Detail.cc: removed obsolete, already commented code.
+	* src/Win_GParted.cc: make use of reference arguments instead of return values in some functions. (see Operation)
+
+2004-11-06 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Win_GParted.h,
+	  src/Win_GParted.cc: added umount option. Also include unistd.h to solve some issues with gcc 3.2.x
+
+2004-11-06 Bart Hakvoort  <gparted@users.sf.net>
+
+	* instead of listing all partition in one list, logical partitions are now stored in a sublist in extended partition object.
+	This makes partitionhandling in gparted more natural and transparant. It also allowed me to clean up this ugly Operation class ;)
+
+2004-10-31 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Partition.h,
+	  src/Partition.cc: removed color_string
+	* src/VBox_VisualDisk.cc,
+	  src/TreeView_Detail.cc: replaced color_string with Get_Color from Utils.h
+
+2004-10-30 Bart Hakvoort  <gparted@users.sf.net>
+
+	* configure.in: added checks for libuuid and libdl. Also refined libparted check a bit.
+	* include/Partition.h,
+	  src/Partition.cc: removed Get_Color()
+	* include/Utils.h: added inline Glib::ustring Get_Color( const Glib::ustring & filesystem )
+	* src/Dialog_Partition_New.cc,
+	  src/Win_GParted.cc: make use of Get_Color from Utils.h
+	* src/Device.cc: fixed a crasher with (at least) pl_PL locale.
+
+2004-10-25 Vincent van Adrighem  <adrighem@gnome.org>
+
+	* debian/*: Added a debian subdir. This dir contains buildscripts
+	    for debian.
+
+2004-10-22 Bart Hakvoort  <gparted@users.sf.net>
+
+	* configure.in: bumped to version 0.0.6
+
+2004-10-22 Bart Hakvoort  <gparted@users.sf.net>
+
+	* configure.in: libpartedcheck now looks for correct version number (finally i'll be rid off those stupid bugreports =) )
+
+2004-10-22 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_Info.cc: codecleanups.. Hey! i was bored :P
+
+2004-10-22 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Device.cc: removed libparted messagesdialog. instead, show them on the console. They proved to be pretty useless.
+	* src/Win_GParted.cc: fixed crasher when loading gparted (or refresh devices) while there's a (audio) cd in the cdrom-drive.
+
+2004-10-21 Bart Hakvoort  <gparted@users.sf.net>
+
+	* configure.in: modernized use of AM_INIT_AUTOMAKE a bit (according to 
+	http://www.gnu.org/software/automake/manual/html_node/Public-macros.html#Public%20macros)
+
+2004-10-21 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Dialog_Partition_Resize_Move.h,
+	  src/Dialog_Partition_Resize_Move.cc: fixed some bugs with minimum size of resizable partition + some codecleanups.
+
+2004-10-20 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Base_Partition.cc (Get_New_Partition): Tweaked resizingbehaviour a bit. This solved some minor annoyances.
+
+2004-10-18 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_New.cc: changed width of optionmenus from 150 to 160 pixels. (in certain langs the strings didn't fit)
+	* src/VBox_VisualDisk.cc: used/unused legend doesn't have to show up if there's only linux-swap. 
+
+2004-10-17 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_About.cc (Show_Credits): Fixed Gtk-Warning with unknown pango markup and placed a 5 pixel-border around 
+	translators credits.
+
+2004-10-16 Bart Hakvoort  <gparted@users.sf.net>
+	
+	* src/Device.cc: when the libary of an optional filesystem (atm only reiserfs) wasn't installed, every scan printed an error 
+	in the console (df couldn't find the partition listed). Fixed by checking if partition is busy before using df.
+
+2004-10-16 Bart Hakvoort  <gparted@users.sf.net>
+	
+	* src/Dialog_Progress.cc: changed dialogwidth from 500 to 600 pixels. (icw certain languages the operation didn't fit)
+
+2004-10-16 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Win_GParted.h,
+	  src/Win_GParted.cc: First load gui and then scan devices, this resulted in way faster startup and is more satisfactory (imho)
+	  Also did some minor code cleanups and rearranged some functions needed for applying operations.
+	* src/Dialog_Progress.cc: few minor code cleanups.
+
+2004-10-14 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Operation.h,
+	  src/Operation.h: minor (code) change in displaying errormessage. Made Apply_Resize_Move_Extended_To_Visual() a bit more
+	  readable (and thus debugable). This whole class could still use a soft, caring hand though :P
+	* src/Device.cc: Unallocate space < 1MB wasn't filtered out. fixed.
+	* src/Partition.cc (Set_Used): Unused wasn't set properly. fixed. 
+
+2004-10-11 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Win_GParted.cc: i just can't stop tweaking the operationslist =)
+
+2004-10-11 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Device.cc (Read_Disk_Layout): logic unallocated space wasn't read correctly, fixed.
+	* include/Win_GParted.h: added open_operationslist() and menu_view_operations() .
+	* src/Win_GParted.cc: tweaked operationlist behaviour a bit. Also added 'Operations" toggle-item to View menu.
+
+2004-10-11 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Device.cc (Read_Disk_Layout): Again =) Decided to use switch ( blahblah ) instead of if else statements.
+
+2004-10-11 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Device.cc (Read_Disk_Layout): some internal codechanges. Looks a bit cleaner now.
+
+2004-10-11 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Device.h,
+	  src/Device.cc: made 'deep-scan' optional in Read_Disk_Layout. Removed obsolete (already) commented function.
+	* include/Partition.h,
+	  src/Partition.cc: Took used sectors out of Set() and added a Set_Used() function instead. Also added Reset() .
+	* src/Dialog_Partition_New.cc: minor change to make use of the new Set() in Partition..
+	* include/Win_GParted.h,
+	  src/Win_GParted.cc: show pulsing progressbar while refreshing devices.
+
+2004-10-08 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Partition.cc: changed color of reiserfs from blue to purple highlight. + some cosmetics.
+
+2004-10-08 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Frame_Resizer_Base.h: removed inheritance from sigc::trackable. (this is already done by Glib::Object)
+	* src/Dialog_Partition_Copy.cc,
+	  src/Frame_Resizer_Base.cc: fixed issues with resizing reiserfs filesystems.
+
+2004-10-08 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_About.cc: updated translatorcomment.
+
+2004-10-08 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Base_Partition.cc,
+	  src/Dialog_Partition_Resize_Move.cc: fixed some resizing-issues with reiserfs.
+
+2004-10-07 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Base_Partition.cc,
+	  src/Win_GParted.cc: removed spaces before some exclamation and question marks (thanks to Jordi Mallach)
+
+2004-10-07 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_About.cc: unmarked 'Copyright' string for translation and replaced (c) with © 
+
+2004-10-07 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Utils.h: added support for colored text to mk_label
+	* include/VBox_VisualDisk.h,
+	  include/VBox_VisualDisk.cc: use UTF-8 character ██ instead of some self-forged widget.
+
+2004-10-06 Bart Hakvoort  <gparted@users.sf.net>
+
+	* implemented mk_label wherever possible (means less code, improved readability)
+
+2004-10-06  David Lodge <dave@cirt.net>
+
+	* configure.in (ALL_LINGUAS): Added "en_GB" (British English).
+
+2004-10-06 Bart Hakvoort  <gparted@users.sf.net>
+
+	* lots of files =) : enabled support for reiserfs, also made filesystemsupport more 'pluggable' so it's easier to
+	add support for other filesystems in the future.
+	* include/Utils.h: new file containing much used functions and variables.
+
+2004-10-06  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
+
+	* configure.in (ALL_LINGUAS): Added "es" (Spanish).
+
+2004-10-04  Jordi Mallach  <jordi@sindominio.net>
+
+	* configure.in (ALL_LINGUAS): Added "ca" (Catalan).
+	* autogen.sh: Don't use USE_COMMON_DOC_BUILD, as GParted doesn't
+	have any GNOME documentation yet.
+
+2004-10-02 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Device.h,
+	  include/Dialog_Progress.h,
+	  include/TreeView_Detail.h,
+	  include/VBox_VisualDisk.h: removed unnecessary #include <sstream>
+
+2004-10-02 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/VBox_VisualDisk.cc: fixed incorrect tooltip with unallocated space
+
+2004-10-02 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Dialog_Base_Partition.h,
+	  src/Dialog_Base_Partition.cc: added void Set_MinMax_Text( long min, long max )
+	* src/Dialog_Partition_Copy.cc: fix incorrect upper limit for fat16 in label
+	* src/Dialog_Partition_New.cc: make use of this function, instead of accessing the label directly 
+	* src/Dialog_Partition_Resize_Move.cc: fix incorrect upper limit for fat16 in label
+
+2004-10-02 Bart Hakvoort  <gparted@users.sf.net>
+
+	* removed all stringstreams from the project (they were possibly responsible for rare chrashes in certain locales)
+	Note that i left 1 in include/Partition.h, this one is needed for int-->string conversions and won't pose a thread.
+
+2004-10-01 Bart Hakvoort  <gparted@users.sf.net>
+
+	* almost all files: cosmetics (mostly tabfixes)
+
+2004-10-01 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_Partition_New.cc: marked 3 strings for translation.
+	* src/Operation.cc: fixed an i18n related crasher and did some cosmetic cleanups.
+
+2004-10-01 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/Dialog_About.cc,
+	  src/TreeView_Detail.cc: minor changes to a few strings
+
+2004-10-01 Hendrik Brandt  <hebra@cvs.gnome.org>
+
+	* configure.in: added "de" (German) to ALL_LINGUAS
+
+2004-09-30 Bart Hakvoort  <gparted@users.sf.net>
+
+	* configure.in: bumped version to 0.0.5
+
+2004-09-30 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/TreeView_Detail.h,
+	  src/TreeView_Detail.cc: added colored squares to the tree to highlight filesystems.
+
+2004-09-29 Bart Hakvoort  <gparted@users.sf.net>
+
+	* .cvsignore: ignore all projectfiles 
+
+2004-09-29 Bart Hakvoort  <gparted@users.sf.net>
+
+	* include/Dialog_Partition_Info.h,
+	  src/Dialog_Partition_Info: removed Gtk::Label * mk_label( const Glib::ustring & text )
+	* include/Partition.h: added inline Gtk::Label * mk_label( const Glib::ustring & text )
+	  and inline Glib::ustring num_to_str( Sector number )
+	* include/Win_GParted.h,
+	  src/Win_GParted.cc: fixed aligment problems with some languages in harddisk-info
+
+
+2004-09-29 Bart Hakvoort  <gparted@users.sf.net>
+
+	* src/VBox_VisualDisk.cc,
+	  src/Win_GParted.cc: minor i18n related tweaks.
+
+2004-09-29  Duarte Loreto <happyguy_pt@hotmail.com>
+
+	* configure.in: Added Portuguese (pt) to ALL_LINGUAS.
+
+2004-09-28 Bart Hakvoort  <gparted@users.sf.net>
+
+	*	src/VBox_VisualDisk.cc: marked 2 minor strings for translation (is a duplicate of an existing string in POT file)
+	*	src/Dialog_About.cc: made names (author/translators) selectable
+	*	include/Dialog_Partition_Info.h,
+		src/Dialog_Partition_Info.cc: solved some alignmentproblems which showed up in certain locales.
+
+2004-09-28  Maxim Dziumanenko <mvd@mylinux.com.ua>
+
+	* configure.in: Added uk to ALL_LINGUAS.
+
+2004-09-27  Bart Hakvoort  <gparted@users.sf.net>
+
+	*	include/Win_GParted.h,
+		src/Win_GParted.cc: changed representation of hardisk info
+
+2004-09-27  Bart Hakvoort  <gparted@users.sf.net>
+
+	*	src/Partition.cc: marked "Unallocated" for translatation
+
+2004-09-26  Bart Hakvoort  <gparted@users.sf.net>
+
+	*	src/Dialog_Base_Partition.cc,
+		src/	Dialog_Partition_New.cc: fixed alignment problems with some languages
+
+2004-09-26  Bart Hakvoort  <gparted@users.sf.net>
+
+	*	src/Win_GParted.cc: fixed bug that occured while converting the filesystem of a new partition
+	*	src/Dialog_About.cc: removed "documented by" tab (didn't need it yet) and fixed alignments of button
+	with some languages.
+
+2004-09-26  Bart Hakvoort  <gparted@users.sf.net>
+
+	*	src/Win_GParted.cc: fixed bug with check for max amount of partitions while pasting a copied partition.
+	*	src/Partition.cc: changed colors of ext2, ext3 and linux-swap
+	
+2004-09-25  Raphael Higino  <raphaelh@cvs.gnome.org>
+
+	*	src/Win_GParted.cc: Fixed typo bugs (word "than" written 
+as "then" in two strings)
+
+2004-09-25  Bart Hakvoort  <gparted@users.sf.net>
+	*	src/Win_GParted.h,
+		src/Win_GParted.cc: removed expander. The diskinfo is now always visible.
+	*	src/Dialog_Partition_Info.cc: fixed small bug with overlapping text. 
+	*	src/Dialog_About.cc: use VERSION instead of hardcoded numbers
+
+2004-09-25  Bart Hakvoort  <gparted@users.sf.net>
+	*	Dialog_About.cc: made "Translated by" tab a bit more sensible, also added an translator-credits string.
+
+2004-09-25  Bart Hakvoort  <gparted@users.sf.net>
+	*	Operation.h,
+		Operation.cc,
+		Partition.h,
+		Partition.cc
+		Dialog_Partition_Copy.cc,
+		Dialog_Partition_Info.cc,
+		Dialog_Partition_New.cc,
+		Win_GParted.cc: prepared "copy of" and "New Partition" for i18n and did some cleanups on the way...
+		I believe all relevant strings are now properly marked for translation.	
+		
+2004-09-25  Bart Hakvoort  <gparted@users.sf.net>
+	*	Dialog_Progress.h,
+		Operation.h,
+		Partition.h,
+		Win_GParted.h,
+		Dialog_Base_Partition.cc,
+		Dialog_Partition_Copy.cc,
+		Dialog_Partition_Info.cc,
+		Dialog_Partition_New.cc,
+		Dialog_Partition_Resize_Move.cc,
+		Dialog_Progress.cc,
+		Operation.cc,
+		Win_GParted.cc: changed some sentences on translators request
+	*	compose,
+		compose/ucompose.hpp : added composelib to provide sprintf functionality in C++ style
+	*	po/POTFILES.in : added ../src/main.cc
+
+2004-09-23  Adam Weinberger  <adamw@gnome.org>
+
+	* configure.in: Added en_CA to ALL_LINGUAS.
+
+2004-09-23  Bart Hakvoort  <gparted@users.sf.net>
+
+	* configure.in,
+	   include/i18n.h: fixed some problems with i18n.
+
+2004-09-23  Raphael Higino  <raphaelh@cvs.gnome.org>
+
+	* configure.in: Added "pt_BR" to ALL_LINGUAS.
+
+2004-09-23  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "sv" to ALL_LINGUAS.
+
+
+**changes**
+- replaced some 'dunglish' terms with more decent english. (Thanks to Tino Meinen)
+- cleaned up autoconf stuff a bit
+- gparted now gets installed in the sbin/ instead of bin/ (1023181)
+- maximum amount of primary partition isn't static anymore, it gets asked from the partition table.
+- lots of internal code cleanups. this improved performance and stability.
+- doubleclick now invokes infodialog
+- added .desktop file so gparted is accessible from Gnome/Kde menus (thanks to Stephane LOEUILLET, 1023176)
+
+**fixes**
+- sometimes creating new fat filesystems in very small spaces resulted in errors. fixed.
+- use copies from buildfiles instead of symlinks to them. (Thanks to Kristof Vansant)
+- when performing operations on just copied partitions, there was a chance the operation would be executed on another partition. fixed.
+- fixed a rare bug that caused incorrect partitiontable display after an operation went wrong.
+- some errormessages were not entirely threadsafe, fixed (hopefully :P )
+- fixed annoying bug with warningdialog which pops up after performing an operation on a busy device
+
+--------------------------------------------------------------------------
+
+GParted-0.0.4	04 Sep 2004		:
+
+- fixed another bug with hotpluggable stuff (usbdevices etc...)
+- fixed "random" chrasher while performing actions on a device with a mounted partition.
+- better alignment of information in deviceinfo and partitioninfo. (there were some problems with certain fonts)
+- changed checking for filesystemlimits in new partition dialog a bit.
+- fixed small bug in new partition dialog which made it possible to add fat16 partition > 1023MB
+- time left in progressbar shows now minutes and seconds
+- implemented copy'n paste functionality
+- fixed small bug with resizer
+- internal code cleanups, gained some performance
+- made the operationtitles a bit more informative
+- fixed bug with converting non-existent (new) partitions
+- implemented new operationslist
+- lots of small stuff
+
+-------------------------------------------------------
+
+GParted-0.0.3	26 Aug 2004		:
+
+- and as always, lots of small fixed/changes..
+- fixed bug with resizing extended partition
+- fixed bug which occasionally occurred when deleting filesystems with errors on them
+- fixed small bug with deleting new logical partitions while a partition with a higher number is mounted
+- added read-only support for partition flags (e.g. lba, boot, etc...)
+- implemented conversion between filesystems. (no big deal, all data is destroyed in the process)
+- compiling/running tested on 64bits arch, went perfectly :)
+- fixed another small bug with re-reading devices (optionmenu wasn't updated)
+- Early check for errors on filesystem. Disable appropiate actions and explain in Info
+- When a device can't be read it isn't listed anymore.
+
+------------------------------------------------------
+
+GParted-0.0.2	18 Aug 2004   :
+
+- new create dialog
+- far more compliant with HIG
+- unallocated space now visible in treeview
+- fixed bug with re-reading devices (segfault)
+- fixed bug with new extended (segfault)
+- a couple of other small things, fixes and improvements 
+
+---------------------------------------------
+
+GParted-0.0.1	12 Aug 2004   :
+
+***FIRST RELEASE!
+- Create (ext2, linux-swap, fat16, fat32)
+- resize (ext2, ext3, linux-swap, fat16, fat32 )
+- move	(linux-swap, fat16, fat32)
+- Full operationslist with undo
+- much more little stuff
+- basicly working, but not tested very well

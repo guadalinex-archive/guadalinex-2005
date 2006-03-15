@@ -1,0 +1,19 @@
+.TH TERMWRAP 8
+.SH NOME
+termwrap \- wrapper de terminal
+.SH RESUMO
+.B termwrap --nnt] comando [argumentos]
+.SH DESCRIÇÃO
+.BR termwrap
+é usado para executar
+.BR base-config (8)
+em novos sistemas debian instalados. Ele examina o ambiente,
+tomando nota de configurações de localização, qual tipo de
+console está disponível e executa um programa de terminal apropriado.
+Por exemplo, no console linux e em uma localização japonesa, ele
+executa jfterm. O comando especificado é executado dentro do programa
+de terminal (caso exista algum).
+.SH OPÇÕES
+.TP
+.I "-nnt"
+Não executa outro terminal.

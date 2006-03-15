@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bb_device_list>
+
+  <bb_device id='0001' name='3Com OfficeConnect 812' image='3com812.png'>
+    <device_type id='0002'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+        <default_passwd_list>
+          <default_passwd id='0001' passwd='adminttd'/>
+        </default_passwd_list>
+      </provider>
+    </provider_list>
+    <console>1</console>
+    <tty_conf id='0001'/>
+    <eth_conf_port>23</eth_conf_port>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>1</can_be_tty_conf>
+    <list_firmware>
+      <fw id='0001'/>
+    </list_firmware>
+    <postverif_list>
+      <postverif>hasEth</postverif>
+      <postverif>hasTTY</postverif>
+    </postverif_list>
+  </bb_device>
+
+  <bb_device id='0002' name='Comtrend / Eagle USB' image='comtrend.png'>
+    <device_type id='0001'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+      </provider>
+    </provider_list>
+    <console>0</console>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>0</can_be_tty_conf>
+    <usb_conf>
+      <linux_driver>eagle_usb</linux_driver>
+      <deviceid_list>
+        <deviceid vendor='1110' model='900f'/>
+        <deviceid vendor='1110' model='9021'/>
+        <deviceid vendor='1110' model='9023'/>
+        <deviceid vendor='0baf' model='00f1'/>
+        <deviceid vendor='0baf' model='00f9'/>
+        <deviceid vendor='0baf' model='00f5'/>
+        <deviceid vendor='0baf' model='00f7'/>
+      </deviceid_list>
+    </usb_conf>
+    <list_firmware>
+    </list_firmware>
+    <postverif_list>
+      <postverif>USBconnected</postverif>
+    </postverif_list>
+  </bb_device>
+
+  <bb_device id='0003' name='Conexant / Vitelcom' image='vitelcom.png'>
+    <device_type id='0001'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+      </provider>
+    </provider_list>
+    <console>0</console>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>0</can_be_tty_conf>
+    <usb_conf>
+      <linux_driver>cxacru</linux_driver>
+      <deviceid_list>
+        <deviceid vendor='0572' model='cafe'/>
+        <deviceid vendor='0572' model='cb00'/>
+        <deviceid vendor='0572' model='cb01'/>
+        <deviceid vendor='0572' model='cb06'/>
+        <deviceid vendor='08e3' model='0100'/>
+        <deviceid vendor='08e3' model='0102'/>
+        <deviceid vendor='0eb0' model='3457'/>
+        <deviceid vendor='1803' model='5510'/>
+        <deviceid vendor='0675' model='0200'/>
+        <deviceid vendor='0586' model='330a'/>
+        <deviceid vendor='1242' model='2003'/>
+      </deviceid_list>
+    </usb_conf>
+    <postverif_list>
+      <postverif>USBconnected</postverif>
+    </postverif_list>
+    <list_firmware>
+      <!-- FIXME -->
+    </list_firmware>
+  </bb_device>
+
+  <bb_device id='0004' name='Efficient SpeedStream 5660' image='eff5660.png'>
+    <device_type id='0002'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+        <default_passwd_list>
+          <default_passwd id='0001' passwd='adminttd'/>
+        </default_passwd_list>
+      </provider>
+    </provider_list>
+    <console>1</console>
+    <tty_conf id='0002'/>
+    <eth_conf_port>23</eth_conf_port>
+    <can_be_eth_conf>1</can_be_eth_conf>
+    <can_be_tty_conf>1</can_be_tty_conf>
+    <list_firmware>
+      <fw id='0002'/>
+    </list_firmware>
+    <postverif_list>
+      <postverif>hasEth</postverif>
+      <!--<postverif>hasTTY</postverif> Not necessary -->
+    </postverif_list>
+    <defuivalue_list>
+      <defuivalue name='entryIpDevToConf' value='10.0.0.1'/>
+    </defuivalue_list>
+  </bb_device>
+
+  <bb_device id='0005' name='Nokia M1112 ADSL Router' image='nokia1112.png'>
+    <device_type id='0002'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+        <default_passwd_list>
+          <default_passwd id='0001' passwd='adminttd'/>
+        </default_passwd_list>
+      </provider>
+    </provider_list>
+    <console>1</console>
+    <tty_conf id='0001'/>
+    <eth_conf_port>23</eth_conf_port>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>1</can_be_tty_conf>
+    <list_firmware>
+      <fw id='0003'/>
+    </list_firmware>
+    <postverif_list>
+      <postverif>hasEth</postverif>
+      <postverif>hasTTY</postverif>
+    </postverif_list>
+  </bb_device>
+
+  <bb_device id='0006' name='Alcatel Speed Touch ADSL Modem' image='speedtouch.png'>
+    <device_type id='0001'/>
+    <support>1</support>
+    <provider_list>
+      <provider id='0001'>
+      </provider>
+    </provider_list>
+    <console>0</console>
+    <can_be_eth_conf>0</can_be_eth_conf>
+    <can_be_tty_conf>0</can_be_tty_conf>
+    <usb_conf>
+      <linux_driver>speedtch</linux_driver>
+      <deviceid_list>
+        <deviceid vendor='06b9' model='4061'/>
+      </deviceid_list>
+    </usb_conf>
+    <list_firmware>
+      <!-- FIXME -->
+    </list_firmware>
+    <defuivalue_list>
+      <defuivalue name='checkbutton_noauth' value='1'/>
+      <defuivalue name='checkbutton_nopcomp' value='1'/>
+      <defuivalue name='checkbutton_noccp' value='1'/>
+      <defuivalue name='checkbutton_novj' value='1'/>
+    </defuivalue_list>
+    <postverif_list>
+      <postverif>USBconnected</postverif>
+    </postverif_list>
+  </bb_device>
+
+</bb_device_list>

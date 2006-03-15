@@ -1,0 +1,31 @@
+#! /usr/bin/make -f
+
+tmp = $(CURDIR)/debian/archive-copier
+
+build:
+	$(MAKE)
+
+clean:
+	dh_testdir
+	dh_testroot
+	$(MAKE) clean
+	dh_clean
+
+binary-arch: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+	install -m755 package-cache-names $(tmp)/usr/lib/archive-copier/
+	dh_installdebconf
+	dh_strip
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_builddeb
+
+binary-indep:
+
+binary: binary-arch binary-indep
+
+.PHONY: build clean binary-arch binary-indep binary

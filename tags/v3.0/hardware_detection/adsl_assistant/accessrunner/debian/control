@@ -1,0 +1,27 @@
+Source: accessrunner-usb
+Section: misc
+Priority: optional
+Maintainer: packmaster@guadalinex.org
+Build-Depends: debhelper (>> 4.1.16), autoconf(>= 2.52), linux-kernel-headers (>= 2.5.999-test7-bk-15), bzip2, docbook-to-man, libc6-dev (>= 2.3)
+Standards-Version: 3.6.2
+
+Package: accessrunner-usb-utils
+Architecture: any
+Recommends: accessrunner-usb-source, br2684ctl, atm-tools, hotplug, ppp, pppoe, ifupdown
+Depends: ${shlibs:Depends}
+Description: This package provide some tools for help in the configuration of 
+ the accessrunner-usb driver. The accessrunner-usb driver provides support to 
+ several USB DSL devices for the Linux kernel.
+ .
+ This package contains utilities needed to configure the accessrunner-usb 
+ drivers.
+
+Package: accessrunner-usb-source
+Architecture: all
+Depends: module-assistant, bzip2, debhelper (>= 4.0.0), make, gcc-3.4
+Suggests: accessrunner-usb-utils
+Description: Source for the accessrunner-usb driver. The accessrunner-usb 
+ driver provides support to several USB DSL devices for the Linux kernel.
+ .
+ This package contains the module source. The kernel driver can be built from
+ it using module-assistant or make-kpkg.

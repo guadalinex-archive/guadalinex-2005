@@ -1,0 +1,199 @@
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cdrom-checker\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-16 23:39+0100\n"
+"PO-Revision-Date: 2003-12-12 22:32+0100\n"
+"Last-Translator: Bart Cornelis <cobaco@linux.be>\n"
+"Language-Team: debian-l10n-dutch <debian-l10n-dutch@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:4
+msgid "Check CD-ROM integrity?"
+msgstr "CD op mogelijke fouten controleren?"
+
+#. Type: boolean
+#. Description
+#: ../templates:4
+msgid "Warning: this check depends on your hardware and may take some time."
+msgstr ""
+"Waarschuwing: de snelheid van deze foutcontrole is afhankelijk van uw "
+"hardware en kan enige tijd duren."
+
+#. Type: note
+#. Description
+#: ../templates:9
+msgid "Insert an Ubuntu CD-ROM"
+msgstr "Gelieve een Ubuntu-CD in het CD-station te plaatsen"
+
+#. Type: note
+#. Description
+#: ../templates:9
+msgid "Please insert the Ubuntu CD-ROM into the drive before continuing."
+msgstr ""
+"Gelieve een Ubuntu-CD in het CD-station te plaatsen alvorens verder te gaan."
+
+#. Type: error
+#. Description
+#: ../templates:14
+msgid "Failed to mount CD-ROM"
+msgstr "Aankoppelen van de CD is mislukt"
+
+#. Type: error
+#. Description
+#: ../templates:14
+msgid ""
+"The CD-ROM ${CDROM} could not be mounted correctly. Please check the media "
+"and cables, and try it again."
+msgstr ""
+"De CD ${CDROM} kon niet goed aangekoppeld worden. Gelieve de CD en de kabels "
+"te controleren, en daarna opnieuw te proberen."
+
+#. Type: error
+#. Description
+#: ../templates:20
+msgid "No valid Ubuntu CD-ROM"
+msgstr "Geen geldige Ubuntu-CD"
+
+#. Type: error
+#. Description
+#: ../templates:20
+msgid ""
+"The CD-ROM you have inserted is not a valid Ubuntu CD-ROM. Please change the "
+"disk."
+msgstr ""
+"De geplaatste CD is geen geldige Ubuntu-CD. Gelieve een andere CD te "
+"plaatsen."
+
+#. Type: error
+#. Description
+#: ../templates:26
+msgid "Failed to open checksum file"
+msgstr "Openen van controlesommen-bestand is mislukt"
+
+#. Type: error
+#. Description
+#: ../templates:26
+msgid ""
+"Opening the MD5 file on the CD-ROM failed. This file contains the checksums "
+"of the files located on the CD-ROM."
+msgstr ""
+"Het openen van het MD5-bestand op de CD (dat de controlesommen van de "
+"bestanden op de CD bevat) is mislukt."
+
+#. Type: note
+#. Description
+#: ../templates:32
+msgid "Integrity test successful"
+msgstr "Foutcontrole heeft geen fouten gevonden"
+
+#. Type: note
+#. Description
+#: ../templates:32
+msgid "The CD-ROM integrity test was successful. The CD-ROM is valid."
+msgstr ""
+"De foutcontrole heeft op deze CD geen fouten gevonden. De CD is in orde!"
+
+#. Type: error
+#. Description
+#: ../templates:37
+msgid "Integrity test failed"
+msgstr "Foutcontrole heeft fouten aangetroffen"
+
+#. Type: error
+#. Description
+#: ../templates:37
+msgid ""
+"The ${FILE} file failed the MD5 checksum verification. Your CD-ROM or this "
+"file may have been corrupted."
+msgstr ""
+"De MD5-som van het bestand ${FILE} klopt niet. Mogelijk is dit bestand "
+"corrupt of is uw CD beschadigd."
+
+#. Type: boolean
+#. Description
+#: ../templates:44
+msgid "Check the integrity of another CD-ROM?"
+msgstr "Nog een CD op mogelijke fouten controleren?"
+
+#. Type: note
+#. Description
+#: ../templates:48
+msgid "Insert Ubuntu CD-ROM"
+msgstr "Ubuntu CD in het CD-station plaatsen"
+
+#. Type: note
+#. Description
+#: ../templates:48
+msgid ""
+"Please make sure you have inserted the Ubuntu CD-ROM to continue with the "
+"installation."
+msgstr ""
+"De Ubuntu CD dient in het CD-station geplaatst te zijn voor u met de "
+"installatie verder gaat, heeft u hiervoor gezorgd?"
+
+#. Type: text
+#. Description
+#: ../templates:54
+msgid "Checking CD-ROM integrity"
+msgstr "CD wordt op mogelijke fouten gecontroleerd"
+
+#. Type: text
+#. Description
+#: ../templates:58
+msgid "Checking file: ${FILE}"
+msgstr "Het bestand ${FILE} wordt op mogelijke fouten gecontroleerd"
+
+#. Type: text
+#. Description
+#. Main menu item
+#: ../templates:63
+msgid "Check the CD-ROM(s) integrity"
+msgstr "CD(s) op mogelijke fouten controleren"
+
+#~ msgid "Insert a Debian CD-ROM"
+#~ msgstr "Gelieve een Debian-CD in het CD-station te plaatsen"
+
+#~ msgid ""
+#~ "Please insert one of the official Debian CD-ROMs into the drive before "
+#~ "continuing."
+#~ msgstr ""
+#~ "Gelieve een van de officiële Debian-CD's in het CD-station te plaatsen "
+#~ "alvorens verder te gaan."
+
+#~ msgid "No valid Debian CD-ROM"
+#~ msgstr "Geen geldige Debian-CD"
+
+#~ msgid ""
+#~ "The CD-ROM you have inserted is not a valid Debian CD-ROM. Please change "
+#~ "the disk."
+#~ msgstr ""
+#~ "De geplaatste CD is geen geldige Debian-CD. Gelieve een andere CD te "
+#~ "plaatsen."
+
+#~ msgid "Insert Debian boot CD-ROM"
+#~ msgstr "Debian opstart-CD in het CD-station plaatsen"
+
+#~ msgid ""
+#~ "Please make sure you have inserted the Debian boot CD-ROM  to continue "
+#~ "with the installation."
+#~ msgstr ""
+#~ "De Debian opstart-CD dient in het CD-station geplaatst te zijn voor u met "
+#~ "de installatie verder gaat, heeft u hiervoor gezorgd?"

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+exit 123
+
+if [ $ASYNCHRONOUS_START -eq 0 ] ; then
+	fctStartAdsl
+else
+	fctStartAdsl &
+	exit 0
+fi

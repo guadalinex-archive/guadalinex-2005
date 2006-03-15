@@ -1,0 +1,4 @@
+debian/tmp/usr/bin/*
+debian/tmp/usr/share/uda-postinstall/backend/*
+debian/tmp/usr/share/uda-postinstall/ui/*
+debian/tmp/usr/share/locale/*

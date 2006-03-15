@@ -1,0 +1,12 @@
+Utilities to obtain the data necessary to run an USB ADSL modem based on the
+Conexant AccessRunner chipset using the Windows driver package included with
+the modem.
+
+
+cxacru-fw -	extract firmware from the Windows driver (CnxEtU.sys)
+
+cxacru-cf -	create configuration blob based on the contents of *.inf
+		files
+
+The most up-to-date version of these utilities, as well as the relevant
+documentation, can be found at http://accessrunner.sourceforge.net/.

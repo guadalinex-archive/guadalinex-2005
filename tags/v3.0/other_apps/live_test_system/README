@@ -1,0 +1,50 @@
+
+(El archivo HOWTO contiene instrucciones para automatizar la generaci�n
+de la imagen ISO).
+
+Este sistema está basado en el cd live de ubuntu 5.04 (hoary) actualizado después
+a una versión 5.10 (breezy) todavía no definitiva.
+
+Pasos para crear una live:
+
+1) Descargar el «source» desde:
+   ftp://ws314.juntadeandalucia.es/guadalinex2005/archives/sources-breezy.tgz
+   Esto es un sistema breezy instalado y con casi lo justo para ejecutar
+   ubuntu-express y peez2.
+
+2) Descargar el extracted_cd.tar.gz desde:
+   ftp://ws314.juntadeandalucia.es/guadalinex2005/archives/extracted_cd.tar.gz
+   Este fichero contiene un directorio (extracted_cd) que debe de estar en el
+   mismo directorio que el gui�n make_live.sh.
+
+3) Configurar las siguietes variables en el make_live.sh:
+    SOURCESDIR: Debe contener la ruta al directorio donde se ha descomprimido el
+    sources-breezy.tgz.
+    ISONAME: Nombre del fichero iso.
+    NAME: Nombre de la distro.
+
+4) Ejecutar ./make_live.sh
+    Tras muchos minutos se generará una iso en el directorio desde donde se
+    ejecutó make_live.sh. 
+
+Si se quiere instalar algun paquete para probarlo en  la live, tan sólo hay que
+tirar de chroot sobre el directorio donde se descomprimió sources-breezy.tgz.
+
+NOTAS:
+
+* Si se usa el sources-breezy.tgz, hay que tener en cuenta que el usuario
+por defecto es "guada", y su contraseña también "guada". La cuenta de
+superusuario («root») está deshabilitada por defecto.
+
+* Si quiere directamente una pequeña imagen arrancable con una breezy que incluya
+el gparted modificado, ubuntu-express y peez2, puede obtenerla de:
+ftp://ws314.juntadeandalucia.es/guadalinex2005/archives/gx2005-live.iso
+
+* Las versiones de estos paquetes en desarrollo (principalmente ubuntu-express)
+no se mantienen actualizadas; en concreto, son versiones del 09/09/05 o
+anteriores.
+
+* Hay también una versión previa del sistema de generación, con hoary y un
+ubuntu-express más antiguo:
+ftp://ws314.juntadeandalucia.es/guadalinex2005/archives/sources-hoary.tar.gz
+

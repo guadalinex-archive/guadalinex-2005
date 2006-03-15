@@ -1,0 +1,360 @@
+#! /bin/sh
+# TODO: replace tzconfig with this program
+set -e
+
+. /usr/share/debconf/confmodule
+
+TEXTDOMAIN=base-config
+export TEXTDOMAIN
+
+NEWLINE="
+"
+TAB="	"
+
+# The ZONEMAPPING file is used to map between the mangled
+# choices and the raw timezones.
+ZONEMAPPING=$(tempfile)
+
+NEW=""
+
+# Given a country code, returns a debconf choices list describing the zones
+# in that country.
+mangle_zones_in_country () {
+	code="$1"
+	cat < /dev/null > "$ZONEMAPPING" # truncate
+	# Get a list of the time zones for their country,
+	# and use it as the choices list in the debconf
+	# question.
+	OLDIFS="$IFS"
+	IFS="$NEWLINE"
+	RET=""
+	for line in $(grep -i "^$code$TAB" /usr/share/zoneinfo/zone.tab); do
+		zone=$(echo "$line" | cut -d "$TAB" -f 3)
+		comment=$(echo "$line" | cut -d "$TAB" -f 4 | sed "s/, /; /g")
+		# Mangle the time zone for display.
+		if [ -z "$comment" ]; then
+			choice="$zone"
+		else
+			choice="$zone ($comment)"
+		fi
+		# This gettext is freaky, since the text is
+		# completly dynamic. To construct the po file entries
+		# for this, extract all the time zones and comments 
+		# from zone.tab and mangle the same way it's done above.
+		choice=$(gettext "$choice")
+		echo "$choice$TAB$zone" >> "$ZONEMAPPING"
+		if [ -z "$RET" ]; then
+			RET="$choice"
+		else
+			RET="$RET, $choice"
+		fi
+	done
+	IFS="$OLDIFS"
+	echo "$RET"
+}
+
+# Given a country code, returns a good default timezone for that country,
+# in the same form used by the other functions. Should be called after
+# mangle_zones_in_country
+default_for_country () {
+	code="$1"
+	
+	case "$code" in
+	AU)
+		best="Australia/Sydney"
+	;;
+	*)
+		# Default to first listed. (Which happens to be correct for
+		# most of them.)
+		best=$(grep -i "^$code$TAB" /usr/share/zoneinfo/zone.tab |
+			head -n 1 | cut -d "$TAB" -f 3)
+	;;
+	esac
+
+	# Get mangled form.
+	grep "$TAB$best\$" "$ZONEMAPPING" | cut -d "$TAB" -f 1
+}
+
+# Given a choice from the list constructed by mangle_zones_in_country,
+# returns the time zone.
+demangle_zone () {
+	CHOICE="$1"
+
+	# Map from a possibly translated choice back the the C version.
+	zone=$(grep "^$CHOICE$TAB" "$ZONEMAPPING" | cut -d "$TAB" -f 2)
+	if [ -z "$zone" ]; then
+		echo "$0 internal error: cannot find \"$CHOICE\" in $ZONEMAPPING" >&2
+		exit 1
+	fi
+	echo "$zone"
+}
+
+while getopts "gUc:yN" o; do
+	case $o in
+	g) ASKUTC=1 ;;
+	y) CHANGE=1 ;;
+	c) COUNTRY=$OPTARG ;;
+	U) NOTUTC=1 ;;
+	N) NEW=1 ;;
+	*) exit 1   ;;
+	esac
+done
+
+# s390 arch has no hwclock support; if there is no hwclock just diaable
+# that code path in general
+if [ ! -e /sbin/hwclock ]; then
+	ASKUTC=""
+fi
+
+# Set up debconf.
+db_capb backup
+db_settitle tzconfig/title
+
+# Feed current timezone in to question.
+if [ -f /etc/timezone ]; then
+	db_subst tzconfig/change_timezone timezone `cat /etc/timezone`
+elif [ -L /etc/localtime ]; then
+	db_subst tzconfig/change_timezone timezone \
+		$(readlink /etc/localtime | sed 's%^/usr/share/zoneinfo/%%')	
+elif db_fget tzconfig/preseed_zone seen && [ "$RET" = true ]; then
+	db_get tzconfig/preseed_zone
+	db_subst tzconfig/change_timezone timezone "$RET"
+fi
+
+# Let's use a state machine to let the user jump back to earlier questions.
+STATE=1
+LASTSTATE=7
+while [ "$STATE" -le $LASTSTATE ]; do
+	case "$STATE" in
+	1)
+		if [ "$ASKUTC" ]; then
+			if [ ! "$NOTUTC" ]; then
+				# Source rcS to get the current setting,
+				# and use that to control the default.
+				if [ -e /etc/default/rcS ]; then
+					. /etc/default/rcS || true
+				fi
+				if [ "$UTC" = yes ]; then
+					db_set tzconfig/gmt true
+				else
+					db_set tzconfig/gmt false
+				fi
+			else
+				db_fget tzconfig/gmt seen
+				if [ "$RET" = false ] || [ ! "$NEW" ]; then
+					db_set tzconfig/gmt false
+				fi
+			fi
+
+			# The awk removes info about drift from the 
+			# hwclock output.
+			db_subst tzconfig/gmt hwtime $(hwclock --show --localtime | awk '{NF-=2; print $0}')
+			db_input high tzconfig/gmt || true
+		fi
+	;;
+	2)
+		db_fset tzconfig/gmt seen false
+	
+		if db_fget tzconfig/preseed_zone seen && [ "$RET" = true ]; then
+			# Preseeding; skip over complicated change UI.
+			STATE=$(($LASTSTATE - 2))
+		fi
+
+		if [ ! "$CHANGE" ]; then
+			# Show current time zone and ask if it should be changed.
+			db_input high tzconfig/change_timezone || true
+		fi
+	;;
+	3)
+		db_fset tzconfig/change_timezone seen false
+	
+		# Jump to end if the user doesn't want the time zone changed.
+		db_get tzconfig/change_timezone
+		if [ "$RET" = false ] && [ ! "$CHANGE" ]; then
+			STATE=$(($LASTSTATE - 2))
+		elif [ -n "$COUNTRY" ]; then
+			# See if there is a special question for this
+			# country.
+			COUNTRY=$(echo "$COUNTRY" | tr a-z A-Z)
+			if db_get tzconfig/choose_country_zone/$COUNTRY; then
+				COUNTRY_ZONE_Q=tzconfig/choose_country_zone/$COUNTRY
+				case "$COUNTRY" in
+				CA)
+					COUNTRY_ZONE_PREFIX=Canada
+				;;
+				US)
+					COUNTRY_ZONE_PREFIX=US
+				;;
+				BR)
+					COUNTRY_ZONE_PREFIX=Brazil
+				;;
+				esac
+			else
+				zone_choices=$(mangle_zones_in_country "$COUNTRY")
+				if [ -n "$zone_choices" ]; then
+					# Always subst into this, it is
+					# used below to get the zone, no
+					# matter which style of question is
+					# displayed.
+					db_subst tzconfig/choose_country_zone_multiple \
+						choices "$zone_choices"
+					db_fget tzconfig/choose_country_zone_multiple seen 
+					if [ "$RET" = false ] || [ ! "$NEW" ]; then
+						db_set tzconfig/choose_country_zone_multiple \
+							$(default_for_country "$COUNTRY")
+					fi
+					if echo "$zone_choices" | grep -q ", "; then
+						COUNTRY_ZONE_Q=tzconfig/choose_country_zone_multiple
+					else
+						COUNTRY_ZONE_Q=tzconfig/choose_country_zone_single
+						db_subst $COUNTRY_ZONE_Q zone "$zone_choices"
+					fi
+				fi
+			fi
+			if [ -n "$COUNTRY_ZONE_Q" ]; then
+				db_input high $COUNTRY_ZONE_Q || true
+			fi
+		fi
+	;;
+	4)
+		if [ -n "$COUNTRY_ZONE_Q" ]; then
+			db_fset $COUNTRY_ZONE_Q seen false
+			db_get $COUNTRY_ZONE_Q
+			if [ "$COUNTRY_ZONE_Q" = tzconfig/choose_country_zone_single ]; then
+				if [ "$RET" = "true" ]; then
+					SKIP_DRILLDOWN=1
+				else
+					SKIP_DRILLDOWN=0
+				fi
+			elif [ "$RET" = other ]; then
+				SKIP_DRILLDOWN=0
+			else
+				SKIP_DRILLDOWN=1
+			fi
+		else
+			SKIP_DRILLDOWN=0
+		fi
+		
+		if [ "$SKIP_DRILLDOWN" = 0 ]; then
+			# Show top level divisions (mainly by continent).
+			db_input high tzconfig/geographic_area || true
+		fi
+	;;
+	5)
+		if [ "$SKIP_DRILLDOWN" = 0 ]; then
+			db_fset tzconfig/geographic_area seen false
+			
+			# Prompt with a list of zones in the selected area.
+			# Suckily, we have to map some of the values that were
+			# prompted with to the directory names themselves.
+			db_get tzconfig/geographic_area
+			DIR="$RET"
+			case "$DIR" in
+			"Atlantic Ocean")		DIR=Atlantic	;;
+			"Indian Ocean")			DIR=Indian	;;
+			"Pacific Ocean")		DIR=Pacific	;;
+			"System V style time zones")	DIR=SystemV	;;
+			"None of the above")		DIR=Etc		;;
+			esac
+			if [ ! -d /usr/share/zoneinfo/$DIR ]; then
+				echo "$0 internal error: /usr/share/zoneinfo/$DIR does not exist" >&2
+				exit 1
+			fi
+
+			# Instantiate zone selection question for area, and
+			# populate with available choices.
+			db_register tzconfig/select_zone tzconfig/select_zone/$DIR || true
+			db_subst tzconfig/select_zone/$DIR choices \
+				$(find /usr/share/zoneinfo/$DIR -type f -printf "%f, \n" | \
+				  sort | xargs echo | sed 's/,$//')
+
+			db_input high tzconfig/select_zone/$DIR || true
+		fi
+	;;
+	6)
+		# Set time zone.
+		db_get tzconfig/change_timezone
+		if [ "$RET" = true ] || [ "$CHANGE" ]; then
+			if [ "$SKIP_DRILLDOWN" = 1 ]; then
+				if db_get tzconfig/choose_country_zone/$COUNTRY; then
+					timezone="$COUNTRY_ZONE_PREFIX/$RET"
+				else
+					db_get tzconfig/choose_country_zone_multiple
+					timezone=$(demangle_zone "$RET")
+				fi
+			elif db_fget tzconfig/preseed_zone seen && [ "$RET" = true ]; then
+				db_get tzconfig/preseed_zone
+				timezone="$RET"
+				db_fset tzconfig/preseed_zone seen false
+			else
+				db_fset tzconfig/select_zone/$DIR seen false
+				db_get tzconfig/select_zone/$DIR || true
+				timezone="$DIR/$RET"
+			fi
+			
+			echo $timezone > /etc/timezone 
+			rm -f /etc/localtime && \
+				ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
+		fi
+		
+		if [ "$ASKUTC" ]; then
+			# Set gmt or not. Only change the file if the value
+			# changed. This must only be done after the time zone
+			# file is set up.
+			db_get tzconfig/gmt
+			if [ "$RET" = true ] && [ "$UTC" != yes ]; then
+				sed -e 's:^UTC="no":UTC="yes":' -e 's:^UTC=no:UTC=yes:' \
+					/etc/default/rcS > /etc/default/rcS.new
+				CHANGEUTC=1
+			elif [ "$RET" = false ] && [ "$UTC" != no ]; then
+				sed -e 's:^UTC="yes":UTC="no":' -e 's:^UTC=yes:UTC=no:' \
+					/etc/default/rcS > /etc/default/rcS.new
+				CHANGEUTC=1
+			fi
+			if [ "$CHANGEUTC" ]; then
+				mv -f /etc/default/rcS.new /etc/default/rcS
+				/etc/init.d/hwclock.sh start >/dev/null </dev/null
+			fi
+		fi
+		
+		db_get tzconfig/change_timezone
+		if [ "$RET" = true ] || [ "$CHANGE" ]; then
+			# Display a final message giving the selected zone
+			# and showing the time in that zone (and UTC for
+			# comparison) and asking if it looks ok.
+			utdate=$(LANG=C LC_ALL=C date -u)
+			tzdate=$(LANG=C LC_ALL=C date -d "$utdate")
+			db_subst tzconfig/verify_choices timezone "$timezone"
+			db_subst tzconfig/verify_choices tzdate "$tzdate"
+			db_subst tzconfig/verify_choices utdate $utdate
+			db_set tzconfig/verify_choices true
+			db_input low tzconfig/verify_choices || true
+		fi
+	;;
+	7)
+		db_get tzconfig/change_timezone
+		if [ "$RET" = true ] || [ "$CHANGE" ]; then
+			db_fset tzconfig/verify_choices seen false
+			# Get the result of that last question, and if it
+			# is false, loop back to start.
+			db_get tzconfig/verify_choices
+			if [ "$RET" = false ]; then
+				STATE=0
+			fi
+		fi
+	;;
+	esac
+
+	if db_go; then
+		STATE=$(($STATE + 1))
+	else
+		STATE=$(($STATE - 1))
+	fi
+
+	if [ "$STATE" = 0 ]; then
+		# propigate back up out
+		exit 30
+	fi
+done
+
+rm -f "$ZONEMAPPING"

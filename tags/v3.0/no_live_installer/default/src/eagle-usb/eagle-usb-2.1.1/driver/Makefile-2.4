@@ -1,0 +1,142 @@
+# $Id: Makefile-2.4,v 1.9 2005/01/30 00:59:36 Tux Exp $
+
+#---------------------------------------------------------------------------
+#------------------------------------------
+# Makefile
+#
+# Makefile for EAGLE-USB ADSL driver for Linux
+#
+# Requirements:
+#       Kernel source (or symbolic link) must be at /usr/src/linux
+# and configured for target platform.
+#
+#---------------------------------------------------------------------------
+
+
+
+#
+# Normal 2.4 processing
+#
+
+#---------------------------------------------------------------------------
+# Configuration options
+#---------------------------------------------------------------------------
+
+# Enable this next line to use bulk transfer mode instead of isochronous
+# for read operations:
+# BULK = 1
+
+#---------------------------------------------------------------------------
+# Variables used in the makefile:
+#---------------------------------------------------------------------------
+
+
+#
+# Directories:
+#
+
+FIRMWARE = ./firmware
+EAGLEUSER = ./user
+MACHINE=$(shell uname -m)
+VERSION=$(shell cat ../VERSION)
+
+
+INSTALLDIR=$(MODULESDIR)/misc
+
+#
+# Define common build options:
+#
+CFLAGS = -DLINUX -D__KERNEL__ -DMODULE -I$(KERNELSRC)/include \
+	 '-DEAGLEUSBVERSION="$(VERSION)"' -Wall \
+          -Wstrict-prototypes -fomit-frame-pointer \
+	  -fno-strict-aliasing -pipe
+
+ifneq ($(MACHINE),ppc)
+CFLAGS += -mpreferred-stack-boundary=2
+endif
+
+ifeq ($(USE_CMVS),1)
+CFLAGS+=-DUSE_CMVS
+endif
+
+#
+# Enable BULK USB transfers
+#
+ifdef BULK
+CFLAGS += -DUSEBULK
+endif
+
+#
+# Enable SMP builds:
+#
+ifdef CONFIG_SMP
+CFLAGS += -D__SMP__ -DSMP
+endif
+
+#
+# Add debug option:
+#
+
+ifdef DEBUG
+#
+# Keep optimizations even for debug builds for correct inlining:
+#
+CFLAGS  += -O -g
+else
+CFLAGS  += -O2
+endif
+
+MODULE  = eagle-usb.o
+
+#---------------------------------------------------------------------------
+# Targets
+#---------------------------------------------------------------------------
+
+all: driver dsp eagleuser
+
+driver: checkdep $(MODULE)
+
+$(MODULE): $(OBJS)
+	$(LD) -r -o $(MODULE) $(OBJS)
+
+dsp:
+	$(MAKE) -C $(FIRMWARE)
+
+eagleuser:
+	$(MAKE) -C $(EAGLEUSER)
+
+install: installdsp installuser installdriver
+
+installdriver:
+	$(INSTALL) -d $(INSTALLDIR) && \
+	$(INSTALL) -m 0644 $(MODULE) $(INSTALLDIR)/$(MODULE) && \
+	depmod -a
+
+installuser:
+	$(MAKE) -C $(EAGLEUSER) install
+
+installdsp:
+	$(MAKE) -C $(FIRMWARE) install
+
+uninstall:
+	$(MAKE) -C $(FIRMWARE) uninstall && \
+	$(MAKE) -C $(EAGLEUSER) uninstall && \
+	rm -f $(INSTALLDIR)/$(MODULE) && \
+	depmod -a
+
+checkdep:
+	if test ! -f .depend ; then make dep ; exit 0 ; fi
+
+dep:
+	$(CC) $(CFLAGS) -M *.c > .depend
+
+clean:
+	-@rm -f error.log .depend $(OBJS) $(MODULE) *~ core eagle-usb.mod.c eagle-usb.mod.h
+	$(MAKE) -C $(EAGLEUSER) clean
+	$(MAKE) -C $(FIRMWARE) clean
+
+ifneq ($(wildcard .depend),)
+ include .depend
+endif
+
+.PHONY: all driver dsp eagleuser install installuser installdsp installdriver uninstall checkdep dep clean

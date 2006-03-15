@@ -1,0 +1,104 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_molinux_chap_security.dpatch by  <roberto@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./docs/recipes/chap-security/security.xml /tmp/dpep-work.8oNPsV/uda-docs-0.1/docs/recipes/chap-security/security.xml
+--- ./docs/recipes/chap-security/security.xml	1970-01-01 01:00:00.000000000 +0100
++++ /tmp/dpep-work.8oNPsV/uda-docs-0.1/docs/recipes/chap-security/security.xml	2005-10-28 12:00:00.000000000 +0200
+@@ -0,0 +1,93 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
++<!ENTITY % xinclude SYSTEM "../../libs/xinclude.mod">
++%xinclude;
++<!ENTITY % globalent SYSTEM "../../libs/global.ent">
++%globalent;
++]>
++
++<chapter id='seguridad'>
++       <title>Seguridad: El usuario root no puede acceder</title>
++          <para>Algunos usuarios que ya hayan tratado con sistemas GNU con núcleo Linux observarán
++		que no pueden acceder como usuario root a la máquina. La configuración de fábrica 
++		de &distro-name; especifica que el usuario root debe estar deshabilitado para evitar
++		destrozos en el sistema. Esta política está presente en otros sistemas operativos,
++		como por ejemplo MacOs o Ubuntu, de la cual derivamos, y es que no hay necesidad
++		alguna de iniciar una sesión con privilegios de administrador para trabajar normalmente
++		con el sistema.
++          </para>
++          <sect><title>Activar acceso como root</title>
++		<para>
++		  Si desea una cuenta de root con login, tendrá que activar el acceso en el fichero
++		  <filename>/etc/shadow</filename>. Busque la entrada correspondiente al usuario root
++		  y borre el asterisco. A continuación debe asignar una contraseña a la cuenta de root.
++		</para>
++ 		<para>
++                   <warning>Si no asigna una contraseña a la cuenta de root, cualquiera puede tomar el control
++		      de su computadora. Aún así, muchos usuarios ponen una contraseña de root débil, por lo 
++		      que si se conectan a Internet existen bastantes probabilidades de que puedan averiguarla
++		      si activa algún servicio.
++                   </warning>
++                </para>
++           </sect>     
++           <sect><title>Acceder como root usando una sesión gráfica</title>
++	      <para>Si desea acceder como root usando el interfaz gráfico de usuario, debe
++		modificar la casilla correspondiente en el panel de configuración de GDM.
++	      </para>
++		<para>
++		   <figure lang="es"><title>Panel de configuración de seguridad de GDM</title>
++			<screenshot>
++			<mediaobject>
++		       <imageobject>
++		   	<imagedata fileref="../images/security-gdmpreferences.png" format="png"/>
++		       </imageobject>
++	              </mediaobject>
++	               </screenshot>
++                   </figure> 
++                 </para>
++		</sect>
++                <sect><title>Diseño multiusuario completo</title>
++		<para>El diseño multiusuario completo de los sistemas GNU hace que no haya necesidad
++		de que ninguna aplicación necesite privilegios elevados para escribir en un registro
++		centralizado, ni de acceder a cualquier recurso del sistema.</para>
++		<para>El diseño de estos sistemas permite la máxima funcionalidad con el mínimo 
++		nivel de privilegios, permitiendo por tanto separar efectivamente a los administradores
++		de los usuarios normales, hasta el punto de no ser necesario una cuenta especial de 
++		'Administrador'. Las tareas de administración pueden hacerse a través del 
++		primer usuario con cuenta en la máquina, con privilegios de administración otorgados
++		temporalmente mediante el comando sudo. Esto evita fallos comunes como dejarse una shell
++		de root abierta, ejecutar inadvertidamente un comando como root que pueda causar daños, etc.
++		</para>
++		<para>Otra ventaja de este diseño frente al de Windows, es la capacidad de contención de daños
++		que tiene el sistema. En Windows, dado que muchos usuarios suelen iniciar sesión como 
++		'Administrador', en el momento que un virus se ejecuta inmediatamente obtiene
++		privilegios totales en la máquina. En los sistemas GNU tan sólo afectaría al usuario que haya
++		ejecutado el virus, conteniendo los daños y no destrozando todo el sistema.
++		</para> 
++                </sect>
++                <sect><title>Administración de la seguridad</title>
++		<para>La única manera de comprometer la seguridad de un sistema GNU es aprovechando una 
++		vulnerabilidad en alguna parte crítica, o lo que es lo mismo, un fallo de programación
++		que permite un comportamiento contrario al especificado. Ningún software es 100% seguro,
++		esto lo tenemos asumido, y el único remedio para solucionarlo es tener un canal de
++		actualizaciones de seguridad eficiente. Ubuntu proporciona este canal, permitiendo
++		tener actualizaciones de seguridad en un tiempo razonable desde que se hacen públicas.
++		</para>
++                </sect>
++		<sect><title>Mínimo número de servicios activados</title>
++    		<para>
++ 		A diferencia de Windows, los sistemas GNU no usan el protocolo RPC extensivamente para 
++		proporcionar servicios críticos del sistema, por lo que pueden funcionar perfectamente
++		sin necesitar habilitarlo. La filosofía del sistema GNU es contraria a la que existe
++		en los entornos Windows: Sólo los servicios imprescindibles están activados, y por tanto
++		la probabilidad de que un fallo en un servicio afecte a todas las máquinas es menor, ya
++		que dependerá de que el administrador en este sitio concreto haya habilitado ese servicio.
++		</para>
++	        <para>El sistema operativo &distro-name; delega en el usuario la responsabilidad de 
++		activar los servicios que necesite, para los cuales se proporciona una configuración 
++		adecuada a la mayoría de las necesidades, pero evitando configuraciones que sean poco
++		seguras o complejas de entender por un usuario no especializado. 
++		</para>
++	    </sect>
++    </chapter>

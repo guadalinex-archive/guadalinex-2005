@@ -1,0 +1,1240 @@
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-10 19:59+0100\n"
+"PO-Revision-Date: 2005-01-02 11:55+0900\n"
+"Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
+"Language-Team: Japanese <debian-japanese@lists.debian.or>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=EUC-JP\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: title
+#. Description
+#: ../templates:3
+msgid "Ubuntu base system configuration"
+msgstr "Ubuntu ベースシステムの設定"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "Choose the next step in the install process:"
+msgstr "インストールプロセスの次のステップを選択してください:"
+
+#. Type: select
+#. Description
+#: ../templates:8
+msgid "This is the base system configuration menu."
+msgstr "これはベースシステムの設定メニューです。"
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid "Welcome to your new Ubuntu system!"
+msgstr "新しい Ubuntu システムにようこそ!"
+
+#. Type: note
+#. Description
+#: ../templates:13
+msgid ""
+"This program will now walk you through the process of setting up your newly "
+"installed system. It will start with the basics -- time zone selection, "
+"setting a root password and adding a user, and then progress to installing "
+"additional software to tune this new Ubuntu system to your needs."
+msgstr ""
+"このプログラムはあなたを、新しくインストールされたシステムのセットアップ手順"
+"にいざないます。時間帯の選択、root パスワードの設定、ユーザーの追加といった基"
+"本的なところからはじめて、この新しい Ubuntu システムをあなたのニーズに合うよ"
+"う追加のソフトウェアをインストールする処理に移ります。"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid "Use a PPP connection to install the system?"
+msgstr "PPP 接続をシステムのインストールに使用しますか?"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"This system does not seem to be currently connected to the internet. Even if "
+"you plan to install from CD, it is wise to download at least security "
+"updates from the internet."
+msgstr ""
+"このシステムは現在インターネットに接続されていないようです。CD からインストー"
+"ルすることにしていたとしても、インターネットから少なくともセキュリティアップ"
+"デートについてはダウンロードするのは良い考えです。"
+
+#. Type: boolean
+#. Description
+#: ../templates:23
+msgid ""
+"If you have an account on an Internet Services Provider (ISP), and you want "
+"to use it during the install, you may configure the PPP service now, and "
+"open a PPP connection to your ISP."
+msgstr ""
+"ISP (インターネットサービスプロバイダ) にアカウントがあり、インターネット上か"
+"らシステム上にインストールするパッケージを入手するためにこの接続を利用したい"
+"場合、ここで PPP サービスを設定し、あなたの ISP に PPP 接続を行うことができま"
+"す。"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid "There was a problem installing the selected software"
+msgstr "選択されたソフトウェアのインストール中に問題が発生しました"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"One or more packages failed to install. This may be due to bugs in the "
+"packages, or you may be out of disk space or experiencing some other problem."
+msgstr ""
+"1つまたは複数のパッケージのインストールに失敗しました。これはおそらく、その"
+"パッケージのバグ、またはディスクスペースが一杯になったか、その他の問題です。"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"Simply trying to install those packages (or a slightly different set of "
+"packages) again may work around the problem, or at least move the "
+"installation process along a little further. If you want, you can go back to "
+"the package selection step, and try again."
+msgstr ""
+"単に再度パッケージをインストールする (または少し異なるパッケージの組み合わせ"
+"をインストールする) だけでうまくいく場合もありますし、うまくいかなくてもイン"
+"ストール作業を若干前進させるかもしれません。これを望むのであれば、パッケージ"
+"選択ステップに戻り、再試行してください。"
+
+#. Type: note
+#. Description
+#: ../templates:69
+msgid ""
+"If you decide not to try again, bear in mind that some packages on your "
+"system will be in a broken state until you manually resolve the problem."
+msgstr ""
+"再度インストールを実行しない場合は、問題を手動で解決しない限り、いくつかの"
+"パッケージが問題を抱えた状態であるということを忘れないでください。"
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid "Thank you for choosing Ubuntu!"
+msgstr "Ubuntu をお選び頂き、ありがとうございます!"
+
+#. Type: note
+#. Description
+#: ../templates:84
+#, fuzzy
+msgid "Setup of your Ubuntu system is complete. You may now login."
+msgstr ""
+"Ubuntu システムのセットアップが完了しました。login: プロンプトからログインで"
+"きます。"
+
+#. Type: note
+#. Description
+#: ../templates:84
+msgid ""
+"If you want to revisit this setup process at a later date, just run the base-"
+"config program."
+msgstr ""
+"このセットアップ処理を後日やり直したいのであれば、base-config を実行してくだ"
+"さい。"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "System hostname:"
+msgstr "システムのホスト名:"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid "Please enter your system hostname."
+msgstr "システムのホスト名を入力してください。"
+
+#. Type: string
+#. Description
+#: ../templates:93
+msgid ""
+"The hostname is a name that identifies your system to the network. If you "
+"don't know what your hostname should be, consult your network administrator. "
+"If you are setting up your own home network, you can make something up here."
+msgstr ""
+"ホスト名はあなたのシステムをネットワークで識別するのに使う名前です。もしどの"
+"ようなホスト名にすべきかわからないときには、ネットワーク管理者に相談してくだ"
+"さい。あなた自身の家庭ネットワークをセットアップしているのであれば、ここに適"
+"当なものを指定できます。"
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid "Invalid hostname \"${HOSTNAME}\""
+msgstr "ホスト名 \"${HOSTNAME}\" は無効です"
+
+#. Type: note
+#. Description
+#: ../templates:103
+msgid ""
+"A valid hostname may contain period-separated parts containing only "
+"alphanumeric characters and the minus sign, be between 2 and 63 characters "
+"long, and each part cannot begin or end with a minus sign."
+msgstr ""
+"有効なホスト名は、2〜63文字の英字文字とマイナス記号だけから成り、完全修飾名の"
+"各部分はピリオドで区切られます。各部分の頭と終わりにはマイナス記号は使えませ"
+"ん。"
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid "Do you want to start the graphical display manager?"
+msgstr "グラフィカルディスプレイマネージャを起動しますか?"
+
+#. Type: boolean
+#. Description
+#: ../templates:111
+msgid ""
+"The graphical display manager makes it possible to log in using a graphical "
+"environment."
+msgstr ""
+"グラフィカルディスプレイマネージャは、グラフィカル環境を使ってのログインを可"
+"能にします。"
+
+#. Type: text
+#. Description
+#: ../templates:117
+msgid "Load preseed file"
+msgstr "preseed ファイルの読み込み"
+
+#. Type: text
+#. Description
+#: ../templates:121
+msgid "Display introductory message"
+msgstr "序文メッセージの表示"
+
+#. Type: text
+#. Description
+#: ../templates:125
+msgid "Configure the keyboard"
+msgstr "キーボードの設定"
+
+#. Type: text
+#. Description
+#. Type: title
+#. Description
+#: ../templates:129 ../tzsetup-udeb.templates:3
+msgid "Configure timezone"
+msgstr "時間帯の設定"
+
+#. Type: text
+#. Description
+#: ../templates:133
+msgid "Set up users and passwords"
+msgstr "ユーザーとパスワードのセットアップ"
+
+#. Type: text
+#. Description
+#: ../templates:137
+msgid "Set the hostname"
+msgstr "ホスト名の設定"
+
+#. Type: text
+#. Description
+#: ../templates:141
+msgid "Configure and enable ppp"
+msgstr "PPP の設定と有効化"
+
+#. Type: text
+#. Description
+#. This MUST NOT contain a comma. The same goes for other descriptions
+#. in base-config/menu/*. These form a debconf choices list.
+#. Type: title
+#. Description
+#: ../templates:147 ../apt-setup-udeb.templates:3
+msgid "Configure apt"
+msgstr "APT の設定"
+
+#. Type: text
+#. Description
+#: ../templates:151
+msgid "Select and install packages"
+msgstr "パッケージの選択とインストール"
+
+#. Type: text
+#. Description
+#: ../templates:155
+msgid "Configure the Mail Transfer Agent"
+msgstr "MTA (Mail Transfer Agent) の設定"
+
+#. Type: text
+#. Description
+#: ../templates:159
+msgid "Finish configuring the base system"
+msgstr "ベースシステムの設定の終了"
+
+#. Type: text
+#. Description
+#: ../templates:163
+msgid "Exit the base system configuration"
+msgstr "ベースシステムの設定から抜ける"
+
+#. Type: text
+#. Description
+#: ../templates:167
+msgid "Execute a shell"
+msgstr "シェルの実行"
+
+#. Type: text
+#. Description
+#: ../templates:171
+#, fuzzy
+msgid "Installing packages"
+msgstr "選択されたパッケージのインストール"
+
+#. Type: text
+#. Description
+#: ../templates:175
+msgid "Preparing for installation..."
+msgstr ""
+
+#. Type: text
+#. Description
+#: ../templates:184
+msgid "Registering documentation, please wait..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:7
+msgid "Preparing to configure apt..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:11
+#, fuzzy
+msgid "Copying mirror configuration..."
+msgstr "時間帯の設定"
+
+#. Type: title
+#. Description
+#: ../apt-setup-udeb.templates:15 ../../apt-setup.templates:202
+msgid "Checking for CD-ROM..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../tzsetup.templates:3
+msgid "Time zone configuration"
+msgstr "時間帯の設定"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "Is the hardware clock set to GMT?"
+msgstr "ハードウェアの時計は GMT に合わせていますか?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid ""
+"Unix system clocks are generally set to GMT (\"Greenwich Mean Time\", also "
+"known as \"Universal Coordinated Time\", or UTC). The operating system knows "
+"your time zone and converts system time into the local time. You can specify "
+"whether the hardware clock is set to either GMT (recommended for a Linux-"
+"only system) or local time (which may be more convenient for a system that "
+"also runs other operating systems or an off-the-shelf PC)."
+msgstr ""
+"Unix システムの時計は一般に GMT (グリニッジ平均時、あるいは世界協定時、UTCと"
+"して知られているもの) にセットされています。オペレーティングシステムはあなた"
+"の時間帯を知っており、システム時刻を地方時刻に変換します。ハードウェア時刻を "
+"GMT (Linux のみのシステムでは推奨) または地方時 (ほかのオペレーティングシステ"
+"ムも実行していたり量販の PC で動かしていたりするシステムでは、こちらのほうが"
+"都合が良いでしょう) のどちらにセットするかを指定できます。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:8
+msgid "The hardware clock says the time is now ${hwtime}."
+msgstr "ハードウェアの時計は、現在時刻が ${hwtime} であると報告しています。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Do you want to change your current time zone?"
+msgstr "現在の時間帯を変更しますか?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:21
+msgid "Your current time zone is set to ${timezone}."
+msgstr "現在の時間帯は ${timezone} に設定されています。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:27
+msgid ""
+"Eastern, Central, Mountain, Pacific, Alaska, Hawaii, Aleutian, Arizona, East-"
+"Indiana, Indiana-Starke, Michigan, Samoa, other"
+msgstr ""
+"東部, 山岳, 太平洋, アラスカ, ハワイ, アリューシャン, アリゾナ, 東インディア"
+"ナ, インディアナスターク, ミシガン, サモア, その他"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:28
+msgid "The following are common time zones in the United States of America."
+msgstr "以下に示すのは米国での時間帯です。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:37
+msgid ""
+"Newfoundland, Atlantic, Eastern, Central, East-Saskatchewan, Saskatchewan, "
+"Mountain, Pacific, Yukon, other"
+msgstr ""
+"ニューファンドランド, 大西洋, 西部, 中央, 東サスカチュワン, サスカチュワン, "
+"山岳, 太平洋, ユーコン, その他"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:38
+msgid "The following are common time zones in Canada."
+msgstr "以下に示すのはカナダでの時間帯です。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:47
+msgid "East, West, Acre, DeNoronha, other"
+msgstr "東部, 西部, エーカー, デノローニャ, その他"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid "The following are common time zones in Brazil."
+msgstr "以下に示すのはブラジルでの時間帯です。"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:48
+msgid ""
+"If you are in a different time zone, choose \"other\" to select from all "
+"available time zones."
+msgstr ""
+"異なる時間帯にいるのであれば、利用可能な時間帯から選ぶために \"その他\" を選"
+"択してください。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Are you in the ${zone} time zone?"
+msgstr "${zone} の時間帯でよろしいですか?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:57
+msgid "Based on your country, your time zone is probably ${zone}."
+msgstr "あなたの国の情報に基き、時間帯は ${zone} だと思われます。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:62
+msgid "${choices}, other"
+msgstr "${choices}, その他"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid "Select your time zone:"
+msgstr "時間帯を選んでください:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:63
+msgid ""
+"Based on your country, you are probably in one of these time zones. If you "
+"are not, choose \"other\" to select from all available time zones."
+msgstr ""
+"あなたの国の情報に基き、時間帯は以下のうちの 1 つと思われます。どれでもなけれ"
+"ば、利用可能な時間帯から選ぶために \"その他\" を選択してください。"
+
+#. Type: select
+#. Choices
+#: ../../tzsetup.templates:69
+msgid ""
+"Africa, America, US, Canada, Asia, Atlantic Ocean, Australia, Europe, Indian "
+"Ocean, Pacific Ocean, System V style time zones, None of the above"
+msgstr ""
+"アフリカ, アメリカ, 米国, カナダ, アジア, 大西洋, オーストラリア, ヨーロッ"
+"パ, インド洋, 太平洋, System V スタイル時間帯, その他"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Area for your time zone:"
+msgstr "あなたの時間帯の地域:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:70
+msgid "Pick the geographic area in which the time zone you desire is located."
+msgstr "望んでいる時間帯が位置する地理的領域を選んでください。"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid "Select a city or time zone:"
+msgstr "都市名または時間帯を選んでください:"
+
+#. Type: select
+#. Description
+#: ../../tzsetup.templates:76
+msgid ""
+"Cities represent the time zone in which they are located, so you may choose "
+"any city in the desired time zone."
+msgstr ""
+"都市名はその都市が属する時間帯を表現しているので、望んでいる時間帯にある適当"
+"な都市を選ぶことができます。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Is this information correct?"
+msgstr "この情報で正しいですか?"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "Here is your selected time zone information."
+msgstr "選択した時間帯の情報は次のとおりです。"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid ""
+" Local time is now:          ${tzdate}\n"
+" Universal Time is now:      ${utdate}\n"
+" Time zone is set to:        ${timezone}"
+msgstr ""
+" 現在の地方時刻:             ${tzdate}\n"
+" 現在の世界協定時刻:         ${utdate}\n"
+" 設定されている時間帯:       ${timezone}"
+
+#. Type: boolean
+#. Description
+#: ../../tzsetup.templates:82
+msgid "If something looks wrong, you can go through the setup process again."
+msgstr "何か問題点があるなら、セットアップ作業を再度やり直せます。"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:3
+msgid "Apt configuration"
+msgstr "APT の設定"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid "HTTP proxy information (blank for none):"
+msgstr "HTTP プロキシ情報 (なければ空):"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"If you need to use a HTTP proxy to access the outside world, please enter "
+"the proxy information here. Otherwise, leave this blank."
+msgstr ""
+"外の世界にアクセスするために HTTP プロキシを使用する必要がある場合は、ここで"
+"プロキシ情報を入力してください。必要なければ空白のままにしてください。"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:15
+msgid ""
+"The proxy information should be the standard form of \"http://[[user][:pass]"
+"@]host[:port]\""
+msgstr ""
+"プロキシ情報は、標準形式 \"http://[[user][:pass]@]host[:port]\" で指定しま"
+"す。"
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:24
+msgid "cdrom, http, ftp, filesystem, edit sources list by hand"
+msgstr "cdrom, http, ftp, ローカルファイルシステム, 手動で設定"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "Archive access method for apt:"
+msgstr "APT によるアーカイブへのアクセス方法:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"Please choose the method apt (the Ubuntu package management tool) should use "
+"to access the Ubuntu archive."
+msgstr ""
+"APT (Ubuntu パッケージ管理ツール) が Ubuntu アーカイブにアクセスする方法を選"
+"択してください。"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid ""
+"For example if you have an Ubuntu cd, select \"cdrom\", while if you plan to "
+"install via an Ubuntu mirror, choose \"ftp\" or \"http\"."
+msgstr ""
+"たとえば Ubuntu CD を持っているなら \"cdrom\" を、Ubuntu ミラーからインストー"
+"ルしようとしている場合、\"ftp\" あるいは \"http\" を選択します。"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:26
+msgid "${note}"
+msgstr "${note}"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid "Mirror country:"
+msgstr "ミラーのある国:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:40
+msgid ""
+"Select the country the mirror should be in. You should use a mirror in your "
+"country or region if you do not know which mirror has the best Internet "
+"connection to you."
+msgstr ""
+"ミラーのある国を選んでください。どのミラーがあなたにとって最適なインターネッ"
+"ト接続かわからなければ、あなたの国または地域にあるミラーを使うのがよいでしょ"
+"う。"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid "Choose the Ubuntu mirror to use:"
+msgstr "使用する Ubuntu ミラーサーバを選択してください:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:49
+msgid ""
+"Select the Ubuntu mirror apt should use. You should select a mirror that is "
+"close to you on the net."
+msgstr ""
+"APT が使用する Ubuntu ミラーサーバを選択してください。インターネット上であな"
+"たに近いミラーサーバを選択してください。"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Mirror hostname:"
+msgstr "ミラーのホスト名:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:55
+msgid "Enter the hostname of the mirror from which Ubuntu will be downloaded."
+msgstr "Ubuntu をダウンロードするミラーのホスト名を入力してください。"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Mirror directory:"
+msgstr "ミラーのディレクトリ:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:61
+msgid "Enter the directory in which the Ubuntu mirror is located."
+msgstr "Ubuntu ミラーが置かれているディレクトリを入力してください。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:66
+msgid "The directory you entered does not exist."
+msgstr "入力された Debian ミラーは存在しません。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid "Mirror not found"
+msgstr "ミラーが見つかりませんでした"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:71
+msgid ""
+"The directory you entered does not contain a subdirectory named \"dists\", "
+"so it doesn't seem to be an Ubuntu mirror."
+msgstr ""
+"指定されたディレクトリには dists というサブディレクトリがありませんでした。そ"
+"のため、このディレクトリパスは Ubuntu ミラーではないと思われます。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "CD-ROM missing"
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:77
+msgid "Please insert a suitable CD."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid "CD-ROM device file:"
+msgstr "CD-ROM ドライブのデバイスファイル:"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"This program was unable to auto-detect a CD-ROM drive, or there is no usable "
+"CD in the drive."
+msgstr ""
+"このプログラムが CD-ROM を自動検知できないか、もともと利用できる CD-ROM がド"
+"ライブの中になかったかのどちらかです。"
+
+#. Type: string
+#. Description
+#: ../../apt-setup.templates:85
+msgid ""
+"Enter the device file to use to access your CD-ROM, and place an Ubuntu CD "
+"in the drive."
+msgstr ""
+"CD-ROM にアクセスするためのデバイスファイルを入力し、そのドライブに Ubuntu "
+"CD をセットしてください。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "Non-Ubuntu CD-ROM detected"
+msgstr "Ubuntu ではない CD-ROM が検出されました"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:94
+msgid "The CD-ROM drive contains a non-Ubuntu CD."
+msgstr "Ubuntu ではない CD が CD-ROM ドライブに入っています。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid "Scan another CD?"
+msgstr "ほかの CD-ROM を探しますか?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:100
+msgid ""
+"If you have another Ubuntu CD (for example, the second in a two CD set), you "
+"should insert and scan it now."
+msgstr ""
+"別の Ubuntu CD-ROM (たとえば、2枚組の CD-ROM セットの2枚目) があれば、それを"
+"セットしてスキャンしてください。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Use restricted software?"
+msgstr "restricted ソフトウェアを使用しますか?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+#, fuzzy
+msgid ""
+"Some restricted software has been made to work with Ubuntu. Though this "
+"software is not at all a part of Ubuntu, standard Ubuntu tools can be used "
+"to install it. This software has varying licenses which may prevent you from "
+"using, modifying, or sharing it."
+msgstr ""
+"Ubuntu ではいくつかの restricted ソフトウェアが利用可能になっています。たとえ"
+"これらのソフトウェアが正しい Ubuntu の一部ではないにせよ、標準的な Ubuntu の"
+"ツールを利用してインストールすることができます。これらのソフトウェアは配布や"
+"修正、使用に関して制限があります。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:107
+msgid "Please choose whether you want to have it available anyway."
+msgstr "利用できるようにしたいかどうかを選んでください。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid "Use contrib software?"
+msgstr "contrib ソフトウェアを使用しますか?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:118
+msgid ""
+"Some additional software has been made to work with Ubuntu. Though this "
+"software is free, it depends on non-free software for its operation. This "
+"software is not a part of Ubuntu, but standard Ubuntu tools can be used to "
+"install it."
+msgstr ""
+"いくつかの追加ソフトウェアが Ubuntu で動くようになっています。これらのソフト"
+"ウェアはフリーですが、その動作は non-free ソフトウェアに依存しています。これ"
+"らのソフトウェアは正しい Ubuntu の 一部ではありませんが、標準的な Ubuntu の"
+"ツールを利用してインストールすることができます。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+#, fuzzy
+msgid "Use universe software?"
+msgstr "non-free のソフトウェアを使用しますか?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:129
+#, fuzzy
+msgid ""
+"Some additional software has been made to work with Ubuntu. This software is "
+"free and, though it is not a part of Ubuntu, standard Ubuntu tools can be "
+"used to install it."
+msgstr ""
+"いくつかの追加ソフトウェアが Ubuntu で動くようになっています。これらのソフト"
+"ウェアはフリーですが、その動作は non-free ソフトウェアに依存しています。これ"
+"らのソフトウェアは正しい Ubuntu の 一部ではありませんが、標準的な Ubuntu の"
+"ツールを利用してインストールすることができます。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+#, fuzzy
+msgid "Use backported software?"
+msgstr "contrib ソフトウェアを使用しますか?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+msgid ""
+"Some software has been backported from the Ubuntu development tree to work "
+"with this release of Ubuntu. Although this software has not gone through "
+"such complete testing as that contained in the release, it includes newer "
+"versions of some applications which may provide useful features."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:139
+msgid ""
+"Please choose whether you want this software to be made available to you."
+msgstr "このソフトウェアを利用できるようにしたいかどうかを選んでください。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:149
+msgid "Failed to access the Ubuntu archive"
+msgstr "Ubuntu アーカイブへのアクセスに失敗しました"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:149
+msgid ""
+"While trying to access the Ubuntu archive using the information you "
+"provided, the Ubuntu package management tool, apt, returned the following "
+"error. The questions will be asked again."
+msgstr ""
+"指定された Ubuntu アーカイブにアクセスしている間に、Ubuntu パッケージ管理ツー"
+"ルの APT は以下のエラーを受けました。この質問は再度尋ねられます。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:158
+msgid "Add another apt source?"
+msgstr "別の APT ソースを追加しますか?"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:158
+msgid ""
+"${MESSAGE}. However, you may want to add another source to apt, so it can "
+"download packages from more than one location."
+msgstr ""
+"${MESSAGE}。ただし、ここで 1 つ以上の場所からパッケージをダウンロードするよ"
+"う、別の APT ソースを追加することができます。"
+
+#. Type: select
+#. Choices
+#: ../../apt-setup.templates:164
+msgid "edit, revert to backup"
+msgstr "編集, バックアップを復元"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid "What do you want to do?"
+msgstr "どうしますか?"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid ""
+"The entries you added in sources.list (the file defining package sources for "
+"apt) seem to be incorrect. Here is the error message from apt:"
+msgstr ""
+"sources.list (APT のパッケージソースを定義するファイル) に追加したエントリが"
+"不正なようです。APT のエラーメッセージは次のとおりです:"
+
+#. Type: select
+#. Description
+#: ../../apt-setup.templates:165
+msgid ""
+"A backup of the sources.list was made before you edited it. You may either "
+"revert to that backup or edit the existing file and fix it."
+msgstr ""
+"編集される前の sources.list のバックアップが作られています。このバックアップ"
+"から設定を復元するか、既存のファイルを編集して修正できます。"
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:177
+msgid "Download software from the Internet?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../../apt-setup.templates:177
+#, fuzzy
+msgid ""
+"Ubuntu provides additional software and timely security updates via the "
+"Internet. These updates may be tracked each time you upgrade your system. If "
+"you have a connection to the Internet, this is generally a good idea."
+msgstr ""
+"Ubuntu は、Web サイト http://security.ubuntu.com/ でセキュリティアップデート "
+"(セキュリティ対策の更新パッケージ) を適時提供しています。 これらのセキュリ"
+"ティアップデートをこのシステムの更新時に適用できます。インターネット接続があ"
+"る場合、これを有効にするのは一般に良い選択です。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+#, fuzzy
+msgid "Cannot access network updates"
+msgstr "セキュリティアップデートにアクセスできません"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+#, fuzzy
+msgid ""
+"The software archive at ${site} couldn't be accessed, so those updates will "
+"not be made available to you at this time. You may want to investigate this "
+"later."
+msgstr ""
+"security.ubuntu.com のセキュリティアップデートにアクセスできないので、 現時点"
+"ではこれらのアップデートは利用できません。あとでこの問題を解決することができ"
+"ます。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+#, fuzzy
+msgid ""
+"Commented out entries for ${site} have been added to the bottom of the /etc/"
+"apt/sources.list file."
+msgstr ""
+"コメントアウトされた security.ubuntu.com のエントリを /etc/apt/sources.list "
+"ファイルの最後に追加しました。"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid "The error message returned by apt:"
+msgstr "APT のエラーメッセージ:"
+
+#. Type: note
+#. Description
+#: ../../apt-setup.templates:184
+msgid "${apt_error}"
+msgstr "${apt_error}"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:198
+#, fuzzy
+msgid "Configuring apt..."
+msgstr "APT の設定"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:206
+msgid "Setting up primary installation repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:210
+msgid "Testing primary installation repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:214
+msgid "Setting up network repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:218
+msgid "Testing network repository..."
+msgstr ""
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:222
+#, fuzzy
+msgid "Setting up security update repository..."
+msgstr "security.debian.org からのセキュリティアップデートを使用しますか?"
+
+#. Type: title
+#. Description
+#: ../../apt-setup.templates:226
+#, fuzzy
+msgid "Testing security update repository..."
+msgstr "security.debian.org からのセキュリティアップデートを使用しますか?"
+
+#, fuzzy
+#~ msgid "Installing popularity-contest"
+#~ msgstr "選択されたパッケージのインストール"
+
+#, fuzzy
+#~ msgid ""
+#~ "Simply trying to install those packages (or a slightly different set of "
+#~ "packages) again may work around the problem, or at least move the "
+#~ "installation process along a little further. You will now enter aptitude, "
+#~ "a package management frontend, which will give you the opportunity to do "
+#~ "this."
+#~ msgstr ""
+#~ "単に再度パッケージをインストールする (または少し異なるパッケージの組み合わ"
+#~ "せをインストールする) だけでうまくいく場合もありますし、うまくいかなくても"
+#~ "インストール作業を若干前進させるかもしれません。これを望むのであれば、パッ"
+#~ "ケージ選択ステップに戻り、再試行してください。"
+
+#~ msgid "Debian base system configuration"
+#~ msgstr "Debian ベースシステムの設定"
+
+#~ msgid "Welcome to your new Debian system!"
+#~ msgstr "新しい Debian システムにようこそ!"
+
+#~ msgid "Thank you for choosing Debian!"
+#~ msgstr "Debian をお選び頂き、ありがとうございます!"
+
+#~ msgid ""
+#~ "Setup of your Debian system is complete. You may now login at the login: "
+#~ "prompt."
+#~ msgstr ""
+#~ "Debian システムのセットアップが完了しました。login: プロンプトからログイン"
+#~ "できます。"
+
+#~ msgid "stable, unstable, testing"
+#~ msgstr "安定版, 不安定版, 試験版"
+
+#~ msgid "Debian distribution to use:"
+#~ msgstr "使用する Debian ディストリビューション:"
+
+#~ msgid ""
+#~ "Debian comes in several flavors. Stable is well-tested and rarely "
+#~ "changes. Unstable is untested and frequently changing. Testing is a "
+#~ "middle ground, that receives many of the new versions from unstable if "
+#~ "they are not too buggy."
+#~ msgstr ""
+#~ "Debian にはいくつかのフレーバーがあります。安定版は十分にテストされてお"
+#~ "り、滅多に変化しません。不安定版はテストされておらず、頻繁に変更されます。"
+#~ "試験版は中間位置にあり、それほどバギーでなければ不安定版からたくさんの新し"
+#~ "いバージョンのソフトウェアを受け継ぎます。"
+
+#~ msgid "Please choose which version of Debian you wish to install."
+#~ msgstr "インストールしたい Debian バージョンを選択してください。"
+
+#~ msgid ""
+#~ "Please choose the method apt (the Debian package management tool) should "
+#~ "use to access the Debian archive."
+#~ msgstr ""
+#~ "APT (Debian パッケージ管理ツール) が Debian アーカイブにアクセスする方法を"
+#~ "選択してください。"
+
+#~ msgid ""
+#~ "For example if you have a Debian cd, select \"cdrom\", while if you plan "
+#~ "to install via a Debian mirror, choose \"ftp\" or \"http\"."
+#~ msgstr ""
+#~ "たとえば Debian CD を持っているなら \"cdrom\" を、Debian ミラーからインス"
+#~ "トールしようとしている場合、\"ftp\" あるいは \"http\" を選択します。"
+
+#~ msgid "Choose the Debian mirror to use:"
+#~ msgstr "使用する Debian ミラーサーバを選択してください:"
+
+#~ msgid ""
+#~ "Select the Debian mirror apt should use. You should select a mirror that "
+#~ "is close to you on the net."
+#~ msgstr ""
+#~ "APT が使用する Debian ミラーサーバを選択してください。インターネット上であ"
+#~ "なたに近いミラーサーバを選択してください。"
+
+#~ msgid ""
+#~ "Enter the hostname of the mirror from which Debian will be downloaded."
+#~ msgstr "Debian をダウンロードするミラーのホスト名を入力してください。"
+
+#~ msgid "Enter the directory in which the Debian mirror is located."
+#~ msgstr "Debian ミラーが置かれているディレクトリを入力してください。"
+
+#~ msgid ""
+#~ "The directory you entered does not contain a subdirectory named \"dists"
+#~ "\", so it doesn't seem to be a Debian mirror."
+#~ msgstr ""
+#~ "指定されたディレクトリには dists というサブディレクトリがありませんでし"
+#~ "た。そのため、このディレクトリパスは Debian ミラーではないと思われます。"
+
+#~ msgid ""
+#~ "Enter the device file to use to access your CD-ROM, and place a Debian CD "
+#~ "in the drive."
+#~ msgstr ""
+#~ "CD-ROM にアクセスするためのデバイスファイルを入力し、そのドライブに "
+#~ "Debian CD をセットしてください。"
+
+#~ msgid "Non-Debian CD-ROM detected"
+#~ msgstr "Debian ではない CD-ROM が検出されました"
+
+#~ msgid "The CD-ROM drive contains a non-Debian CD."
+#~ msgstr "Debian ではない CD が CD-ROM ドライブに入っています。"
+
+#~ msgid ""
+#~ "If you have another Debian CD (for example, the second in a two CD set), "
+#~ "you should insert and scan it now."
+#~ msgstr ""
+#~ "別の Debian CD-ROM (たとえば、2枚組の CD-ROM セットの2枚目) があれば、それ"
+#~ "をセットしてスキャンしてください。"
+
+#~ msgid "Use non-free software?"
+#~ msgstr "non-free のソフトウェアを使用しますか?"
+
+#~ msgid ""
+#~ "Some non-free software has been made to work with Debian. Though this "
+#~ "software is not at all a part of Debian, standard Debian tools can be "
+#~ "used to install it. This software has varying licenses which may prevent "
+#~ "you from using, modifying, or sharing it."
+#~ msgstr ""
+#~ "Debian ではいくつかの non-free ソフトウェアが利用可能になっています。たと"
+#~ "えこれらのソフトウェアが正しい Debian の一部ではないにせよ、標準的な "
+#~ "Debian のツールを利用してインストールすることができます。これらのソフト"
+#~ "ウェアは配布や修正、使用に関して制限があります。"
+
+#~ msgid ""
+#~ "Some additional software has been made to work with Debian. Though this "
+#~ "software is free, it depends on non-free software for its operation. This "
+#~ "software is not a part of Debian, but standard Debian tools can be used "
+#~ "to install it."
+#~ msgstr ""
+#~ "いくつかの追加ソフトウェアが Debian で動くようになっています。これらのソフ"
+#~ "トウェアはフリーですが、その動作は non-free ソフトウェアに依存しています。"
+#~ "これらのソフトウェアは正しい Debian の 一部ではありませんが、標準的な "
+#~ "Debian のツールを利用してインストールすることができます。"
+
+#~ msgid "Failed to access the Debian archive"
+#~ msgstr "Debian アーカイブへのアクセスに失敗しました"
+
+#~ msgid ""
+#~ "While trying to access the debian archive using the information you "
+#~ "provided, the Debian package management tool, apt, returned the following "
+#~ "error. The questions will be asked again."
+#~ msgstr ""
+#~ "指定された Debian アーカイブにアクセスしている間に、Debian パッケージ管理"
+#~ "ツールの APT は以下のエラーを受けました。この質問は再度尋ねられます。"
+
+#~ msgid "Use security updates from security.debian.org?"
+#~ msgstr "security.debian.org からのセキュリティアップデートを使用しますか?"
+
+#~ msgid ""
+#~ "Debian provides timely security updates via the website security.debian."
+#~ "org. These updates may be tracked each time you upgrade your system. If "
+#~ "you have a connection to the Internet, this is generally a good idea."
+#~ msgstr ""
+#~ "Debian は、Web サイト http://security.debian.org/ でセキュリティアップデー"
+#~ "ト (セキュリティ対策の更新パッケージ) を適時提供しています。 これらのセ"
+#~ "キュリティアップデートをこのシステムの更新時に適用できます。インターネット"
+#~ "接続がある場合、これを有効にするのは一般に良い選択です。"
+
+#~ msgid "Cannot access security updates"
+#~ msgstr "セキュリティアップデートにアクセスできません"
+
+#~ msgid ""
+#~ "The security updates on security.debian.org couldn't be accessed, so "
+#~ "those updates will not be made available to you at this time. You may "
+#~ "want to investigate this later."
+#~ msgstr ""
+#~ "security.debian.org のセキュリティアップデートにアクセスできないので、 現"
+#~ "時点ではこれらのアップデートは利用できません。あとでこの問題を解決すること"
+#~ "ができます。"
+
+#~ msgid ""
+#~ "Commented out entries for security.debian.org have been added to the "
+#~ "bottom of the /etc/apt/sources.list file."
+#~ msgstr ""
+#~ "コメントアウトされた security.debian.org のエントリを /etc/apt/sources."
+#~ "list ファイルの最後に追加しました。"
+
+#, fuzzy
+#~ msgid ""
+#~ "This program will now walk you through the process of setting up your "
+#~ "newly installed system. It will start with the basics -- time zone "
+#~ "selection and adding a user, and then progress to installing additional "
+#~ "software to tune this new Ubuntu system to your needs."
+#~ msgstr ""
+#~ "このプログラムはあなたを、新しくインストールされたシステムのセットアップ手"
+#~ "順にいざないます。時間帯の選択、root パスワードの設定、ユーザーの追加と"
+#~ "いった基本的なところからはじめて、この新しい Ubuntu システムをあなたのニー"
+#~ "ズに合うよう追加のソフトウェアをインストールする処理に移ります。"
+
+#~ msgid "Software selection method:"
+#~ msgstr "ソフトウェアの選択方法:"
+
+#~ msgid ""
+#~ "You can choose more software to be installed to customize the computer "
+#~ "for your particular needs. The following methods are available to select "
+#~ "software to install."
+#~ msgstr ""
+#~ "あなた独自の必要に応じてコンピュータをカスタマイズするために、さらにインス"
+#~ "トールすべきソフトウェアを選ぶことができます。インストールするソフトウェア"
+#~ "を選択するのに次の方法が利用できます。"
+
+#~ msgid "Use non-US software?"
+#~ msgstr "non-US ソフトウェアを使用しますか?"
+
+#~ msgid ""
+#~ "Some software in Debian must be downloaded from sites outside the United "
+#~ "States. This includes some cryptographic software, and some software with "
+#~ "patent problems in the US."
+#~ msgstr ""
+#~ "Debian に含まれるいくつかのソフトウェアは米国以外からダウンロードされなけ"
+#~ "ればなりません。これらには暗号化ソフトウェアや米国での特許問題を持つソフト"
+#~ "ウェアが含まれています。"
+
+#~ msgid "Cannot access non-US software."
+#~ msgstr "non-US ソフトウェアにアクセスできません。"
+
+#~ msgid ""
+#~ "The Debian archive site that contains non-US software couldn't be "
+#~ "accessed, so that software will not be made available to you. The "
+#~ "following error message was returned by apt:"
+#~ msgstr ""
+#~ "non-US ソフトウェアがある Debian アーカイブにアクセスできなかったので、こ"
+#~ "れらのソフトウェアは利用できません。APT のエラーメッセージは次のとおりで"
+#~ "す:"

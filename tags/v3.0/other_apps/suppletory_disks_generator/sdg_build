@@ -1,0 +1,133 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+"""
+Este script genera una iso con un suplemento para Guadalinex 2005
+"""
+
+import os
+import os.path
+import shutil
+import xdg.Menu
+
+DISTCODENAME = 'flamenco'
+MASTERDIR = './master' 
+
+DFOLDER = MASTERDIR + '/guadalinex-suplementos-apps' 
+APPMENU = 'applications.menu'
+
+os.system('mkdir -p ' + DFOLDER + '/icons')
+
+
+class ConfigParser(dict):
+
+    def __init__(self):
+        dict.__init__(self)
+        
+        #Fill obligatory fields.
+        self['NAME'] = 'Default Name'
+        self['DESC'] = 'Default Description'
+        self.configure()
+
+    def configure(self):
+        objfile = open('./config')
+        for line in objfile.readlines():
+            if not line.strip().startswith('#'):
+                try:
+                    key, value = line.split(None, 1)
+                    self[key] = value.strip()
+                except:
+                    key = line.strip()
+                    self[key] = ''
+        
+    def get_uris(self):
+        result = []
+        for key, value in self.items():
+            if key.startswith('URI'):
+                result.append(value)
+        return result
+
+
+def main():
+    ############################################################################
+    # Step 1:  Generate debian repository (dists and pool directories)
+    ############################################################################
+    
+    PACKAGESDIR = MASTERDIR + '/dists/' + DISTCODENAME + '/main/binary-i386'
+    os.system('mkdir -p ' + PACKAGESDIR)
+    os.system('mkdir ' + MASTERDIR + '/pool')
+    os.system('cp -a ./debs/* ' + MASTERDIR + '/pool')
+    
+    os.chdir(MASTERDIR)
+    os.system('rm ' + PACKAGESDIR + '/Packages.gz')
+    os.system('dpkg-scanpackages ./pool /dev/null > ../' + PACKAGESDIR + '/Packages')
+    os.chdir('..')
+    os.system('yes | gzip '+ PACKAGESDIR + '/Packages')
+    
+    
+    ############################################################################
+    # Step 2: Generate README.diskdefines and icon
+    ############################################################################
+
+    config = ConfigParser()
+    objfile = open(MASTERDIR + '/README.diskdefines', 'w') 
+    objfile.write ('#define DISKNAME ' + config['NAME'] + '\n') #Default URI objfile.write ('#define URI     \n') 
+    for ele in config.get_uris():
+        objfile.write('#define URI ' + ele + '\n')
+
+    objfile.close()
+
+    if os.path.isfile('./icon.png'):
+        shutil.copy('./icon.png', MASTERDIR + '/.icon.png')
+        shutil.copy('./icon.png', 
+                MASTERDIR + '/guadalinex-suplementos-apps/icons/icon.png')
+
+    
+    ############################################################################
+    # Step 3: Generate supplement.desktop and applications.menu
+    ############################################################################
+
+    menuentry = xdg.Menu.MenuEntry(DFOLDER + '/supplement.desktop')
+    menuentry.DesktopEntry.set('Name', config['NAME'])
+    menuentry.DesktopEntry.set('Comment', config['DESC'])
+
+    menuentry.DesktopEntry.set('X-AppInstall-Section', 'main')
+    menuentry.DesktopEntry.set('X-AppInstall-Package', config['METAPACKAGE'])
+
+    featured_file = open(DFOLDER + '/featured.txt', 'w')
+
+    featured_file.write(config['METAPACKAGE'] + '\n')
+    featured_file.close()
+
+    menuentry.DesktopEntry.set('Categories', 'Suplementos;')
+    menuentry.DesktopEntry.set('Icon', 'icon')
+    menuentry.DesktopEntry.write(DFOLDER + '/supplement.desktop')
+
+    shutil.copy(APPMENU, DFOLDER)
+
+    for package_name in config['PACKAGES'].split():
+        menufile = DFOLDER + "/%s.desktop" % package_name
+        menuentry = xdg.Menu.MenuEntry(menufile)
+        menuentry.DesktopEntry.set('Name', package_name)
+
+        menuentry.DesktopEntry.set('X-AppInstall-Section', 'main')
+        menuentry.DesktopEntry.set('X-AppInstall-Package', package_name)
+
+        menuentry.DesktopEntry.set('Categories', "Suplementos;%s" % \
+                config['METAPACKAGE'])
+        menuentry.DesktopEntry.set('Icon', package_name)
+        menuentry.DesktopEntry.write(menufile)
+
+        shutil.copy(APPMENU, DFOLDER)
+
+
+    ########################################################################## 
+    # Step 4: Create the iso
+    ########################################################################## 
+
+    cmd = "mkisofs -o guadalinex-suplementos.iso -joliet-long -V"
+    cmd += "GSD-" + config['SHORTNAME'] + ' ' + MASTERDIR
+    os.system(cmd)
+
+if __name__ == "__main__":
+    main()

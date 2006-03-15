@@ -1,0 +1,87 @@
+Tutorial para creacion de recetas nuevas
+----------------------------------------
+
+Ahora en el paquete uda-docs todos los capitulos de uda-docs
+son parches gestionados por dpatch.
+Estos parches estan alojados en debian/patches
+
+Control del parches
+-------------------
+
+Principalmente hay un parche llamado 10_nombredistro_recipes_xml
+que incluye el xml que formaliza que capitulos van a salir en el
+yelp y en que orden. Esto es solamente para yelp, por tanto si se
+quiere que algun nuevo capitulo aparezca o no en yelp hay que editarlo
+Para editarlo hay que usar la herramienta dpatch-edit-patch.
+
+Ej :
+	dpatch-edit-patch 10_molinux_recipes_xml
+
+haces los cambios en docs/recipes/recipes.xml y luego para guardar los
+cambios , pulsas CTRL+d para salir de la shell que ha creado dpatch.
+Dpatch guardara todos los cambios
+
+Otro fichero importante cara la gestion de parches dentro del paquete
+es el debian/patches/00lists. Este fichero contiene la relacion de 
+parches que en incluiran dentro del paquete debian.
+
+Ej :
+	10_molinux_recipes_xml.dpatch
+	20_molinux_chap_evolution.dpatch
+	20_guadalinex_chap_gaim.dpatch
+	......
+
+Primero se aplicara el parche del recipes.xml y luego todos los capitulos
+que contengan los parches.
+
+IMPORTANTE: hay que tener controlado que los parches que se aplican en por 
+dpatch y lo que hay en el recipes.xml sea lo mismo.
+
+Creacion de un capitulo nuevo
+-----------------------------
+
+1. Crear el xml de capitulo nuevo 
+2. Ejecutar :
+	dpatch-edit-patch 20_nombre-distro_chap_nombre-capitulo
+EJ:
+	dpatch-edit-patch 20_molinux_chap_evolution
+3. Ir a docs/recipes/
+4. Crear en docs/recipes un directorio llamado chap_nombre-capitulo
+EJ:
+	mkdir -p docs/recipes/chap-evolution/
+5. Copiar el xml del capitulo en ese directorio
+6. Salir de la shell de dpatch pulsando CTRL+D
+7. Editar el recipes.xml
+EJ :
+	dpatch-edit-patch 10_molinux_recipes_xml
+	añado capitulo dentro del docs/recipes/recipes.xml
+	CTRL+D
+	(Y el parche de recipes ya esta actualizado)
+8. Ir a debian/patches/00list e incluir el parche para que sea aplicado
+en la creacion del paquete
+
+Edicion de un capitulo ya existente
+-----------------------------------
+
+Ejecutando :
+	dpatch-edit-patch 20_molinux_chap_evolution
+	Cambio lo que necesito en  docs/recipes/chap-evolution/chap-evolution.xml
+	CTRL+D
+	(Y los cambios ya ha sido guardados)
+
+Como clonar un capitulo ya exitente
+-----------------------------------
+
+cd debian/patches/
+cp 20_molinux_chap_evolution.dpatch 20_guadalinex_chap_evolution.dpatch
+Edito 00list y añado el que desee
+
+NOTA : Preferiblemente no duplicar archivos si no tienen cambios. Simplemente
+si te gustan incluyelos en recipes.xml y en 00list
+
+Como hacer que un capitulo no salga
+-----------------------------------
+
+Edita el parche de recipes.xml
+Y quita el parche del capitulo de 00list
+

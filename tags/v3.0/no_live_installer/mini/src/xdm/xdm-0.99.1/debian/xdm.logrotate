@@ -1,0 +1,4 @@
+/var/log/xdm.log {
+	notifempty
+	missingok
+}

@@ -1,0 +1,54 @@
+Template: archive-copier/copy
+Type: boolean
+Default: true
+_Description: Copy remaining packages from CD-ROM to hard disk?
+ If you have enough hard disk space, you can choose to copy all the
+ remaining packages from the CD-ROM to the hard disk, which will mean that
+ you no longer need the CD-ROM once you reboot. You will need about 400 MB
+ of additional free space in /var for this.
+
+Template: archive-copier/desktop-task
+Type: string
+Default: ubuntu-standard|ubuntu-desktop
+Description: name of desktop task
+ Not translated; only for preseeding by derivative distributions.
+
+Template: archive-copier/ship-task
+Type: string
+Default: ubuntu-ship
+Description: name of ship task
+ Not translated; only for preseeding by derivative distributions.
+
+Template: archive-copier/copy-failed
+Type: error
+_Description: Copying packages failed
+ Copying packages to the hard disk failed. You may have run out of disk
+ space in the target /var filesystem, or your CD drive may be having
+ problems reading packages from the CD. Cleaning the CD drive or burning the
+ CD at a lower speed may help.
+ .
+ Check /var/log/syslog or see virtual console 4 for the details.
+
+Template: archive-copier/progress
+Type: text
+_Description: Copying remaining packages to hard disk
+
+Template: archive-copier/progress/directory
+Type: text
+_Description: Scanning ${DIR}...
+
+Template: archive-copier/progress/package
+Type: text
+_Description: Copying ${PACKAGE}...
+
+Template: base-config/install-language-support
+Type: boolean
+Default: true
+_Description: Download language support?
+ The installation CD does not contain full support for your language. Do you
+ want to download the required packages from the Internet?
+
+Template: debian-installer/archive-copier/title
+Type: text
+# Item in the main menu to select this package
+_Description: Copy remaining packages to hard disk
