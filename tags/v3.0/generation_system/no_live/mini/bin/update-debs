@@ -1,0 +1,97 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+
+#MIRROR="http://archive.ubuntu.com/ubuntu"
+MIRROR="http://ws-cparra/ubuntu"
+LOG=$CDIMAGE_ROOT/log/update-debs.log
+> $LOG
+
+cd $CDIMAGE_ROOT/scratch/$PROJECT/tmp
+[ ! -d fresh_debs ] && mkdir fresh_debs
+cd fresh_debs
+
+[ -f ubuntu-5.10-install-i386.list ] && rm ubuntu-5.10-install-i386.list
+wget http://releases.ubuntu.com/breezy/ubuntu-5.10-install-i386.list
+[ "$?" != "0" ] && echo "Problems downloading breezy-install-i386.list." >> $LOG && exit
+
+cat ubuntu-5.10-install-i386.list | grep ^/pool/ | grep -e "\.deb\$" > fresh_debs_list_breezy
+
+PARAMS=""
+for x in $(cat $CDIMAGE_ROOT/uda/lists/exclude)
+do
+	PARAMS=$PARAMS'-e /'$x'_ '
+done
+
+cat fresh_debs_list_breezy | grep -v $PARAMS > fresh_debs_list
+
+> /tmp/breezy_cd
+
+for x in $(cat fresh_debs_list)
+do 
+	TMP=${x/*\//}
+	echo ${TMP/_*/} >> /tmp/breezy_cd
+done
+
+mv /tmp/breezy_cd $CDIMAGE_ROOT/uda/lists/breezy_cd
+
+for x in $(cat fresh_debs_list)
+do
+	PKG_TEST=""
+	DEB_FILE=$(basename $x)
+	DEB_NAME=${DEB_FILE/_*/}
+	TMP_VERSION1=${DEB_FILE/_all.deb/}; TMP_VERSION2=${TMP_VERSION1/_i386.deb/}; DEB_VERSION=${TMP_VERSION2/*_/}
+	DEB_DIR=${x/\/*.deb/}
+#	DEB_DIR=$(echo $x | awk '{ match($1,/(\/.*\/).+(.*\.deb)/, arr); print arr[1]}')
+	DEB_DIR=$(dirname $x)
+
+	echo $DEB_NAME >> $LOG
+
+	if [ -d $CDIMAGE_ROOT/ftp$DEB_DIR ]; then
+		cd $CDIMAGE_ROOT/ftp$DEB_DIR
+	
+		PKG_TEST=$(find -name "$DEB_NAME\_*.deb")
+
+		if [ "$PKG_TEST" == "" ]; then
+			wget $MIRROR$x
+			if [ "$?" == "0" ]; then
+				echo "Downloaded new deb: $x" >> $LOG
+			else
+				echo "A problem ocurred downloading $x" >> $LOG
+				echo "ERROR. Have a look at the log for more information"
+				exit
+			fi
+		else
+			LOCAL_VERSION_TMP=$(dpkg --field $PKG_TEST Version)
+			LOCAL_VERSION=${LOCAL_VERSION_TMP/Version:/}
+			echo "Local: $LOCAL_VERSION  External: $DEB_VERSION" >> $LOG
+			if dpkg --compare-versions "$DEB_VERSION" gt "$LOCAL_VERSION"; then
+				wget $MIRROR$x
+				if [ "$?" == "0" ]; then
+					rm $PKG_TEST && echo "Upgraded deb: $DEB_NAME" >> $LOG
+				else
+					echo "A problem ocurred downloading $x" >> $LOG
+					echo "ERROR. Have a look at the log for more information"
+					exit
+				fi
+			else
+				echo "Local version is ok" >> $LOG
+			fi
+		fi
+	else
+		mkdir -p $CDIMAGE_ROOT/ftp$DEB_DIR
+		cd $CDIMAGE_ROOT/ftp$DEB_DIR
+		wget $MIRROR$x
+		if [ "$?" == "0" ]; then
+			echo "Downloaded new deb: $x" >> $LOG
+		else
+			echo "A problem ocurred downloading $x" >> $LOG
+			echo "ERROR. Have a look at the log for more information"
+			exit
+		fi
+	fi
+		
+	echo "-----------------" >> $LOG
+done

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mkdir debs
+
+for x in $(cat $CDIMAGE_ROOT/scratch/guadalinex/tmp/fresh_debs/fresh_debs_list)
+do
+	y=${x/*\//}
+	name=${y/_*/}
+
+	sudo apt-get install -d -y $name
+	FILE=$(find /var/cache/apt/archives/ -name "$name\_*deb")
+	TRABAJITO="$TRABAJITO $FILE"
+done
+
+sudo mv $TRABAJITO debs

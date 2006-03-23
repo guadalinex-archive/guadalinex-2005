@@ -1,0 +1,76 @@
+ <sect1 id="what-is-ubuntu">
+ <title>What is Ubuntu?</title>
+<para>
+
+Ubuntu is a complete desktop Linux operating system, freely available with
+both community and professional support.  The Ubuntu community is built on
+the ideas enshrined in the Ubuntu Manifesto: that software should be
+available free of charge, that software tools should be usable by people in
+their local language and despite any disabilities, and that people should
+have the freedom to customize and alter their software in whatever way they
+see fit.
+
+<itemizedlist>
+<listitem><para>
+
+<emphasis>Ubuntu will always be free of charge</emphasis>, and there is no
+extra fee for the <quote>enterprise edition</quote>, we make our very best
+work available to everyone on the same Free terms.
+
+</para></listitem>
+<listitem><para>
+
+Ubuntu includes the <emphasis>very best in translations and accessibility
+infrastructure</emphasis> that the Free Software community has to offer, to
+make Ubuntu usable by as many people as possible.
+
+</para></listitem>
+<listitem><para>
+
+Ubuntu is shipped in stable and regular release cycles; <emphasis>a new
+release will be shipped every six months</emphasis>. You can use the current
+stable release or the current development release. A release will be
+supported for 18 months.
+
+</para></listitem>
+<listitem><para>
+
+Ubuntu is entirely committed to the principles of open source software
+development; we encourage people to use open source software, improve it and
+pass it on.
+
+</para></listitem>
+</itemizedlist>
+
+</para><para>
+
+Ubuntu is suitable for both desktop and server use. The current Ubuntu
+release supports Intel x86 (IBM-compatible PC), AMD64 (Hammer) and PowerPC
+(Apple iBook and Powerbook, G4 and G5) architectures.
+
+</para><para>
+
+Ubuntu includes more than 1000 pieces of software, starting with the Linux
+kernel version 2.6 and Gnome 2.8, and covering every standard desktop
+application from word processing and spreadsheet applications to internet
+access applications, web server software, email software, programming
+languages and tools and of course several games.
+
+</para>
+
+  <sect2><title>Sponsorship by Canonical</title>
+
+<para>
+
+The Ubuntu Project is sponsored by
+<ulink url="&url-canonical-home;">Canonical Ltd</ulink>. Canonical will not
+charge licence fees for Ubuntu, now or at any stage in the future.
+Canonical's business model is to provide technical support and professional
+services related to Ubuntu. We encourage more companies also to offer
+support for Ubuntu, and will list those that do on the Support pages of this
+web site.
+
+</para>
+
+  </sect2>
+ </sect1>

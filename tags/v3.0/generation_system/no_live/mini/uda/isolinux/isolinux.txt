@@ -1,0 +1,9 @@
+splash.rle
+
+
+
+
+
+Bienvenido a Guadalinex Mini V3, pulse INTRO para continuar.
+Para ver la ayuda, pulse F1.
+

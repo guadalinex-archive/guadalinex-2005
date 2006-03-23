@@ -1,0 +1,5 @@
+conf/		Configs files
+images/		initrd's and so on
+isolinux/	isolinux text files
+lists/		directory that contains various lists
+pkgs/		All packages contained in that directory, will be added into the pool automatically (running generate_no-live.sh)

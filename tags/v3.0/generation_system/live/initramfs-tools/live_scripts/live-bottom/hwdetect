@@ -1,0 +1,160 @@
+#!/bin/sh
+# 
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# Inits scripts
+cat <<EOF > ${rootmnt}/etc/rcS.d/S41Xconfig.sh
+#
+# Xconfig.sh	Configure the X by dpkg-reconfigure.
+#
+# Version:	@(#)Xconfig.sh  1.0  15-Oct-2005  juanje@interactors.coop
+# Based in casper script
+#
+
+VERBOSE=yes
+TMPTIME=0
+[ -f /etc/default/rcS ] && . /etc/default/rcS
+. /lib/lsb/init-functions
+#. /usr/share/debconf/confmodule
+
+#
+# Configure the X
+#
+log_begin_msg "Configuring the Xserver..."
+
+#db_set  xserver-xorg/autodetect_monitor true 
+#db_fset  xserver-xorg/autodetect_monitor seen true 
+#db_set  xserver-xorg/autodetect_mouse true 
+#db_fset  xserver-xorg/autodetect_mouse seen true
+#db_set  xserver-xorg/autodetect_video_card true
+#db_fset  xserver-xorg/autodetect_video_card seen true
+
+#env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
+#    -u DEBCONF_REDIR -u DEBCONF_OLD_FD_BASE \
+#    dpkg-reconfigure -fnoninteractive xserver-xorg
+
+#    DEBUG_XORG_PACKAGE=yes
+env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
+    -u DEBCONF_REDIR -u DEBCONF_OLD_FD_BASE \
+    DEBCONF_READFD=0 DEBCONF_WRITEFD=3 \
+    dpkg-reconfigure -fpassthrough xserver-xorg >> /var/log/initramfs.debug 2>&1
+
+log_end_msg
+
+exit 0
+EOF
+
+cat <<EOF > ${rootmnt}/etc/rcS.d/S41laptop_config.sh
+#
+# laptop_config.sh	If this is a laptop reconfigure the gnome-panel by dpkg-reconfigure.
+#
+# Version:	@(#)laptop_config.sh  1.0  15-Oct-2005  juanje@interactors.coop
+# Based in casper script
+#
+
+VERBOSE=yes
+TMPTIME=0
+[ -f /etc/default/rcS ] && . /etc/default/rcS
+. /lib/lsb/init-functions
+
+#
+# Configure the gnome-panel
+#
+log_begin_msg "Configuring gnome-panel..."
+if laptop-detect; then
+env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
+    -u DEBCONF_REDIR -u DEBCONF_OLD_FD_BASE \
+    dpkg-reconfigure -fnointeractive gnome-panel-data
+fi
+
+panel_version=\$(dpkg-query -W --showformat='\${Version}' gnome-panel-data 2>/dev/null) || panel_version=""
+if [ -n "\$panel_version" ]; then
+    gconftool-2 -t bool -s /apps/panel/global/disable_lock_screen true
+fi
+gnome_screensaver_version=\$(dpkg-query -W --showformat='\${Version}' gnome-screensaver 2>/dev/null) || gnome_screensaver_version=""
+if [ -n "\$gnome_screensaver_version" ]; then
+    gconftool-2 -t bool -s /apps/gnome-screensaver/lock false
+fi
+
+log_end_msg \$?
+
+exit 0
+EOF
+
+# Setup the /etc/network/interfaces
+cat <<FEOF > ${rootmnt}/etc/rcS.d/S40networkdevs
+#
+# networkdevs	Setup the network. By default is going to be with dhcp
+#
+# Version:	@(#)networkdevs  1.0  15-Oct-2005  juanje@interactors.coop
+#
+
+VERBOSE=yes
+TMPTIME=0
+[ -f /etc/default/rcS ] && . /etc/default/rcS
+. /lib/lsb/init-functions
+
+#
+# Setup the network
+#
+log_begin_msg "Configuring network interfaces......"
+echo "Network setting..."  >> /var/log/initramfs.debug
+devs=\$(for i in /sys/class/net/*/device ; do dev=\${i#/sys/class/net/} ; echo \${dev%/device} ; done)
+echo \$devs >> /var/log/initramfs.debug
+
+cat <<EOF > /etc/network/interfaces
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+EOF
+
+for device in \$devs ; do
+	echo "auto \$device" >> /etc/network/interfaces	
+	echo "iface \$device inet dhcp" >> /etc/network/interfaces	
+done
+
+# Setup the hostname
+hostname=\$(grep ID /etc/lsb-release | cut -d "=" -f 2 | tr -s [:upper:] [:lower:])
+echo \$hostname > /etc/hostname
+echo \$hostname > /proc/sys/kernel/hostname
+cat <<EOF > /etc/hosts
+127.0.0.1       localhost.localdomain   localhost       \${hostname}
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+EOF
+
+
+
+log_end_msg \$?
+
+exit 0
+FEOF
+
+${rootmnt}/bin/chmod +x ${rootmnt}/etc/rcS.d/S41Xconfig.sh ${rootmnt}/etc/rcS.d/S41laptop_config.sh ${rootmnt}/etc/rcS.d/S40networkdevs
+
+
+exit 0

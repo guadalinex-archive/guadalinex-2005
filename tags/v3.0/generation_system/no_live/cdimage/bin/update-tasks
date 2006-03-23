@@ -1,0 +1,63 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+
+SCRATCH="$CDIMAGE_ROOT/scratch/$PROJECT/tasks"
+TASKS="$CDIMAGE_ROOT/debian-cd/tasks/$PROJECT"
+UDA_TASK=$SCRATCH/$DIST/uda
+
+if [ -z "$1" ]; then
+	echo 'Usage: update-tasks DATE' >&2
+	exit 1
+fi
+
+DATE="$1"
+
+TASK_MAIL="$(cat "$CDIMAGE_ROOT/etc/task-mail" 2>/dev/null || true)"
+if [ "$TASK_MAIL" ]; then
+	diff-tasks | mail -e -s "Task changes for $CAPPROJECT $DIST on $DATE" \
+		$TASK_MAIL
+fi
+
+diff-tasks
+
+## Deleting ubuntu-keyring package. We don't need that package for Guadalinex
+#cat $CDIMAGE_ROOT/debian-cd/tasks/guadalinex/breezy/installer | grep -v -e ubuntu-keyring-udeb > installer.tmp
+#mv $CDIMAGE_ROOT/debian-cd/tasks/guadalinex/breezy/installer.tmp $CDIMAGE_ROOT/debian-cd/tasks/guadalinex/breezy/installer
+
+# Let's take all the packages that aren't in Ubuntu
+
+#for pkg in $(ls $CDIMAGE_ROOT/uda/pkgs)
+#do
+#	echo ${pkg/_*/} >> $UDA_TASK
+#done
+#echo "#endif /* ARCH_i386 */" >> $UDA_TASK
+
+# Add all packages under uda/pkgs
+for pkg in $(ls $CDIMAGE_ROOT/uda/pkgs)
+do         
+	echo ${pkg/_*/} >> $UDA_TASK.tmp
+done
+
+# Add all packages listed in uda/lists/include_breezy
+for pkg in $(cat $CDIMAGE_ROOT/uda/lists/include_breezy)
+do 
+	echo $pkg >> $UDA_TASK.tmp
+done
+
+# Add all packages listed in uda/lists/include_uda
+for pkg in $(cat $CDIMAGE_ROOT/uda/lists/include_uda)
+do
+	echo $pkg >> $UDA_TASK.tmp
+done
+
+echo "#ifdef ARCH_i386" > $UDA_TASK
+cat $UDA_TASK.tmp | sort | uniq >> $UDA_TASK
+echo "#endif /* ARCH_i386 */" >> $UDA_TASK
+
+rm $UDA_TASK.tmp
+
+mkdir -p "$TASKS/$DIST"
+cp "$SCRATCH/$DIST"/* "$TASKS/$DIST/"

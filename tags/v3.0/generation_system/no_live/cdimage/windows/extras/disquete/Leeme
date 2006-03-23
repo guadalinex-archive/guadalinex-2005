@@ -1,0 +1,51 @@
+
+			SMART BOOT MANAGER
+		    (Copyleft by Suzhe, Lonius)
+
+
+Incluimos en el CDROM de Guadalinex 2004 esta utilidad, que permite
+arrancar desde el CDROM en aquellos ordenadores (no muy modernos) que
+no contemplan esta posibilidad en la BIOS.
+
+
+		¿ COMO USAR SMART BOOT MANAGER ?
+
+Con Smart Boot Manager vamos a crear un disquete especial de arranque.
+Necesitas por tanto un disquete. El contenido se perderá, así que utiliza 
+uno vacio o que ya no te sirva.
+
+
+	* DESDE GNU/LINUX
+
+	 - Introduce el disquete en el lector.
+	 - Desde este directorio (donde está este documento), ejecuta:
+
+			./sbminst -t es -d /dev/fd0 -y
+
+
+	* Desde DOS
+
+	 - Introduce el disquete en el lector
+	 - Desde este directorio, ejecuta:
+
+			sbminst.exe -t es -d 0 -y
+
+
+Ya tienes un disquete capaz de arrancar tu ordenador. Apágalo, comprueba que
+el disquete está en la unidad y enciende de nuevo el equipo.
+
+Introduce el CDROM de Guadalinex en el lector. 
+
+Selecciona CD-ROM en el menú que aparece en la pantalla.
+
+Ante la pregunta "¿ Desea guardar los cambios?", puedes elegir "Sí" o "No"
+indistintamente.
+
+Si todo ha ido bien, el disquete pasará el control al CDROM y Guadalinex 
+arrancará normalmente.
+
+
+¡ NO OLVIDES SACAR EL DISQUETE PARA VOLVER AL USO NORMAL DE TU ORDENADOR !
+
+
+Más información en http://www.guadalinex.org/mirror/btmgr/

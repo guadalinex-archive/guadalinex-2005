@@ -1,0 +1,17 @@
+0fPREREQUISITOS PARA ARRANCAR GUADALINEX07                                           09F207
+
+Debe tener mas de 128 MB. de memoria RAM para utilizar Guadalinex v3 Live
+
+
+Para mas informacion consulte el portal de Guadalinex
+0fhttp://www.guadalinex.org/07
+
+
+
+
+
+
+
+
+
+Pulse F1control y F entonces 1 para volver a la pantalla princpal, o INTRO 

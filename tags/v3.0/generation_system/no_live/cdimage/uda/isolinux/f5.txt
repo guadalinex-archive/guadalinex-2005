@@ -1,0 +1,24 @@
+splash.rle
+0fARGUMENTOS DE ARRANQUE PARA ORDENADORES ESPECIALES07                            09F507
+
+Puede usar los siguientes argumentos de arranque usando una de las
+ordenes de arranque comentadas en <09F307>.
+
+Si usa hexadecimales ha de usar el prefijo 0x(Ejemplo, 0x300).
+0f
+HARDWARE                              ARGUMENTO07
+IBM PS/1 or ValuePoint (IDE disk)     0fhd=0bcylinders0f,0bheads0f,0bsectors07
+Algunos IBM ThinkPads                 0ffloppy=thinkpad07
+IBM Pentium Microchannel              0fmca-pentium no-hlt07
+Proteger regiones de puertos I/O      0freserve=0biobase0f,0bextent07[0f,0b...07]
+Despistar fallos
+ FPU (ordenadores viejos)             0fno38707
+Ordenadores con problemas de pantalla 0fvga=77107
+Si su sistema se cuelga al arrancar y puede ver "aec671x-detect.."
+intente                               0fgdth=disable:y07
+Si ha experimentado cuelgues u otros fallos de hardware,
+deshabilite el APIC interrupt routing 0fnoapic nolapic07
+
+Por ejemplo:
+  boot: linux vga=771 noapic nolapic
+Presione INTRO para iniciar el instalador

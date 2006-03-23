@@ -1,0 +1,36 @@
+#! /bin/sh
+set -e
+
+[ -z "$CDIMAGE_ROOT" ] && echo "CDIMAGE_ROOT is not defined!!! You must do: export CDIMAGE_ROOT=/your_path_to_cdimage" && exit
+. "$CDIMAGE_ROOT/etc/config"
+
+while [ $# -gt 0 ]; do
+	case "$1" in
+		--all)
+			update-udebs
+			update-debs
+			update-installer-i386
+			update-indices
+			shift
+		;;
+		--udebs)
+			update-udebs
+			shift
+		;;
+		--debs)
+			update-debs
+			shift
+		;;
+		--installer-i386)
+			update-installer-i386
+			shift
+		;;
+		--indices)
+			update-indices
+			shift
+		;;
+		*)
+			echo "Usage: $0 [--all|--udebs|--debs|--installer-i386|--indices]"
+			;;
+	esac
+done

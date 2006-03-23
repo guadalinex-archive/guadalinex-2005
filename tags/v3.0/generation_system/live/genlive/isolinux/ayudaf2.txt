@@ -1,0 +1,29 @@
+
+                            09Índice de ayuda07
+
+
+
+
+Dispone de varias páginas de ayuda:
+
+     0dF107 ............. 0dPantalla inicial07
+     0dF207 ............. 0dÍndice de ayuda07
+     0dF307 ............. 0d¿Qué es Guadalinex?07
+     0dF407 ............. 0dIniciando Guadalinex v307
+     0dF507 ............. 0dConfiguración adicional07
+     0dF607 ............. 0dParámetros07
+     0dF707 ............. 0dOpciones de arranque07
+     0dF907 ............. 0dGuadalinex en Internet07
+
+
+
+
+
+
+
+
+
+
+
+
+Presione 0dINTRO07 para iniciar Guadalinex v307

@@ -1,0 +1,29 @@
+
+                          09Opciones de arranque07
+
+
+
+0dfailsafe07: Esto no es un parámetro, sino una opción completa preconfigurada 
+  para ordenadores con muchos problemas (no carga usplash entre otras cosas). 
+  Si tiene problemas con el arranque, utilice esta opción directamente.
+
+0dsingle07:   Con esta opción, Guadalinex arranca en modo monousuario sin 
+  ejecutar muchos de los programas que carga habitualmente (incluyendo el
+  entorno gráfico). Utilice esta opción si tiene problemas cargando el modo
+  gráfico.
+
+0ddb07:       Esta es una opción para usuarios experimentados y desarrolladores
+  que se utiliza para iniciar el sistema hasta la primera etapa del proceso 
+  de arranque.
+
+
+
+
+
+
+
+
+
+
+07Pulse 0dF207 para volver al Índice de ayuda
+Presione 0dINTRO07 para iniciar Guadalinex v307

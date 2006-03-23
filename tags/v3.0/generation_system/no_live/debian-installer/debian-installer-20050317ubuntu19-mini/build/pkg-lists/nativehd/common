@@ -1,0 +1,25 @@
+#include "base"
+# really needed?
+#include "kernel"
+
+# Other udebs that are needed for netboot install
+busybox-cvs-udeb
+localechooser
+iso-3166-udeb
+choose-mirror
+net-retriever
+download-installer
+cdebconf-newt-udeb
+kbd-chooser
+console-keymaps-tree
+rootskel-locale
+bogl-bterm-udeb
+di-utils-terminfo
+hw-detect
+ethdetect
+netcfg *
+
+# there's space for an editor
+nano-udeb
+
+libfribidi0-udeb
