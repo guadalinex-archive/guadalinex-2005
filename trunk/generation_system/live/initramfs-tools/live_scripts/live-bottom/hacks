@@ -59,9 +59,14 @@ EOF
 
 ${rootmnt}/bin/chmod +x ${rootmnt}/sbin/reboot
 
+# Changing timeout of dhclient to 30 instead of 20
+sed -i "s/timeout 20/timeout 30/g" ${rootmnt}/etc/dhcp3/dhclient.conf
+
 # Setting right permissions for every dir in which we modify files from here
 # Right now, they are: /sbin, /usr/bin
 chmod 755 ${rootmnt}/sbin
 chmod 755 ${rootmnt}/usr/bin
+chmod 755 ${rootmnt}/etc
+chmod 755 ${rootmnt}/etc/dhcp3
 
 exit 0
