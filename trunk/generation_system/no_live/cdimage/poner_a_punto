@@ -1,2 +1,2 @@
-export CDIMAGE=$(pwd)
-export PATH=$PATH:$CDIMAGE/bin
+export CDIMAGE_ROOT=$(pwd)
+export PATH=$PATH:$CDIMAGE_ROOT/bin
