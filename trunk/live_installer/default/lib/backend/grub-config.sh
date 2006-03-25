@@ -137,7 +137,27 @@ debug "El nucleo activo sera el $nucleo"
 echo "
 splashimage=$NOMBRE/boot/grub/splash.xpm.gz" >> /boot/grub/menu.lst
 
-PARAMS=" ro auto quiet splash"
+# obteniendo parametros pasados al isolinux
+get_params ()
+{
+    for i in `cat /proc/cmdline`; do
+    	case $i in
+    	    ramdisk_size=*) continue ;;
+    	    root=*) continue ;;
+    	    initrd=*) continue ;;
+    	    BOOT=*) continue ;;
+    	    debug) continue ;;
+    	    init=*) continue ;;
+    	    quiet) continue ;;
+    	    splash) continue ;;
+    	    break) continue ;;
+    	    *) echo -n "$i " ;;
+    	esac
+    done
+}
+
+
+PARAMS=" ro auto quiet splash $(get_params)"
 
 echo "
 title $DISTRO, kernel $KERNEL_VERSION
