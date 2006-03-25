@@ -52,6 +52,7 @@
 # Last modified by A. Olmo on 20 oct 2005.
 
 from subprocess import *
+from os import system
 
 def call_autoparted (assistant, drive, progress = None):
 
@@ -60,6 +61,43 @@ def call_autoparted (assistant, drive, progress = None):
       C{{'/dev/hda5': '/', '/dev/hda7': '/home', '/dev/hda6': 'swap'}}). """
 
   return assistant.auto_partition (drive, steps = progress)
+
+
+def list_partitions (drive):
+
+  """ list_partitions() List the disk partitions  """
+
+  out = Popen(['/sbin/parted', drive, 'print'], stdin=PIPE, stdout=PIPE,
+              close_fds=True)
+  output = out.stdout.readlines()
+
+  index = 0
+  for i in output:
+      if i.startswith('Minor'):
+          index = output.index(i) + 1
+
+  minors = []
+  for i in output[index:]:
+      minors.append(i.split()[0])
+ 
+ return minors
+
+
+def call_clean_disk (drive, progress = None):
+
+  """ Clean up the disk of partitions. """
+      
+  minors = list_partitions(drive)
+  while minors != []
+    for i in minors:
+        try:
+          ret = system('/sbin/parted %s rm %s' % (drive, i))
+        except:
+          print '/sbin/parted %s rm %s: fail' % (drive, i)
+          
+    minors = list_partitions(drive)
+
+  return None
 
 def call_gparted(widget):
 

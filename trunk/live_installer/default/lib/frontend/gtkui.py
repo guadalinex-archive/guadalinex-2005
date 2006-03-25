@@ -728,6 +728,7 @@ class Wizard:
       gtk.main_iteration ()
 
     self.freespace.set_active (False)
+    self.alldisk.set_active (False)
     self.recycle.set_active (False)
     self.manually.set_active (False)
     model = self.drives.get_model ()
@@ -737,6 +738,32 @@ class Wizard:
 
       if -1 != current:
         selected_drive = self.__assistant.get_drives () [current]
+
+    if self.alldisk.get_active ():
+      self.partition_bar.show ()
+
+      if -1 != current:
+        progress = Queue ()
+        thread.start_new_thread (clean_disk, (self, selected_drive, progress))
+        msg = str (progress.get ())
+
+        while msg is not '':
+          field = msg.split ('|')
+          self.partition_bar.set_fraction (float (field [0]))
+          self.partition_bar.set_text (str (field [1]))
+          msg = str (progress.get ())
+
+          while gtk.events_pending ():
+            gtk.main_iteration ()
+
+          time.sleep (0.5)
+
+        self.mountpoints = progress.get ()
+        self.partition_bar.set_text ('')
+
+	# Activated the freespace option for using all the free space (all the disk)	
+	self.freespace.set_active (True)
+
 
     if self.freespace.get_active ():
       self.partition_bar.show ()
@@ -1064,6 +1091,23 @@ class Wizard:
         'las nuevas.</span>', '4'))
 
 
+
+  # Public method "on_alldisk_toggled" _____________________________________
+  def on_alldisk_toggled (self, widget):
+
+    """ Update help message when this radio button is selected. """
+
+    if self.alldisk.get_active ():
+      self.confirmation_checkbutton.show ()
+      self.confirmation_checkbutton.set_active (False)
+      self.next.set_sensitive (False)
+      self.partition_message.set_markup (self.resize_text(
+        '<span><b>Este método de particionado es ireversible,' +
+	'se borrará todo el disco</b> y se crearán 3 particiones' +
+	'<b>nuevas</b> en su disco duro. Se instalará ahí el sistema.\n\n' +
+        '<b>Se perderá cualquier información que haya en el disco</b></span>', '4'))
+
+
   # Public method "on_recycle_toggled" _______________________________________
   def on_recycle_toggled (self, widget):
 
@@ -1151,6 +1195,23 @@ class Wizard:
     """ Close this dialog. """
 
     self.abort_dialog.hide ()
+
+# Function "clean_disk" _______________________________________________
+def clean_disk (wizard, drive, progress):
+
+  """ Start deleting of disk's partitions process in a separate thread. """
+
+  result = None
+
+  # To set a "busy mouse":
+  wizard.live_installer.window.set_cursor (wizard.watch)
+
+  result = part.call_clean_disk (drive, progress)
+  progress.put ('')
+  progress.put (result)
+
+  # To set normal mouse again:
+  wizard.live_installer.window.set_cursor (None)
 
 # Function "launch_autoparted" _______________________________________________
 def launch_autoparted (wizard, assistant, drive, progress):

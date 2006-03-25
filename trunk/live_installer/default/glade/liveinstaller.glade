@@ -2,7 +2,6 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
-<requires lib="gnome"/>
 
 <widget class="GtkWindow" id="live_installer">
   <property name="has_focus">True</property>
@@ -978,7 +977,7 @@
 			      <child>
 				<widget class="GtkTable" id="table9">
 				  <property name="visible">True</property>
-				  <property name="n_rows">3</property>
+				  <property name="n_rows">4</property>
 				  <property name="n_columns">1</property>
 				  <property name="homogeneous">False</property>
 				  <property name="row_spacing">0</property>
@@ -1010,32 +1009,6 @@
 				  </child>
 
 				  <child>
-				    <widget class="GtkRadioButton" id="recycle">
-				      <property name="visible">True</property>
-				      <property name="sensitive">False</property>
-				      <property name="tooltip" translatable="yes">Con este método se aprovecharán las particiones GNU/Linux que hay en el disco duro, reemplazando el sistema anterior</property>
-				      <property name="can_focus">True</property>
-				      <property name="label" translatable="yes">Reutilizar las particiones existentes</property>
-				      <property name="use_underline">True</property>
-				      <property name="relief">GTK_RELIEF_NORMAL</property>
-				      <property name="focus_on_click">True</property>
-				      <property name="active">False</property>
-				      <property name="inconsistent">False</property>
-				      <property name="draw_indicator">True</property>
-				      <property name="group">freespace</property>
-				      <signal name="toggled" handler="on_recycle_toggled" last_modification_time="Fri, 30 Sep 2005 10:50:01 GMT"/>
-				    </widget>
-				    <packing>
-				      <property name="left_attach">0</property>
-				      <property name="right_attach">1</property>
-				      <property name="top_attach">1</property>
-				      <property name="bottom_attach">2</property>
-				      <property name="x_options">fill</property>
-				      <property name="y_options"></property>
-				    </packing>
-				  </child>
-
-				  <child>
 				    <widget class="GtkRadioButton" id="manually">
 				      <property name="visible">True</property>
 				      <property name="sensitive">False</property>
@@ -1054,8 +1027,60 @@
 				    <packing>
 				      <property name="left_attach">0</property>
 				      <property name="right_attach">1</property>
+				      <property name="top_attach">3</property>
+				      <property name="bottom_attach">4</property>
+				      <property name="x_options">fill</property>
+				      <property name="y_options"></property>
+				    </packing>
+				  </child>
+
+				  <child>
+				    <widget class="GtkRadioButton" id="recycle">
+				      <property name="visible">True</property>
+				      <property name="sensitive">False</property>
+				      <property name="tooltip" translatable="yes">Con este método se aprovecharán las particiones GNU/Linux que hay en el disco duro, reemplazando el sistema anterior</property>
+				      <property name="can_focus">True</property>
+				      <property name="label" translatable="yes">Reutilizar las particiones existentes</property>
+				      <property name="use_underline">True</property>
+				      <property name="relief">GTK_RELIEF_NORMAL</property>
+				      <property name="focus_on_click">True</property>
+				      <property name="active">False</property>
+				      <property name="inconsistent">False</property>
+				      <property name="draw_indicator">True</property>
+				      <property name="group">freespace</property>
+				      <signal name="toggled" handler="on_recycle_toggled" last_modification_time="Fri, 30 Sep 2005 10:50:01 GMT"/>
+				    </widget>
+				    <packing>
+				      <property name="left_attach">0</property>
+				      <property name="right_attach">1</property>
 				      <property name="top_attach">2</property>
 				      <property name="bottom_attach">3</property>
+				      <property name="x_options">fill</property>
+				      <property name="y_options"></property>
+				    </packing>
+				  </child>
+
+				  <child>
+				    <widget class="GtkRadioButton" id="alldisk">
+				      <property name="visible">True</property>
+				      <property name="sensitive">False</property>
+				      <property name="tooltip" translatable="yes">Particionamiento avanzado: mediante esta opción podrá crear, redimensionar y destruir las particiones actuales de su disco duro con entera libertad</property>
+				      <property name="can_focus">True</property>
+				      <property name="label" translatable="yes">Usar todo el disco</property>
+				      <property name="use_underline">True</property>
+				      <property name="relief">GTK_RELIEF_NORMAL</property>
+				      <property name="focus_on_click">True</property>
+				      <property name="active">False</property>
+				      <property name="inconsistent">False</property>
+				      <property name="draw_indicator">True</property>
+				      <property name="group">freespace</property>
+				      <signal name="toggled" handler="on_manually_toggled" last_modification_time="Fri, 30 Sep 2005 10:50:09 GMT"/>
+				    </widget>
+				    <packing>
+				      <property name="left_attach">0</property>
+				      <property name="right_attach">1</property>
+				      <property name="top_attach">1</property>
+				      <property name="bottom_attach">2</property>
 				      <property name="x_options">fill</property>
 				      <property name="y_options"></property>
 				    </packing>
