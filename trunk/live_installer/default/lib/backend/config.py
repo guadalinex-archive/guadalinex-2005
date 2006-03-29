@@ -292,6 +292,10 @@ ff02::3 ip6-allhosts""" % self.hostname
 
     self.chrex('mount', '-t', 'proc', 'proc', '/proc')
     self.chrex('mount', '-t', 'sysfs', 'sysfs', '/sys')
+    # Active the swap partition for the initramfs well configuring
+    for device, path in self.mountpoints.items():
+      if path == 'swap' and device.startswith('/dev/'):
+        misc.ex('swapon', device)
 
     misc.ex('cp', '/etc/X11/xorg.conf', os.path.join(self.target, 'etc/X11/xorg.conf') )
     packages = ['gnome-panel', 'gnome-panel-data', 'ssh', 'linux-image-' + self.kernel_version]
