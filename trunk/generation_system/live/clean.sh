@@ -44,6 +44,9 @@ touch /etc/resolv.conf
 rm /boot/grub/menu.lst*
 touch /boot/grub/menu.lst
 
+# Restoting the initial config at initramfs.conf
+sed -i "s|RESUME=\(.*\)|#RESUME=|g" /etc/mkinitramfs/initramfs.conf
+
 # Cleaning /tmp
 cd /tmp
 for file in `find`
