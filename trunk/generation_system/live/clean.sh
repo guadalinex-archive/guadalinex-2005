@@ -47,6 +47,9 @@ touch /boot/grub/menu.lst
 # Restoting the initial config at initramfs.conf
 sed -i "s|RESUME=\(.*\)|#RESUME=|g" /etc/mkinitramfs/initramfs.conf
 
+# Cleaning up the alsa configuration
+rm -f /var/lib/alsa/asound.state
+
 # Cleaning /tmp
 cd /tmp
 for file in `find`
