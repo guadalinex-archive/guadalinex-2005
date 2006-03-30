@@ -145,6 +145,7 @@ class Config:
             passno, options, filesystem = 1, 'defaults,errors=remount-ro', 'ext3'
         elif path == 'swap':
             swap, passno, filesystem, options, path = 1, 0, 'swap', 'sw', 'none'
+            swap += 1
         else:
             passno, filesystem, options = 2, 'ext3', 'defaults,errors=remount-ro'
 
@@ -155,7 +156,7 @@ class Config:
       if new_device in [ele[0] for ele in self.mountpoints.items()]:
         continue
       if ( fs in ['vfat', 'ntfs'] ):
-        passno = 2
+        passno = 0
         if fs == 'vfat' :
           options ='rw,gid=100,users,umask=0002,fmask=0113,sync,noauto,defaults'
         else:
@@ -166,16 +167,18 @@ class Config:
       elif fs == 'ext3':
               options = 'defaults,users,exec,noauto'
               path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
+              passno = 2
               os.mkdir(os.path.join(self.target, path[1:]))
       elif fs == 'swap':
               options = 'sw'
               path = 'none'
               passno = 0
+              swap += 1
       print >>fstab, '%s\t%s\t%s\t%s\t%d\t%d' % (new_device, path, fs, options, 0, passno)
 
 
     # if swap partition isn't defined, we create a swapfile
-    if ( swap != 1 ):
+    if ( swap < 1 ):
       print >>fstab, '/swapfile\tnone\tswap\tsw\t0\t0'
       os.system("dd if=/dev/zero of=%s/swapfile bs=1024 count=%d" % (self.target, MINIMAL_PARTITION_SCHEME ['swap'] * 1024) )
       os.system("mkswap %s/swapfile" % self.target)
