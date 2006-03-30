@@ -295,7 +295,12 @@ ff02::3 ip6-allhosts""" % self.hostname
     # Active the swap partition for the initramfs well configuring
     for device, path in self.mountpoints.items():
       if path == 'swap' and device.startswith('/dev/'):
-        misc.ex('swapon', device)
+        initramfs = open('/etc/mkinitramfs/initramfs.conf').read()
+        new = initramfs.replace("#RESUME=","RESUME=%s" % device)
+        file = open(os.path.join(self.target, 'etc/mkinitramfs/initramfs.conf') ,'w')
+        file.write(new)
+        file.close()
+        
 
     misc.ex('cp', '/etc/X11/xorg.conf', os.path.join(self.target, 'etc/X11/xorg.conf') )
     packages = ['gnome-panel', 'gnome-panel-data', 'ssh', 'linux-image-' + self.kernel_version]
