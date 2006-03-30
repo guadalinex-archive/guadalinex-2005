@@ -78,7 +78,7 @@ log_begin_msg "Configuring gnome-panel..."
 if laptop-detect; then
 env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
     -u DEBCONF_REDIR -u DEBCONF_OLD_FD_BASE \
-    dpkg-reconfigure -fnointeractive gnome-panel-data
+    dpkg-reconfigure -fnointeractive gnome-panel-data >> /var/log/initramfs.debug 2>&1
 fi
 
 panel_version=\$(dpkg-query -W --showformat='\${Version}' gnome-panel-data 2>/dev/null) || panel_version=""
@@ -111,7 +111,7 @@ TMPTIME=0
 #
 # Setup the network
 #
-log_begin_msg "Configuring network interfaces......"
+log_begin_msg "Setting up the network configuration..."
 echo "Network setting..."  >> /var/log/initramfs.debug
 devs=\$(for i in /sys/class/net/*/device ; do dev=\${i#/sys/class/net/} ; echo \${dev%/device} ; done)
 echo \$devs >> /var/log/initramfs.debug
