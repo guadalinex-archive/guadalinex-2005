@@ -146,7 +146,7 @@ for new_device, fs in get_filesystems().items():
       else:
         print >>fstab, '%s\t%s\t%s\t%s\t%d\t%d' % (new_device, path, fs, options, 0, passno)
   # CASE 3: common partitions types that hasn't been set yet
-  elif fs in ['ext3', 'ext2', 'jfs', 'reiserfs', 'xfs']:
+  elif fs in ['ext3', 'ext2', 'reiserfs', 'xfs']:
     if not (new_device in blacklist):
       options = 'defaults'
       path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
