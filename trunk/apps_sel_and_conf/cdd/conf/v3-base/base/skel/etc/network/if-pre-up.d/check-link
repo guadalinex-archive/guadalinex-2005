@@ -12,7 +12,7 @@ for dev in $wireless
 	if [ "$IFACE == "$dev"" ]; then
 		/sbin/iwconfig $dev essid any > /dev/null 2>&1
 		/sbin/iwconfig $dev | grep -q 'ESSID:""'
-		if [ "$?" -eq 0 ]; then
+		if [ "$?" -ne 0 ]; then
 			log "wireless dev: $dev with no link"
 			exit 1
 		else
