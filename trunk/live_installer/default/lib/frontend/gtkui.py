@@ -761,8 +761,8 @@ class Wizard:
         self.mountpoints = progress.get ()
         self.partition_bar.set_text ('')
 
-	# Activated the freespace option for using all the free space (all the disk)	
-	self.freespace.set_active (True)
+        self.back.hide()
+        self.progress_loop()
 
 
     if self.freespace.get_active ():
