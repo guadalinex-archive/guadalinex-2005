@@ -10,9 +10,8 @@ wireless=$(awk -F: '/:/ {print $1}' /proc/net/wireless | tr -d ' ')
 for dev in $wireless
 	do
 	if [ "$IFACE == "$dev"" ]; then
-		/sbin/iwconfig $dev essid any > /dev/null 2>&1
-		/sbin/iwconfig $dev | grep -q 'ESSID:""'
-		if [ "$?" -ne 0 ]; then
+		/sbin/iwconfig $dev | grep -q "radio off"
+		if [ "$?" -eq 0 ]; then
 			log "wireless dev: $dev with no link"
 			exit 1
 		else
