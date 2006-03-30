@@ -1,0 +1,70 @@
+#!/bin/sh
+# 
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+. /conf/initramfs.conf
+
+# Inits scripts
+cat <<EOF > ${rootmnt}/etc/rc0.d/S89eject-cd.sh
+#!/bin/sh
+
+# Try to cache everything we're likely to need after ejecting.  This
+# is fragile and simple-minded, but our options are limited.
+cache_path() {
+    path="\$1"
+
+    if [ -d "\$path" ]; then
+        find "\$path" -type f | xargs cat > /dev/null 2>&1
+    elif [ -f "\$path" ]; then
+        if [ -x "\$path" ]; then
+            if file "\$path" | grep -q 'dynamically linked'; then
+                for lib in \$(ldd "\$path" | awk '{ print \$3 }'); do
+                    cache_path "\$lib"
+                done
+            fi
+        fi
+        cat "\$path" >/dev/null 2>&1
+    fi
+}
+
+for path in \$(which halt) \$(which reboot) /etc/rc?.d /etc/default; do
+    cache_path "\$path"
+done
+
+chvt 1
+
+clear
+
+eject -p -m /.dirs/dev >/dev/null 2>&1
+
+# XXX - i18n
+echo -e "\n\n"
+echo -n "      Por favor, saque el CD, cierre la bandeja y pulse ENTER: "
+read x
+
+exit 0
+
+EOF
+
+# eject when shutdown
+${rootmnt}/bin/chmod +x ${rootmnt}/etc/rc0.d/S89eject-cd.sh
+
+# Copy to runlevel 6 too, reboot
+cp ${rootmnt}/etc/rc0.d/S89eject-cd.sh ${rootmnt}/etc/rc6.d/S89eject-cd.sh
+
+
+exit 0
