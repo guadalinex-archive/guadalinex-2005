@@ -63,32 +63,59 @@ def call_autoparted (assistant, drive, progress = None):
   return assistant.auto_partition (drive, steps = progress)
 
 
-def list_partitions (drive):
+def list_minors (drive):
 
-  """ list_partitions() List the disk partitions  """
-
-  out = Popen(['/sbin/parted', drive, 'print'], stdin=PIPE, stdout=PIPE,
-              close_fds=True)
-  output = out.stdout.readlines()
-
-  index = 0
-  for i in output:
-      if i.startswith('Minor'):
-          index = output.index(i) + 1
+  """ list_minors() List the disk partitions minors """
 
   minors = []
-  for i in output[index:]:
-      minors.append(i.split()[0])
+  parts = misc.get_partitions()
+  for part in parts:
+      if part[:8] == drive:
+        minors.append(part[8:])
  
- return minors
+  return minors
 
+def percentage(per, num):
+  re = (num * per)/100
+  return re
 
-def call_clean_disk (drive, progress = None):
+def calc_sizes(tam):
+
+  '''
+     /      ->  2355 Mb > x < 20 Gb   -> 25 %
+     /home  ->   512 Mb > x           ->  5 %
+     swap   ->   205 Mb > x <  1 Gb   -> 70 %
+  '''
+  if tam < 3072:
+    return None
+    
+  sizes = {}
+  sizes['root'] = percentage(tam,25)
+  sizes['swap'] = percentage(tam,5)
+  #home = percentage(tam,70)
+
+  if sizes['root'] < 2355:
+    sizes['root'] = 2355
+  elif sizes['root'] > 20480:
+    sizes['root'] = 20480
+
+  if sizes['swap'] < 205:
+    sizes['swap'] = 205
+  elif sizes['swap'] > 1024:
+    sizes['swap'] = 1024
+
+  sizes['home'] = tam - sizes['root'] - sizes['swap']
+  if sizes['home'] < 512:
+    return None
+
+  return sizes
+
+def clean_disk (drive):
 
   """ Clean up the disk of partitions. """
       
-  minors = list_partitions(drive)
-  while minors != []
+  minors = list_minors(drive)
+  while minors != []:
     for i in minors:
         try:
           ret = system('/sbin/parted %s rm %s' % (drive, i))
@@ -96,6 +123,27 @@ def call_clean_disk (drive, progress = None):
           print '/sbin/parted %s rm %s: fail' % (drive, i)
           
     minors = list_partitions(drive)
+
+  return None
+
+def call_all_disk (drive):
+  clean_disk(drive)
+  # 2 - get the disk size
+  out = Popen(['/sbin/sfdisk', '-s', drive], stdin=PIPE, stdout=PIPE,
+              close_fds=True)
+  tam = int(out.stdout.readline().strip())
+  tam = tam/1024
+  # 3 - call calc_sizes(tam)
+  sizes = cacl_sizes(tam)
+  if not sizes:
+    return None
+  # 4 - to parte the disk using calcs
+  cmd = "/sbin/sfdisk -uM %s EOF\n,%d,L\n,%d,L\n,,S\nEOF" % (drive, sizes['root'], sizes['swap'])
+  try:
+    ret = call(cmd, shell=True)
+  except OSError, e:   
+    print >>sys.stderr, "Execution failed:", e
+    return None
 
   return None
 
