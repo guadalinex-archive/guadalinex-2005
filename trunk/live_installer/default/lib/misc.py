@@ -205,13 +205,13 @@ def get_filesystems():
   with data from local hard disks. Only swap and ext3 filesystems
   are available."""
 
-  from subprocess import *
+  from subprocess import Popen,PIPE
   devices = {}
 
   disks = get_disks()
   for disk in disks:
     disk = '/dev/' + disk
-    out = Popen(['/sbin/parted', device, 'print'], stdin=PIPE, stdout=PIPE, close_fds=True)
+    out = Popen(['/sbin/parted', disk, 'print'], stdin=PIPE, stdout=PIPE, close_fds=True)
     output = out.stdout.readlines()
                        
     index = 0
@@ -220,7 +220,10 @@ def get_filesystems():
     		index = output.index(line) + 1
                 
     for line in output[index:]:
-        num, fs = ( line.split()[0], line.split()[4] )
+        line = line.split()
+        if len(line) < 5:
+          continue
+        num, fs = ( line[0], line[4] )
     	if fs == 'fat32':
     		fs = 'vfat'
     	elif fs == 'linux-swap':
