@@ -171,8 +171,23 @@ def get_progress(str):
   return num, text
 
 
+def get_disks():
+  """returns an array with disks list."""
+
+  import re
+
+  # parsing partitions from the procfs
+  # attetion with the output format. the partitions list is without '/dev/'
+  partition_table = open('/proc/partitions').read()
+  regex = re.compile('[sh]d[a-g]')
+  disks = regex.findall(partition_table)
+  disks = set(disks)  
+
+  return disks
+
+
 def get_partitions():
-  """returns an array with fdisk output related to partition data."""
+  """returns an array with partitions list."""
 
   import re
 
@@ -190,36 +205,29 @@ def get_filesystems():
   with data from local hard disks. Only swap and ext3 filesystems
   are available."""
 
-  import re, subprocess
-  device_list = {}
+  from subprocess import *
+  devices = {}
 
-  # building device_list dicts from "file -s" output from get_partitions
-  #   returned list (only devices formatted as ext3, fat, ntfs or swap are
-  #   parsed).
-  partition_list = get_partitions()
-  for device in partition_list:
-    device = '/dev/' + device
-#    filesystem_pipe = subprocess.Popen(['file', '-s', device], stdout=subprocess.PIPE)
-    filesystem_pipe = subprocess.Popen(['sfdisk', '-c', device[0:8], device[8:]], stdout=subprocess.PIPE)
-    filesystem = filesystem_pipe.communicate()[0]
-    #if re.match('.*((ext3)|(swap)|(extended)|(data)).*', filesystem, re.I):
-    #  if 'ext3' in filesystem.split() or 'data' in filesystem.split() or 'extended' in filesystem.split():
-    #    device_list[device] = 'ext3'
-    #  elif 'swap' in filesystem.split():
-    #    device_list[device] = 'swap'
-    #  elif 'FAT' in filesystem.split():
-    #    device_list[device] = 'vfat'
-    #  elif 'NTFS' in filesystem.split():
-    #    device_list[device] = 'ntfs'
-    if '83' in filesystem:
-      device_list[device] = 'ext3'
-    elif '82' in filesystem:
-      device_list[device] = 'swap'
-    elif 'b' in filesystem or 'c' in filesystem:
-      device_list[device] = 'vfat'
-    elif '7' in filesystem:
-      device_list[device] = 'ntfs'
-  return device_list
+  disks = get_disks()
+  for disk in disks:
+    disk = '/dev/' + disk
+    out = Popen(['/sbin/parted', device, 'print'], stdin=PIPE, stdout=PIPE, close_fds=True)
+    output = out.stdout.readlines()
+                       
+    index = 0
+    for line in output:
+    	if line.startswith('Minor'):
+    		index = output.index(line) + 1
+                
+    for line in output[index:]:
+        num, fs = ( line.split()[0], line.split()[4] )
+    	if fs == 'fat32':
+    		fs = 'vfat'
+    	elif fs == 'linux-swap':
+    		fs = 'swap'
+        devices[disk + num] = fs
+
+  return devices
 
 
 # Bootloader stuff
