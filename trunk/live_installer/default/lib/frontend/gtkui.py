@@ -985,6 +985,7 @@ class Wizard:
         if not selected_drive ['large_enough']:
           self.freespace.set_sensitive (False)
           self.recycle.set_sensitive (False)
+          self.alldisk.set_sensitive (False)
           self.manually.set_sensitive (False)
           self.partition_message.set_markup (self.resize_text(
             '<span>La unidad que ha seleccionado es <b>demasiado ' +
@@ -992,6 +993,7 @@ class Wizard:
             'seleccione un disco duro de más capacidad.</span>', '4'))
         else:
           self.manually.set_sensitive (True)
+          self.alldisk.set_sensitive (True)
 
           if not self.__assistant.only_manually ():
 
@@ -1009,6 +1011,7 @@ class Wizard:
         # All options are disabled:
         self.freespace.set_active (False)
         self.recycle.set_active (False)
+        self.alldisk.set_active (False)
         self.manually.set_active (False)
 
         # "Next" button is sensitive:
@@ -1019,6 +1022,8 @@ class Wizard:
           self.freespace.set_active (True)
         elif self.recycle.get_property ('sensitive'):
           self.recycle.set_active (True)
+        elif self.alldisk.get_property ('sensitive'):
+          self.alldisk.set_active (True)
         elif self.manually.get_property ('sensitive'):
           self.manually.set_active (True)
         else:
@@ -1032,6 +1037,7 @@ class Wizard:
     if selected_drive ['large_enough']:
       self.on_freespace_toggled (self.freespace)
       self.on_recycle_toggled (self.recycle)
+      self.on_alldisk_toggled (self.alldisk)
       self.on_manually_toggled (self.manually)
 
 
