@@ -66,6 +66,7 @@ def call_autoparted (assistant, drive, progress = None):
 def list_minors (drive):
 
   """ list_minors() List the disk partitions minors """
+  import misc
 
   minors = []
   parts = misc.get_partitions()
