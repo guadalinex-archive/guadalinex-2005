@@ -748,8 +748,9 @@ class Wizard:
         gtk.main_iteration ()
       self.partition_bar.set_fraction (1.00)
       self.partition_bar.set_text ('Particionado finalizado')
-      self.mountpoints[str(selected_drive['id'] + '1')] = 'swap'
-      self.mountpoints[str(selected_drive['id'] + '2')] = '/'
+      self.mountpoints[str(selected_drive['id'] + '1')] = '/'
+      self.mountpoints[str(selected_drive['id'] + '2')] = '/home'
+      self.mountpoints[str(selected_drive['id'] + '3')] = 'swap'
       self.steps.set_current_page(5)
       self.back.hide()
       while gtk.events_pending ():
