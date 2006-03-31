@@ -62,26 +62,11 @@ def call_autoparted (assistant, drive, progress = None):
 
   return assistant.auto_partition (drive, steps = progress)
 
-
-def list_minors (drive):
-
-  """ list_minors() List the disk partitions minors """
-  from ue import misc
-
-  minors = []
-  parts = misc.get_partitions()
-  for part in parts:
-      if part[:8] == drive:
-        minors.append(part[8:])
- 
-  return minors
-
 def percentage(per, num):
   re = (num * per)/100
   return re
 
 def calc_sizes(tam):
-
   '''
      /      ->  2355 Mb > x < 20 Gb   -> 25 %
      /home  ->   512 Mb > x           ->  5 %
@@ -110,43 +95,26 @@ def calc_sizes(tam):
     return None
 
   return sizes
-
-def clean_disk (drive):
-
-  """ Clean up the disk of partitions. """
-      
-  minors = list_minors(drive)
-  while minors != []:
-    for i in minors:
-        try:
-          ret = system('/sbin/parted %s rm %s' % (drive, i))
-        except:
-          print '/sbin/parted %s rm %s: fail' % (drive, i)
-          
-    minors = list_partitions(drive)
-
-  return None
-
-def call_all_disk (drive):
-  clean_disk(drive)
-  # 2 - get the disk size
+  
+def call_all_disk(drive):
+  # 1 - get the disk size
   out = Popen(['/sbin/sfdisk', '-s', drive], stdin=PIPE, stdout=PIPE,
               close_fds=True)
   tam = int(out.stdout.readline().strip())
   tam = tam/1024
-  # 3 - call calc_sizes(tam)
-  sizes = cacl_sizes(tam)
+  # 2 - call calc_sizes(tam)
+  sizes = calc_sizes(tam)
   if not sizes:
-    return None
-  # 4 - to parte the disk using calcs
-  cmd = "/sbin/sfdisk -uM %s EOF\n,%d,L\n,%d,L\n,,S\nEOF" % (drive, sizes['root'], sizes['swap'])
+    return False
+  # 3 - to parte the disk using calcs
+  cmd = "/sbin/sfdisk -uM %s << EOF\n,%d,L\n,%d,L\n,,S\nEOF" % (drive, sizes['root'], sizes['swap'])
   try:
     ret = call(cmd, shell=True)
   except OSError, e:   
     print >>sys.stderr, "Execution failed:", e
-    return None
+    return False
 
-  return None
+  return True
 
 def call_gparted(widget):
 
