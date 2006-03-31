@@ -741,28 +741,20 @@ class Wizard:
 
     if self.alldisk.get_active ():
       self.partition_bar.show ()
-
-      if -1 != current:
-        progress = Queue ()
-        thread.start_new_thread (clean_disk, (self, selected_drive, progress))
-        msg = str (progress.get ())
-
-        while msg is not '':
-          field = msg.split ('|')
-          self.partition_bar.set_fraction (float (field [0]))
-          self.partition_bar.set_text (str (field [1]))
-          msg = str (progress.get ())
-
-          while gtk.events_pending ():
-            gtk.main_iteration ()
-
-          time.sleep (0.5)
-
-        self.mountpoints = progress.get ()
-        self.partition_bar.set_text ('')
-
-        self.back.hide()
-        self.progress_loop()
+      self.partition_bar.set_fraction (0.5)
+      self.partition_bar.set_text ('Creando particiones')
+      part.call_all_disk (selected_drive['id'])
+      while gtk.events_pending ():
+        gtk.main_iteration ()
+      self.partition_bar.set_fraction (1.00)
+      self.partition_bar.set_text ('Particionado finalizado')
+      self.mountpoints[str(selected_drive['id'] + '1')] = 'swap'
+      self.mountpoints[str(selected_drive['id'] + '2')] = '/'
+      self.steps.set_current_page(5)
+      self.back.hide()
+      while gtk.events_pending ():
+        gtk.main_iteration ()
+      self.progress_loop()
 
 
     if self.freespace.get_active ():
@@ -1195,23 +1187,6 @@ class Wizard:
     """ Close this dialog. """
 
     self.abort_dialog.hide ()
-
-# Function "clean_disk" _______________________________________________
-def clean_disk (wizard, drive, progress):
-
-  """ Start deleting of disk's partitions process in a separate thread. """
-
-  result = None
-
-  # To set a "busy mouse":
-  wizard.live_installer.window.set_cursor (wizard.watch)
-
-  result = part.call_clean_disk (drive, progress)
-  progress.put ('')
-  progress.put (result)
-
-  # To set normal mouse again:
-  wizard.live_installer.window.set_cursor (None)
 
 # Function "launch_autoparted" _______________________________________________
 def launch_autoparted (wizard, assistant, drive, progress):
