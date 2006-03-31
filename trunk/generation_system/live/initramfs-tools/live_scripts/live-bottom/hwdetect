@@ -108,6 +108,9 @@ TMPTIME=0
 [ -f /etc/default/rcS ] && . /etc/default/rcS
 . /lib/lsb/init-functions
 
+# Up the timeout
+/sbin/usplash_write "TIMEOUT 25"
+
 #
 # Setup the network
 #
