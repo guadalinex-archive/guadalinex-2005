@@ -69,8 +69,8 @@ def percentage(per, num):
 def calc_sizes(tam):
   '''
      /      ->  2355 Mb > x < 20 Gb   -> 25 %
-     /home  ->   512 Mb > x           -> 70 %
-     swap   ->   205 Mb > x <  1 Gb   ->  5 %
+     /home  ->   512 Mb > x           ->  5 %
+     swap   ->   205 Mb > x <  1 Gb   -> 70 %
   '''
   if tam < 3072:
     return None
@@ -107,7 +107,7 @@ def call_all_disk(drive):
   if not sizes:
     return False
   # 3 - to parte the disk using calcs
-  cmd = "/sbin/sfdisk -uM %s << EOF\n,%d,L\n,%d,L\n,,S\nEOF" % (drive, sizes['root'], sizes['swap'])
+  cmd = "/sbin/sfdisk -uM %s << EOF\n,%d,L\n,%d,L\n,,S\nEOF" % (drive, sizes['root'], sizes['home'])
   try:
     ret = call(cmd, shell=True)
   except OSError, e:   
