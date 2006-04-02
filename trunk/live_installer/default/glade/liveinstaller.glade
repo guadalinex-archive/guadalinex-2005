@@ -1064,7 +1064,7 @@
 				    <widget class="GtkRadioButton" id="alldisk">
 				      <property name="visible">True</property>
 				      <property name="sensitive">False</property>
-				      <property name="tooltip" translatable="yes">Particionamiento avanzado: mediante esta opción podrá crear, redimensionar y destruir las particiones actuales de su disco duro con entera libertad</property>
+				      <property name="tooltip" translatable="yes">Con este método, el disco duro se borrará y se crearán las particiones necesarias para instalar su nuevo sistema Guadalinex. Estas particiones ocuparán todo el espacio del disco</property>
 				      <property name="can_focus">True</property>
 				      <property name="label" translatable="yes">Usar todo el disco</property>
 				      <property name="use_underline">True</property>
@@ -1074,7 +1074,7 @@
 				      <property name="inconsistent">False</property>
 				      <property name="draw_indicator">True</property>
 				      <property name="group">freespace</property>
-				      <signal name="toggled" handler="on_manually_toggled" last_modification_time="Fri, 30 Sep 2005 10:50:09 GMT"/>
+				      <signal name="toggled" handler="on_alldisk_toggled" last_modification_time="Fri, 30 Sep 2005 10:50:09 GMT"/>
 				    </widget>
 				    <packing>
 				      <property name="left_attach">0</property>
