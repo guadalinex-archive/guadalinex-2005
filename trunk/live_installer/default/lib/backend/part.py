@@ -69,8 +69,8 @@ def percentage(per, num):
 def calc_sizes(tam):
   '''
      /      ->  2355 Mb > x < 20 Gb   -> 25 %
-     /home  ->   512 Mb > x           ->  5 %
-     swap   ->   205 Mb > x <  1 Gb   -> 70 %
+     /home  ->   512 Mb > x           -> 70 %
+     swap   ->   205 Mb > x <  1 Gb   ->  5 %
   '''
   if tam < 3072:
     return None
