@@ -18,11 +18,13 @@ prereqs)
 	;;
 esac
 
-# Cheching if there is any activated swap and deactivating it. Just in case
-#while [ "$(grep -q dev /proc/swaps ; echo $?)" == "0" ]; do
-#        sync
-#        swapoff -a >> /tmp/initramfs.debug 2>&1
-#done
+. /scripts/functions
+
+LOG="/tmp/initramfs.debug"
+
+exec 2> $LOG 2>&2
+
+set -x
 
 # Calculating the optimus swap partition size
 let MEM=$(grep ^MemTotal /proc/meminfo | while read a b c ; do echo $b ; done)/1024
@@ -35,11 +37,27 @@ else
 fi
 
 # Finding the first disk
-#DISK=$(grep '[sh]d[a-g]' /proc/partitions | while read a b c d ; do echo $d | cut -c 0-3 ; done | sort -u | head -1)
-# This method could fail if there is no any partition at the disk. So we try this:
-DISK=$(for i in /sys/block/* ; do if [ `cat $i/size` != 0 ]; then echo ${i#/sys/block/} ; fi ;  done | grep '[sh]d[a-g]' | head -1)
+disks=$(
+for i in /sys/block/* ; do
+    if [ `cat $i/size` != 0 ]; then
+        echo ${i#/sys/block/}
+    fi
+done | grep '[sh]d[a-g]'
+)
+
+DISK=""
+for disk in $disks ; do
+    rem=$(cat /sys/block/${disk}/removable 2> /dev/null)
+    if [ "$rem" = 0 ]; then
+    	DISK="$disk"
+	break
+    fi
+done
+
 L=$(echo $DISK | cut -c 1)
 DISK="/dev/${DISK}"
+
+log_begin_msg "Particionando el disco /dev/${DISK}..."
 
 #### Set up at the config.cfg if there is ide or scsi disk
 sed -i "s|@@@|$L|g" /etc/config.cfg
@@ -55,9 +73,9 @@ let ROOT_SIZE=$DISK_SIZE-$SWAP_SIZE
 let ROOT_SIZE=$ROOT_SIZE/1024
 
 # Let's break the disk ;-)
-sfdisk -uM $DISK << EOF  >> /tmp/initramfs.debug 2>&1
+sfdisk -uM $DISK << EOF
 ,$ROOT_SIZE,L
 ,,S
 EOF
 
-
+log_end_msg $?

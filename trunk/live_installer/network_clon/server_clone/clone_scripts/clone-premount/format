@@ -15,24 +15,36 @@ prereqs)
 	;;
 esac
 
+. /scripts/functions
+
+LOG="/tmp/initramfs.debug"
+
+exec 2> $LOG 2>&2
+
+set -x
+
+# Up the timeout
+/sbin/usplash_write "TIMEOUT 25"
+
+log_begin_msg "Formateando particiones..."
 
 . /etc/config.cfg
+
 ROOT_PARTITION=$(echo $mountpoints | cut -d'-' -f 1)
 ROOT_PARTITION=${ROOT_PARTITION#/:}
 SWAP_PARTITION=$(echo $mountpoints | cut -d'-' -f 2)
 SWAP_PARTITION=${SWAP_PARTITION#swap:}
 
 ## In order to avoid very weird bug with the mkfs.ext3
+rm -f /etc/mtab
 ln -s /proc/mounts /etc/mtab
 
 # Format the partitions
-mkfs.ext3 $ROOT_PARTITION >> /tmp/initramfs.debug 2>&1
-mkswap $SWAP_PARTITION >> /tmp/initramfs.debug 2>&1
-
-# Activate the swap
-#swapon $SWAP_PARTITION >> /tmp/initramfs.debug 2>&1
+mkfs.ext3 $ROOT_PARTITION 
+mkswap $SWAP_PARTITION 
 
 # Mounting main partition
-mkdir -p /mnt/dev/ >> /tmp/initramfs.debug 2>&1
-mount -t ext3 $ROOT_PARTITION /mnt/dev/ >> /tmp/initramfs.debug 2>&1
+mkdir -p /mnt/dev/ 
+mount -t ext3 $ROOT_PARTITION /mnt/dev/ || panic "Fallo al intentar montar $ROOT_PARTITION"
 
+log_end_msg $?

@@ -15,16 +15,31 @@ prereqs)
 	;;
 esac
 
+. /scripts/functions
+
+LOG="/tmp/initramfs.debug"
+
+exec 2> $LOG 2>&2
+
+set -x
+
+log_begin_msg "Configurando la red..."
+
 DEVS=$(grep [0-9]: /proc/net/dev | grep -v sit | tr -s '  ' ' ' | cut -d ' ' -f 2 | cut -d ':' -f 1)
 for DEV in $DEVS
         do
-	ifconfig $DEV
-	udhcpc -s /etc/udhcpc/default.script $DEV
+	ifconfig $DEV up 
+	udhcpc -s /etc/udhcpc/default.script $DEV 
 done
+
+log_end_msg $?
+
+log_begin_msg "Obteniendo la imagen desde el servidor..."
 
 SERVER=$(grep serverip /etc/config.cfg | cut -d '=' -f 2)
 
 mkdir -p /mnt/dev/META/
-ftpget $SERVER /mnt/dev/META/META.squashfs /META.squashfs
+ftpget $SERVER /mnt/dev/META/META.squashfs /META.squashfs || panic "Fallo al obtener la imagen desde el servidor"
 
+log_end_msg $?
 

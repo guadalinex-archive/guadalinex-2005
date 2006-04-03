@@ -15,14 +15,25 @@ prereqs)
 	;;
 esac
 
+. /scripts/functions
+
+LOG="/tmp/initramfs.debug"
+
+exec 2> $LOG 2>&2
+
+set -x
+
+log_begin_msg "Copiando configuraciones y logs..."
+
+
 # Copy the client config
 cp -a /etc/config.cfg ${rootmnt}/etc/config.cfg 
 
 # Copy the logs to the new system
-ln /tmp/initramfs.debug ${rootmnt}/var/log/initramfs.debug
+ln -fs /tmp/initramfs.debug ${rootmnt}/var/log/initramfs.debug
 
 # Changed inittab to launch netcloner instead second runlevel
-sed -i -e 's|\(^l2:2:wait:\)\(/etc/init.d/rc.*\)|\1/usr/sbin/netcloner|' ${rootmnt}/etc/inittab
+sed -i -e 's|\(^l2:2:wait:\)\(/etc/init.d/rc.*\)|\1/usr/sbin/progressbar|' ${rootmnt}/etc/inittab
 
 # Launch some ttys for debugging
 sed -i -e "s|^\([^:]*:[^:]*:[^:]*\):.*getty.*\<\(tty[0-9]*\).*$|\1:/bin/login -f root </dev/\2 >/dev/\2 2>\&1|" ${rootmnt}/etc/inittab
@@ -33,4 +44,4 @@ for file in anacron postfix hwclock.sh hwclockfirst.sh checkfs.sh checkroot.sh h
         : > ${rootmnt}/etc/init.d/${file}
 done
 
-exit 0
+log_end_msg $?
