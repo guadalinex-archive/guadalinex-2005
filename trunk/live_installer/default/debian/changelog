@@ -1,3 +1,10 @@
+ubuntu-express (0.99-2) breezy; urgency=low
+
+  * New partitioning option (all disk).
+  * Several bugfixes.
+
+ -- Juanje Ojeda <juanje@synaptia.net>  Mon, 03 Apr 2005 12:46:39 +0200
+
 ubuntu-express (0.99-1) breezy; urgency=low
 
   * New UI design for gtk frontend.
