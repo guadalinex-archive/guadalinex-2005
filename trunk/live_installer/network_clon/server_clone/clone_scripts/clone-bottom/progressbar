@@ -1,0 +1,30 @@
+#!/bin/sh
+# 
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# Inits scripts
+cat <<EOF > ${rootmnt}/usr/sbin/progressbar
+#!/bin/sh
+
+/usr/sbin/netcloner 2> /var/log/netcloner.log | LANG=es_ES.UTF-8 whiptail --clear --title "Clonador de Guadalinex v3" --gauge "Instalando Guadalinex v3..." 0 0 0 || cat /var/log/netcloner.log && exec /bin/bash
+
+EOF
+
+${rootmnt}/bin/chmod +x ${rootmnt}/usr/sbin/progressbar
+
+
+exit 0
