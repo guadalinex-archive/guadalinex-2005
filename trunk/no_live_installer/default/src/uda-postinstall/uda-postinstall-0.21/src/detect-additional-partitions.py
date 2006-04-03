@@ -118,11 +118,11 @@ if DEBUG:
 fstab = open('/etc/fstab','a')
 
 win_counter = 1
-passno = 0
 
 for new_device, fs in get_filesystems().items():
   # CASE 1: Windows partitions
   if ( fs in ['vfat', 'ntfs'] ):
+    passno = 0
     if not (new_device in blacklist):
       if fs == 'vfat' :
         options = 'rw,gid=100,users,umask=0002,fmask=0113,sync,noauto,defaults'
@@ -138,6 +138,7 @@ for new_device, fs in get_filesystems().items():
         print >>fstab, '%s\t%s\t%s\t%s\t%d\t%d' % (new_device, path, fs, options, 0, passno)
   # CASE 2: swap
   elif fs == 'swap':
+    passno = 0
     if not (new_device in blacklist):
       options = 'sw'
       path = 'none'
@@ -147,6 +148,7 @@ for new_device, fs in get_filesystems().items():
         print >>fstab, '%s\t%s\t%s\t%s\t%d\t%d' % (new_device, path, fs, options, 0, passno)
   # CASE 3: common partitions types that hasn't been set yet
   elif fs in ['ext3', 'ext2', 'reiserfs', 'xfs']:
+    passno = 2
     if not (new_device in blacklist):
       options = 'defaults'
       path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
