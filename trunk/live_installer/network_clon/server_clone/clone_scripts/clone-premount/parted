@@ -22,7 +22,7 @@ esac
 
 LOG="/tmp/initramfs.debug"
 
-exec 2> $LOG 2>&2
+exec 2>> $LOG 2>&2
 
 set -x
 
@@ -57,7 +57,7 @@ done
 L=$(echo $DISK | cut -c 1)
 DISK="/dev/${DISK}"
 
-log_begin_msg "Particionando el disco /dev/${DISK}..."
+log_begin_msg "Particionando el disco ${DISK}..."
 
 #### Set up at the config.cfg if there is ide or scsi disk
 sed -i "s|@@@|$L|g" /etc/config.cfg
@@ -73,7 +73,7 @@ let ROOT_SIZE=$DISK_SIZE-$SWAP_SIZE
 let ROOT_SIZE=$ROOT_SIZE/1024
 
 # Let's break the disk ;-)
-sfdisk -uM $DISK << EOF
+sfdisk -uM $DISK << EOF  >> $LOG
 ,$ROOT_SIZE,L
 ,,S
 EOF

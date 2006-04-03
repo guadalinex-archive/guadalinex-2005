@@ -22,6 +22,9 @@ cat <<EOF > ${rootmnt}/usr/sbin/progressbar
 
 /usr/sbin/netcloner 2> /var/log/netcloner.log | LANG=es_ES.UTF-8 whiptail --clear --title "Clonador de Guadalinex v3" --gauge "Instalando Guadalinex v3..." 0 0 0 || cat /var/log/netcloner.log && exec /bin/bash
 
+clear
+reset
+
 EOF
 
 ${rootmnt}/bin/chmod +x ${rootmnt}/usr/sbin/progressbar

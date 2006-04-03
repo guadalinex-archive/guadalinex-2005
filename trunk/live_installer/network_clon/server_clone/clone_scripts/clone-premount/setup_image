@@ -20,15 +20,15 @@ esac
 
 LOG="/tmp/initramfs.debug"
 
-exec 2> $LOG 2>&2
+exec 2>> $LOG 2>&2
 
 set -x
 
 log_begin_msg "Montando la imagen..."
 
 # Just to be sure
-modprobe -q squashfs 
-modprobe -q loop >> /tmp/initramfs.debug 2>&1
+modprobe -q squashfs  >> /tmp/initramfs.debug 
+modprobe -q loop >> /tmp/initramfs.debug 
 
 IMAGE=/mnt/image
 mkdir -p ${IMAGE} 

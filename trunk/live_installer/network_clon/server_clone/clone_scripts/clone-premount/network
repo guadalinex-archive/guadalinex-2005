@@ -19,7 +19,8 @@ esac
 
 LOG="/tmp/initramfs.debug"
 
-exec 2> $LOG 2>&2
+exec 2>> $LOG 2>&2
+exec >> $LOG >&2
 
 set -x
 

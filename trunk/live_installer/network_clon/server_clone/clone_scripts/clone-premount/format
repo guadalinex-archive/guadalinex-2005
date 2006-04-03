@@ -19,7 +19,7 @@ esac
 
 LOG="/tmp/initramfs.debug"
 
-exec 2> $LOG 2>&2
+ exec 2>> $LOG 2>&2
 
 set -x
 
@@ -40,11 +40,11 @@ rm -f /etc/mtab
 ln -s /proc/mounts /etc/mtab
 
 # Format the partitions
-mkfs.ext3 $ROOT_PARTITION 
-mkswap $SWAP_PARTITION 
+mkfs.ext3 $ROOT_PARTITION  >> $LOG
+mkswap $SWAP_PARTITION  >> $LOG
 
 # Mounting main partition
 mkdir -p /mnt/dev/ 
-mount -t ext3 $ROOT_PARTITION /mnt/dev/ || panic "Fallo al intentar montar $ROOT_PARTITION"
+mount -t ext3 $ROOT_PARTITION /mnt/dev/ >> $LOG || panic "Fallo al intentar montar $ROOT_PARTITION"
 
 log_end_msg $?
