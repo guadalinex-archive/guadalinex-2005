@@ -47,15 +47,17 @@ ${rootmnt}/bin/chmod +x ${rootmnt}/usr/bin/find
 
 
 # Fixing reboot command and eject process from everywhere
-mv ${rootmnt}/sbin/reboot ${rootmnt}/sbin/reboot.orig
-
-cat <<EOF > ${rootmnt}/sbin/reboot
-#!/bin/sh
-
-chvt 1
-/sbin/reboot.orig \$@
-
-EOF
+# Commenting out next lines to see if it is fixed with lots of
+# chvt's so that it doesn't always halt
+#mv ${rootmnt}/sbin/reboot ${rootmnt}/sbin/reboot.orig
+#
+#cat <<EOF > ${rootmnt}/sbin/reboot
+##!/bin/sh
+#
+#chvt 1
+#/sbin/reboot.orig \$@
+#
+#EOF
 
 ${rootmnt}/bin/chmod +x ${rootmnt}/sbin/reboot
 
