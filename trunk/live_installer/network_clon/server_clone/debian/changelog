@@ -1,3 +1,9 @@
+server-clone (0.4-5) unstable; urgency=low
+
+  * Fixed some minor bugs and added some debug.
+
+ -- Juanje Ojeda <juanje@synaptia.net>  Mon, 03 Apr 2006 20:38:51 +0200
+
 server-clone (0.4-4) unstable; urgency=low
 
   * Fixed some bugs and included busybox dependency.
