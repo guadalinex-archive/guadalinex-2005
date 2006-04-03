@@ -51,6 +51,10 @@ clear
 
 eject -p -m /.dirs/dev >/dev/null 2>&1
 
+chvt 1
+
+clear
+
 # XXX - i18n
 echo -e "\n\n"
 echo -n "      Por favor, saque el CD, cierre la bandeja y pulse ENTER: "
