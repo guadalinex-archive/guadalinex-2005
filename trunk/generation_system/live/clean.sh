@@ -3,14 +3,15 @@
 # clean.sh:
 # 1) Put pkgs to install in PKGSDIR on target system
 # 2) Put this script in /tmp on target system
-# 3) chroot target system
-# 4) Execute /tmp/clean.sh
+# 3) Execute chroot /target /tmp/clean.sh
 
 PKGSDIR=/tmp/pkgs
 
 # Install pkgs in PKGSDIR
 cd $PKGSDIR
 dpkg --install *.deb
+
+apt-get update && apt-get -f install -y --force-yes
 
 # Removing cdrom line from sources.list
 cat /etc/apt/sources.list | grep -v cdrom > /tmp/sources.list.tmp
