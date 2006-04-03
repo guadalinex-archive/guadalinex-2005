@@ -164,7 +164,7 @@ class Config:
         path = '/media/Windows%d' % win_counter
         os.mkdir(os.path.join(self.target, path[1:]))
         win_counter += 1
-      elif fs == 'ext3':
+      elif ( fs in ['ext3', 'ext2', 'reiserfs', 'xfs'] ):
               options = 'defaults,users,exec,noauto'
               path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
               passno = 2
