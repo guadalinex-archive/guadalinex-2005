@@ -36,7 +36,7 @@ ifconfig $DEV $IP up
 killall oftpd udhcpd
 oftpd -i ${IP} -N root /cdrom/META/ &
 sed "s|@@DEV@@|${DEV}|g" /usr/share/server-clone/conf/udhcpd.conf > /tmp/udhcpd.conf
-sed "s|@@NET@@|${IP%.1}|g" /tmp/udhcpd.conf > /etc/udhcpd.conf
+sed "s|@@NET@@|${IP%.*}|g" /tmp/udhcpd.conf > /etc/udhcpd.conf
 /etc/init.d/udhcpd start
 
 cat <<EOF
