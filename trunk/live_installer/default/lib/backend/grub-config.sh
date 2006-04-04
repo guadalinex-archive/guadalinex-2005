@@ -151,6 +151,8 @@ get_params ()
     	    quiet) continue ;;
     	    splash) continue ;;
     	    break) continue ;;
+    	    xdriver=*) continue ;;
+    	    RESUME=*) continue ;;
     	    *) echo -n "$i " ;;
     	esac
     done
