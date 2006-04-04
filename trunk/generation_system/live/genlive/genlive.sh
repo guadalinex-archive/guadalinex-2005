@@ -77,6 +77,9 @@ else
         mksquashfs ${SOURCES} ${MASTER}/META/META.squashfs
 fi
 
+# Create a md5 checksum
+(cd ${MASTER} ; for i in $(find . -type f); do md5sum $i >> md5sum.lst ; done)
+
 #FIXME: Añadirle una opcion para cambiarle el isolinux.cfg
 
 mkisofs -l -r -J -V "${VOLUMENAME}" -hide-rr-moved -v -b isolinux/isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o  ${OUTPUTIMAGE} ${MASTER}
