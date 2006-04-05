@@ -1,0 +1,4 @@
+etc/mkinitramfs/hooks
+usr/share/initramfs-tools/modules.d
+usr/share/live-system/conf
+/var/lib/initramfs-tools

@@ -1,0 +1,26 @@
+#!/bin/sh
+# 
+
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# We want to keep the logs
+mv /tmp/initramfs.debug ${rootmnt}/var/log/
+ln -fs ${rootmnt}/var/log/initramfs.debug /tmp/initramfs.debug
+
+# Clean up the 1th console
+clear > /dev/tty1
+
+exit 0

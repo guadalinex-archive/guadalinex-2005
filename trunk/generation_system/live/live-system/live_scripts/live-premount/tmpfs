@@ -1,0 +1,21 @@
+#!/bin/sh
+# Set the tmpfs partition
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+mkdir /mnt >> /tmp/initramfs.debug 2>&1
+mount -t tmpfs -o "size=80%" tmpfs /mnt >> /tmp/initramfs.debug 2>&1
+
+exit 0

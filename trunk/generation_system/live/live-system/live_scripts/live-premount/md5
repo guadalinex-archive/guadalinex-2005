@@ -1,0 +1,51 @@
+#!/bin/sh
+# Check the md5sum file
+PREREQ=""
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+. /scripts/functions
+
+
+if ( grep -q md5 /proc/cmdline ); then
+	log_begin_msg "Comprobando la integridad del disco"
+	if ( cd /mnt/dev/ ; md5sum -cs md5sum.lst ); then
+		log_end_msg
+	        if [ -x /sbin/usplash_write ]; then
+	                /sbin/usplash_write "QUIT"
+        	fi
+		chvt 1
+		clear
+
+		echo -e "\n\n"
+		echo -n "       El Cdrom es correcto, pulse ENTER para reiniciar: "
+		read x
+	else
+		log_end_msg $?
+		chvt 1
+		clear
+		
+		echo -e "\n\n"
+		echo "       ERROR: Parece que se ha fallado al comprobar la integridad del disco "
+		echo -n "    Pulse ENTER para reiniciar: "
+		read x
+	fi
+
+	# Just in case...
+	echo "0x100" > /proc/sys/kernel/real-root-dev 
+
+	reboot
+fi
+
+exit 0

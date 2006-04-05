@@ -1,0 +1,62 @@
+#!/bin/sh
+# Search the image in the local disks
+PREREQ="tmpfs"
+
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+# Up the timeout
+/sbin/usplash_write "TIMEOUT 25"
+
+disks=""
+for device in /sys/block/* ; do
+        if [ -e ${device}/device ]; then
+                disk=${device#/sys/block/}
+                ls ${device}/${disk}* > /dev/null 2>&1
+                if [ $? = 0  ]; then
+                        for partition in ${device}/${disk}* ; do
+                                disks="${disks} ${partition#${device}/}"
+                        done
+                else
+                        disks="${disks} ${disk}"
+                fi
+        fi
+done
+
+
+for fs in isofs ext3 vfat ; do
+	modprobe -q $fs >> /tmp/initramfs.debug 2>&1
+done
+mkdir -p /mnt/dev >> /tmp/initramfs.debug 2>&1
+found=n
+for disk in $disks; do
+	mount -t auto /dev/$disk /mnt/dev >> /tmp/initramfs.debug 2>&1
+	if [ -e /mnt/dev/META/META.squashfs ]; then
+		found=y
+		break
+	else
+		umount /mnt/dev >> /tmp/initramfs.debug 2>&1
+	fi
+done
+if [ x${found} = xy ]; then
+	echo "LOCAL: image mounted" >> /tmp/initramfs.debug
+	exit 0
+else
+	echo "LOCAL: ERROR -> image non mounted" >> /tmp/initramfs.debug
+	exit 1
+fi
+
+
+
+
+
