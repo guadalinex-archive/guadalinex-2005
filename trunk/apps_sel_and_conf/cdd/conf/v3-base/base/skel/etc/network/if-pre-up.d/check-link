@@ -21,6 +21,9 @@ for dev in $wireless
 	fi
 done
 
+# hack in order to avoid weird bug with some devices
+ifconfig $IFACE up > /dev/null 2>&1
+
 STATUS=$(ethtool $IFACE | awk '/Link/ {print $3}')
 
 if [ $STATUS == "no" ]; then
