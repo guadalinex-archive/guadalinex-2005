@@ -25,7 +25,7 @@ cat <<EOF > ${rootmnt}/etc/rcS.d/S41Xconfig.sh
 # Based in casper script
 #
 
-VERBOSE=yes
+VERBOSE=no
 TMPTIME=0
 [ -f /etc/default/rcS ] && . /etc/default/rcS
 . /lib/lsb/init-functions
@@ -36,22 +36,39 @@ TMPTIME=0
 #
 log_begin_msg "Configuring the Xserver..."
 
-#db_set  xserver-xorg/autodetect_monitor true 
-#db_fset  xserver-xorg/autodetect_monitor seen true 
-#db_set  xserver-xorg/autodetect_mouse true 
-#db_fset  xserver-xorg/autodetect_mouse seen true
-#db_set  xserver-xorg/autodetect_video_card true
-#db_fset  xserver-xorg/autodetect_video_card seen true
-
-#env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
-#    -u DEBCONF_REDIR -u DEBCONF_OLD_FD_BASE \
-#    dpkg-reconfigure -fnoninteractive xserver-xorg
-
 #    DEBUG_XORG_PACKAGE=yes
 env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
     -u DEBCONF_REDIR -u DEBCONF_OLD_FD_BASE \
     DEBCONF_READFD=0 DEBCONF_WRITEFD=3 \
     dpkg-reconfigure -fpassthrough xserver-xorg >> /var/log/initramfs.debug 2>&1
+
+passed_driver=""
+for opt in \$(cat /proc/cmdline); do
+        if ( echo "\$opt" | grep -q "xdriver=" ); then
+                passed_driver="\${opt#xdriver=}"
+        fi
+done
+conf_driver=\$(awk -F\" '/Driver/ {val = \$2}; END{print val}' /etc/X11/xorg.conf)
+if [ -n "\$passed_driver" ]; then
+	sed -i "s|\"\$conf_driver\"|\"\$passed_driver\"|g" /etc/X11/xorg.conf
+	conf_driver=\$passed_driver
+fi
+
+# For future use
+# Doing someting special in some cards
+case \$conf_driver in
+        vesa) ;;
+        nv)
+		# Doing something with nv cards
+                # modprobe nvidia > /dev/null 2>&1
+		# sed -i "s|\\"nv\\"|\\"nvidia\\"|g" /etc/X11/xorg.conf
+		# sed -i "/dri/s/Load/\\#Load/g" /etc/X11/xorg.conf
+		# sed -i "/GLcore/s/Load/\\#Load/g" /etc/X11/xorg.conf
+		;;
+	ati)
+		# Doing something with ati cards
+		;;
+esac
 
 log_end_msg
 
