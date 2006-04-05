@@ -25,14 +25,18 @@ LAPTOP=$?
 if [ "$LAPTOP" == "0" ]; then
 
     [ ! -d "$4"/.gnome2 ] && su $1 -c "mkdir $4/.gnome2"
-    cat <<EOF >> "$4"/.gnome2/session-manual
+    cat <<EOF > "$4"/.gnome2/session-manual
 
 [Default]
-num_clients=1
+num_clients=2
 0,RestartStyleHint=3
 0,Priority=50
-0,RestartCommand=gnome-power-manager --has-quit
-0,Program=gnome-power-manager
+0,RestartCommand=/usr/bin/netapplet
+0,Program=/usr/bin/netapplet
+1,RestartStyleHint=3
+1,Priority=55
+1,RestartCommand=gnome-power-manager --has-quit
+1,Program=gnome-power-manager
 EOF
     chown $1:$2 "$4"/.gnome2/session-manual
 fi
