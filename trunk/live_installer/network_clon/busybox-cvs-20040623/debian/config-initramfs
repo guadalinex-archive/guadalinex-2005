@@ -201,7 +201,7 @@ CONFIG_FEATURE_GREP_CONTEXT=y
 # CONFIG_INIT is not set
 # CONFIG_HALT is not set
 # CONFIG_POWEROFF is not set
-# CONFIG_REBOOT is not set
+CONFIG_REBOOT=y
 # CONFIG_MESG is not set
 
 #
