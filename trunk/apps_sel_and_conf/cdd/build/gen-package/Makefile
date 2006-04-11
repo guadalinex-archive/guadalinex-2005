@@ -11,8 +11,8 @@ suplementos: packages-v3-suplementos
 mini: packages-v3-mini-escritorio
 	./build ../../conf/v3-mini-escritorio
 	./build ../../conf/v3-mini-noescritorio
-	./build ../../conf/v3-base
-	./buildmeta-mini  meta-guadalinex-v3-base meta-guadalinex-v3-mini-escritorio meta-guadalinex-v3-mini-noescritorio
+	./build ../../conf/v3-mini-base
+	./buildmeta-mini  meta-guadalinex-v3-mini-base meta-guadalinex-v3-mini-escritorio meta-guadalinex-v3-mini-noescritorio
 
 test: packages-test
 	./build ../../conf/test
