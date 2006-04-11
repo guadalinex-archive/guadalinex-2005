@@ -4,5 +4,5 @@
 
 
 
-07Bienvenido a Guadalinex v3 (live), pulse INTRO para continuar.
+07Bienvenido a Guadalinex v3.0.1BETA (live), pulse INTRO para continuar.
 Para ver la ayuda, pulse F2.
