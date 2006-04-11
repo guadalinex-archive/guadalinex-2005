@@ -146,6 +146,7 @@ get_params ()
     	    root=*) continue ;;
     	    initrd=*) continue ;;
     	    BOOT=*) continue ;;
+    	    BOOT_IMAGE=*) continue ;;
     	    debug) continue ;;
     	    init=*) continue ;;
     	    quiet) continue ;;
