@@ -26,7 +26,7 @@ ifconfig $IFACE up > /dev/null 2>&1
 
 STATUS=$(ethtool $IFACE | awk '/Link/ {print $3}')
 
-if [ $STATUS == "no" ]; then
+if [ "$STATUS" == "no" ]; then
 	log "ethernet dev: $IFACE with no link"
 	exit 1
 fi
