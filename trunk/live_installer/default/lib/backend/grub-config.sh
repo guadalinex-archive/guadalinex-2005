@@ -153,6 +153,7 @@ get_params ()
     	    break) continue ;;
     	    xdriver=*) continue ;;
     	    RESUME=*) continue ;;
+	    resume=*) continue;;
     	    *) echo -n "$i " ;;
     	esac
     done
