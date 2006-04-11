@@ -1,0 +1,35 @@
+#!/bin/bash
+
+log ()
+{
+	logger -t check-link -p syslog.info $*
+}
+
+wireless=$(awk -F: '/:/ {print $1}' /proc/net/wireless | tr -d ' ')
+
+for dev in $wireless
+	do
+	if [ "$IFACE == "$dev"" ]; then
+		/sbin/iwconfig $dev | grep -q "radio off"
+		if [ "$?" -eq 0 ]; then
+			log "wireless dev: $dev with no link"
+			exit 1
+		else
+			log "wireless dev: $dev with link"
+			exit 0
+		fi
+	fi
+done
+
+# hack in order to avoid weird bug with some devices
+ifconfig $IFACE up > /dev/null 2>&1
+
+STATUS=$(ethtool $IFACE | awk '/Link/ {print $3}')
+
+if [ $STATUS == "no" ]; then
+	log "ethernet dev: $IFACE with no link"
+	exit 1
+fi
+
+log "ethernet dev: $IFACE with link"
+exit 0
