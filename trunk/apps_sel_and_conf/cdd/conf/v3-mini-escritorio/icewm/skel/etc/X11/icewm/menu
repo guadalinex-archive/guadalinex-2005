@@ -16,8 +16,8 @@ menu "Accesorios" "folder" {
 }
 menu "Configuración" "folder" {
     prog "gmcc (Centro de control)" "gmcc" gmcc
-    prog "Synaptic (Gestor de paquetes)" "synaptic" synaptic
-    prog "xnetworkconf (Configurar la red)" "xnetworkconf" xnetwork
+    prog "Synaptic (Gestor de paquetes)" "synaptic" gksudo synaptic
+    prog "xnetworkconf (Configurar la red)" "xnetworkconf" gksudo xnetwork
     prog "Cambiar el menú" "iceme" iceme
     prog "Preferencias" "icepref" icepref
 }
