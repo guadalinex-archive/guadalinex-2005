@@ -1,10 +1,8 @@
 initramfs-tools (0.32uda3) breezy; urgency=low
 
-  * Some cosmetic stuff
+  * Added hacked version of halt to see if it solves reboot chvt probs
 
-  * Fixed some minor bugs.
-
- -- Juanje Ojeda <juanje@interactors.coop>  Sun,  30 Oct 2005 16:43:15 +0100
+ -- Rafa Martín <rmartin@emergya.info>  Tue, 11 Apr 2006 17:38:21 +0200
 
 initramfs-tools (0.32uda2) breezy; urgency=low
 

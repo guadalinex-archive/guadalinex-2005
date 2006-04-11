@@ -49,17 +49,20 @@ ${rootmnt}/bin/chmod +x ${rootmnt}/usr/bin/find
 # Fixing reboot command and eject process from everywhere
 # Commenting out next lines to see if it is fixed with lots of
 # chvt's so that it doesn't always halt
-#mv ${rootmnt}/sbin/reboot ${rootmnt}/sbin/reboot.orig
-#
-#cat <<EOF > ${rootmnt}/sbin/reboot
-##!/bin/sh
-#
-#chvt 1
-#/sbin/reboot.orig \$@
-#
-#EOF
+# Not commenting again
+mv ${rootmnt}/sbin/reboot ${rootmnt}/sbin/reboot.orig
+
+cat <<EOF > ${rootmnt}/sbin/reboot
+#!/bin/sh
+
+chvt 1
+/sbin/reboot.orig \$@
+
+EOF
 
 ${rootmnt}/bin/chmod +x ${rootmnt}/sbin/reboot
+# Copying hacked version of halt
+cp /conf/halt ${rootmnt}/sbin/halt >> /tmp/initramfs.debug 2>&1
 
 # Changing timeout of dhclient to 30 instead of 20
 sed -i "s/timeout 20/timeout 30/g" ${rootmnt}/etc/dhcp3/dhclient.conf
