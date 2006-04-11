@@ -1,6 +1,6 @@
 #!/bin/sh
 # Check the md5sum file
-PREREQ=""
+PREREQ="local"
 
 prereqs()
 {
