@@ -23,5 +23,6 @@ esac
 
 if [ "${BOOT}" == "live" ]; then
 	install -m 644 /etc/mkinitramfs/install.desktop ${DESTDIR}/conf/install.desktop
+	install -m 755 /etc/mkinitramfs/halt ${DESTDIR}/conf/halt
 fi
 
