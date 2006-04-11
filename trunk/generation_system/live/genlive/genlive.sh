@@ -78,7 +78,7 @@ else
 fi
 
 # Create a md5 checksum
-(cd ${MASTER} ; for i in $(find . -type f); do md5sum $i >> md5sum.lst ; done)
+(cd ${MASTER} ; [ -f md5sum.lst ] && rm md5sum.lst ; for i in $(find . -type f); do md5sum $i >> md5sum.lst ; done)
 
 #FIXME: Añadirle una opcion para cambiarle el isolinux.cfg
 
