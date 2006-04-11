@@ -11,7 +11,8 @@ PKGSDIR=/tmp/pkgs
 cd $PKGSDIR
 dpkg --install *.deb
 
-apt-get update && apt-get -f install -y --force-yes
+#apt-get update && apt-get -f install -y --force-yes
+apt-get -f install -y --force-yes
 
 # Removing cdrom line from sources.list
 cat /etc/apt/sources.list | grep -v cdrom > /tmp/sources.list.tmp
