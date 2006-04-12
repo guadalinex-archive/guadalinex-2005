@@ -78,7 +78,8 @@ else
 fi
 
 # Create a md5 checksum
-(cd ${MASTER} ; [ -f md5sum.lst ] && rm md5sum.lst ; for i in $(find . -type f); do md5sum $i >> md5sum.lst ; done)
+# Exclude isolinux.bin cause it is created by mkisofs later
+(cd ${MASTER} ; [ -f md5sum.lst ] && rm md5sum.lst ; for i in $(find . -type f | grep -v isolinux.bin); do md5sum $i >> md5sum.lst ; done)
 
 #FIXME: Añadirle una opcion para cambiarle el isolinux.cfg
 
