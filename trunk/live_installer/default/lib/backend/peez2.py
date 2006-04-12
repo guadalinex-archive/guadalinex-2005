@@ -156,6 +156,10 @@ class Peez2:
                     'then rm /tmp/guadalinex-express.commands; fi')
         p.wait ()
 
+    # Public method "set_partition_scheme" _________________________________________
+    def set_partition_scheme (self, partition_scheme):
+         self.__partition_scheme = partition_scheme
+
     # Public method "get_drives" _____________________________________________
 
     def get_drives (self):
