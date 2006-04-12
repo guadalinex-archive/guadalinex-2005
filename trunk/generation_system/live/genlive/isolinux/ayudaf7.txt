@@ -16,9 +16,9 @@
   que se utiliza para iniciar el sistema hasta la primera etapa del proceso 
   de arranque.
 
-
-
-
+0testcd07:    Con esta opción se comprueba la integridad del CD, para ver que no
+  esté mal grabado o en mal estado. 
+  
 
 
 
