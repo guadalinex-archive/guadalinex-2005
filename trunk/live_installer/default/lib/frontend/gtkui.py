@@ -92,6 +92,7 @@ class Wizard:
     self.mountpoints = {}
     self.part_labels = {' ' : ' '}
     self.remainder = 0
+    self.gparted_save_check = 0
 
     # Peez2 stuff initialization:
     self.__assistant = None
@@ -251,6 +252,8 @@ class Wizard:
 
   def gparted_loop(self):
     """call gparted and embed it into glade interface."""
+
+    self.user_partitions = open('/proc/partitions').read()
 
     pre_log('info', 'gparted_loop()')
     # Save pid to kill gparted when install process starts
@@ -658,7 +661,11 @@ class Wizard:
       self.peez2()
     # From Gparted to Mountpoints
     elif step == 3:
-      self.gparted_to_mountpoints()
+      if self.user_partitions == open('/proc/partitions').read() and  self.gparted_save_check == 0:
+        self.warning_gparted_save()
+        self.gparted_save_check = 1
+      else:
+        self.gparted_to_mountpoints()
     # From Mountpoints to Progress
     elif step == 4:
       self.mountpoints_to_progress()
@@ -1041,6 +1048,31 @@ class Wizard:
       self.on_alldisk_toggled (self.alldisk)
       self.on_manually_toggled (self.manually)
 
+  def warning_gparted_save (self):
+    import gtk
+
+    buttons = (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT)
+
+    warningdialog = gtk.Dialog("¡Cuidado!", None, gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT, buttons)
+
+    hbox = gtk.HBox()
+
+    image = gtk.Image()
+    image.set_from_stock(gtk.STOCK_DIALOG_WARNING, gtk.ICON_SIZE_DIALOG)
+    image.show()
+
+    label = gtk.Label("\nAsegúrese de haber pulsado el botón \"Guardar\"\n si ha realizado cambios en las particiones\n")
+    label.show()
+
+    hbox.pack_start(image, True, True, 5)
+    hbox.pack_start(label, True, True, 15)
+
+    hbox.show()
+
+    warningdialog.vbox.pack_start(hbox, True, True, 0)
+
+    result = warningdialog.run()
+    warningdialog.destroy()
 
   # Public method "on_steps_switch_page" _____________________________________
   def on_steps_switch_page (self, foo, bar, current):
