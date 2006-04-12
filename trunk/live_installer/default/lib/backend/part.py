@@ -96,12 +96,16 @@ def calc_sizes(tam):
 
   return sizes
   
-def call_all_disk(drive):
-  # 1 - get the disk size
+def get_disk_size(drive):
   out = Popen(['/sbin/sfdisk', '-s', drive], stdin=PIPE, stdout=PIPE,
               close_fds=True)
   tam = int(out.stdout.readline().strip())
   tam = tam/1024
+  return tam
+  
+def call_all_disk(drive):
+  # 1 - get the disk size
+  tam = get_disk_size(drive)
   # 2 - call calc_sizes(tam)
   sizes = calc_sizes(tam)
   if not sizes:
