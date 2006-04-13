@@ -160,6 +160,10 @@ class Peez2:
     def set_partition_scheme (self, partition_scheme):
          self.__partition_scheme = partition_scheme
 
+    # Public method "reset_partition_scheme" _________________________________________
+    def reset_partition_scheme (self):
+         self.__partition_scheme = MINIMAL_PARTITION_SCHEME
+
     # Public method "get_drives" _____________________________________________
 
     def get_drives (self):
