@@ -67,6 +67,7 @@ from Queue import Queue
 from ue.backend import *
 from ue.validation import *
 from ue.misc import *
+from ue.settings import MINIMAL_PARTITION_SCHEME
 from ue.backend.peez2 import *
 
 # Define Ubuntu Express global path
@@ -93,6 +94,7 @@ class Wizard:
     self.part_labels = {' ' : ' '}
     self.remainder = 0
     self.gparted_save_check = 0
+    self.partition_scheme = MINIMAL_PARTITION_SCHEME
 
     # Peez2 stuff initialization:
     self.__assistant = None
@@ -770,6 +772,7 @@ class Wizard:
 
       if -1 != current:
         progress = Queue ()
+	self.__assistant.set_partition_scheme(self.partition_scheme)
         thread.start_new_thread (launch_autoparted, (self, self.__assistant, selected_drive, progress))
         msg = str (progress.get ())
 
@@ -808,6 +811,7 @@ class Wizard:
     elif self.recycle.get_active ():
 
       if -1 != current:
+	self.__assistant.reset_partition_scheme()
         self.mountpoints = selected_drive ['linux_before']
         stderr.write ('\n\n' + str (self.mountpoints) + '\n\n')
         self.steps.set_current_page(5)
@@ -1006,9 +1010,17 @@ class Wizard:
           if not self.__assistant.only_manually ():
 
             if not self.discard_automatic_partitioning:
-
-##               if selected_drive.has_key (''):
-
+		drive = selected_drive['id']
+		schemes_list = part.get_schemes_list(drive)
+		last_scheme = self.partition_scheme
+		for scheme in schemes_list:
+		    self.__assistant.set_partition_scheme(scheme)
+	            selected_drive = self.__assistant.get_drives()[current]
+		    if not selected_drive ['large_enough']:
+			self.partition_scheme = last_scheme
+		    else:
+			last_scheme = scheme
+		    
               self.freespace.set_sensitive (True)
 
             if selected_drive.has_key ('linux_before'):
