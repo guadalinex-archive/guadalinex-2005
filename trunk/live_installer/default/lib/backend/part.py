@@ -107,7 +107,7 @@ def get_schemes_list(drive):
   # 1 - get the disk size
   tam = get_disk_size(drive)
   # 2 - get the list of sizes (50% , 25% and minimal)
-  tam_list = [percentage(tam,50), percentage(tam,25), 3072]
+  tam_list = [3072, percentage(tam,25), percentage(tam,50)]
   # 3 - get the list of schemes (one per size)
   schemes_list = []
   for size in tam_list:
