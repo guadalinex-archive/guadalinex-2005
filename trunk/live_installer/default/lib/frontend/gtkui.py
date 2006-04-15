@@ -1015,13 +1015,12 @@ class Wizard:
 		last_scheme = self.partition_scheme
 		for scheme in schemes_list:
 		    self.__assistant.set_partition_scheme(scheme)
-	            selected_drive = self.__assistant.get_drives()[current]
-		    if not selected_drive ['large_enough']:
-			self.partition_scheme = last_scheme
-		    else:
+	            s_drive = self.__assistant.get_drives()[current]
+		    if s_drive ['large_enough']:
 			last_scheme = scheme
 		    
-              self.freespace.set_sensitive (True)
+		self.partition_scheme = last_scheme
+                self.freespace.set_sensitive (True)
 
             if selected_drive.has_key ('linux_before'):
 
