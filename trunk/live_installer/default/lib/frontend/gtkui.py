@@ -1020,7 +1020,8 @@ class Wizard:
 			last_scheme = scheme
 		    
 		self.partition_scheme = last_scheme
-                self.freespace.set_sensitive (True)
+		if not part.extend:
+                	self.freespace.set_sensitive (True)
 
             if selected_drive.has_key ('linux_before'):
 

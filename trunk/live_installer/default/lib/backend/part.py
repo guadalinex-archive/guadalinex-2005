@@ -103,6 +103,16 @@ def get_disk_size(drive):
   tam = tam/1024
   return tam
   
+def extend(drive):
+  out = Popen(['/sbin/fdisk', '-l', drive], stdin=PIPE, stdout=PIPE, close_fds=True)
+  cont = out.stdout.readlines()
+  for i in cont:
+      if i.startswith("/dev/"):
+              line = i.split()
+              if line[4] == '5':
+                return True
+  return False
+  
 def get_schemes_list(drive):
   # 1 - get the disk size
   tam = get_disk_size(drive)
