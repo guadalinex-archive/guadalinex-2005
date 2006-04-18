@@ -1,0 +1,100 @@
+Guadalinex v3.0.1 beta1 (17-04-06)
+-----------------------
+
+Cambios mayores:
+
+- Solucionados los problemas generalizados con "Loading modules":
+  - Detectado: problema con la configuración de la partición "resume"
+  - Cambiado sistema de generación para evitar los problemas
+  - Mejoras en el instalador "live" para configurar correctamente esta
+  partición de "resume"
+
+- Solucionado problema con la generación del fichero "swapfile" cuando no se
+ha definido partición de "swap".
+
+- Solucionado nombre del equipo en SAMBA: ahora se muestra el nombre de la
+máquina y no "Guadalinex" (BTS 576)
+
+- Eliminado driver "xorg-driver-fglrx" por defecto y cambiadas depedencias de
+los metapaquetes de configuración para evitar incompatibilidades con este
+driver o con el de "nvidia". Ahora se instalán éstos últimos por defecto. (BTS
+517, 587)
+
+- Cambios en el arranque e inicialización de la red:
+  - Añadido "script" para detectar la existencia o no de enlace (link) y pedir
+  IP por DHCP en caso de que exista <-- ESTA FUNCIONALIDAD NECESITA PROBARSE
+  INTENSAMENTE
+  - Disminuidos los "timeouts" de DHCP para evitar largas esperas pidiendo IP
+  tanto en "live" como en el sistema instalado.
+
+- Cambiada generación del "fstab" para que:
+  - No compruebe particiones VFAT.
+  - Genere correctamente las particiones REISERFS (BTS 493)
+
+- Incluida nueva versión de OOo2:
+  - Regenerados los paquetes de Ubuntu para hacerlos compatibles con
+  Guadalinex
+  - Solucionados problemas con algunos .doc a la hora de guardar y con
+  presentaciones de tamaño grande 
+  - Solucionados los problemas con la galería y "fontwork" (BTS 570)
+
+- Mejorado soporte para suspender/hibernar: se han incluido las últimas
+actualizaciones de Breezy relacionadas con estas funcionalidades. <-- ESTA
+FUNCIONALIDAD NECESITA PROBARSE INTENSAMENTE
+
+- Añadida nueva opción al instalador "live": "Utilizar todo el disco"
+
+- Modificado instalador "live" para que conserve en el sistema instalado
+aquellas opciones que se le hayan pasado como parámetro durante el arranque
+que no sean para el sistema "live".
+
+- Mejoras estéticas en el arranque "live": 
+  - Aumentado el "timeout" de "usplash" para tratar de evitar que se "caiga"
+  antes de llegar al final.
+  - Cambiado sistema de generación "live" para evitar los problemas con la
+  inicialización de "ALSA" (aparecería una línea más larga de la cuenta).
+
+- Incluido sistema de "detección de botón Guardar" en "particionado manual"
+del instalador "live": si no existen cambios en la tabla de particiones antes
+y después del particionado manual da un aviso de que es probable que no se
+hayan guardado los cambios.
+
+- Cambios en el sistema de apagado/reinicio en "live":
+  - Se ha recompilado el binario "halt" para evitar los problemas de apagado
+  aunque se reinicie el equipo.
+  - Se ha modificado el sistema de "gestión de apagado" para tratar de que se
+  muestre siempre el mensaje de "Extraiga el CD-ROM de la unidad y pulse una
+  tecla para continuar" <-- ESTA FUNCIONALIDAD NECESITA PROBARSE INTENSAMENTE
+
+- Solucionados problemas con los formularios en "acroread": se ha instalado el
+paquete "acroread-plugins" (BTS 474 y 700)
+
+- Añadido sistema de comprobación de MD5 en el sistema "live":
+  - Se ha añadido la opción "testcd" al arranque live que comprueba el MD5 de
+  todos los ficheros del sistema "live"
+  - Cambiado el sistema de generación "live" para generar el MD5 de los
+  ficheros.
+
+- Añadida opción "xdriver" al sistema "live" para elegir el "driver" que se
+utilizará en el sistema gráfico. 
+
+
+Cambios menores:
+
+- Eliminado "flamenco" del mensaje de "issue"
+- Añadida versión de Guadalinex a "isolinux"
+- Actualizado "lsb-release" a la nueva versión
+- Añadida opción al fichero de configuración de SAMBA para compartir
+impresoras de CUPS 
+- Solucionado problemas con la aparición de la herramientas de gestión de
+energía en portátiles. 
+- Actualizados todos los paquetes de Breezy a las últimas versiones
+disponibles.
+
+Distribución "mini":
+
+- Solucionados problemas con apagado/reinicio
+- Actualizados los paquetes a las últimas versiones
+- Actualizado sistema de generación
+- Incluido el "artwork" definitivo de la versión "mini" v3.
+
