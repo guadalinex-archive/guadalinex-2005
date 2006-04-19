@@ -12,7 +12,7 @@
 0dnousb07:    Deshabilita el subsistema USB
            Ej: linux nousb
 0dxdriver=07: Establece el driver para el sistema X Window
-	   Ej: linux xdriver=vesa
+           Ej: linux xdriver=vesa
 
                                                                (Más ayuda... F7)
 
