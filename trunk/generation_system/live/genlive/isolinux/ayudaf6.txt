@@ -11,13 +11,14 @@
            Ej: linux nolapic
 0dnousb07:    Deshabilita el subsistema USB
            Ej: linux nousb
+0dxdriver=07: Establece el driver para el sistema X Window
+	   Ej: linux xdriver=vesa
 
                                                                (Más ayuda... F7)
 
 
 Se pueden 0dcombinar07 varios parámetros separándolos por espacios, por ejemplo:
 linux acpi=off noapic nolapic nousb
-
 
 
 
