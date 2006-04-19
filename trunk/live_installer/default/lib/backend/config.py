@@ -214,6 +214,8 @@ class Config:
     system. Default user from live system is deleted and skel for this new user is
     copied to $HOME."""
 
+    self.chrex('mount', '-t', 'proc', 'proc', '/proc')
+    
     self.chrex('passwd', '-l', 'root')
     #self.set_debconf('passwd', 'passwd/username', self.username)
     #self.set_debconf('passwd', 'passwd/user-fullname', self.fullname)
