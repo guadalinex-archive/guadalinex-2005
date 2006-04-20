@@ -737,6 +737,7 @@ class Wizard:
       gtk.main_iteration ()
 
     self.freespace.set_active (False)
+    self.notparted.set_active (False)
     self.alldisk.set_active (False)
     self.recycle.set_active (False)
     self.manually.set_active (False)
@@ -986,6 +987,11 @@ class Wizard:
         chekboxes to reflect the set of permited operations on the new
         drive. """
 
+    self.freespace.set_sensitive (False)
+    self.notparted.set_sensitive (False)
+    self.recycle.set_sensitive (False)
+    self.alldisk.set_sensitive (False)
+    self.manually.set_sensitive (False)
     model = self.drives.get_model ()
 
     if len (model) > 0:
@@ -996,6 +1002,7 @@ class Wizard:
 
         if not selected_drive ['large_enough']:
           self.freespace.set_sensitive (False)
+          self.notparted.set_sensitive (False)
           self.recycle.set_sensitive (False)
           self.alldisk.set_sensitive (False)
           self.manually.set_sensitive (False)
@@ -1030,6 +1037,7 @@ class Wizard:
 
         # All options are disabled:
         self.freespace.set_active (False)
+        self.notparted.set_active (False)
         self.recycle.set_active (False)
         self.alldisk.set_active (False)
         self.manually.set_active (False)
@@ -1040,10 +1048,12 @@ class Wizard:
         # Only the first possible option (if any) is enabled:
         if self.freespace.get_property ('sensitive'):
           self.freespace.set_active (True)
-        elif self.recycle.get_property ('sensitive'):
-          self.recycle.set_active (True)
+        elif self.notparted.get_property ('sensitive'):
+          self.notparted.set_active (True)
         elif self.alldisk.get_property ('sensitive'):
           self.alldisk.set_active (True)
+        elif self.recycle.get_property ('sensitive'):
+          self.recycle.set_active (True)
         elif self.manually.get_property ('sensitive'):
           self.manually.set_active (True)
         else:
@@ -1056,6 +1066,7 @@ class Wizard:
 
     if selected_drive ['large_enough']:
       self.on_freespace_toggled (self.freespace)
+      self.on_notparted_toggled (self.notparted)
       self.on_recycle_toggled (self.recycle)
       self.on_alldisk_toggled (self.alldisk)
       self.on_manually_toggled (self.manually)
@@ -1132,6 +1143,23 @@ class Wizard:
         'se produzca una pérdida de datos</b> si es necesario cambiar el ' +
         'tamaño de las particiones existentes para conseguir espacio para ' +
         'las nuevas.</span>', '4'))
+
+
+  # Public method "on_notparted_toggled" _____________________________________
+  def on_notparted_toggled (self, widget):
+
+    """ Update help message when this radio button is selected. """
+
+    if self.notparted.get_active ():
+      self.confirmation_checkbutton.show ()
+      self.confirmation_checkbutton.set_active (False)
+      self.next.set_sensitive (False)
+      self.partition_message.set_markup (self.resize_text(
+        '<span>Se utilizará espacio libre (es decir, en el que no existe ninguna' + 
+	'partición) disponible en su disco duro.' +
+	'Se crearán 3 particiones <b>nuevas</b> y se instalará ahí el sistema. ' +
+	'<b>No se modificará ninguna de las particiones o sistemas operativos ya existentes</b>' +
+        '</span>', '4'))
 
 
 
