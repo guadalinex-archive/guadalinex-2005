@@ -290,6 +290,7 @@ def call_gparted(widget):
   '''
   import gtk
   import sys
+  import os
 
   # plug/socket implementation (Gparted integration)
   socket = gtk.Socket()
@@ -301,6 +302,7 @@ def call_gparted(widget):
   #mountpoints = None
 
   try:
+    os.putenv('LANG','es_ES.UTF-8')    
     out = Popen(['/usr/bin/gparted', '-i', Wid], stdin=PIPE, stdout=PIPE,
                 close_fds=True)
     # get the output last line 
