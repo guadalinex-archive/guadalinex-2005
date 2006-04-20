@@ -1035,7 +1035,7 @@ class Wizard:
           self.alldisk.set_sensitive (True)
 
 	  scheme, partitions = part.get_empty_space(selected_drive['id'])
-          if scheme and partitions:
+          if scheme and partitions and not part.is_empty(selected_drive['id']):
 		self.notparted.set_sensitive(True)
 		self.notparted_schemes = (scheme, partitions)
 
