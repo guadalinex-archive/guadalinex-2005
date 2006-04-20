@@ -830,7 +830,7 @@ class Wizard:
     elif self.recycle.get_active ():
 
       if -1 != current:
-	self.__assistant.reset_partition_scheme()
+	#self.__assistant.reset_partition_scheme()
         self.mountpoints = selected_drive ['linux_before']
         stderr.write ('\n\n' + str (self.mountpoints) + '\n\n')
         self.steps.set_current_page(5)
@@ -1018,6 +1018,7 @@ class Wizard:
       current = self.drives.get_active ()
 
       if -1 != current:
+        #self.__assistant.reset_partition_scheme ()
         selected_drive = self.__assistant.get_drives () [current]
 
         if not selected_drive ['large_enough']:
@@ -1052,6 +1053,7 @@ class Wizard:
 			last_scheme = scheme
 		    
 		self.partition_scheme = last_scheme
+		self.__assistant.reset_partition_scheme()
 		if not part.extend(drive) and not part.is_empty(drive):
                 	self.freespace.set_sensitive (True)
 
@@ -1220,6 +1222,7 @@ class Wizard:
         current = self.drives.get_active ()
 
         if -1 != current and None != current:
+	  #self.__assistant.reset_partition_scheme()
           selected_drive = self.__assistant.get_drives () [current]
           associations = selected_drive ['linux_before']
           where = '<span foreground="#800000"><b>\n\nSe usarán las ' + \
