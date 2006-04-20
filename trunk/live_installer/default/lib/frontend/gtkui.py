@@ -95,6 +95,7 @@ class Wizard:
     self.remainder = 0
     self.gparted_save_check = 0
     self.partition_scheme = MINIMAL_PARTITION_SCHEME
+    self.notparted_schemes = (None, None)
 
     # Peez2 stuff initialization:
     self.__assistant = None
@@ -768,6 +769,23 @@ class Wizard:
       self.progress_loop()
 
 
+    if self.notparted.get_active ():
+      self.partition_bar.show ()
+      self.partition_bar.set_fraction (0.5)
+      self.partition_bar.set_text ('Creando particiones')
+      scheme, self.partitions = part.notparted_schemes
+      part.part_scheme(selected_drive['id'], scheme)
+      while gtk.events_pending ():
+        gtk.main_iteration ()
+      self.partition_bar.set_fraction (1.00)
+      self.partition_bar.set_text ('Particionado finalizado')
+      self.steps.set_current_page(5)
+      self.back.hide()
+      while gtk.events_pending ():
+        gtk.main_iteration ()
+      self.progress_loop()
+
+
     if self.freespace.get_active ():
       self.partition_bar.show ()
 
@@ -1013,6 +1031,11 @@ class Wizard:
         else:
           self.manually.set_sensitive (True)
           self.alldisk.set_sensitive (True)
+
+	  scheme, partitions = part.get_empty_space(selected_drive['id'])
+          if scheme and partition:
+		self.notparted.set_sensitive(True)
+		self.notparted_schemes = (scheme, partitions)
 
           if not self.__assistant.only_manually ():
 
