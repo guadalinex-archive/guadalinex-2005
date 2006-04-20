@@ -1161,14 +1161,15 @@ class Wizard:
       self.confirmation_checkbutton.set_active (False)
       self.next.set_sensitive (False)
       self.partition_message.set_markup (self.resize_text(
-        '<span><b>Este método de particionado es EXPERIMENTAL.</b>\n\n' +
-        'Se crearán 3 particiones <b>nuevas</b> en su disco duro y ' +
-        'se instalará ahí el sistema. En la mayoría de los casos, los datos ' +
-        'que haya ya en el disco duro ' +
-        'no se destruirán.\n\nNota: en algunos casos, <b>es posible que ' +
-        'se produzca una pérdida de datos</b> si es necesario cambiar el ' +
-        'tamaño de las particiones existentes para conseguir espacio para ' +
-        'las nuevas.</span>', '4'))
+        '<span>Este método de particionado puede utilizarse cuando ' +
+	'<b>todo el disco está ocupado por otros sistemas operativos</b>. \n\n' +
+	'Si elige esta opción, se reducirá el espacio asignado a otros \n' +
+	'sistemas operativos y se utilizará el espacio libre resultante ' 
+ 	'para su nuevo sistema Guadalinex v3.\n'
+	'Se crearán 3 particiones <b>nuevas</b> en su disco duro y ' +
+        'se instalará ahí el sistema. Aunque es improbable que se produzca ' +
+	'una pérdida de sus datos, se recomienda hacer una <b>copia de ' +
+	'seguridad</b> antes de realizar la instalación.</span>', '4'))
 
 
   # Public method "on_notparted_toggled" _____________________________________
@@ -1181,8 +1182,8 @@ class Wizard:
       self.confirmation_checkbutton.set_active (False)
       self.next.set_sensitive (False)
       self.partition_message.set_markup (self.resize_text(
-        '<span>Se utilizará espacio libre (es decir, en el que no existe ninguna' + 
-	'partición) disponible en su disco duro.' +
+        '<span>Con este método se utilizará <b>espacio libre</b> (es decir, en el que ' +
+	'no existe <b>ninguna partición</b>) disponible en su disco duro.' +
 	'Se crearán 3 particiones <b>nuevas</b> y se instalará ahí el sistema. ' +
 	'<b>No se modificará ninguna de las particiones o sistemas operativos ya existentes</b>' +
         '</span>', '4'))
@@ -1199,8 +1200,8 @@ class Wizard:
       self.confirmation_checkbutton.set_active (False)
       self.next.set_sensitive (False)
       self.partition_message.set_markup (self.resize_text(
-        '<span><b>Este método de particionado es ireversible,' +
-	'se borrará todo el disco</b> y se crearán 3 particiones' +
+        '<span><Este método de particionado es ireversible: ' +
+	'<b>se borrará todo el disco</b> y se crearán 3 particiones' +
 	'<b>nuevas</b> en su disco duro. Se instalará ahí el sistema.\n\n' +
         '<b>Se perderá cualquier información que haya en el disco</b></span>', '4'))
 
@@ -1256,7 +1257,7 @@ class Wizard:
       self.confirmation_checkbutton.set_active (False)
       self.next.set_sensitive (True)
       self.partition_message.set_markup (self.resize_text(
-        '<span>Use este método de particionado si desea total libertad ' +
+        '<span>Use este método de particionado si desea <b>total libertad<b> ' +
         'para decidir dónde instalar cada componente del sistema. Podrá ' +
         'crear, destruir y redimensionar cualquier partición para que cada ' +
         'parte ocupe el espacio que quiera.\n\n<b>Atención:</b> las ' +
