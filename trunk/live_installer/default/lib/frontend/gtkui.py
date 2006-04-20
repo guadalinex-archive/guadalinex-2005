@@ -773,7 +773,7 @@ class Wizard:
       self.partition_bar.show ()
       self.partition_bar.set_fraction (0.5)
       self.partition_bar.set_text ('Creando particiones')
-      scheme, self.partitions = part.notparted_schemes
+      scheme, self.mountpoints = self.notparted_schemes
       part.part_scheme(selected_drive['id'], scheme)
       while gtk.events_pending ():
         gtk.main_iteration ()
@@ -1033,7 +1033,7 @@ class Wizard:
           self.alldisk.set_sensitive (True)
 
 	  scheme, partitions = part.get_empty_space(selected_drive['id'])
-          if scheme and partition:
+          if scheme and partitions:
 		self.notparted.set_sensitive(True)
 		self.notparted_schemes = (scheme, partitions)
 

@@ -20,6 +20,7 @@ class Format:
     of this operation.
     '''
 
+    misc.ex('udevstart')
     for device, path in self.mountpoints.items():
       if path in ['/']:
         queue.put( "1 Formateando partición raíz" )

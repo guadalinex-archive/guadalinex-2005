@@ -53,7 +53,7 @@
 
 from subprocess import *
 from os import system
-import misc
+from ue import misc
 
 def call_autoparted (assistant, drive, progress = None):
 
@@ -169,7 +169,7 @@ def get_empty_space(drive):
         # If there is more than 12 logic partitions(4 primaries plus 8 logicals) exit
         if logics > 8:
     	    print "Too much logical partitions"
-    	    pre_log('error', "Too much logical partitions")
+    	    misc.pre_log('error', "Too much logical partitions")
     	    return (None,None)
     
         sizes = []
@@ -181,7 +181,7 @@ def get_empty_space(drive):
         
         if not sizes:
 	    print "No freespace has enough room"
-	    pre_log('error', "No freespace has enough room")
+	    misc.pre_log('error', "No freespace has enough room")
 	    return (None,None)
         bigger = max(sizes)
         index = sizes.index(bigger)
@@ -192,7 +192,7 @@ def get_empty_space(drive):
         end = list[i][1]/conv_value
     	if not scheme:
     	    print "Not enough space"
-    	    pre_log('error', "Not enough space")
+    	    misc.pre_log('error', "Not enough space")
     	    return (None,None)
         limits = limits_for_scheme(begin, end, scheme)
         logic_dev = logics + 4
@@ -215,14 +215,14 @@ def get_empty_space(drive):
                 nonfrees += 1
         if nonfrees > 3:
             print "Too many primary partitions"
-    	    pre_log('error', "Too many primary partitions")
+    	    misc.pre_log('error', "Too many primary partitions")
     	    return (None,None)
         sizes = []
         for i in list:
             sizes.append(i[2])
         if not sizes:
 	    print "No freespace has enough room"
-	    pre_log('error', "No freespace has enough room")
+	    misc.pre_log('error', "No freespace has enough room")
 	    return (None,None)
         bigger = max(sizes)
         index = sizes.index(bigger)
@@ -232,7 +232,7 @@ def get_empty_space(drive):
         end = (list[index][1]/conv_value)-2
     	if not scheme:
     	    print "Not enough space"
-    	    pre_log('error', "Not enough space")
+    	    misc.pre_log('error', "Not enough space")
     	    return (None,None)
         limits = limits_for_scheme(begin, end, scheme)
         limits['extended'] = [begin, end]
@@ -240,7 +240,8 @@ def get_empty_space(drive):
                        "%s%d" % (drive,6) : '/home',
                        "%s%d" % (drive,7) : 'swap'  
                      }
-                       
+                     
+    sys.stderr.write("Limits: ", limits, "\nMountpoints: ", partitions, "\n")                   
     return (limits,partitions)
         
  
