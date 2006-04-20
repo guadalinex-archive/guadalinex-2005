@@ -114,6 +114,14 @@ def extend(drive):
               if line[4] == '5':
                 return True
   return False
+   
+def is_empty(drive):
+  out = Popen(['/sbin/fdisk', '-l', drive], stdin=PIPE, stdout=PIPE, close_fds=True)
+  cont = out.stdout.readlines()
+  for i in cont:
+      if i.startswith("/dev/"):
+        return False
+  return True
  
 def limits_for_scheme(begin, end, scheme):
     mega_scheme = {}
