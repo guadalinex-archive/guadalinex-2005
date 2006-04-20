@@ -18,6 +18,7 @@ install: build
 	dh_installdirs
 	dh_install grubaker usr/sbin
 	dh_install grubaker.glade usr/share/grubaker
+	dh_install grubaker.png usr/share/grubaker
 	dh_install grubaker.desktop usr/share/applications
 	dh_install grubaker.png usr/share/pixmaps
 	touch install-stamp

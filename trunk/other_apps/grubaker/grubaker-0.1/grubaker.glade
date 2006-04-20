@@ -38,7 +38,7 @@
 	  <child>
 	    <widget class="GtkImage" id="logo">
 	      <property name="visible">True</property>
-	      <property name="pixbuf">logo.png</property>
+	      <property name="pixbuf">grubaker.png</property>
 	      <property name="xalign">0.5</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
