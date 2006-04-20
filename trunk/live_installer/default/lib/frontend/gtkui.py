@@ -995,6 +995,9 @@ class Wizard:
     if step == 2:
       self.back.hide()
 
+    if step ==3:
+      self.on_drives_changed (None)
+
     if step is not 6:
       self.steps.prev_page()
 
