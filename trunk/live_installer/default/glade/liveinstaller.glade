@@ -987,7 +987,7 @@
 				    <widget class="GtkRadioButton" id="freespace">
 				      <property name="visible">True</property>
 				      <property name="sensitive">False</property>
-				      <property name="tooltip" translatable="yes">Seleccione esta opción para usar el espacio libre que hay en su disco duro, sin perder los datos que ya contiene</property>
+				      <property name="tooltip" translatable="yes">Seleccione esta opción para usar el espacio libre disponible en la partición de otro sistema operativo</property>
 				      <property name="can_focus">True</property>
 				      <property name="label" translatable="yes">Utilizar el espacio libre de otro sistema operativo</property>
 				      <property name="use_underline">True</property>
@@ -1040,7 +1040,7 @@
 				      <property name="sensitive">False</property>
 				      <property name="tooltip" translatable="yes">Con este método se aprovecharán las particiones GNU/Linux que hay en el disco duro, reemplazando el sistema anterior</property>
 				      <property name="can_focus">True</property>
-				      <property name="label" translatable="yes">Reutilizar las particiones existentes</property>
+				      <property name="label" translatable="yes">Reutilizar particiones GNU/Linux existentes</property>
 				      <property name="use_underline">True</property>
 				      <property name="relief">GTK_RELIEF_NORMAL</property>
 				      <property name="focus_on_click">True</property>
@@ -1090,7 +1090,7 @@
 				    <widget class="GtkRadioButton" id="notparted">
 				      <property name="visible">True</property>
 				      <property name="sensitive">False</property>
-				      <property name="tooltip" translatable="yes">Seleccione esta opción para usar el espacio que no está siendo usado por ningun sistema operativo en su disco.</property>
+				      <property name="tooltip" translatable="yes">Seleccione esta opción para usar el espacio del disco que no está siendo usado por ningun sistema operativo.</property>
 				      <property name="can_focus">True</property>
 				      <property name="label" translatable="yes">Utilizar espacio libre (no particionado)</property>
 				      <property name="use_underline">True</property>
