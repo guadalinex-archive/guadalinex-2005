@@ -1007,7 +1007,6 @@ class Wizard:
     """ When a different drive is selected, it is necessary to update the
         chekboxes to reflect the set of permited operations on the new
         drive. """
-
     self.freespace.set_sensitive (False)
     self.notparted.set_sensitive (False)
     self.recycle.set_sensitive (False)
@@ -1199,8 +1198,8 @@ class Wizard:
       self.confirmation_checkbutton.show ()
       self.confirmation_checkbutton.set_active (False)
       self.next.set_sensitive (False)
-      self.partition_message.set_markup (self.resize_text(
-        '<span><Este método de particionado es ireversible: ' +
+      self.partition_message.set_markup (self.resize_text('' +
+        '<span>Este método de particionado es ireversible: ' +
 	'<b>se borrará todo el disco</b> y se crearán 3 particiones' +
 	'<b>nuevas</b> en su disco duro. Se instalará ahí el sistema.\n\n' +
         '<b>Se perderá cualquier información que haya en el disco</b></span>', '4'))
@@ -1220,12 +1219,12 @@ class Wizard:
       if len (model) > 0:
         current = self.drives.get_active ()
 
-        if -1 != current:
+        if -1 != current and None != current:
           selected_drive = self.__assistant.get_drives () [current]
           associations = selected_drive ['linux_before']
           where = '<span foreground="#800000"><b>\n\nSe usarán las ' + \
                   'siguientes particiones:\n'
-
+	
           for i in associations.keys ():
 
             if i in self.part_labels:
@@ -1239,8 +1238,8 @@ class Wizard:
       else:
         where = ''
 
-      self.partition_message.set_markup (self.resize_text(
-        '<span>Se ha detectado un sistema GNU/Linux instalado ya en este ' +
+      self.partition_message.set_markup (self.resize_text('<span>Se ha detectado ' +
+	'un sistema GNU/Linux instalado ya en este ' +
         'disco duro. Se van a usar esas mismas particiones para el nuevo ' +
         'sistema, <b>reemplazando</b> al anterior.\n\nTenga en cuenta que ' +
         '<b>todos los datos que hubiese en ese sistema Linux previo se ' +
@@ -1257,7 +1256,7 @@ class Wizard:
       self.confirmation_checkbutton.set_active (False)
       self.next.set_sensitive (True)
       self.partition_message.set_markup (self.resize_text(
-        '<span>Use este método de particionado si desea <b>total libertad<b> ' +
+        '<span>Use este método de particionado si desea <b>total libertad</b> ' +
         'para decidir dónde instalar cada componente del sistema. Podrá ' +
         'crear, destruir y redimensionar cualquier partición para que cada ' +
         'parte ocupe el espacio que quiera.\n\n<b>Atención:</b> las ' +
