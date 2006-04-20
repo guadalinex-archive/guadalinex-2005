@@ -54,6 +54,7 @@
 from subprocess import *
 from os import system
 from ue import misc
+import sys
 
 def call_autoparted (assistant, drive, progress = None):
 
@@ -241,7 +242,7 @@ def get_empty_space(drive):
                        "%s%d" % (drive,7) : 'swap'  
                      }
                      
-    sys.stderr.write("Limits: ", limits, "\nMountpoints: ", partitions, "\n")                   
+    print >>sys.stderr, "Limits: ", limits, "\nMountpoints: ", partitions
     return (limits,partitions)
         
  
