@@ -196,9 +196,9 @@ def get_empty_space(drive):
     	    return (None,None)
         limits = limits_for_scheme(begin, end, scheme)
         logic_dev = logics + 4
-        partitions = { '/'     : "%s%d" % (drive,logic_dev+1),
-                       '/home' : "%s%d" % (drive,logic_dev+2),
-                       'swap'  : "%s%d" % (drive,logic_dev+3)
+        partitions = { "%s%d" % (drive,logic_dev+1) : '/'    ,
+                       "%s%d" % (drive,logic_dev+2) : '/home',
+                       "%s%d" % (drive,logic_dev+3) : 'swap'  
                      }
     else:
         nonfrees = 0
@@ -236,9 +236,9 @@ def get_empty_space(drive):
     	    return (None,None)
         limits = limits_for_scheme(begin, end, scheme)
         limits['extended'] = [begin, end]
-        partitions = { '/'     : "%s%d" % (drive,5),
-                       '/home' : "%s%d" % (drive,6),
-                       'swap'  : "%s%d" % (drive,7) 
+        partitions = { "%s%d" % (drive,5) : '/'    ,
+                       "%s%d" % (drive,6) : '/home',
+                       "%s%d" % (drive,7) : 'swap'  
                      }
                        
     return (limits,partitions)
