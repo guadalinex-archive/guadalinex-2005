@@ -1,5 +1,6 @@
 alacarte
 acroread
+acroread-plugins
 aspell-es
 mozilla-firefox-locale-es-ar
 mozilla-firefox-locale-es-es
@@ -8,7 +9,6 @@ amsn
 amule
 aspell-es
 beep-media-player
-blender
 blender
 bluefish
 camorama
@@ -20,7 +20,6 @@ dpsyco-lib
 dpsyco-skel
 ed
 eog
-fastjar
 fastjar
 festival
 festlex-cmu
@@ -230,4 +229,4 @@ python-wxversion
 libwxgtk2.4-1
 xapi
 xdialog
-openoffice.org2-help-es
+libdvdcss2
