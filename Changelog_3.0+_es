@@ -1,3 +1,34 @@
+Guadalinex v3.0.1 beta2 (21-04-06)
+-----------------------
+
+Cambios mayores:
+
+- Instalador live:
+  - Sistema de particionado:
+    - Mejorada gestión de particiones en opciones automáticas (ahora se
+    calculan los tamaños de las particiones que se van a crear en función del
+    espacio del disco y no con el esquema mínimo) <-- ESTA FUNCIONALIDAD
+    NECESITA PROBARSE INTENSAMENTE
+    - Añadida opción para utilizar "espacio sin particionar" <-- ESTA
+    FUNCIONALIDAD NECESITA PROBARSE INTENSAMENTE
+    - Corregidos bugs menores (ya se puede volver del particionado manual y se
+    recargan las opciones de particionado en función de los cambios
+    realizados)
+
+- Añadido programa para gestionar el gestor de arranque (grubaker):
+  - Se ha empaquetado y se ha incluido en la distro <-- ESTA FUNCIONALIDAD
+  NECESITA PROBARSE INTENSAMENTE
+
+Cambios menores:
+
+- Incluido paquete "libdvdcss"
+- Añadida ayuda en isolinux para opción "xdriver" (que permite elegir el
+driver que se utilizará en el sistema X)
+- Auto instalación del programa de gestión de energía para el usuario en
+sistema instalado a partir del live -> Solucionado
+
+
+
 Guadalinex v3.0.1 beta1 (17-04-06)
 -----------------------
 
