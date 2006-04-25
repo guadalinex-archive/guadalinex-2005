@@ -527,7 +527,6 @@ nvidia-glx
 oem-config
 oem-config-keyboard
 oem-config-locale
-openssh-server
 openssl
 pax
 pcmcia-cs
@@ -585,8 +584,6 @@ rpm
 setserial
 smeg
 sound-juicer
-ssh
-ssh-askpass-gnome
 ssl-cert
 syslinux
 tftpd-hpa
