@@ -88,19 +88,14 @@ class Copy:
           continue
       path = os.path.join(self.target, path[1:])
       if not os.path.isdir(path) and not os.path.isfile(path):
-        os.mkdir(path)
+        os.makedirs(path)
       else:
         misc.pre_log('error', 'Problemas al crear %s' % path)
 
-      if not misc.ex ('mount', '-t', 'ext3', device, path):
-        misc.ex('mkfs.ext3',device)
-        misc.ex('mount', device, path)
-
-#    if ( 'swap' not in self.mountpoints.values() ):
-#      # If swap partition isn't defined, we create a swapfile
-#      os.system("dd if=/dev/zero of=%s/swapfile bs=1024 count=%d" % (self.target, MINIMAL_PARTITION_SCHEME ['swap'] * 1024) )
-#      os.system("mkswap %s/swapfile" % self.target)
-#      os.system("swapon %s/swapfile" % self.target)
+      if ( path == '/home' ):
+        if not misc.ex ('mount', '-t', 'ext3', device, path):
+          misc.ex('mkfs.ext3',device)
+          misc.ex('mount', device, path)
 
     return True
 
