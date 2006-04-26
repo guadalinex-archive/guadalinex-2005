@@ -1,0 +1,420 @@
+Package: busybox-cvs-initramfs
+Source: busybox-cvs
+Version: 20040623-1ubuntu22uda2
+Priority: optional
+Section: shells
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Conflicts: busybox-cvs, busybox-static, busybox
+Replaces: busybox-cvs, busybox-static, busybox
+Architecture: i386
+Filename: ./busybox-cvs-initramfs_20040623-1ubuntu22uda2_i386.deb
+Size: 432268
+Installed-Size: 868
+MD5sum: 6d307597470043a1ed137fef71f259ba
+Description: Standalone shell setup for initramfs
+ BusyBox combines tiny versions of many common UNIX utilities into a single
+ small executable. It provides minimalist replacements for the most common
+ utilities you would usually find on your desktop system (i.e., ls, cp, mv,
+ mount, tar, etc.).  The utilities in BusyBox generally have fewer options than
+ their full-featured GNU cousins; however, the options that are included
+ provide the expected functionality and behave very much like their GNU
+ counterparts.
+ .
+ busybox-initramfs provides a statically linked simple stand alone shell
+ that provides only the basic utilities needed for the initramfs.
+
+Package: guadalinex-v3-base-base
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), adduser, alsa-base, alsa-utils, apt, apt-utils, aptitude, base-config, base-files, base-passwd, bash, bsdutils, bzip2, console-tools, coreutils, debconf, debianutils, dhcp3-client, diff, discover1, dosfstools, dpkg, e2fsprogs, eject, ethtool, findutils, gettext-base, gnupg, grep, grub, grepmap, gzip, hostname, hotplug, ifrename, ifupdown, initramfs-tools, initscripts, iproute, iputils-ping, jfsutils, less, libc6-i686, libfribidi0, libreiserfs0.3-0, locales, login, lsb-release, makedev, mawk, memtest86+, mii-diag, module-init-tools, mount, ncurses-base, ncurses-bin, net-tools, netbase, netcat, passwd, pciutils, perl-base, procps, python, reiser4progs, reiserfsprogs, sed, strace, sudo, sysklogd, sysvinit, tar, udev, usbutils, util-linux, vim, wireless-tools, xfsprogs, language-pack-es, manpages-es, usplash, whois, man, cpufrequtils
+Architecture: all
+Filename: ./guadalinex-v3-base-base_1.0-r1931_all.deb
+Size: 3612
+Installed-Size: 56
+MD5sum: d5db20ebc8faa5932de01ceecc0021af
+Description: Servicio de base para el v3-base de Debian/guadalinex.
+
+Package: guadalinex-v3-base-base-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-base-base-conf_1.0-r1931_all.deb
+Size: 165942
+Installed-Size: 580
+MD5sum: 17c9fb32cf10bf978ea844bfacc34b51
+Description: ConfiguraciÛn de base para el v3-base de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-accesorios
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), lemurae, tomboy, gcalctool, gthumb, file-roller, evince, xzoom, dasher, alacarte, smb4k
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-accesorios_1.0-r1931_all.deb
+Size: 3212
+Installed-Size: 56
+MD5sum: 4d6d759baeed7f8d8b2d3fcf5929780e
+Description: Servicio de accesorios para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-accesorios-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-accesorios-conf_1.0-r1931_all.deb
+Size: 11476
+Installed-Size: 152
+MD5sum: 5f760fda9c297e0df9113ffdcf360645
+Description: ConfiguraciÛn de accesorios para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-admin
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), gnome-app-install, gnome-system-tools, gparted, bb-assist, watermain, update-notifier, xapi, grubaker
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-admin_1.0-r1931_all.deb
+Size: 3206
+Installed-Size: 56
+MD5sum: bdf063b902d5a9746b2af73d75b063d8
+Description: Servicio de admin para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-admin-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-admin-conf_1.0-r1931_all.deb
+Size: 13386
+Installed-Size: 128
+MD5sum: 492942a2a18de56129803d5d6265a150
+Description: ConfiguraciÛn de admin para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-gnome
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), nautilus, metacity, gdm, gedit, gnome-about, gnome-applets, gnome-control-center, gnome-cups-manager, gnome-icon-theme, gnome-menus, gnome-netstatus-applet, gnome-nettool, gnome-panel, gnome-session, gnome-spell, gnome-system-monitor, gnome-terminal, gnome-themes, gnome-utils, gnome-volume-manager, gs-esp, gstreamer0.8-alsa, gstreamer0.8-audiofile, gstreamer0.8-cdparanoia, gstreamer0.8-dv, gstreamer0.8-dvd, gstreamer0.8-esd, gstreamer0.8-flac, gstreamer0.8-gnomevfs, gstreamer0.8-gsm, gstreamer0.8-hermes, gstreamer0.8-jpeg, gstreamer0.8-misc, gstreamer0.8-musepack, gstreamer0.8-oss, gstreamer0.8-plugin-apps, gstreamer0.8-sdl, gstreamer0.8-speex, gstreamer0.8-theora, gstreamer0.8-vorbis, gstreamer0.8-x, gtk2-engines-clearlooks, gtk2-engines-industrial, gtk2-engines-mist, gtk2-engines-smooth, gucharmap, zenity, language-pack-gnome-es, language-support-es, yelp, serpentine, nautilus-cd-burner, uda-docs, uda-docs-guadalinex-branding, dictd, dict-freedict-eng-spa, dict-freedict-spa-eng, nautilus-open-terminal, gnome-sudoku, gnome2-user-guide, libesd-alsa0, esound, netapplet, gnome-games, gnome-power-manager
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-gnome_1.0-r1931_all.deb
+Size: 3614
+Installed-Size: 56
+MD5sum: a79dbaff786c4032234c3d88de4e9b10
+Description: Servicio de gnome para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-gnome-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-gnome-conf_1.0-r1931_all.deb
+Size: 4734988
+Installed-Size: 12552
+MD5sum: caa18d47c4f16c1c46549ce59b23ba63
+Description: ConfiguraciÛn de gnome para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-graficos
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), blender, gimp, gthumb, qcad, inkscape, xsane, imagemagick, eog
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-graficos_1.0-r1931_all.deb
+Size: 3194
+Installed-Size: 56
+MD5sum: 7a97d2301b7aa52506d744dbaa66c3a9
+Description: Servicio de graficos para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-graficos-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-graficos-conf_1.0-r1931_all.deb
+Size: 63544
+Installed-Size: 280
+MD5sum: 1a7bd2f6344a2d56f543ae274efbb585
+Description: ConfiguraciÛn de graficos para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-internet
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Gabriel Rodriguez Alberich <grodriguez@yaco.es>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), tnef, ipodder, firefox, mozilla-firefox-locale-es-es, mozilla-firefox-locale-es-ar, evolution, gaim, gftp, gnomemeeting, vino, xvncviewer, xchat, liferea, amule, gnome-btdownload, bluefish, d4x, amsn, mozilla-acroread, flashplugin-nonfree
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-internet_1.0-r1931_all.deb
+Size: 3326
+Installed-Size: 56
+MD5sum: f9414fe16d756eaab9a28fbb8ecc836b
+Description: Servicio de internet para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-internet-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Gabriel Rodriguez Alberich <grodriguez@yaco.es>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-internet-conf_1.0-r1931_all.deb
+Size: 192934
+Installed-Size: 548
+MD5sum: 7440e01a8e4bf84cd4f390faab40e2cb
+Description: ConfiguraciÛn de internet para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-media
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), tango-icon-theme
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-media_1.0-r1931_all.deb
+Size: 3158
+Installed-Size: 56
+MD5sum: a3682a2dd16d661d309eef69a65570ad
+Description: Servicio de media para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-media-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-media-conf_1.0-r1931_all.deb
+Size: 7400
+Installed-Size: 232
+MD5sum: 800e15f57912bb532f33f17f5f1f68c7
+Description: ConfiguraciÛn de media para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-multimedia
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), audacity, grip, beep-media-player, xmms, gxine, streamtuner, streamripper, soundtracker, camorama, totem-xine, gnome-media, gnomebaker, hermeshardware, guadalinex-suppletory-system, gstreamer0.8-mad
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-multimedia_1.0-r1931_all.deb
+Size: 3306
+Installed-Size: 56
+MD5sum: f199594c837a590d7106aef64a39c503
+Description: Servicio de multimedia para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-multimedia-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-multimedia-conf_1.0-r1931_all.deb
+Size: 51860
+Installed-Size: 384
+MD5sum: 1a19b1de8bcda1f388e792666e20e210
+Description: ConfiguraciÛn de multimedia para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-oficina
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), openoffice.org2, openoffice.org-debian-files, openoffice.org2-java-common, openoffice.org2-gnome, openoffice.org2-evolution, scribus, acroread, acroread-plugins
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-oficina_1.0-r1931_all.deb
+Size: 3256
+Installed-Size: 56
+MD5sum: 2b166a5bed12ad4e3d18f03259345bc9
+Description: Servicio de oficina para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-oficina-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-oficina-conf_1.0-r1931_all.deb
+Size: 2909628
+Installed-Size: 6272
+MD5sum: 9b2175429348200ab2d1ce8a561ef1ea
+Description: ConfiguraciÛn de oficina para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-sistema-x
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), x-ttcidfont-conf, x-window-system-core, xkeyboard-config, xorg-driver-synaptics, xscreensaver, xterm, ttf-bitstream-vera, ttf-freefont, xdialog
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-sistema-x_1.0-r1931_all.deb
+Size: 3292
+Installed-Size: 56
+MD5sum: b68b8fc302069ae66a3960ce3c40e794
+Description: Servicio de sistema-x para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-escritorio-sistema-x-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-escritorio-sistema-x-conf_1.0-r1931_all.deb
+Size: 4474
+Installed-Size: 64
+MD5sum: 68d07cb034995a12e0dad9c9d0a82323
+Description: ConfiguraciÛn de sistema-x para el v3-escritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-extras-suplementos
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-suppletory-disk-generator
+Architecture: all
+Filename: ./guadalinex-v3-extras-suplementos_1.0-r1931_all.deb
+Size: 3162
+Installed-Size: 56
+MD5sum: 6272d4f382210384597ba9001d16fa92
+Description: Servicio de suplementos para el v3-extras de Debian/guadalinex.
+
+Package: guadalinex-v3-noescritorio-base
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), joe, mc, at, cpio, cron, dmidecode, dmsetup, dnsutils, dselect, ed, evms, evms-ncurses, fdutils, file, ftp, hdparm, info, iptables, iputils-arping, iputils-tracepath, logrotate, lshw, lsof, ltrace, lvm2, man-db, manpages, mdadm, mime-support, mtr-tiny, nano, openssh-client, parted, ppp, pppconfig, pppoeconf, psmisc, rsync, tcpdump, telnet, time, w3m, wget, acpi, acpi-support, acpid, anacron, bogofilter, bluez-cups, bluez-pin, bluez-utils, cupsys, cupsys-bsd, cupsys-client, cupsys-driver-gimpprint, dbus-1-utils, dvd+rw-tools, foomatic-db, foomatic-db-engine, foomatic-db-gimp-print, foomatic-db-hpijs, foomatic-filters, foomatic-filters-ppds, hal, hal-device-manager, hotkey-setup, mkisofs, slocate, unzip, wvdial, zip, sun-j2re1.5, unrar-nonfree, prelink, samba, smbclient, smbfs, gcc, cpp, libc6-dev, accessrunner-usb-source, accessrunner-usb-utils, accessrunner-usb-modules-2.6.12-9-386, eagle-usb-modules-2.6.12-9-386, eagle-usb-modules-source, eagle-usb-data, eagle-usb-utils, wpasupplicant, ssh, powernowd, python-pygame, vorbis-tools, pcsc-tools, pcscd, powermanagement-interface, ntfsprogs, libdvdcss2
+Architecture: all
+Filename: ./guadalinex-v3-noescritorio-base_1.0-r1931_all.deb
+Size: 3732
+Installed-Size: 56
+MD5sum: 81d8f894dd6e93420507a6981f1fd341
+Description: Servicio de base para el v3-noescritorio de Debian/guadalinex.
+
+Package: guadalinex-v3-noescritorio-base-conf
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11)
+Architecture: all
+Filename: ./guadalinex-v3-noescritorio-base-conf_1.0-r1931_all.deb
+Size: 2223102
+Installed-Size: 2724
+MD5sum: e896208fbe1ad870833ba21728241633
+Description: ConfiguraciÛn de base para el v3-noescritorio de Debian/guadalinex.
+
+Package: meta-guadalinex-v3
+Version: 1.0-r1931
+Priority: optional
+Section: misc
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Depends: meta-guadalinex-v3-base, meta-guadalinex-v3-escritorio, meta-guadalinex-v3-noescritorio, meta-guadalinex-v3-extras
+Architecture: all
+Filename: ./meta-guadalinex-v3_1.0-r1931_all.deb
+Size: 1310
+Installed-Size: 28
+MD5sum: e8733812985ecb8b1b77368ee23582bc
+Description: Guadalinex v3 metapackage
+ This metapackage installs a whole Guadalinex v3 distribution.
+
+Package: meta-guadalinex-v3-base
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-base-base
+Depends: guadalinex-v3-base-base-conf
+Architecture: all
+Filename: ./meta-guadalinex-v3-base_1.0-r1931_all.deb
+Size: 3142
+Installed-Size: 56
+MD5sum: c9be65882d5ea2ef9a67a5dc94f4745d
+Description: DefiniciÛn del v3-base de Debian/guadalinex.
+
+Package: meta-guadalinex-v3-escritorio
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-escritorio-sistema-x, guadalinex-v3-escritorio-internet, guadalinex-v3-escritorio-graficos, guadalinex-v3-escritorio-accesorios, guadalinex-v3-escritorio-oficina, guadalinex-v3-escritorio-gnome, guadalinex-v3-escritorio-multimedia, guadalinex-v3-escritorio-media, guadalinex-v3-escritorio-admin
+Depends: guadalinex-v3-escritorio-sistema-x-conf, guadalinex-v3-escritorio-internet-conf, guadalinex-v3-escritorio-graficos-conf, guadalinex-v3-escritorio-accesorios-conf, guadalinex-v3-escritorio-oficina-conf, guadalinex-v3-escritorio-gnome-conf, guadalinex-v3-escritorio-multimedia-conf, guadalinex-v3-escritorio-media-conf, guadalinex-v3-escritorio-admin-conf
+Architecture: all
+Filename: ./meta-guadalinex-v3-escritorio_1.0-r1931_all.deb
+Size: 3284
+Installed-Size: 56
+MD5sum: b89eaa5afa3cac2831345dbff8d297e0
+Description: DefiniciÛn del v3-escritorio de Debian/guadalinex.
+
+Package: meta-guadalinex-v3-extras
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-extras-suplementos
+Architecture: all
+Filename: ./meta-guadalinex-v3-extras_1.0-r1931_all.deb
+Size: 3144
+Installed-Size: 56
+MD5sum: bdf74d3a4e4c7033b62e72ea00ad08fc
+Description: DefiniciÛn del v3-extras de Debian/guadalinex.
+
+Package: meta-guadalinex-v3-noescritorio
+Source: gen-package
+Version: 1.0-r1931
+Priority: optional
+Section: admin
+Maintainer: Junta de Andaluc√≠a <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-noescritorio-base
+Depends: guadalinex-v3-noescritorio-base-conf
+Architecture: all
+Filename: ./meta-guadalinex-v3-noescritorio_1.0-r1931_all.deb
+Size: 3154
+Installed-Size: 56
+MD5sum: 4bd096d2843c05276cfa63736e8c6b5f
+Description: DefiniciÛn del v3-noescritorio de Debian/guadalinex.
+
