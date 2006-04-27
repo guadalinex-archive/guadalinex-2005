@@ -146,14 +146,21 @@ class Config:
         elif path == 'swap':
             swap, passno, filesystem, options, path = 1, 0, 'swap', 'sw', 'none'
             swap += 1
-        else:
+        elif path == '/home':
             passno, filesystem, options = 2, 'ext3', 'defaults,errors=remount-ro'
+        else:
+            continue
 
         print >>fstab, '%s\t%s\t%s\t%s\t%d\t%d' % (device, path, filesystem, options, 0, passno)
 
+    user_def = []
+    for device, path in self.mountpoints.items():
+      if path not in ['/', '/home', 'swap']:
+        user_def.append(device)
+      
     win_counter = 1
     for new_device, fs in misc.get_filesystems().items():
-      if new_device in [ele[0] for ele in self.mountpoints.items()]:
+      if new_device in [ele[0] for ele in self.mountpoints.items()] and new_device not in user_def:
         continue
       if ( fs in ['vfat', 'ntfs'] ):
         passno = 0
@@ -161,12 +168,18 @@ class Config:
           options ='rw,gid=100,users,umask=0002,fmask=0113,sync,noauto,defaults'
         else:
           options ='gid=100,users,umask=0222,fmask=0333,sync,nls=utf8,noauto,defaults'
-        path = '/media/Windows%d' % win_counter
+        if new_device in user_def:
+          path = self.mountpoints[new_device]
+        else:
+          path = '/media/Windows%d' % win_counter
+          win_counter += 1
         os.mkdir(os.path.join(self.target, path[1:]))
-        win_counter += 1
       elif ( fs in ['ext3', 'ext2', 'reiserfs', 'xfs'] ):
               options = 'defaults,users,exec,noauto'
-              path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
+              if new_device in user_def:
+                path = self.mountpoints[new_device]
+              else:
+                path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
               passno = 2
               os.mkdir(os.path.join(self.target, path[1:]))
       elif fs == 'swap':
