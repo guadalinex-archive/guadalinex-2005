@@ -86,14 +86,10 @@ class Copy:
       elif ( path ==  'swap' ):
           os.system('swapon %s' % device)
           continue
-      path = os.path.join(self.target, path[1:])
-      if not os.path.isdir(path) and not os.path.isfile(path):
-        os.makedirs(path)
-      else:
-        misc.pre_log('error', 'Problemas al crear %s' % path)
-
-      if ( path == '/home' ):
+      elif ( path == '/home' ):
         if not misc.ex ('mount', '-t', 'ext3', device, path):
+          misc.pre_log('info','%s is not able to be mounted in /home as ext3 filesystem' % device)
+          misc.pre_log('info','%s is going to be formated as ext3 filesystem' % device)
           misc.ex('mkfs.ext3',device)
           misc.ex('mount', device, path)
 
