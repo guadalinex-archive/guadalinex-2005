@@ -755,7 +755,10 @@ class Peez2:
                     subprogress = 0.2 / (len (c) + 1)
 
                     for i in c:
-
+			# If we're going to resize NTFS, we need to force the execution of the command
+			if "ntfsresize" in i:
+				i = "yes | " + i.strip() + " -f " + "\n"
+				
                         if steps is not None:
                             steps.put ('%f|Creando una partición %s de %s...' % \
                                        (status, type, beautify_size (int (required) * 1024 * 1024)))
