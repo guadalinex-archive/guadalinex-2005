@@ -371,6 +371,8 @@ ff02::3 ip6-allhosts""" % self.hostname
     if not os.path.exists ( device ) or os.path.isdir ( device ):
       device = target_dev
     self.chrex ('rm', '-f', '/boot/grub/device.map')
+    # We want GRUB to be installed on MBR (first device)
+    device="hd0"
     self.chrex ('grub-install', device )
 
     # creates grub menu.lst on target
