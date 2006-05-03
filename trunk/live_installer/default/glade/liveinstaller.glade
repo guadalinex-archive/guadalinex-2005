@@ -1708,9 +1708,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1728,9 +1726,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1748,9 +1744,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1768,9 +1762,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1788,9 +1780,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1808,9 +1798,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1828,9 +1816,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1848,9 +1834,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1868,9 +1852,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
@@ -1888,9 +1870,7 @@ If you kept an intact home partition, you can now link it with the “/home” m
 					      <property name="items" translatable="yes">swap
 /
 /home
-/boot
-/usr
-/var</property>
+</property>
 					      <property name="add_tearoffs">False</property>
 					      <property name="has_frame">True</property>
 					      <property name="focus_on_click">True</property>
