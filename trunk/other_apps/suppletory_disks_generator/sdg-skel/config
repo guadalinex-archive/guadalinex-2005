@@ -38,16 +38,19 @@
 # través de la variable PACKAGES.
 #
 #
-# URI   Opcional. Dirección del repositorio + rama (main, universe, etc).
-#       Ejemplo:
+# URI   Dirección del repositorio + rama (main, universe, etc). Si no se usa
+# ningún repositorio, debe aparecer esta opción vacía (por defecto), para que se
+# añada el repositorio que se crea en el cdrom.
 #
-#       URI   http://archive.ubuntu.com/hoary main universe
+#       Ejemplo: Añadimos el repositorio de breezy
+#
+#       URI   http://archive.ubuntu.com/breezy main universe
 #
 #       Se pueden añadir tantas URIs como se quiera. 
-#       Por defecto se utiliza como repositorio el raíz del cdrom del suplemento.
 
 NAME    Nombre del Suplemento
 SHORTNAME Supl1
 DESC    Descripción del suplemento. 1 línea.
 METAPACKAGE nombre-del-metapaquete
 PACKAGES 
+URI
