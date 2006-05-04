@@ -169,19 +169,30 @@ class Config:
         else:
           options ='gid=100,users,umask=0222,fmask=0333,sync,nls=utf8,noauto,defaults'
         if new_device in user_def:
+          # We want user defined mountpoints to be auto mounted
+          options=options.replace("noauto","auto")
+
           path = self.mountpoints[new_device]
         else:
           path = '/media/Windows%d' % win_counter
           win_counter += 1
-        os.mkdir(os.path.join(self.target, path[1:]))
+        try:
+          os.makedirs(os.path.join(self.target, path[1:]))
+        except:
+          pass
       elif ( fs in ['ext3', 'ext2', 'reiserfs', 'xfs'] ):
               options = 'defaults,users,exec,noauto'
               if new_device in user_def:
+                # We want user defined mountpoints to be auto mounted
+                options=options.replace("noauto","auto")
                 path = self.mountpoints[new_device]
               else:
                 path = '/media/%s%d' % (new_device[5:8],int(new_device[8:]))
               passno = 2
-              os.mkdir(os.path.join(self.target, path[1:]))
+              try:
+                os.makedirs(os.path.join(self.target, path[1:]))
+              except:
+                pass
       elif fs == 'swap':
               options = 'sw'
               path = 'none'

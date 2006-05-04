@@ -87,11 +87,28 @@ class Copy:
           os.system('swapon %s' % device)
           continue
       elif ( path == '/home' ):
-        if not misc.ex ('mount', '-t', 'ext3', device, path):
-          misc.pre_log('info','%s is not able to be mounted in /home as ext3 filesystem' % device)
-          misc.pre_log('info','%s is going to be formated as ext3 filesystem' % device)
-          misc.ex('mkfs.ext3',device)
-          misc.ex('mount', device, path)
+          path = os.path.join(self.target, path[1:])
+          if not os.path.isdir(path) and not os.path.isfile(path):
+            os.makedirs(path)
+          else:
+            misc.pre_log('error', 'Problemas al crear %s' % path)
+          # If we cannot mount home partition, we format it
+          if not misc.ex ('mount', '-t', 'ext3', device, path):
+            misc.pre_log('info','%s is not able to be mounted in /home as ext3 filesystem' % device)
+            misc.pre_log('info','%s is going to be formated as ext3 filesystem' % device)
+            misc.ex('mkfs.ext3',device)
+            misc.ex('mount', device, path)
+      else:
+          path = os.path.join(self.target, path[1:])
+          if not os.path.isdir(path) and not os.path.isfile(path):
+            os.makedirs(path)
+          else:
+            misc.pre_log('error', 'Problemas al crear %s' % path)
+          # If we cannot mount the rest of user defined partition, we leave them
+          # as they are (without formatting), just for security
+          if not misc.ex ('mount', '-t', 'auto', device, path):
+            misc.pre_log('info','%s cannot be mounted ' % device)
+            misc.pre_log('info','%s will not be formatted ' % device)
 
     return True
 
