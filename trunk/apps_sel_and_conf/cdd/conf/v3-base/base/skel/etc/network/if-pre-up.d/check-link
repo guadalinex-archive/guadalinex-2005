@@ -2,7 +2,10 @@
 
 log ()
 {
-	logger -t check-link -p syslog.info $*
+       if [ -w "/var/log/syslog" ]; then
+               logger -t check-link -p syslog.info $*
+       fi
+
 }
 
 wireless=$(awk -F: '/:/ {print $1}' /proc/net/wireless | tr -d ' ')
@@ -27,8 +30,12 @@ ifconfig $IFACE up > /dev/null 2>&1
 STATUS=$(ethtool $IFACE | awk '/Link/ {print $3}')
 
 if [ "$STATUS" == "no" ]; then
-	log "ethernet dev: $IFACE with no link"
-	exit 1
+       sleep 2
+       STATUS=$(ethtool $IFACE | awk '/Link/ {print $3}')
+       if [ "$STATUS" == "no" ]; then
+               log "ethernet dev: $IFACE with no link"
+               exit 1
+       fi
 fi
 
 log "ethernet dev: $IFACE with link"
