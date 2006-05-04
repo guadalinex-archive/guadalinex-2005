@@ -2,14 +2,17 @@
 
 log ()
 {
-	logger -t check-link -p syslog.info $*
+       if [ -w "/var/log/syslog" ]; then
+               logger -t check-link -p syslog.info $*
+       fi
+
 }
 
 wireless=$(awk -F: '/:/ {print $1}' /proc/net/wireless | tr -d ' ')
 
 for dev in $wireless
 	do
-	if [ "$IFACE == "$dev"" ]; then
+	if [ "$IFACE" == "$dev" ]; then
 		/sbin/iwconfig $dev | grep -q "radio off"
 		if [ "$?" -eq 0 ]; then
 			log "wireless dev: $dev with no link"
@@ -26,9 +29,13 @@ ifconfig $IFACE up > /dev/null 2>&1
 
 STATUS=$(ethtool $IFACE | awk '/Link/ {print $3}')
 
-if [ $STATUS == "no" ]; then
-	log "ethernet dev: $IFACE with no link"
-	exit 1
+if [ "$STATUS" == "no" ]; then
+       sleep 2
+       STATUS=$(ethtool $IFACE | awk '/Link/ {print $3}')
+       if [ "$STATUS" == "no" ]; then
+               log "ethernet dev: $IFACE with no link"
+               exit 1
+       fi
 fi
 
 log "ethernet dev: $IFACE with link"
