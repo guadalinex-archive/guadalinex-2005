@@ -1,3 +1,23 @@
+Guadalinex v3.0.1 rc1 (05-05-06)
+--------------------------------
+
+Cambios mayores:
+
+- Instalador live:
+  - Sistema de particionado:
+    - Corregido problemas con el redimensionamiento de particiones NTFS en el
+    particionado automático.
+    - GRUB ya se instala en el MBR del dico duro maestro (BTS 384, 744) <-
+    ESTA FUNCIONALIDAD NECESITA PROBARSE INTENSAMENTE
+    - Corregidos problemas con los puntos de montaje definidos manualmente por
+    el usuario (BTS 710); cambiada la ayuda para reflejar los cambios que se
+    han hecho.
+- Revisión de "check-link" para mejorar la detección de enlace de red en
+algunos dispositivos "conflictivos" en los que la detección de enlace tarde
+más tiempo de la cuenta. 
+- Cambiada la versión de java a la 1.4 para solucionar diversos problemas
+reportados: instalación de jdk, aplicaciones que se ejecutan correctamente,...
+
 Guadalinex v3.0.1 beta2 (21-04-06)
 -----------------------
 
