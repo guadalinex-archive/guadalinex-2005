@@ -127,7 +127,7 @@ fallback 1
 # veamos Linux
 TIPOL=`echo $1 | cut -c6-7`
 DISCOL=`echo $1 | cut -c8-8`
-PARTIL=`echo $1 | cut -c9-9`
+PARTIL=`echo $1 | cut -c9-`
 
 convierte "$TIPOL" "$DISCOL" "$PARTIL"
 
