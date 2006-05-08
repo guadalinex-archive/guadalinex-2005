@@ -28,6 +28,7 @@ install:
 	dh_installdirs -A
 
 	install -m 755 $(CURDIR)/genlive.sh $(BUILDDIR)/usr/sbin/genlive
+	install -m 755 $(CURDIR)/clean.sh $(BUILDDIR)/usr/share/genlive/
 	install -m 644 $(CURDIR)/isolinux/* $(BUILDDIR)/usr/share/genlive/isolinux/
 	install -m 644 $(CURDIR)/extras/disquete/* $(BUILDDIR)/usr/share/genlive/extras/disquete/
 	install -m 644 $(CURDIR)/extras/info/documentos/* $(BUILDDIR)/usr/share/genlive/extras/info/documentos/
