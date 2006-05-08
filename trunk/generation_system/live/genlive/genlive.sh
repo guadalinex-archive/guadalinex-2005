@@ -13,8 +13,22 @@ SPLASH_IMAGE=""
 VOLUMENAME="Guadalinex Live System"
 
 function usage() {
-	echo "Usage:"
-	echo "	$0 [-h] [-s <splash_image>] [-v <volume name>] [-o output image] [-p image prefix] [-k kernel version] [-x] [-y]"
+cat <<EOF
+Usage:
+	$0 [-h] [-s <splash image>] [-v <volume name>] [-o <output image>] [-p <image prefix>] [-k <kernel version>] [-x] [-y]
+
+Options:
+	-h  ver las opciones
+	-x  no regenera la imagen comprimida de la distribución
+	-y  no regenera el initramfs
+	-k <kernel version> especificar una versión de kernel. Se sustituirá la versión predeterminada (''$KERNEL'') por la especificada aquí.
+	-s <splash image>   especificar la imagen del arranque
+	-o <output image>   especificar el nombre de la iso
+	-v <volume name>    especificar el nombre del CD (es con el que se identifica el CD y que aparecerá en el nautilus al ser éste montado)
+	-p <image prefix>   especificar el prefijo del nombre de la iso. El nombre por defecto es similar a "${IMAGEPREFIX}-$(date +%Y%m%d%H%M).iso" (cambiando la fecha y hora, naturalmente). Si especificaramos otro prefijo, como por ejemplo "test", el resultado sería un nombre del archivo iso tal que: "test-$(date +%Y%m%d%H%M).iso".
+
+EOF
+
 }
 
 while getopts "xys:hv:o:p:m:" options
