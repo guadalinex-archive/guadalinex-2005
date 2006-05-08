@@ -14,7 +14,7 @@ VOLUMENAME="Guadalinex Live System"
 
 function usage() {
 	echo "Usage:"
-	echo "	$0 [-h] [-s <splash_image>] [-v <volume name>] [-o output image] [-p image prefix] [-x] [-y]"
+	echo "	$0 [-h] [-s <splash_image>] [-v <volume name>] [-o output image] [-p image prefix] [-k kernel version] [-x] [-y]"
 }
 
 while getopts "xys:hv:o:p:m:" options
@@ -36,6 +36,8 @@ do
 		p) OUTPUTIMAGE=${ISOS}/${OPTARG}-$(date +%Y%m%d%H%M).iso
 			;;
 		m) MASTER=$OPTARG
+			;;
+		k) KERNEL=$OPTARG
 			;;
 		*) usage
 			exit 1
