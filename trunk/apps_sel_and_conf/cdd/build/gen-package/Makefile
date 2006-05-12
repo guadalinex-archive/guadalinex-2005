@@ -20,4 +20,9 @@ test: packages-test
 test2: packages-test2
 	./build ../../conf/test2
 
-all: v3 mini suplementos
+midistro: packages-midistro-componente1 packages-midistro-componente2
+	./build ../../conf/midistro-componente1
+	./build ../../conf/midistro-componente2
+	./buildmeta-midistro meta-guadalinex-midistro-componente1 meta-guadalinex-midistro-componente2
+
+all: v3 mini suplementos midistro

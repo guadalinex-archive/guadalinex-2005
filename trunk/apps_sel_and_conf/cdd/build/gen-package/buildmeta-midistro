@@ -1,0 +1,34 @@
+#!/bin/bash
+
+. cdd.cfg
+DEBIANSRC="meta-pkg-midistro"
+
+if [ ! $# -gt 0 ];then
+	echo "Usage: $0 depend [depend..]"
+	exit 1
+fi
+
+cd $DEBIANSRC
+
+echo "Source: meta-guadalinex-midistro
+Section: misc
+Priority: optional
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Standards-Version: 3.6.0
+
+Package: meta-guadalinex-midistro
+Architecture: all" > debian/control
+
+depends=$(echo $@ | sed -e 's/ /, /g')
+echo "Depends: $depends" >> debian/control
+
+echo "Description: Guadalinex midistro metapackage
+ This metapackage installs a whole Guadalinex midistro distribution." >> debian/control
+
+last_revision=$(cat ../../../conf/.svn/entries |grep revision|sed -e 's/^.*revision="\([0-9]*\)"\/>/\1/')
+dch -v 1.0-r${last_revision} "Auto-generated version increment" || continue
+
+fakeroot debian/rules binary
+fakeroot debian/rules clean
+cd ..
+mv meta-guadalinex-midistro*.deb $CDDPACKAGESDIR

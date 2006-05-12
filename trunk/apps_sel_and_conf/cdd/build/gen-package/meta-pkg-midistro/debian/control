@@ -1,0 +1,11 @@
+Source: meta-guadalinex-midistro
+Section: misc
+Priority: optional
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Standards-Version: 3.6.0
+
+Package: meta-guadalinex-midistro
+Architecture: all
+Depends: meta-guadalinex-midistro-componente1, meta-guadalinex-midistro-componente2
+Description: Guadalinex midistro metapackage
+ This metapackage installs a whole Guadalinex midistro distribution.
