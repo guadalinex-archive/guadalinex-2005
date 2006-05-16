@@ -9,7 +9,6 @@ base-config
 base-files
 base-passwd
 bash
-binutils
 binutils-static
 bsdutils
 busybox-cvs-initramfs
@@ -103,9 +102,9 @@ libusb-0.1-4
 libuuid1
 libwrap0
 linux-386
-linux-image-2.6.12-7-386
+linux-image-2.6.12-9-386
 linux-image-386
-linux-restricted-modules-2.6.12-7-386
+linux-restricted-modules-2.6.12-9-386
 linux-restricted-modules-386
 linux-restricted-modules-common
 linux-sound-base

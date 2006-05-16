@@ -51,6 +51,7 @@ evince
 evolution
 evolution-data-server
 evolution-exchange
+evolution-plugins
 evolution-webcal
 fastjar
 fetchmail
@@ -74,8 +75,6 @@ gaim
 gaim-data
 gamin
 gcalctool
-gcc-3.3-base
-gcc-3.4-base
 gconf-editor
 gconf2
 gdb
@@ -173,9 +172,9 @@ ico
 ijsgimpprint
 imake
 irssi-text
+java-common
 java-gcj-compat
 language-selector
-lapack3
 laptop-detect
 laptop-mode
 launchpad-integration
@@ -187,7 +186,6 @@ libapm1
 libart-2.0-2
 libartsc0
 libaspell15
-libaspell15c2
 libatk1.0-0
 libaudio2
 libaudiofile0
@@ -207,6 +205,7 @@ libcupsys2-gnutls10
 libcurl3
 libdbus-1-1
 libdbus-glib-1-1
+libdjvulibre15
 libdrm1
 libdv4
 libdvdnav4
@@ -229,7 +228,6 @@ libfontconfig1
 libfontenc1
 libfreetype6
 libfs6
-libg2c0
 libgail-common
 libgail17
 libgamin0
@@ -303,6 +301,7 @@ libgucharmap4
 libguile-ltdl-1
 libhal-storage1
 libhal1
+libhsqldb-java
 libice6
 libid3-3.8.3c2
 libidl0
@@ -365,11 +364,11 @@ librdf0
 librecode0
 librsvg2-2
 librsvg2-common
-libsablot0
 libsane
 libscrollkeeper0
 libsdl1.2debian
 libsdl1.2debian-oss
+libservlet2.3-java
 libshout3
 libslp1
 libsm6
@@ -383,7 +382,6 @@ libspeex1
 libsqlite0
 libsqlite3-0
 libstartup-notification0
-libstdc++5
 libstlport4.6c2
 libsysfs1
 libtheora0
@@ -421,6 +419,7 @@ libxml2-utils
 libxmu6
 libxmuu1
 libxosd2
+libxp6
 libxplc0.3.11c2
 libxpm4
 libxrandr2
@@ -441,7 +440,6 @@ makedepend
 mesa-utils
 metacity
 mkisofs
-mozilla-openoffice.org
 mysql-common
 nautilus
 nautilus-cd-burner
@@ -451,6 +449,7 @@ netcdfg3
 notification-daemon
 oclock
 odbcinst1debian1
+openoffice.org-debian-files
 openoffice.org2
 openoffice.org2-base
 openoffice.org2-calc
@@ -460,6 +459,7 @@ openoffice.org2-draw
 openoffice.org2-evolution
 openoffice.org2-gnome
 openoffice.org2-impress
+openoffice.org2-java-common
 openoffice.org2-l10n-en-us
 openoffice.org2-math
 openoffice.org2-writer
@@ -512,9 +512,7 @@ python-musicbrainz
 python-mysqldb
 python-netcdf
 python-newt
-python-numarray
 python-numeric
-python-opengl
 python-osd
 python-pam
 python-parted
@@ -536,13 +534,11 @@ python-sqlite
 python-stats
 python-syck
 python-tk
-python-twisted
 python-unit
 python-uno
 python-xdg
 python-xml
 python-xmpp
-python-zopeinterface
 python2.4-adns
 python2.4-apt
 python2.4-cairo
@@ -555,6 +551,7 @@ python2.4-egenix-mxproxy
 python2.4-egenix-mxstack
 python2.4-egenix-mxtexttools
 python2.4-egenix-mxtools
+python2.4-epydoc
 python2.4-eunuchs
 python2.4-examples
 python2.4-gadfly
@@ -578,9 +575,7 @@ python2.4-libxml2
 python2.4-libxslt1
 python2.4-musicbrainz
 python2.4-mysqldb
-python2.4-numarray
 python2.4-numeric
-python2.4-opengl
 python2.4-osd
 python2.4-pam
 python2.4-pexpect
@@ -591,20 +586,15 @@ python2.4-pyopenssl
 python2.4-pyorbit
 python2.4-pyxattr
 python2.4-reportlab
-python2.4-samba
 python2.4-simpletal
 python2.4-sqlite
 python2.4-syck
 python2.4-tk
-python2.4-twisted
-python2.4-twisted-bin
 python2.4-unit
 python2.4-xml
 python2.4-xmpp
-python2.4-zopeinterface
 rdesktop
-readahead-list
-refblas3
+readahead
 rhythmbox
 rss-glx
 samba-common
@@ -646,6 +636,7 @@ ttf-kannada-fonts
 ttf-kochi-gothic
 ttf-kochi-mincho
 ttf-malayalam-fonts
+ttf-mgopen
 ttf-opensymbol
 ttf-oriya-fonts
 ttf-punjabi-fonts
@@ -654,7 +645,6 @@ ttf-telugu-fonts
 ubuntu-artwork
 ubuntu-desktop
 ubuntu-docs
-ubuntu-quickguide
 ubuntu-sounds
 ucf
 unzip
@@ -701,7 +691,6 @@ xinit
 xkbutils
 xkeyboard-config
 xkill
-xlibs
 xload
 xlogo
 xlsatoms
@@ -725,6 +714,7 @@ xrgb
 xsane
 xsane-common
 xscreensaver
+xscreensaver-data
 xscreensaver-gl
 xserver-common
 xserver-xorg

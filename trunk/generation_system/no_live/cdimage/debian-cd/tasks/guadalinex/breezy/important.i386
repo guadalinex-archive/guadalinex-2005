@@ -8,7 +8,6 @@ base-config
 base-files
 base-passwd
 bash
-binutils
 binutils-static
 bsdutils
 busybox-cvs-initramfs
