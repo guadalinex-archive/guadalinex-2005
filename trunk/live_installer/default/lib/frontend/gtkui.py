@@ -1201,8 +1201,8 @@ class Wizard:
       self.confirmation_checkbutton.set_active (False)
       self.next.set_sensitive (False)
       self.partition_message.set_markup (self.resize_text('' +
-        '<span>Este método de particionado es ireversible: ' +
-	'<b>se borrará todo el disco</b> y se crearán 3 particiones' +
+        '<span>Este método de particionado es irreversible: ' +
+	'<b>se borrará todo el disco</b> y se crearán 3 particiones ' +
 	'<b>nuevas</b> en su disco duro. Se instalará ahí el sistema.\n\n' +
         '<b>Se perderá cualquier información que haya en el disco</b></span>', '4'))
 
