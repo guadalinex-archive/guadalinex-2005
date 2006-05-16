@@ -24,9 +24,8 @@
 #
 # DESC    Descripción del suplemento. 1 línea.
 #
-# METAPACKAGE   Nombre del paquete que instala el suplemento. Si se comenta o 
-#       no se indica, se generará un metapaquete que dependa de todos los paquetes 
-#       del directorio "debs".
+# METAPACKAGE   Nombre del paquete que instala el suplemento. Hay que especificarlo
+# forzosamente.
 # 
 # PACKAGES  Lista de paquetes (separados por espacios) que se quiere estén
 # disponibles para instalar (además del paquete del suplemento). Esta variable
