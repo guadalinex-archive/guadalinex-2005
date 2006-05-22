@@ -33,8 +33,11 @@ if [ "$STATUS" == "no" ]; then
        sleep 2
        STATUS=$(ethtool $IFACE | awk '/Link/ {print $3}')
        if [ "$STATUS" == "no" ]; then
-               log "ethernet dev: $IFACE with no link"
-               exit 1
+           STATUS=$(mii-tool $IFACE | awk '/link ok/ {print "yes"}')
+           if [ "$STATUS" != "yes" ]; then
+                   log "ethernet dev: $IFACE with no link"
+                   exit 1
+           fi
        fi
 fi
 
