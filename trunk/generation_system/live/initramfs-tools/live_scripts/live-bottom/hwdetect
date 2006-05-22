@@ -98,6 +98,8 @@ env -u DEBIAN_HAS_FRONTEND -u DEBIAN_FRONTEND \
     dpkg-reconfigure -fnointeractive gnome-panel-data >> /var/log/initramfs.debug 2>&1
 fi
 
+alias gconftool-2='gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults'
+
 panel_version=\$(dpkg-query -W --showformat='\${Version}' gnome-panel-data 2>/dev/null) || panel_version=""
 if [ -n "\$panel_version" ]; then
     gconftool-2 -t bool -s /apps/panel/global/disable_lock_screen true
@@ -105,6 +107,8 @@ fi
 gnome_screensaver_version=\$(dpkg-query -W --showformat='\${Version}' gnome-screensaver 2>/dev/null) || gnome_screensaver_version=""
 if [ -n "\$gnome_screensaver_version" ]; then
     gconftool-2 -t bool -s /apps/gnome-screensaver/lock false
+else
+    gconftool-2 -t bool -s /apps/gnome_settings_daemon/screensaver/start_screensaver false
 fi
 
 log_end_msg \$?
