@@ -1,11 +1,12 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
 
-# grubaker 1.0.0
+# grubaker 1.0.1
 # author: Alfonso E.M. alfonso@el-magnifico.org
 # date: 15/Apr/2006
-# last update: 18/Apr/2006 by
-# Patches by JuanJe Ojeda
+# Updates:
+# 16/Apr/2006 JuanJe Ojeda - Patch to make this tool more pythonized
+# 15/May/2006 Alfonso E.M. - Some fixes to keep atributes order
 
 import re
 import pygtk
@@ -25,7 +26,8 @@ class Menu:
 
 		self.filename=filename
         	self.liststore = gtk.ListStore(str,str,int)
-                self.item=[]
+                self.atribute=[]
+		self.value=[]
 		self.error=''
 		
 		self.parsefile()
@@ -87,13 +89,20 @@ class Menu:
 					else:
 						icon=gtk.STOCK_NO
 					i=self.liststore.append([icon,value,id])
-                                        self.item.append({})
+                                        self.atribute.append([])
+					self.value.append([])
 					mustreadoptions=True
 				else:
 					if mustreadoptions:
-                                          self.item[id][key]=value
+                                          self.atribute[id].append(key)
+                                          self.value[id].append(value)
 	
 			file.close
+
+	def addAtribute(self,id,key,value):
+		self.atribute[id].append(key)
+		self.value[id].append(value)
+
 
 	def write(self):
 
@@ -129,8 +138,8 @@ class Menu:
 		      title=self.liststore.get_value(iter,1)
                       id=self.liststore.get_value(iter,2)
 		      newfile.write("title \t"+title+"\n")
-		      for key in self.item[id].keys():
-		          newfile.write(key+" \t"+self.item[id][key]+"\n")
+		      for i in range(len(self.atribute[id])):
+		          newfile.write(self.atribute[id][i]+" \t"+self.value[id][i]+"\n")
                       newfile.write("\n")
 		      iter=self.liststore.iter_next(iter)
 
@@ -140,6 +149,7 @@ class Menu:
 		os.rename(tmpfilename,self.filename)
 
 		return
+
 
 class Appgui:
 	def __init__(self, menu):
@@ -282,40 +292,46 @@ class Appgui:
 		self.set_text('entry_title',title)
 		self.set_text('hidden_id',str(id))
 		
-		if self.menu.item[id].has_key('root'):
+		if 'root' in self.menu.atribute[id]:
 		   rootkey='root'
-		if self.menu.item[id].has_key('rootnoverify'):
+		if 'rootnoverify' in self.menu.atribute[id]:
 		   rootkey='rootnoverify'
-        	matches=re.search('.*hd(\d),(\d).*',self.menu.item[id][rootkey])
+		i=self.menu.atribute[id].index(rootkey)
+		roothd=self.menu.value[id][i]
+        	matches=re.search('.*hd(\d),(\d).*',roothd)
                 if matches:
                         hd=int(matches.group(1))
                         partition=int(matches.group(2))
          		self.set_spin('spin_hd',hd)
         		self.set_spin('spin_partition',partition)
 
-		if self.menu.item[id].has_key('kernel'):
-		    if re.search("\s+",self.menu.item[id]['kernel']):
-                       kernel,options=re.split("\s+",self.menu.item[id]['kernel'],1)         
+		if 'kernel' in self.menu.atribute[id]:
+		    i=self.menu.atribute[id].index('kernel')
+		    if re.search("\s+",self.menu.value[id][i]):
+                       kernel,options=re.split("\s+",self.menu.value[id][i],1)         
                        self.set_text('entry_kernel',kernel)
                        self.set_text('entry_options',options)
                     else:
-                       self.set_text('entry_kernel',self.menu.item[id]['kernel'])
+                       self.set_text('entry_kernel',self.menu.value[id][i])
                 else:
                     self.set_text('entry_kernel','')
                     self.set_text('entry_options','')
         		
-		if self.menu.item[id].has_key('initrd'):
-        		self.set_text('entry_initrd',self.menu.item[id]['initrd'])
+		if 'initrd' in self.menu.atribute[id]:
+			i=self.menu.atribute[id].index('initrd')
+        		self.set_text('entry_initrd',self.menu.value[id][i])
                 else:
                         self.set_text('entry_initrd','')
 
 
-		if self.menu.item[id].has_key('chainloader'):
-        		self.set_text('entry_chainloader',self.menu.item[id]['chainloader'])
+		if 'chainloader' in self.menu.atribute[id]:
+			i=self.menu.atribute[id].index('chainloader')
+        		self.set_text('entry_chainloader',self.menu.value[id][i])
                 else:
                         self.set_text('entry_chainloader','')
 
-		if self.menu.item[id].has_key('makeactive'):
+		if 'makeactive' in self.menu.atribute[id]:
+	            i=self.menu.atribute[id].index('makeactive')
                     self.set_active('check_makeactive',True)
                 else:
                     self.set_active('check_makeactive',False)
@@ -334,11 +350,12 @@ class Appgui:
 		if old_id != '':
 	                (iter,id,oldtitle)=self.get_selected_item()
         	        self.menu.liststore.set_value(iter,1,title)
-	                del self.menu.item[id]
-	                self.menu.item.insert(id,{})
+	                self.menu.atribute[id]=[]
+	                self.menu.value[id]=[]
 		else:
-	                self.menu.item.append({})
-			id=len(self.menu.item)-1
+	                self.menu.atribute.append([])
+	                self.menu.value.append([])
+			id=len(self.menu.atribute)-1
 			icon=gtk.STOCK_NO
 			i=self.menu.liststore.append([icon,title,id])
                 
@@ -348,29 +365,31 @@ class Appgui:
 	        kernel=self.get_value('entry_kernel')
 	        options=self.get_value('entry_options')
 	        if kernel:
-	            self.menu.item[id]['kernel']=kernel+' '+options
+		    self.menu.addAtribute(id,'kernel',kernel+' '+options)
 
 	        initrd=self.get_value('entry_initrd')
 	        if initrd:
-	            self.menu.item[id]['initrd']=initrd
-	            
+		    self.menu.addAtribute(id,'initrd',initrd)
+
 	        chainloader=self.get_value('entry_chainloader')
 
 #if chainloader field is not empty, 'rootnoverify' is used instead of 'root' (tricky)
 	        if chainloader:
-	            self.menu.item[id]['chainloader']=chainloader
     		    rootkey='rootnoverify'
 		else:
 		    rootkey='root'
+		
+		self.menu.addAtribute(id,rootkey,'(hd'+str(hd)+','+str(partition)+')')
 
-                self.menu.item[id][rootkey]='(hd'+str(hd)+','+str(partition)+')'
-
-	        
 	        widget=self.xml.get_widget('check_makeactive')
 	        makeactive=widget.get_active()
 	        if makeactive:
-	            self.menu.item[id]['makeactive']=''
-    
+		    self.menu.addAtribute(id,'makeactive','')
+
+	        if chainloader:
+		    self.menu.addAtribute(id,'chainloader',chainloader)
+
+
 	        self.window_edit.hide()
 	        self.menu_has_changed()
                 return
