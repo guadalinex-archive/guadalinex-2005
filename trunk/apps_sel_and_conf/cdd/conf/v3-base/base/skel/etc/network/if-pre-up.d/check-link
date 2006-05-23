@@ -16,6 +16,7 @@ for dev in $wireless
 		/sbin/iwconfig $dev | grep -q "radio off"
 		if [ "$?" -eq 0 ]; then
 			log "wireless dev: $dev with no link"
+			ip link set $IFACE down
 			exit 1
 		else
 			log "wireless dev: $dev with link"
@@ -36,6 +37,7 @@ if [ "$STATUS" == "no" ]; then
            STATUS=$(mii-tool $IFACE | awk '/link ok/ {print "yes"}')
            if [ "$STATUS" != "yes" ]; then
                    log "ethernet dev: $IFACE with no link"
+		   ip link set $IFACE down
                    exit 1
            fi
        fi
