@@ -40,7 +40,6 @@ install: build
 	dh_clean -k
 	dh_installdirs -i usr/src/modules/e1000/debian
 
-	mkdir -p debian/e1000-source/usr/src/modules/e1000/debian
 	tar -v -c --exclude ".svn" --exclude "CVS" --exclude "debian" . | tar x -C debian/e1000-source/usr/src/modules/e1000
 	cp -a debian/compat debian/*modules.in debian/rules debian/copyright debian/changelog debian/e1000-source/usr/src/modules/e1000/debian
 	cd debian/e1000-source/usr/src && tar c modules | bzip2 -9 > e1000.tar.bz2 && rm -rf modules
@@ -75,8 +74,10 @@ binary-modules: kdist_config
 	dh_testdir
 	dh_testroot
 	dh_clean -k
+	dh_installdirs lib/modules/$(KVERS)/kernel/drivers/net/e1000/
 # build and install the module
 	$(MAKE) KVERS=$(KVERS) LINUXSRC=$(KSRC) MODPREFIX=$(CURDIR)/debian/$(PKGNAME)/ install
+	install -o root -g root $(CURDIR)/e1000.ko $(CURDIR)/debian/e1000-modules-$(KVERS)/lib/modules/$(KVERS)/kernel/drivers/net/e1000/
 	dh_installdocs 
 	dh_installchangelogs
 	dh_compress
