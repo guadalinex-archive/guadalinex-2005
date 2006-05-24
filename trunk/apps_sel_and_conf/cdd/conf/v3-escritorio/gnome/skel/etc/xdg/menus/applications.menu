@@ -98,9 +98,11 @@
     <Include>
       <And>
         <Category>Network</Category>
-	<Not><Filename>javaws1.4.desktop</Filename></Not>
       </And>
     </Include>
+    <Exclude>
+	<Filename>javaws1.4.desktop</Filename>
+    </Exclude>
   </Menu>   <!-- End Internet -->
 
   <!-- Multimedia -->
