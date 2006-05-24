@@ -8,6 +8,7 @@ Standards-Version: 3.6.1
 Package: e1000-modules-_KVERS_
 Architecture: i386
 Recommends: kernel-image-_KVERS_
+Replaces: linux-image-_KVERS_
 Provides: e1000-modules
 Description: e1000 Linux kernel module
  This package contains the e1000 loadable kernel modules for the
