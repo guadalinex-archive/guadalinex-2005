@@ -1,0 +1,18 @@
+Source: e1000 
+Section: misc
+Priority: optional
+Maintainer: Carlos Parra Camargo <cparra@emergya.info>
+Build-Depends: debhelper (>= 4.0.0), bzip2
+Standards-Version: 3.6.1
+
+Package: e1000-source
+Architecture: all
+Depends: module-assistant, bzip2, debhelper (>= 4.0.0)
+Description: source for e1000 driver
+ The e1000 driver provides network functionality for the Linux
+ kernel.
+ .
+ .
+ This package contains the module source. The kernel driver can be built from
+ it using module-assistant or make-kpkg.
+
