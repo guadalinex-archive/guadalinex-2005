@@ -1047,6 +1047,9 @@ class Wizard:
 		schemes_list = part.get_schemes_list(drive)
 		last_scheme = self.partition_scheme
 		for scheme in schemes_list:
+		    # Just in case there's no scheme 
+		    if not scheme:
+			continue
 		    self.__assistant.set_partition_scheme(scheme)
 	            s_drive = self.__assistant.get_drives()[current]
 		    if s_drive ['large_enough']:
