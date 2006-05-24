@@ -98,6 +98,52 @@ get_filesystem ()
 	esac
 }
 
+
+#
+# Check filesystem NG
+#
+get_filesystem_ng ()
+{
+        disk=\${1:0:8}
+        partition=\${1:8}
+        ret=\$(parted \$disk print | awk "/^\${partition}/ {print \\\$5}")
+        case \$ret in
+                *ext3*)
+                        echo "\$1 ext3"
+                        ;;
+                *ext2*)
+                        echo "\$1 ext2"
+                        ;;
+                *reiserfs*)
+                        echo "\$1 reiserfs"
+                        ;;
+                *jfs*)
+                        echo "\$1 jfs"
+                        ;;
+                *xfs*)
+                        echo "\$1 xfs"
+                        ;;
+                *vfat*)
+                        echo "\$1 vfat"
+                        ;;
+                *ntfs*)
+                        echo "\$1 ntfs"
+                        ;;
+                *swap*)
+                        echo "\$1 swap"
+                        ;;
+                *)
+                        ext=\$(parted \$disk print | awk "/^\${partition}/ {print \\\$4}")
+                        if [ "\$ext" == "extended" ]; then
+                                echo "\$1 extended"
+                        else
+                                echo "\$1 auto"
+                        fi
+                        ;;
+        esac
+}
+
+
 #
 # Search for CD/DVDs
 #
@@ -120,7 +166,7 @@ add_partitions_to_fstab()
 		else
 			defaults="    ro,users,noauto,defaults 	0       2"
 		fi
-		entry=\$(get_filesystem \$part)
+		entry=\$(get_filesystem_ng \$part)
 		dev=\$(echo \$entry | cut -d ' ' -f 1 )
 		fs=\$(echo \$entry | cut -d ' ' -f 2 )
 		if [ "\$fs" == "extended" ] ; then
