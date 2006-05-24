@@ -1,3 +1,38 @@
+Guadalinex v3.0.1 rc2 (24-05-06)
+--------------------------------
+
+Cambios mayores:
+
+- Sistema live:
+  - Mejoras en el sistema de reconocimiento de particiones y otros sistemas
+  operativos y generación de "fstab"
+  - Mejoras en el sistema de reconocimiento de enlace de red antes de pedir
+  automáticamente IP ("mii-tool" en "check-link")
+  - Mejoras y corrección de errores en el instalador live (BTS 786)
+  - Corregidos problemas con la generación de "fstab" en sistema instalado
+  (BTS 493)
+  - Desactivación del salvapantallas durante las sesiones "live" (BTS 560)
+  - Añadida nueva versión de "grubaker" que soluciona algunos problemas
+  reportados (BTS 780)
+  - Corregido problema del instalador "live" cuando existen muchas particiones
+  (BTS 716)
+
+- Solucionados problemas con algunas dependencias de Java que provocaban
+inestabilidades en el navegador 
+- Solucionados problemas con la firma de los paquets al hacer "apt-get update"
+(BTS 752)
+
+Cambios menores:
+
+- Configurado menú para que no aparezca "webstart" (aparecía por el cambio de
+versión de java)
+- Incluido "festival" con las voces en castellano
+- Corregida descripción de CD "no live" (BTS 776)
+- Eliminados ficheros ".svn" del directorio "extras" de la versión "no live"
+(BTS 813)
+- Corregidos errores ortográficos en instalador "live" (BTS 798)
+
+
 Guadalinex v3.0.1 rc1 (05-05-06)
 --------------------------------
 
