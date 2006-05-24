@@ -119,7 +119,7 @@ class Wizard:
     self.set_locales()
 
     # If automatic partitioning fails, it may be disabled toggling on this variable:
-    self.discard_automatic_partitioning = False
+    self.discard_automatic_partitioning = []
 
     # load the interface
     self.glade = gtk.glade.XML('%s/liveinstaller.glade' % GLADEDIR)
@@ -812,7 +812,7 @@ class Wizard:
         if self.mountpoints is 'STOPPED':
           self.mountpoints = None
           self.partition_bar.set_fraction (0.0)
-          self.discard_automatic_partitioning = True
+          self.discard_automatic_partitioning.append(selected_drive['id'])
           self.freespace.set_sensitive (False)
           self.on_drives_changed (None)
           self.abort_dialog.show ()
@@ -1042,7 +1042,7 @@ class Wizard:
 
           if not self.__assistant.only_manually ():
 
-            if not self.discard_automatic_partitioning:
+            if selected_drive['id'] not in self.discard_automatic_partitioning:
 		drive = selected_drive['id']
 		schemes_list = part.get_schemes_list(drive)
 		last_scheme = self.partition_scheme
