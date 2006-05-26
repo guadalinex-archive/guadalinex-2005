@@ -22,16 +22,16 @@ Description: e1000 Linux kernel module
 
 Package: guadalinex-v3-edu-hardware
 Source: gen-package
-Version: 1.0-r2000
+Version: 1.0-r2004
 Priority: optional
 Section: admin
 Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
-Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), e1000-modules-2.6.12-9-386, ieee80211-modules-2.6.12-9-386, ipw3945-modules-2.6.12-9-386
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), e1000-modules-2.6.12-9-386
 Architecture: all
-Filename: ./guadalinex-v3-edu-hardware_1.0-r2000_all.deb
-Size: 3300
+Filename: ./guadalinex-v3-edu-hardware_1.0-r2004_all.deb
+Size: 3296
 Installed-Size: 56
-MD5sum: 5d5c08adc3f6cdd2033a8c00cd89278f
+MD5sum: 9592625fff7376ecf6146d8b2fdb87ed
 Description: Servicio de hardware para el v3-edu de Debian/guadalinex.
 
 Package: ieee80211-modules-2.6.12-9-386
@@ -89,15 +89,15 @@ Description: ipw3945 modules for Linux (kernel 2.6.12-9-386).
 
 Package: meta-guadalinex-v3-edu
 Source: gen-package
-Version: 1.0-r2000
+Version: 1.0-r2004
 Priority: optional
 Section: admin
 Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
 Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-edu-hardware
 Architecture: all
-Filename: ./meta-guadalinex-v3-edu_1.0-r2000_all.deb
-Size: 3260
+Filename: ./meta-guadalinex-v3-edu_1.0-r2004_all.deb
+Size: 3276
 Installed-Size: 56
-MD5sum: 9673d45af44bfe9330d434b4df169e96
+MD5sum: 9ea8f4574f6b7336ada91d8c6d6603c4
 Description: Definici�n del v3-edu de Debian/guadalinex.
 
