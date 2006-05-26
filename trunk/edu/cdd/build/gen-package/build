@@ -1,0 +1,186 @@
+#!/bin/sh -e
+#
+# Developed by
+# 	Manuel Estrada Sanz, <ranty@debian.org>
+#	Javier Viñuales Gutiérrez, <vigu@debian.org>
+#
+# Licensed under GPL v2.0, 5 May 2004.
+
+# Load conf
+. cdd.cfg
+
+# Load messages
+#. cdd.msg
+
+
+SVNBASE="$1"
+TMPDIR=tmp.pkg
+
+CDDAUX=$(echo $CDDFLAVOUR|tr [A-Z] [a-z])
+
+die () {
+	 #echo $CDDMSG4_$CDDLANG
+	 echo "El error ha ocurrido procesando $pkg"
+}
+
+clean_skel () {
+	if [ -d $TMPDIR/skel ]
+	then
+		rm -rf $TMPDIR/skel
+	fi
+	mkdir -p $TMPDIR/skel/etc
+}
+
+skel_setup () {
+	pkgname=$flavourservname-conf
+	#pkgdesc=$CDDMSG1_$CDDLANG
+	pkgdesc="Configuración de $servname para el $section de $CDDNAME/$CDDFLAVOUR"
+	if [ -f $TMPDIR/DIRS ]
+	then
+		mkdir $TMPDIR/skel
+		exec < $TMPDIR/DIRS
+		while read ENTRY
+		do
+			file=$(basename $ENTRY)
+			dir=$(dirname $ENTRY)
+			mkdir -p $TMPDIR/skel/$dir
+			mv $TMPDIR/$file $TMPDIR/skel/$dir
+		done
+	else
+		if [ ! -d $TMPDIR/skel ]
+		then
+			return 1
+		fi
+	fi	
+	#echo "cdd:Depends=$flavourservname" >> $TMPDIR/debian/substvars
+	echo "cdd:Conflicts=$debconflicts" >> $TMPDIR/debian/substvars
+	echo "cdd:Maintainer=$debmaintainer" >> $TMPDIR/debian/substvars
+}
+
+meta_setup () {
+	pkgname=$flavourservname
+	#pkgdesc=$CDDMSG2_$CDDLANG
+	pkgdesc="Servicio de $servname para el $section de $CDDNAME/$CDDFLAVOUR"
+	echo "cdd:Pre-Depends=$debdepends" >> $TMPDIR/debian/substvars
+	echo "cdd:Conflicts=$debconflicts" >> $TMPDIR/debian/substvars
+	echo "cdd:Maintainer=$debmaintainer" >> $TMPDIR/debian/substvars
+	echo "cdd:Description=$debdescription " >> $TMPDIR/debian/substvars
+	clean_skel
+	touch $TMPDIR/debian/skel
+}
+
+
+big_meta_setup () {
+	pkgname="meta-$CDDAUX-$section"
+	#pkgdesc=$CDDMSG3_$CDDLANG
+	pkgdesc="Definición del $section de $CDDNAME/$CDDFLAVOUR"
+	debmaintainer=$CDDMAINTAINER
+	TODOS=$(echo $* | sed -e 's/,//g')
+	for x in $TODOS
+	do
+		LONG_TMP=$(echo `expr length "$x"`)
+		LONG=$(expr $LONG_TMP - 4)
+		if [ "$(echo $x | cut -c "$LONG"-)" == "-conf" ]; then
+			DEPENDS=$DEPENDS", "$x
+		else
+			PREDEPENDS=$PREDEPENDS", "$x	
+		fi
+
+	done
+	echo "cdd:Depends=$DEPENDS" >> $TMPDIR/debian/substvars
+	echo "cdd:Pre-Depends=$PREDEPENDS" >> $TMPDIR/debian/substvars
+	echo "cdd:Maintainer=$debmaintainer" >> $TMPDIR/debian/substvars
+	clean_skel
+	touch $TMPDIR/debian/skel
+}
+
+gen_package () {
+	local SETUP="$1"
+	servname=$(echo $pkg | sed  -e 's/^[0-9]*_//' -e 's/_/-/g')
+	flavourservname=$CDDAUX-$section-$servname
+
+	#echo $CDDMSG5_$CDDLANG
+	echo "Procesando $servname ..."
+	rm -fr $TMPDIR
+	svn export $SVNBASE/$pkg $TMPDIR
+	if [ ! -d $TMPDIR/debian/ ]; then
+		echo "WARNING: No debian/ directory"
+		mkdir $TMPDIR/debian
+	fi
+	
+	debdepends=$(egrep -v "^#" $TMPDIR/DEBDEPENDS || true)
+	debconflicts=$(cat $TMPDIR/DEBCONFLICTS || true)
+	if [ -s $TMPDIR/DEBMAINTAINER ]
+	then
+		debmaintainer=$(cat $TMPDIR/DEBMAINTAINER || true)
+	else
+		debmaintainer=$CDDMAINTAINER
+	fi
+	if ! $SETUP; then
+		return
+	fi
+	if [ "$1" = "skel_setup" ]
+	then
+		rsync --recursive --ignore-existing debian/ $TMPDIR/debian/
+	else
+		rsync --recursive debian/ $TMPDIR/debian/
+		rm -f $TMPDIR/debian/config
+		rm -f $TMPDIR/debian/templates
+	fi
+	if [ ! -s $TMPDIR/debian/skel ]; then
+		rm -f $TMPDIR/debian/skel
+	fi
+	
+	# We can't use 'substvars' for "Package:" entry
+	sed -e "s/this-will-be-replaced-package-name/$pkgname/" \
+		$TMPDIR/debian/control > $TMPDIR/debian/control.new
+	mv $TMPDIR/debian/control.new $TMPDIR/debian/control
+
+	if [ -s $TMPDIR/DEBDESCRIPTION ]
+	then
+		pkgdesc=$(cat $TMPDIR/DEBDESCRIPTION || true)
+    else
+        pkgdes="Este paquete simplifica la administración de \${cdd:Package}"
+    fi
+	
+	echo "cdd:Package=$flavourservname" >> $TMPDIR/debian/substvars
+	echo "cdd:Description=$pkgdesc" >> $TMPDIR/debian/substvars
+	echo "cdd:Conflicts=$debconflicts" >> $TMPDIR/debian/substvars
+	echo "cdd:Maintainer=$debmaintainer" >> $TMPDIR/debian/substvars
+	
+	mkdir -p $CDDPACKAGESDIR/$section
+	cd $TMPDIR
+	dpkg-buildpackage -rfakeroot -D -us -uc -b
+	cd ..
+	rm gen-package_*_i386.changes
+	mv *.deb $CDDPACKAGESDIR/$section
+}
+
+trap "die" ERR
+
+if [ -z "$1" ]; then
+	echo "Necessary lack parameter"
+	echo -e "use:\v $0 /path/to/[appliance1|appliance2|appliance3]"
+	exit 1
+fi
+
+last_revision=$(cat ../../conf/.svn/entries |grep revision|sed -e 's/^.*revision="\([0-9]*\)"\/>/\1/')
+dch -v 1.0-r${last_revision} "Auto-generated version increment" || continue
+section=$(basename $1)
+
+big_meta_deps=""
+# Configuration packages generation
+for pkg in $(sed -e's/#.*//' packages-$section)
+do
+	pkgname=$(echo $pkg | sed  -e 's/^[0-9]*_//')
+	gen_package skel_setup
+	gen_package meta_setup
+	if [ -f $CDDPACKAGESDIR/$section/$pkgname-conf*.deb ];then
+		big_meta_deps="$big_meta_deps, $pkgname-conf, $pkgname"
+	else
+		big_meta_deps="$big_meta_deps, $pkgname"
+	fi
+done
+gen_package "big_meta_setup $big_meta_deps"
+
+rm -rf $TMPDIR
