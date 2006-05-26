@@ -1,0 +1,103 @@
+Package: e1000-modules-2.6.12-9-386
+Source: e1000
+Version: 7.0.38-1
+Priority: optional
+Section: misc
+Maintainer: Carlos Parra Camargo <cparra@emergya.info>
+Recommends: kernel-image-2.6.12-9-386
+Provides: e1000-modules
+Replaces: linux-image-2.6.12-9-386
+Architecture: i386
+Filename: ./e1000-modules-2.6.12-9-386_7.0.38-1_i386.deb
+Size: 57000
+Installed-Size: 200
+MD5sum: 1afe332f125319b522a62cc7ecc09fec
+Description: e1000 Linux kernel module
+ This package contains the e1000 loadable kernel modules for the
+ kernel-image-2.6.12-9-386 package.
+ .
+ If you compiled a custom kernel, you will most likely need to compile a
+ custom version of this module as well. The e1000-source
+ package has been provided for this purpose.
+
+Package: guadalinex-v3-edu-hardware
+Source: gen-package
+Version: 1.0-r2000
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), e1000-modules-2.6.12-9-386, ieee80211-modules-2.6.12-9-386, ipw3945-modules-2.6.12-9-386
+Architecture: all
+Filename: ./guadalinex-v3-edu-hardware_1.0-r2000_all.deb
+Size: 3300
+Installed-Size: 56
+MD5sum: 5d5c08adc3f6cdd2033a8c00cd89278f
+Description: Servicio de hardware para el v3-edu de Debian/guadalinex.
+
+Package: ieee80211-modules-2.6.12-9-386
+Source: ieee80211
+Version: 1.1.12-1
+Priority: optional
+Section: contrib/net
+Maintainer: Alfredo Matas <cga.averroes@juntadeandalucia.es>
+Provides: ieee80211-modules
+Replaces: linux-image-2.6.12-9-386
+Architecture: i386
+Filename: ./ieee80211-modules-2.6.12-9-386_1.1.12-1_i386.deb
+Size: 411316
+Installed-Size: 1096
+MD5sum: d6de7b395e2f3f3cc2d6ef7e89cac0b9
+Description: ieee80211 modules for Linux (kernel 2.6.12-9-386).
+ This package contains the set of loadable kernel modules for the
+ ieee80211 stack, which is a common component for wireless support.
+ .
+ This package contains the compiled kernel modules for 2.6.12-9-386
+ .
+ If you have compiled your own kernel, you will most likely need to build
+ your own ieee80211-modules.  The ieee80211-source package has been
+ provided for use with the Debian kernel-package utility to produce a version
+ of ieee80211-module for your kernel.
+
+Package: ipw3945-modules-2.6.12-9-386
+Source: ipw3945
+Version: 0.0.7-1
+Priority: optional
+Section: contrib/net
+Maintainer: Centro de Gestión Avanzado C.G.A. <cga.averroes@juntadeandalucia.e>
+Depends: hotplug, ieee80211-modules-2.6.12-9-386 (>> 1.0.5)
+Recommends: wireless-tools
+Suggests: wpasupplicant
+Provides: ipw3945-modules
+Architecture: i386
+Filename: ./ipw3945-modules-2.6.12-9-386_0.0.7-1_i386.deb
+Size: 321682
+Installed-Size: 896
+MD5sum: 58b513269cb4caeacd719c3d7edb2427
+Description: ipw3945 modules for Linux (kernel 2.6.12-9-386).
+ This package contains the set of loadable kernel modules for the
+ Intel PRO/Wireless 3945 (IPW3945) mini PCI adapter, which is a common component
+ of Centrino notebooks. Please note that you need additional firmware to use
+ this driver. The firmware is freely available, please see
+ /usr/share/doc/ipw3945-modules-2.6.12-9-386 for details.
+ .
+ This package contains the compiled kernel modules for 2.6.12-9-386
+ .
+ If you have compiled your own kernel, you will most likely need to build
+ your own ipw3945-modules.  The ipw3945-source package has been
+ provided for use with the Debian kernel-package utility to produce a version
+ of ipw3945-module for your kernel.
+
+Package: meta-guadalinex-v3-edu
+Source: gen-package
+Version: 1.0-r2000
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucía <packmaster@guadalinex.org>
+Pre-Depends: dpsyco-lib (>= 1.0.11), dpsyco-lib (<= 1.1.0), dpsyco-skel (>= 1.0.11), guadalinex-v3-edu-hardware
+Architecture: all
+Filename: ./meta-guadalinex-v3-edu_1.0-r2000_all.deb
+Size: 3260
+Installed-Size: 56
+MD5sum: 9673d45af44bfe9330d434b4df169e96
+Description: Definici�n del v3-edu de Debian/guadalinex.
+
