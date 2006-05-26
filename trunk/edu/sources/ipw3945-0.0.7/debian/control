@@ -1,0 +1,13 @@
+Source: ipw3945
+Section: contrib/net
+Priority: optional
+Maintainer: Grupo de desarrollo del C.G.A. <cga.averroes@juntadeandalucia.es>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 0.0.7
+
+Package: ipw3945-source
+Architecture: all
+Depends: module-assistant, ${shlibs:Depends}, ieee80211-source (>= 1.1.8)
+Description: Source package for the ipw3945 wireless chipset.
+ This package contains the driver 
+

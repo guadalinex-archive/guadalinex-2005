@@ -1,0 +1,26 @@
+Source: ipw3945
+Section: contrib/net
+Priority: optional
+Maintainer: Centro de Gestión Avanzado C.G.A. <cga.averroes@juntadeandalucia.e>
+Build-Depends: debhelper (>> 4.0.0), po-debconf
+Standards-Version: 3.6.2.0
+
+Package: ipw3945-modules-_KVERS_
+Architecture: any
+Depends: hotplug, ieee80211-modules-_KVERS_ (>> 1.0.5), ${misc:Depends}
+Recommends: wireless-tools
+Suggests: wpasupplicant
+Provides: ipw3945-modules
+Description: ipw3945 modules for Linux (kernel _KVERS_).
+ This package contains the set of loadable kernel modules for the
+ Intel PRO/Wireless 3945 (IPW3945) mini PCI adapter, which is a common component
+ of Centrino notebooks. Please note that you need additional firmware to use
+ this driver. The firmware is freely available, please see
+ /usr/share/doc/ipw3945-modules-_KVERS_ for details.
+ .
+ This package contains the compiled kernel modules for _KVERS_
+ .
+ If you have compiled your own kernel, you will most likely need to build
+ your own ipw3945-modules.  The ipw3945-source package has been
+ provided for use with the Debian kernel-package utility to produce a version
+ of ipw3945-module for your kernel.

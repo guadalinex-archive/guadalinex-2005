@@ -1,0 +1,171 @@
+Changes in 1.1.12
+
+* Fix ieee80211_wx_set_auth and ieee80211_wx_get_auth exported but not
+  defined problem while WIRELESS_EXT < 18
+* Fix script remove-old doesn't detect kernel source headers problem
+* Remove ieee80211 TX "is_queue_full" warning
+* Use IWEVGENIE to set WPA IE (thanks to Chris Hessing)
+* Add common wx auth code (from upstream)
+* Add two management functions to ieee80211_rx.c (from upstream)
+
+Changes in 1.1.11
+
+* Fix compare_ether_addr is not defined in old kernels (<= 2.6.14)
+
+Changes in 1.1.10
+
+* Add TIM information element parsing support
+* Add TKIP crypt->build_iv and change the interface to return key and keylen
+
+Changes in 1.1.9
+
+* Re-based on 2.6.15 to incorporate multiple upstream fixes
+* Fixed compiler warning if CONFIG_IEEE80211_DEBUG not defined
+* Fixed problem with channel validity check not working on A bands.
+* 802.11h information element and data type definitions added
+* Fixed problem with ibss_dfs object not being freed if set on reset
+* Removed deprecated tkip_countermeasures member from ieee80211_device
+* Added default handlers for various 802.11h DFS and TPC information
+  elements.
+* Added debug message with information on unparsed IEs if debug_level 
+  set.
+* Added code to reset network IBSS DFS information when appropriate.
+* Added code to invoke driver callback for 802.11h ACTION STYPE
+* Changed a few printk's to IEEE80211_DEBUG_MGMT
+* Fixed compatibility problem with __nocast
+* Fixed problem with remove-old not working on some distros (thanks to 
+  Henrik Brix Andersen for the correcting an oversite in this change)
+
+Changes in 1.1.8
+
+* Fix kzalloc() and gfp_t referenced in old kernels bug (thanks to
+  Axel Thimm)
+* Fix compile errors for kernels don't have WE-18 support
+
+Changes in 1.1.7
+
+* Fixed a memory leak bug (thanks to kirill<kirill@s-terra.com>)
+* Add LEAP authentication algorithm support
+* Fixed iwlist scan can only show about 20 APs
+* Fixed problem with WEP unicast key > index 0 (thanks to Volker Braun)
+* Fixed to use GFP mask on TX skb allocation (thanks to Michael Buesch)
+* Fixed to use the tx_headroom and reserve requested space (thanks to 
+  Michael Buesch)
+* Fixed older kernel compatibility issues with __le16, __nocast, and 
+  NETDEV_TX_BUSY (thanks to Mike Hommey)
+* Change the crypt module build_iv() interface to suport partial
+  hardware crypto enabled cards.
+
+Changes in 1.1.6
+
+* Fixed oops if an uninitialized key is used for Tx encryption
+* Fixed problem with not encrypting/decrypting broadcast packets
+* Fixed Wireless Extension backward compatibility problems
+* Updated to contain latest fixes and changes from 
+  netdev-2.6#upstream
+* Added 'patch_kernel' makefile target -- do not use unless 
+  you are willing to reinstall your kernel sources if it fails 
+  (still being tested)
+
+Changes in 1.1.5
+
+* Lindent and trailing whitespace script executed ieee80211 subsystem
+* When an assoc_resp is received the network structure is not completely
+  initialized which can cause problems for drivers that expect the 
+  network structure to be completely filled in (thanks to Ivo van Doorn)
+* Currently the info_element is parsed by 2 seperate functions, this
+  results in a lot of duplicate code. (thanks to Ivo van Doorn)
+* Fix implicit nocast warnings in ieee80211 code:
+  net/ieee80211/ieee80211_tx.c:215:9: warning: implicit cast to nocast 
+  type (thanks to Randy Dunlap)
+* Move the ieee80211_is_ofdm_rate function to the ieee80211.h
+  header, and I also added the ieee80211_is_cck_rate counterpart (thanks 
+  to Ivo van Doorn)
+* Fixes a typo in ieee80211.h: ieee82011_deauth -> ieee80211_deauth 
+  (thanks to Michael Wu)
+* Changed crypto method from requiring a struct ieee80211_device reference
+  to the init handler.  Instead we now have a get/set flags method for
+  each crypto component.
+* Added handle_deauth() callback , enhanced tkip/ccmp support of varying 
+  hw/sw offload.
+* Fixed #768 Keep auth mode unchanged after iwconfig key off/on cycle
+* Switched to sscanf in store_debug_level
+
+Changes in 1.1.4
+
+* Added WE-18 support to default wireless extension handler
+* Updated compatibility version number since the ieee80211_device 
+  change
+* Added subsystem version string and reporting via MODULE_VERSION and
+  printk during load.
+* Updated copyright dates.
+* Updated based on Michael Wu's patch and comments sent to netdev:
+	+ Added IE comments to ieee80211_* frame structures.
+	+ Changed reason_code to reason (consistency)
+* [Bug 768] Keep auth mode unchanged after iwconfig key off/on cycle.
+* Mixed PTK/GTK CCMP/TKIP support.
+* Added WLAN_CAPABILITY_QOS
+* Fixed type-o WLAN_CAPABILITY_OSSS_OFDM -> WLAN_CAPABILITY_DSSS_OFDM
+* Added ERP IE parsing to ieee80211_rx
+* Added handle_probe_request callback.
+* Removed "extern inline" (thanks to Adrian Bunk)
+* Additional fixes for endian-aware types (based in part on Michael Wu's 
+  changes)
+* Added ieee80211_radiotap.h to enhance statistic reporting to user space
+  from wireless drivers (thanks to Mike Kershaw)
+* Added ieee80211_geo to provide helper functions to drivers for
+  implementing supported channel maps.
+* Add QoS (WME) support to the ieee80211 subsystem.
+* Per the conversations with folks at OLS, the QoS layer in 802.11
+  drivers can now result in NETDEV_TX_BUSY being returned when the queue
+  a packet is targetted for is full.
+* Fixed TKIP encryption issues msdu + mpdu encryption on every
+  fragment. Change the behavior to msdu encryption on the whole
+  packet, then mpdu encryption on every fragment.
+* Modified to avoid repeated fragmentation when !host_encrypt.
+* Added ieee80211_tx_frame to convert generic 802.11 data frames into
+  txbs for transmission.
+* Added several purpose specific callbacks (handle_assoc, handle_auth,
+  etc.) which the driver can register with for being notified on
+  reception of variouf frame elements.
+* Added support for the creation of RTS packets when the
+  config flag CFG_IEEE80211_RTS has been set (thanks to Ivo van Doorn)
+
+Changes in 1.0.3
+
+* Cleaned up some prior merge regressions when syncing with 
+  netdev-2.6
+* Fixed some whitespace issues.
+* Removed some un-needed comments.
+* Removed duplicate defines, for example:
+	IEEE80211_DATA_HDR4_LEN => IEEE80211_4ADDR_LEN
+
+Changes in 1.0.2
+
+* Fix type-o: abg_ture -> abg_true (thanks to Hong Liu)
+* Fix 64-bit warnings (thanks to Pedro Ramalhais)
+* Fix to refernce of skb->priority after skb freed (thank to Zhu Yi)
+* Fixed Makefile's check_old to look in correct path for .config and 
+  include/linux/autoconf.h (thanks to Pedro Ramalhais)
+
+Changes in 1.0.1
+
+* Updated to latest ieee80211-dev work (compatible with ipw-dev tree, 
+  ipw2100 1.1.1, and ipw2200 1.0.5)
+* Modified ieee80211_geo to start adding more geographies and to correct 
+  an 802.11h mapping problem.
+* Added WE18 support (thanks to Hong Liu)
+* memcpy() parameter reversal fix (thanks to akamatsu)
+* Fixed compatibility problem with kernel due to multiple definitions of 
+  is_multicast_ether_addr()
+* Modified 'make check' to be 'make check_old' so as not to conflict 
+  with Gentoo's Portage system.
+* Fix TKIP encryption and fragmentation code rewrite (thanks to Hong Liu)
+* Add ieee->host_encrypt_msdu to avoid ipw specific change in ieee80211.
+* Sync with netdev-2.6 ieee80211 branch.
+
+Changes in 1.0.0
+
+* Initial version of ieee80211 pulled out of ipw driver projects into
+  stand alone project; compatible with ipw2100 1.1.0 and ipw2200 1.0.0
+

@@ -1,0 +1,60 @@
+# Translators, if you are not familiar with the PO format, gettext
+# documentation is worth reading, especially sections dedicated to
+# this format, e.g. by running:
+# info -n '(gettext)PO Files'
+# info -n '(gettext)Header Entry'
+# Some information specific to po-debconf are available at
+# /usr/share/doc/po-debconf/README-trans
+# or http://www.debian.org/intl/l10n/po-debconf/README-trans
+# Developers do not need to manually edit POT or PO files.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: ipw2200 0.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-05-15 17:06+0200\n"
+"PO-Revision-Date: 2004-10-16 08:46+0200\n"
+"Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
+"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit"
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid "Additional firmware needed"
+msgstr "Un micro-code (« firmware ») supplémentaire est nécessaire"
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid ""
+"The ipw2200 driver needs additional firmware to function properly. Presently "
+"you do not have the firmware installed on your system or the installed "
+"version does not match the requirements of this version of the ipw2200 "
+"driver."
+msgstr ""
+"Le pilote ipw2200 a besoin d'un micro-code supplémentaire pour fonctionner "
+"correctement. Ce micro-code n'est pas actuellement installé sur votre "
+"système ou alors la version installée ne correspond pas à cette version du "
+"pilote ipw2200."
+""
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid ""
+"The firmware is not provided as debian package, because the redistribution "
+"license does not allow for that. However the firmware can be downloaded for "
+"free from Intel's homepage. Please see /usr/share/doc/ipw2200-modules-"
+"${KVERS}/README.firmware for further instructions."
+msgstr ""
+"Le micro-code n'est pas fourni sous forme de paquet Debian parce que sa "
+"licence n'en autorise pas la redistribution. Cependant, il peut être "
+"téléchargé librement depuis la page d'accueil d'Intel. Veuillez consulter "
+"/usr/share/doc/ipw2200-modules-${KVERS}/README.firmware pour plus "
+"d'informations."
+""
+

@@ -1,0 +1,13 @@
+Template: ipw3945/firmware_note
+Type: note
+_Description: Additional firmware needed
+ The ipw3945 driver needs additional firmware to function properly.
+ Presently you do not have the firmware installed on your system or the
+ installed version does not match the requirements of this version of the
+ ipw3945 driver.
+ .
+ The firmware is not provided as debian package, because the redistribution
+ license does not allow for that. However the firmware can be downloaded
+ for free from Intel's homepage. Please see
+ /usr/share/doc/ipw3945-modules-${KVERS}/README.firmware for further
+ instructions.

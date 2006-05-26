@@ -1,0 +1,11 @@
+Package: ipw3945-source
+Version: 0.0.7-1
+Section: contrib/net
+Priority: optional
+Architecture: all
+Depends: module-assistant, ieee80211-source (>= 1.1.8)
+Installed-Size: 284
+Maintainer: Grupo de desarrollo del C.G.A. <cga.averroes@juntadeandalucia.es>
+Source: ipw3945
+Description: Source package for the ipw3945 wireless chipset.
+ This package contains the driver

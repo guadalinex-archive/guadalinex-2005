@@ -1,0 +1,57 @@
+# Translators, if you are not familiar with the PO format, gettext
+# documentation is worth reading, especially sections dedicated to
+# this format, e.g. by running:
+# info -n '(gettext)PO Files'
+# info -n '(gettext)Header Entry'
+# Some information specific to po-debconf are available at
+# /usr/share/doc/po-debconf/README-trans
+# or http://www.debian.org/intl/l10n/po-debconf/README-trans
+# Developers do not need to manually edit POT or PO files.
+# , fuzzy
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-05-15 17:06+0200\n"
+"PO-Revision-Date: 2005-09-02 03:04+0200\n"
+"Last-Translator: Daniel Knabl <daniel@knabl.com>\n"
+"Language-Team: German <gnome-de@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid "Additional firmware needed"
+msgstr "Zusätzliche Firmware nötig"
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid ""
+"The ipw2200 driver needs additional firmware to function properly. Presently "
+"you do not have the firmware installed on your system or the installed "
+"version does not match the requirements of this version of the ipw2200 "
+"driver."
+msgstr ""
+"Um ordnungsgemäß zu funktionieren benötigt der ipw2200 Treiber zusätzliche "
+"Firmware. Im Moment ist keine Firmware auf diesem Computer installiert, oder die "
+"installierte Version erfüllt nicht die Anforderungen dieser Version des ipw2200 Treibers."
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid ""
+"The firmware is not provided as debian package, because the redistribution "
+"license does not allow for that. However the firmware can be downloaded for "
+"free from Intel's homepage. Please see /usr/share/doc/ipw2200-modules-"
+"${KVERS}/README.firmware for further instructions."
+msgstr ""
+"DIe Firmware wird nicht als Debian Paket angeboten, da die Lizenz eine Verteilung "
+"nicht gestattet. Die Firmware kann jedoch von der Homepage der Firma Intel "
+"herunter geladen werden. Für weitere Informationen lesen Sie bitte "
+"usr/share/doc/ipw2200-modules-${KVERS}/README.firmware"
+

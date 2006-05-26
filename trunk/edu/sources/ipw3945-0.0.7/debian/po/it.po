@@ -1,0 +1,56 @@
+# Translators, if you are not familiar with the PO format, gettext
+# documentation is worth reading, especially sections dedicated to
+# this format, e.g. by running:
+# info -n '(gettext)PO Files'
+# info -n '(gettext)Header Entry'
+# Some information specific to po-debconf are available at
+# /usr/share/doc/po-debconf/README-trans
+# or http://www.debian.org/intl/l10n/po-debconf/README-trans
+# Developers do not need to manually edit POT or PO files.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: ipw2200 0.12\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-05-15 17:06+0200\n"
+"PO-Revision-Date: 2004-11-07 12:01+0900\n"
+"Last-Translator: Emiliano Gabrielli (AlberT) <AlberT@SuperAlberT.it>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit"
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid "Additional firmware needed"
+msgstr "E' necessario un firmware supplementare"
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid ""
+"The ipw2200 driver needs additional firmware to function properly. Presently "
+"you do not have the firmware installed on your system or the installed "
+"version does not match the requirements of this version of the ipw2200 "
+"driver."
+msgstr ""
+"Il driver ipw2200 necessita di un firmware esterno per poter funzionare correttamente. "
+"Attualmente tale firmware non è installato sul sistema o la versione installata "
+"non è adeguata a questa versione del driver ipw2200."
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid ""
+"The firmware is not provided as debian package, because the redistribution "
+"license does not allow for that. However the firmware can be downloaded for "
+"free from Intel's homepage. Please see /usr/share/doc/ipw2200-modules-"
+"${KVERS}/README.firmware for further instructions."
+msgstr ""
+"Il firmware non è distribuito in forma di pacchetto debian a causa del fatto che questo "
+"non è permesso dalla licenza di ridistribuzione. "
+"Nondimeno il firmware può essere scaricato gratuitamente dal sito di Intel. Per ulteriori "
+"informazioni si faccia riferimento a "
+"/usr/share/doc/ipw2200-modules-${KVERS}/README.firmware."

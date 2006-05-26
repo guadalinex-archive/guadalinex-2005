@@ -1,0 +1,27 @@
+/* boiler plate stuff */
+CHANGES
+FILES
+INSTALL
+ISSUES
+LICENSE
+LICENSE.GPL
+LICENSE.BSD
+
+/* makefile that ties into an existing kernel build tree */
+Makefile
+
+/* readme for the release */
+README.ipw3945
+
+/* ipw3945 implementation */
+ipw3945.h
+ipw3945.c
+
+/* driver <-> regulatory daemon API definition */
+ipw3945_daemon.h
+
+/* helper scripts */
+load
+unload
+dvals
+idvals

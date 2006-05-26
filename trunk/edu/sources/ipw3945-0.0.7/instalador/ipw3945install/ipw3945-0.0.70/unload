@@ -1,0 +1,64 @@
+#!/bin/sh
+function check_root()
+{
+	[ $(whoami) != "root" ] && 
+		echo "You must be root to run this script." &&
+		return 1
+
+	return 0
+}
+
+function check_running()
+{
+	${path}ipw3945d --isrunning && {
+		echo -n "Killing ipw3945d..."
+		${path}ipw3945d --kill && {
+			sleep 1 
+			echo "done."
+		}
+	}
+
+	${path}ipw3945d --isrunning && 
+		echo "Could not kill ipw3945d.  Exiting"  &&
+		return 1
+
+	return 0
+}
+
+function unload()
+{
+	unset UNLOADED
+	for i in ipw3945 ieee80211{,_crypt{_{tkip,ccmp,wep},}}; do
+		if lsmod | grep -q $i; then
+			UNLOADED="${UNLOADED}${i} "
+			rmmod $i
+		fi
+	done
+	if [ -z "${UNLOADED}" ]; then
+		echo "No modules unloaded."
+	else
+		echo "Unloaded: $UNLOADED"
+	fi
+}
+
+function parse_args()
+{
+        while [ "$1" ]; do
+                case $1 in
+                -ipw3945d=*)
+                        path=$1
+                        path=${path/*=//}
+                        shift
+                        ;;
+
+                *)
+                        shift
+                        ;;
+                esac
+        done
+
+        path=${path/%\//}/
+}
+
+path=/sbin
+parse_args $@ && check_root && check_running && unload

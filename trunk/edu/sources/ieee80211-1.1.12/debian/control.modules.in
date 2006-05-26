@@ -1,0 +1,22 @@
+Source: ieee80211
+Section: contrib/net
+Priority: optional
+Maintainer: Alfredo Matas <cga.averroes@juntadeandalucia.es>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.1
+
+Package: ieee80211-modules-_KVERS_
+Architecture: any
+Replaces: linux-image-_KVERS_
+Provides: ieee80211-modules
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ieee80211 modules for Linux (kernel _KVERS_).
+ This package contains the set of loadable kernel modules for the
+ ieee80211 stack, which is a common component for wireless support.
+ .
+ This package contains the compiled kernel modules for _KVERS_
+ .
+ If you have compiled your own kernel, you will most likely need to build
+ your own ieee80211-modules.  The ieee80211-source package has been
+ provided for use with the Debian kernel-package utility to produce a version
+ of ieee80211-module for your kernel.

@@ -1,0 +1,1126 @@
+GAS LISTING  			page 1
+
+
+   1              	.file "ieee80211_geo.c"
+   9              	.Ltext0:
+  10              	.globl ieee80211_is_valid_channel
+  12              	ieee80211_is_valid_channel:
+  13              	.LFB922:
+  14              	.file 1 "/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c"
+   1:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** /******************************************************************************
+   2:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+   3:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   Copyright(c) 2005 Intel Corporation. All rights reserved.
+   4:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+   5:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   This program is free software; you can redistribute it and/or modify it
+   6:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   under the terms of version 2 of the GNU General Public License as
+   7:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   published by the Free Software Foundation.
+   8:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+   9:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   This program is distributed in the hope that it will be useful, but WITHOUT
+  10:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  11:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+  12:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   more details.
+  13:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  14:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   You should have received a copy of the GNU General Public License along with
+  15:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   this program; if not, write to the Free Software Foundation, Inc., 59
+  16:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+  17:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  18:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   The full GNU General Public License is included in this distribution in the
+  19:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   file called LICENSE.
+  20:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  21:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   Contact Information:
+  22:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   James P. Ketrenos <ipw2100-admin@linux.intel.com>
+  23:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c ****   Intel Corporation, 5200 N.E. Elam Young Parkway, Hillsboro, OR 97124-6497
+  24:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  25:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** ******************************************************************************/
+  26:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/compiler.h>
+  27:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/config.h>
+  28:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/errno.h>
+  29:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/if_arp.h>
+  30:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/in6.h>
+  31:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/in.h>
+  32:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/ip.h>
+  33:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/kernel.h>
+  34:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/module.h>
+  35:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/netdevice.h>
+  36:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/proc_fs.h>
+  37:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/skbuff.h>
+  38:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/slab.h>
+  39:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/tcp.h>
+  40:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/types.h>
+  41:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/wireless.h>
+  42:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <linux/etherdevice.h>
+  43:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <asm/uaccess.h>
+  44:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  45:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** #include <net/ieee80211.h>
+  46:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  47:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** int ieee80211_is_valid_channel(struct ieee80211_device *ieee, u8 channel)
+  48:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** {
+  15              	.loc 1 48 0
+  16 0000 56       	pushl %esi
+  17              	.LCFI0:
+GAS LISTING  			page 2
+
+
+  18 0001 53       	pushl %ebx
+  19              	.LCFI1:
+  20              	.loc 1 48 0
+  21 0002 51       	pushl %ecx
+  22              	.LCFI2:
+  23 0003 8A442414 	movb 20(%esp),%al
+  24 0007 8B4C2410 	movl 16(%esp),%ecx
+  25 000b 88442403 	movb %al,3(%esp)
+  49:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	int i;
+  50:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  51:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	/* Driver needs to initialize the geography map before using
+  52:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	 * these helper functions */
+  53:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	BUG_ON(ieee->geo.bg_channels == 0 && ieee->geo.a_channels == 0);
+  26              	.loc 1 53 0
+  27 000f 6683B948 	cmpw $0,328(%ecx)
+  27      01000000 
+  28 0017 7502     	jne .L2
+  29              	
+  30 0019 0F0B     	ud2
+  31              	
+  32              	
+  33              	.L2:
+  54:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  55:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (ieee->freq_band & IEEE80211_24GHZ_BAND)
+  34              	.loc 1 55 0
+  35 001b 8BB16407 	movl 1892(%ecx),%esi
+  35      0000
+  36 0021 F7C60100 	testl $1,%esi
+  36      0000
+  37 0027 7441     	je .L4
+  56:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		for (i = 0; i < ieee->geo.bg_channels; i++)
+  38              	.loc 1 56 0
+  39 0029 8A994801 	movb 328(%ecx),%bl
+  39      0000
+  40 002f 31D2     	xorl %edx,%edx
+  41 0031 84DB     	testb %bl,%bl
+  42 0033 7435     	je .L4
+  43              	.L10:
+  57:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			/* NOTE: If G mode is currently supported but
+  58:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			 * this is a B only channel, we don't see it
+  59:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			 * as valid. */
+  60:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			if ((ieee->geo.bg[i].channel == channel) &&
+  44              	.loc 1 60 0
+  45 0035 8A442403 	movb 3(%esp),%al
+  46 0039 3884D150 	cmpb %al,336(%ecx,%edx,8)
+  46      010000
+  47 0040 7520     	jne .L7
+  48 0042 0FB684D1 	movzbl 337(%ecx,%edx,8),%eax
+  48      51010000 
+  49 004a A840     	testb $64,%al
+  50 004c 7514     	jne .L7
+  51 004e F6815C07 	testb $4,1884(%ecx)
+  51      000004
+  52 0055 7404     	je .L9
+  53 0057 A804     	testb $4,%al
+  54 0059 7507     	jne .L7
+  55              	.L9:
+GAS LISTING  			page 3
+
+
+  61:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			    !(ieee->geo.bg[i].flags & IEEE80211_CH_INVALID) &&
+  62:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			    (!(ieee->mode & IEEE_G) ||
+  63:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			     !(ieee->geo.bg[i].flags & IEEE80211_CH_B_ONLY)))
+  64:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 				return IEEE80211_24GHZ_BAND;
+  56              	.loc 1 64 0
+  57 005b B8010000 	movl $1,%eax
+  57      00
+  58 0060 EB41     	jmp .L1
+  59              	.LCFI3:
+  60              	.L7:
+  61              	.loc 1 56 0
+  62 0062 42       	incl %edx
+  63 0063 0FB6C3   	movzbl %bl,%eax
+  64 0066 39C2     	cmpl %eax,%edx
+  65 0068 7CCB     	jl .L10
+  66              	.L4:
+  65:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  66:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (ieee->freq_band & IEEE80211_52GHZ_BAND)
+  67              	.loc 1 66 0
+  68 006a 83E602   	andl $2,%esi
+  69 006d 7432     	je .L11
+  67:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		for (i = 0; i < ieee->geo.a_channels; i++)
+  70              	.loc 1 67 0
+  71 006f 8A994901 	movb 329(%ecx),%bl
+  71      0000
+  72 0075 31D2     	xorl %edx,%edx
+  73 0077 84DB     	testb %bl,%bl
+  74 0079 7426     	je .L11
+  75              	.L16:
+  68:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			if ((ieee->geo.a[i].channel == channel) &&
+  76              	.loc 1 68 0
+  77 007b 8A442403 	movb 3(%esp),%al
+  78 007f 3884D1C0 	cmpb %al,448(%ecx,%edx,8)
+  78      010000
+  79 0086 7511     	jne .L14
+  80 0088 F684D1C1 	testb $64,449(%ecx,%edx,8)
+  80      01000040 
+  81 0090 7507     	jne .L14
+  69:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			    !(ieee->geo.a[i].flags & IEEE80211_CH_INVALID))
+  70:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 				return IEEE80211_52GHZ_BAND;
+  82              	.loc 1 70 0
+  83 0092 B8020000 	movl $2,%eax
+  83      00
+  84 0097 EB0A     	jmp .L1
+  85              	.L14:
+  86              	.loc 1 67 0
+  87 0099 42       	incl %edx
+  88 009a 0FB6C3   	movzbl %bl,%eax
+  89 009d 39C2     	cmpl %eax,%edx
+  90 009f 7CDA     	jl .L16
+  91              	.L11:
+  71:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  72:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	return 0;
+  92              	.loc 1 72 0
+  93 00a1 31C0     	xorl %eax,%eax
+  94              	.L1:
+  73:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** }
+GAS LISTING  			page 4
+
+
+  95              	.loc 1 73 0
+  96 00a3 5A       	popl %edx
+  97              	.LCFI4:
+  98 00a4 5B       	popl %ebx
+  99 00a5 5E       	popl %esi
+ 100 00a6 C3       	ret
+ 101              	.LFE922:
+ 103              	.globl ieee80211_channel_to_index
+ 105              	ieee80211_channel_to_index:
+ 106              	.LFB923:
+  74:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  75:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** int ieee80211_channel_to_index(struct ieee80211_device *ieee, u8 channel)
+  76:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** {
+ 107              	.loc 1 76 0
+ 108 00a7 56       	pushl %esi
+ 109              	.LCFI5:
+ 110 00a8 53       	pushl %ebx
+ 111              	.LCFI6:
+ 112              	.loc 1 76 0
+ 113 00a9 56       	pushl %esi
+ 114              	.LCFI7:
+ 115 00aa 8A442414 	movb 20(%esp),%al
+ 116 00ae 8B5C2410 	movl 16(%esp),%ebx
+ 117 00b2 88442403 	movb %al,3(%esp)
+  77:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	int i;
+  78:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  79:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	/* Driver needs to initialize the geography map before using
+  80:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	 * these helper functions */
+  81:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	BUG_ON(ieee->geo.bg_channels == 0 && ieee->geo.a_channels == 0);
+ 118              	.loc 1 81 0
+ 119 00b6 6683BB48 	cmpw $0,328(%ebx)
+ 119      01000000 
+ 120 00be 7502     	jne .L20
+ 121              	
+ 122 00c0 0F0B     	ud2
+ 123              	
+ 124              	
+ 125              	.L20:
+  82:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  83:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (ieee->freq_band & IEEE80211_24GHZ_BAND)
+ 126              	.loc 1 83 0
+ 127 00c2 8BB36407 	movl 1892(%ebx),%esi
+ 127      0000
+ 128 00c8 F7C60100 	testl $1,%esi
+ 128      0000
+ 129 00ce 7421     	je .L22
+  84:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		for (i = 0; i < ieee->geo.bg_channels; i++)
+ 130              	.loc 1 84 0
+ 131 00d0 8A8B4801 	movb 328(%ebx),%cl
+ 131      0000
+ 132 00d6 31D2     	xorl %edx,%edx
+ 133 00d8 84C9     	testb %cl,%cl
+ 134 00da 7415     	je .L22
+ 135              	.L27:
+  85:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			if (ieee->geo.bg[i].channel == channel)
+ 136              	.loc 1 85 0
+ 137 00dc 8A442403 	movb 3(%esp),%al
+GAS LISTING  			page 5
+
+
+ 138 00e0 3884D350 	cmpb %al,336(%ebx,%edx,8)
+ 138      010000
+ 139 00e7 7426     	je .L36
+ 140              	.loc 1 84 0
+ 141 00e9 42       	incl %edx
+ 142 00ea 0FB6C1   	movzbl %cl,%eax
+ 143 00ed 39C2     	cmpl %eax,%edx
+ 144 00ef 7CEB     	jl .L27
+ 145              	.L22:
+  86:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 				return i;
+  87:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  88:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (ieee->freq_band & IEEE80211_52GHZ_BAND)
+ 146              	.loc 1 88 0
+ 147 00f1 83E602   	andl $2,%esi
+ 148 00f4 7425     	je .L28
+  89:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		for (i = 0; i < ieee->geo.a_channels; i++)
+ 149              	.loc 1 89 0
+ 150 00f6 8A8B4901 	movb 329(%ebx),%cl
+ 150      0000
+ 151 00fc 31D2     	xorl %edx,%edx
+ 152 00fe 84C9     	testb %cl,%cl
+ 153 0100 7419     	je .L28
+ 154              	.L33:
+  90:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			if (ieee->geo.a[i].channel == channel)
+ 155              	.loc 1 90 0
+ 156 0102 8A442403 	movb 3(%esp),%al
+ 157 0106 3884D3C0 	cmpb %al,448(%ebx,%edx,8)
+ 157      010000
+ 158 010d 7504     	jne .L31
+ 159              	.L36:
+  91:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 				return i;
+ 160              	.loc 1 91 0
+ 161 010f 89D0     	movl %edx,%eax
+ 162 0111 EB0B     	jmp .L19
+ 163              	.LCFI8:
+ 164              	.L31:
+ 165              	.loc 1 89 0
+ 166 0113 42       	incl %edx
+ 167 0114 0FB6C1   	movzbl %cl,%eax
+ 168 0117 39C2     	cmpl %eax,%edx
+ 169 0119 7CE7     	jl .L33
+ 170              	.L28:
+  92:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  93:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	return -1;
+ 171              	.loc 1 93 0
+ 172 011b 83C8FF   	orl $-1,%eax
+ 173              	.L19:
+  94:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** }
+ 174              	.loc 1 94 0
+ 175 011e 5B       	popl %ebx
+ 176              	.LCFI9:
+ 177 011f 5B       	popl %ebx
+ 178 0120 5E       	popl %esi
+ 179 0121 C3       	ret
+ 180              	.LFE923:
+ 182              	.globl ieee80211_freq_to_channel
+ 184              	ieee80211_freq_to_channel:
+GAS LISTING  			page 6
+
+
+ 185              	.LFB924:
+  95:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+  96:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** u8 ieee80211_freq_to_channel(struct ieee80211_device * ieee, u32 freq)
+  97:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** {
+ 186              	.loc 1 97 0
+ 187 0122 57       	pushl %edi
+ 188              	.LCFI10:
+ 189 0123 56       	pushl %esi
+ 190              	.LCFI11:
+ 191 0124 53       	pushl %ebx
+ 192              	.LCFI12:
+ 193              	.loc 1 97 0
+ 194 0125 8B4C2410 	movl 16(%esp),%ecx
+  98:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	int i;
+  99:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 100:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	/* Driver needs to initialize the geography map before using
+ 101:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	 * these helper functions */
+ 102:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	BUG_ON(ieee->geo.bg_channels == 0 && ieee->geo.a_channels == 0);
+ 195              	.loc 1 102 0
+ 196 0129 6683B948 	cmpw $0,328(%ecx)
+ 196      01000000 
+ 197 0131 7502     	jne .L38
+ 198              	
+ 199 0133 0F0B     	ud2
+ 200              	
+ 201              	
+ 202              	.L38:
+ 103:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 104:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	freq /= 100000;
+ 203              	.loc 1 104 0
+ 204 0135 BAA08601 	movl $100000,%edx
+ 204      00
+ 205 013a 89D3     	movl %edx,%ebx
+ 206 013c 8B442414 	movl 20(%esp),%eax
+ 207 0140 31D2     	xorl %edx,%edx
+ 105:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 106:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (ieee->freq_band & IEEE80211_24GHZ_BAND)
+ 208              	.loc 1 106 0
+ 209 0142 8BB16407 	movl 1892(%ecx),%esi
+ 209      0000
+ 210              	.loc 1 104 0
+ 211 0148 F7F3     	divl %ebx
+ 212              	.loc 1 106 0
+ 213 014a F7C60100 	testl $1,%esi
+ 213      0000
+ 214              	.loc 1 104 0
+ 215 0150 89C7     	movl %eax,%edi
+ 216              	.loc 1 106 0
+ 217 0152 7427     	je .L40
+ 107:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		for (i = 0; i < ieee->geo.bg_channels; i++)
+ 218              	.loc 1 107 0
+ 219 0154 8A994801 	movb 328(%ecx),%bl
+ 219      0000
+ 220 015a 31D2     	xorl %edx,%edx
+ 221 015c 84DB     	testb %bl,%bl
+ 222 015e 741B     	je .L40
+ 223              	.L45:
+GAS LISTING  			page 7
+
+
+ 108:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			if (ieee->geo.bg[i].freq == freq)
+ 224              	.loc 1 108 0
+ 225 0160 39BCD14C 	cmpl %edi,332(%ecx,%edx,8)
+ 225      010000
+ 226 0167 750A     	jne .L43
+ 109:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 				return ieee->geo.bg[i].channel;
+ 227              	.loc 1 109 0
+ 228 0169 0FB684D1 	movzbl 336(%ecx,%edx,8),%eax
+ 228      50010000 
+ 229 0171 EB36     	jmp .L37
+ 230              	.L43:
+ 231              	.loc 1 107 0
+ 232 0173 42       	incl %edx
+ 233 0174 0FB6C3   	movzbl %bl,%eax
+ 234 0177 39C2     	cmpl %eax,%edx
+ 235 0179 7CE5     	jl .L45
+ 236              	.L40:
+ 110:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 111:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (ieee->freq_band & IEEE80211_52GHZ_BAND)
+ 237              	.loc 1 111 0
+ 238 017b 83E602   	andl $2,%esi
+ 239 017e 7427     	je .L46
+ 112:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		for (i = 0; i < ieee->geo.a_channels; i++)
+ 240              	.loc 1 112 0
+ 241 0180 8A994901 	movb 329(%ecx),%bl
+ 241      0000
+ 242 0186 31D2     	xorl %edx,%edx
+ 243 0188 84DB     	testb %bl,%bl
+ 244 018a 741B     	je .L46
+ 245              	.L51:
+ 113:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 			if (ieee->geo.a[i].freq == freq)
+ 246              	.loc 1 113 0
+ 247 018c 39BCD1BC 	cmpl %edi,444(%ecx,%edx,8)
+ 247      010000
+ 248 0193 750A     	jne .L49
+ 114:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 				return ieee->geo.a[i].channel;
+ 249              	.loc 1 114 0
+ 250 0195 0FB684D1 	movzbl 448(%ecx,%edx,8),%eax
+ 250      C0010000 
+ 251 019d EB0A     	jmp .L37
+ 252              	.L49:
+ 253              	.loc 1 112 0
+ 254 019f 42       	incl %edx
+ 255 01a0 0FB6C3   	movzbl %bl,%eax
+ 256 01a3 39C2     	cmpl %eax,%edx
+ 257 01a5 7CE5     	jl .L51
+ 258              	.L46:
+ 115:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 116:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	return 0;
+ 259              	.loc 1 116 0
+ 260 01a7 31C0     	xorl %eax,%eax
+ 261              	.L37:
+ 117:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** }
+ 262              	.loc 1 117 0
+ 263 01a9 5B       	popl %ebx
+ 264 01aa 5E       	popl %esi
+ 265 01ab 5F       	popl %edi
+GAS LISTING  			page 8
+
+
+ 266 01ac C3       	ret
+ 267              	.LFE924:
+ 269              	.globl ieee80211_set_geo
+ 271              	ieee80211_set_geo:
+ 272              	.LFB925:
+ 118:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 119:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** int ieee80211_set_geo(struct ieee80211_device *ieee,
+ 120:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		      const struct ieee80211_geo *geo)
+ 121:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** {
+ 273              	.loc 1 121 0
+ 274 01ad 57       	pushl %edi
+ 275              	.LCFI13:
+ 276 01ae 56       	pushl %esi
+ 277              	.LCFI14:
+ 278 01af 53       	pushl %ebx
+ 279              	.LCFI15:
+ 280              	.loc 1 121 0
+ 281 01b0 8B5C2414 	movl 20(%esp),%ebx
+ 282 01b4 8B542410 	movl 16(%esp),%edx
+ 283              	.LBB2:
+ 284              	.LBB3:
+ 285              	.file 2 "include/asm/string.h"
+   1:include/asm/string.h **** #ifndef _I386_STRING_H_
+   2:include/asm/string.h **** #define _I386_STRING_H_
+   3:include/asm/string.h **** 
+   4:include/asm/string.h **** #ifdef __KERNEL__
+   5:include/asm/string.h **** #include <linux/config.h>
+   6:include/asm/string.h **** /*
+   7:include/asm/string.h ****  * On a 486 or Pentium, we are better off not using the
+   8:include/asm/string.h ****  * byte string operations. But on a 386 or a PPro the
+   9:include/asm/string.h ****  * byte string ops are faster than doing it by hand
+  10:include/asm/string.h ****  * (MUCH faster on a Pentium).
+  11:include/asm/string.h ****  */
+  12:include/asm/string.h **** 
+  13:include/asm/string.h **** /*
+  14:include/asm/string.h ****  * This string-include defines all string functions as inline
+  15:include/asm/string.h ****  * functions. Use gcc. It also assumes ds=es=data space, this should be
+  16:include/asm/string.h ****  * normal. Most of the string-functions are rather heavily hand-optimized,
+  17:include/asm/string.h ****  * see especially strsep,strstr,str[c]spn. They should work, but are not
+  18:include/asm/string.h ****  * very easy to understand. Everything is done entirely within the register
+  19:include/asm/string.h ****  * set, making the functions fast and clean. String instructions have been
+  20:include/asm/string.h ****  * used through-out, making for "slightly" unclear code :-)
+  21:include/asm/string.h ****  *
+  22:include/asm/string.h ****  *		NO Copyright (C) 1991, 1992 Linus Torvalds,
+  23:include/asm/string.h ****  *		consider these trivial functions to be PD.
+  24:include/asm/string.h ****  */
+  25:include/asm/string.h **** 
+  26:include/asm/string.h **** /* AK: in fact I bet it would be better to move this stuff all out of line.
+  27:include/asm/string.h ****  */
+  28:include/asm/string.h **** 
+  29:include/asm/string.h **** #define __HAVE_ARCH_STRCPY
+  30:include/asm/string.h **** static inline char * strcpy(char * dest,const char *src)
+  31:include/asm/string.h **** {
+  32:include/asm/string.h **** int d0, d1, d2;
+  33:include/asm/string.h **** __asm__ __volatile__(
+  34:include/asm/string.h **** 	"1:\tlodsb\n\t"
+  35:include/asm/string.h **** 	"stosb\n\t"
+GAS LISTING  			page 9
+
+
+  36:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+  37:include/asm/string.h **** 	"jne 1b"
+  38:include/asm/string.h **** 	: "=&S" (d0), "=&D" (d1), "=&a" (d2)
+  39:include/asm/string.h **** 	:"0" (src),"1" (dest) : "memory");
+  40:include/asm/string.h **** return dest;
+  41:include/asm/string.h **** }
+  42:include/asm/string.h **** 
+  43:include/asm/string.h **** #define __HAVE_ARCH_STRNCPY
+  44:include/asm/string.h **** static inline char * strncpy(char * dest,const char *src,size_t count)
+  45:include/asm/string.h **** {
+  46:include/asm/string.h **** int d0, d1, d2, d3;
+  47:include/asm/string.h **** __asm__ __volatile__(
+  48:include/asm/string.h **** 	"1:\tdecl %2\n\t"
+  49:include/asm/string.h **** 	"js 2f\n\t"
+  50:include/asm/string.h **** 	"lodsb\n\t"
+  51:include/asm/string.h **** 	"stosb\n\t"
+  52:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+  53:include/asm/string.h **** 	"jne 1b\n\t"
+  54:include/asm/string.h **** 	"rep\n\t"
+  55:include/asm/string.h **** 	"stosb\n"
+  56:include/asm/string.h **** 	"2:"
+  57:include/asm/string.h **** 	: "=&S" (d0), "=&D" (d1), "=&c" (d2), "=&a" (d3)
+  58:include/asm/string.h **** 	:"0" (src),"1" (dest),"2" (count) : "memory");
+  59:include/asm/string.h **** return dest;
+  60:include/asm/string.h **** }
+  61:include/asm/string.h **** 
+  62:include/asm/string.h **** #define __HAVE_ARCH_STRCAT
+  63:include/asm/string.h **** static inline char * strcat(char * dest,const char * src)
+  64:include/asm/string.h **** {
+  65:include/asm/string.h **** int d0, d1, d2, d3;
+  66:include/asm/string.h **** __asm__ __volatile__(
+  67:include/asm/string.h **** 	"repne\n\t"
+  68:include/asm/string.h **** 	"scasb\n\t"
+  69:include/asm/string.h **** 	"decl %1\n"
+  70:include/asm/string.h **** 	"1:\tlodsb\n\t"
+  71:include/asm/string.h **** 	"stosb\n\t"
+  72:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+  73:include/asm/string.h **** 	"jne 1b"
+  74:include/asm/string.h **** 	: "=&S" (d0), "=&D" (d1), "=&a" (d2), "=&c" (d3)
+  75:include/asm/string.h **** 	: "0" (src), "1" (dest), "2" (0), "3" (0xffffffffu):"memory");
+  76:include/asm/string.h **** return dest;
+  77:include/asm/string.h **** }
+  78:include/asm/string.h **** 
+  79:include/asm/string.h **** #define __HAVE_ARCH_STRNCAT
+  80:include/asm/string.h **** static inline char * strncat(char * dest,const char * src,size_t count)
+  81:include/asm/string.h **** {
+  82:include/asm/string.h **** int d0, d1, d2, d3;
+  83:include/asm/string.h **** __asm__ __volatile__(
+  84:include/asm/string.h **** 	"repne\n\t"
+  85:include/asm/string.h **** 	"scasb\n\t"
+  86:include/asm/string.h **** 	"decl %1\n\t"
+  87:include/asm/string.h **** 	"movl %8,%3\n"
+  88:include/asm/string.h **** 	"1:\tdecl %3\n\t"
+  89:include/asm/string.h **** 	"js 2f\n\t"
+  90:include/asm/string.h **** 	"lodsb\n\t"
+  91:include/asm/string.h **** 	"stosb\n\t"
+  92:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+GAS LISTING  			page 10
+
+
+  93:include/asm/string.h **** 	"jne 1b\n"
+  94:include/asm/string.h **** 	"2:\txorl %2,%2\n\t"
+  95:include/asm/string.h **** 	"stosb"
+  96:include/asm/string.h **** 	: "=&S" (d0), "=&D" (d1), "=&a" (d2), "=&c" (d3)
+  97:include/asm/string.h **** 	: "0" (src),"1" (dest),"2" (0),"3" (0xffffffffu), "g" (count)
+  98:include/asm/string.h **** 	: "memory");
+  99:include/asm/string.h **** return dest;
+ 100:include/asm/string.h **** }
+ 101:include/asm/string.h **** 
+ 102:include/asm/string.h **** #define __HAVE_ARCH_STRCMP
+ 103:include/asm/string.h **** static inline int strcmp(const char * cs,const char * ct)
+ 104:include/asm/string.h **** {
+ 105:include/asm/string.h **** int d0, d1;
+ 106:include/asm/string.h **** register int __res;
+ 107:include/asm/string.h **** __asm__ __volatile__(
+ 108:include/asm/string.h **** 	"1:\tlodsb\n\t"
+ 109:include/asm/string.h **** 	"scasb\n\t"
+ 110:include/asm/string.h **** 	"jne 2f\n\t"
+ 111:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+ 112:include/asm/string.h **** 	"jne 1b\n\t"
+ 113:include/asm/string.h **** 	"xorl %%eax,%%eax\n\t"
+ 114:include/asm/string.h **** 	"jmp 3f\n"
+ 115:include/asm/string.h **** 	"2:\tsbbl %%eax,%%eax\n\t"
+ 116:include/asm/string.h **** 	"orb $1,%%al\n"
+ 117:include/asm/string.h **** 	"3:"
+ 118:include/asm/string.h **** 	:"=a" (__res), "=&S" (d0), "=&D" (d1)
+ 119:include/asm/string.h **** 	:"1" (cs),"2" (ct)
+ 120:include/asm/string.h **** 	:"memory");
+ 121:include/asm/string.h **** return __res;
+ 122:include/asm/string.h **** }
+ 123:include/asm/string.h **** 
+ 124:include/asm/string.h **** #define __HAVE_ARCH_STRNCMP
+ 125:include/asm/string.h **** static inline int strncmp(const char * cs,const char * ct,size_t count)
+ 126:include/asm/string.h **** {
+ 127:include/asm/string.h **** register int __res;
+ 128:include/asm/string.h **** int d0, d1, d2;
+ 129:include/asm/string.h **** __asm__ __volatile__(
+ 130:include/asm/string.h **** 	"1:\tdecl %3\n\t"
+ 131:include/asm/string.h **** 	"js 2f\n\t"
+ 132:include/asm/string.h **** 	"lodsb\n\t"
+ 133:include/asm/string.h **** 	"scasb\n\t"
+ 134:include/asm/string.h **** 	"jne 3f\n\t"
+ 135:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+ 136:include/asm/string.h **** 	"jne 1b\n"
+ 137:include/asm/string.h **** 	"2:\txorl %%eax,%%eax\n\t"
+ 138:include/asm/string.h **** 	"jmp 4f\n"
+ 139:include/asm/string.h **** 	"3:\tsbbl %%eax,%%eax\n\t"
+ 140:include/asm/string.h **** 	"orb $1,%%al\n"
+ 141:include/asm/string.h **** 	"4:"
+ 142:include/asm/string.h **** 	:"=a" (__res), "=&S" (d0), "=&D" (d1), "=&c" (d2)
+ 143:include/asm/string.h **** 	:"1" (cs),"2" (ct),"3" (count)
+ 144:include/asm/string.h **** 	:"memory");
+ 145:include/asm/string.h **** return __res;
+ 146:include/asm/string.h **** }
+ 147:include/asm/string.h **** 
+ 148:include/asm/string.h **** #define __HAVE_ARCH_STRCHR
+ 149:include/asm/string.h **** static inline char * strchr(const char * s, int c)
+GAS LISTING  			page 11
+
+
+ 150:include/asm/string.h **** {
+ 151:include/asm/string.h **** int d0;
+ 152:include/asm/string.h **** register char * __res;
+ 153:include/asm/string.h **** __asm__ __volatile__(
+ 154:include/asm/string.h **** 	"movb %%al,%%ah\n"
+ 155:include/asm/string.h **** 	"1:\tlodsb\n\t"
+ 156:include/asm/string.h **** 	"cmpb %%ah,%%al\n\t"
+ 157:include/asm/string.h **** 	"je 2f\n\t"
+ 158:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+ 159:include/asm/string.h **** 	"jne 1b\n\t"
+ 160:include/asm/string.h **** 	"movl $1,%1\n"
+ 161:include/asm/string.h **** 	"2:\tmovl %1,%0\n\t"
+ 162:include/asm/string.h **** 	"decl %0"
+ 163:include/asm/string.h **** 	:"=a" (__res), "=&S" (d0)
+ 164:include/asm/string.h **** 	:"1" (s),"0" (c)
+ 165:include/asm/string.h **** 	:"memory");
+ 166:include/asm/string.h **** return __res;
+ 167:include/asm/string.h **** }
+ 168:include/asm/string.h **** 
+ 169:include/asm/string.h **** #define __HAVE_ARCH_STRRCHR
+ 170:include/asm/string.h **** static inline char * strrchr(const char * s, int c)
+ 171:include/asm/string.h **** {
+ 172:include/asm/string.h **** int d0, d1;
+ 173:include/asm/string.h **** register char * __res;
+ 174:include/asm/string.h **** __asm__ __volatile__(
+ 175:include/asm/string.h **** 	"movb %%al,%%ah\n"
+ 176:include/asm/string.h **** 	"1:\tlodsb\n\t"
+ 177:include/asm/string.h **** 	"cmpb %%ah,%%al\n\t"
+ 178:include/asm/string.h **** 	"jne 2f\n\t"
+ 179:include/asm/string.h **** 	"leal -1(%%esi),%0\n"
+ 180:include/asm/string.h **** 	"2:\ttestb %%al,%%al\n\t"
+ 181:include/asm/string.h **** 	"jne 1b"
+ 182:include/asm/string.h **** 	:"=g" (__res), "=&S" (d0), "=&a" (d1)
+ 183:include/asm/string.h **** 	:"0" (0),"1" (s),"2" (c)
+ 184:include/asm/string.h **** 	:"memory");
+ 185:include/asm/string.h **** return __res;
+ 186:include/asm/string.h **** }
+ 187:include/asm/string.h **** 
+ 188:include/asm/string.h **** #define __HAVE_ARCH_STRLEN
+ 189:include/asm/string.h **** static inline size_t strlen(const char * s)
+ 190:include/asm/string.h **** {
+ 191:include/asm/string.h **** int d0;
+ 192:include/asm/string.h **** register int __res;
+ 193:include/asm/string.h **** __asm__ __volatile__(
+ 194:include/asm/string.h **** 	"repne\n\t"
+ 195:include/asm/string.h **** 	"scasb\n\t"
+ 196:include/asm/string.h **** 	"notl %0\n\t"
+ 197:include/asm/string.h **** 	"decl %0"
+ 198:include/asm/string.h **** 	:"=c" (__res), "=&D" (d0)
+ 199:include/asm/string.h **** 	:"1" (s),"a" (0), "0" (0xffffffffu)
+ 200:include/asm/string.h **** 	:"memory");
+ 201:include/asm/string.h **** return __res;
+ 202:include/asm/string.h **** }
+ 203:include/asm/string.h **** 
+ 204:include/asm/string.h **** static inline void * __memcpy(void * to, const void * from, size_t n)
+ 205:include/asm/string.h **** {
+ 206:include/asm/string.h **** int d0, d1, d2;
+GAS LISTING  			page 12
+
+
+ 207:include/asm/string.h **** __asm__ __volatile__(
+ 208:include/asm/string.h **** 	"rep ; movsl\n\t"
+ 209:include/asm/string.h **** 	"movl %4,%%ecx\n\t"
+ 210:include/asm/string.h **** 	"andl $3,%%ecx\n\t"
+ 211:include/asm/string.h **** #if 1	/* want to pay 2 byte penalty for a chance to skip microcoded rep? */
+ 212:include/asm/string.h **** 	"jz 1f\n\t"
+ 213:include/asm/string.h **** #endif
+ 214:include/asm/string.h **** 	"rep ; movsb\n\t"
+ 215:include/asm/string.h **** 	"1:"
+ 216:include/asm/string.h **** 	: "=&c" (d0), "=&D" (d1), "=&S" (d2)
+ 217:include/asm/string.h **** 	: "0" (n/4), "g" (n), "1" ((long) to), "2" ((long) from)
+ 218:include/asm/string.h **** 	: "memory");
+ 219:include/asm/string.h **** return (to);
+ 220:include/asm/string.h **** }
+ 221:include/asm/string.h **** 
+ 222:include/asm/string.h **** /*
+ 223:include/asm/string.h ****  * This looks ugly, but the compiler can optimize it totally,
+ 224:include/asm/string.h ****  * as the count is constant.
+ 225:include/asm/string.h ****  */
+ 226:include/asm/string.h **** static inline void * __constant_memcpy(void * to, const void * from, size_t n)
+ 227:include/asm/string.h **** {
+ 228:include/asm/string.h **** 	long esi, edi;
+ 229:include/asm/string.h **** 	if (!n) return to;
+ 230:include/asm/string.h **** #if 1	/* want to do small copies with non-string ops? */
+ 231:include/asm/string.h **** 	switch (n) {
+ 232:include/asm/string.h **** 		case 1: *(char*)to = *(char*)from; return to;
+ 233:include/asm/string.h **** 		case 2: *(short*)to = *(short*)from; return to;
+ 234:include/asm/string.h **** 		case 4: *(int*)to = *(int*)from; return to;
+ 235:include/asm/string.h **** #if 1	/* including those doable with two moves? */
+ 236:include/asm/string.h **** 		case 3: *(short*)to = *(short*)from;
+ 286              	.loc 2 236 0
+ 287 01b8 668B03   	movw (%ebx),%ax
+ 288 01bb 66898244 	movw %ax,324(%edx)
+ 288      010000
+ 237:include/asm/string.h **** 			*((char*)to+2) = *((char*)from+2); return to;
+ 289              	.loc 2 237 0
+ 290 01c2 8A4302   	movb 2(%ebx),%al
+ 291 01c5 88824601 	movb %al,326(%edx)
+ 291      0000
+ 292              	.LBE3:
+ 293              	.LBE2:
+ 122:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	memcpy(ieee->geo.name, geo->name, 3);
+ 123:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	ieee->geo.name[3] = '\0';
+ 124:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	ieee->geo.bg_channels = geo->bg_channels;
+ 294              	.loc 1 124 0
+ 295 01cb 8A4304   	movb 4(%ebx),%al
+ 296 01ce 88824801 	movb %al,328(%edx)
+ 296      0000
+ 125:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	ieee->geo.a_channels = geo->a_channels;
+ 297              	.loc 1 125 0
+ 298 01d4 8A4305   	movb 5(%ebx),%al
+ 299 01d7 88824901 	movb %al,329(%edx)
+ 299      0000
+ 126:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	memcpy(ieee->geo.bg, geo->bg, geo->bg_channels *
+ 300              	.loc 1 126 0
+ 301 01dd 0FB64304 	movzbl 4(%ebx),%eax
+ 302 01e1 C1E003   	sall $3,%eax
+GAS LISTING  			page 13
+
+
+ 303              	.LBB4:
+ 304              	.LBB5:
+ 305              	.loc 2 207 0
+ 306 01e4 89C1     	movl %eax,%ecx
+ 307              	.LBE5:
+ 308              	.LBE4:
+ 309              	.loc 1 123 0
+ 310 01e6 C6824701 	movb $0,327(%edx)
+ 310      000000
+ 311 01ed 8DBA4C01 	leal 332(%edx),%edi
+ 311      0000
+ 312 01f3 8D7308   	leal 8(%ebx),%esi
+ 313              	.LBB6:
+ 314              	.LBB7:
+ 315              	.loc 2 207 0
+ 316 01f6 C1E902   	shrl $2,%ecx
+ 317              	
+ 318 01f9 F3A5     	rep
+ 319 01fb 89C1     	movl %eax,%ecx
+ 320 01fd 83E103   	andl $3,%ecx
+ 321 0200 7402     	jz 1f
+ 322 0202 F3A4     	rep
+ 323              	1:
+ 324              	
+ 325              	.LBE7:
+ 326              	.LBE6:
+ 127:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	       sizeof(struct ieee80211_channel));
+ 128:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	memcpy(ieee->geo.a, geo->a, ieee->geo.a_channels *
+ 327              	.loc 1 128 0
+ 328 0204 0FB68249 	movzbl 329(%edx),%eax
+ 328      010000
+ 329 020b C1E003   	sall $3,%eax
+ 330              	.LBB8:
+ 331              	.LBB9:
+ 332              	.loc 2 207 0
+ 333 020e 89C1     	movl %eax,%ecx
+ 334 0210 8DBABC01 	leal 444(%edx),%edi
+ 334      0000
+ 335 0216 8D7378   	leal 120(%ebx),%esi
+ 336 0219 C1E902   	shrl $2,%ecx
+ 337              	
+ 338 021c F3A5     	rep
+ 339 021e 89C1     	movl %eax,%ecx
+ 340 0220 83E103   	andl $3,%ecx
+ 341 0223 7402     	jz 1f
+ 342 0225 F3A4     	rep
+ 343              	1:
+ 344              	
+ 345              	.LBE9:
+ 346              	.LBE8:
+ 129:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	       sizeof(struct ieee80211_channel));
+ 130:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	return 0;
+ 131:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** }
+ 347              	.loc 1 131 0
+ 348 0227 5B       	popl %ebx
+ 349 0228 5E       	popl %esi
+ 350 0229 31C0     	xorl %eax,%eax
+GAS LISTING  			page 14
+
+
+ 351 022b 5F       	popl %edi
+ 352 022c C3       	ret
+ 353              	.LFE925:
+ 355              	.globl ieee80211_get_geo
+ 357              	ieee80211_get_geo:
+ 358              	.LFB926:
+ 132:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 133:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** const struct ieee80211_geo *ieee80211_get_geo(struct ieee80211_device *ieee)
+ 134:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** {
+ 359              	.loc 1 134 0
+ 135:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	return &ieee->geo;
+ 360              	.loc 1 135 0
+ 361 022d 8B442404 	movl 4(%esp),%eax
+ 362 0231 05440100 	addl $324,%eax
+ 362      00
+ 136:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** }
+ 363              	.loc 1 136 0
+ 364 0236 C3       	ret
+ 365              	.LFE926:
+ 367              	.globl ieee80211_get_channel_flags
+ 369              	ieee80211_get_channel_flags:
+ 370              	.LFB927:
+ 137:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 138:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** u8 ieee80211_get_channel_flags(struct ieee80211_device * ieee, u8 channel)
+ 139:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** {
+ 371              	.loc 1 139 0
+ 372 0237 56       	pushl %esi
+ 373              	.LCFI16:
+ 374 0238 53       	pushl %ebx
+ 375              	.LCFI17:
+ 376              	.loc 1 139 0
+ 377 0239 8A5C2410 	movb 16(%esp),%bl
+ 140:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	int index = ieee80211_channel_to_index(ieee, channel);
+ 378              	.loc 1 140 0
+ 379 023d 0FB6C3   	movzbl %bl,%eax
+ 380              	.loc 1 139 0
+ 381 0240 8B74240C 	movl 12(%esp),%esi
+ 382              	.loc 1 140 0
+ 383 0244 50       	pushl %eax
+ 384              	.LCFI18:
+ 385 0245 56       	pushl %esi
+ 386              	.LCFI19:
+ 387 0246 E8FCFFFF 	call ieee80211_channel_to_index
+ 387      FF
+ 141:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 142:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (index == -1)
+ 388              	.loc 1 142 0
+ 389 024b 5A       	popl %edx
+ 390              	.LCFI20:
+ 391 024c 83F8FF   	cmpl $-1,%eax
+ 392 024f 59       	popl %ecx
+ 393              	.LCFI21:
+ 143:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		return IEEE80211_CH_INVALID;
+ 394              	.loc 1 143 0
+ 395 0250 BA400000 	movl $64,%edx
+ 395      00
+ 396              	.loc 1 142 0
+GAS LISTING  			page 15
+
+
+ 397 0255 7417     	je .L128
+ 144:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 145:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (channel <= IEEE80211_24GHZ_CHANNELS)
+ 398              	.loc 1 145 0
+ 399 0257 80FB0E   	cmpb $14,%bl
+ 400 025a 770A     	ja .L130
+ 146:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		return ieee->geo.bg[index].flags;
+ 401              	.loc 1 146 0
+ 402 025c 0FB694C6 	movzbl 337(%esi,%eax,8),%edx
+ 402      51010000 
+ 403 0264 EB08     	jmp .L128
+ 404              	.L130:
+ 147:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 148:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	return ieee->geo.a[index].flags;
+ 405              	.loc 1 148 0
+ 406 0266 0FB694C6 	movzbl 449(%esi,%eax,8),%edx
+ 406      C1010000 
+ 407              	.L128:
+ 149:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** }
+ 408              	.loc 1 149 0
+ 409 026e 5B       	popl %ebx
+ 410 026f 89D0     	movl %edx,%eax
+ 411 0271 5E       	popl %esi
+ 412 0272 C3       	ret
+ 413              	.LFE927:
+ 415              	.section .rodata
+ 416              	.align 4
+ 419              	bad_channel:
+ 420 0000 00000000 	.zero 4
+ 421 0004 00       	.byte 0
+ 422 0005 40       	.byte 64
+ 423 0006 00       	.byte 0
+ 424 0007 00       	.zero 1
+ 425              	.text
+ 426              	.globl ieee80211_get_channel
+ 428              	ieee80211_get_channel:
+ 429              	.LFB928:
+ 150:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 151:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** static const struct ieee80211_channel bad_channel = {
+ 152:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	.channel = 0,
+ 153:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	.flags = IEEE80211_CH_INVALID,
+ 154:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	.max_power = 0,
+ 155:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** };
+ 156:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 157:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** const struct ieee80211_channel *ieee80211_get_channel(struct ieee80211_device
+ 158:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 						      *ieee, u8 channel)
+ 159:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** {
+ 430              	.loc 1 159 0
+ 431 0273 53       	pushl %ebx
+ 432              	.LCFI22:
+ 433              	.loc 1 159 0
+ 434 0274 53       	pushl %ebx
+ 435              	.LCFI23:
+ 436 0275 8A442410 	movb 16(%esp),%al
+ 437 0279 88442403 	movb %al,3(%esp)
+ 160:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	int index = ieee80211_channel_to_index(ieee, channel);
+ 438              	.loc 1 160 0
+GAS LISTING  			page 16
+
+
+ 439 027d 0FB6C0   	movzbl %al,%eax
+ 440              	.loc 1 159 0
+ 441 0280 8B5C240C 	movl 12(%esp),%ebx
+ 442              	.loc 1 160 0
+ 443 0284 50       	pushl %eax
+ 444              	.LCFI24:
+ 445 0285 53       	pushl %ebx
+ 446              	.LCFI25:
+ 447              	.LCFI26:
+ 448 0286 E8FCFFFF 	call ieee80211_channel_to_index
+ 448      FF
+ 161:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 162:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (index == -1)
+ 449              	.loc 1 162 0
+ 450 028b 5A       	popl %edx
+ 451              	.LCFI27:
+ 452 028c 83F8FF   	cmpl $-1,%eax
+ 453 028f 59       	popl %ecx
+ 454              	.LCFI28:
+ 163:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		return &bad_channel;
+ 455              	.loc 1 163 0
+ 456 0290 BA000000 	movl $bad_channel,%edx
+ 456      00
+ 457              	.loc 1 162 0
+ 458 0295 7415     	je .L131
+ 164:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 165:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	if (channel <= IEEE80211_24GHZ_CHANNELS)
+ 459              	.loc 1 165 0
+ 460 0297 807C2403 	cmpb $14,3(%esp)
+ 460      0E
+ 166:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 		return &ieee->geo.bg[index];
+ 461              	.loc 1 166 0
+ 462 029c 8D94C34C 	leal 332(%ebx,%eax,8),%edx
+ 462      010000
+ 463              	.loc 1 165 0
+ 464 02a3 7607     	jbe .L131
+ 167:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 
+ 168:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** 	return &ieee->geo.a[index];
+ 465              	.loc 1 168 0
+ 466 02a5 8D94C3BC 	leal 444(%ebx,%eax,8),%edx
+ 466      010000
+ 467              	.L131:
+ 169:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_geo.c **** }
+ 468              	.loc 1 169 0
+ 469 02ac 5B       	popl %ebx
+ 470              	.LCFI29:
+ 471 02ad 89D0     	movl %edx,%eax
+ 472 02af 5B       	popl %ebx
+ 473 02b0 C3       	ret
+ 474              	.LFE928:
+ 476              	.section __kcrctab,"a",@progbits
+ 477              	.align 4
+ 480              	__kcrctab_ieee80211_get_channel:
+ 481 0000 00000000 	.long __crc_ieee80211_get_channel
+ 482              	.section __ksymtab_strings,"a",@progbits
+ 485              	__kstrtab_ieee80211_get_channel:
+ 486 0000 69656565 	.string "ieee80211_get_channel"
+GAS LISTING  			page 17
+
+
+ 486      38303231 
+ 486      315F6765 
+ 486      745F6368 
+ 486      616E6E65 
+ 487              	.section __ksymtab,"a",@progbits
+ 488              	.align 4
+ 491              	__ksymtab_ieee80211_get_channel:
+ 492 0000 00000000 	.long ieee80211_get_channel
+ 493 0004 00000000 	.long __kstrtab_ieee80211_get_channel
+ 494              	.section __kcrctab
+ 495              	.align 4
+ 498              	__kcrctab_ieee80211_get_channel_flags:
+ 499 0004 00000000 	.long __crc_ieee80211_get_channel_flags
+ 500              	.section __ksymtab_strings
+ 503              	__kstrtab_ieee80211_get_channel_flags:
+ 504 0016 69656565 	.string "ieee80211_get_channel_flags"
+ 504      38303231 
+ 504      315F6765 
+ 504      745F6368 
+ 504      616E6E65 
+ 505              	.section __ksymtab
+ 506              	.align 4
+ 509              	__ksymtab_ieee80211_get_channel_flags:
+ 510 0008 00000000 	.long ieee80211_get_channel_flags
+ 511 000c 16000000 	.long __kstrtab_ieee80211_get_channel_flags
+ 512              	.section __kcrctab
+ 513              	.align 4
+ 516              	__kcrctab_ieee80211_is_valid_channel:
+ 517 0008 00000000 	.long __crc_ieee80211_is_valid_channel
+ 518              	.section __ksymtab_strings
+ 521              	__kstrtab_ieee80211_is_valid_channel:
+ 522 0032 69656565 	.string "ieee80211_is_valid_channel"
+ 522      38303231 
+ 522      315F6973 
+ 522      5F76616C 
+ 522      69645F63 
+ 523              	.section __ksymtab
+ 524              	.align 4
+ 527              	__ksymtab_ieee80211_is_valid_channel:
+ 528 0010 00000000 	.long ieee80211_is_valid_channel
+ 529 0014 32000000 	.long __kstrtab_ieee80211_is_valid_channel
+ 530              	.section __kcrctab
+ 531              	.align 4
+ 534              	__kcrctab_ieee80211_freq_to_channel:
+ 535 000c 00000000 	.long __crc_ieee80211_freq_to_channel
+ 536              	.section __ksymtab_strings
+ 539              	__kstrtab_ieee80211_freq_to_channel:
+ 540 004d 69656565 	.string "ieee80211_freq_to_channel"
+ 540      38303231 
+ 540      315F6672 
+ 540      65715F74 
+ 540      6F5F6368 
+ 541              	.section __ksymtab
+ 542              	.align 4
+ 545              	__ksymtab_ieee80211_freq_to_channel:
+ 546 0018 00000000 	.long ieee80211_freq_to_channel
+ 547 001c 4D000000 	.long __kstrtab_ieee80211_freq_to_channel
+GAS LISTING  			page 18
+
+
+ 548              	.section __kcrctab
+ 549              	.align 4
+ 552              	__kcrctab_ieee80211_channel_to_index:
+ 553 0010 00000000 	.long __crc_ieee80211_channel_to_index
+ 554              	.section __ksymtab_strings
+ 557              	__kstrtab_ieee80211_channel_to_index:
+ 558 0067 69656565 	.string "ieee80211_channel_to_index"
+ 558      38303231 
+ 558      315F6368 
+ 558      616E6E65 
+ 558      6C5F746F 
+ 559              	.section __ksymtab
+ 560              	.align 4
+ 563              	__ksymtab_ieee80211_channel_to_index:
+ 564 0020 00000000 	.long ieee80211_channel_to_index
+ 565 0024 67000000 	.long __kstrtab_ieee80211_channel_to_index
+ 566              	.section __kcrctab
+ 567              	.align 4
+ 570              	__kcrctab_ieee80211_set_geo:
+ 571 0014 00000000 	.long __crc_ieee80211_set_geo
+ 572              	.section __ksymtab_strings
+ 575              	__kstrtab_ieee80211_set_geo:
+ 576 0082 69656565 	.string "ieee80211_set_geo"
+ 576      38303231 
+ 576      315F7365 
+ 576      745F6765 
+ 576      6F00
+ 577              	.section __ksymtab
+ 578              	.align 4
+ 581              	__ksymtab_ieee80211_set_geo:
+ 582 0028 00000000 	.long ieee80211_set_geo
+ 583 002c 82000000 	.long __kstrtab_ieee80211_set_geo
+ 584              	.section __kcrctab
+ 585              	.align 4
+ 588              	__kcrctab_ieee80211_get_geo:
+ 589 0018 00000000 	.long __crc_ieee80211_get_geo
+ 590              	.section __ksymtab_strings
+ 593              	__kstrtab_ieee80211_get_geo:
+ 594 0094 69656565 	.string "ieee80211_get_geo"
+ 594      38303231 
+ 594      315F6765 
+ 594      745F6765 
+ 594      6F00
+ 595              	.section __ksymtab
+ 596              	.align 4
+ 599              	__ksymtab_ieee80211_get_geo:
+ 600 0030 00000000 	.long ieee80211_get_geo
+ 601 0034 94000000 	.long __kstrtab_ieee80211_get_geo
+ 602              	.weak __crc_ieee80211_get_geo
+ 603              	.weak __crc_ieee80211_set_geo
+ 604              	.weak __crc_ieee80211_channel_to_index
+ 605              	.weak __crc_ieee80211_freq_to_channel
+ 606              	.weak __crc_ieee80211_is_valid_channel
+ 607              	.weak __crc_ieee80211_get_channel_flags
+ 608              	.weak __crc_ieee80211_get_channel
+ 955              	.Letext0:
+ 34951              	.ident "GCC: (GNU) 3.4.5 20050809 (prerelease) (Ubuntu 3.4.4-6ubuntu8.1)"
+GAS LISTING  			page 19
+
+
+GAS LISTING  			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 ieee80211_geo.c
+ {entrada estándar}:12     .text:0000000000000000 ieee80211_is_valid_channel
+ {entrada estándar}:105    .text:00000000000000a7 ieee80211_channel_to_index
+ {entrada estándar}:184    .text:0000000000000122 ieee80211_freq_to_channel
+ {entrada estándar}:271    .text:00000000000001ad ieee80211_set_geo
+ {entrada estándar}:357    .text:000000000000022d ieee80211_get_geo
+ {entrada estándar}:369    .text:0000000000000237 ieee80211_get_channel_flags
+ {entrada estándar}:419    .rodata:0000000000000000 bad_channel
+ {entrada estándar}:428    .text:0000000000000273 ieee80211_get_channel
+ {entrada estándar}:480    __kcrctab:0000000000000000 __kcrctab_ieee80211_get_channel
+ {entrada estándar}:485    __ksymtab_strings:0000000000000000 __kstrtab_ieee80211_get_channel
+ {entrada estándar}:491    __ksymtab:0000000000000000 __ksymtab_ieee80211_get_channel
+ {entrada estándar}:498    __kcrctab:0000000000000004 __kcrctab_ieee80211_get_channel_flags
+ {entrada estándar}:503    __ksymtab_strings:0000000000000016 __kstrtab_ieee80211_get_channel_flags
+ {entrada estándar}:509    __ksymtab:0000000000000008 __ksymtab_ieee80211_get_channel_flags
+ {entrada estándar}:516    __kcrctab:0000000000000008 __kcrctab_ieee80211_is_valid_channel
+ {entrada estándar}:521    __ksymtab_strings:0000000000000032 __kstrtab_ieee80211_is_valid_channel
+ {entrada estándar}:527    __ksymtab:0000000000000010 __ksymtab_ieee80211_is_valid_channel
+ {entrada estándar}:534    __kcrctab:000000000000000c __kcrctab_ieee80211_freq_to_channel
+ {entrada estándar}:539    __ksymtab_strings:000000000000004d __kstrtab_ieee80211_freq_to_channel
+ {entrada estándar}:545    __ksymtab:0000000000000018 __ksymtab_ieee80211_freq_to_channel
+ {entrada estándar}:552    __kcrctab:0000000000000010 __kcrctab_ieee80211_channel_to_index
+ {entrada estándar}:557    __ksymtab_strings:0000000000000067 __kstrtab_ieee80211_channel_to_index
+ {entrada estándar}:563    __ksymtab:0000000000000020 __ksymtab_ieee80211_channel_to_index
+ {entrada estándar}:570    __kcrctab:0000000000000014 __kcrctab_ieee80211_set_geo
+ {entrada estándar}:575    __ksymtab_strings:0000000000000082 __kstrtab_ieee80211_set_geo
+ {entrada estándar}:581    __ksymtab:0000000000000028 __ksymtab_ieee80211_set_geo
+ {entrada estándar}:588    __kcrctab:0000000000000018 __kcrctab_ieee80211_get_geo
+ {entrada estándar}:593    __ksymtab_strings:0000000000000094 __kstrtab_ieee80211_get_geo
+ {entrada estándar}:599    __ksymtab:0000000000000030 __ksymtab_ieee80211_get_geo
+
+UNDEFINED SYMBOLS
+__crc_ieee80211_get_channel
+__crc_ieee80211_get_channel_flags
+__crc_ieee80211_is_valid_channel
+__crc_ieee80211_freq_to_channel
+__crc_ieee80211_channel_to_index
+__crc_ieee80211_set_geo
+__crc_ieee80211_get_geo

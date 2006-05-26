@@ -1,0 +1,29 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.7
+Date: Tue, 23 May 2006 12:02:20 +0200
+Source: ipw3945
+Binary: ipw3945-source
+Architecture: all
+Version: 0.0.7-1
+Distribution: unstable
+Urgency: low
+Maintainer: Grupo de desarrollo del C.G.A. <cga.averroes@juntadeandalucia.es>
+Changed-By: Grupo de desarrollo del C.G.A. <cga.averroes@juntadeandalucia.es>
+Description: 
+ ipw3945-source - Source package for the ipw3945 wireless chipset.
+Changes: 
+ ipw3945 (0.0.7-1) unstable; urgency=low
+ .
+   * Initial release.
+Files: 
+ 07ed7217dded4ef2ecdb4d0fae7b87dc 239232 contrib/net optional ipw3945-source_0.0.7-1_all.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+
+iD8DBQFEdq/Pj/YHKKVae7oRAr38AJ9qdaJKozVazDukgCRtqwUgjcB70QCdF0aG
+mcDiJwj8tlnU7873Kf8E6IQ=
+=SxtD
+-----END PGP SIGNATURE-----

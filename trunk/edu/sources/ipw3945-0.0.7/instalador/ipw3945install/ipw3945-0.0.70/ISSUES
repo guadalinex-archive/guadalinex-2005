@@ -1,0 +1,35 @@
+ISSUES
+------------------------------
+
+The following are the most common issues reported by users:
+
+
+Driver performance is low
+
+Work is being done to improve the over the air performance of the 
+adapter.  Currently Tx data is measurably slower than it will be in the 
+PV version.  Rx data is better than Tx, but still not ideal.
+
+
+Can not associate with AP after being in an Ad-Hoc network
+
+If you become a member of an Ad-Hoc network and then switch to Managed 
+mode, you will not be able to associate with an access point.  You must 
+reload the driver in order to associate to an AP in this situation.  
+This will be fixed by the production version.
+
+
+Can not do WPA with EAP w/ older wpa_supplicant versions
+
+Users have reported problems using older (0.3.x) versions of 
+wpa_supplicant with various authentication modes (WPA PSK, etc.).  
+If you experience problems using wpa_supplicant, please upgrade to the 
+latest version of the supplicant (0.4.6 or newer)
+
+
+Problems with WPA with AES and fragmentation 
+
+In some configurations, setting fragmentation on client results in 
+AES not functioning.  If you experience this behavior, please try
+with fragmentation disabled or check with your AP manufacturer for 
+a firmware upgrade.

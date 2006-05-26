@@ -1,0 +1,503 @@
+Changes in 0.0.69
+
+* Fixed #295 Removed BUG_ON(!spin_is_locked(&priv->daemon_lock)) code 
+  as spin_is_locked is always 0 on UP and non-debug kernels.
+
+Changes in 0.0.68
+
+* Updated README.ipw3945:
+	- Power Managment section reflect actual operation of the 
+	  driver.
+	- Updated IEEE 802.11h information
+	- Updated 'channels' information in sysfs section
+* Fixed copyright date in driver #define to 2006 (from 2004)
+* Fixed driver name.
+* Updated ucode and regulatory daemon version strings in documentation.
+
+Changes in 0.0.67
+
+* First version posted to SourceForge
+* Changed QoS module parameters to all have the qos_ prefix.
+* Updated INSTALL and REAMDE.ipw3945 documents.
+* Moved CONFIG_IPW_MONITOR -> CONFIG_IPW3945_MONITOR
+* Moved reset priv out of CONFIG_IPW3945_MONITOR mode ifdef's
+* Defined all symbols as static
+
+Changes in 0.66
+
+* Fix #279 problem with driver not supporting BG SKU by adding support for 
+  BG SKUs with the following PCI ID (device:subsystem)
+
+    0x4222:0x1005
+    0x4222:0x1034
+    0x4227:0x1014
+    0x4222:0x1044
+
+  If a card is detected as ABG (its PCI ID is not one of the above) and 
+  the EEPROM does not enable any A band channels, it will be treated as 
+  a BG SKU and an informational message will be displayed to the kernel 
+  log.
+* Fix #267 problem with comapre_ether_addr being redefined by ipw3945 
+  after ieee80211 has already done so on kernels older than 2.6.15
+
+Changes in 0.65
+
+* Fix #260 problem with frames setting PM bit even after power 
+  saving mode has been disabled.
+* Updated documentation to fix #172, #180, #189, #124, and #249
+* Fix #264 problem with first load after a restart 
+  potentially causing the intial load to be delayed due to 
+  the NIC not being active when it an attempt is made to 
+  take it down:
+	- Changed !(priv->status & STATUS_INIT) -> ipw_is_alive
+	- Changed ipw_is_init -> ipw_is_alive 
+	- Changed STATUS_INIT -> STATUS_ALIVE
+	- Added STATUS_INIT to indicate if ipw_nic_init was called
+	- Added check in ipw_down for whether STATUS_INIT is set
+* Fix #265 problem with suspend while associated 
+  periodically causing a kernel panic.
+* Fix #266 problem with resume process taking a long time 
+  and causing keyboard to be unresponsive.
+
+Changes in 0.64
+
+* Fix #257 problem with daemon/driver protocol problems during error
+  recovery as a result of adapter_restart.
+* Fix #259 problem with 2.4Ghz networks supporting only OFDM rates being 
+  viewed as 5.2Ghz.
+* Fix #255 problem with 'error -512' being displayed during suspend.  
+  Several fixes went in related to suspend/resume work.
+* Fixed #259 problem with OFDM only network appearing as 5.2Ghz
+* Fixed #250 wireless tools race condition with driver during 
+  initialization.
+* Fixed problem with LED not turning off if RF KILL activated.
+
+Changes in 0.63
+
+* Fixed #246 problem with iwconfig not reflecting current txpower 
+  setting.
+* Fixed #247 problem with iwconfig not reflecting current maximum rate
+  setting.
+* Fixed #251 problem with driver sometimes not recovering from a HW 
+  RF Kill switch toggle.
+* Fixed #248 problem with passing static channel configuration as module 
+  parameter resulting in a BUG_ON.
+* Fixed #252 problem with driver not being able to fully 
+  re-initialize itself when loaded.
+* Removed printk_buf from non-debug builds
+
+Changes in 0.62
+
+* Fixed problem with maximum txpower limit being set to 0, which keeps 
+  iwconfig txpower from functioning.
+* Fixed #214 by providing ability to disable roaming via sysfs entry 'roam'.
+  Setting to 0 disables roaming.
+* Modified init sequence to defer sending the INIT to the daemon until 
+  the hardware is reporting valid temperature readings.
+
+Changes in 0.61
+
+* Fixed #239 problem with HW rf kill not working
+* Fixed #127 problem with associating with 802.11a APs that have the 
+  spectrum management bit set but were not providing Power Constraint 
+  and TPC report information elements.
+* Fixed #114 problem with killing ipw3945d while associated causing
+  firmware errors.
+* Fixed #132 stack usage problem.  Any function using > 300 
+  bytes of stack space was modified to use less stack space.  
+  The largest stack usage is now < 300 bytes.
+* Fixed #128 and #157 problems with noise stats being dropped 
+  to 0 if CCK probe frame is receivd on an OFDM network.
+* Changed priv->sem to priv->mutex based on kernel inclusion 
+  requirements.
+
+Changes in 0.60
+
+* Fix #243 - Added code to ensure all timers, delayed work, and work 
+  queues have completed execution before unloading the driver module.
+* Fixed dead lock if Tx ISR came in while the daemon_lock was held and 
+  the command completion callback kicked in (recursive dead lock)
+
+Changes in 0.59
+
+* Added code to ensure all timers, delayed work, and work queues have 
+  completed execution before unloading the driver module.
+* Added code to force all driver entry points to immediately return if 
+  a driver shutdown is in progress
+
+Changes in 0.58
+
+* Fixed dead lock if Tx ISR came in while the daemon_lock was held and the 
+  command completion callback kicked in (recursive dead lock)
+* Added code to abort a ipw_daemon_send_cmd() if an unload is initiated
+
+Changes in 0.57
+
+* Fixed possible problem with DAEMON_READ_TIMEOUT length not being
+  initialized if compiled with certain versions of gcc; symptom is
+  the message 'read mistmatch: RANDOM NUMBER (expected) !=0' in the
+  ipw3945d daemon debug log (originally listed as fixed in 0.55, but 
+  not actually merged into code).
+* Possible fix for spin_lock dead lock during heavy Tx activity
+* Fixed problem with sending daemon Tx measured status even on on Tx 
+  failures
+
+Changes in 0.56
+
+* Fixed #242 problem with firmware restarts in 802.11a mode
+* Added Tx rate information to the Tx daemon status sync.
+
+Changes in 0.55
+
+* Fixed #195 problem with iwconfig txpower not setting or reporting the
+  configured Tx power correctly.  Documented the expected behavior in 
+  README.ipw3945.
+* Fixed #236 problem with inability to reassociate with WPA APs without
+  reloading the driver.
+* Fixed #190 problem with bitrate not being reported correctly as a 
+  function of range
+* Fixed #210 problem with PSP mode not working correctly in BSS mode 
+  (not quite what the summary description of the bug was, but that's 
+  where the bug fix led)
+* Fixed #241 problem with 'Error sending DAEMON to daemon' message if
+  you unload the driver while associated.
+
+Changes in 0.54
+
+* Fixed problem with 2.4Ghz APs not associating
+* Fixed problem with scans entering deadlock if a second scan request 
+  is scheduled before a prior one has initialized the hardware.
+
+Changes in 0.53
+
+* Fixed problems with rate scaling (should improve all performance 
+  related bugs)
+* Fixed problem with SW rf_kill not being able to turn the adapter 
+  back on
+* Added plumbing for doing Tx measurement reporting from the driver to 
+  the daemon.
+
+Changes in 0.52
+
+* Fixed load/unload scripts so they correctly pass parameters (unload 
+  was resetting the driver and daemon arguments to an empty list at the 
+  start of the load script)
+* Fixed #102 problem with not being able to associate in Managed mode 
+  after using Ad-Hoc mode
+* Removed bit-field from being displayed via channels sysfs entry.
+* Added spin_lock mutex around daemon user space and cross thread 
+  communication constructs
+* Fixed problem where if a scan abort is received after the microcode
+  has completed scanning but before we have been notified, scanning 
+  would no longer function.
+
+Changes in 0.51
+
+* First external release
+* Cleaned up QoS code so it is all wrapped behind CONFIG_IPW3945_QOS
+* Changed several #define clusters into enum { } sections, replacing
+  numeric constants with bit-shift constants.
+* Fixed problem with 'make patch_kernel' not copying the driver source 
+  files into the kernel tree.
+
+Changes in 0.50
+
+* Added 'patch_kernel' support to the Makefile so you can build and run 
+  in-tree.
+* Fixed problems with load and unload script not being able to find 
+  ipw3945d in /sbin or via the -ipw3945d= load script parameter.
+* Updated documentation on using -ipw394d= parameter
+
+Changes in 0.49
+
+* IRC only release to test the load / unload scripts.
+
+Changes in 0.48
+
+* Added synchronous daemon command capabilities
+* Changed API for ipw_daemon_send_cmd() -- caller must allocate storage for 
+  the daemon command.  Once called, ipw_daemon_cmd assumes control of the
+  storage.  The caller must not free or reference the data once called, 
+  regardless of ipw_daemon_send_cmd return code.
+* Added daemonqueue as a 3rd execution thread.  This thread is scheduled
+  to processes command requests from the daemon into the driver.
+* Added DAEMON_CMD_DONE for the daemon to send results to the driver when
+  a synchronous driver initiated command has completed.
+* Moved post-calibration work to be scheduled to execute in priv->workqueue 
+  vs. in the user thread used to call store_cmd().
+
+Changes in 0.47
+
+* Changed output of channels sysfs entry again.
+* Fixed A and B rate scaling code
+* Modified load and unload scripts to not specify the patch for ipw3945d 
+  -- they should be installed somewhere in your path.  If you do not 
+  have ipw3945d installed in your path, you can pass the -ipw3945d= 
+  parameter to the load script to point to the directory where ipw3945d 
+  can be located, for example:
+	% ./load -ipw3945d=~/bin/ debug=0x43fff -- --log-file=ipw3945d.log
+* Added daemon / driver version checking.
+
+Changes in 0.46
+
+* Changed sysfs channel output to be more compact and detail more info.
+* Major reduction in code #defines and enums, #if 0 / #endif, unused commands,
+  etc.  
+
+Changes in 0.45
+
+* Fixed problem with not being able to associated with shared-key 
+  authentication
+* Fixed problem with probe request not being 802.11 spec compliant, 
+  resulting in direct scans not working with some APs.
+
+Changes in 0.44
+
+* Fixed problem with LED rate not changing while scanning.
+* Fixed problem with LED state not turning off if rf_kill asserted
+
+Changes in 0.43
+
+* Fixed problem with driver not compiling if WIRELESS_EXT < 18
+* Fixed problem with probe requests sending incorrect packet length 
+  (introduced with 0.42)
+* Added /sys/bus/pci/drivers/ipw3945/*/channels to provide a user 
+  indication of which channels their SKU supports.
+
+Changes in 0.42
+
+* Fixed problem with background scans (scanning while associated) 
+  periodically rendering the adapter inoperable (requiring reload)
+* Fixed direct/indirect scan sequencing so that only a single scan pass
+  is required per scan
+* Wrapped all QOS code in CONFIG_IPW3945_QOS (defaulting to undefined --
+  compiled out)
+
+Changes in 0.41
+
+* Fixed problem with not reassociating after resume from susp-to-disk
+* Fixed #225 problem with NETDEV_TX_BUSY message in kernel log
+
+Changes in 0.40
+
+* Fixed #201 problem with not being able to associate after switching 
+  from IBSS mode
+* Fixed #204 problem with setting channel after going into Ad-Hoc mode
+* Fixed #213 problem with txpower being reset upon association to 
+  802.11h AP
+
+Changes in 0.39
+
+* Added TKIP countermeasure fixes based on code in more recent versions 
+  of ipw2200
+
+Changes in 0.38
+
+* Fixed #200 problem with enabling LEDs causing a kernel oops on 
+  association.  See README.ipw3945 for the intended behavior of the 
+  LEDs.
+* Fixed #203 problem with LEDs defaulting to being off.
+
+Changes in 0.37
+
+* Fixed #58 problem with datatransfer speed being too low in IBSS
+* Fixed #106 and #146 problem with rate scaling dropping to '0' in IBSS
+* Fixed #178 problem with fw error on line 74 durring IBSS association
+* Fixed #199 problem with rate scaling not working if a fixed rate is 
+  specified.
+* Fixed #112 problem with not being able to associate after changing 
+  mode from ad-hoc using a different channel.
+* Fixed #162 problem with changing rates while associated causing 
+  disassociation.
+
+Changes in 0.36
+
+* Make antenna selector a member of priv structure, to support multiple 
+  adapters.
+* Properly interpret antenna values sent via sysfs.
+* Add support for the txpow command from iwconfig to correctly set Tx 
+  limits.
+* Added code to ignore receipt of multiple association requests if one 
+  has already been processed for the current network.
+* Fixed problem with probe requests not being sent after associating
+* Changed scan timings so we can perform shorter scans if active scanning is
+  workings (30ms active dwell, 20ms active quiet with a 1 packet threshold)
+* Fixed minor bug affecting ipw_report_frame() debug message
+
+Changes in 0.35
+
+* Fixed BUG() condition in show_cmd that could cause a system lockup.
+* Added sysfs entry for controlling antenna diversity (see 
+  README.ipw3945) and removed code forcing antenna toggling during 
+  scans. 
+* Fixed problem where hidden networks were disassociating due to 
+  missing beacons.
+
+Changes in 0.34
+
+* Fixed time reported in "Network exluded because of age" message.
+* Enhances debug messages for Rx frames, improves "hackability" of Rx
+  debug messages.
+* Discard frames with *FIFO* overrun errors as well as CRC errors.
+* Added code to allow driver to request a true passive scan (without
+  auto-switch from passive to active)
+
+Changes in 0.33
+
+* Fixed printf() warning for specifying %d vs. %zd for size_t type.
+* Fixed rate scaling problems
+* Fixed #185 problem with sleep being called from invalid context 
+  (ieee80211 subsystem)
+* Fixed #176 problem with quiet request not being enforced
+* Fixed #138 problem with associating to 5.2Ghz band after 2.4Ghz band 
+  causing association delays.
+
+Changes in 0.32
+
+* Removed a stray antenna diversity investigation test that snuck into 0.31
+
+Changes in 0.31
+
+* Fixed problem with OOPS on measurement request
+
+Changes in 0.30
+
+* Fixed another startup race condition where a scan request issued too 
+  soon results in no scans occurring.
+
+Changes in 0.28
+
+* Fixed #157 problem with noise stats not being reported via iwconfig.  
+  NOTE:  noise statistics are only available when receiving OFDM frames.
+* Fixed #166 problem with 802.11h not functioning (inability to associate 
+  with 802.11h enabled access points)
+
+Changes in 0.26
+
+* Fixed #155 problem with commands sent to driver too quickly after 
+  load not resulting in association (no scan was being automatically 
+  kicked off after the load cycle was complete)
+* Fixed problem with 'config' script not functioning
+
+Changes in 0.24
+
+* Fixed ucode version reporting through ethtool
+* Fixed a potential hang on rmmod due to unkilled timers
+* Added a lot of debug dumps for scanning (trying to root cause 802.11a 
+  association  issue)
+
+Changes in 0.23
+
+* Fixed OOPS on rmmod due to referencing list element after freeing it.
+* Fixed potential command ring buffer overflow (may have been causing 142)
+* Fixed potential problem with daemon trying to send commands before fully 
+  initialized
+* Fixed #137 problem with not being able to exit shells after loading 
+  daemon.
+* Fixed #147 problem with changing AP to RF overlapping channels never 
+  disassociating.
+
+Changes in 0.22
+
+* Fixed problem with load script not launching ipw3945d.
+* Fixed problem with load time race condition.
+
+Changes in 0.20
+
+* Improved #12 to better report statistics when available from the 
+  uCode (signal and noise stats are not always provided from the 
+  uCode)
+* Fix problem with switching APs to a new channel w/in RF overlap range 
+  not resulting in client following the AP.
+* Misc. documentation updates to the source code
+* Fix problem with roaming scanning on all channels EXCEPT the current
+  channel, which results in it never finding a network to roam to.
+* Added additional debug traces for restart conditions at IPW_DEBUG_INFO
+  debug level.
+* Fixed problem with antenna diversity (it wasn't cycling between antennas)
+* Modified the DEAUTH handler to disassociate to fix a problem with the 
+  driver becoming inoperable w/out a reload if a DEAUTH frame is received
+  while associated (please retest #56)
+
+Changes in 0.19
+
+* Fixed #83 frequent firmware errors after association
+
+Changes in 0.18
+
+* Fixed WE18 compile problem
+
+Changes in 0.17
+
+* Fixed #94 error message in syslog when ipw3945d killed.
+* Fixed #88 problem with unload script exiting shell
+
+Changes in 0.16
+
+* Fixed #12 problem with statistics not being reported correctly
+* Fixed #38/57 problem with RF kill not working -- be sure to run 
+  ipw3945d after excersizing RF kill
+* Fixed #56/92 problem with DEAUTH
+* Fixed #73 problem with 'iwlist retry' not working
+* Fixed #97 problem with association in ad-hoc not working
+
+Changes in 0.15
+
+* Fix #84 module unloading failing due to oops
+* Fix #81 type-o in debug output for 'association'
+* Fix #82 add text interpretation of first field of fw restart
+* Changed several messages that were incorrectly using IPW_WARNING (vs. 
+  just IPW_DEBUG_INFO or other maskable debug level)
+* Modified behavior of load and unload to manage the ipw3945d daemon
+
+Changes in 0.13
+
+* Fix #72 problem with associating with APs not broadcasting 
+  their ESSID
+
+Changes in 0.12
+
+* Fix #70 problem with using an unconfigured key causing a panic
+* Fix #74 problem with iwpriv causing a panic
+* Fix #61 problem with ad-hoc mode and encrypted networks
+
+Changes in 0.11
+
+* Fix #55,#59,#64 problem with lockups, hangs, and applications 
+  disappearing due to a double free / null reference in the 
+  authentication handler
+* Fix #65 problem with iwconfig not showing disassociation
+* Fix #70 problem with using an unconfigured key causing a panic
+* Fix #73 problem with iwlist retry not reporting correct values
+
+Changes in 0.10
+
+* Fixed #60 README.ipw3945 contains wrong description
+
+Changes in 0.9
+
+* Fixed #33 problem with iwconfig retry not working.
+* Fixed #43 problem with remove-old removing a USB driver.
+* Fixed #50 problem with TKIP causing a kernel panic.
+* Workaround for #49 problem with compiler not initializing data to 0.
+* Fixed #52 problem with 'make install' -- installation of 
+  non-production versions is not encouraged and is disabled by default.
+
+Changes in 0.8
+
+* Fixed #10 problem with index for DMA queue out of range (scp stall)
+* Fixed #36 problem with different modes associating
+* Fixed #26 association timeout when using restricted mode
+* Fixed #38 RF Kill causes firmware restarts
+* Fixed problem with ad-hoc networks merging 
+
+Changes in 0.7
+
+* Fix #24: Kicking off scan before rx_config called.
+
+
+Changes in 0.6
+
+* Fix #27: Applied fix related to IBSS and Roaming.
+
+

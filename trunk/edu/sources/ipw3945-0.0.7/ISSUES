@@ -1,0 +1,256 @@
+
+Intel(R) PRO/Wireless 3945ABG Network Connection driver for Linux* in 
+support of:
+
+Intel(R) PRO/Wireless 3945ABG Network Connection Adapter
+Intel(R) PRO/Wireless 3945BG Network Connection Adapter
+
+Copyright (C) 2005 - 2006, Intel Corporation
+
+ISSUES
+
+Version: 1.0.0
+Date   : March 20, 2006
+------------------------------
+
+The following are the most common issues reported by users at the time of
+this release.  
+
+Additional details may be found at http://bughost.org by entering in the bug
+number referenced.
+
+Problems summarized below:
+
+1. Strongest AP is not always selected for association
+2. IEEE 802.11b transmit is faster than receive at lower signal levels
+3. Cannot associate with open networks using LEAP authentication
+4. Cannot associate with access points set to only support a single OFDM rate
+5. Kernel panic while transferring large amounts of data
+6. Available free memory depletes while transferring large amounts of data
+7. Restricting wireless bands from BG to A while in ad-hoc mode causes problems
+8. Restricting ad-hoc mode to a single rate results in a microcode SYSASSERT
+9. Configuring PSP mode while in an ad-hoc network results in packet loss
+10. Disassociation and association timeouts while using hidden networks
+11. Scanned access points count is smaller while associated
+12. Error messages in kernel log during large data transmissions
+13. iwspy threshold events are not triggered
+14. Problems obtaining a DHCP lease with some dhcp client/server combinations
+15. Cannot use WPA with EAP with older wpa_supplicant versions
+16. Problems with WPA with AES and fragmentation 
+
+Issue summaries:
+
+1. Strongest AP is not always selected for association
+
+There is a bug in the ieee80211 subsystem available in the Linux kernel that
+can cause the AP selection logic to not pick the strongest access point.  If
+you know a specific network has a better signal than the one you are 
+associated with, you can force the driver to use that access point by using
+the iwconfig's 'ap' command (see the iwconfig man page)
+
+Upgrading to ieee80211-1.1.13 or newer should correct the above problem.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=958
+
+
+2. IEEE 802.11b transmit is faster than receive at lower signal levels
+
+If you are using an 802.11b wireless network, you may notice that as the 
+signal level of the network associated with decreases, the driver's
+ability to receive TCP data decreases faster than the ability to transmit
+TCP data. In high signal levels and closer proximity to the access point,
+data rates are as expected.  
+
+http://bughost.org/bugzilla/show_bug.cgi?id=959
+
+
+3. Cannot associate with open networks using LEAP authentication
+
+If your wireless network is configured to use no encryption, but does use
+LEAP authentication, you may not be able to associate with it.  To work 
+around this problem, configure a static WEP key on your access point and
+configure the same WEP key on the client.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=960
+
+
+4. Cannot associate with access points set to only support a single OFDM rate
+
+If your access point is configured to only support a single OFDM receive
+data rate, you may not be able to associate with it. To work around this issue,
+configure your AP to use more than one OFDM (802.11G) data rate.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=961
+
+
+5. Kernel panic while transferring large amounts of data
+
+We have had one report of a kernel panic during file transfers.  While we
+have not been able to reproduce the failure, we are documenting it here.
+We are currently investigating the issue.  If you experience any kernel
+panics or crashes, please see the bug referenced below; and provide any
+information related to your specific issues; information that you may have
+could help in resolving the issue.
+
+There is currently no known workaround.  The problem has reportedly only 
+impacted one user to date.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=931
+
+
+6. Available free memory depletes while transferring large amounts of data
+
+After transferring a significant amount of data (on the order of gigabytes)
+you may notice a depletion of system memory resources.  We are currently
+investigating this issue to determine if there is a memory leak in the
+driver or an issue with how the driver is working with the rest of the 
+kernel.
+
+Currently unloading the module does not restore the systems total free
+memory.  Investigation continues to determine if the memory will eventually
+be reclaimed and made available by the kernel in low memory situations, or
+moved to swap space.  
+
+
+http://bughost.org/bugzilla/show_bug.cgi?id=962
+
+
+7. Restricting wireless bands from BG to A while in ad-hoc mode causes problems
+
+If you configure the wireless card into ad-hoc mode in a BG network to
+limit the supported bands to only support A, the driver may fail with
+a microcode error message displayed in the kernel log.
+
+Workaround: Set the mode to ABG and then manually change the
+channel to the channel you want for the ad-hoc network (ensuring that it is
+a valid channel for ad-hoc) and then set the mode to A only.  
+
+See the README.ipw3945 for information on setting the mode.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=934
+
+
+8. Restricting ad-hoc mode to a single rate results in a microcode SYSASSERT
+
+If you configure the system to only support a single data rate while in
+an ad-hoc network, you may experience a microcode error and driver restart.
+Setting data rates is achieved via iwconfig's rate command.
+
+The workaround is to not set an explicit single data rate while in ad-hoc
+mode.  
+
+http://bughost.org/bugzilla/show_bug.cgi?id=963
+
+
+9. Configuring PSP mode while in an ad-hoc network results in packet loss
+
+If you configure the system to use PSP (via iwpriv set_power) while in
+an ad-hoc network, you will experience significant packet loss in the
+network.
+
+The workaround is to not use PSP mode in an ad-hoc network.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=968
+
+
+10. Disassociation and association timeouts while using hidden networks
+
+If you disable broadcasting of the SSID on your wireless network, you may
+experience intermittent network disassociation and periodic inability to
+associate with your network.
+
+If you experience this problem, the current workaround is to enable SSID 
+beaconing from the AP.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=964
+
+
+11. Scanned access points count is smaller while associated
+
+While associated, scanning may not find as many access points as reliably
+as scanning while not associated.  This is a result of the amount of time
+that can be spent out of the associated channel without disrupting the
+current association.  Scan information defaults to expiring if a network
+does not receive a beacon or probe response within 15 seconds.
+
+Workaround: Try scanning, then wait a second or two, and then scan again.
+The second and subsequent scans should collect more of the scan data that
+may have been missed in the first scan.  You can also increase the default
+maximum scan age by specifying the maximum age of a network in milliseconds
+to the sysfs entry 'scan_age'.  See README.ipw3945 for more information.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=965
+
+
+12. Error messages in kernel log during large data transmissions
+
+You may occassionally see the error message: 
+
+ipw3945: No space for Tx
+ipw3945: Error sending ADD_STA: ipw_queue_tx_hcmd failed: -28
+
+These messages can be ignored.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=941
+
+
+13. iwspy threshold events are not triggered
+
+If you configure a threshold event based on signal level, that event may
+not be triggered when the threshold is crossed.
+
+No known workaround.
+
+http://bughost.org/bugzilla/show_bug.cgi?id=966
+
+
+14. Problems obtaining a DHCP lease with some dhcp client/server combinations
+
+Some dhcp clients have problems in communicating with specific dhcp
+servers while obtaining frequent and renewed leases.  If your dhcp client
+stalls while trying to obtain an IP address and you are associated to a 
+valid network (with the correct WEP key if appropriate), you can try the
+following workaround:
+
+  1.  Kill any current instances of your dhcp client:
+	% killall dhclient || killall dhdpcd
+	% rm /var/run/{dhcpcd,dhclient}*pid
+  2.  Remove any cached lease files
+	See the man page for your dhcp client to determine which files
+	these are.  It is usually one of the following:
+	% rm /var/run/cache/dhcpcd-* 
+	% rm /var/lib/dhcp/dhclient*leases
+  3.  Restart the dhcp client
+	% dhclient eth1 || dhcpcd eth1
+
+
+15. Cannot use WPA with EAP with older wpa_supplicant versions
+
+Users have reported problems using older (0.3.x) versions of 
+wpa_supplicant with various authentication modes (WPA PSK, etc.).  
+If you experience problems using wpa_supplicant, please upgrade to the 
+latest version of the supplicant (0.4.6 or newer)
+
+
+16. Problems with WPA with AES and fragmentation 
+
+In some configurations, setting fragmentation on client results in 
+AES not functioning.  If you experience this behavior, please try
+with fragmentation disabled or check with your AP manufacturer for 
+a firmware upgrade.
+
+------------------------------
+Copyright (C) 2005 - 2006, Intel Corporation
+
+INFORMATION IN THIS DOCUMENT IS PROVIDED IN CONNECTION WITH INTEL PRODUCTS.  
+EXCEPT AS PROVIDED IN INTEL'S TERMS AND CONDITIONS OF SALE FOR SUCH PRODUCTS, 
+INTEL ASSUMES NO LIABILITY WHATSOEVER, AND INTEL DISCLAIMS ANY EXPRESS OR 
+IMPLIED WARRANTY RELATING TO SALE AND/OR USE OF INTEL PRODUCTS, INCLUDING 
+LIABILITY OR WARRANTIES RELATING TO FITNESS FOR A PARTICULAR PURPOSE, 
+MERCHANTABILITY, OR INFRINGEMENT OF ANY PATENT, COPYRIGHT, OR OTHER 
+INTELLECTUAL PROPERTY RIGHT. 
+
+This document is subject to change without notice. 
+
+* Other names and brands may be claimed as the property of others.
+

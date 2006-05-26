@@ -1,0 +1,81 @@
+ieee8011 Wireless Stack for Linux
+
+NOTE ON UPGRADING FROM PRIOR VERSIONS
+---------   ------     ----       ---    --       --       -          -
+
+Whenever you upgrade this subsystem, you need to make sure that your 
+system no longer has older versions of the modules in various locations 
+that could be found by modprobe instead of the new version.  If you see 
+problems about unresolved symbols, chances are good you have an old 
+module someplace.  You can typically find the offending modules via:
+
+	% find /lib/modules/\`uname -r\` -name "ieee80211*"; done
+
+Or you can also run the remove script from the source.
+
+	% cd ~/ieee80211-${VERSION}/
+	% . remove-old
+
+
+KERNEL REQUIREMENTS - 2.6 
+---------   ------     ----       ---    --       --       -          -
+This subsystem is designed for the 2.6 kernel series.  It should only 
+be used with 2.6.8 or higher.
+
+
+OPTIONAL: WPA Support
+
+If you wish to enable WPA support, you also need to enable the following Crypto
+library modules (in addition to those required for WEP above):
+
+	Michael MIC (CONFIG_CRYPTO_MICHAEL_MIC)
+	AES (CONFIG_CRYPTO_AES_586)
+
+ieee80211 uses the WEP encryption and decryption algorithms provided
+by the Linux kernel.  As such, in order to use WEP you must enable the 
+Crypto library support (CONFIG_CRYPTO) and the following algorithms:
+
+        ARC4 cipher algorithm (CONFIG_CRYPTO_ARC4)
+
+You also need to enable the following from Library routines:
+
+        CRC32 (CONFIG_CRC32)
+
+Check for these with:
+
+	% for i in CRYPTO_ARC4 CRC32; do \
+		grep CONFIG_INSTALL \
+		/lib/modules/2.6.10/build/include/linux/autoconf.h; done
+
+
+INSTALLING THE BITS
+
+The installation requires the compiled kernel sources or headers 
+against the matching kernel.  These are typically found in:
+
+	/lib/modules/\`uname -r\`/build
+
+If that directory does not exist, or is empty, you likely need to 
+install the kernel source packages for your distribution.  Once you have 
+the kernel sources, you can make and install the ieee80211 subsystem 
+via:
+
+	% tar zxvf ieee80211-${VERSION}
+	% cd ieee80211-${VERSION}
+	% make
+
+In order to build drivers dependent on this subsystem, those drivers may 
+need to find the ieee80211 header files.  You can specify a location for 
+those include files to be installed via the IEEE80211_INC parameter to 
+make:
+
+	% make IEEE80211_INC=/usr/include
+
+which will install the ieee80211.h headers into /usr/include/net
+
+If you do not specify a location, the Makefile will default to 
+installing into:
+
+	/lib/modules/\`uname -r\`/include
+
+(placing the files into the net subdirectory of the above path)

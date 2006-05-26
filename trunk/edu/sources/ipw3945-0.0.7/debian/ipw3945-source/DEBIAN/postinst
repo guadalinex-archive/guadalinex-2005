@@ -1,0 +1,6 @@
+#!/bin/sh
+
+### Así no unciona, solo a título informativo
+### m-a -t build,install ipw3945
+
+exit 0

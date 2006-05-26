@@ -1,0 +1,26 @@
+Source: ieee80211
+Section: net
+Priority: optional
+Maintainer: Alfredo Matas <cga.averroes@juntadeandalucia.es>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.1
+
+Package: ieee80211-source
+Architecture: all
+Depends: module-assistant, ${misc:Depends}, debhelper (>> 4.0)
+Suggests: fakeroot
+Description: Source for the 802.11 (wireless) network stack for Linux
+ This package provides the source code for the 802.11 (wireless) network
+ stack module for the Linux kernel. Though it has been incorporated in
+ latest kernel versions, the bundled one might not be up-to-date to build
+ third-party wireless modules such as ipw2100 or ipw2200 which are common
+ on Centrino notebooks.
+ .
+ In order to compile these modules you need the kernel sources (or the
+ kernel-headers for the kernel-image packages from Debian). For compile
+ instructions look into /usr/share/doc/ieee80211-source/README.Debian or
+ simply use the module-assistant utility.
+ .
+ The project's homepage can be found here:
+ http://ieee80211.sourceforge.net
+

@@ -1,0 +1,59 @@
+Intel PRO/Wireless 3945ABG Network Connection 
+Regulatory Daemon README.ipw3945d
+
+ABOUT
+
+The regulatory daemon is responsible for controlling and configuring 
+aspects of the hardware required to operate the device within 
+compliance of various regulatory agencies.  This includes controlling 
+which channels are allowed to do active/passive scanning, transmit 
+power levels, which channels are allowed to be transmitted on, and 
+support for IEEE 802.11h (DFS and TPC).
+
+
+INSTALLATION 
+
+Within this archive are two directories, x86 and x86_64.  Depending on 
+the architecture you are using, chose the appropriate ipw3945d 
+regulatory daemon and install it into your system, typically in /sbin.
+
+For example:
+
+If you are running on a 32-bit system, you would perform the following:
+
+% cp x86/ipw3495d /sbin
+
+If you are running on an EM64T enabled system, you would perform the 
+following:
+
+% cp x86_64/ipw3945d /sbin
+
+You may need to be root to copy the file to that location.  You will 
+need to be root to run the file.
+
+The scripts provided with the Intel PRO/Wireless 3945ABG Network 
+Connection driver for Linux requires the regulatory daemon to be in the 
+current execution path, or to use the -ipw3945d parameter (see the 
+README.ipw3945 provided with the driver package.)
+
+
+LICENSE
+
+Please view the file LICENSE.ipw3945d for information on redistribution 
+and use of the regulatory daemon 'ipw3945d'.
+
+
+------------------------------
+Copyright (C) 2005 - 2006, Intel Corporation
+
+INFORMATION IN THIS DOCUMENT IS PROVIDED IN CONNECTION WITH INTEL PRODUCTS.  
+EXCEPT AS PROVIDED IN INTEL'S TERMS AND CONDITIONS OF SALE FOR SUCH PRODUCTS, 
+INTEL ASSUMES NO LIABILITY WHATSOEVER, AND INTEL DISCLAIMS ANY EXPRESS OR 
+IMPLIED WARRANTY RELATING TO SALE AND/OR USE OF INTEL PRODUCTS, INCLUDING 
+LIABILITY OR WARRANTIES RELATING TO FITNESS FOR A PARTICULAR PURPOSE, 
+MERCHANTABILITY, OR INFRINGEMENT OF ANY PATENT, COPYRIGHT, OR OTHER 
+INTELLECTUAL PROPERTY RIGHT. 
+
+This document is subject to change without notice. 
+
+* Other names and brands may be claimed as the property of others.

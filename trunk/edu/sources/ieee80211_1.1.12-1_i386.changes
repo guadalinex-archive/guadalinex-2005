@@ -1,0 +1,29 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.7
+Date: Mon,  3 Apr 2006 11:44:09 +0200
+Source: ieee80211
+Binary: ieee80211-source
+Architecture: all
+Version: 1.1.12-1
+Distribution: unstable
+Urgency: low
+Maintainer: Alfredo Matas <cga.averroes@juntadeandalucia.es>
+Changed-By: Grupo de desarrollo del C.G.A. <cga.averroes@juntadeandalucia.es>
+Description: 
+ ieee80211-source - Source for the 802.11 (wireless) network stack for Linux
+Changes: 
+ ieee80211 (1.1.12-1) unstable; urgency=low
+ .
+   * Initial release Closes: #nnnn  (nnnn is the bug number of your ITP)
+Files: 
+ f0a8eebbcacd20f9d40a26cfa30c4e0b 61858 net optional ieee80211-source_1.1.12-1_all.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.1 (GNU/Linux)
+
+iD8DBQFEdq+2j/YHKKVae7oRAsnIAJ4rz+ngMpWuiGY4IwEGWhjgvFvyvQCZAZ0J
+ii3ujrlQSrF/lX3rXF8uT78=
+=7GA9
+-----END PGP SIGNATURE-----

@@ -1,0 +1,1 @@
+cmd_/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.ko := ld -m elf_i386 -r -o /home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.ko /home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.o /home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.mod.o

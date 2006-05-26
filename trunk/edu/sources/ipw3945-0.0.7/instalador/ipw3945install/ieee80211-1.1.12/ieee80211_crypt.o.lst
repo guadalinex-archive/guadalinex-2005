@@ -1,0 +1,3308 @@
+GAS LISTING  			page 1
+
+
+   1              	.file "ieee80211_crypt.c"
+   9              	.Ltext0:
+  10              	.section .modinfo,"a",@progbits
+  13              	__mod_author21:
+  14 0000 61757468 	.string "author=Jouni Malinen"
+  14      6F723D4A 
+  14      6F756E69 
+  14      204D616C 
+  14      696E656E 
+  17              	__mod_description22:
+  18 0015 64657363 	.string "description=HostAP crypto"
+  18      72697074 
+  18      696F6E3D 
+  18      486F7374 
+  18      41502063 
+  21              	__mod_license23:
+  22 002f 6C696365 	.string "license=GPL"
+  22      6E73653D 
+  22      47504C00 
+  23              	.data
+  24              	.align 4
+  27              	ieee80211_crypto_algs:
+  28 0000 00000000 	.long ieee80211_crypto_algs
+  29 0004 00000000 	.long ieee80211_crypto_algs
+  30              	.local ieee80211_crypto_lock
+  31              	.comm ieee80211_crypto_lock,0,1
+  32              	.text
+  33              	.globl ieee80211_crypt_deinit_entries
+  35              	ieee80211_crypt_deinit_entries:
+  36              	.LFB665:
+  37              	.file 1 "/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c"
+   1:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** /*
+   2:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  * Host AP crypto routines
+   3:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  *
+   4:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  * Copyright (c) 2002-2003, Jouni Malinen <jkmaline@cc.hut.fi>
+   5:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  * Portions Copyright (C) 2004, Intel Corporation <jketreno@linux.intel.com>
+   6:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  *
+   7:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  * This program is free software; you can redistribute it and/or modify
+   8:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  * it under the terms of the GNU General Public License version 2 as
+   9:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  * published by the Free Software Foundation. See README and COPYING for
+  10:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  * more details.
+  11:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  *
+  12:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****  */
+  13:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  14:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** #include <linux/errno.h>
+  15:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** #include <linux/module.h>
+  16:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** #include <linux/init.h>
+  17:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** #include <linux/slab.h>
+  18:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** #include <linux/string.h>
+  19:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** #include <net/ieee80211.h>
+  20:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  21:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** MODULE_AUTHOR("Jouni Malinen");
+  22:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** MODULE_DESCRIPTION("HostAP crypto");
+  23:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** MODULE_LICENSE("GPL");
+  24:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  25:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** struct ieee80211_crypto_alg {
+  26:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	struct list_head list;
+GAS LISTING  			page 2
+
+
+  27:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	struct ieee80211_crypto_ops *ops;
+  28:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** };
+  29:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  30:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** static LIST_HEAD(ieee80211_crypto_algs);
+  31:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** static DEFINE_SPINLOCK(ieee80211_crypto_lock);
+  32:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  33:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** void ieee80211_crypt_deinit_entries(struct ieee80211_device *ieee, int force)
+  34:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+  38              	.loc 1 34 0
+  39 0000 55       	pushl %ebp
+  40              	.LCFI0:
+  41 0001 57       	pushl %edi
+  42              	.LCFI1:
+  43 0002 56       	pushl %esi
+  44              	.LCFI2:
+  45 0003 53       	pushl %ebx
+  46              	.LCFI3:
+  47              	.loc 1 34 0
+  48 0004 8B742414 	movl 20(%esp),%esi
+  35:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	struct ieee80211_crypt_data *entry, *next;
+  36:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	unsigned long flags;
+  37:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  38:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_lock_irqsave(&ieee->lock, flags);
+  49              	.loc 1 38 0
+  50              	
+  51 0008 9C5DFA   	pushfl
+  52              	
+  53              	.LBB2:
+  39:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	list_for_each_entry_safe(entry, next, &ieee->crypt_deinit_list, list) {
+  54              	.loc 1 39 0
+  55 000b 8B9E9806 	movl 1688(%esi),%ebx
+  55      0000
+  56              	.L26:
+  57              	.LBE2:
+  58 0011 8D869806 	leal 1688(%esi),%eax
+  58      0000
+  59 0017 39C3     	cmpl %eax,%ebx
+  60              	.LBB3:
+  61 0019 8B3B     	movl (%ebx),%edi
+  62              	.LBE3:
+  63 001b 745E     	je .L25
+  40:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		if (atomic_read(&entry->refcnt) != 0 && !force)
+  64              	.loc 1 40 0
+  65 001d 8B4310   	movl 16(%ebx),%eax
+  66 0020 85C0     	testl %eax,%eax
+  67 0022 7407     	je .L8
+  68 0024 837C2418 	cmpl $0,24(%esp)
+  68      00
+  69 0029 744C     	je .L7
+  70              	.L8:
+  71              	.LBB4:
+  72              	.LBB5:
+  73              	.LBB6:
+  74              	.file 2 "include/linux/list.h"
+   1:include/linux/list.h **** #ifndef _LINUX_LIST_H
+   2:include/linux/list.h **** #define _LINUX_LIST_H
+   3:include/linux/list.h **** 
+GAS LISTING  			page 3
+
+
+   4:include/linux/list.h **** #ifdef __KERNEL__
+   5:include/linux/list.h **** 
+   6:include/linux/list.h **** #include <linux/stddef.h>
+   7:include/linux/list.h **** #include <linux/prefetch.h>
+   8:include/linux/list.h **** #include <asm/system.h>
+   9:include/linux/list.h **** 
+  10:include/linux/list.h **** /*
+  11:include/linux/list.h ****  * These are non-NULL pointers that will result in page faults
+  12:include/linux/list.h ****  * under normal circumstances, used to verify that nobody uses
+  13:include/linux/list.h ****  * non-initialized list entries.
+  14:include/linux/list.h ****  */
+  15:include/linux/list.h **** #define LIST_POISON1  ((void *) 0x00100100)
+  16:include/linux/list.h **** #define LIST_POISON2  ((void *) 0x00200200)
+  17:include/linux/list.h **** 
+  18:include/linux/list.h **** /*
+  19:include/linux/list.h ****  * Simple doubly linked list implementation.
+  20:include/linux/list.h ****  *
+  21:include/linux/list.h ****  * Some of the internal functions ("__xxx") are useful when
+  22:include/linux/list.h ****  * manipulating whole lists rather than single entries, as
+  23:include/linux/list.h ****  * sometimes we already know the next/prev entries and we can
+  24:include/linux/list.h ****  * generate better code by using them directly rather than
+  25:include/linux/list.h ****  * using the generic single-entry routines.
+  26:include/linux/list.h ****  */
+  27:include/linux/list.h **** 
+  28:include/linux/list.h **** struct list_head {
+  29:include/linux/list.h **** 	struct list_head *next, *prev;
+  30:include/linux/list.h **** };
+  31:include/linux/list.h **** 
+  32:include/linux/list.h **** #define LIST_HEAD_INIT(name) { &(name), &(name) }
+  33:include/linux/list.h **** 
+  34:include/linux/list.h **** #define LIST_HEAD(name) \
+  35:include/linux/list.h **** 	struct list_head name = LIST_HEAD_INIT(name)
+  36:include/linux/list.h **** 
+  37:include/linux/list.h **** #define INIT_LIST_HEAD(ptr) do { \
+  38:include/linux/list.h **** 	(ptr)->next = (ptr); (ptr)->prev = (ptr); \
+  39:include/linux/list.h **** } while (0)
+  40:include/linux/list.h **** 
+  41:include/linux/list.h **** /*
+  42:include/linux/list.h ****  * Insert a new entry between two known consecutive entries.
+  43:include/linux/list.h ****  *
+  44:include/linux/list.h ****  * This is only for internal list manipulation where we know
+  45:include/linux/list.h ****  * the prev/next entries already!
+  46:include/linux/list.h ****  */
+  47:include/linux/list.h **** static inline void __list_add(struct list_head *new,
+  48:include/linux/list.h **** 			      struct list_head *prev,
+  49:include/linux/list.h **** 			      struct list_head *next)
+  50:include/linux/list.h **** {
+  51:include/linux/list.h **** 	next->prev = new;
+  52:include/linux/list.h **** 	new->next = next;
+  53:include/linux/list.h **** 	new->prev = prev;
+  54:include/linux/list.h **** 	prev->next = new;
+  55:include/linux/list.h **** }
+  56:include/linux/list.h **** 
+  57:include/linux/list.h **** /**
+  58:include/linux/list.h ****  * list_add - add a new entry
+  59:include/linux/list.h ****  * @new: new entry to be added
+  60:include/linux/list.h ****  * @head: list head to add it after
+GAS LISTING  			page 4
+
+
+  61:include/linux/list.h ****  *
+  62:include/linux/list.h ****  * Insert a new entry after the specified head.
+  63:include/linux/list.h ****  * This is good for implementing stacks.
+  64:include/linux/list.h ****  */
+  65:include/linux/list.h **** static inline void list_add(struct list_head *new, struct list_head *head)
+  66:include/linux/list.h **** {
+  67:include/linux/list.h **** 	__list_add(new, head, head->next);
+  68:include/linux/list.h **** }
+  69:include/linux/list.h **** 
+  70:include/linux/list.h **** /**
+  71:include/linux/list.h ****  * list_add_tail - add a new entry
+  72:include/linux/list.h ****  * @new: new entry to be added
+  73:include/linux/list.h ****  * @head: list head to add it before
+  74:include/linux/list.h ****  *
+  75:include/linux/list.h ****  * Insert a new entry before the specified head.
+  76:include/linux/list.h ****  * This is useful for implementing queues.
+  77:include/linux/list.h ****  */
+  78:include/linux/list.h **** static inline void list_add_tail(struct list_head *new, struct list_head *head)
+  79:include/linux/list.h **** {
+  80:include/linux/list.h **** 	__list_add(new, head->prev, head);
+  81:include/linux/list.h **** }
+  82:include/linux/list.h **** 
+  83:include/linux/list.h **** /*
+  84:include/linux/list.h ****  * Insert a new entry between two known consecutive entries.
+  85:include/linux/list.h ****  *
+  86:include/linux/list.h ****  * This is only for internal list manipulation where we know
+  87:include/linux/list.h ****  * the prev/next entries already!
+  88:include/linux/list.h ****  */
+  89:include/linux/list.h **** static inline void __list_add_rcu(struct list_head * new,
+  90:include/linux/list.h **** 		struct list_head * prev, struct list_head * next)
+  91:include/linux/list.h **** {
+  92:include/linux/list.h **** 	new->next = next;
+  93:include/linux/list.h **** 	new->prev = prev;
+  94:include/linux/list.h **** 	smp_wmb();
+  95:include/linux/list.h **** 	next->prev = new;
+  96:include/linux/list.h **** 	prev->next = new;
+  97:include/linux/list.h **** }
+  98:include/linux/list.h **** 
+  99:include/linux/list.h **** /**
+ 100:include/linux/list.h ****  * list_add_rcu - add a new entry to rcu-protected list
+ 101:include/linux/list.h ****  * @new: new entry to be added
+ 102:include/linux/list.h ****  * @head: list head to add it after
+ 103:include/linux/list.h ****  *
+ 104:include/linux/list.h ****  * Insert a new entry after the specified head.
+ 105:include/linux/list.h ****  * This is good for implementing stacks.
+ 106:include/linux/list.h ****  *
+ 107:include/linux/list.h ****  * The caller must take whatever precautions are necessary
+ 108:include/linux/list.h ****  * (such as holding appropriate locks) to avoid racing
+ 109:include/linux/list.h ****  * with another list-mutation primitive, such as list_add_rcu()
+ 110:include/linux/list.h ****  * or list_del_rcu(), running on this same list.
+ 111:include/linux/list.h ****  * However, it is perfectly legal to run concurrently with
+ 112:include/linux/list.h ****  * the _rcu list-traversal primitives, such as
+ 113:include/linux/list.h ****  * list_for_each_entry_rcu().
+ 114:include/linux/list.h ****  */
+ 115:include/linux/list.h **** static inline void list_add_rcu(struct list_head *new, struct list_head *head)
+ 116:include/linux/list.h **** {
+ 117:include/linux/list.h **** 	__list_add_rcu(new, head, head->next);
+GAS LISTING  			page 5
+
+
+ 118:include/linux/list.h **** }
+ 119:include/linux/list.h **** 
+ 120:include/linux/list.h **** /**
+ 121:include/linux/list.h ****  * list_add_tail_rcu - add a new entry to rcu-protected list
+ 122:include/linux/list.h ****  * @new: new entry to be added
+ 123:include/linux/list.h ****  * @head: list head to add it before
+ 124:include/linux/list.h ****  *
+ 125:include/linux/list.h ****  * Insert a new entry before the specified head.
+ 126:include/linux/list.h ****  * This is useful for implementing queues.
+ 127:include/linux/list.h ****  *
+ 128:include/linux/list.h ****  * The caller must take whatever precautions are necessary
+ 129:include/linux/list.h ****  * (such as holding appropriate locks) to avoid racing
+ 130:include/linux/list.h ****  * with another list-mutation primitive, such as list_add_tail_rcu()
+ 131:include/linux/list.h ****  * or list_del_rcu(), running on this same list.
+ 132:include/linux/list.h ****  * However, it is perfectly legal to run concurrently with
+ 133:include/linux/list.h ****  * the _rcu list-traversal primitives, such as
+ 134:include/linux/list.h ****  * list_for_each_entry_rcu().
+ 135:include/linux/list.h ****  */
+ 136:include/linux/list.h **** static inline void list_add_tail_rcu(struct list_head *new,
+ 137:include/linux/list.h **** 					struct list_head *head)
+ 138:include/linux/list.h **** {
+ 139:include/linux/list.h **** 	__list_add_rcu(new, head->prev, head);
+ 140:include/linux/list.h **** }
+ 141:include/linux/list.h **** 
+ 142:include/linux/list.h **** /*
+ 143:include/linux/list.h ****  * Delete a list entry by making the prev/next entries
+ 144:include/linux/list.h ****  * point to each other.
+ 145:include/linux/list.h ****  *
+ 146:include/linux/list.h ****  * This is only for internal list manipulation where we know
+ 147:include/linux/list.h ****  * the prev/next entries already!
+ 148:include/linux/list.h ****  */
+ 149:include/linux/list.h **** static inline void __list_del(struct list_head * prev, struct list_head * next)
+ 150:include/linux/list.h **** {
+  75              	.loc 2 150 0
+  76 002b 8B03     	movl (%ebx),%eax
+  77 002d 8B5304   	movl 4(%ebx),%edx
+  78              	.LBB7:
+ 151:include/linux/list.h **** 	next->prev = prev;
+  79              	.loc 2 151 0
+  80 0030 895004   	movl %edx,4(%eax)
+ 152:include/linux/list.h **** 	prev->next = next;
+  81              	.loc 2 152 0
+  82 0033 8902     	movl %eax,(%edx)
+  83              	.LBE7:
+  84              	.LBE6:
+  85              	.LBE5:
+  86              	.LBE4:
+  41:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 			continue;
+  42:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  43:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		list_del(&entry->list);
+  44:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  45:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		if (entry->ops) {
+  87              	.loc 1 45 0
+  88 0035 8B4308   	movl 8(%ebx),%eax
+  89 0038 85C0     	testl %eax,%eax
+  90              	.LBB8:
+  91              	.LBB9:
+GAS LISTING  			page 6
+
+
+ 153:include/linux/list.h **** }
+ 154:include/linux/list.h **** 
+ 155:include/linux/list.h **** /**
+ 156:include/linux/list.h ****  * list_del - deletes entry from list.
+ 157:include/linux/list.h ****  * @entry: the element to delete from the list.
+ 158:include/linux/list.h ****  * Note: list_empty on entry does not return true after this, the entry is
+ 159:include/linux/list.h ****  * in an undefined state.
+ 160:include/linux/list.h ****  */
+ 161:include/linux/list.h **** static inline void list_del(struct list_head *entry)
+ 162:include/linux/list.h **** {
+ 163:include/linux/list.h **** 	__list_del(entry->prev, entry->next);
+ 164:include/linux/list.h **** 	entry->next = LIST_POISON1;
+  92              	.loc 2 164 0
+  93 003a C7030001 	movl $1048832,(%ebx)
+  93      1000
+ 165:include/linux/list.h **** 	entry->prev = LIST_POISON2;
+  94              	.loc 2 165 0
+  95 0040 C7430400 	movl $2097664,4(%ebx)
+  95      022000
+  96              	.LBE9:
+  97              	.LBE8:
+  98              	.loc 1 45 0
+  99 0047 7427     	je .L11
+  46:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 			entry->ops->deinit(entry->priv);
+ 100              	.loc 1 46 0
+ 101 0049 FF730C   	pushl 12(%ebx)
+ 102              	.LCFI4:
+ 103 004c FF5010   	call *16(%eax)
+ 104              	.LBB10:
+ 105              	.file 3 "include/linux/module.h"
+   1:include/linux/module.h **** #ifndef _LINUX_MODULE_H
+   2:include/linux/module.h **** #define _LINUX_MODULE_H
+   3:include/linux/module.h **** /*
+   4:include/linux/module.h ****  * Dynamic loading of modules into the kernel.
+   5:include/linux/module.h ****  *
+   6:include/linux/module.h ****  * Rewritten by Richard Henderson <rth@tamu.edu> Dec 1996
+   7:include/linux/module.h ****  * Rewritten again by Rusty Russell, 2002
+   8:include/linux/module.h ****  */
+   9:include/linux/module.h **** #include <linux/config.h>
+  10:include/linux/module.h **** #include <linux/sched.h>
+  11:include/linux/module.h **** #include <linux/spinlock.h>
+  12:include/linux/module.h **** #include <linux/list.h>
+  13:include/linux/module.h **** #include <linux/stat.h>
+  14:include/linux/module.h **** #include <linux/compiler.h>
+  15:include/linux/module.h **** #include <linux/cache.h>
+  16:include/linux/module.h **** #include <linux/kmod.h>
+  17:include/linux/module.h **** #include <linux/elf.h>
+  18:include/linux/module.h **** #include <linux/stringify.h>
+  19:include/linux/module.h **** #include <linux/kobject.h>
+  20:include/linux/module.h **** #include <linux/moduleparam.h>
+  21:include/linux/module.h **** #include <asm/local.h>
+  22:include/linux/module.h **** 
+  23:include/linux/module.h **** #include <asm/module.h>
+  24:include/linux/module.h **** 
+  25:include/linux/module.h **** /* Not Yet Implemented */
+  26:include/linux/module.h **** #define MODULE_SUPPORTED_DEVICE(name)
+  27:include/linux/module.h **** 
+GAS LISTING  			page 7
+
+
+  28:include/linux/module.h **** /* v850 toolchain uses a `_' prefix for all user symbols */
+  29:include/linux/module.h **** #ifndef MODULE_SYMBOL_PREFIX
+  30:include/linux/module.h **** #define MODULE_SYMBOL_PREFIX ""
+  31:include/linux/module.h **** #endif
+  32:include/linux/module.h **** 
+  33:include/linux/module.h **** #define MODULE_NAME_LEN (64 - sizeof(unsigned long))
+  34:include/linux/module.h **** 
+  35:include/linux/module.h **** struct kernel_symbol
+  36:include/linux/module.h **** {
+  37:include/linux/module.h **** 	unsigned long value;
+  38:include/linux/module.h **** 	const char *name;
+  39:include/linux/module.h **** };
+  40:include/linux/module.h **** 
+  41:include/linux/module.h **** struct modversion_info
+  42:include/linux/module.h **** {
+  43:include/linux/module.h **** 	unsigned long crc;
+  44:include/linux/module.h **** 	char name[MODULE_NAME_LEN];
+  45:include/linux/module.h **** };
+  46:include/linux/module.h **** 
+  47:include/linux/module.h **** struct module;
+  48:include/linux/module.h **** 
+  49:include/linux/module.h **** struct module_attribute {
+  50:include/linux/module.h ****         struct attribute attr;
+  51:include/linux/module.h ****         ssize_t (*show)(struct module_attribute *, struct module *, char *);
+  52:include/linux/module.h ****         ssize_t (*store)(struct module_attribute *, struct module *,
+  53:include/linux/module.h **** 			 const char *, size_t count);
+  54:include/linux/module.h **** };
+  55:include/linux/module.h **** 
+  56:include/linux/module.h **** struct module_kobject
+  57:include/linux/module.h **** {
+  58:include/linux/module.h **** 	struct kobject kobj;
+  59:include/linux/module.h **** 	struct module *mod;
+  60:include/linux/module.h **** };
+  61:include/linux/module.h **** 
+  62:include/linux/module.h **** /* These are either module local, or the kernel's dummy ones. */
+  63:include/linux/module.h **** extern int init_module(void);
+  64:include/linux/module.h **** extern void cleanup_module(void);
+  65:include/linux/module.h **** 
+  66:include/linux/module.h **** /* Archs provide a method of finding the correct exception table. */
+  67:include/linux/module.h **** struct exception_table_entry;
+  68:include/linux/module.h **** 
+  69:include/linux/module.h **** const struct exception_table_entry *
+  70:include/linux/module.h **** search_extable(const struct exception_table_entry *first,
+  71:include/linux/module.h **** 	       const struct exception_table_entry *last,
+  72:include/linux/module.h **** 	       unsigned long value);
+  73:include/linux/module.h **** void sort_extable(struct exception_table_entry *start,
+  74:include/linux/module.h **** 		  struct exception_table_entry *finish);
+  75:include/linux/module.h **** void sort_main_extable(void);
+  76:include/linux/module.h **** 
+  77:include/linux/module.h **** extern struct subsystem module_subsys;
+  78:include/linux/module.h **** 
+  79:include/linux/module.h **** #ifdef MODULE
+  80:include/linux/module.h **** #define MODULE_GENERIC_TABLE(gtype,name)			\
+  81:include/linux/module.h **** extern const struct gtype##_id __mod_##gtype##_table		\
+  82:include/linux/module.h ****   __attribute__ ((unused, alias(__stringify(name))))
+  83:include/linux/module.h **** 
+  84:include/linux/module.h **** extern struct module __this_module;
+GAS LISTING  			page 8
+
+
+  85:include/linux/module.h **** #define THIS_MODULE (&__this_module)
+  86:include/linux/module.h **** #else  /* !MODULE */
+  87:include/linux/module.h **** #define MODULE_GENERIC_TABLE(gtype,name)
+  88:include/linux/module.h **** #define THIS_MODULE ((struct module *)0)
+  89:include/linux/module.h **** #endif
+  90:include/linux/module.h **** 
+  91:include/linux/module.h **** /* Generic info of form tag = "info" */
+  92:include/linux/module.h **** #define MODULE_INFO(tag, info) __MODULE_INFO(tag, tag, info)
+  93:include/linux/module.h **** 
+  94:include/linux/module.h **** /* For userspace: you can also call me... */
+  95:include/linux/module.h **** #define MODULE_ALIAS(_alias) MODULE_INFO(alias, _alias)
+  96:include/linux/module.h **** 
+  97:include/linux/module.h **** /*
+  98:include/linux/module.h ****  * The following license idents are currently accepted as indicating free
+  99:include/linux/module.h ****  * software modules
+ 100:include/linux/module.h ****  *
+ 101:include/linux/module.h ****  *	"GPL"				[GNU Public License v2 or later]
+ 102:include/linux/module.h ****  *	"GPL v2"			[GNU Public License v2]
+ 103:include/linux/module.h ****  *	"GPL and additional rights"	[GNU Public License v2 rights and more]
+ 104:include/linux/module.h ****  *	"Dual BSD/GPL"			[GNU Public License v2
+ 105:include/linux/module.h ****  *					 or BSD license choice]
+ 106:include/linux/module.h ****  *	"Dual MPL/GPL"			[GNU Public License v2
+ 107:include/linux/module.h ****  *					 or Mozilla license choice]
+ 108:include/linux/module.h ****  *
+ 109:include/linux/module.h ****  * The following other idents are available
+ 110:include/linux/module.h ****  *
+ 111:include/linux/module.h ****  *	"Proprietary"			[Non free products]
+ 112:include/linux/module.h ****  *
+ 113:include/linux/module.h ****  * There are dual licensed components, but when running with Linux it is the
+ 114:include/linux/module.h ****  * GPL that is relevant so this is a non issue. Similarly LGPL linked with GPL
+ 115:include/linux/module.h ****  * is a GPL combined work.
+ 116:include/linux/module.h ****  *
+ 117:include/linux/module.h ****  * This exists for several reasons
+ 118:include/linux/module.h ****  * 1.	So modinfo can show license info for users wanting to vet their setup 
+ 119:include/linux/module.h ****  *	is free
+ 120:include/linux/module.h ****  * 2.	So the community can ignore bug reports including proprietary modules
+ 121:include/linux/module.h ****  * 3.	So vendors can do likewise based on their own policies
+ 122:include/linux/module.h ****  */
+ 123:include/linux/module.h **** #define MODULE_LICENSE(_license) MODULE_INFO(license, _license)
+ 124:include/linux/module.h **** 
+ 125:include/linux/module.h **** /* Author, ideally of form NAME <EMAIL>[, NAME <EMAIL>]*[ and NAME <EMAIL>] */
+ 126:include/linux/module.h **** #define MODULE_AUTHOR(_author) MODULE_INFO(author, _author)
+ 127:include/linux/module.h ****   
+ 128:include/linux/module.h **** /* What your module does. */
+ 129:include/linux/module.h **** #define MODULE_DESCRIPTION(_description) MODULE_INFO(description, _description)
+ 130:include/linux/module.h **** 
+ 131:include/linux/module.h **** /* One for each parameter, describing how to use it.  Some files do
+ 132:include/linux/module.h ****    multiple of these per line, so can't just use MODULE_INFO. */
+ 133:include/linux/module.h **** #define MODULE_PARM_DESC(_parm, desc) \
+ 134:include/linux/module.h **** 	__MODULE_INFO(parm, _parm, #_parm ":" desc)
+ 135:include/linux/module.h **** 
+ 136:include/linux/module.h **** #define MODULE_DEVICE_TABLE(type,name)		\
+ 137:include/linux/module.h ****   MODULE_GENERIC_TABLE(type##_device,name)
+ 138:include/linux/module.h **** 
+ 139:include/linux/module.h **** /* Version of form [<epoch>:]<version>[-<extra-version>].
+ 140:include/linux/module.h ****    Or for CVS/RCS ID version, everything but the number is stripped.
+ 141:include/linux/module.h ****   <epoch>: A (small) unsigned integer which allows you to start versions
+GAS LISTING  			page 9
+
+
+ 142:include/linux/module.h ****            anew. If not mentioned, it's zero.  eg. "2:1.0" is after
+ 143:include/linux/module.h **** 	   "1:2.0".
+ 144:include/linux/module.h ****   <version>: The <version> may contain only alphanumerics and the
+ 145:include/linux/module.h ****            character `.'.  Ordered by numeric sort for numeric parts,
+ 146:include/linux/module.h **** 	   ascii sort for ascii parts (as per RPM or DEB algorithm).
+ 147:include/linux/module.h ****   <extraversion>: Like <version>, but inserted for local
+ 148:include/linux/module.h ****            customizations, eg "rh3" or "rusty1".
+ 149:include/linux/module.h **** 
+ 150:include/linux/module.h ****   Using this automatically adds a checksum of the .c files and the
+ 151:include/linux/module.h ****   local headers in "srcversion".
+ 152:include/linux/module.h **** */
+ 153:include/linux/module.h **** #define MODULE_VERSION(_version) MODULE_INFO(version, _version)
+ 154:include/linux/module.h **** 
+ 155:include/linux/module.h **** /* Given an address, look for it in the exception tables */
+ 156:include/linux/module.h **** const struct exception_table_entry *search_exception_tables(unsigned long add);
+ 157:include/linux/module.h **** 
+ 158:include/linux/module.h **** struct notifier_block;
+ 159:include/linux/module.h **** 
+ 160:include/linux/module.h **** #ifdef CONFIG_MODULES
+ 161:include/linux/module.h **** 
+ 162:include/linux/module.h **** /* Get/put a kernel symbol (calls must be symmetric) */
+ 163:include/linux/module.h **** void *__symbol_get(const char *symbol);
+ 164:include/linux/module.h **** void *__symbol_get_gpl(const char *symbol);
+ 165:include/linux/module.h **** #define symbol_get(x) ((typeof(&x))(__symbol_get(MODULE_SYMBOL_PREFIX #x)))
+ 166:include/linux/module.h **** 
+ 167:include/linux/module.h **** #ifndef __GENKSYMS__
+ 168:include/linux/module.h **** #ifdef CONFIG_MODVERSIONS
+ 169:include/linux/module.h **** /* Mark the CRC weak since genksyms apparently decides not to
+ 170:include/linux/module.h ****  * generate a checksums for some symbols */
+ 171:include/linux/module.h **** #define __CRC_SYMBOL(sym, sec)					\
+ 172:include/linux/module.h **** 	extern void *__crc_##sym __attribute__((weak));		\
+ 173:include/linux/module.h **** 	static const unsigned long __kcrctab_##sym		\
+ 174:include/linux/module.h **** 	__attribute_used__					\
+ 175:include/linux/module.h **** 	__attribute__((section("__kcrctab" sec), unused))	\
+ 176:include/linux/module.h **** 	= (unsigned long) &__crc_##sym;
+ 177:include/linux/module.h **** #else
+ 178:include/linux/module.h **** #define __CRC_SYMBOL(sym, sec)
+ 179:include/linux/module.h **** #endif
+ 180:include/linux/module.h **** 
+ 181:include/linux/module.h **** /* For every exported symbol, place a struct in the __ksymtab section */
+ 182:include/linux/module.h **** #define __EXPORT_SYMBOL(sym, sec)				\
+ 183:include/linux/module.h **** 	__CRC_SYMBOL(sym, sec)					\
+ 184:include/linux/module.h **** 	static const char __kstrtab_##sym[]			\
+ 185:include/linux/module.h **** 	__attribute__((section("__ksymtab_strings")))		\
+ 186:include/linux/module.h **** 	= MODULE_SYMBOL_PREFIX #sym;                    	\
+ 187:include/linux/module.h **** 	static const struct kernel_symbol __ksymtab_##sym	\
+ 188:include/linux/module.h **** 	__attribute_used__					\
+ 189:include/linux/module.h **** 	__attribute__((section("__ksymtab" sec), unused))	\
+ 190:include/linux/module.h **** 	= { (unsigned long)&sym, __kstrtab_##sym }
+ 191:include/linux/module.h **** 
+ 192:include/linux/module.h **** #define EXPORT_SYMBOL(sym)					\
+ 193:include/linux/module.h **** 	__EXPORT_SYMBOL(sym, "")
+ 194:include/linux/module.h **** 
+ 195:include/linux/module.h **** #define EXPORT_SYMBOL_GPL(sym)					\
+ 196:include/linux/module.h **** 	__EXPORT_SYMBOL(sym, "_gpl")
+ 197:include/linux/module.h **** 
+ 198:include/linux/module.h **** #endif
+GAS LISTING  			page 10
+
+
+ 199:include/linux/module.h **** 
+ 200:include/linux/module.h **** struct module_ref
+ 201:include/linux/module.h **** {
+ 202:include/linux/module.h **** 	local_t count;
+ 203:include/linux/module.h **** } ____cacheline_aligned;
+ 204:include/linux/module.h **** 
+ 205:include/linux/module.h **** enum module_state
+ 206:include/linux/module.h **** {
+ 207:include/linux/module.h **** 	MODULE_STATE_LIVE,
+ 208:include/linux/module.h **** 	MODULE_STATE_COMING,
+ 209:include/linux/module.h **** 	MODULE_STATE_GOING,
+ 210:include/linux/module.h **** };
+ 211:include/linux/module.h **** 
+ 212:include/linux/module.h **** /* Similar stuff for section attributes. */
+ 213:include/linux/module.h **** #define MODULE_SECT_NAME_LEN 32
+ 214:include/linux/module.h **** struct module_sect_attr
+ 215:include/linux/module.h **** {
+ 216:include/linux/module.h **** 	struct module_attribute mattr;
+ 217:include/linux/module.h **** 	char name[MODULE_SECT_NAME_LEN];
+ 218:include/linux/module.h **** 	unsigned long address;
+ 219:include/linux/module.h **** };
+ 220:include/linux/module.h **** 
+ 221:include/linux/module.h **** struct module_sect_attrs
+ 222:include/linux/module.h **** {
+ 223:include/linux/module.h **** 	struct attribute_group grp;
+ 224:include/linux/module.h **** 	struct module_sect_attr attrs[0];
+ 225:include/linux/module.h **** };
+ 226:include/linux/module.h **** 
+ 227:include/linux/module.h **** struct module_param_attrs;
+ 228:include/linux/module.h **** 
+ 229:include/linux/module.h **** struct module
+ 230:include/linux/module.h **** {
+ 231:include/linux/module.h **** 	enum module_state state;
+ 232:include/linux/module.h **** 
+ 233:include/linux/module.h **** 	/* Member of list of modules */
+ 234:include/linux/module.h **** 	struct list_head list;
+ 235:include/linux/module.h **** 
+ 236:include/linux/module.h **** 	/* Unique handle for this module */
+ 237:include/linux/module.h **** 	char name[MODULE_NAME_LEN];
+ 238:include/linux/module.h **** 
+ 239:include/linux/module.h **** 	/* Sysfs stuff. */
+ 240:include/linux/module.h **** 	struct module_kobject mkobj;
+ 241:include/linux/module.h **** 	struct module_param_attrs *param_attrs;
+ 242:include/linux/module.h **** 
+ 243:include/linux/module.h **** 	/* Exported symbols */
+ 244:include/linux/module.h **** 	const struct kernel_symbol *syms;
+ 245:include/linux/module.h **** 	unsigned int num_syms;
+ 246:include/linux/module.h **** 	const unsigned long *crcs;
+ 247:include/linux/module.h **** 
+ 248:include/linux/module.h **** 	/* GPL-only exported symbols. */
+ 249:include/linux/module.h **** 	const struct kernel_symbol *gpl_syms;
+ 250:include/linux/module.h **** 	unsigned int num_gpl_syms;
+ 251:include/linux/module.h **** 	const unsigned long *gpl_crcs;
+ 252:include/linux/module.h **** 
+ 253:include/linux/module.h **** 	/* Exception table */
+ 254:include/linux/module.h **** 	unsigned int num_exentries;
+ 255:include/linux/module.h **** 	const struct exception_table_entry *extable;
+GAS LISTING  			page 11
+
+
+ 256:include/linux/module.h **** 
+ 257:include/linux/module.h **** 	/* Startup function. */
+ 258:include/linux/module.h **** 	int (*init)(void);
+ 259:include/linux/module.h **** 
+ 260:include/linux/module.h **** 	/* If this is non-NULL, vfree after init() returns */
+ 261:include/linux/module.h **** 	void *module_init;
+ 262:include/linux/module.h **** 
+ 263:include/linux/module.h **** 	/* Here is the actual code + data, vfree'd on unload. */
+ 264:include/linux/module.h **** 	void *module_core;
+ 265:include/linux/module.h **** 
+ 266:include/linux/module.h **** 	/* Here are the sizes of the init and core sections */
+ 267:include/linux/module.h **** 	unsigned long init_size, core_size;
+ 268:include/linux/module.h **** 
+ 269:include/linux/module.h **** 	/* The size of the executable code in each section.  */
+ 270:include/linux/module.h **** 	unsigned long init_text_size, core_text_size;
+ 271:include/linux/module.h **** 
+ 272:include/linux/module.h **** 	/* Arch-specific module values */
+ 273:include/linux/module.h **** 	struct mod_arch_specific arch;
+ 274:include/linux/module.h **** 
+ 275:include/linux/module.h **** 	/* Am I unsafe to unload? */
+ 276:include/linux/module.h **** 	int unsafe;
+ 277:include/linux/module.h **** 
+ 278:include/linux/module.h **** 	/* Am I GPL-compatible */
+ 279:include/linux/module.h **** 	int license_gplok;
+ 280:include/linux/module.h **** 
+ 281:include/linux/module.h **** #ifdef CONFIG_MODULE_UNLOAD
+ 282:include/linux/module.h **** 	/* Reference counts */
+ 283:include/linux/module.h **** 	struct module_ref ref[NR_CPUS];
+ 284:include/linux/module.h **** 
+ 285:include/linux/module.h **** 	/* What modules depend on me? */
+ 286:include/linux/module.h **** 	struct list_head modules_which_use_me;
+ 287:include/linux/module.h **** 
+ 288:include/linux/module.h **** 	/* Who is waiting for us to be unloaded */
+ 289:include/linux/module.h **** 	struct task_struct *waiter;
+ 290:include/linux/module.h **** 
+ 291:include/linux/module.h **** 	/* Destruction function. */
+ 292:include/linux/module.h **** 	void (*exit)(void);
+ 293:include/linux/module.h **** #endif
+ 294:include/linux/module.h **** 
+ 295:include/linux/module.h **** #ifdef CONFIG_KALLSYMS
+ 296:include/linux/module.h **** 	/* We keep the symbol and string tables for kallsyms. */
+ 297:include/linux/module.h **** 	Elf_Sym *symtab;
+ 298:include/linux/module.h **** 	unsigned long num_symtab;
+ 299:include/linux/module.h **** 	char *strtab;
+ 300:include/linux/module.h **** 
+ 301:include/linux/module.h **** 	/* Section attributes */
+ 302:include/linux/module.h **** 	struct module_sect_attrs *sect_attrs;
+ 303:include/linux/module.h **** #endif
+ 304:include/linux/module.h **** 
+ 305:include/linux/module.h **** 	/* Per-cpu data. */
+ 306:include/linux/module.h **** 	void *percpu;
+ 307:include/linux/module.h **** 
+ 308:include/linux/module.h **** 	/* The command line arguments (may be mangled).  People like
+ 309:include/linux/module.h **** 	   keeping pointers to this stuff */
+ 310:include/linux/module.h **** 	char *args;
+ 311:include/linux/module.h **** };
+ 312:include/linux/module.h **** 
+GAS LISTING  			page 12
+
+
+ 313:include/linux/module.h **** /* FIXME: It'd be nice to isolate modules during init, too, so they
+ 314:include/linux/module.h ****    aren't used before they (may) fail.  But presently too much code
+ 315:include/linux/module.h ****    (IDE & SCSI) require entry into the module during init.*/
+ 316:include/linux/module.h **** static inline int module_is_live(struct module *mod)
+ 317:include/linux/module.h **** {
+ 318:include/linux/module.h **** 	return mod->state != MODULE_STATE_GOING;
+ 319:include/linux/module.h **** }
+ 320:include/linux/module.h **** 
+ 321:include/linux/module.h **** /* Is this address in a module? (second is with no locks, for oops) */
+ 322:include/linux/module.h **** struct module *module_text_address(unsigned long addr);
+ 323:include/linux/module.h **** struct module *__module_text_address(unsigned long addr);
+ 324:include/linux/module.h **** 
+ 325:include/linux/module.h **** /* Returns module and fills in value, defined and namebuf, or NULL if
+ 326:include/linux/module.h ****    symnum out of range. */
+ 327:include/linux/module.h **** struct module *module_get_kallsym(unsigned int symnum,
+ 328:include/linux/module.h **** 				  unsigned long *value,
+ 329:include/linux/module.h **** 				  char *type,
+ 330:include/linux/module.h **** 				  char namebuf[128]);
+ 331:include/linux/module.h **** 
+ 332:include/linux/module.h **** /* Look for this name: can be of form module:name. */
+ 333:include/linux/module.h **** unsigned long module_kallsyms_lookup_name(const char *name);
+ 334:include/linux/module.h **** 
+ 335:include/linux/module.h **** int is_exported(const char *name, const struct module *mod);
+ 336:include/linux/module.h **** 
+ 337:include/linux/module.h **** extern void __module_put_and_exit(struct module *mod, long code)
+ 338:include/linux/module.h **** 	__attribute__((noreturn));
+ 339:include/linux/module.h **** #define module_put_and_exit(code) __module_put_and_exit(THIS_MODULE, code);
+ 340:include/linux/module.h **** 
+ 341:include/linux/module.h **** #ifdef CONFIG_MODULE_UNLOAD
+ 342:include/linux/module.h **** unsigned int module_refcount(struct module *mod);
+ 343:include/linux/module.h **** void __symbol_put(const char *symbol);
+ 344:include/linux/module.h **** #define symbol_put(x) __symbol_put(MODULE_SYMBOL_PREFIX #x)
+ 345:include/linux/module.h **** void symbol_put_addr(void *addr);
+ 346:include/linux/module.h **** 
+ 347:include/linux/module.h **** /* Sometimes we know we already have a refcount, and it's easier not
+ 348:include/linux/module.h ****    to handle the error case (which only happens with rmmod --wait). */
+ 349:include/linux/module.h **** static inline void __module_get(struct module *module)
+ 350:include/linux/module.h **** {
+ 351:include/linux/module.h **** 	if (module) {
+ 352:include/linux/module.h **** 		BUG_ON(module_refcount(module) == 0);
+ 353:include/linux/module.h **** 		local_inc(&module->ref[get_cpu()].count);
+ 354:include/linux/module.h **** 		put_cpu();
+ 355:include/linux/module.h **** 	}
+ 356:include/linux/module.h **** }
+ 357:include/linux/module.h **** 
+ 358:include/linux/module.h **** static inline int try_module_get(struct module *module)
+ 359:include/linux/module.h **** {
+ 360:include/linux/module.h **** 	int ret = 1;
+ 361:include/linux/module.h **** 
+ 362:include/linux/module.h **** 	if (module) {
+ 363:include/linux/module.h **** 		unsigned int cpu = get_cpu();
+ 364:include/linux/module.h **** 		if (likely(module_is_live(module)))
+ 365:include/linux/module.h **** 			local_inc(&module->ref[cpu].count);
+ 366:include/linux/module.h **** 		else
+ 367:include/linux/module.h **** 			ret = 0;
+ 368:include/linux/module.h **** 		put_cpu();
+ 369:include/linux/module.h **** 	}
+GAS LISTING  			page 13
+
+
+ 370:include/linux/module.h **** 	return ret;
+ 371:include/linux/module.h **** }
+ 372:include/linux/module.h **** 
+ 373:include/linux/module.h **** static inline void module_put(struct module *module)
+ 374:include/linux/module.h **** {
+ 106              	.loc 3 374 0
+ 107 004f 8B4308   	movl 8(%ebx),%eax
+ 108 0052 8B404C   	movl 76(%eax),%eax
+ 109              	.LBB11:
+ 375:include/linux/module.h **** 	if (module) {
+ 110              	.loc 3 375 0
+ 111 0055 85C0     	testl %eax,%eax
+ 112              	.LBE11:
+ 113              	.LBE10:
+ 114              	.loc 3 374 0
+ 115 0057 5A       	popl %edx
+ 116              	.LCFI5:
+ 117              	.LBB12:
+ 118              	.LBB13:
+ 119              	.loc 3 375 0
+ 120 0058 7416     	je .L11
+ 121              	.LBB14:
+ 122              	.LBB15:
+ 123              	.LBB16:
+ 124              	.file 4 "include/asm/local.h"
+   1:include/asm/local.h **** #ifndef _ARCH_I386_LOCAL_H
+   2:include/asm/local.h **** #define _ARCH_I386_LOCAL_H
+   3:include/asm/local.h **** 
+   4:include/asm/local.h **** #include <linux/percpu.h>
+   5:include/asm/local.h **** 
+   6:include/asm/local.h **** typedef struct
+   7:include/asm/local.h **** {
+   8:include/asm/local.h **** 	volatile unsigned long counter;
+   9:include/asm/local.h **** } local_t;
+  10:include/asm/local.h **** 
+  11:include/asm/local.h **** #define LOCAL_INIT(i)	{ (i) }
+  12:include/asm/local.h **** 
+  13:include/asm/local.h **** #define local_read(v)	((v)->counter)
+  14:include/asm/local.h **** #define local_set(v,i)	(((v)->counter) = (i))
+  15:include/asm/local.h **** 
+  16:include/asm/local.h **** static __inline__ void local_inc(local_t *v)
+  17:include/asm/local.h **** {
+  18:include/asm/local.h **** 	__asm__ __volatile__(
+  19:include/asm/local.h **** 		"incl %0"
+  20:include/asm/local.h **** 		:"=m" (v->counter)
+  21:include/asm/local.h **** 		:"m" (v->counter));
+  22:include/asm/local.h **** }
+  23:include/asm/local.h **** 
+  24:include/asm/local.h **** static __inline__ void local_dec(local_t *v)
+  25:include/asm/local.h **** {
+  26:include/asm/local.h **** 	__asm__ __volatile__(
+ 125              	.loc 4 26 0
+ 126              	
+ 127 005a FF880001 	decl 256(%eax)
+ 127      0000
+ 128              	
+ 129              	.LBE16:
+GAS LISTING  			page 14
+
+
+ 130              	.LBE15:
+ 131              	.loc 3 317 0
+ 132 0060 833802   	cmpl $2,(%eax)
+ 133 0063 750B     	jne .L11
+ 376:include/linux/module.h **** 		unsigned int cpu = get_cpu();
+ 377:include/linux/module.h **** 		local_dec(&module->ref[cpu].count);
+ 378:include/linux/module.h **** 		/* Maybe they're waiting for us to drop reference? */
+ 379:include/linux/module.h **** 		if (unlikely(!module_is_live(module)))
+ 380:include/linux/module.h **** 			wake_up_process(module->waiter);
+ 134              	.loc 3 380 0
+ 135 0065 8B808801 	movl 392(%eax),%eax
+ 135      0000
+ 136 006b E8FCFFFF 	call wake_up_process
+ 136      FF
+ 137              	.L11:
+ 138              	.LBE14:
+ 139              	.LBE13:
+ 140              	.LBE12:
+  47:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 			module_put(entry->ops->owner);
+  48:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		}
+  49:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		kfree(entry);
+ 141              	.loc 1 49 0
+ 142 0070 53       	pushl %ebx
+ 143              	.LCFI6:
+ 144 0071 E8FCFFFF 	call kfree
+ 144      FF
+ 145              	.loc 1 39 0
+ 146 0076 58       	popl %eax
+ 147              	.LCFI7:
+ 148              	.L7:
+ 149 0077 89FB     	movl %edi,%ebx
+ 150 0079 EB96     	jmp .L26
+ 151              	.L25:
+  50:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	}
+  51:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee->lock, flags);
+ 152              	.loc 1 51 0
+ 153              	
+ 154 007b 559D     	pushl %ebp
+ 155              	
+ 156 007d 5B       	popl %ebx
+ 157 007e 5E       	popl %esi
+ 158 007f 5F       	popl %edi
+ 159 0080 5D       	popl %ebp
+ 160 0081 C3       	ret
+ 161              	.LFE665:
+ 163              	.globl ieee80211_crypt_quiescing
+ 165              	ieee80211_crypt_quiescing:
+ 166              	.LFB666:
+  52:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+  53:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  54:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** /* After this, crypt_deinit_list won't accept new members */
+  55:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** void ieee80211_crypt_quiescing(struct ieee80211_device *ieee)
+  56:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 167              	.loc 1 56 0
+  57:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	unsigned long flags;
+  58:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  59:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_lock_irqsave(&ieee->lock, flags);
+GAS LISTING  			page 15
+
+
+ 168              	.loc 1 59 0
+ 169              	
+ 170 0082 9C5AFA   	pushfl
+  60:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	ieee->crypt_quiesced = 1;
+ 171              	.loc 1 60 0
+ 172              	
+ 173 0085 8B442404 	movl 4(%esp),%eax
+ 174 0089 C780D006 	movl $1,1744(%eax)
+ 174      00000100 
+ 174      0000
+  61:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee->lock, flags);
+ 175              	.loc 1 61 0
+ 176              	
+ 177 0093 529D     	pushl %edx
+ 178              	
+ 179 0095 C3       	ret
+ 180              	.LFE666:
+ 182              	.section .rodata.str1.1,"aMS",@progbits,1
+ 183              	.LC0:
+ 184 0000 3C373E25 	.string "<7>%s: entries remaining in delayed crypt deletion list\n"
+ 184      733A2065 
+ 184      6E747269 
+ 184      65732072 
+ 184      656D6169 
+ 185              	.text
+ 186              	.globl ieee80211_crypt_deinit_handler
+ 188              	ieee80211_crypt_deinit_handler:
+ 189              	.LFB667:
+  62:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+  63:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  64:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** void ieee80211_crypt_deinit_handler(unsigned long data)
+  65:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 190              	.loc 1 65 0
+ 191 0096 56       	pushl %esi
+ 192              	.LCFI8:
+ 193 0097 53       	pushl %ebx
+ 194              	.LCFI9:
+ 195              	.loc 1 65 0
+ 196 0098 8B5C240C 	movl 12(%esp),%ebx
+  66:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	struct ieee80211_device *ieee = (struct ieee80211_device *)data;
+  67:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	unsigned long flags;
+  68:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  69:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	ieee80211_crypt_deinit_entries(ieee, 0);
+ 197              	.loc 1 69 0
+ 198 009c 6A00     	pushl $0
+ 199              	.LCFI10:
+ 200 009e 53       	pushl %ebx
+ 201              	.LCFI11:
+ 202 009f E8FCFFFF 	call ieee80211_crypt_deinit_entries
+ 202      FF
+  70:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  71:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_lock_irqsave(&ieee->lock, flags);
+ 203              	.loc 1 71 0
+ 204              	
+ 205 00a4 9C5EFA   	pushfl
+ 206              	
+ 207 00a7 59       	popl %ecx
+GAS LISTING  			page 16
+
+
+ 208              	.LCFI12:
+ 209 00a8 58       	popl %eax
+ 210              	.LCFI13:
+ 211              	.LBB17:
+ 166:include/linux/list.h **** }
+ 167:include/linux/list.h **** 
+ 168:include/linux/list.h **** /**
+ 169:include/linux/list.h ****  * list_del_rcu - deletes entry from list without re-initialization
+ 170:include/linux/list.h ****  * @entry: the element to delete from the list.
+ 171:include/linux/list.h ****  *
+ 172:include/linux/list.h ****  * Note: list_empty on entry does not return true after this,
+ 173:include/linux/list.h ****  * the entry is in an undefined state. It is useful for RCU based
+ 174:include/linux/list.h ****  * lockfree traversal.
+ 175:include/linux/list.h ****  *
+ 176:include/linux/list.h ****  * In particular, it means that we can not poison the forward
+ 177:include/linux/list.h ****  * pointers that may still be used for walking the list.
+ 178:include/linux/list.h ****  *
+ 179:include/linux/list.h ****  * The caller must take whatever precautions are necessary
+ 180:include/linux/list.h ****  * (such as holding appropriate locks) to avoid racing
+ 181:include/linux/list.h ****  * with another list-mutation primitive, such as list_del_rcu()
+ 182:include/linux/list.h ****  * or list_add_rcu(), running on this same list.
+ 183:include/linux/list.h ****  * However, it is perfectly legal to run concurrently with
+ 184:include/linux/list.h ****  * the _rcu list-traversal primitives, such as
+ 185:include/linux/list.h ****  * list_for_each_entry_rcu().
+ 186:include/linux/list.h ****  *
+ 187:include/linux/list.h ****  * Note that the caller is not permitted to immediately free
+ 188:include/linux/list.h ****  * the newly deleted entry.  Instead, either synchronize_kernel()
+ 189:include/linux/list.h ****  * or call_rcu() must be used to defer freeing until an RCU
+ 190:include/linux/list.h ****  * grace period has elapsed.
+ 191:include/linux/list.h ****  */
+ 192:include/linux/list.h **** static inline void list_del_rcu(struct list_head *entry)
+ 193:include/linux/list.h **** {
+ 194:include/linux/list.h **** 	__list_del(entry->prev, entry->next);
+ 195:include/linux/list.h **** 	entry->prev = LIST_POISON2;
+ 196:include/linux/list.h **** }
+ 197:include/linux/list.h **** 
+ 198:include/linux/list.h **** /*
+ 199:include/linux/list.h ****  * list_replace_rcu - replace old entry by new one
+ 200:include/linux/list.h ****  * @old : the element to be replaced
+ 201:include/linux/list.h ****  * @new : the new element to insert
+ 202:include/linux/list.h ****  *
+ 203:include/linux/list.h ****  * The old entry will be replaced with the new entry atomically.
+ 204:include/linux/list.h ****  */
+ 205:include/linux/list.h **** static inline void list_replace_rcu(struct list_head *old, struct list_head *new){
+ 206:include/linux/list.h **** 	new->next = old->next;
+ 207:include/linux/list.h **** 	new->prev = old->prev;
+ 208:include/linux/list.h **** 	smp_wmb();
+ 209:include/linux/list.h **** 	new->next->prev = new;
+ 210:include/linux/list.h **** 	new->prev->next = new;
+ 211:include/linux/list.h **** }
+ 212:include/linux/list.h **** 
+ 213:include/linux/list.h **** /**
+ 214:include/linux/list.h ****  * list_del_init - deletes entry from list and reinitialize it.
+ 215:include/linux/list.h ****  * @entry: the element to delete from the list.
+ 216:include/linux/list.h ****  */
+ 217:include/linux/list.h **** static inline void list_del_init(struct list_head *entry)
+ 218:include/linux/list.h **** {
+GAS LISTING  			page 17
+
+
+ 219:include/linux/list.h **** 	__list_del(entry->prev, entry->next);
+ 220:include/linux/list.h **** 	INIT_LIST_HEAD(entry);
+ 221:include/linux/list.h **** }
+ 222:include/linux/list.h **** 
+ 223:include/linux/list.h **** /**
+ 224:include/linux/list.h ****  * list_move - delete from one list and add as another's head
+ 225:include/linux/list.h ****  * @list: the entry to move
+ 226:include/linux/list.h ****  * @head: the head that will precede our entry
+ 227:include/linux/list.h ****  */
+ 228:include/linux/list.h **** static inline void list_move(struct list_head *list, struct list_head *head)
+ 229:include/linux/list.h **** {
+ 230:include/linux/list.h ****         __list_del(list->prev, list->next);
+ 231:include/linux/list.h ****         list_add(list, head);
+ 232:include/linux/list.h **** }
+ 233:include/linux/list.h **** 
+ 234:include/linux/list.h **** /**
+ 235:include/linux/list.h ****  * list_move_tail - delete from one list and add as another's tail
+ 236:include/linux/list.h ****  * @list: the entry to move
+ 237:include/linux/list.h ****  * @head: the head that will follow our entry
+ 238:include/linux/list.h ****  */
+ 239:include/linux/list.h **** static inline void list_move_tail(struct list_head *list,
+ 240:include/linux/list.h **** 				  struct list_head *head)
+ 241:include/linux/list.h **** {
+ 242:include/linux/list.h ****         __list_del(list->prev, list->next);
+ 243:include/linux/list.h ****         list_add_tail(list, head);
+ 244:include/linux/list.h **** }
+ 245:include/linux/list.h **** 
+ 246:include/linux/list.h **** /**
+ 247:include/linux/list.h ****  * list_empty - tests whether a list is empty
+ 248:include/linux/list.h ****  * @head: the list to test.
+ 249:include/linux/list.h ****  */
+ 250:include/linux/list.h **** static inline int list_empty(const struct list_head *head)
+ 251:include/linux/list.h **** {
+ 212              	.loc 2 251 0
+ 213 00a9 8D839806 	leal 1688(%ebx),%eax
+ 213      0000
+ 214              	.LBE17:
+ 215 00af 39839806 	cmpl %eax,1688(%ebx)
+ 215      0000
+ 216 00b5 7438     	je .L43
+ 217 00b7 83BBD006 	cmpl $0,1744(%ebx)
+ 217      000000
+ 218 00be 752F     	jne .L43
+  72:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	if (!list_empty(&ieee->crypt_deinit_list) && !ieee->crypt_quiesced) {
+  73:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		printk(KERN_DEBUG "%s: entries remaining in delayed crypt "
+ 219              	.loc 1 73 0
+ 220 00c0 FF33     	pushl (%ebx)
+ 221              	.LCFI14:
+ 222 00c2 68000000 	pushl $.LC0
+ 222      00
+ 223              	.LCFI15:
+ 224 00c7 E8FCFFFF 	call printk
+ 224      FF
+  74:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		       "deletion list\n", ieee->dev->name);
+  75:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		ieee->crypt_deinit_timer.expires = jiffies + HZ;
+ 225              	.loc 1 75 0
+ 226 00cc A1000000 	movl jiffies,%eax
+GAS LISTING  			page 18
+
+
+ 226      00
+ 227 00d1 05E80300 	addl $1000,%eax
+ 227      00
+ 228 00d6 8983BC06 	movl %eax,1724(%ebx)
+ 228      0000
+ 229              	.file 5 "include/linux/timer.h"
+   1:include/linux/timer.h **** #ifndef _LINUX_TIMER_H
+   2:include/linux/timer.h **** #define _LINUX_TIMER_H
+   3:include/linux/timer.h **** 
+   4:include/linux/timer.h **** #include <linux/config.h>
+   5:include/linux/timer.h **** #include <linux/list.h>
+   6:include/linux/timer.h **** #include <linux/spinlock.h>
+   7:include/linux/timer.h **** #include <linux/stddef.h>
+   8:include/linux/timer.h **** 
+   9:include/linux/timer.h **** struct tvec_t_base_s;
+  10:include/linux/timer.h **** 
+  11:include/linux/timer.h **** struct timer_list {
+  12:include/linux/timer.h **** 	struct list_head entry;
+  13:include/linux/timer.h **** 	unsigned long expires;
+  14:include/linux/timer.h **** 
+  15:include/linux/timer.h **** 	spinlock_t lock;
+  16:include/linux/timer.h **** 	unsigned long magic;
+  17:include/linux/timer.h **** 
+  18:include/linux/timer.h **** 	void (*function)(unsigned long);
+  19:include/linux/timer.h **** 	unsigned long data;
+  20:include/linux/timer.h **** 
+  21:include/linux/timer.h **** 	struct tvec_t_base_s *base;
+  22:include/linux/timer.h **** };
+  23:include/linux/timer.h **** 
+  24:include/linux/timer.h **** #define TIMER_MAGIC	0x4b87ad6e
+  25:include/linux/timer.h **** 
+  26:include/linux/timer.h **** #define TIMER_INITIALIZER(_function, _expires, _data) {		\
+  27:include/linux/timer.h **** 		.function = (_function),			\
+  28:include/linux/timer.h **** 		.expires = (_expires),				\
+  29:include/linux/timer.h **** 		.data = (_data),				\
+  30:include/linux/timer.h **** 		.base = NULL,					\
+  31:include/linux/timer.h **** 		.magic = TIMER_MAGIC,				\
+  32:include/linux/timer.h **** 		.lock = SPIN_LOCK_UNLOCKED,			\
+  33:include/linux/timer.h **** 	}
+  34:include/linux/timer.h **** 
+  35:include/linux/timer.h **** /***
+  36:include/linux/timer.h ****  * init_timer - initialize a timer.
+  37:include/linux/timer.h ****  * @timer: the timer to be initialized
+  38:include/linux/timer.h ****  *
+  39:include/linux/timer.h ****  * init_timer() must be done to a timer prior calling *any* of the
+  40:include/linux/timer.h ****  * other timer functions.
+  41:include/linux/timer.h ****  */
+  42:include/linux/timer.h **** static inline void init_timer(struct timer_list * timer)
+  43:include/linux/timer.h **** {
+  44:include/linux/timer.h **** 	timer->base = NULL;
+  45:include/linux/timer.h **** 	timer->magic = TIMER_MAGIC;
+  46:include/linux/timer.h **** 	spin_lock_init(&timer->lock);
+  47:include/linux/timer.h **** }
+  48:include/linux/timer.h **** 
+  49:include/linux/timer.h **** /***
+  50:include/linux/timer.h ****  * timer_pending - is a timer pending?
+  51:include/linux/timer.h ****  * @timer: the timer in question
+GAS LISTING  			page 19
+
+
+  52:include/linux/timer.h ****  *
+  53:include/linux/timer.h ****  * timer_pending will tell whether a given timer is currently pending,
+  54:include/linux/timer.h ****  * or not. Callers must ensure serialization wrt. other operations done
+  55:include/linux/timer.h ****  * to this timer, eg. interrupt contexts, or other CPUs on SMP.
+  56:include/linux/timer.h ****  *
+  57:include/linux/timer.h ****  * return value: 1 if the timer is pending, 0 if not.
+  58:include/linux/timer.h ****  */
+  59:include/linux/timer.h **** static inline int timer_pending(const struct timer_list * timer)
+  60:include/linux/timer.h **** {
+  61:include/linux/timer.h **** 	return timer->base != NULL;
+  62:include/linux/timer.h **** }
+  63:include/linux/timer.h **** 
+  64:include/linux/timer.h **** extern void add_timer_on(struct timer_list *timer, int cpu);
+  65:include/linux/timer.h **** extern int del_timer(struct timer_list * timer);
+  66:include/linux/timer.h **** extern int __mod_timer(struct timer_list *timer, unsigned long expires);
+  67:include/linux/timer.h **** extern int mod_timer(struct timer_list *timer, unsigned long expires);
+  68:include/linux/timer.h **** 
+  69:include/linux/timer.h **** extern unsigned long next_timer_interrupt(void);
+  70:include/linux/timer.h **** 
+  71:include/linux/timer.h **** /***
+  72:include/linux/timer.h ****  * add_timer - start a timer
+  73:include/linux/timer.h ****  * @timer: the timer to be added
+  74:include/linux/timer.h ****  *
+  75:include/linux/timer.h ****  * The kernel will do a ->function(->data) callback from the
+  76:include/linux/timer.h ****  * timer interrupt at the ->expired point in the future. The
+  77:include/linux/timer.h ****  * current time is 'jiffies'.
+  78:include/linux/timer.h ****  *
+  79:include/linux/timer.h ****  * The timer's ->expired, ->function (and if the handler uses it, ->data)
+  80:include/linux/timer.h ****  * fields must be set prior calling this function.
+  81:include/linux/timer.h ****  *
+  82:include/linux/timer.h ****  * Timers with an ->expired field in the past will be executed in the next
+  83:include/linux/timer.h ****  * timer tick.
+  84:include/linux/timer.h ****  */
+  85:include/linux/timer.h **** static inline void add_timer(struct timer_list * timer)
+  86:include/linux/timer.h **** {
+ 230              	.loc 5 86 0
+ 231 00dc 58       	popl %eax
+ 232              	.LCFI16:
+ 233 00dd 5A       	popl %edx
+ 234              	.LCFI17:
+ 235              	.LBB18:
+ 236 00de 8D83B406 	leal 1716(%ebx),%eax
+ 236      0000
+ 237              	.LBB19:
+  87:include/linux/timer.h **** 	__mod_timer(timer, timer->expires);
+ 238              	.loc 5 87 0
+ 239 00e4 FF7008   	pushl 8(%eax)
+ 240              	.LCFI18:
+ 241 00e7 50       	pushl %eax
+ 242              	.LCFI19:
+ 243 00e8 E8FCFFFF 	call __mod_timer
+ 243      FF
+ 244 00ed 59       	popl %ecx
+ 245              	.LCFI20:
+ 246 00ee 5B       	popl %ebx
+ 247              	.LCFI21:
+ 248              	.L43:
+GAS LISTING  			page 20
+
+
+ 249              	.LBE19:
+ 250              	.LBE18:
+  76:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		add_timer(&ieee->crypt_deinit_timer);
+  77:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	}
+  78:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee->lock, flags);
+ 251              	.loc 1 78 0
+ 252              	
+ 253 00ef 569D     	pushl %esi
+ 254              	
+ 255 00f1 5B       	popl %ebx
+ 256 00f2 5E       	popl %esi
+ 257 00f3 C3       	ret
+ 258              	.LFE667:
+ 260              	.globl ieee80211_crypt_delayed_deinit
+ 262              	ieee80211_crypt_delayed_deinit:
+ 263              	.LFB668:
+  79:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+  80:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  81:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** void ieee80211_crypt_delayed_deinit(struct ieee80211_device *ieee,
+  82:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 				    struct ieee80211_crypt_data **crypt)
+  83:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 264              	.loc 1 83 0
+ 265 00f4 56       	pushl %esi
+ 266              	.LCFI22:
+ 267 00f5 53       	pushl %ebx
+ 268              	.LCFI23:
+ 269              	.loc 1 83 0
+ 270 00f6 8B442410 	movl 16(%esp),%eax
+  84:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	struct ieee80211_crypt_data *tmp;
+  85:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	unsigned long flags;
+  86:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  87:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	if (*crypt == NULL)
+ 271              	.loc 1 87 0
+ 272 00fa 8B08     	movl (%eax),%ecx
+ 273 00fc 85C9     	testl %ecx,%ecx
+ 274              	.loc 1 83 0
+ 275 00fe 8B5C240C 	movl 12(%esp),%ebx
+ 276              	.loc 1 87 0
+ 277 0102 7455     	je .L46
+  88:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		return;
+  89:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  90:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	tmp = *crypt;
+  91:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	*crypt = NULL;
+ 278              	.loc 1 91 0
+ 279 0104 C7000000 	movl $0,(%eax)
+ 279      0000
+  92:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  93:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	/* must not run ops->deinit() while there may be pending encrypt or
+  94:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	 * decrypt operations. Use a list of delayed deinits to avoid needing
+  95:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	 * locking. */
+  96:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+  97:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_lock_irqsave(&ieee->lock, flags);
+ 280              	.loc 1 97 0
+ 281              	
+ 282 010a 9C5EFA   	pushfl
+  98:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	if (!ieee->crypt_quiesced) {
+ 283              	.loc 1 98 0
+GAS LISTING  			page 21
+
+
+ 284              	
+ 285 010d 83BBD006 	cmpl $0,1744(%ebx)
+ 285      000000
+ 286 0114 7541     	jne .L58
+ 287              	.LBB20:
+ 288              	.LBB21:
+ 289              	.LBB22:
+ 290              	.loc 2 50 0
+ 291 0116 8B839806 	movl 1688(%ebx),%eax
+ 291      0000
+ 292              	.LBE22:
+ 293              	.LBE21:
+ 294              	.loc 2 66 0
+ 295 011c 8D939806 	leal 1688(%ebx),%edx
+ 295      0000
+ 296              	.LBB23:
+ 297              	.LBB24:
+ 298              	.LBB25:
+ 299              	.loc 2 51 0
+ 300 0122 894804   	movl %ecx,4(%eax)
+ 301              	.loc 2 52 0
+ 302 0125 8901     	movl %eax,(%ecx)
+ 303              	.loc 2 53 0
+ 304 0127 895104   	movl %edx,4(%ecx)
+ 305              	.loc 2 54 0
+ 306 012a 898B9806 	movl %ecx,1688(%ebx)
+ 306      0000
+ 307              	.LBE25:
+ 308              	.LBE24:
+ 309              	.LBE23:
+ 310              	.LBE20:
+ 311              	.LBB26:
+ 312              	.loc 5 60 0
+ 313 0130 8D93B406 	leal 1716(%ebx),%edx
+ 313      0000
+ 314              	.LBE26:
+ 315 0136 837A1800 	cmpl $0,24(%edx)
+ 316 013a 751B     	jne .L58
+  99:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		list_add(&tmp->list, &ieee->crypt_deinit_list);
+ 100:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		if (!timer_pending(&ieee->crypt_deinit_timer)) {
+ 101:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 			ieee->crypt_deinit_timer.expires = jiffies + HZ;
+ 317              	.loc 1 101 0
+ 318 013c A1000000 	movl jiffies,%eax
+ 318      00
+ 319 0141 05E80300 	addl $1000,%eax
+ 319      00
+ 320 0146 8983BC06 	movl %eax,1724(%ebx)
+ 320      0000
+ 321              	.LBB27:
+ 322              	.LBB28:
+ 323              	.loc 5 87 0
+ 324 014c FF7208   	pushl 8(%edx)
+ 325              	.LCFI24:
+ 326 014f 52       	pushl %edx
+ 327              	.LCFI25:
+ 328 0150 E8FCFFFF 	call __mod_timer
+ 328      FF
+GAS LISTING  			page 22
+
+
+ 329 0155 58       	popl %eax
+ 330              	.LCFI26:
+ 331 0156 5A       	popl %edx
+ 332              	.LCFI27:
+ 333              	.L58:
+ 334              	.LBE28:
+ 335              	.LBE27:
+ 102:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 			add_timer(&ieee->crypt_deinit_timer);
+ 103:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		}
+ 104:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	}
+ 105:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee->lock, flags);
+ 336              	.loc 1 105 0
+ 337              	
+ 338 0157 569D     	pushl %esi
+ 339              	
+ 340              	.L46:
+ 106:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+ 341              	.loc 1 106 0
+ 342 0159 5B       	popl %ebx
+ 343 015a 5E       	popl %esi
+ 344 015b C3       	ret
+ 345              	.LFE668:
+ 347              	.section .rodata.str1.1
+ 348              	.LC1:
+ 349 0039 3C373E69 	.string "<7>ieee80211_crypt: registered algorithm '%s'\n"
+ 349      65656538 
+ 349      30323131 
+ 349      5F637279 
+ 349      70743A20 
+ 350              	.text
+ 351              	.globl ieee80211_register_crypto_ops
+ 353              	ieee80211_register_crypto_ops:
+ 354              	.LFB669:
+ 107:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 108:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** int ieee80211_register_crypto_ops(struct ieee80211_crypto_ops *ops)
+ 109:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 355              	.loc 1 109 0
+ 356              	.L64:
+ 357 015c 55       	pushl %ebp
+ 358              	.LCFI28:
+ 359 015d 57       	pushl %edi
+ 360              	.LCFI29:
+ 361 015e 56       	pushl %esi
+ 362              	.LCFI30:
+ 363 015f 53       	pushl %ebx
+ 364              	.LCFI31:
+ 365              	.loc 1 109 0
+ 366 0160 51       	pushl %ecx
+ 367              	.LCFI32:
+ 368 0161 8B742418 	movl 24(%esp),%esi
+ 369              	.LBB29:
+ 370              	.LBB30:
+ 371              	.LBB31:
+ 372              	.file 6 "include/linux/slab.h"
+   1:include/linux/slab.h **** /*
+   2:include/linux/slab.h ****  * linux/mm/slab.h
+   3:include/linux/slab.h ****  * Written by Mark Hemment, 1996.
+GAS LISTING  			page 23
+
+
+   4:include/linux/slab.h ****  * (markhe@nextd.demon.co.uk)
+   5:include/linux/slab.h ****  */
+   6:include/linux/slab.h **** 
+   7:include/linux/slab.h **** #ifndef _LINUX_SLAB_H
+   8:include/linux/slab.h **** #define	_LINUX_SLAB_H
+   9:include/linux/slab.h **** 
+  10:include/linux/slab.h **** #if	defined(__KERNEL__)
+  11:include/linux/slab.h **** 
+  12:include/linux/slab.h **** typedef struct kmem_cache_s kmem_cache_t;
+  13:include/linux/slab.h **** 
+  14:include/linux/slab.h **** #include	<linux/config.h>	/* kmalloc_sizes.h needs CONFIG_ options */
+  15:include/linux/slab.h **** #include	<linux/gfp.h>
+  16:include/linux/slab.h **** #include	<linux/init.h>
+  17:include/linux/slab.h **** #include	<linux/types.h>
+  18:include/linux/slab.h **** #include	<asm/page.h>		/* kmalloc_sizes.h needs PAGE_SIZE */
+  19:include/linux/slab.h **** #include	<asm/cache.h>		/* kmalloc_sizes.h needs L1_CACHE_BYTES */
+  20:include/linux/slab.h **** 
+  21:include/linux/slab.h **** /* flags for kmem_cache_alloc() */
+  22:include/linux/slab.h **** #define	SLAB_NOFS		GFP_NOFS
+  23:include/linux/slab.h **** #define	SLAB_NOIO		GFP_NOIO
+  24:include/linux/slab.h **** #define	SLAB_ATOMIC		GFP_ATOMIC
+  25:include/linux/slab.h **** #define	SLAB_USER		GFP_USER
+  26:include/linux/slab.h **** #define	SLAB_KERNEL		GFP_KERNEL
+  27:include/linux/slab.h **** #define	SLAB_DMA		GFP_DMA
+  28:include/linux/slab.h **** 
+  29:include/linux/slab.h **** #define SLAB_LEVEL_MASK		GFP_LEVEL_MASK
+  30:include/linux/slab.h **** 
+  31:include/linux/slab.h **** #define	SLAB_NO_GROW		__GFP_NO_GROW	/* don't grow a cache */
+  32:include/linux/slab.h **** 
+  33:include/linux/slab.h **** /* flags to pass to kmem_cache_create().
+  34:include/linux/slab.h ****  * The first 3 are only valid when the allocator as been build
+  35:include/linux/slab.h ****  * SLAB_DEBUG_SUPPORT.
+  36:include/linux/slab.h ****  */
+  37:include/linux/slab.h **** #define	SLAB_DEBUG_FREE		0x00000100UL	/* Peform (expensive) checks on free */
+  38:include/linux/slab.h **** #define	SLAB_DEBUG_INITIAL	0x00000200UL	/* Call constructor (as verifier) */
+  39:include/linux/slab.h **** #define	SLAB_RED_ZONE		0x00000400UL	/* Red zone objs in a cache */
+  40:include/linux/slab.h **** #define	SLAB_POISON		0x00000800UL	/* Poison objects */
+  41:include/linux/slab.h **** #define	SLAB_NO_REAP		0x00001000UL	/* never reap from the cache */
+  42:include/linux/slab.h **** #define	SLAB_HWCACHE_ALIGN	0x00002000UL	/* align objs on a h/w cache lines */
+  43:include/linux/slab.h **** #define SLAB_CACHE_DMA		0x00004000UL	/* use GFP_DMA memory */
+  44:include/linux/slab.h **** #define SLAB_MUST_HWCACHE_ALIGN	0x00008000UL	/* force alignment */
+  45:include/linux/slab.h **** #define SLAB_STORE_USER		0x00010000UL	/* store the last owner for bug hunting */
+  46:include/linux/slab.h **** #define SLAB_RECLAIM_ACCOUNT	0x00020000UL	/* track pages allocated to indicate
+  47:include/linux/slab.h **** 						   what is reclaimable later*/
+  48:include/linux/slab.h **** #define SLAB_PANIC		0x00040000UL	/* panic if kmem_cache_create() fails */
+  49:include/linux/slab.h **** #define SLAB_DESTROY_BY_RCU	0x00080000UL	/* defer freeing pages to RCU */
+  50:include/linux/slab.h **** 
+  51:include/linux/slab.h **** /* flags passed to a constructor func */
+  52:include/linux/slab.h **** #define	SLAB_CTOR_CONSTRUCTOR	0x001UL		/* if not set, then deconstructor */
+  53:include/linux/slab.h **** #define SLAB_CTOR_ATOMIC	0x002UL		/* tell constructor it can't sleep */
+  54:include/linux/slab.h **** #define	SLAB_CTOR_VERIFY	0x004UL		/* tell constructor it's a verify call */
+  55:include/linux/slab.h **** 
+  56:include/linux/slab.h **** /* prototypes */
+  57:include/linux/slab.h **** extern void __init kmem_cache_init(void);
+  58:include/linux/slab.h **** 
+  59:include/linux/slab.h **** extern kmem_cache_t *kmem_cache_create(const char *, size_t, size_t, unsigned long,
+  60:include/linux/slab.h **** 				       void (*)(void *, kmem_cache_t *, unsigned long),
+GAS LISTING  			page 24
+
+
+  61:include/linux/slab.h **** 				       void (*)(void *, kmem_cache_t *, unsigned long));
+  62:include/linux/slab.h **** extern int kmem_cache_destroy(kmem_cache_t *);
+  63:include/linux/slab.h **** extern int kmem_cache_shrink(kmem_cache_t *);
+  64:include/linux/slab.h **** extern void *kmem_cache_alloc(kmem_cache_t *, unsigned int __nocast);
+  65:include/linux/slab.h **** extern void kmem_cache_free(kmem_cache_t *, void *);
+  66:include/linux/slab.h **** extern unsigned int kmem_cache_size(kmem_cache_t *);
+  67:include/linux/slab.h **** extern kmem_cache_t *kmem_find_general_cachep(size_t size, int gfpflags);
+  68:include/linux/slab.h **** 
+  69:include/linux/slab.h **** /* Size description struct for general caches. */
+  70:include/linux/slab.h **** struct cache_sizes {
+  71:include/linux/slab.h **** 	size_t		 cs_size;
+  72:include/linux/slab.h **** 	kmem_cache_t	*cs_cachep;
+  73:include/linux/slab.h **** 	kmem_cache_t	*cs_dmacachep;
+  74:include/linux/slab.h **** };
+  75:include/linux/slab.h **** extern struct cache_sizes malloc_sizes[];
+  76:include/linux/slab.h **** extern void *__kmalloc(size_t, unsigned int __nocast);
+  77:include/linux/slab.h **** 
+  78:include/linux/slab.h **** static inline void *kmalloc(size_t size, unsigned int __nocast flags)
+  79:include/linux/slab.h **** {
+  80:include/linux/slab.h **** 	if (__builtin_constant_p(size)) {
+  81:include/linux/slab.h **** 		int i = 0;
+  82:include/linux/slab.h **** #define CACHE(x) \
+  83:include/linux/slab.h **** 		if (size <= x) \
+  84:include/linux/slab.h **** 			goto found; \
+  85:include/linux/slab.h **** 		else \
+  86:include/linux/slab.h **** 			i++;
+  87:include/linux/slab.h **** #include "kmalloc_sizes.h"
+  88:include/linux/slab.h **** #undef CACHE
+  89:include/linux/slab.h **** 		{
+  90:include/linux/slab.h **** 			extern void __you_cannot_kmalloc_that_much(void);
+  91:include/linux/slab.h **** 			__you_cannot_kmalloc_that_much();
+  92:include/linux/slab.h **** 		}
+  93:include/linux/slab.h **** found:
+ 373              	.loc 6 93 0
+ 374 0165 68D00000 	pushl $208
+ 374      00
+ 375              	.LCFI33:
+ 376 016a FF350400 	pushl malloc_sizes+4
+ 376      0000
+ 377              	.LCFI34:
+ 378              	.LCFI35:
+ 379 0170 E8FCFFFF 	call kmem_cache_alloc
+ 379      FF
+ 380 0175 89C3     	movl %eax,%ebx
+ 381              	.loc 6 81 0
+ 382 0177 31ED     	xorl %ebp,%ebp
+ 383              	.loc 6 93 0
+ 384 0179 5F       	popl %edi
+ 385              	.LCFI36:
+ 386              	.LBE31:
+ 387              	.LBE30:
+ 388              	.LBE29:
+ 110:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	unsigned long flags;
+ 111:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	struct ieee80211_crypto_alg *alg;
+ 112:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 113:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	alg = kmalloc(sizeof(*alg), GFP_KERNEL);
+ 114:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	if (alg == NULL)
+GAS LISTING  			page 25
+
+
+ 389              	.loc 1 114 0
+ 390 017a 85DB     	testl %ebx,%ebx
+ 391              	.LBB32:
+ 392              	.LBB33:
+ 393              	.LBB34:
+ 394              	.loc 6 93 0
+ 395 017c 5A       	popl %edx
+ 396              	.LCFI37:
+ 397              	.LBE34:
+ 398              	.LBE33:
+ 399              	.LBE32:
+ 115:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		return -ENOMEM;
+ 400              	.loc 1 115 0
+ 401 017d B8F4FFFF 	movl $-12,%eax
+ 401      FF
+ 402              	.loc 1 114 0
+ 403 0182 743A     	je .L61
+ 404              	.LBB35:
+ 405              	.LBB36:
+ 406              	.LBB37:
+ 407              	.file 7 "include/asm/string.h"
+   1:include/asm/string.h **** #ifndef _I386_STRING_H_
+   2:include/asm/string.h **** #define _I386_STRING_H_
+   3:include/asm/string.h **** 
+   4:include/asm/string.h **** #ifdef __KERNEL__
+   5:include/asm/string.h **** #include <linux/config.h>
+   6:include/asm/string.h **** /*
+   7:include/asm/string.h ****  * On a 486 or Pentium, we are better off not using the
+   8:include/asm/string.h ****  * byte string operations. But on a 386 or a PPro the
+   9:include/asm/string.h ****  * byte string ops are faster than doing it by hand
+  10:include/asm/string.h ****  * (MUCH faster on a Pentium).
+  11:include/asm/string.h ****  */
+  12:include/asm/string.h **** 
+  13:include/asm/string.h **** /*
+  14:include/asm/string.h ****  * This string-include defines all string functions as inline
+  15:include/asm/string.h ****  * functions. Use gcc. It also assumes ds=es=data space, this should be
+  16:include/asm/string.h ****  * normal. Most of the string-functions are rather heavily hand-optimized,
+  17:include/asm/string.h ****  * see especially strsep,strstr,str[c]spn. They should work, but are not
+  18:include/asm/string.h ****  * very easy to understand. Everything is done entirely within the register
+  19:include/asm/string.h ****  * set, making the functions fast and clean. String instructions have been
+  20:include/asm/string.h ****  * used through-out, making for "slightly" unclear code :-)
+  21:include/asm/string.h ****  *
+  22:include/asm/string.h ****  *		NO Copyright (C) 1991, 1992 Linus Torvalds,
+  23:include/asm/string.h ****  *		consider these trivial functions to be PD.
+  24:include/asm/string.h ****  */
+  25:include/asm/string.h **** 
+  26:include/asm/string.h **** /* AK: in fact I bet it would be better to move this stuff all out of line.
+  27:include/asm/string.h ****  */
+  28:include/asm/string.h **** 
+  29:include/asm/string.h **** #define __HAVE_ARCH_STRCPY
+  30:include/asm/string.h **** static inline char * strcpy(char * dest,const char *src)
+  31:include/asm/string.h **** {
+  32:include/asm/string.h **** int d0, d1, d2;
+  33:include/asm/string.h **** __asm__ __volatile__(
+  34:include/asm/string.h **** 	"1:\tlodsb\n\t"
+  35:include/asm/string.h **** 	"stosb\n\t"
+  36:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+GAS LISTING  			page 26
+
+
+  37:include/asm/string.h **** 	"jne 1b"
+  38:include/asm/string.h **** 	: "=&S" (d0), "=&D" (d1), "=&a" (d2)
+  39:include/asm/string.h **** 	:"0" (src),"1" (dest) : "memory");
+  40:include/asm/string.h **** return dest;
+  41:include/asm/string.h **** }
+  42:include/asm/string.h **** 
+  43:include/asm/string.h **** #define __HAVE_ARCH_STRNCPY
+  44:include/asm/string.h **** static inline char * strncpy(char * dest,const char *src,size_t count)
+  45:include/asm/string.h **** {
+  46:include/asm/string.h **** int d0, d1, d2, d3;
+  47:include/asm/string.h **** __asm__ __volatile__(
+  48:include/asm/string.h **** 	"1:\tdecl %2\n\t"
+  49:include/asm/string.h **** 	"js 2f\n\t"
+  50:include/asm/string.h **** 	"lodsb\n\t"
+  51:include/asm/string.h **** 	"stosb\n\t"
+  52:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+  53:include/asm/string.h **** 	"jne 1b\n\t"
+  54:include/asm/string.h **** 	"rep\n\t"
+  55:include/asm/string.h **** 	"stosb\n"
+  56:include/asm/string.h **** 	"2:"
+  57:include/asm/string.h **** 	: "=&S" (d0), "=&D" (d1), "=&c" (d2), "=&a" (d3)
+  58:include/asm/string.h **** 	:"0" (src),"1" (dest),"2" (count) : "memory");
+  59:include/asm/string.h **** return dest;
+  60:include/asm/string.h **** }
+  61:include/asm/string.h **** 
+  62:include/asm/string.h **** #define __HAVE_ARCH_STRCAT
+  63:include/asm/string.h **** static inline char * strcat(char * dest,const char * src)
+  64:include/asm/string.h **** {
+  65:include/asm/string.h **** int d0, d1, d2, d3;
+  66:include/asm/string.h **** __asm__ __volatile__(
+  67:include/asm/string.h **** 	"repne\n\t"
+  68:include/asm/string.h **** 	"scasb\n\t"
+  69:include/asm/string.h **** 	"decl %1\n"
+  70:include/asm/string.h **** 	"1:\tlodsb\n\t"
+  71:include/asm/string.h **** 	"stosb\n\t"
+  72:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+  73:include/asm/string.h **** 	"jne 1b"
+  74:include/asm/string.h **** 	: "=&S" (d0), "=&D" (d1), "=&a" (d2), "=&c" (d3)
+  75:include/asm/string.h **** 	: "0" (src), "1" (dest), "2" (0), "3" (0xffffffffu):"memory");
+  76:include/asm/string.h **** return dest;
+  77:include/asm/string.h **** }
+  78:include/asm/string.h **** 
+  79:include/asm/string.h **** #define __HAVE_ARCH_STRNCAT
+  80:include/asm/string.h **** static inline char * strncat(char * dest,const char * src,size_t count)
+  81:include/asm/string.h **** {
+  82:include/asm/string.h **** int d0, d1, d2, d3;
+  83:include/asm/string.h **** __asm__ __volatile__(
+  84:include/asm/string.h **** 	"repne\n\t"
+  85:include/asm/string.h **** 	"scasb\n\t"
+  86:include/asm/string.h **** 	"decl %1\n\t"
+  87:include/asm/string.h **** 	"movl %8,%3\n"
+  88:include/asm/string.h **** 	"1:\tdecl %3\n\t"
+  89:include/asm/string.h **** 	"js 2f\n\t"
+  90:include/asm/string.h **** 	"lodsb\n\t"
+  91:include/asm/string.h **** 	"stosb\n\t"
+  92:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+  93:include/asm/string.h **** 	"jne 1b\n"
+GAS LISTING  			page 27
+
+
+  94:include/asm/string.h **** 	"2:\txorl %2,%2\n\t"
+  95:include/asm/string.h **** 	"stosb"
+  96:include/asm/string.h **** 	: "=&S" (d0), "=&D" (d1), "=&a" (d2), "=&c" (d3)
+  97:include/asm/string.h **** 	: "0" (src),"1" (dest),"2" (0),"3" (0xffffffffu), "g" (count)
+  98:include/asm/string.h **** 	: "memory");
+  99:include/asm/string.h **** return dest;
+ 100:include/asm/string.h **** }
+ 101:include/asm/string.h **** 
+ 102:include/asm/string.h **** #define __HAVE_ARCH_STRCMP
+ 103:include/asm/string.h **** static inline int strcmp(const char * cs,const char * ct)
+ 104:include/asm/string.h **** {
+ 105:include/asm/string.h **** int d0, d1;
+ 106:include/asm/string.h **** register int __res;
+ 107:include/asm/string.h **** __asm__ __volatile__(
+ 108:include/asm/string.h **** 	"1:\tlodsb\n\t"
+ 109:include/asm/string.h **** 	"scasb\n\t"
+ 110:include/asm/string.h **** 	"jne 2f\n\t"
+ 111:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+ 112:include/asm/string.h **** 	"jne 1b\n\t"
+ 113:include/asm/string.h **** 	"xorl %%eax,%%eax\n\t"
+ 114:include/asm/string.h **** 	"jmp 3f\n"
+ 115:include/asm/string.h **** 	"2:\tsbbl %%eax,%%eax\n\t"
+ 116:include/asm/string.h **** 	"orb $1,%%al\n"
+ 117:include/asm/string.h **** 	"3:"
+ 118:include/asm/string.h **** 	:"=a" (__res), "=&S" (d0), "=&D" (d1)
+ 119:include/asm/string.h **** 	:"1" (cs),"2" (ct)
+ 120:include/asm/string.h **** 	:"memory");
+ 121:include/asm/string.h **** return __res;
+ 122:include/asm/string.h **** }
+ 123:include/asm/string.h **** 
+ 124:include/asm/string.h **** #define __HAVE_ARCH_STRNCMP
+ 125:include/asm/string.h **** static inline int strncmp(const char * cs,const char * ct,size_t count)
+ 126:include/asm/string.h **** {
+ 127:include/asm/string.h **** register int __res;
+ 128:include/asm/string.h **** int d0, d1, d2;
+ 129:include/asm/string.h **** __asm__ __volatile__(
+ 130:include/asm/string.h **** 	"1:\tdecl %3\n\t"
+ 131:include/asm/string.h **** 	"js 2f\n\t"
+ 132:include/asm/string.h **** 	"lodsb\n\t"
+ 133:include/asm/string.h **** 	"scasb\n\t"
+ 134:include/asm/string.h **** 	"jne 3f\n\t"
+ 135:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+ 136:include/asm/string.h **** 	"jne 1b\n"
+ 137:include/asm/string.h **** 	"2:\txorl %%eax,%%eax\n\t"
+ 138:include/asm/string.h **** 	"jmp 4f\n"
+ 139:include/asm/string.h **** 	"3:\tsbbl %%eax,%%eax\n\t"
+ 140:include/asm/string.h **** 	"orb $1,%%al\n"
+ 141:include/asm/string.h **** 	"4:"
+ 142:include/asm/string.h **** 	:"=a" (__res), "=&S" (d0), "=&D" (d1), "=&c" (d2)
+ 143:include/asm/string.h **** 	:"1" (cs),"2" (ct),"3" (count)
+ 144:include/asm/string.h **** 	:"memory");
+ 145:include/asm/string.h **** return __res;
+ 146:include/asm/string.h **** }
+ 147:include/asm/string.h **** 
+ 148:include/asm/string.h **** #define __HAVE_ARCH_STRCHR
+ 149:include/asm/string.h **** static inline char * strchr(const char * s, int c)
+ 150:include/asm/string.h **** {
+GAS LISTING  			page 28
+
+
+ 151:include/asm/string.h **** int d0;
+ 152:include/asm/string.h **** register char * __res;
+ 153:include/asm/string.h **** __asm__ __volatile__(
+ 154:include/asm/string.h **** 	"movb %%al,%%ah\n"
+ 155:include/asm/string.h **** 	"1:\tlodsb\n\t"
+ 156:include/asm/string.h **** 	"cmpb %%ah,%%al\n\t"
+ 157:include/asm/string.h **** 	"je 2f\n\t"
+ 158:include/asm/string.h **** 	"testb %%al,%%al\n\t"
+ 159:include/asm/string.h **** 	"jne 1b\n\t"
+ 160:include/asm/string.h **** 	"movl $1,%1\n"
+ 161:include/asm/string.h **** 	"2:\tmovl %1,%0\n\t"
+ 162:include/asm/string.h **** 	"decl %0"
+ 163:include/asm/string.h **** 	:"=a" (__res), "=&S" (d0)
+ 164:include/asm/string.h **** 	:"1" (s),"0" (c)
+ 165:include/asm/string.h **** 	:"memory");
+ 166:include/asm/string.h **** return __res;
+ 167:include/asm/string.h **** }
+ 168:include/asm/string.h **** 
+ 169:include/asm/string.h **** #define __HAVE_ARCH_STRRCHR
+ 170:include/asm/string.h **** static inline char * strrchr(const char * s, int c)
+ 171:include/asm/string.h **** {
+ 172:include/asm/string.h **** int d0, d1;
+ 173:include/asm/string.h **** register char * __res;
+ 174:include/asm/string.h **** __asm__ __volatile__(
+ 175:include/asm/string.h **** 	"movb %%al,%%ah\n"
+ 176:include/asm/string.h **** 	"1:\tlodsb\n\t"
+ 177:include/asm/string.h **** 	"cmpb %%ah,%%al\n\t"
+ 178:include/asm/string.h **** 	"jne 2f\n\t"
+ 179:include/asm/string.h **** 	"leal -1(%%esi),%0\n"
+ 180:include/asm/string.h **** 	"2:\ttestb %%al,%%al\n\t"
+ 181:include/asm/string.h **** 	"jne 1b"
+ 182:include/asm/string.h **** 	:"=g" (__res), "=&S" (d0), "=&a" (d1)
+ 183:include/asm/string.h **** 	:"0" (0),"1" (s),"2" (c)
+ 184:include/asm/string.h **** 	:"memory");
+ 185:include/asm/string.h **** return __res;
+ 186:include/asm/string.h **** }
+ 187:include/asm/string.h **** 
+ 188:include/asm/string.h **** #define __HAVE_ARCH_STRLEN
+ 189:include/asm/string.h **** static inline size_t strlen(const char * s)
+ 190:include/asm/string.h **** {
+ 191:include/asm/string.h **** int d0;
+ 192:include/asm/string.h **** register int __res;
+ 193:include/asm/string.h **** __asm__ __volatile__(
+ 194:include/asm/string.h **** 	"repne\n\t"
+ 195:include/asm/string.h **** 	"scasb\n\t"
+ 196:include/asm/string.h **** 	"notl %0\n\t"
+ 197:include/asm/string.h **** 	"decl %0"
+ 198:include/asm/string.h **** 	:"=c" (__res), "=&D" (d0)
+ 199:include/asm/string.h **** 	:"1" (s),"a" (0), "0" (0xffffffffu)
+ 200:include/asm/string.h **** 	:"memory");
+ 201:include/asm/string.h **** return __res;
+ 202:include/asm/string.h **** }
+ 203:include/asm/string.h **** 
+ 204:include/asm/string.h **** static inline void * __memcpy(void * to, const void * from, size_t n)
+ 205:include/asm/string.h **** {
+ 206:include/asm/string.h **** int d0, d1, d2;
+ 207:include/asm/string.h **** __asm__ __volatile__(
+GAS LISTING  			page 29
+
+
+ 208:include/asm/string.h **** 	"rep ; movsl\n\t"
+ 209:include/asm/string.h **** 	"movl %4,%%ecx\n\t"
+ 210:include/asm/string.h **** 	"andl $3,%%ecx\n\t"
+ 211:include/asm/string.h **** #if 1	/* want to pay 2 byte penalty for a chance to skip microcoded rep? */
+ 212:include/asm/string.h **** 	"jz 1f\n\t"
+ 213:include/asm/string.h **** #endif
+ 214:include/asm/string.h **** 	"rep ; movsb\n\t"
+ 215:include/asm/string.h **** 	"1:"
+ 216:include/asm/string.h **** 	: "=&c" (d0), "=&D" (d1), "=&S" (d2)
+ 217:include/asm/string.h **** 	: "0" (n/4), "g" (n), "1" ((long) to), "2" ((long) from)
+ 218:include/asm/string.h **** 	: "memory");
+ 219:include/asm/string.h **** return (to);
+ 220:include/asm/string.h **** }
+ 221:include/asm/string.h **** 
+ 222:include/asm/string.h **** /*
+ 223:include/asm/string.h ****  * This looks ugly, but the compiler can optimize it totally,
+ 224:include/asm/string.h ****  * as the count is constant.
+ 225:include/asm/string.h ****  */
+ 226:include/asm/string.h **** static inline void * __constant_memcpy(void * to, const void * from, size_t n)
+ 227:include/asm/string.h **** {
+ 228:include/asm/string.h **** 	long esi, edi;
+ 229:include/asm/string.h **** 	if (!n) return to;
+ 230:include/asm/string.h **** #if 1	/* want to do small copies with non-string ops? */
+ 231:include/asm/string.h **** 	switch (n) {
+ 232:include/asm/string.h **** 		case 1: *(char*)to = *(char*)from; return to;
+ 233:include/asm/string.h **** 		case 2: *(short*)to = *(short*)from; return to;
+ 234:include/asm/string.h **** 		case 4: *(int*)to = *(int*)from; return to;
+ 235:include/asm/string.h **** #if 1	/* including those doable with two moves? */
+ 236:include/asm/string.h **** 		case 3: *(short*)to = *(short*)from;
+ 237:include/asm/string.h **** 			*((char*)to+2) = *((char*)from+2); return to;
+ 238:include/asm/string.h **** 		case 5: *(int*)to = *(int*)from;
+ 239:include/asm/string.h **** 			*((char*)to+4) = *((char*)from+4); return to;
+ 240:include/asm/string.h **** 		case 6: *(int*)to = *(int*)from;
+ 241:include/asm/string.h **** 			*((short*)to+2) = *((short*)from+2); return to;
+ 242:include/asm/string.h **** 		case 8: *(int*)to = *(int*)from;
+ 243:include/asm/string.h **** 			*((int*)to+1) = *((int*)from+1); return to;
+ 244:include/asm/string.h **** #endif
+ 245:include/asm/string.h **** 	}
+ 246:include/asm/string.h **** #endif
+ 247:include/asm/string.h **** 	esi = (long) from;
+ 248:include/asm/string.h **** 	edi = (long) to;
+ 249:include/asm/string.h **** 	if (n >= 5*4) {
+ 250:include/asm/string.h **** 		/* large block: use rep prefix */
+ 251:include/asm/string.h **** 		int ecx;
+ 252:include/asm/string.h **** 		__asm__ __volatile__(
+ 253:include/asm/string.h **** 			"rep ; movsl"
+ 254:include/asm/string.h **** 			: "=&c" (ecx), "=&D" (edi), "=&S" (esi)
+ 255:include/asm/string.h **** 			: "0" (n/4), "1" (edi),"2" (esi)
+ 256:include/asm/string.h **** 			: "memory"
+ 257:include/asm/string.h **** 		);
+ 258:include/asm/string.h **** 	} else {
+ 259:include/asm/string.h **** 		/* small block: don't clobber ecx + smaller code */
+ 260:include/asm/string.h **** 		if (n >= 4*4) __asm__ __volatile__("movsl"
+ 261:include/asm/string.h **** 			:"=&D"(edi),"=&S"(esi):"0"(edi),"1"(esi):"memory");
+ 262:include/asm/string.h **** 		if (n >= 3*4) __asm__ __volatile__("movsl"
+ 263:include/asm/string.h **** 			:"=&D"(edi),"=&S"(esi):"0"(edi),"1"(esi):"memory");
+ 264:include/asm/string.h **** 		if (n >= 2*4) __asm__ __volatile__("movsl"
+GAS LISTING  			page 30
+
+
+ 265:include/asm/string.h **** 			:"=&D"(edi),"=&S"(esi):"0"(edi),"1"(esi):"memory");
+ 266:include/asm/string.h **** 		if (n >= 1*4) __asm__ __volatile__("movsl"
+ 267:include/asm/string.h **** 			:"=&D"(edi),"=&S"(esi):"0"(edi),"1"(esi):"memory");
+ 268:include/asm/string.h **** 	}
+ 269:include/asm/string.h **** 	switch (n % 4) {
+ 270:include/asm/string.h **** 		/* tail */
+ 271:include/asm/string.h **** 		case 0: return to;
+ 272:include/asm/string.h **** 		case 1: __asm__ __volatile__("movsb"
+ 273:include/asm/string.h **** 			:"=&D"(edi),"=&S"(esi):"0"(edi),"1"(esi):"memory");
+ 274:include/asm/string.h **** 			return to;
+ 275:include/asm/string.h **** 		case 2: __asm__ __volatile__("movsw"
+ 276:include/asm/string.h **** 			:"=&D"(edi),"=&S"(esi):"0"(edi),"1"(esi):"memory");
+ 277:include/asm/string.h **** 			return to;
+ 278:include/asm/string.h **** 		default: __asm__ __volatile__("movsw\n\tmovsb"
+ 279:include/asm/string.h **** 			:"=&D"(edi),"=&S"(esi):"0"(edi),"1"(esi):"memory");
+ 280:include/asm/string.h **** 			return to;
+ 281:include/asm/string.h **** 	}
+ 282:include/asm/string.h **** }
+ 283:include/asm/string.h **** 
+ 284:include/asm/string.h **** #define __HAVE_ARCH_MEMCPY
+ 285:include/asm/string.h **** 
+ 286:include/asm/string.h **** #ifdef CONFIG_X86_USE_3DNOW
+ 287:include/asm/string.h **** 
+ 288:include/asm/string.h **** #include <asm/mmx.h>
+ 289:include/asm/string.h **** 
+ 290:include/asm/string.h **** /*
+ 291:include/asm/string.h ****  *	This CPU favours 3DNow strongly (eg AMD Athlon)
+ 292:include/asm/string.h ****  */
+ 293:include/asm/string.h **** 
+ 294:include/asm/string.h **** static inline void * __constant_memcpy3d(void * to, const void * from, size_t len)
+ 295:include/asm/string.h **** {
+ 296:include/asm/string.h **** 	if (len < 512)
+ 297:include/asm/string.h **** 		return __constant_memcpy(to, from, len);
+ 298:include/asm/string.h **** 	return _mmx_memcpy(to, from, len);
+ 299:include/asm/string.h **** }
+ 300:include/asm/string.h **** 
+ 301:include/asm/string.h **** static __inline__ void *__memcpy3d(void *to, const void *from, size_t len)
+ 302:include/asm/string.h **** {
+ 303:include/asm/string.h **** 	if (len < 512)
+ 304:include/asm/string.h **** 		return __memcpy(to, from, len);
+ 305:include/asm/string.h **** 	return _mmx_memcpy(to, from, len);
+ 306:include/asm/string.h **** }
+ 307:include/asm/string.h **** 
+ 308:include/asm/string.h **** #define memcpy(t, f, n) \
+ 309:include/asm/string.h **** (__builtin_constant_p(n) ? \
+ 310:include/asm/string.h ****  __constant_memcpy3d((t),(f),(n)) : \
+ 311:include/asm/string.h ****  __memcpy3d((t),(f),(n)))
+ 312:include/asm/string.h **** 
+ 313:include/asm/string.h **** #else
+ 314:include/asm/string.h **** 
+ 315:include/asm/string.h **** /*
+ 316:include/asm/string.h ****  *	No 3D Now!
+ 317:include/asm/string.h ****  */
+ 318:include/asm/string.h ****  
+ 319:include/asm/string.h **** #define memcpy(t, f, n) \
+ 320:include/asm/string.h **** (__builtin_constant_p(n) ? \
+ 321:include/asm/string.h ****  __constant_memcpy((t),(f),(n)) : \
+GAS LISTING  			page 31
+
+
+ 322:include/asm/string.h ****  __memcpy((t),(f),(n)))
+ 323:include/asm/string.h **** 
+ 324:include/asm/string.h **** #endif
+ 325:include/asm/string.h **** 
+ 326:include/asm/string.h **** #define __HAVE_ARCH_MEMMOVE
+ 327:include/asm/string.h **** void *memmove(void * dest,const void * src, size_t n);
+ 328:include/asm/string.h **** 
+ 329:include/asm/string.h **** #define memcmp __builtin_memcmp
+ 330:include/asm/string.h **** 
+ 331:include/asm/string.h **** #define __HAVE_ARCH_MEMCHR
+ 332:include/asm/string.h **** static inline void * memchr(const void * cs,int c,size_t count)
+ 333:include/asm/string.h **** {
+ 334:include/asm/string.h **** int d0;
+ 335:include/asm/string.h **** register void * __res;
+ 336:include/asm/string.h **** if (!count)
+ 337:include/asm/string.h **** 	return NULL;
+ 338:include/asm/string.h **** __asm__ __volatile__(
+ 339:include/asm/string.h **** 	"repne\n\t"
+ 340:include/asm/string.h **** 	"scasb\n\t"
+ 341:include/asm/string.h **** 	"je 1f\n\t"
+ 342:include/asm/string.h **** 	"movl $1,%0\n"
+ 343:include/asm/string.h **** 	"1:\tdecl %0"
+ 344:include/asm/string.h **** 	:"=D" (__res), "=&c" (d0)
+ 345:include/asm/string.h **** 	:"a" (c),"0" (cs),"1" (count)
+ 346:include/asm/string.h **** 	:"memory");
+ 347:include/asm/string.h **** return __res;
+ 348:include/asm/string.h **** }
+ 349:include/asm/string.h **** 
+ 350:include/asm/string.h **** static inline void * __memset_generic(void * s, char c,size_t count)
+ 351:include/asm/string.h **** {
+ 352:include/asm/string.h **** int d0, d1;
+ 353:include/asm/string.h **** __asm__ __volatile__(
+ 354:include/asm/string.h **** 	"rep\n\t"
+ 355:include/asm/string.h **** 	"stosb"
+ 356:include/asm/string.h **** 	: "=&c" (d0), "=&D" (d1)
+ 357:include/asm/string.h **** 	:"a" (c),"1" (s),"0" (count)
+ 358:include/asm/string.h **** 	:"memory");
+ 359:include/asm/string.h **** return s;
+ 360:include/asm/string.h **** }
+ 361:include/asm/string.h **** 
+ 362:include/asm/string.h **** /* we might want to write optimized versions of these later */
+ 363:include/asm/string.h **** #define __constant_count_memset(s,c,count) __memset_generic((s),(c),(count))
+ 364:include/asm/string.h **** 
+ 365:include/asm/string.h **** /*
+ 366:include/asm/string.h ****  * memset(x,0,y) is a reasonably common thing to do, so we want to fill
+ 367:include/asm/string.h ****  * things 32 bits at a time even when we don't know the size of the
+ 368:include/asm/string.h ****  * area at compile-time..
+ 369:include/asm/string.h ****  */
+ 370:include/asm/string.h **** static inline void * __constant_c_memset(void * s, unsigned long c, size_t count)
+ 371:include/asm/string.h **** {
+ 372:include/asm/string.h **** int d0, d1;
+ 373:include/asm/string.h **** __asm__ __volatile__(
+ 374:include/asm/string.h **** 	"rep ; stosl\n\t"
+ 375:include/asm/string.h **** 	"testb $2,%b3\n\t"
+ 376:include/asm/string.h **** 	"je 1f\n\t"
+ 377:include/asm/string.h **** 	"stosw\n"
+ 378:include/asm/string.h **** 	"1:\ttestb $1,%b3\n\t"
+GAS LISTING  			page 32
+
+
+ 379:include/asm/string.h **** 	"je 2f\n\t"
+ 380:include/asm/string.h **** 	"stosb\n"
+ 381:include/asm/string.h **** 	"2:"
+ 382:include/asm/string.h **** 	:"=&c" (d0), "=&D" (d1)
+ 383:include/asm/string.h **** 	:"a" (c), "q" (count), "0" (count/4), "1" ((long) s)
+ 384:include/asm/string.h **** 	:"memory");
+ 385:include/asm/string.h **** return (s);	
+ 386:include/asm/string.h **** }
+ 387:include/asm/string.h **** 
+ 388:include/asm/string.h **** /* Added by Gertjan van Wingerde to make minix and sysv module work */
+ 389:include/asm/string.h **** #define __HAVE_ARCH_STRNLEN
+ 390:include/asm/string.h **** static inline size_t strnlen(const char * s, size_t count)
+ 391:include/asm/string.h **** {
+ 392:include/asm/string.h **** int d0;
+ 393:include/asm/string.h **** register int __res;
+ 394:include/asm/string.h **** __asm__ __volatile__(
+ 395:include/asm/string.h **** 	"movl %2,%0\n\t"
+ 396:include/asm/string.h **** 	"jmp 2f\n"
+ 397:include/asm/string.h **** 	"1:\tcmpb $0,(%0)\n\t"
+ 398:include/asm/string.h **** 	"je 3f\n\t"
+ 399:include/asm/string.h **** 	"incl %0\n"
+ 400:include/asm/string.h **** 	"2:\tdecl %1\n\t"
+ 401:include/asm/string.h **** 	"cmpl $-1,%1\n\t"
+ 402:include/asm/string.h **** 	"jne 1b\n"
+ 403:include/asm/string.h **** 	"3:\tsubl %2,%0"
+ 404:include/asm/string.h **** 	:"=a" (__res), "=&d" (d0)
+ 405:include/asm/string.h **** 	:"c" (s),"1" (count)
+ 406:include/asm/string.h **** 	:"memory");
+ 407:include/asm/string.h **** return __res;
+ 408:include/asm/string.h **** }
+ 409:include/asm/string.h **** /* end of additional stuff */
+ 410:include/asm/string.h **** 
+ 411:include/asm/string.h **** #define __HAVE_ARCH_STRSTR
+ 412:include/asm/string.h **** 
+ 413:include/asm/string.h **** extern char *strstr(const char *cs, const char *ct);
+ 414:include/asm/string.h **** 
+ 415:include/asm/string.h **** /*
+ 416:include/asm/string.h ****  * This looks horribly ugly, but the compiler can optimize it totally,
+ 417:include/asm/string.h ****  * as we by now know that both pattern and count is constant..
+ 418:include/asm/string.h ****  */
+ 419:include/asm/string.h **** static inline void * __constant_c_and_count_memset(void * s, unsigned long pattern, size_t count)
+ 420:include/asm/string.h **** {
+ 421:include/asm/string.h **** 	switch (count) {
+ 422:include/asm/string.h **** 		case 0:
+ 423:include/asm/string.h **** 			return s;
+ 424:include/asm/string.h **** 		case 1:
+ 425:include/asm/string.h **** 			*(unsigned char *)s = pattern;
+ 426:include/asm/string.h **** 			return s;
+ 427:include/asm/string.h **** 		case 2:
+ 428:include/asm/string.h **** 			*(unsigned short *)s = pattern;
+ 429:include/asm/string.h **** 			return s;
+ 430:include/asm/string.h **** 		case 3:
+ 431:include/asm/string.h **** 			*(unsigned short *)s = pattern;
+ 432:include/asm/string.h **** 			*(2+(unsigned char *)s) = pattern;
+ 433:include/asm/string.h **** 			return s;
+ 434:include/asm/string.h **** 		case 4:
+ 435:include/asm/string.h **** 			*(unsigned long *)s = pattern;
+GAS LISTING  			page 33
+
+
+ 436:include/asm/string.h **** 			return s;
+ 437:include/asm/string.h **** 	}
+ 438:include/asm/string.h **** #define COMMON(x) \
+ 439:include/asm/string.h **** __asm__  __volatile__( \
+ 440:include/asm/string.h **** 	"rep ; stosl" \
+ 441:include/asm/string.h **** 	x \
+ 442:include/asm/string.h **** 	: "=&c" (d0), "=&D" (d1) \
+ 443:include/asm/string.h **** 	: "a" (pattern),"0" (count/4),"1" ((long) s) \
+ 444:include/asm/string.h **** 	: "memory")
+ 445:include/asm/string.h **** {
+ 446:include/asm/string.h **** 	int d0, d1;
+ 447:include/asm/string.h **** 	switch (count % 4) {
+ 448:include/asm/string.h **** 		case 0: COMMON(""); return s;
+ 408              	.loc 7 448 0
+ 409 0184 B9030000 	movl $3,%ecx
+ 409      00
+ 410 0189 89DF     	movl %ebx,%edi
+ 411 018b 89E8     	movl %ebp,%eax
+ 412              	
+ 413 018d F3AB     	rep
+ 414              	
+ 415              	.LBE37:
+ 416              	.LBE36:
+ 417              	.LBE35:
+ 116:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 117:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	memset(alg, 0, sizeof(*alg));
+ 118:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	alg->ops = ops;
+ 418              	.loc 1 118 0
+ 419 018f 897308   	movl %esi,8(%ebx)
+ 119:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 120:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_lock_irqsave(&ieee80211_crypto_lock, flags);
+ 420              	.loc 1 120 0
+ 421              	
+ 422 0192 9C5AFA   	pushfl
+ 423              	
+ 424              	.LBB38:
+ 425              	.LBB39:
+ 426              	.LBB40:
+ 427              	.loc 2 50 0
+ 428 0195 A1000000 	movl ieee80211_crypto_algs,%eax
+ 428      00
+ 429              	.LBB41:
+ 430              	.loc 2 51 0
+ 431 019a 895804   	movl %ebx,4(%eax)
+ 432              	.loc 2 52 0
+ 433 019d 8903     	movl %eax,(%ebx)
+ 434              	.loc 2 53 0
+ 435 019f C7430400 	movl $ieee80211_crypto_algs,4(%ebx)
+ 435      000000
+ 436              	.loc 2 54 0
+ 437 01a6 891D0000 	movl %ebx,ieee80211_crypto_algs
+ 437      0000
+ 438              	.LBE41:
+ 439              	.LBE40:
+ 440              	.LBE39:
+ 441              	.LBE38:
+ 121:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	list_add(&alg->list, &ieee80211_crypto_algs);
+GAS LISTING  			page 34
+
+
+ 122:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee80211_crypto_lock, flags);
+ 442              	.loc 1 122 0
+ 443              	
+ 444 01ac 529D     	pushl %edx
+ 123:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 124:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	printk(KERN_DEBUG "ieee80211_crypt: registered algorithm '%s'\n",
+ 445              	.loc 1 124 0
+ 446              	
+ 447 01ae FF36     	pushl (%esi)
+ 448              	.LCFI38:
+ 449 01b0 68390000 	pushl $.LC1
+ 449      00
+ 450              	.LCFI39:
+ 451              	.LCFI40:
+ 452 01b5 E8FCFFFF 	call printk
+ 452      FF
+ 125:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	       ops->name);
+ 126:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 127:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	return 0;
+ 453              	.loc 1 127 0
+ 454 01ba 5B       	popl %ebx
+ 455              	.LCFI41:
+ 456 01bb 31C0     	xorl %eax,%eax
+ 457 01bd 5E       	popl %esi
+ 458              	.LCFI42:
+ 459              	.L61:
+ 128:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+ 460              	.loc 1 128 0
+ 461 01be 59       	popl %ecx
+ 462              	.LCFI43:
+ 463 01bf 5B       	popl %ebx
+ 464 01c0 5E       	popl %esi
+ 465 01c1 5F       	popl %edi
+ 466 01c2 5D       	popl %ebp
+ 467 01c3 C3       	ret
+ 468              	.LFE669:
+ 470              	.section .rodata.str1.1
+ 471              	.LC2:
+ 472 0068 3C373E69 	.string "<7>ieee80211_crypt: unregistered algorithm '%s'\n"
+ 472      65656538 
+ 472      30323131 
+ 472      5F637279 
+ 472      70743A20 
+ 473              	.text
+ 474              	.globl ieee80211_unregister_crypto_ops
+ 476              	ieee80211_unregister_crypto_ops:
+ 477              	.LFB670:
+ 129:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 130:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** int ieee80211_unregister_crypto_ops(struct ieee80211_crypto_ops *ops)
+ 131:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 478              	.loc 1 131 0
+ 479 01c4 56       	pushl %esi
+ 480              	.LCFI44:
+ 481 01c5 53       	pushl %ebx
+ 482              	.LCFI45:
+ 483              	.loc 1 131 0
+ 484 01c6 8B54240C 	movl 12(%esp),%edx
+GAS LISTING  			page 35
+
+
+ 132:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	struct ieee80211_crypto_alg *alg;
+ 133:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	unsigned long flags;
+ 134:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 135:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_lock_irqsave(&ieee80211_crypto_lock, flags);
+ 485              	.loc 1 135 0
+ 486              	
+ 487 01ca 9C5EFA   	pushfl
+ 488              	
+ 489              	.LBB42:
+ 136:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	list_for_each_entry(alg, &ieee80211_crypto_algs, list) {
+ 490              	.loc 1 136 0
+ 491 01cd 8B1D0000 	movl ieee80211_crypto_algs,%ebx
+ 491      0000
+ 492              	.L139:
+ 493              	.LBE42:
+ 494              	.LBB43:
+ 495              	.file 8 "include/asm/processor.h"
+   1:include/asm/processor.h **** /*
+   2:include/asm/processor.h ****  * include/asm-i386/processor.h
+   3:include/asm/processor.h ****  *
+   4:include/asm/processor.h ****  * Copyright (C) 1994 Linus Torvalds
+   5:include/asm/processor.h ****  */
+   6:include/asm/processor.h **** 
+   7:include/asm/processor.h **** #ifndef __ASM_I386_PROCESSOR_H
+   8:include/asm/processor.h **** #define __ASM_I386_PROCESSOR_H
+   9:include/asm/processor.h **** 
+  10:include/asm/processor.h **** #include <asm/vm86.h>
+  11:include/asm/processor.h **** #include <asm/math_emu.h>
+  12:include/asm/processor.h **** #include <asm/segment.h>
+  13:include/asm/processor.h **** #include <asm/page.h>
+  14:include/asm/processor.h **** #include <asm/types.h>
+  15:include/asm/processor.h **** #include <asm/sigcontext.h>
+  16:include/asm/processor.h **** #include <asm/cpufeature.h>
+  17:include/asm/processor.h **** #include <asm/msr.h>
+  18:include/asm/processor.h **** #include <asm/system.h>
+  19:include/asm/processor.h **** #include <linux/cache.h>
+  20:include/asm/processor.h **** #include <linux/config.h>
+  21:include/asm/processor.h **** #include <linux/threads.h>
+  22:include/asm/processor.h **** #include <asm/percpu.h>
+  23:include/asm/processor.h **** 
+  24:include/asm/processor.h **** /* flag for disabling the tsc */
+  25:include/asm/processor.h **** extern int tsc_disable;
+  26:include/asm/processor.h **** 
+  27:include/asm/processor.h **** struct desc_struct {
+  28:include/asm/processor.h **** 	unsigned long a,b;
+  29:include/asm/processor.h **** };
+  30:include/asm/processor.h **** 
+  31:include/asm/processor.h **** #define desc_empty(desc) \
+  32:include/asm/processor.h **** 		(!((desc)->a + (desc)->b))
+  33:include/asm/processor.h **** 
+  34:include/asm/processor.h **** #define desc_equal(desc1, desc2) \
+  35:include/asm/processor.h **** 		(((desc1)->a == (desc2)->a) && ((desc1)->b == (desc2)->b))
+  36:include/asm/processor.h **** /*
+  37:include/asm/processor.h ****  * Default implementation of macro that returns current
+  38:include/asm/processor.h ****  * instruction pointer ("program counter").
+  39:include/asm/processor.h ****  */
+  40:include/asm/processor.h **** #define current_text_addr() ({ void *pc; __asm__("movl $1f,%0\n1:":"=g" (pc)); pc; })
+GAS LISTING  			page 36
+
+
+  41:include/asm/processor.h **** 
+  42:include/asm/processor.h **** /*
+  43:include/asm/processor.h ****  *  CPU type and hardware bug flags. Kept separately for each CPU.
+  44:include/asm/processor.h ****  *  Members of this structure are referenced in head.S, so think twice
+  45:include/asm/processor.h ****  *  before touching them. [mj]
+  46:include/asm/processor.h ****  */
+  47:include/asm/processor.h **** 
+  48:include/asm/processor.h **** struct cpuinfo_x86 {
+  49:include/asm/processor.h **** 	__u8	x86;		/* CPU family */
+  50:include/asm/processor.h **** 	__u8	x86_vendor;	/* CPU vendor */
+  51:include/asm/processor.h **** 	__u8	x86_model;
+  52:include/asm/processor.h **** 	__u8	x86_mask;
+  53:include/asm/processor.h **** 	char	wp_works_ok;	/* It doesn't on 386's */
+  54:include/asm/processor.h **** 	char	hlt_works_ok;	/* Problems on some 486Dx4's and old 386's */
+  55:include/asm/processor.h **** 	char	hard_math;
+  56:include/asm/processor.h **** 	char	rfu;
+  57:include/asm/processor.h ****        	int	cpuid_level;	/* Maximum supported CPUID level, -1=no CPUID */
+  58:include/asm/processor.h **** 	unsigned long	x86_capability[NCAPINTS];
+  59:include/asm/processor.h **** 	char	x86_vendor_id[16];
+  60:include/asm/processor.h **** 	char	x86_model_id[64];
+  61:include/asm/processor.h **** 	int 	x86_cache_size;  /* in KB - valid for CPUS which support this
+  62:include/asm/processor.h **** 				    call  */
+  63:include/asm/processor.h **** 	int 	x86_cache_alignment;	/* In bytes */
+  64:include/asm/processor.h **** 	int	fdiv_bug;
+  65:include/asm/processor.h **** 	int	f00f_bug;
+  66:include/asm/processor.h **** 	int	coma_bug;
+  67:include/asm/processor.h **** 	unsigned long loops_per_jiffy;
+  68:include/asm/processor.h **** 	unsigned char x86_num_cores;
+  69:include/asm/processor.h **** } __attribute__((__aligned__(SMP_CACHE_BYTES)));
+  70:include/asm/processor.h **** 
+  71:include/asm/processor.h **** #define X86_VENDOR_INTEL 0
+  72:include/asm/processor.h **** #define X86_VENDOR_CYRIX 1
+  73:include/asm/processor.h **** #define X86_VENDOR_AMD 2
+  74:include/asm/processor.h **** #define X86_VENDOR_UMC 3
+  75:include/asm/processor.h **** #define X86_VENDOR_NEXGEN 4
+  76:include/asm/processor.h **** #define X86_VENDOR_CENTAUR 5
+  77:include/asm/processor.h **** #define X86_VENDOR_RISE 6
+  78:include/asm/processor.h **** #define X86_VENDOR_TRANSMETA 7
+  79:include/asm/processor.h **** #define X86_VENDOR_NSC 8
+  80:include/asm/processor.h **** #define X86_VENDOR_NUM 9
+  81:include/asm/processor.h **** #define X86_VENDOR_UNKNOWN 0xff
+  82:include/asm/processor.h **** 
+  83:include/asm/processor.h **** /*
+  84:include/asm/processor.h ****  * capabilities of CPUs
+  85:include/asm/processor.h ****  */
+  86:include/asm/processor.h **** 
+  87:include/asm/processor.h **** extern struct cpuinfo_x86 boot_cpu_data;
+  88:include/asm/processor.h **** extern struct cpuinfo_x86 new_cpu_data;
+  89:include/asm/processor.h **** extern struct tss_struct doublefault_tss;
+  90:include/asm/processor.h **** DECLARE_PER_CPU(struct tss_struct, init_tss);
+  91:include/asm/processor.h **** 
+  92:include/asm/processor.h **** #ifdef CONFIG_SMP
+  93:include/asm/processor.h **** extern struct cpuinfo_x86 cpu_data[];
+  94:include/asm/processor.h **** #define current_cpu_data cpu_data[smp_processor_id()]
+  95:include/asm/processor.h **** #else
+  96:include/asm/processor.h **** #define cpu_data (&boot_cpu_data)
+  97:include/asm/processor.h **** #define current_cpu_data boot_cpu_data
+GAS LISTING  			page 37
+
+
+  98:include/asm/processor.h **** #endif
+  99:include/asm/processor.h **** 
+ 100:include/asm/processor.h **** extern	int phys_proc_id[NR_CPUS];
+ 101:include/asm/processor.h **** extern	int cpu_core_id[NR_CPUS];
+ 102:include/asm/processor.h **** extern char ignore_fpu_irq;
+ 103:include/asm/processor.h **** 
+ 104:include/asm/processor.h **** extern void identify_cpu(struct cpuinfo_x86 *);
+ 105:include/asm/processor.h **** extern void print_cpu_info(struct cpuinfo_x86 *);
+ 106:include/asm/processor.h **** extern unsigned int init_intel_cacheinfo(struct cpuinfo_x86 *c);
+ 107:include/asm/processor.h **** 
+ 108:include/asm/processor.h **** #ifdef CONFIG_X86_HT
+ 109:include/asm/processor.h **** extern void detect_ht(struct cpuinfo_x86 *c);
+ 110:include/asm/processor.h **** #else
+ 111:include/asm/processor.h **** static inline void detect_ht(struct cpuinfo_x86 *c) {}
+ 112:include/asm/processor.h **** #endif
+ 113:include/asm/processor.h **** 
+ 114:include/asm/processor.h **** /*
+ 115:include/asm/processor.h ****  * EFLAGS bits
+ 116:include/asm/processor.h ****  */
+ 117:include/asm/processor.h **** #define X86_EFLAGS_CF	0x00000001 /* Carry Flag */
+ 118:include/asm/processor.h **** #define X86_EFLAGS_PF	0x00000004 /* Parity Flag */
+ 119:include/asm/processor.h **** #define X86_EFLAGS_AF	0x00000010 /* Auxillary carry Flag */
+ 120:include/asm/processor.h **** #define X86_EFLAGS_ZF	0x00000040 /* Zero Flag */
+ 121:include/asm/processor.h **** #define X86_EFLAGS_SF	0x00000080 /* Sign Flag */
+ 122:include/asm/processor.h **** #define X86_EFLAGS_TF	0x00000100 /* Trap Flag */
+ 123:include/asm/processor.h **** #define X86_EFLAGS_IF	0x00000200 /* Interrupt Flag */
+ 124:include/asm/processor.h **** #define X86_EFLAGS_DF	0x00000400 /* Direction Flag */
+ 125:include/asm/processor.h **** #define X86_EFLAGS_OF	0x00000800 /* Overflow Flag */
+ 126:include/asm/processor.h **** #define X86_EFLAGS_IOPL	0x00003000 /* IOPL mask */
+ 127:include/asm/processor.h **** #define X86_EFLAGS_NT	0x00004000 /* Nested Task */
+ 128:include/asm/processor.h **** #define X86_EFLAGS_RF	0x00010000 /* Resume Flag */
+ 129:include/asm/processor.h **** #define X86_EFLAGS_VM	0x00020000 /* Virtual Mode */
+ 130:include/asm/processor.h **** #define X86_EFLAGS_AC	0x00040000 /* Alignment Check */
+ 131:include/asm/processor.h **** #define X86_EFLAGS_VIF	0x00080000 /* Virtual Interrupt Flag */
+ 132:include/asm/processor.h **** #define X86_EFLAGS_VIP	0x00100000 /* Virtual Interrupt Pending */
+ 133:include/asm/processor.h **** #define X86_EFLAGS_ID	0x00200000 /* CPUID detection flag */
+ 134:include/asm/processor.h **** 
+ 135:include/asm/processor.h **** /*
+ 136:include/asm/processor.h ****  * Generic CPUID function
+ 137:include/asm/processor.h ****  * clear %ecx since some cpus (Cyrix MII) do not set or clear %ecx
+ 138:include/asm/processor.h ****  * resulting in stale register contents being returned.
+ 139:include/asm/processor.h ****  */
+ 140:include/asm/processor.h **** static inline void cpuid(unsigned int op, unsigned int *eax, unsigned int *ebx, unsigned int *ecx, 
+ 141:include/asm/processor.h **** {
+ 142:include/asm/processor.h **** 	__asm__("cpuid"
+ 143:include/asm/processor.h **** 		: "=a" (*eax),
+ 144:include/asm/processor.h **** 		  "=b" (*ebx),
+ 145:include/asm/processor.h **** 		  "=c" (*ecx),
+ 146:include/asm/processor.h **** 		  "=d" (*edx)
+ 147:include/asm/processor.h **** 		: "0" (op), "c"(0));
+ 148:include/asm/processor.h **** }
+ 149:include/asm/processor.h **** 
+ 150:include/asm/processor.h **** /* Some CPUID calls want 'count' to be placed in ecx */
+ 151:include/asm/processor.h **** static inline void cpuid_count(int op, int count, int *eax, int *ebx, int *ecx,
+ 152:include/asm/processor.h **** 	       	int *edx)
+ 153:include/asm/processor.h **** {
+ 154:include/asm/processor.h **** 	__asm__("cpuid"
+GAS LISTING  			page 38
+
+
+ 155:include/asm/processor.h **** 		: "=a" (*eax),
+ 156:include/asm/processor.h **** 		  "=b" (*ebx),
+ 157:include/asm/processor.h **** 		  "=c" (*ecx),
+ 158:include/asm/processor.h **** 		  "=d" (*edx)
+ 159:include/asm/processor.h **** 		: "0" (op), "c" (count));
+ 160:include/asm/processor.h **** }
+ 161:include/asm/processor.h **** 
+ 162:include/asm/processor.h **** /*
+ 163:include/asm/processor.h ****  * CPUID functions returning a single datum
+ 164:include/asm/processor.h ****  */
+ 165:include/asm/processor.h **** static inline unsigned int cpuid_eax(unsigned int op)
+ 166:include/asm/processor.h **** {
+ 167:include/asm/processor.h **** 	unsigned int eax;
+ 168:include/asm/processor.h **** 
+ 169:include/asm/processor.h **** 	__asm__("cpuid"
+ 170:include/asm/processor.h **** 		: "=a" (eax)
+ 171:include/asm/processor.h **** 		: "0" (op)
+ 172:include/asm/processor.h **** 		: "bx", "cx", "dx");
+ 173:include/asm/processor.h **** 	return eax;
+ 174:include/asm/processor.h **** }
+ 175:include/asm/processor.h **** static inline unsigned int cpuid_ebx(unsigned int op)
+ 176:include/asm/processor.h **** {
+ 177:include/asm/processor.h **** 	unsigned int eax, ebx;
+ 178:include/asm/processor.h **** 
+ 179:include/asm/processor.h **** 	__asm__("cpuid"
+ 180:include/asm/processor.h **** 		: "=a" (eax), "=b" (ebx)
+ 181:include/asm/processor.h **** 		: "0" (op)
+ 182:include/asm/processor.h **** 		: "cx", "dx" );
+ 183:include/asm/processor.h **** 	return ebx;
+ 184:include/asm/processor.h **** }
+ 185:include/asm/processor.h **** static inline unsigned int cpuid_ecx(unsigned int op)
+ 186:include/asm/processor.h **** {
+ 187:include/asm/processor.h **** 	unsigned int eax, ecx;
+ 188:include/asm/processor.h **** 
+ 189:include/asm/processor.h **** 	__asm__("cpuid"
+ 190:include/asm/processor.h **** 		: "=a" (eax), "=c" (ecx)
+ 191:include/asm/processor.h **** 		: "0" (op)
+ 192:include/asm/processor.h **** 		: "bx", "dx" );
+ 193:include/asm/processor.h **** 	return ecx;
+ 194:include/asm/processor.h **** }
+ 195:include/asm/processor.h **** static inline unsigned int cpuid_edx(unsigned int op)
+ 196:include/asm/processor.h **** {
+ 197:include/asm/processor.h **** 	unsigned int eax, edx;
+ 198:include/asm/processor.h **** 
+ 199:include/asm/processor.h **** 	__asm__("cpuid"
+ 200:include/asm/processor.h **** 		: "=a" (eax), "=d" (edx)
+ 201:include/asm/processor.h **** 		: "0" (op)
+ 202:include/asm/processor.h **** 		: "bx", "cx");
+ 203:include/asm/processor.h **** 	return edx;
+ 204:include/asm/processor.h **** }
+ 205:include/asm/processor.h **** 
+ 206:include/asm/processor.h **** #define load_cr3(pgdir) \
+ 207:include/asm/processor.h **** 	asm volatile("movl %0,%%cr3": :"r" (__pa(pgdir)))
+ 208:include/asm/processor.h **** 
+ 209:include/asm/processor.h **** 
+ 210:include/asm/processor.h **** /*
+ 211:include/asm/processor.h ****  * Intel CPU features in CR4
+GAS LISTING  			page 39
+
+
+ 212:include/asm/processor.h ****  */
+ 213:include/asm/processor.h **** #define X86_CR4_VME		0x0001	/* enable vm86 extensions */
+ 214:include/asm/processor.h **** #define X86_CR4_PVI		0x0002	/* virtual interrupts flag enable */
+ 215:include/asm/processor.h **** #define X86_CR4_TSD		0x0004	/* disable time stamp at ipl 3 */
+ 216:include/asm/processor.h **** #define X86_CR4_DE		0x0008	/* enable debugging extensions */
+ 217:include/asm/processor.h **** #define X86_CR4_PSE		0x0010	/* enable page size extensions */
+ 218:include/asm/processor.h **** #define X86_CR4_PAE		0x0020	/* enable physical address extensions */
+ 219:include/asm/processor.h **** #define X86_CR4_MCE		0x0040	/* Machine check enable */
+ 220:include/asm/processor.h **** #define X86_CR4_PGE		0x0080	/* enable global pages */
+ 221:include/asm/processor.h **** #define X86_CR4_PCE		0x0100	/* enable performance counters at ipl 3 */
+ 222:include/asm/processor.h **** #define X86_CR4_OSFXSR		0x0200	/* enable fast FPU save and restore */
+ 223:include/asm/processor.h **** #define X86_CR4_OSXMMEXCPT	0x0400	/* enable unmasked SSE exceptions */
+ 224:include/asm/processor.h **** 
+ 225:include/asm/processor.h **** /*
+ 226:include/asm/processor.h ****  * Save the cr4 feature set we're using (ie
+ 227:include/asm/processor.h ****  * Pentium 4MB enable and PPro Global page
+ 228:include/asm/processor.h ****  * enable), so that any CPU's that boot up
+ 229:include/asm/processor.h ****  * after us can get the correct flags.
+ 230:include/asm/processor.h ****  */
+ 231:include/asm/processor.h **** extern unsigned long mmu_cr4_features;
+ 232:include/asm/processor.h **** 
+ 233:include/asm/processor.h **** static inline void set_in_cr4 (unsigned long mask)
+ 234:include/asm/processor.h **** {
+ 235:include/asm/processor.h **** 	mmu_cr4_features |= mask;
+ 236:include/asm/processor.h **** 	__asm__("movl %%cr4,%%eax\n\t"
+ 237:include/asm/processor.h **** 		"orl %0,%%eax\n\t"
+ 238:include/asm/processor.h **** 		"movl %%eax,%%cr4\n"
+ 239:include/asm/processor.h **** 		: : "irg" (mask)
+ 240:include/asm/processor.h **** 		:"ax");
+ 241:include/asm/processor.h **** }
+ 242:include/asm/processor.h **** 
+ 243:include/asm/processor.h **** static inline void clear_in_cr4 (unsigned long mask)
+ 244:include/asm/processor.h **** {
+ 245:include/asm/processor.h **** 	mmu_cr4_features &= ~mask;
+ 246:include/asm/processor.h **** 	__asm__("movl %%cr4,%%eax\n\t"
+ 247:include/asm/processor.h **** 		"andl %0,%%eax\n\t"
+ 248:include/asm/processor.h **** 		"movl %%eax,%%cr4\n"
+ 249:include/asm/processor.h **** 		: : "irg" (~mask)
+ 250:include/asm/processor.h **** 		:"ax");
+ 251:include/asm/processor.h **** }
+ 252:include/asm/processor.h **** 
+ 253:include/asm/processor.h **** /*
+ 254:include/asm/processor.h ****  *      NSC/Cyrix CPU configuration register indexes
+ 255:include/asm/processor.h ****  */
+ 256:include/asm/processor.h **** 
+ 257:include/asm/processor.h **** #define CX86_PCR0 0x20
+ 258:include/asm/processor.h **** #define CX86_GCR  0xb8
+ 259:include/asm/processor.h **** #define CX86_CCR0 0xc0
+ 260:include/asm/processor.h **** #define CX86_CCR1 0xc1
+ 261:include/asm/processor.h **** #define CX86_CCR2 0xc2
+ 262:include/asm/processor.h **** #define CX86_CCR3 0xc3
+ 263:include/asm/processor.h **** #define CX86_CCR4 0xe8
+ 264:include/asm/processor.h **** #define CX86_CCR5 0xe9
+ 265:include/asm/processor.h **** #define CX86_CCR6 0xea
+ 266:include/asm/processor.h **** #define CX86_CCR7 0xeb
+ 267:include/asm/processor.h **** #define CX86_PCR1 0xf0
+ 268:include/asm/processor.h **** #define CX86_DIR0 0xfe
+GAS LISTING  			page 40
+
+
+ 269:include/asm/processor.h **** #define CX86_DIR1 0xff
+ 270:include/asm/processor.h **** #define CX86_ARR_BASE 0xc4
+ 271:include/asm/processor.h **** #define CX86_RCR_BASE 0xdc
+ 272:include/asm/processor.h **** 
+ 273:include/asm/processor.h **** /*
+ 274:include/asm/processor.h ****  *      NSC/Cyrix CPU indexed register access macros
+ 275:include/asm/processor.h ****  */
+ 276:include/asm/processor.h **** 
+ 277:include/asm/processor.h **** #define getCx86(reg) ({ outb((reg), 0x22); inb(0x23); })
+ 278:include/asm/processor.h **** 
+ 279:include/asm/processor.h **** #define setCx86(reg, data) do { \
+ 280:include/asm/processor.h **** 	outb((reg), 0x22); \
+ 281:include/asm/processor.h **** 	outb((data), 0x23); \
+ 282:include/asm/processor.h **** } while (0)
+ 283:include/asm/processor.h **** 
+ 284:include/asm/processor.h **** static inline void __monitor(const void *eax, unsigned long ecx,
+ 285:include/asm/processor.h **** 		unsigned long edx)
+ 286:include/asm/processor.h **** {
+ 287:include/asm/processor.h **** 	/* "monitor %eax,%ecx,%edx;" */
+ 288:include/asm/processor.h **** 	asm volatile(
+ 289:include/asm/processor.h **** 		".byte 0x0f,0x01,0xc8;"
+ 290:include/asm/processor.h **** 		: :"a" (eax), "c" (ecx), "d"(edx));
+ 291:include/asm/processor.h **** }
+ 292:include/asm/processor.h **** 
+ 293:include/asm/processor.h **** static inline void __mwait(unsigned long eax, unsigned long ecx)
+ 294:include/asm/processor.h **** {
+ 295:include/asm/processor.h **** 	/* "mwait %eax,%ecx;" */
+ 296:include/asm/processor.h **** 	asm volatile(
+ 297:include/asm/processor.h **** 		".byte 0x0f,0x01,0xc9;"
+ 298:include/asm/processor.h **** 		: :"a" (eax), "c" (ecx));
+ 299:include/asm/processor.h **** }
+ 300:include/asm/processor.h **** 
+ 301:include/asm/processor.h **** /* from system description table in BIOS.  Mostly for MCA use, but
+ 302:include/asm/processor.h **** others may find it useful. */
+ 303:include/asm/processor.h **** extern unsigned int machine_id;
+ 304:include/asm/processor.h **** extern unsigned int machine_submodel_id;
+ 305:include/asm/processor.h **** extern unsigned int BIOS_revision;
+ 306:include/asm/processor.h **** extern unsigned int mca_pentium_flag;
+ 307:include/asm/processor.h **** 
+ 308:include/asm/processor.h **** /* Boot loader type from the setup header */
+ 309:include/asm/processor.h **** extern int bootloader_type;
+ 310:include/asm/processor.h **** 
+ 311:include/asm/processor.h **** /*
+ 312:include/asm/processor.h ****  * User space process size: 3GB (default).
+ 313:include/asm/processor.h ****  */
+ 314:include/asm/processor.h **** #define TASK_SIZE	(PAGE_OFFSET)
+ 315:include/asm/processor.h **** 
+ 316:include/asm/processor.h **** /* This decides where the kernel will search for a free chunk of vm
+ 317:include/asm/processor.h ****  * space during mmap's.
+ 318:include/asm/processor.h ****  */
+ 319:include/asm/processor.h **** #define TASK_UNMAPPED_BASE	(PAGE_ALIGN(TASK_SIZE / 3))
+ 320:include/asm/processor.h **** 
+ 321:include/asm/processor.h **** #define HAVE_ARCH_PICK_MMAP_LAYOUT
+ 322:include/asm/processor.h **** 
+ 323:include/asm/processor.h **** /*
+ 324:include/asm/processor.h ****  * Size of io_bitmap.
+ 325:include/asm/processor.h ****  */
+GAS LISTING  			page 41
+
+
+ 326:include/asm/processor.h **** #define IO_BITMAP_BITS  65536
+ 327:include/asm/processor.h **** #define IO_BITMAP_BYTES (IO_BITMAP_BITS/8)
+ 328:include/asm/processor.h **** #define IO_BITMAP_LONGS (IO_BITMAP_BYTES/sizeof(long))
+ 329:include/asm/processor.h **** #define IO_BITMAP_OFFSET offsetof(struct tss_struct,io_bitmap)
+ 330:include/asm/processor.h **** #define INVALID_IO_BITMAP_OFFSET 0x8000
+ 331:include/asm/processor.h **** #define INVALID_IO_BITMAP_OFFSET_LAZY 0x9000
+ 332:include/asm/processor.h **** 
+ 333:include/asm/processor.h **** struct i387_fsave_struct {
+ 334:include/asm/processor.h **** 	long	cwd;
+ 335:include/asm/processor.h **** 	long	swd;
+ 336:include/asm/processor.h **** 	long	twd;
+ 337:include/asm/processor.h **** 	long	fip;
+ 338:include/asm/processor.h **** 	long	fcs;
+ 339:include/asm/processor.h **** 	long	foo;
+ 340:include/asm/processor.h **** 	long	fos;
+ 341:include/asm/processor.h **** 	long	st_space[20];	/* 8*10 bytes for each FP-reg = 80 bytes */
+ 342:include/asm/processor.h **** 	long	status;		/* software status information */
+ 343:include/asm/processor.h **** };
+ 344:include/asm/processor.h **** 
+ 345:include/asm/processor.h **** struct i387_fxsave_struct {
+ 346:include/asm/processor.h **** 	unsigned short	cwd;
+ 347:include/asm/processor.h **** 	unsigned short	swd;
+ 348:include/asm/processor.h **** 	unsigned short	twd;
+ 349:include/asm/processor.h **** 	unsigned short	fop;
+ 350:include/asm/processor.h **** 	long	fip;
+ 351:include/asm/processor.h **** 	long	fcs;
+ 352:include/asm/processor.h **** 	long	foo;
+ 353:include/asm/processor.h **** 	long	fos;
+ 354:include/asm/processor.h **** 	long	mxcsr;
+ 355:include/asm/processor.h **** 	long	mxcsr_mask;
+ 356:include/asm/processor.h **** 	long	st_space[32];	/* 8*16 bytes for each FP-reg = 128 bytes */
+ 357:include/asm/processor.h **** 	long	xmm_space[32];	/* 8*16 bytes for each XMM-reg = 128 bytes */
+ 358:include/asm/processor.h **** 	long	padding[56];
+ 359:include/asm/processor.h **** } __attribute__ ((aligned (16)));
+ 360:include/asm/processor.h **** 
+ 361:include/asm/processor.h **** struct i387_soft_struct {
+ 362:include/asm/processor.h **** 	long	cwd;
+ 363:include/asm/processor.h **** 	long	swd;
+ 364:include/asm/processor.h **** 	long	twd;
+ 365:include/asm/processor.h **** 	long	fip;
+ 366:include/asm/processor.h **** 	long	fcs;
+ 367:include/asm/processor.h **** 	long	foo;
+ 368:include/asm/processor.h **** 	long	fos;
+ 369:include/asm/processor.h **** 	long	st_space[20];	/* 8*10 bytes for each FP-reg = 80 bytes */
+ 370:include/asm/processor.h **** 	unsigned char	ftop, changed, lookahead, no_update, rm, alimit;
+ 371:include/asm/processor.h **** 	struct info	*info;
+ 372:include/asm/processor.h **** 	unsigned long	entry_eip;
+ 373:include/asm/processor.h **** };
+ 374:include/asm/processor.h **** 
+ 375:include/asm/processor.h **** union i387_union {
+ 376:include/asm/processor.h **** 	struct i387_fsave_struct	fsave;
+ 377:include/asm/processor.h **** 	struct i387_fxsave_struct	fxsave;
+ 378:include/asm/processor.h **** 	struct i387_soft_struct soft;
+ 379:include/asm/processor.h **** };
+ 380:include/asm/processor.h **** 
+ 381:include/asm/processor.h **** typedef struct {
+ 382:include/asm/processor.h **** 	unsigned long seg;
+GAS LISTING  			page 42
+
+
+ 383:include/asm/processor.h **** } mm_segment_t;
+ 384:include/asm/processor.h **** 
+ 385:include/asm/processor.h **** struct thread_struct;
+ 386:include/asm/processor.h **** 
+ 387:include/asm/processor.h **** struct tss_struct {
+ 388:include/asm/processor.h **** 	unsigned short	back_link,__blh;
+ 389:include/asm/processor.h **** 	unsigned long	esp0;
+ 390:include/asm/processor.h **** 	unsigned short	ss0,__ss0h;
+ 391:include/asm/processor.h **** 	unsigned long	esp1;
+ 392:include/asm/processor.h **** 	unsigned short	ss1,__ss1h;	/* ss1 is used to cache MSR_IA32_SYSENTER_CS */
+ 393:include/asm/processor.h **** 	unsigned long	esp2;
+ 394:include/asm/processor.h **** 	unsigned short	ss2,__ss2h;
+ 395:include/asm/processor.h **** 	unsigned long	__cr3;
+ 396:include/asm/processor.h **** 	unsigned long	eip;
+ 397:include/asm/processor.h **** 	unsigned long	eflags;
+ 398:include/asm/processor.h **** 	unsigned long	eax,ecx,edx,ebx;
+ 399:include/asm/processor.h **** 	unsigned long	esp;
+ 400:include/asm/processor.h **** 	unsigned long	ebp;
+ 401:include/asm/processor.h **** 	unsigned long	esi;
+ 402:include/asm/processor.h **** 	unsigned long	edi;
+ 403:include/asm/processor.h **** 	unsigned short	es, __esh;
+ 404:include/asm/processor.h **** 	unsigned short	cs, __csh;
+ 405:include/asm/processor.h **** 	unsigned short	ss, __ssh;
+ 406:include/asm/processor.h **** 	unsigned short	ds, __dsh;
+ 407:include/asm/processor.h **** 	unsigned short	fs, __fsh;
+ 408:include/asm/processor.h **** 	unsigned short	gs, __gsh;
+ 409:include/asm/processor.h **** 	unsigned short	ldt, __ldth;
+ 410:include/asm/processor.h **** 	unsigned short	trace, io_bitmap_base;
+ 411:include/asm/processor.h **** 	/*
+ 412:include/asm/processor.h **** 	 * The extra 1 is there because the CPU will access an
+ 413:include/asm/processor.h **** 	 * additional byte beyond the end of the IO permission
+ 414:include/asm/processor.h **** 	 * bitmap. The extra byte must be all 1 bits, and must
+ 415:include/asm/processor.h **** 	 * be within the limit.
+ 416:include/asm/processor.h **** 	 */
+ 417:include/asm/processor.h **** 	unsigned long	io_bitmap[IO_BITMAP_LONGS + 1];
+ 418:include/asm/processor.h **** 	/*
+ 419:include/asm/processor.h **** 	 * Cache the current maximum and the last task that used the bitmap:
+ 420:include/asm/processor.h **** 	 */
+ 421:include/asm/processor.h **** 	unsigned long io_bitmap_max;
+ 422:include/asm/processor.h **** 	struct thread_struct *io_bitmap_owner;
+ 423:include/asm/processor.h **** 	/*
+ 424:include/asm/processor.h **** 	 * pads the TSS to be cacheline-aligned (size is 0x100)
+ 425:include/asm/processor.h **** 	 */
+ 426:include/asm/processor.h **** 	unsigned long __cacheline_filler[35];
+ 427:include/asm/processor.h **** 	/*
+ 428:include/asm/processor.h **** 	 * .. and then another 0x100 bytes for emergency kernel stack
+ 429:include/asm/processor.h **** 	 */
+ 430:include/asm/processor.h **** 	unsigned long stack[64];
+ 431:include/asm/processor.h **** } __attribute__((packed));
+ 432:include/asm/processor.h **** 
+ 433:include/asm/processor.h **** #define ARCH_MIN_TASKALIGN	16
+ 434:include/asm/processor.h **** 
+ 435:include/asm/processor.h **** struct thread_struct {
+ 436:include/asm/processor.h **** /* cached TLS descriptors. */
+ 437:include/asm/processor.h **** 	struct desc_struct tls_array[GDT_ENTRY_TLS_ENTRIES];
+ 438:include/asm/processor.h **** 	unsigned long	esp0;
+ 439:include/asm/processor.h **** 	unsigned long	sysenter_cs;
+GAS LISTING  			page 43
+
+
+ 440:include/asm/processor.h **** 	unsigned long	eip;
+ 441:include/asm/processor.h **** 	unsigned long	esp;
+ 442:include/asm/processor.h **** 	unsigned long	fs;
+ 443:include/asm/processor.h **** 	unsigned long	gs;
+ 444:include/asm/processor.h **** /* Hardware debugging registers */
+ 445:include/asm/processor.h **** 	unsigned long	debugreg[8];  /* %%db0-7 debug registers */
+ 446:include/asm/processor.h **** /* fault info */
+ 447:include/asm/processor.h **** 	unsigned long	cr2, trap_no, error_code;
+ 448:include/asm/processor.h **** /* floating point info */
+ 449:include/asm/processor.h **** 	union i387_union	i387;
+ 450:include/asm/processor.h **** /* virtual 86 mode info */
+ 451:include/asm/processor.h **** 	struct vm86_struct __user * vm86_info;
+ 452:include/asm/processor.h **** 	unsigned long		screen_bitmap;
+ 453:include/asm/processor.h **** 	unsigned long		v86flags, v86mask, saved_esp0;
+ 454:include/asm/processor.h **** 	unsigned int		saved_fs, saved_gs;
+ 455:include/asm/processor.h **** /* IO permissions */
+ 456:include/asm/processor.h **** 	unsigned long	*io_bitmap_ptr;
+ 457:include/asm/processor.h **** /* max allowed port in the bitmap, in bytes: */
+ 458:include/asm/processor.h **** 	unsigned long	io_bitmap_max;
+ 459:include/asm/processor.h **** };
+ 460:include/asm/processor.h **** 
+ 461:include/asm/processor.h **** #define INIT_THREAD  {							\
+ 462:include/asm/processor.h **** 	.vm86_info = NULL,						\
+ 463:include/asm/processor.h **** 	.sysenter_cs = __KERNEL_CS,					\
+ 464:include/asm/processor.h **** 	.io_bitmap_ptr = NULL,						\
+ 465:include/asm/processor.h **** }
+ 466:include/asm/processor.h **** 
+ 467:include/asm/processor.h **** /*
+ 468:include/asm/processor.h ****  * Note that the .io_bitmap member must be extra-big. This is because
+ 469:include/asm/processor.h ****  * the CPU will access an additional byte beyond the end of the IO
+ 470:include/asm/processor.h ****  * permission bitmap. The extra byte must be all 1 bits, and must
+ 471:include/asm/processor.h ****  * be within the limit.
+ 472:include/asm/processor.h ****  */
+ 473:include/asm/processor.h **** #define INIT_TSS  {							\
+ 474:include/asm/processor.h **** 	.esp0		= sizeof(init_stack) + (long)&init_stack,	\
+ 475:include/asm/processor.h **** 	.ss0		= __KERNEL_DS,					\
+ 476:include/asm/processor.h **** 	.ss1		= __KERNEL_CS,					\
+ 477:include/asm/processor.h **** 	.ldt		= GDT_ENTRY_LDT,				\
+ 478:include/asm/processor.h **** 	.io_bitmap_base	= INVALID_IO_BITMAP_OFFSET,			\
+ 479:include/asm/processor.h **** 	.io_bitmap	= { [ 0 ... IO_BITMAP_LONGS] = ~0 },		\
+ 480:include/asm/processor.h **** }
+ 481:include/asm/processor.h **** 
+ 482:include/asm/processor.h **** static inline void load_esp0(struct tss_struct *tss, struct thread_struct *thread)
+ 483:include/asm/processor.h **** {
+ 484:include/asm/processor.h **** 	tss->esp0 = thread->esp0;
+ 485:include/asm/processor.h **** 	/* This can only happen when SEP is enabled, no need to test "SEP"arately */
+ 486:include/asm/processor.h **** 	if (unlikely(tss->ss1 != thread->sysenter_cs)) {
+ 487:include/asm/processor.h **** 		tss->ss1 = thread->sysenter_cs;
+ 488:include/asm/processor.h **** 		wrmsr(MSR_IA32_SYSENTER_CS, thread->sysenter_cs, 0);
+ 489:include/asm/processor.h **** 	}
+ 490:include/asm/processor.h **** }
+ 491:include/asm/processor.h **** 
+ 492:include/asm/processor.h **** #define start_thread(regs, new_eip, new_esp) do {		\
+ 493:include/asm/processor.h **** 	__asm__("movl %0,%%fs ; movl %0,%%gs": :"r" (0));	\
+ 494:include/asm/processor.h **** 	set_fs(USER_DS);					\
+ 495:include/asm/processor.h **** 	regs->xds = __USER_DS;					\
+ 496:include/asm/processor.h **** 	regs->xes = __USER_DS;					\
+GAS LISTING  			page 44
+
+
+ 497:include/asm/processor.h **** 	regs->xss = __USER_DS;					\
+ 498:include/asm/processor.h **** 	regs->xcs = __USER_CS;					\
+ 499:include/asm/processor.h **** 	regs->eip = new_eip;					\
+ 500:include/asm/processor.h **** 	regs->esp = new_esp;					\
+ 501:include/asm/processor.h **** } while (0)
+ 502:include/asm/processor.h **** 
+ 503:include/asm/processor.h **** /*
+ 504:include/asm/processor.h ****  * This special macro can be used to load a debugging register
+ 505:include/asm/processor.h ****  */
+ 506:include/asm/processor.h **** #define loaddebug(thread,register) \
+ 507:include/asm/processor.h ****                __asm__("movl %0,%%db" #register  \
+ 508:include/asm/processor.h ****                        : /* no output */ \
+ 509:include/asm/processor.h ****                        :"r" ((thread)->debugreg[register]))
+ 510:include/asm/processor.h **** 
+ 511:include/asm/processor.h **** /* Forward declaration, a strange C thing */
+ 512:include/asm/processor.h **** struct task_struct;
+ 513:include/asm/processor.h **** struct mm_struct;
+ 514:include/asm/processor.h **** 
+ 515:include/asm/processor.h **** /* Free all resources held by a thread. */
+ 516:include/asm/processor.h **** extern void release_thread(struct task_struct *);
+ 517:include/asm/processor.h **** 
+ 518:include/asm/processor.h **** /* Prepare to copy thread state - unlazy all lazy status */
+ 519:include/asm/processor.h **** extern void prepare_to_copy(struct task_struct *tsk);
+ 520:include/asm/processor.h **** 
+ 521:include/asm/processor.h **** /*
+ 522:include/asm/processor.h ****  * create a kernel thread without removing it from tasklists
+ 523:include/asm/processor.h ****  */
+ 524:include/asm/processor.h **** extern int kernel_thread(int (*fn)(void *), void * arg, unsigned long flags);
+ 525:include/asm/processor.h **** 
+ 526:include/asm/processor.h **** extern unsigned long thread_saved_pc(struct task_struct *tsk);
+ 527:include/asm/processor.h **** void show_trace(struct task_struct *task, unsigned long *stack);
+ 528:include/asm/processor.h **** 
+ 529:include/asm/processor.h **** unsigned long get_wchan(struct task_struct *p);
+ 530:include/asm/processor.h **** 
+ 531:include/asm/processor.h **** #define THREAD_SIZE_LONGS      (THREAD_SIZE/sizeof(unsigned long))
+ 532:include/asm/processor.h **** #define KSTK_TOP(info)                                                 \
+ 533:include/asm/processor.h **** ({                                                                     \
+ 534:include/asm/processor.h ****        unsigned long *__ptr = (unsigned long *)(info);                 \
+ 535:include/asm/processor.h ****        (unsigned long)(&__ptr[THREAD_SIZE_LONGS]);                     \
+ 536:include/asm/processor.h **** })
+ 537:include/asm/processor.h **** 
+ 538:include/asm/processor.h **** #define task_pt_regs(task)                                             \
+ 539:include/asm/processor.h **** ({                                                                     \
+ 540:include/asm/processor.h ****        struct pt_regs *__regs__;                                       \
+ 541:include/asm/processor.h ****        __regs__ = (struct pt_regs *)KSTK_TOP((task)->thread_info);     \
+ 542:include/asm/processor.h ****        __regs__ - 1;                                                   \
+ 543:include/asm/processor.h **** })
+ 544:include/asm/processor.h **** 
+ 545:include/asm/processor.h **** #define KSTK_EIP(task) (task_pt_regs(task)->eip)
+ 546:include/asm/processor.h **** #define KSTK_ESP(task) (task_pt_regs(task)->esp)
+ 547:include/asm/processor.h **** 
+ 548:include/asm/processor.h **** 
+ 549:include/asm/processor.h **** struct microcode_header {
+ 550:include/asm/processor.h **** 	unsigned int hdrver;
+ 551:include/asm/processor.h **** 	unsigned int rev;
+ 552:include/asm/processor.h **** 	unsigned int date;
+ 553:include/asm/processor.h **** 	unsigned int sig;
+GAS LISTING  			page 45
+
+
+ 554:include/asm/processor.h **** 	unsigned int cksum;
+ 555:include/asm/processor.h **** 	unsigned int ldrver;
+ 556:include/asm/processor.h **** 	unsigned int pf;
+ 557:include/asm/processor.h **** 	unsigned int datasize;
+ 558:include/asm/processor.h **** 	unsigned int totalsize;
+ 559:include/asm/processor.h **** 	unsigned int reserved[3];
+ 560:include/asm/processor.h **** };
+ 561:include/asm/processor.h **** 
+ 562:include/asm/processor.h **** struct microcode {
+ 563:include/asm/processor.h **** 	struct microcode_header hdr;
+ 564:include/asm/processor.h **** 	unsigned int bits[0];
+ 565:include/asm/processor.h **** };
+ 566:include/asm/processor.h **** 
+ 567:include/asm/processor.h **** typedef struct microcode microcode_t;
+ 568:include/asm/processor.h **** typedef struct microcode_header microcode_header_t;
+ 569:include/asm/processor.h **** 
+ 570:include/asm/processor.h **** /* microcode format is extended from prescott processors */
+ 571:include/asm/processor.h **** struct extended_signature {
+ 572:include/asm/processor.h **** 	unsigned int sig;
+ 573:include/asm/processor.h **** 	unsigned int pf;
+ 574:include/asm/processor.h **** 	unsigned int cksum;
+ 575:include/asm/processor.h **** };
+ 576:include/asm/processor.h **** 
+ 577:include/asm/processor.h **** struct extended_sigtable {
+ 578:include/asm/processor.h **** 	unsigned int count;
+ 579:include/asm/processor.h **** 	unsigned int cksum;
+ 580:include/asm/processor.h **** 	unsigned int reserved[3];
+ 581:include/asm/processor.h **** 	struct extended_signature sigs[0];
+ 582:include/asm/processor.h **** };
+ 583:include/asm/processor.h **** /* '6' because it used to be for P6 only (but now covers Pentium 4 as well) */
+ 584:include/asm/processor.h **** #define MICROCODE_IOCFREE	_IO('6',0)
+ 585:include/asm/processor.h **** 
+ 586:include/asm/processor.h **** /* REP NOP (PAUSE) is a good thing to insert into busy-wait loops. */
+ 587:include/asm/processor.h **** static inline void rep_nop(void)
+ 588:include/asm/processor.h **** {
+ 589:include/asm/processor.h **** 	__asm__ __volatile__("rep;nop": : :"memory");
+ 590:include/asm/processor.h **** }
+ 591:include/asm/processor.h **** 
+ 592:include/asm/processor.h **** #define cpu_relax()	rep_nop()
+ 593:include/asm/processor.h **** 
+ 594:include/asm/processor.h **** /* generic versions from gas */
+ 595:include/asm/processor.h **** #define GENERIC_NOP1	".byte 0x90\n"
+ 596:include/asm/processor.h **** #define GENERIC_NOP2    	".byte 0x89,0xf6\n"
+ 597:include/asm/processor.h **** #define GENERIC_NOP3        ".byte 0x8d,0x76,0x00\n"
+ 598:include/asm/processor.h **** #define GENERIC_NOP4        ".byte 0x8d,0x74,0x26,0x00\n"
+ 599:include/asm/processor.h **** #define GENERIC_NOP5        GENERIC_NOP1 GENERIC_NOP4
+ 600:include/asm/processor.h **** #define GENERIC_NOP6	".byte 0x8d,0xb6,0x00,0x00,0x00,0x00\n"
+ 601:include/asm/processor.h **** #define GENERIC_NOP7	".byte 0x8d,0xb4,0x26,0x00,0x00,0x00,0x00\n"
+ 602:include/asm/processor.h **** #define GENERIC_NOP8	GENERIC_NOP1 GENERIC_NOP7
+ 603:include/asm/processor.h **** 
+ 604:include/asm/processor.h **** /* Opteron nops */
+ 605:include/asm/processor.h **** #define K8_NOP1 GENERIC_NOP1
+ 606:include/asm/processor.h **** #define K8_NOP2	".byte 0x66,0x90\n" 
+ 607:include/asm/processor.h **** #define K8_NOP3	".byte 0x66,0x66,0x90\n" 
+ 608:include/asm/processor.h **** #define K8_NOP4	".byte 0x66,0x66,0x66,0x90\n" 
+ 609:include/asm/processor.h **** #define K8_NOP5	K8_NOP3 K8_NOP2 
+ 610:include/asm/processor.h **** #define K8_NOP6	K8_NOP3 K8_NOP3
+GAS LISTING  			page 46
+
+
+ 611:include/asm/processor.h **** #define K8_NOP7	K8_NOP4 K8_NOP3
+ 612:include/asm/processor.h **** #define K8_NOP8	K8_NOP4 K8_NOP4
+ 613:include/asm/processor.h **** 
+ 614:include/asm/processor.h **** /* K7 nops */
+ 615:include/asm/processor.h **** /* uses eax dependencies (arbitary choice) */
+ 616:include/asm/processor.h **** #define K7_NOP1  GENERIC_NOP1
+ 617:include/asm/processor.h **** #define K7_NOP2	".byte 0x8b,0xc0\n" 
+ 618:include/asm/processor.h **** #define K7_NOP3	".byte 0x8d,0x04,0x20\n"
+ 619:include/asm/processor.h **** #define K7_NOP4	".byte 0x8d,0x44,0x20,0x00\n"
+ 620:include/asm/processor.h **** #define K7_NOP5	K7_NOP4 ASM_NOP1
+ 621:include/asm/processor.h **** #define K7_NOP6	".byte 0x8d,0x80,0,0,0,0\n"
+ 622:include/asm/processor.h **** #define K7_NOP7        ".byte 0x8D,0x04,0x05,0,0,0,0\n"
+ 623:include/asm/processor.h **** #define K7_NOP8        K7_NOP7 ASM_NOP1
+ 624:include/asm/processor.h **** 
+ 625:include/asm/processor.h **** #ifdef CONFIG_MK8
+ 626:include/asm/processor.h **** #define ASM_NOP1 K8_NOP1
+ 627:include/asm/processor.h **** #define ASM_NOP2 K8_NOP2
+ 628:include/asm/processor.h **** #define ASM_NOP3 K8_NOP3
+ 629:include/asm/processor.h **** #define ASM_NOP4 K8_NOP4
+ 630:include/asm/processor.h **** #define ASM_NOP5 K8_NOP5
+ 631:include/asm/processor.h **** #define ASM_NOP6 K8_NOP6
+ 632:include/asm/processor.h **** #define ASM_NOP7 K8_NOP7
+ 633:include/asm/processor.h **** #define ASM_NOP8 K8_NOP8
+ 634:include/asm/processor.h **** #elif defined(CONFIG_MK7)
+ 635:include/asm/processor.h **** #define ASM_NOP1 K7_NOP1
+ 636:include/asm/processor.h **** #define ASM_NOP2 K7_NOP2
+ 637:include/asm/processor.h **** #define ASM_NOP3 K7_NOP3
+ 638:include/asm/processor.h **** #define ASM_NOP4 K7_NOP4
+ 639:include/asm/processor.h **** #define ASM_NOP5 K7_NOP5
+ 640:include/asm/processor.h **** #define ASM_NOP6 K7_NOP6
+ 641:include/asm/processor.h **** #define ASM_NOP7 K7_NOP7
+ 642:include/asm/processor.h **** #define ASM_NOP8 K7_NOP8
+ 643:include/asm/processor.h **** #else
+ 644:include/asm/processor.h **** #define ASM_NOP1 GENERIC_NOP1
+ 645:include/asm/processor.h **** #define ASM_NOP2 GENERIC_NOP2
+ 646:include/asm/processor.h **** #define ASM_NOP3 GENERIC_NOP3
+ 647:include/asm/processor.h **** #define ASM_NOP4 GENERIC_NOP4
+ 648:include/asm/processor.h **** #define ASM_NOP5 GENERIC_NOP5
+ 649:include/asm/processor.h **** #define ASM_NOP6 GENERIC_NOP6
+ 650:include/asm/processor.h **** #define ASM_NOP7 GENERIC_NOP7
+ 651:include/asm/processor.h **** #define ASM_NOP8 GENERIC_NOP8
+ 652:include/asm/processor.h **** #endif
+ 653:include/asm/processor.h **** 
+ 654:include/asm/processor.h **** #define ASM_NOP_MAX 8
+ 655:include/asm/processor.h **** 
+ 656:include/asm/processor.h **** /* Prefetch instructions for Pentium III and AMD Athlon */
+ 657:include/asm/processor.h **** /* It's not worth to care about 3dnow! prefetches for the K6
+ 658:include/asm/processor.h ****    because they are microcoded there and very slow.
+ 659:include/asm/processor.h ****    However we don't do prefetches for pre XP Athlons currently
+ 660:include/asm/processor.h ****    That should be fixed. */
+ 661:include/asm/processor.h **** #define ARCH_HAS_PREFETCH
+ 662:include/asm/processor.h **** extern inline void prefetch(const void *x)
+ 663:include/asm/processor.h **** {
+ 496              	.loc 8 663 0
+ 497 01d3 8B03     	movl (%ebx),%eax
+ 498              	.LBB44:
+ 664:include/asm/processor.h **** 	alternative_input(ASM_NOP4,
+GAS LISTING  			page 47
+
+
+ 499              	.loc 8 664 0
+ 500              	
+ 501              	661:
+ 502 01d5 8D742600 	.byte 0x8d,0x74,0x26,0x00
+ 503              	
+ 504              	662:
+ 505              	.section .altinstructions,"a"
+ 506              	.align 4
+ 507 0000 D5010000 	.long 661b
+ 508 0004 00000000 	.long 663f
+ 509 0008 19       	.byte 25
+ 510 0009 04       	.byte 662b-661b
+ 511 000a 03       	.byte 664f-663f
+ 512              	.previous
+ 513              	.section .altinstr_replacement,"ax"
+ 514              	663:
+ 515 0000 0F1800   	prefetchnta (%eax)
+ 516              	664:
+ 517              	.previous
+ 518              	
+ 519              	.LBE44:
+ 520              	.LBE43:
+ 521 01d9 81FB0000 	cmpl $ieee80211_crypto_algs,%ebx
+ 521      0000
+ 522 01df 7409     	je .L138
+ 137:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		if (alg->ops == ops)
+ 523              	.loc 1 137 0
+ 524 01e1 395308   	cmpl %edx,8(%ebx)
+ 525 01e4 740D     	je .L125
+ 526              	.LBB45:
+ 527              	.loc 1 136 0
+ 528 01e6 8B1B     	movl (%ebx),%ebx
+ 529 01e8 EBE9     	jmp .L139
+ 530              	.L138:
+ 531              	.LBE45:
+ 138:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 			goto found;
+ 139:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	}
+ 140:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee80211_crypto_lock, flags);
+ 532              	.loc 1 140 0
+ 533              	
+ 534 01ea 569D     	pushl %esi
+ 141:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	return -EINVAL;
+ 535              	.loc 1 141 0
+ 536              	
+ 537 01ec B8EAFFFF 	movl $-22,%eax
+ 537      FF
+ 538 01f1 EB30     	jmp .L116
+ 539              	.L125:
+ 142:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 143:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****       found:
+ 144:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	printk(KERN_DEBUG "ieee80211_crypt: unregistered algorithm "
+ 540              	.loc 1 144 0
+ 541 01f3 FF32     	pushl (%edx)
+ 542              	.LCFI46:
+ 543 01f5 68680000 	pushl $.LC2
+ 543      00
+ 544              	.LCFI47:
+GAS LISTING  			page 48
+
+
+ 545 01fa E8FCFFFF 	call printk
+ 545      FF
+ 546              	.loc 2 162 0
+ 547 01ff 58       	popl %eax
+ 548              	.LCFI48:
+ 549 0200 5A       	popl %edx
+ 550              	.LCFI49:
+ 551              	.LBB46:
+ 552              	.LBB47:
+ 553              	.LBB48:
+ 554              	.loc 2 150 0
+ 555 0201 8B03     	movl (%ebx),%eax
+ 556 0203 8B5304   	movl 4(%ebx),%edx
+ 557              	.LBB49:
+ 558              	.loc 2 151 0
+ 559 0206 895004   	movl %edx,4(%eax)
+ 560              	.loc 2 152 0
+ 561 0209 8902     	movl %eax,(%edx)
+ 562              	.LBE49:
+ 563              	.LBE48:
+ 564              	.loc 2 165 0
+ 565 020b C7430400 	movl $2097664,4(%ebx)
+ 565      022000
+ 566              	.loc 2 164 0
+ 567 0212 C7030001 	movl $1048832,(%ebx)
+ 567      1000
+ 568              	.LBE47:
+ 569              	.LBE46:
+ 145:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	       "'%s'\n", ops->name);
+ 146:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	list_del(&alg->list);
+ 147:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee80211_crypto_lock, flags);
+ 570              	.loc 1 147 0
+ 571              	
+ 572 0218 569D     	pushl %esi
+ 148:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	kfree(alg);
+ 573              	.loc 1 148 0
+ 574              	
+ 575 021a 53       	pushl %ebx
+ 576              	.LCFI50:
+ 577 021b E8FCFFFF 	call kfree
+ 577      FF
+ 149:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	return 0;
+ 578              	.loc 1 149 0
+ 579 0220 5B       	popl %ebx
+ 580              	.LCFI51:
+ 581 0221 31C0     	xorl %eax,%eax
+ 582              	.L116:
+ 150:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+ 583              	.loc 1 150 0
+ 584 0223 5B       	popl %ebx
+ 585 0224 5E       	popl %esi
+ 586 0225 C3       	ret
+ 587              	.LFE670:
+ 589              	.globl ieee80211_get_crypto_ops
+ 591              	ieee80211_get_crypto_ops:
+ 592              	.LFB671:
+ 151:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+GAS LISTING  			page 49
+
+
+ 152:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** struct ieee80211_crypto_ops *ieee80211_get_crypto_ops(const char *name)
+ 153:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 593              	.loc 1 153 0
+ 594 0226 57       	pushl %edi
+ 595              	.LCFI52:
+ 596 0227 56       	pushl %esi
+ 597              	.LCFI53:
+ 154:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	struct ieee80211_crypto_alg *alg;
+ 155:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	unsigned long flags;
+ 156:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 157:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_lock_irqsave(&ieee80211_crypto_lock, flags);
+ 598              	.loc 1 157 0
+ 599              	
+ 600 0228 9C59FA   	pushfl
+ 601              	
+ 602              	.LBB50:
+ 158:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	list_for_each_entry(alg, &ieee80211_crypto_algs, list) {
+ 603              	.loc 1 158 0
+ 604 022b 8B150000 	movl ieee80211_crypto_algs,%edx
+ 604      0000
+ 605              	.L162:
+ 606              	.LBE50:
+ 607              	.LBB51:
+ 608              	.loc 8 663 0
+ 609 0231 8B02     	movl (%edx),%eax
+ 610              	.LBB52:
+ 611              	.loc 8 664 0
+ 612              	
+ 613              	661:
+ 614 0233 8D742600 	.byte 0x8d,0x74,0x26,0x00
+ 615              	
+ 616              	662:
+ 617              	.section .altinstructions,"a"
+ 618 000b 00       	.align 4
+ 619 000c 33020000 	.long 661b
+ 620 0010 03000000 	.long 663f
+ 621 0014 19       	.byte 25
+ 622 0015 04       	.byte 662b-661b
+ 623 0016 03       	.byte 664f-663f
+ 624              	.previous
+ 625              	.section .altinstr_replacement,"ax"
+ 626              	663:
+ 627 0003 0F1800   	prefetchnta (%eax)
+ 628              	664:
+ 629              	.previous
+ 630              	
+ 631              	.LBE52:
+ 632              	.LBE51:
+ 633 0237 81FA0000 	cmpl $ieee80211_crypto_algs,%edx
+ 633      0000
+ 634 023d 7421     	je .L161
+ 635              	.LBB53:
+ 636              	.loc 7 104 0
+ 637 023f 8B4208   	movl 8(%edx),%eax
+ 638 0242 8B30     	movl (%eax),%esi
+ 639              	.LBB54:
+ 640              	.loc 7 107 0
+GAS LISTING  			page 50
+
+
+ 641 0244 8B7C240C 	movl 12(%esp),%edi
+ 642              	
+ 643 0248 AC       	1:lodsb
+ 644 0249 AE       	scasb
+ 645 024a 7508     	jne 2f
+ 646 024c 84C0     	testb %al,%al
+ 647 024e 75F8     	jne 1b
+ 648 0250 31C0     	xorl %eax,%eax
+ 649 0252 EB04     	jmp 3f
+ 650 0254 19C0     	2:sbbl %eax,%eax
+ 651 0256 0C01     	orb $1,%al
+ 652              	3:
+ 653              	
+ 654              	.LBE54:
+ 655              	.LBE53:
+ 656              	.loc 7 104 0
+ 657 0258 85C0     	testl %eax,%eax
+ 658 025a 740A     	je .L157
+ 659              	.LBB55:
+ 660              	.loc 1 158 0
+ 661 025c 8B12     	movl (%edx),%edx
+ 662 025e EBD1     	jmp .L162
+ 663              	.L161:
+ 664              	.LBE55:
+ 159:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 		if (strcmp(alg->ops->name, name) == 0)
+ 160:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 			goto found;
+ 161:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	}
+ 162:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee80211_crypto_lock, flags);
+ 665              	.loc 1 162 0
+ 666              	
+ 667 0260 519D     	pushl %ecx
+ 163:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	return NULL;
+ 668              	.loc 1 163 0
+ 669              	
+ 670 0262 31C0     	xorl %eax,%eax
+ 671 0264 EB05     	jmp .L140
+ 672              	.L150:
+ 673              	.L157:
+ 164:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 165:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c ****       found:
+ 166:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	spin_unlock_irqrestore(&ieee80211_crypto_lock, flags);
+ 674              	.loc 1 166 0
+ 675              	
+ 676 0266 519D     	pushl %ecx
+ 167:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	return alg->ops;
+ 677              	.loc 1 167 0
+ 678              	
+ 679 0268 8B4208   	movl 8(%edx),%eax
+ 680              	.L140:
+ 168:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+ 681              	.loc 1 168 0
+ 682 026b 5E       	popl %esi
+ 683 026c 5F       	popl %edi
+ 684 026d C3       	ret
+ 685              	.LFE671:
+ 688              	ieee80211_crypt_null_init:
+ 689              	.LFB672:
+GAS LISTING  			page 51
+
+
+ 169:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 170:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** static void *ieee80211_crypt_null_init(int keyidx)
+ 171:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 690              	.loc 1 171 0
+ 172:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	return (void *)1;
+ 173:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+ 691              	.loc 1 173 0
+ 692 026e B8010000 	movl $1,%eax
+ 692      00
+ 693 0273 C3       	ret
+ 694              	.LFE672:
+ 697              	ieee80211_crypt_null_deinit:
+ 698              	.LFB673:
+ 174:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 175:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** static void ieee80211_crypt_null_deinit(void *priv)
+ 176:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 699              	.loc 1 176 0
+ 700              	.loc 1 176 0
+ 701 0274 C3       	ret
+ 702              	.LFE673:
+ 704              	.section .rodata.str1.1
+ 705              	.LC3:
+ 706 0099 4E554C4C 	.string "NULL"
+ 706      00
+ 707              	.data
+ 708 0008 00000000 	.align 32
+ 708      00000000 
+ 708      00000000 
+ 708      00000000 
+ 708      00000000 
+ 711              	ieee80211_crypt_null:
+ 712 0020 99000000 	.long .LC3
+ 713 0024 00000000 	.zero 8
+ 713      00000000 
+ 714 002c 6E020000 	.long ieee80211_crypt_null_init
+ 715 0030 74020000 	.long ieee80211_crypt_null_deinit
+ 716 0034 00000000 	.zero 56
+ 716      00000000 
+ 716      00000000 
+ 716      00000000 
+ 716      00000000 
+ 717 006c 00000000 	.long __this_module
+ 718              	.section .init.text,"ax",@progbits
+ 720              	ieee80211_crypto_init:
+ 721              	.LFB674:
+ 177:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+ 178:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 179:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** static struct ieee80211_crypto_ops ieee80211_crypt_null = {
+ 180:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	.name = "NULL",
+ 181:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	.init = ieee80211_crypt_null_init,
+ 182:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	.deinit = ieee80211_crypt_null_deinit,
+ 183:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	.owner = THIS_MODULE,
+ 184:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** };
+ 185:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 186:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** static int __init ieee80211_crypto_init(void)
+ 187:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 722              	.loc 1 187 0
+GAS LISTING  			page 52
+
+
+ 188:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	return ieee80211_register_crypto_ops(&ieee80211_crypt_null);
+ 723              	.loc 1 188 0
+ 724 0000 68200000 	pushl $ieee80211_crypt_null
+ 724      00
+ 725              	.LCFI54:
+ 726 0005 E8FCFFFF 	call ieee80211_register_crypto_ops
+ 726      FF
+ 727 000a 59       	popl %ecx
+ 728              	.LCFI55:
+ 189:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** }
+ 729              	.loc 1 189 0
+ 730 000b C3       	ret
+ 731              	.LFE674:
+ 733              	.section .exit.text,"ax",@progbits
+ 735              	ieee80211_crypto_deinit:
+ 736              	.LFB675:
+ 190:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 
+ 191:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** static void __exit ieee80211_crypto_deinit(void)
+ 192:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** {
+ 737              	.loc 1 192 0
+ 193:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	ieee80211_unregister_crypto_ops(&ieee80211_crypt_null);
+ 738              	.loc 1 193 0
+ 739 0000 68200000 	pushl $ieee80211_crypt_null
+ 739      00
+ 740              	.LCFI56:
+ 741 0005 E8FCFFFF 	call ieee80211_unregister_crypto_ops
+ 741      FF
+ 742              	.loc 2 251 0
+ 743 000a 813D0000 	cmpl $ieee80211_crypto_algs,ieee80211_crypto_algs
+ 743      00000000 
+ 743      0000
+ 744 0014 58       	popl %eax
+ 745              	.LCFI57:
+ 746 0015 7402     	je .L166
+ 194:/home/usuario/ipw3945install/ieee80211-1.1.12/ieee80211_crypt.c **** 	BUG_ON(!list_empty(&ieee80211_crypto_algs));
+ 747              	.loc 1 194 0
+ 748              	
+ 749 0017 0F0B     	ud2
+ 750              	
+ 751              	
+ 752              	.L166:
+ 753 0019 C3       	ret
+ 754              	.LFE675:
+ 756              	.section __kcrctab,"a",@progbits
+ 757              	.align 4
+ 760              	__kcrctab_ieee80211_crypt_deinit_entries:
+ 761 0000 00000000 	.long __crc_ieee80211_crypt_deinit_entries
+ 762              	.section __ksymtab_strings,"a",@progbits
+ 765              	__kstrtab_ieee80211_crypt_deinit_entries:
+ 766 0000 69656565 	.string "ieee80211_crypt_deinit_entries"
+ 766      38303231 
+ 766      315F6372 
+ 766      7970745F 
+ 766      6465696E 
+ 767              	.section __ksymtab,"a",@progbits
+ 768              	.align 4
+ 771              	__ksymtab_ieee80211_crypt_deinit_entries:
+GAS LISTING  			page 53
+
+
+ 772 0000 00000000 	.long ieee80211_crypt_deinit_entries
+ 773 0004 00000000 	.long __kstrtab_ieee80211_crypt_deinit_entries
+ 774              	.section __kcrctab
+ 775              	.align 4
+ 778              	__kcrctab_ieee80211_crypt_deinit_handler:
+ 779 0004 00000000 	.long __crc_ieee80211_crypt_deinit_handler
+ 780              	.section __ksymtab_strings
+ 783              	__kstrtab_ieee80211_crypt_deinit_handler:
+ 784 001f 69656565 	.string "ieee80211_crypt_deinit_handler"
+ 784      38303231 
+ 784      315F6372 
+ 784      7970745F 
+ 784      6465696E 
+ 785              	.section __ksymtab
+ 786              	.align 4
+ 789              	__ksymtab_ieee80211_crypt_deinit_handler:
+ 790 0008 00000000 	.long ieee80211_crypt_deinit_handler
+ 791 000c 1F000000 	.long __kstrtab_ieee80211_crypt_deinit_handler
+ 792              	.section __kcrctab
+ 793              	.align 4
+ 796              	__kcrctab_ieee80211_crypt_delayed_deinit:
+ 797 0008 00000000 	.long __crc_ieee80211_crypt_delayed_deinit
+ 798              	.section __ksymtab_strings
+ 801              	__kstrtab_ieee80211_crypt_delayed_deinit:
+ 802 003e 69656565 	.string "ieee80211_crypt_delayed_deinit"
+ 802      38303231 
+ 802      315F6372 
+ 802      7970745F 
+ 802      64656C61 
+ 803              	.section __ksymtab
+ 804              	.align 4
+ 807              	__ksymtab_ieee80211_crypt_delayed_deinit:
+ 808 0010 00000000 	.long ieee80211_crypt_delayed_deinit
+ 809 0014 3E000000 	.long __kstrtab_ieee80211_crypt_delayed_deinit
+ 810              	.section __kcrctab
+ 811              	.align 4
+ 814              	__kcrctab_ieee80211_crypt_quiescing:
+ 815 000c 00000000 	.long __crc_ieee80211_crypt_quiescing
+ 816              	.section __ksymtab_strings
+ 819              	__kstrtab_ieee80211_crypt_quiescing:
+ 820 005d 69656565 	.string "ieee80211_crypt_quiescing"
+ 820      38303231 
+ 820      315F6372 
+ 820      7970745F 
+ 820      71756965 
+ 821              	.section __ksymtab
+ 822              	.align 4
+ 825              	__ksymtab_ieee80211_crypt_quiescing:
+ 826 0018 00000000 	.long ieee80211_crypt_quiescing
+ 827 001c 5D000000 	.long __kstrtab_ieee80211_crypt_quiescing
+ 828              	.section __kcrctab
+ 829              	.align 4
+ 832              	__kcrctab_ieee80211_register_crypto_ops:
+ 833 0010 00000000 	.long __crc_ieee80211_register_crypto_ops
+ 834              	.section __ksymtab_strings
+ 837              	__kstrtab_ieee80211_register_crypto_ops:
+ 838 0077 69656565 	.string "ieee80211_register_crypto_ops"
+GAS LISTING  			page 54
+
+
+ 838      38303231 
+ 838      315F7265 
+ 838      67697374 
+ 838      65725F63 
+ 839              	.section __ksymtab
+ 840              	.align 4
+ 843              	__ksymtab_ieee80211_register_crypto_ops:
+ 844 0020 00000000 	.long ieee80211_register_crypto_ops
+ 845 0024 77000000 	.long __kstrtab_ieee80211_register_crypto_ops
+ 846              	.section __kcrctab
+ 847              	.align 4
+ 850              	__kcrctab_ieee80211_unregister_crypto_ops:
+ 851 0014 00000000 	.long __crc_ieee80211_unregister_crypto_ops
+ 852              	.section __ksymtab_strings
+ 853 0095 00000000 	.align 32
+ 853      00000000 
+ 853      000000
+ 856              	__kstrtab_ieee80211_unregister_crypto_ops:
+ 857 00a0 69656565 	.string "ieee80211_unregister_crypto_ops"
+ 857      38303231 
+ 857      315F756E 
+ 857      72656769 
+ 857      73746572 
+ 858              	.section __ksymtab
+ 859              	.align 4
+ 862              	__ksymtab_ieee80211_unregister_crypto_ops:
+ 863 0028 00000000 	.long ieee80211_unregister_crypto_ops
+ 864 002c A0000000 	.long __kstrtab_ieee80211_unregister_crypto_ops
+ 865              	.section __kcrctab
+ 866              	.align 4
+ 869              	__kcrctab_ieee80211_get_crypto_ops:
+ 870 0018 00000000 	.long __crc_ieee80211_get_crypto_ops
+ 871              	.section __ksymtab_strings
+ 874              	__kstrtab_ieee80211_get_crypto_ops:
+ 875 00c0 69656565 	.string "ieee80211_get_crypto_ops"
+ 875      38303231 
+ 875      315F6765 
+ 875      745F6372 
+ 875      7970746F 
+ 876              	.section __ksymtab
+ 877              	.align 4
+ 880              	__ksymtab_ieee80211_get_crypto_ops:
+ 881 0030 00000000 	.long ieee80211_get_crypto_ops
+ 882 0034 C0000000 	.long __kstrtab_ieee80211_get_crypto_ops
+ 883              	.globl init_module
+ 884              	.set init_module,ieee80211_crypto_init
+ 885              	.globl cleanup_module
+ 886              	.set cleanup_module,ieee80211_crypto_deinit
+ 887              	.weak __crc_ieee80211_get_crypto_ops
+ 888              	.weak __crc_ieee80211_unregister_crypto_ops
+ 889              	.weak __crc_ieee80211_register_crypto_ops
+ 890              	.weak __crc_ieee80211_crypt_quiescing
+ 891              	.weak __crc_ieee80211_crypt_delayed_deinit
+ 892              	.weak __crc_ieee80211_crypt_deinit_handler
+ 893              	.weak __crc_ieee80211_crypt_deinit_entries
+ 1416              	.Letext0:
+ 28167              	.ident "GCC: (GNU) 3.4.5 20050809 (prerelease) (Ubuntu 3.4.4-6ubuntu8.1)"
+GAS LISTING  			page 55
+
+
+GAS LISTING  			page 56
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 ieee80211_crypt.c
+ {entrada estándar}:13     .modinfo:0000000000000000 __mod_author21
+ {entrada estándar}:17     .modinfo:0000000000000015 __mod_description22
+ {entrada estándar}:21     .modinfo:000000000000002f __mod_license23
+ {entrada estándar}:27     .data:0000000000000000 ieee80211_crypto_algs
+                             .bss:0000000000000000 ieee80211_crypto_lock
+ {entrada estándar}:35     .text:0000000000000000 ieee80211_crypt_deinit_entries
+ {entrada estándar}:165    .text:0000000000000082 ieee80211_crypt_quiescing
+ {entrada estándar}:188    .text:0000000000000096 ieee80211_crypt_deinit_handler
+ {entrada estándar}:262    .text:00000000000000f4 ieee80211_crypt_delayed_deinit
+ {entrada estándar}:353    .text:000000000000015c ieee80211_register_crypto_ops
+ {entrada estándar}:476    .text:00000000000001c4 ieee80211_unregister_crypto_ops
+ {entrada estándar}:591    .text:0000000000000226 ieee80211_get_crypto_ops
+ {entrada estándar}:688    .text:000000000000026e ieee80211_crypt_null_init
+ {entrada estándar}:697    .text:0000000000000274 ieee80211_crypt_null_deinit
+ {entrada estándar}:711    .data:0000000000000020 ieee80211_crypt_null
+ {entrada estándar}:720    .init.text:0000000000000000 ieee80211_crypto_init
+ {entrada estándar}:735    .exit.text:0000000000000000 ieee80211_crypto_deinit
+ {entrada estándar}:760    __kcrctab:0000000000000000 __kcrctab_ieee80211_crypt_deinit_entries
+ {entrada estándar}:765    __ksymtab_strings:0000000000000000 __kstrtab_ieee80211_crypt_deinit_entries
+ {entrada estándar}:771    __ksymtab:0000000000000000 __ksymtab_ieee80211_crypt_deinit_entries
+ {entrada estándar}:778    __kcrctab:0000000000000004 __kcrctab_ieee80211_crypt_deinit_handler
+ {entrada estándar}:783    __ksymtab_strings:000000000000001f __kstrtab_ieee80211_crypt_deinit_handler
+ {entrada estándar}:789    __ksymtab:0000000000000008 __ksymtab_ieee80211_crypt_deinit_handler
+ {entrada estándar}:796    __kcrctab:0000000000000008 __kcrctab_ieee80211_crypt_delayed_deinit
+ {entrada estándar}:801    __ksymtab_strings:000000000000003e __kstrtab_ieee80211_crypt_delayed_deinit
+ {entrada estándar}:807    __ksymtab:0000000000000010 __ksymtab_ieee80211_crypt_delayed_deinit
+ {entrada estándar}:814    __kcrctab:000000000000000c __kcrctab_ieee80211_crypt_quiescing
+ {entrada estándar}:819    __ksymtab_strings:000000000000005d __kstrtab_ieee80211_crypt_quiescing
+ {entrada estándar}:825    __ksymtab:0000000000000018 __ksymtab_ieee80211_crypt_quiescing
+ {entrada estándar}:832    __kcrctab:0000000000000010 __kcrctab_ieee80211_register_crypto_ops
+ {entrada estándar}:837    __ksymtab_strings:0000000000000077 __kstrtab_ieee80211_register_crypto_ops
+ {entrada estándar}:843    __ksymtab:0000000000000020 __ksymtab_ieee80211_register_crypto_ops
+ {entrada estándar}:850    __kcrctab:0000000000000014 __kcrctab_ieee80211_unregister_crypto_ops
+ {entrada estándar}:856    __ksymtab_strings:00000000000000a0 __kstrtab_ieee80211_unregister_crypto_ops
+ {entrada estándar}:862    __ksymtab:0000000000000028 __ksymtab_ieee80211_unregister_crypto_ops
+ {entrada estándar}:869    __kcrctab:0000000000000018 __kcrctab_ieee80211_get_crypto_ops
+ {entrada estándar}:874    __ksymtab_strings:00000000000000c0 __kstrtab_ieee80211_get_crypto_ops
+ {entrada estándar}:880    __ksymtab:0000000000000030 __ksymtab_ieee80211_get_crypto_ops
+ {entrada estándar}:720    .init.text:0000000000000000 init_module
+ {entrada estándar}:735    .exit.text:0000000000000000 cleanup_module
+
+UNDEFINED SYMBOLS
+wake_up_process
+kfree
+printk
+jiffies
+__mod_timer
+malloc_sizes
+kmem_cache_alloc
+__this_module
+__crc_ieee80211_crypt_deinit_entries
+__crc_ieee80211_crypt_deinit_handler
+__crc_ieee80211_crypt_delayed_deinit
+__crc_ieee80211_crypt_quiescing
+__crc_ieee80211_register_crypto_ops
+GAS LISTING  			page 57
+
+
+__crc_ieee80211_unregister_crypto_ops
+__crc_ieee80211_get_crypto_ops

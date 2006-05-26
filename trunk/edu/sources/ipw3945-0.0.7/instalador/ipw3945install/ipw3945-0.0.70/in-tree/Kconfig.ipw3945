@@ -1,0 +1,50 @@
+config IPW3945
+	tristate "Intel PRO/Wireless 3945ABG Network Connection"
+	depends on IEEE80211 && PCI && NET_RADIO
+	select FW_LOADER
+	---help---
+          A driver for the Intel PRO/Wireless 3945ABG Network
+	  Connection adapter. 
+
+          See <file:Documentation/networking/README.ipw3945> for 
+	  information on the capabilities currently enabled in this 
+	  driver and for tips for debugging issues and problems.
+
+	  In order to use this driver, you will need a firmware image for it.
+          You can obtain the firmware from
+	  <http://ipw3945.sf.net/>.  See the above referenced README.ipw3945 
+	  for information on where to install the firmare images.
+
+          You will also very likely need the Wireless Tools in order to
+          configure your card:
+
+          <http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html>.
+ 
+          If you want to compile the driver as a module ( = code which can be
+          inserted in and remvoed from the running kernel whenever you want),
+          say M here and read <file:Documentation/modules.txt>.  The module
+          will be called ipw3945.ko.
+
+config IPW3945_DEBUG
+	bool "Enable full debugging output in IPW3945 module."
+	depends on IPW3945
+	---help---
+	  This option will enable debug tracing output for the IPW3945.  
+
+	  This will result in the kernel module being ~100k larger.  You can 
+	  control which debug output is sent to the kernel log by setting the 
+	  value in 
+
+	  /sys/bus/pci/drivers/ipw3945/debug_level
+
+	  This entry will only exist if this option is enabled.
+
+	  To set a value, simply echo an 8-byte hex value to the same file:
+
+	  % echo 0x00000FFO > /sys/bus/pci/drivers/ipw3945/debug_level
+
+	  You can find the list of debug mask values in 
+	  drivers/net/wireless/ipw3945.h
+
+	  If you are not trying to debug or develop the IPW3945 driver, you 
+	  most likely want to say N here.

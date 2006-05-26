@@ -1,0 +1,1 @@
+cmd_/home/usuario/ipw3945install/ipw3945-0.0.70/ipw3945.ko := ld -m elf_i386 -r -o /home/usuario/ipw3945install/ipw3945-0.0.70/ipw3945.ko /home/usuario/ipw3945install/ipw3945-0.0.70/ipw3945.o /home/usuario/ipw3945install/ipw3945-0.0.70/ipw3945.mod.o

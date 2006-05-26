@@ -1,0 +1,49 @@
+# Portuguese translation for ipw2200-source package
+# Portuguese Translation Team - http://www.DebianPT.org
+# Miguel Figueiredo <elmig@debianPT.org>, 2005
+
+msgid ""
+msgstr ""
+"Project-Id-Version: ipw2200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-05-15 17:06+0200\n"
+"PO-Revision-Date: 2005-03-30 23:26+0000\n"
+"Last-Translator: Miguel Figueiredo <elmig@debianpt.org>\n"
+"Language-Team: Portuguese <traduz@debianpt.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid "Additional firmware needed"
+msgstr "É necessário firmware adicional"
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid ""
+"The ipw2200 driver needs additional firmware to function properly. Presently "
+"you do not have the firmware installed on your system or the installed "
+"version does not match the requirements of this version of the ipw2200 "
+"driver."
+msgstr ""
+"Para funcionar correctamente, o controlador ipw2200 necessita de firmware "
+"adicional. Actualmente você não tem o firmware instalado no seu sistema "
+"ou a versão instalada não coincide com os requisitos desta versão do "
+"controlador ipw2200."
+
+#. Type: note
+#. Description
+#: ../templates:3
+msgid ""
+"The firmware is not provided as debian package, because the redistribution "
+"license does not allow for that. However the firmware can be downloaded for "
+"free from Intel's homepage. Please see /usr/share/doc/ipw2200-modules-"
+"${KVERS}/README.firmware for further instructions."
+msgstr ""
+"O firmware não é disponibilizado como um pacote Debian, porque a licença de "
+"redistribuição não o permite. No entanto pode ser feito o download do "
+"firmware de forma grátis na página da Intel. Para mais instruções, por "
+"favor veja /usr/share/doc/ipw2200-modules-${KVERS}/README.firmware."
