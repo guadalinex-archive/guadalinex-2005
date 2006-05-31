@@ -101,3 +101,26 @@ Installed-Size: 56
 MD5sum: 9ea8f4574f6b7336ada91d8c6d6603c4
 Description: Definición del v3-edu de Debian/guadalinex.
 
+Package: xserver-xorg-driver-i810
+Source: xorg
+Version: 6.8.2-77uda1
+Priority: optional
+Section: x11
+Maintainer: Ubuntu X Maintainers <ubuntu-devel@lists.ubuntu.com>
+Depends: xserver-xorg-core (>= 6.8.2-35)
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Architecture: i386
+Filename: ./xserver-xorg-driver-i810_6.8.2-77uda1_i386.deb
+Size: 206206
+Installed-Size: 404
+MD5sum: 17badcb1b39c6b9d435fb58a57d36fef
+Description: X.Org X server -- Intel driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for the Intel i8xx and i9xx series of cards.  In particular,
+ it supports:
+  i8xx series: i810, i815, i830, i845, i855, i865
+  i9xx series: i915, i945
+ .
+ For more information, please see the xserver-xorg package description.
+
