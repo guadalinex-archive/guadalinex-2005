@@ -22,6 +22,9 @@ class CaptureLogGui(object):
         xml.signal_autoconnect(self)
 
         self.mainwindow = xml.get_widget('mainwindow')
+        icon = gtk.gdk.pixbuf_new_from_file("/usr/share/hermes/img/logo.svg")
+
+        self.mainwindow.set_icon(icon)
         self.mainwindow.show_all()
         self.devnameentry = xml.get_widget('devname')
 
@@ -53,7 +56,7 @@ class CaptureLogGui(object):
 
 
     def on_help_clicked(self, *args):
-        webbrowser.open("http://www.juntadeandalucia.es/repositorio/webs/guadalinex2005/doku.php?id=recogida_de_informacion_para_hermes")
+        webbrowser.open("/usr/share/hermes/doc/html/index.html")
 
 
     # Private methods ####################

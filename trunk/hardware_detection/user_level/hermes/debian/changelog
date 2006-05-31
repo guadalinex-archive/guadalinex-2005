@@ -1,14 +1,21 @@
+hermeshardware (0.1-7) unstable; urgency=low
+
+  * Added hermesdruid icon.
+  * Added help in local file (html).
+
+ -- Gumersindo Coronel Pérez <gcoronel@emergya.info>  Wed, 31 May 2006 13:59:10 +0200
+
 hermeshardware (0.1-6) unstable; urgency=low
 
   * Added support for Apple iPod.
 
- -- Gumersindo Coronel Pérez <gumerco@emergya.info>  Tue, 20 Dec 2005 11:03:16 +0100
+ -- Gumersindo Coronel Pérez <gcoronel@emergya.info>  Tue, 20 Dec 2005 11:03:16 +0100
 
 hermeshardware (0.1-5) unstable; urgency=low
 
   * Added support for usb webcam devices.
 
- -- Gumersindo Coronel Pérez <gumerco@emergya.info>  Wed, 23 Nov 2005 13:08:48 +0100
+ -- Gumersindo Coronel Pérez <gcoronel@emergya.info>  Wed, 23 Nov 2005 13:08:48 +0100
 
 hermeshardware (0.1-4) unstable; urgency=low
 
