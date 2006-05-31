@@ -1,0 +1,24 @@
+Junto con este HOWTO se distribuyen algunos archivos en el directorio 'debian'.
+Los archivos son los siguientes:
+debian/
+|-- changelog
+|-- control
+`-- patches
+    `-- 993_uda_i810_945GM.diff
+
+Y los pasos para parchear y regenerar el paquete del módulo
+i810 (y en realidad todos los demás, aunque sólo necesitemos éste)
+son los siguientes:
+
+1. Bajarse los fuentes de las X:
+% sudo apt-get sources xserver-xorg
+2. Copiar los archivos modificados al paquete:
+% cp -a xorg-6.8.2uda/debian/* xorg-6.8.2/debian/
+3. Regenerar:
+% cd xorg-6.8.2/
+% debuild -uc -us
+[Pedirá dependencias y habrá que instalarlas]
+
+Si da un error de que esta modificado el *.tgz o algo así,
+regenerar sólo los binarios:
+% make -f debian/rules binary

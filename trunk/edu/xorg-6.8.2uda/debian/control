@@ -1,0 +1,1006 @@
+Source: xorg
+Section: x11
+Priority: optional
+Maintainer: Ubuntu X Maintainers <ubuntu-devel@lists.ubuntu.com>
+Uploaders: Daniel Stone <daniel.stone@ubuntu.com>, Fabio M. Di Nitto <fabbione@fabbione.net>
+Standards-Version: 3.6.1
+Build-Depends: dpkg (>= 1.7.0), flex, bison, libfreetype6-dev, po-debconf, debhelper (>= 4.1.16), libglide2-dev (>> 2001.01.26) [i386], libglide3-dev (>= 2002.04.10-7) [alpha amd64 i386 ia64], dbs, libexpat1-dev | libexpat-dev, libpam0g-dev | libpam-dev, zlib1g-dev | libz-dev, x11proto-render-dev, x11proto-core-dev (>= 6.8.99.8-2), xtrans-dev, x11proto-bigreqs-dev, x11proto-composite-dev, x11proto-damage-dev, x11proto-evie-dev, x11proto-fixes-dev, x11proto-dmx-dev, x11proto-gl-dev, x11proto-input-dev, x11proto-fonts-dev, x11proto-fontcache-dev, x11proto-kb-dev, libxau-dev (>= 1:0.1.2-2), libxdmcp-dev (>= 1:0.1.3-2), x11proto-xinerama-dev, x11proto-randr-dev, x11proto-record-dev, x11proto-resource-dev, x11proto-scrnsaver-dev, x11proto-trap-dev, x11proto-video-dev, x11proto-xcmisc-dev, x11proto-xext-dev, x11proto-xf86bigfont-dev, x11proto-xf86dga-dev, x11proto-xf86misc-dev, x11proto-xf86vidmode-dev, libx11-dev (>= 1:6.2.1+cvs.20050615-1), libxmu-dev (>= 1:6.2.3-1), libxi-dev (>= 1:1.3.0-1), libxrender-dev (>= 1:0.9.0-1), libxxf86vm-dev (>= 7.0.0-1), libxkbfile-dev (>= 7.0.0-2), libgl1-mesa-dev (>> 6.3.1.1)
+Build-Conflicts: libxfont-dev
+
+Package: xdmx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends: x-common (>= 1.05)
+Conflicts: xserver-xorg (<= 6.8.1-0.2)
+Replaces: xserver-xorg (<= 6.8.1-0.2)
+Description: Distributed Multi-head X server
+ Xdmx is a proxy X server that uses one or more other X servers as its display
+ devices.  It provides multi-head X functionality for displays that might be
+ located on different machines.  Xdmx functions as a front-end X server that acts
+ as a proxy to a set of back-end X servers.  All of the visible rendering is passed
+ to the back-end X servers.  Clients connect to the Xdmx front-end, and everything
+ appears as it would in a regular multi-head configuration.  If Xinerama is enabled
+ (e.g., with +xinerama on the command line), the clients see a single large screen.
+
+Package: xorg-common
+Architecture: all
+Depends: ${misc:Depends}, debianutils (>= 1.13), lsb-base (>= 1.3-9ubuntu2), xrgb
+Suggests: x-window-system-core | x-window-system
+Conflicts: xfree86-common (<< 6.8.0)
+Replaces: xfree86-common (<< 6.8.0)
+Provides: xfree86-common
+Description: X Window System (X.Org) infrastructure
+ xorg-common contains the filesystem infrastructure required for further
+ installation of the X Window System in any configuration.
+ .
+ Those wishing an X server only (with remote font services and clients) will
+ also require the xserver-common package and an X server package (most
+ likely xserver-xorg).
+ .
+ The counterpart to the above configuration is a machine with the X libraries
+ (the xlibs package), xbase-clients, a window manager, some X font packages,
+ and likely many more client packages.
+ .
+ Those who desire a standalone X workstation (and/or are fuzzy on the concepts
+ of X servers and X clients) will require both of the above sets of packages.
+ For convenience, the "x-window-system" metapackage will include everything
+ that is required for a standalone X workstation.
+ .
+ A number of terms are used to refer to the X Window System, including "X", "X
+ Version 11", "X11", "X11R6", and "X11R6.8".  The version of X used in Debian
+ is derived from the version released by the X.Org Foundation, and is thus
+ often also referred to as "X.Org".  All of the preceding quoted terms are
+ functionally interchangeable in an Ubuntu system.
+ .
+ Until recently, Ubuntu shipped an X implementation released by The XFree86
+ Project, Inc. (aka "XFree86").  The X.Org implementation is derived from the
+ XFree86 implementation previously shipped, and is generally considered to be
+ the standard implementation by vendors and distributors.
+ .
+ Still confused?  Install this package and then read the files in
+ /usr/share/doc/xorg-common/ for assistance.
+
+Package: xlibs-data
+Section: libs
+Priority: optional
+Architecture: all
+Conflicts: xbase-clients (<< 4.3.0), libx11-6 (<< 1:6.2.1+cvs.20050615-1)
+Replaces: libx11-6 (<< 1:6.2.1+cvs.20050615-1)
+Description: X Window System client data
+ This package provides architecture-independent data for the X Window System,
+ including the locale data and a set of bitmap and pixmap image files commonly
+ used by X clients, including a set of cursor themes.
+ .
+ Architecture-independent X Keyboard Extension (XKB) data is found in the
+ xlibs package.
+
+Package: xlibs-static-dev
+Section: libdevel
+Architecture: any
+Depends: x-dev, libxext-dev, libx11-dev, zlib1g-dev | libz-dev
+Description: X Window System client library development files
+ xlibs-static-dev provides static versions of the X Window System libraries
+ (some of which, but not all, implement extensions to the X protocol) that do
+ not exist in shared object form for various reasons (such as the fact that
+ their APIs have not stabilized, or that they are deprecated).  Header files
+ and manual pages are also provided.
+ .
+ The following libraries are supplied by this package:
+  - libxf86config, a library which parses XFree86/Xorg server configuration
+    files.
+
+Package: xlibs-static-pic
+Section: libdevel
+Priority: extra
+Architecture: any
+Depends: xlibs-static-dev (= ${Source-Version}), libxext-dev, libx11-dev, zlib1g-dev | libz-dev
+Description: X Window System client extension library PIC archives
+ This package provides PIC archives (static libraries with PIC information)
+ of the libraries in xlibs-static-dev.
+ .
+ These archives are available for use *only* for linking into objects which
+ will be accessed using the dlopen() function, such as plugin modules for
+ applications.
+ .
+ See the xlibs-static-dev package for a description of the specific libraries
+ available in this package.
+
+Package: xnest
+Architecture: any
+Depends: xserver-common, ${shlibs:Depends}, ${misc:Depends}
+Description: nested X server
+ Xnest is an X server that is itself an X client.  This allows you to run a
+ server within a server; this is occasionally useful for testing new window
+ managers and other X clients.
+ .
+ Xnest relies upon its parent X server for font services.
+
+Package: xserver-common
+Architecture: any
+Depends: xorg-common (>= 6.8.1), ${shlibs:Depends}, ${misc:Depends}
+Suggests: xserver-xorg | xserver, xfonts-base, xfonts-100dpi | xfonts-75dpi, xfonts-scalable, configlet-frontends
+Description: files and utilities common to all X servers
+ The X server is the hardware interface of the X Window System.  Its job is to
+ communicate with video display and input devices, and present them in a
+ standardized, abstract fashion via the X protocol to X clients (X-based
+ programs).  The X server largely relieves programs of having to know or care
+ about the details of the hardware with which they are interacting (such
+ things as 32-bit versus 8-bit color, the layout of the keyboard, how many
+ buttons the mouse has, etc.).  The catch is that the X server must itself
+ know the technical specifications of the graphics hardware and monitor, the
+ keyboard layout, the protocol used by the mouse, and so forth.
+ .
+ X servers either need fonts installed on the local host, or need to know of a
+ remote host that provides font services (with xfs, for instance).  The former
+ means that font packages are mandatory.  The latter means that font packages
+ may be gratuitous.  To err on the side of caution, install at least the
+ xfonts-base, xfonts-100dpi or xfonts-75dpi, and xfonts-scalable packages.
+
+Package: xserver-xorg
+Architecture: alpha amd64 arm hppa hurd-i386 i386 ia64 m68k mips mipsel powerpc sparc
+Pre-Depends: x-common (>= 1.05)
+Depends: xserver-xorg-core, ${F:XServer-XOrg-Special-Depends}${F:XServer-XOrg-Input-Depends}
+Description: the X.Org X server (dummy package)
+ This package depends on the full suite of the server and all drivers for the
+ X.Org X server, as well as providing a configuration infrastructure to manage
+ xorg.conf.
+
+Package: xserver-xorg-core
+Architecture: alpha amd64 arm hppa hurd-i386 i386 ia64 m68k mips mipsel powerpc sparc
+Depends: xserver-common (>= ${Source-Version}), ${shlibs:Depends}, ${misc:Depends}
+Recommends: discover1, xresprobe (>= 0.4.13), laptop-detect, xkeyboard-config
+Conflicts: libxfont-xtt, xserver-xfree86
+Replaces: xserver-xorg (<< 6.8.2-46)
+Provides: xserver, xserver-xfree86
+Description: the X.Org X server
+ The X.Org X server is an X server for several architectures and operating
+ systems, which is derived from the XFree86 4.x series of X servers.
+ .
+ The X.Org server supports most modern graphics hardware from most vendors,
+ and supersedes all XFree86 X servers.
+ .
+ If the discover, laptop-detect and xresprobe packages are installed,
+ this package's configuration script will use them to attempt automatic
+ configuration of the X server based on your information returned by your
+ video card, mouse, and monitor.
+
+Package: xserver-xorg-driver-apm
+Architecture: amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- APM driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Alliance Pro Motion cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-ark
+Architecture: amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Ark driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Ark Logic cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-ati
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg-driver-atimisc, xserver-xorg-driver-r128, xserver-xorg-driver-radeon, xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg-driver-atimisc, xserver-xorg-driver-r128, xserver-xorg-driver-radeon, xserver-xorg (<< 6.8.2-35)
+Provides: xserver-xorg-driver-atimisc, xserver-xorg-driver-r128, xserver-xorg-driver-radeon
+Description: X.Org X server -- ATI driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for the ATI Mach, Rage, Radeon, and FireGL series.  It
+ provides the 'atimisc', 'r128' and 'radeon' sub-drivers.
+ .
+ Note that this is not the same as the ATI-provided, binary-only, 'fglrx'
+ driver, which provides additional 3D functionality for some newer Radeon
+ cards, but is not supported.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-chips
+Architecture: amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Chips driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Chips & Technologies cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-cirrus
+Architecture: alpha amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Cirrus driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Cirrus Logic cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-cyrix
+Architecture: amd64 i386 ia64 hurd-i386
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Cyrix driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Cyrix cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-dummy
+Architecture: amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- dummy driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides a 'dummy' driver that does not actually do anything.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-fbdev
+Architecture: amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- fbdev driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides a framebuffer-based driver that draws to the framebuffer provided by
+ the kernel.  You will need an active, loaded kernel framebuffer driver to use
+ this driver, and it is mostly unaccelerated.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-glide
+Architecture: i386
+Depends: xserver-xorg-core (>= ${Server-ABI-Version}), libglide2
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Glide driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for 3dfx graphics cards using the Glide API.  This driver is
+ not recommended for use; the tdfx driver should probably be used instead.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-glint
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Glint driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Texas Instruments/3DLabs Glint and Permedia cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-i128
+Architecture: amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- i128 driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Number 9 Imagine (I128) cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-i740
+Architecture: i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- i740 driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Intel i740 cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-i810
+Architecture: amd64 i386
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Intel driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for the Intel i8xx and i9xx series of cards.  In particular,
+ it supports:
+  i8xx series: i810, i815, i830, i845, i855, i865
+  i9xx series: i915, i945 (G & GM)
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-imstt
+Architecture: i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- IMSTT driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Integrated Micro Solutions Twin Turbo cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-mga
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- mga driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for mga cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-neomagic
+Architecture: amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Neomagic driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Neomagic MagicGraph cards, commonly found in laptops.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-newport
+Architecture: i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Newport driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for the integrated Newport cards found in SGI Indy and
+ Indy2 machines.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-nsc
+Architecture: i386 hurd-i386
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- NSC driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for National Semiconductor Geode cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-nv
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg-driver-riva128, xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg-driver-riva128, xserver-xorg (<< 6.8.2-35)
+Provides: xserver-xorg-driver-riva128
+Description: X.Org X server -- NV driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for NVIDIA Riva, TNT, GeForce, and Quadro cards.
+ .
+ Note that this is not the same as the binary-only 'nvidia' support, which
+ adds 3D support, but is binary-only and not supported.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-rendition
+Architecture: alpha amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Rendition driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Rendition Verite cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-s3
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- S3 driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for some early S3 cards, including the Trio64 and 96x cards.
+ It does not provide support for ViRGE/Trio3D or Savage-based cards -- see
+ xserver-xorg-driver-s3virge and xserver-xorg-driver-savage, respectively, for a
+ driver that supports these chipsets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-s3virge
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- S3ViRGE driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for S3 ViRGE and Trio3D cards.  It does not provide support
+ for Trio64/96x or Savage-based cards -- see xserver-xorg-driver-s3 and
+ xserver-xorg-driver-savage, respectively, for a driver that supports these
+ chipsets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-savage
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Savage driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for S3 Savage/ProSavage/Twister cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-siliconmotion
+Architecture: alpha amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- SiliconMotion driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Silicon Motion Lynx/Cougar cards, commonly found in
+ laptops.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-sis
+Architecture: amd64 arm i386 ia64 hurd-i386 m68k powerpc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- SiS driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for SiS (all) and XGI (Volari) cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-sunbw2
+Architecture: sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- sunbw2 driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Sun BW2 cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-suncg14
+Architecture: sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- SunCG14 driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Sun CG14 cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-suncg3
+Architecture: sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- SunCG3 driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Sun CG3 cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-suncg6
+Architecture: sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- SunCG6 driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Sun CG6 cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-sunffb
+Architecture: sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- SunFFB driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Sun Creator/Elite cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-sunleo
+Architecture: sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- sunleo driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Sun Leo/ZX cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-suntcx
+Architecture: sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- SunTCX driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Sun TCX cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-tdfx
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- tdfx driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for 3dfx Voodoo cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-tga
+Architecture: alpha amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- TGA driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for TGA cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-trident
+Architecture: amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Trident driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Trident Blade/Image/ProVidia/TGUI/9xxx cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-tseng
+Architecture: amd64 i386 ia64 hurd-i386
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Tseng driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Tseng Labs cards.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-vesa
+Architecture: amd64 i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- VESA driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ uses the standard VESA interface provided on all video cards, but runs
+ unaccelerated.  This driver is not recommended for use unless you have a
+ problem  with the normal driver for your card, because it will peform very
+ badly.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-vga
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- vga driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ uses the standard VGA interface provided on all video cards, but runs
+ unaccelerated.  This driver is not recommended for use, because it will run
+ very slowly, and at a substandard resolution and colour depth.  If you have
+ substantial problems with the normal driver for your card, please consider
+ using the VESA driver (xserver-xorg-driver-vesa), as that will allow you to run
+ at a better resolution and colour depth.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-via
+Architecture: i386 ia64 hurd-i386
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Via driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Via/S3 CLE266/KM400/K8M800/UniChrome cards, which are
+ frequently found in low-form-factor Via motherboards, and in some laptops.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-vmware
+Architecture: i386 ia64 hurd-i386 sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- VMWare driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ uses the VMWare environment to draw.  It can only function within the VMWare
+ environment, running as a client.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-driver-v4l
+Architecture: alpha amd64 arm i386 ia64 powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Description: X.Org X server -- Video4Linux driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for the Video4Linux (V4L) video interface provided by the
+ Linux kernel.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-acecad
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- AceCAD input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for AceCAD graphics tablets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-aiptek
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Aiptek input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Aiptek HyperPen USB graphics tablets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-calcomp
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Calcomp input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Calcomp Drawing Board II and III graphics tablets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-citron
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Citron input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Citron Infrared Touch input devices.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-digitaledge
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- DigitalEdge input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for DigitalEdge graphics tablets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-dmc
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- DMC input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for DMC FIT-10 input devices.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-dynapro
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Dynapro input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Dynapro input devices.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-elographics
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- ELOGraphics input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for ELO Graphics graphics tablets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-fpit
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- FPIT input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Fujitsu Stylistic tablet PCs.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-hyperpen
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- HyperPen input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Aiptek HyperPen 6000 graphics tablets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-kbd
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- keyboard driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides the core keyboard driver.  You probably don't want to remove
+ this package.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-magellan
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Magellan input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Magellan SpaceMouse input devices.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-microtouch
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- MicroTouch input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for microtouch input devices.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-mouse
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- mouse driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for normal mice.  You probably don't want to remove this
+ package.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-mutouch
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- muTouch input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Microtouch input devices.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-palmax
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Palmax input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Palmax touchscreen systems.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-penmount
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Penmount input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Penmount input devices.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-spaceorb
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- SpaceOrb input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for SpaceOrb input devices.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-summa
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Summa input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Summa graphics tablets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-tek4957
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Tek4957 input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Tektronix 4957 graphics tablets.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-void
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- void input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ is a void input driver, and will never actually provide any input.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-input-wacom
+Architecture: alpha amd64 arm i386 ia64 hurd-i386 m68k powerpc sparc
+Depends: xserver-xorg-core (>= ${Server-ABI-Version})
+Conflicts: xserver-xorg (<< 6.8.2-35)
+Replaces: xserver-xorg (<< 6.8.2-35)
+Description: X.Org X server -- Wacom input driver
+ This driver for the X.Org X server (see xserver-xorg for a further description)
+ provides support for Wacom UD, PenPartner, Cintiq, Volito, Intuos and Graphire
+ graphics tablets, as well as the TabletPC.
+ .
+ For more information, please see the xserver-xorg package description.
+
+Package: xserver-xorg-dbg
+Priority: extra
+Architecture: alpha amd64 arm hppa hurd-i386 i386 ia64 m68k mips mipsel powerpc sparc
+Depends: xserver-common (>= ${Source-Version}), ${shlibs:Depends}, ${misc:Depends}
+Recommends: xserver-xorg, discover1, xresprobe, laptop-detect
+Conflicts: libxfont-xtt
+Replaces: xserver-common (<< 4.0), libxfont-xtt
+Provides: xserver, xserver-xorg
+Description: the X.Org X server (static version with debugging symbols)
+ This package is a variant of the xserver-xorg package which includes a
+ monolithic X.Org X server binary (as opposed to using loadable server
+ modules on the architectures where they are supported) and which retains
+ debugging symbols for execution tracing and core dump analysis.
+ .
+ Installation of the xserver-xorg package is recommended for documentation
+ of the X.Org X server, but is not mandatory.  See the package description
+ of xserver-xorg for further information.
+
+Package: xvfb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends: x-common (>= 1.05)
+Suggests: xbase-clients
+Description: virtual framebuffer X server
+ Xvfb provides an X server that can run on machines with no display hardware
+ and no physical input devices.  It emulates a dumb framebuffer using virtual
+ memory.  The primary use of this server was intended to be server testing,
+ but other novel uses for it have been found, including testing clients
+ against unusual depths and screen configurations, doing batch processing with
+ Xvfb as a background rendering engine, load testing, as an aid to porting the
+ X server to a new platform, and providing an unobtrusive way to run
+ applications that don't really need an X server but insist on having one
+ anyway.
+ .
+ This package also contains a convenience script called xvfb-run which
+ simplifies the automated execution of X clients in a virtual server
+ environment.  This convenience script requires the use of the xauth
+ program from xbase-clients, hence the suggestion of xbase-clients.
+
+Package: x-window-system-core
+Architecture: any
+Depends: ${F:XWSC-Special-Depends}libgl1-mesa, libglu1-mesa, xfonts-base (>> 4.0), xfonts-100dpi, xfonts-75dpi, xfonts-scalable, xbase-clients, xutils, xkeyboard-config
+Description: X Window System core components
+ This metapackage provides the essential components for a standalone
+ workstation running the X Window System.  It provides the X libraries, an X
+ server (except on the S/390 architecture), a set of fonts, and a group of
+ basic X clients and utilities.
+ .
+ Higher level metapackages, such as those for desktop environments, can
+ depend on this package and simplify their dependencies.
+ .
+ It should be noted that a package providing x-window-manager and a package
+ providing x-terminal-emulator should also be installed to ensure a
+ comfortable X experience.
+
+Package: x-window-system-dev
+Priority: extra
+Architecture: any
+Depends: libice-dev, libice6-dbg, libsm-dev, libsm6-dbg, libx11-6-dbg, libx11-dev, libxaw7-dbg, libxaw7-dev, libxext-dev, libxext6-dbg, libxi-dev, libxi6-dbg, libxmu-dev, libxmu6-dbg, libxmuu-dev, libxmuu1-dbg, libxpm-dev, libxpm4-dbg, libxrandr-dev, libxrandr2-dbg, libxt-dev, libxt6-dbg, libxtrap-dev, libxtrap6-dbg, libxtst-dev, libxtst6-dbg, libxv-dev, libxv1-dbg, x-dev, libgl1-mesa-dev, libglu1-mesa-dev, ${F:XWSD-Special-Depends}xlibs-static-dev
+Description: X Window System development components
+ This metapackage provides the components of the X Window System as developed
+ by the X.Org Project which are most interesting to programmers.
+ .
+ X Window System design documentation, manual pages, library reference works,
+ unstripped and static versions of the shared libraries, C header files, and
+ special versions of libraries available only in static form (with and without
+ PIC symbols included) are supplied by the packages depended on by this
+ metapackage.
+ .
+ This also provides header files for almost all extension protocols.
+
+Package: xlibs-dev
+Section: oldlibs
+Priority: extra
+Depends: libice-dev, libsm-dev, libx11-dev, libxext-dev, libxi-dev, libxmu-dev, libxmuu-dev, libxpm-dev, libxrandr-dev, libxt-dev, libxtrap-dev, libxtst-dev, libxv-dev, x-dev, xlibs-static-dev
+Architecture: all
+Description: X Window System client library development files transitional package
+ This package smooths upgrades from Debian 3.0 by depending on libice-dev,
+ libsm-dev, libx11-dev, libxext-dev, libxi-dev, libxmu-dev, libxmuu-dev,
+ libxpm-dev, libxrandr-dev, libxt-dev, libxtrap-dev, libxtst-dev, libxv-dev,
+ x-dev, and xlibs-static-dev.  This transitional package is only depended upon
+ by packages that haven't yet corrected their dependencies to reflect the new
+ library arrangement.
+
+Package: xlibs
+Section: oldlibs
+Priority: optional
+Depends: xkeyboard-config
+Architecture: all
+Description: X Window System client library transitional package
+ This package smooths upgrades from Ubuntu 5.04 ('Hoary') to Ubuntu 5.10
+ ('Breezy') by ensuring the smooth removal of all XKB configuration files that
+ were formerly in the 'xlibs' package.  If you are running Breezy already, you
+ may safely remove this package.
+
+Package: xbase-clients
+Architecture: all
+Depends: xauth, xdpyinfo, xhost, xinit, xkbutils, xpmutils, xprop, xrandr, xrdb, xsetmode, xsetpointer, xvinfo, mesa-utils, xset, xmodmap, xdriinfo, appres, beforelight, bitmap, editres, fstobdf, iceauth, ico, listres, oclock, smproxy, viewres, x11perf, xauth, xbiff, xcalc, xclipboard, xclock, xconsole, xcursorgen, xditview, xdpyinfo, xev, xeyes, xf86dga, xfd, xfontsel, xgamma, xgc, xhost, xinit, xkbutils, xkill, xload, xlogo, xlsatoms, xlsclients, xlsfonts, xmag, xman, xmessage, xmodmap, xmore, xprop, xrandr, xrgb, xrefresh, xset, xsetmode, xsetpointer, xsetroot, xsm, xstdcmap, xtrap, xvidtune, xvinfo, xwd, xwininfo, xwud, xutils
+Description: X Window System client utility transitional package
+ This package smooths upgrades from Ubuntu 5.04 ('Hoary') to Ubuntu 5.10
+ ('Breezy') by ensuring that most base X client utilities are installed.
+ If you are running Breezy already, you may safely remove this package.
+
+Package: xutils
+Architecture: all
+Depends: imake, xcursorgen, sessreg, xfonts-utils, xmkmf
+Description: X Window System miscellaneous utility transitional package
+ This package smooths upgrades from Ubuntu 5.04 ('Hoary') to Ubuntu 5.10
+ ('Breezy') by ensuring that most miscellaneous utilities traditionally
+ shipped with the sample implementation of X are installed.  For base X
+ clients, see the xbase-clients transitional package.
