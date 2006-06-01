@@ -345,6 +345,54 @@ Installed-Size: 2724
 MD5sum: e896208fbe1ad870833ba21728241633
 Description: Configuraci髇 de base para el v3-noescritorio de Debian/guadalinex.
 
+Package: hermeshardware
+Version: 0.1-7
+Priority: optional
+Section: utils
+Maintainer: Gumersindo Coronel P茅rez <gcoronel@emergya.info>
+Depends: hal, dbus, python2.4-dbus, python, python2.4, notification-daemon, libsane, grepmap
+Architecture: i386
+Filename: ./hermeshardware_0.1-7_i386.deb
+Size: 221954
+Installed-Size: 768
+MD5sum: 95a020e812137e6459bc0bd81b11f5a6
+Description: detecci贸n y soporte de dispositivos
+ el sistema de detecci贸n de hardware engloba tanto las tareas de detecci贸n
+ y soporte de dispositivos, como aquellas que tienen que ver con la
+ configuraci贸n de los mismos y la interacci贸n con el usuario.
+
+Package: ifupdown
+Version: 0.6.7ubuntu1uda
+Priority: important
+Section: base
+Maintainer: Anthony Towns <ajt@debian.org>
+Depends: net-tools, libc6 (>= 2.3.4-1), debconf (>= 1.2.0) | debconf-2.0, lsb-base (>= 1.3-9ubuntu3)
+Suggests: iproute, dhcp3-client | dhcp-client, ppp
+Replaces: netbase (<< 4.00)
+Architecture: i386
+Filename: ./ifupdown_0.6.7ubuntu1uda_i386.deb
+Size: 48900
+Installed-Size: 244
+MD5sum: bb45219d962a264443a76e5f286fefcc
+Description: high level tools to configure network interfaces
+ This package provides the tools ifup and ifdown which may be used to
+ configure (or, respectively, deconfigure) network interfaces based on
+ interface definitions in the file /etc/network/interfaces.
+
+Package: informe-hardware
+Version: 1.0
+Priority: optional
+Section: gnome
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Depends: zenity
+Architecture: i386
+Filename: ./informe-hardware_1.0_i386.deb
+Size: 6954
+Installed-Size: 60
+MD5sum: ca8e79fc2fccdf05d7e03ea02ce0407c
+Description: Error reporting tool.
+ Utility to report information about the operating system.
+
 Package: meta-guadalinex-v3
 Version: 1.0-r1931
 Priority: optional
@@ -417,4 +465,136 @@ Size: 3154
 Installed-Size: 56
 MD5sum: 4bd096d2843c05276cfa63736e8c6b5f
 Description: Definici髇 del v3-noescritorio de Debian/guadalinex.
+
+Package: ubuntu-express
+Version: 0.99-2
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Depends: python (<< 2.5), python (>= 2.4), debconf, yaboot | grub, ubuntu-express-frontend, system-tools-backends, ubuntu-express-doc, zenity
+Recommends: gparted, peez2
+Architecture: all
+Filename: ./ubuntu-express_0.99-2_all.deb
+Size: 71022
+Installed-Size: 772
+MD5sum: 73ac5d8b9f38a0d6e4e81fa20a502ee8
+Description: Ubuntu Live installer
+ Live installers have featured itself until now by being very
+ simple, friendly and graphical.
+ .
+ This Live Installer will be a simple one and well integrated with
+ Debian and Ubuntu based systems.
+ .
+ Use Cases:
+   * An user takes Ubuntu, he likes it and wants to install, as is,
+ in his computer.
+   * An user takes Ubuntu, he likes it, tests it, configures it and
+ wants to have it installed, keeping the stored configuration, in his
+ computer.
+   * An user has tried Ubuntu, he knows that likes it and wants to
+ install it, but neither wants nor needs to launch the complete distro
+ (Desktop and so on). He just wants a fast and simple way to install.
+   * An user has installed Ubuntu from Live version and wants to be
+ able to have a configuration file with the chosen options, so in case
+ he needs to reinstall or to install in a similar computer, just must
+ get it.
+
+Package: ubuntu-express-frontend-cloner
+Source: ubuntu-express
+Version: 0.99-2
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Depends: python (<< 2.5), python (>= 2.4), ubuntu-express-artwork, ubuntu-express-doc
+Provides: ubuntu-express-frontend
+Architecture: all
+Filename: ./ubuntu-express-frontend-cloner_0.99-2_all.deb
+Size: 7456
+Installed-Size: 80
+MD5sum: c416a027c6026da0868a5416015fae7a
+Description: Network Cloner Frontend for Ubuntu Express Live installer
+ This package provides a Ubuntu Express GUI non interactive which will install the system from a server.
+
+Package: ubuntu-express-frontend-gtk
+Source: ubuntu-express
+Version: 0.99-2
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-frontend
+Architecture: all
+Filename: ./ubuntu-express-frontend-gtk_0.99-2_all.deb
+Size: 27398
+Installed-Size: 264
+MD5sum: 1dc61c23aa389ead009066da3f2293eb
+Description: Gtk+ Frontend for Ubuntu Express Live installer
+ This package provides a Gtk+ based Ubuntu Express GUI.
+
+Package: ubuntu-express-guadalinex-artwork
+Source: ubuntu-express
+Version: 0.99-2
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-artwork
+Architecture: all
+Filename: ./ubuntu-express-guadalinex-artwork_0.99-2_all.deb
+Size: 665200
+Installed-Size: 756
+MD5sum: e6c485b231017b937315a4ca245d5da4
+Description: Guadalinex artwork for Ubuntu Express Live installer
+ This package provides a set of pixmaps, logo images and colormap for
+ window styles and Ubuntu Express UI. All the stuff provide by this
+ package is Guadalinex related.
+
+Package: ubuntu-express-guadalinex-doc
+Source: ubuntu-express
+Version: 0.99-2
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-doc
+Architecture: all
+Filename: ./ubuntu-express-guadalinex-doc_0.99-2_all.deb
+Size: 578758
+Installed-Size: 700
+MD5sum: cf9358f1e73aabb9c35512805dc0dfde
+Description: Guadalinex Documentation and help files for UE Live installer
+ This package provides a set of help files, html pages for the Ubuntu
+ Express UI, text messages for the installer and more stuff related
+ to Guadalinex distribution.
+
+Package: ubuntu-express-ubuntu-artwork
+Source: ubuntu-express
+Version: 0.99-2
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-artwork
+Architecture: all
+Filename: ./ubuntu-express-ubuntu-artwork_0.99-2_all.deb
+Size: 762974
+Installed-Size: 860
+MD5sum: 22160907130600baed568b07a60ad7f8
+Description: Ubuntu artwork for Ubuntu Express Live installer
+ This package provides a set of pixmaps, logo images and colormap for
+ window styles and Ubuntu Express UI. All the stuff provide by this
+ package is Ubuntu related.
+
+Package: ubuntu-express-ubuntu-doc
+Source: ubuntu-express
+Version: 0.99-2
+Priority: optional
+Section: admin
+Maintainer: Junta de Andalucia <packmaster@guadalinex.org>
+Provides: ubuntu-express-doc
+Architecture: all
+Filename: ./ubuntu-express-ubuntu-doc_0.99-2_all.deb
+Size: 335798
+Installed-Size: 480
+MD5sum: 8c64e266d617d3cf698043308d4d2981
+Description: Ubuntu Documentation and help files for UE Live installer
+ This package provides a set of help files, html pages for the Ubuntu
+ Express UI, text messages for the installer and more stuff related
+ to Ubuntu distribution.
 
