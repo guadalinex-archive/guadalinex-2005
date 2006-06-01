@@ -87,6 +87,9 @@ show_binary_exit 'date'
 show_binary_exit cat /etc/passwd | awk -F ":" '{print $1":"$3":"$4}'
 show_file '/etc/group'
 
+show_file '/etc/X11/xorg.conf'
+show_file '/var/log/Xorg.0.log'
+
 show_binary_exit 'mount'
 show_binary_exit 'dmesg'
 show_binary_exit 'df -h'
@@ -94,7 +97,13 @@ show_binary_exit 'ls -lR /dev'
 show_binary_exit 'lsusb'
 show_binary_exit 'lsusb -v'
 show_binary_exit '/sbin/ifconfig'
-show_binary_exit '/sbin/route'
+show_binary_exit '/sbin/route -n'
+show_file '/etc/network/interfaces'
+
+show_file '/etc/fstab'
+show_file '/etc/mtab'
+show_file '/etc/modules'
+show_binary_exit '/sbin/lsmod'
 
 show_file '/boot/grub/menu.lst'
 
