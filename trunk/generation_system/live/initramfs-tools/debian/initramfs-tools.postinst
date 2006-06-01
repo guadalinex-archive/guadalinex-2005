@@ -1,5 +1,7 @@
 #!/bin/sh
 
+KVERSION="2.6.12-9-386"
+
 set -e
 
 if [ "$1" = configure ]; then
@@ -31,6 +33,8 @@ if [ "$1" = configure ]; then
 		if [ -e /etc/mkinitrd/DSDT ]; then
 			cp /etc/mkinitrd/DSDT /etc/mkinitramfs/DSDT.aml
 		fi
+
+		depmod -ea $KVERSION
 
 	fi
 fi

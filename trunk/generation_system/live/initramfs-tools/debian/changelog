@@ -1,3 +1,13 @@
+initramfs-tools (0.32uda2) breezy; urgency=low
+
+  * Add unionfs.ko
+
+  * debian/initramfs-tools.{install,dir}: Add install line for the unionfs.ko
+
+  * debian/initramfs-tools.postinst: Add "depmod -ea" for unionfs driver's installation 
+
+ -- Juanje Ojeda <jojeda@emergya.info>  Thu,  01 Jun 2006 14:24:15 +0200
+
 initramfs-tools (0.32uda3) breezy; urgency=low
 
   * Added hacked version of halt to see if it solves reboot chvt probs
