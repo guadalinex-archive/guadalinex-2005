@@ -1,3 +1,17 @@
+Guadalinex v3.0.1 rc3 (02-06-06)
+--------------------------------
+
+- Cambios/Mejoras en Hermes:
+  - Cambiado sistema de ayuda del asistente
+  - Redirección a nueva página de información en la Wikipedia
+  
+- Incluido paquete para mejorar soporte de certificados digitales
+- Envío de informes de HW: 
+  - Cambios sobre el gestor de informes de Guadalinex2004 para adaptarlo a la
+  v3.
+  - Incluido paquete en la distribución.
+- Cambiado fondo de escritorio por el definitivo
+
 Guadalinex v3.0.1 rc2 (24-05-06)
 --------------------------------
 
