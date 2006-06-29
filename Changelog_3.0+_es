@@ -1,3 +1,11 @@
+Guadalinex v3.0.1 rc4 (29-06-06)
+--------------------------------
+
+- Evolution ya cuenta con su asistente de correo durante el inicio (#859)
+- Solucionado problema con la generación de usuarios (no se creaban los
+enlaces simbólicos en su home) (#860)
+- Añadido "minicom".
+
 Guadalinex v3.0.1 rc3 (02-06-06)
 --------------------------------
 
