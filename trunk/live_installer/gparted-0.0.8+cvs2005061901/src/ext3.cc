@@ -107,6 +107,7 @@ bool ext3::Copy( const Glib::ustring & src_part_path, const Glib::ustring & dest
 
 bool ext3::Check_Repair( const Partition & partition )
 {
+	Execute_Command( "e2fsck -fy " + partition .partition ) ;
 	return Execute_Command( "e2fsck -fy " + partition .partition ) <= 1 ;
 }
 
