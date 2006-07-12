@@ -1,3 +1,9 @@
+gparted (0.1-0uda2) breezy; urgency=low
+
+  * added litle hack for double checking the ext3 filesystem before resizing. 
+
+ -- Junta de Andalucia <packmaster@guadalinex.org>  Wed, 12 Jul 2006 15:41:22 +0100
+
 gparted (0.1-0uda1) breezy; urgency=low
 
   * new guadalinex version to merge with breezy updates.
