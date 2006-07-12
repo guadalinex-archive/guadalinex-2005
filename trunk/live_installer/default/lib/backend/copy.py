@@ -96,7 +96,8 @@ class Copy:
           if not misc.ex ('mount', '-t', 'ext3', device, path):
             misc.pre_log('info','%s is not able to be mounted in /home as ext3 filesystem' % device)
             misc.pre_log('info','%s is going to be formated as ext3 filesystem' % device)
-            misc.ex('mkfs.ext3',device)
+            misc.ex('mkfs.ext3', device)
+            misc.ex('e2fsck -fy', device)
             misc.ex('mount', device, path)
       else:
           path = os.path.join(self.target, path[1:])

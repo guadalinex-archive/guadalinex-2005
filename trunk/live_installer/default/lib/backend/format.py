@@ -26,6 +26,7 @@ class Format:
         queue.put( "1 Formateando partición raíz" )
         if not misc.ex('mkfs.ext3', device):
           return False
+        misc.ex('e2fsck -fy', device)
         queue.put( "2 Partición raíz lista" )
       elif path == 'swap':
         queue.put( "3 Preparando partición swap" )
