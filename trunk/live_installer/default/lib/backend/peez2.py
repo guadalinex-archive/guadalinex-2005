@@ -67,6 +67,7 @@ from locale      import getdefaultlocale
 from popen2      import Popen3
 from string      import lower
 from ue.settings import *
+from ue.misc     import ex
 
 class Peez2:
 
@@ -757,6 +758,9 @@ class Peez2:
                     for i in c:
 			# If we're going to resize NTFS, we need to force the execution of the command
 			if "ntfsresize" in i:
+				if ex('ntfsfix ' + srt(part) + ' > /dev/null 2>&1') != 0 :
+					stop = True
+                        		break
 				i = "yes | " + i.strip() + " -f " + "\n"
 				
                         if steps is not None:
