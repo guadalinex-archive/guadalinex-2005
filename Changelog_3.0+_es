@@ -1,3 +1,17 @@
+Guadalinex v3.0.1 rc5 (12-07-06)
+--------------------------------
+
+- Actualizados diversos paquetes de gestión de particiones (e2fs stuff).
+- Modificado Gparted para hacer una doble comprobación de los sistemas de
+ficheros durante el proceso de redimensionado de particiones.
+- Modificado instalador live para:
+  - Hacer comprobaciones del sistema de ficheros NTFS antes de proceder al
+  redimensionado (en la opción "Usar espacio libre de otro sistema
+  operativo"). Si se detecta algún problema, se aborta el proceso.
+  - Hacer comprobaciones de los sistemas de ficheros creados en la opción
+  "Usar todo el disco" o "Usar el espacio libre", de manera que las
+  particiones se creen completamente limpias.
+
 Guadalinex v3.0.1 rc4 (29-06-06)
 --------------------------------
 
