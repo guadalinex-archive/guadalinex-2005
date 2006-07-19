@@ -758,7 +758,7 @@ class Peez2:
                     for i in c:
 			# If we're going to resize NTFS, we need to force the execution of the command
 			if "ntfsresize" in i:
-				if ex('ntfsfix ' + srt(part) + ' > /dev/null 2>&1') != 0 :
+				if ex('ntfsfix ' + str(part) + ' > /dev/null 2>&1') != 0 :
 					stop = True
                         		break
 				i = "yes | " + i.strip() + " -f " + "\n"
